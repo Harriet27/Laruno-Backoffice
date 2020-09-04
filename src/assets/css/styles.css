@@ -1,0 +1,12 @@
+.container-css {
+    margin: 0 50px;
+}
+.left-50px {
+    margin-left: 50px;
+}
+.header-shadow-css {
+    -webkit-box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, 0.25);
+    -moz-box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, 0.25);
+    box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, 0.25);
+    padding: 10px;
+}
