@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
-export default function Button(props) {
+function Button(props) {
     // classname
     const className = [props.className];
     if (props.isPrimary) className.push("btn-primary");
@@ -64,7 +64,15 @@ export default function Button(props) {
             );
         }
     }
-    return <div></div>;
+    return (
+        <button
+            className={className.join(" ")}
+            style={props.style}
+            onClick={onClick}
+        >
+            {props.children}
+        </button>
+    );
 }
 
 Button.propTypes = {
@@ -82,3 +90,5 @@ Button.propTypes = {
     isExternal: propTypes.bool,
     hasShadow: propTypes.bool,
 };
+
+export default Button;
