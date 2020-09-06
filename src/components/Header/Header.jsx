@@ -27,27 +27,19 @@ const Header = (props) => {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="/dashboard">Dashboard</NavLink>
+                            <NavLink href="/">Dashboard</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">
-                                Report
-                            </NavLink>
+                            <NavLink href="/">Report</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">
-                                Product
-                            </NavLink>
+                            <NavLink href="/">Product</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">
-                                Order
-                            </NavLink>
+                            <NavLink href="/">Order</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">
-                                Tools
-                            </NavLink>
+                            <NavLink href="/">Tools</NavLink>
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
