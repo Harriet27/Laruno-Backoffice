@@ -20,7 +20,7 @@ const Header = (props) => {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <header className="header-shadow header-fixed" style={{}}>
+        <header className="header-shadow header-fixed container-general">
             <Navbar light expand="md">
                 <NavbarBrand href="/">Laruno</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
