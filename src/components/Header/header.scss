@@ -13,3 +13,15 @@ $black-color: rgba(0, 0, 0, 0.1);
     background-color: white;
     padding: 5px 0;
 }
+
+// button-hover
+.button-hover {
+    background-color: #fa962b;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    padding: 5px 15px;
+    &:hover {
+        border-radius: 2em;
+    }
+}

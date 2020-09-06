@@ -61,7 +61,7 @@ const Header = (props) => {
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>
-                    <NavbarText>Simple Text</NavbarText>
+                    <button className="button-hover">Add Product</button>
                 </Collapse>
             </Navbar>
         </header>
