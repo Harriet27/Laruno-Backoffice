@@ -1,9 +1,17 @@
 import React from "react";
+import propTypes from "prop-types";
 import "./card.scss";
 export default function Card(props) {
+    const className = [props.className];
+    if (props.isNormal) className.push("card-normal");
+    if (props.isBold) className.push("card-bold");
     return (
-        <div className="card-shadow" style={props.style}>
+        <div className={className.join(" ")} style={props.style}>
             {props.children}
         </div>
     );
 }
+Card.propTypes = {
+    isNormal: propTypes.bool,
+    isBold: propTypes.bool,
+};

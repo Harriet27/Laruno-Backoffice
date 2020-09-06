@@ -7,7 +7,9 @@ export default function App() {
     return (
         <div>
             <Header />
-            <Card style={{ padding: 100, margin: 100 }}>Hello js</Card>
+            <Card style={{ padding: 100, margin: 100 }} isBold>
+                Hello js
+            </Card>
         </div>
     );
 }
