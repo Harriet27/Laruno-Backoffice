@@ -21,7 +21,7 @@ export default function CardGetData() {
         <Card
             isBold
             style={{
-                width: "400px",
+                width: "450px",
                 height: "150px",
                 display: "flex",
                 justifyContent: "center",

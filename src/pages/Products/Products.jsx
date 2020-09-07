@@ -1,5 +1,6 @@
 import React from "react";
 import CardGetData from "../../elements/Card/CardGetData";
+import CardDataTable from "../../elements/Card/CardDataTable";
 
 export default function Products() {
     return (
@@ -9,6 +10,9 @@ export default function Products() {
                 <CardGetData />
                 <CardGetData />
                 <CardGetData />
+            </div>
+            <div style={{ padding: "100px 0" }}>
+                <CardDataTable />
             </div>
         </div>
     );
