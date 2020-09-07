@@ -21,7 +21,7 @@ const Header = (props) => {
 
     return (
         <header className="header-shadow header-fixed container-general">
-            <Navbar light expand="md">
+            <Navbar light expand="md" style={{ padding: 0 }}>
                 <NavbarBrand href="/">Laruno</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
