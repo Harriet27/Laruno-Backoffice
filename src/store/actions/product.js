@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 // import jwt_decode from "jwt-decode";
-const fetchPostProducts = (form, history) => async (dispatch) => {
+const fetchPostProducts = (form, history) => async () => {
     const url = `http://139.162.59.84:7000/api/v1/products`;
     const token = JSON.parse(localStorage.getItem("user")).accessToken;
     console.log(token);
@@ -9,7 +9,7 @@ const fetchPostProducts = (form, history) => async (dispatch) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "x-auth-token": `${token}`,
+            Authorization: `Bearer ${token}`,
         },
     };
     console.log(options, "ini options");

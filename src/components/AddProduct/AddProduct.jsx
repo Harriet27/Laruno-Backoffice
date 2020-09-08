@@ -49,9 +49,10 @@ export default function AddProduct() {
                             value={form.type}
                             onChange={handleChange}
                         >
-                            <option>Webinar</option>
-                            <option>Product Digital</option>
-                            <option>Bonus</option>
+                            <option value="webinar">webinar</option>
+                            <option value="digital">digital</option>
+                            <option value="ecommerce">ecommerce</option>
+                            <option value="bonus">bonus</option>
                         </select>
                     </div>
                 </div>

@@ -31,38 +31,55 @@ export default function Login() {
                 alignItems: "center",
             }}
         >
-            <Card isNormal style={{ padding: "40px" }}>
+            <Card isNormal style={{ padding: "50px", width: "500px" }}>
+                <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
+                    Laruno
+                </h1>
                 <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Email</label>
+                    <div
+                        style={{
+                            width: "100%",
+                            marginBottom: "20px",
+                        }}
+                    >
                         <div>
                             <input
+                                style={{ width: "100%", padding: "10px" }}
                                 type="email"
                                 name="email"
                                 id="email"
                                 value={form.email}
                                 onChange={handleChange}
+                                placeholder="Email.."
                                 required
                             />
                         </div>
                     </div>
                     {/* section */}
-                    <div>
-                        <label>Password</label>
+                    <div
+                        style={{
+                            width: "100%",
+                            marginBottom: "20px",
+                        }}
+                    >
                         <div>
                             <input
+                                style={{ width: "100%", padding: "10px" }}
                                 type="password"
                                 name="password"
                                 id="password"
                                 value={form.password}
                                 onChange={handleChange}
+                                placeholder="Password.."
                                 required
                             />
                         </div>
                     </div>
                     {/* section */}
 
-                    <button>Login</button>
+                    <button style={{ width: "100%", padding: "10px" }}>
+                        Login
+                    </button>
                 </form>
             </Card>
         </div>
