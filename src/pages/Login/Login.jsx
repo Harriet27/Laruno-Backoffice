@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPostLogin } from "../../store/actions";
+// try to react-hook-form
+import { useForm } from "react-hook-form";
 import Card from "../../elements/Card/Card";
 export default function Login() {
     const dispatch = useDispatch();
@@ -21,6 +23,8 @@ export default function Login() {
     };
     console.log(form);
 
+    // try to react-hook-form
+    const { register, handleSubmit, watch, errors } = useForm();
     return (
         <div
             style={{

@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { fetchPostProducts } from "../../store/actions/product";
+import Styled from "styled-components";
+import Card from "../../elements/Card/Card";
+
+// styled-components
+const Input = Styled.input`
+width: 100%;
+`;
 export default function AddProduct() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -25,92 +32,103 @@ export default function AddProduct() {
     };
     console.log(form, "add product");
     return (
-        <React.Fragment>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name</label>
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+            }}
+        >
+            <Card isNormal style={{ padding: "30px" }}>
+                <form onSubmit={handleSubmit} style={{ width: "400px" }}>
                     <div>
-                        <input
-                            type="text"
-                            name="name"
-                            id="name"
-                            value={form.name}
-                            onChange={handleChange}
-                        />
+                        <label>Name</label>
+                        <div>
+                            <Input
+                                type="text"
+                                name="name"
+                                id="name"
+                                value={form.name}
+                                onChange={handleChange}
+                            />
+                        </div>
                     </div>
-                </div>
-                {/* Section */}
-                <div>
-                    <label>Type</label>
+                    {/* Section */}
                     <div>
-                        <select
-                            name="type"
-                            id="type"
-                            value={form.type}
-                            onChange={handleChange}
-                        >
-                            <option value="webinar">webinar</option>
-                            <option value="digital">digital</option>
-                            <option value="ecommerce">ecommerce</option>
-                            <option value="bonus">bonus</option>
-                        </select>
+                        <label>Type</label>
+                        <div>
+                            <Input
+                                as="select"
+                                name="type"
+                                id="type"
+                                value={form.type}
+                                onChange={handleChange}
+                            >
+                                <option value="webinar">webinar</option>
+                                <option value="digital">digital</option>
+                                <option value="ecommerce">ecommerce</option>
+                                <option value="bonus">bonus</option>
+                            </Input>
+                        </div>
                     </div>
-                </div>
-                {/* Section */}
-                <div>
-                    <label>Price</label>
+                    {/* Section */}
                     <div>
-                        <input
-                            type="number"
-                            name="price"
-                            id="price"
-                            value={form.price}
-                            onChange={handleChange}
-                        />
+                        <label>Price</label>
+                        <div>
+                            <Input
+                                type="number"
+                                name="price"
+                                id="price"
+                                value={form.price}
+                                onChange={handleChange}
+                            />
+                        </div>
                     </div>
-                </div>
-                {/* Section */}
-                <div>
-                    <label>Deskripsi Singkat</label>
+                    {/* Section */}
                     <div>
-                        <input
-                            type="text"
-                            name="short_desc"
-                            id="short_desc"
-                            value={form.short_desc}
-                            onChange={handleChange}
-                        />
+                        <label>Deskripsi Singkat</label>
+                        <div>
+                            <Input
+                                type="text"
+                                name="short_desc"
+                                id="short_desc"
+                                value={form.short_desc}
+                                onChange={handleChange}
+                            />
+                        </div>
                     </div>
-                </div>
-                {/* Section */}
-                <div>
-                    <label>Deskripsi</label>
+                    {/* Section */}
                     <div>
-                        <textarea
-                            name="description"
-                            id="description"
-                            value={form.description}
-                            onChange={handleChange}
-                            placeholder="add description..."
-                        ></textarea>
+                        <label>Deskripsi</label>
+                        <div>
+                            <Input
+                                as="textarea"
+                                name="description"
+                                id="description"
+                                value={form.description}
+                                onChange={handleChange}
+                                placeholder="add description..."
+                            ></Input>
+                        </div>
                     </div>
-                </div>
-                {/* Section */}
-                <div>
-                    <label>Time Periode</label>
+                    {/* Section */}
                     <div>
-                        <input
-                            type="number"
-                            name="time_period"
-                            id="time_period"
-                            value={form.time_period}
-                            onChange={handleChange}
-                        ></input>
+                        <label>Time Periode</label>
+                        <div>
+                            <Input
+                                type="number"
+                                name="time_period"
+                                id="time_period"
+                                value={form.time_period}
+                                onChange={handleChange}
+                            />
+                        </div>
                     </div>
-                </div>
-                {/* Section */}
-                <button>Add Product</button>
-            </form>
-        </React.Fragment>
+                    {/* Section */}
+                    <button>Add Product</button>
+                </form>
+            </Card>
+        </div>
     );
 }
