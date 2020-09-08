@@ -15,6 +15,7 @@ import Products from "./pages/Products/Products";
 import CardDataDashboard from "./elements/Card/CardDataDashboard";
 // import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
+import AddProduct from "./components/AddProduct/AddProduct";
 
 export default function App() {
     return (
@@ -25,7 +26,7 @@ export default function App() {
                         <Login />
                     </Route>
                     <Route exact path="/products">
-                        <Products />
+                        <AddProduct />
                     </Route>
                 </Switch>
             </Router>

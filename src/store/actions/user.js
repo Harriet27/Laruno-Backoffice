@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+import jwt_decode from "jwt-decode";
 const fetchPostLogin = (form, history) => async (dispatch) => {
     try {
         const url = `http://139.162.59.84:7000/api/v1/users/login`;
@@ -8,19 +10,33 @@ const fetchPostLogin = (form, history) => async (dispatch) => {
                 "content-type": "application/json",
             },
         };
+
         const response = await fetch(url, options);
         const result = await response.json();
-        console.log(result);
 
         if (response.status === 201) {
-            alert(`mantul bro berhasil login`);
-            localStorage.setItem("user", result);
+            Swal.fire({
+                title: "Berhasil Login!",
+                text: "",
+                icon: "success",
+            });
+            localStorage.setItem("user", JSON.stringify(result));
             history.push("/products");
         } else if (response.status === 401) {
             localStorage.clear();
+        } else {
+            Swal.fire({
+                title: "Wrong email!",
+                text: "Email atau kata sandi anda tidak valid",
+                icon: "error",
+            });
         }
     } catch (error) {
-        alert(`masih eror`);
+        Swal.fire({
+            title: "Email atau Password Salah!",
+            text: "",
+            icon: "error",
+        });
     }
 };
 export { fetchPostLogin };
