@@ -5,10 +5,24 @@ import { fetchPostProducts } from "../../store/actions/product";
 import Styled from "styled-components";
 import Card from "../../elements/Card/Card";
 
-// styled-components
+// --- Styled Components --- //
 const Input = Styled.input`
-width: 100%;
+    width: 100%;
 `;
+const Section = Styled.section`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+`;
+const Label = Styled.label`
+    font-size: 24px;
+`;
+const WrapsField = Styled.div`
+
+`;
+// --- Styled Components --- //
+
 export default function AddProduct() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -26,24 +40,18 @@ export default function AddProduct() {
         event.preventDefault();
         dispatch(fetchPostProducts(form, history));
     };
+
     // handle change untuk onChange
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
-    console.log(form, "add product");
+
     return (
-        <div
-            style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-            }}
-        >
+        <Section>
             <Card isNormal style={{ padding: "30px" }}>
                 <form onSubmit={handleSubmit} style={{ width: "400px" }}>
-                    <div>
-                        <label>Name</label>
+                    <WrapsField>
+                        <Label>Name</Label>
                         <div>
                             <Input
                                 type="text"
@@ -53,10 +61,10 @@ export default function AddProduct() {
                                 onChange={handleChange}
                             />
                         </div>
-                    </div>
-                    {/* Section */}
-                    <div>
-                        <label>Type</label>
+                    </WrapsField>
+
+                    <WrapsField>
+                        <Label>Type</Label>
                         <div>
                             <Input
                                 as="select"
@@ -74,10 +82,10 @@ export default function AddProduct() {
                                 <option value="bonus">bonus</option>
                             </Input>
                         </div>
-                    </div>
-                    {/* Section */}
-                    <div>
-                        <label>Price</label>
+                    </WrapsField>
+
+                    <WrapsField>
+                        <Label>Price</Label>
                         <div>
                             <Input
                                 type="number"
@@ -87,10 +95,10 @@ export default function AddProduct() {
                                 onChange={handleChange}
                             />
                         </div>
-                    </div>
-                    {/* Section */}
-                    <div>
-                        <label>Deskripsi Singkat</label>
+                    </WrapsField>
+
+                    <WrapsField>
+                        <Label>Deskripsi Singkat</Label>
                         <div>
                             <Input
                                 type="text"
@@ -100,10 +108,10 @@ export default function AddProduct() {
                                 onChange={handleChange}
                             />
                         </div>
-                    </div>
-                    {/* Section */}
-                    <div>
-                        <label>Deskripsi</label>
+                    </WrapsField>
+
+                    <WrapsField>
+                        <Label>Deskripsi</Label>
                         <div>
                             <Input
                                 as="textarea"
@@ -114,10 +122,10 @@ export default function AddProduct() {
                                 placeholder="add description..."
                             ></Input>
                         </div>
-                    </div>
-                    {/* Section */}
-                    <div>
-                        <label>Time Periode</label>
+                    </WrapsField>
+
+                    <WrapsField>
+                        <Label>Time Periode</Label>
                         <div>
                             <Input
                                 type="number"
@@ -127,11 +135,11 @@ export default function AddProduct() {
                                 onChange={handleChange}
                             />
                         </div>
-                    </div>
-                    {/* Section */}
-                    <button>Add Product</button>
+                    </WrapsField>
+
+                    <Input as="button">Add Product</Input>
                 </form>
             </Card>
-        </div>
+        </Section>
     );
 }
