@@ -4,12 +4,12 @@ import { useHistory } from "react-router-dom";
 import { fetchPostProducts } from "../../store/actions/product";
 import Styled from "styled-components";
 import Card from "../../elements/Card/Card";
-
+import TypeCondition from "./TypeCondition";
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
     padding: .375rem;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     color: #495057;
     border-radius: 3px;
@@ -25,7 +25,9 @@ const Section = Styled.section`
     padding: 50px 100px;
     width: 100%;
     line-height: 1.5;
-
+    @media (max-width: 800px) {
+        padding: 20px 40px;
+          }
 `;
 const Label = Styled.label`
     
@@ -52,7 +54,10 @@ const Button = Styled.button`
 `;
 const SectionOne = Styled.div`
 display: flex;
-width: 100%;
+width: 50%;
+@media (max-width: 800px) {
+    width: 100%
+      }
 `;
 const Form = Styled.form`
 padding: 50px 40px;
@@ -255,7 +260,7 @@ export default function AddProduct() {
                                     <option value="" selected disabled hidden>
                                         Choose here
                                     </option>
-                                    <option value="public">Public</option>
+                                    <option value="publish">Public</option>
                                     <option value="private">Private</option>
                                 </Input>
                             </div>
@@ -276,142 +281,43 @@ export default function AddProduct() {
                                     <option value="" selected disabled hidden>
                                         Choose here
                                     </option>
-                                    <option value="public">Simple</option>
-                                    <option value="private">Full</option>
+                                    <option value="simple">Simple</option>
+                                    <option value="full">Full</option>
                                 </Input>
                             </div>
                         </WrapsField>
 
+                        <WrapsField>
+                            <Label>
+                                <Span>Upsale</Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    as="select"
+                                    name="form_type"
+                                    id="form_type"
+                                    value={form.sale_method}
+                                    onChange={handleChange}
+                                >
+                                    <option value="" selected disabled hidden>
+                                        Choose here
+                                    </option>
+                                    <option value="normal">Normal</option>
+                                    <option value="upsale">Upsale</option>
+                                    <option value="upgrade">Upgrade</option>
+                                    <option value="crossale">Crossale</option>
+                                </Input>
+                            </div>
+                        </WrapsField>
                         {/* logic type  */}
                         <div>
-                            {form.type === "webinar" ? (
-                                <div>
-                                    <WrapsField>
-                                        <Label>
-                                            <Span>Zoom ID</Span>
-                                        </Label>
-                                        <div>
-                                            <Input
-                                                type="text"
-                                                name="zoom_id"
-                                                id="zoom_id"
-                                                value={form.zoom_id}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-                                    </WrapsField>
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            justifyContent: "space-between",
-                                        }}
-                                    >
-                                        <WrapsField style={{ width: "45%" }}>
-                                            <Label>
-                                                <Span>Start Date</Span>
-                                            </Label>
-                                            <div>
-                                                <Input
-                                                    type="date"
-                                                    name="start_at"
-                                                    id="start_at"
-                                                    value={form.start_at}
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </WrapsField>
-
-                                        <WrapsField style={{ width: "45%" }}>
-                                            <Label>
-                                                <Span>End Date</Span>
-                                            </Label>
-                                            <div>
-                                                <Input
-                                                    type="date"
-                                                    name="end_at"
-                                                    id="end_at"
-                                                    value={form.end_at}
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </WrapsField>
-                                    </div>
-                                </div>
-                            ) : null}
-                            {form.type === "digital" ? (
-                                <WrapsField>
-                                    <Label>
-                                        <Span>Fullfilment</Span>
-                                    </Label>
-                                    <div>
-                                        <Input
-                                            as="select"
-                                            name="cars"
-                                            id="cars"
-                                        >
-                                            <option value="volvo">Buku</option>
-                                            <option value="saab">Video</option>
-                                        </Input>
-                                    </div>
-                                </WrapsField>
-                            ) : null}
-
-                            {form.type === "ecommerce" ? (
-                                <WrapsField
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            value="cod"
-                                            name="cod"
-                                            id="cod"
-                                        />
-                                        <Label>
-                                            <Span
-                                                style={{ marginLeft: "10PX" }}
-                                            >
-                                                COD
-                                            </Span>
-                                        </Label>
-                                    </div>
-
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            value="regular"
-                                            name="regular"
-                                            id="regular"
-                                        />
-                                        <Label>
-                                            <Span
-                                                style={{ marginLeft: "10PX" }}
-                                            >
-                                                Regular
-                                            </Span>
-                                        </Label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            value="both"
-                                            name="both"
-                                            id="both"
-                                        />
-                                        <Label>
-                                            <Span
-                                                style={{ marginLeft: "10PX" }}
-                                            >
-                                                Both
-                                            </Span>
-                                        </Label>
-                                    </div>
-                                </WrapsField>
-                            ) : null}
+                            <TypeCondition
+                                onChange={handleChange}
+                                form={form.type}
+                                start_at={form.start_at}
+                                end_at={form.end_at}
+                                zoom_id={form.zoom_id}
+                            />
                         </div>
                         <Button>Add Product</Button>
                     </Form>
