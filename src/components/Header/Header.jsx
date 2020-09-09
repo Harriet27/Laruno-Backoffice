@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Styled from "styled-components";
 import {
     Collapse,
     Navbar,
@@ -11,16 +12,43 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
-    NavbarText,
 } from "reactstrap";
-import "./header.scss";
+
+// --- Styled components --- //
+const Button = Styled.button`
+    background-color: #fa962b;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    padding: 5px 15px;
+    &:hover {
+        border-radius: 2em;
+    }
+`;
+
+const HeaderStyled = Styled.header`
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    font-size: 20px;
+    background-color: white;
+    padding: 5px 40px;
+    margin-bottom: 50px;
+`;
+// --- Styled Components --- //
+
 const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <header className="header-shadow header-fixed container-general">
+        <HeaderStyled>
             <Navbar light expand="md" style={{ padding: 0 }}>
                 <NavbarBrand href="/">Laruno</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
@@ -53,10 +81,10 @@ const Header = (props) => {
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>
-                    <button className="button-hover">Add Product</button>
+                    <Button>Add Product</Button>
                 </Collapse>
             </Navbar>
-        </header>
+        </HeaderStyled>
     );
 };
 
