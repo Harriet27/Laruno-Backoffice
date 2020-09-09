@@ -24,12 +24,10 @@ export default function App() {
                         <Login />
                     </Route>
                     <Route exact path="/products">
+                        <Header />
                         <AddProduct />
                     </Route>
-                    <Route exact path="/tes-components">
-                        <Header />
-                        <Footer />
-                    </Route>
+                    <Route exact path="/tes-components"></Route>
                 </Switch>
             </Router>
         </Provider>

@@ -9,7 +9,7 @@ const getOrder = (data) => {
 
 const fetchGetOrder = () => async (dispatch) => {
     try {
-        const url = `https://5f1b22af610bde0016fd35ad.mockapi.io/product`;
+        const url = `${process.env.URI_LIVE}/product`;
         const options = {
             method: "GET",
             headers: {
