@@ -66,7 +66,7 @@ padding: 50px 40px;
 `;
 // --- Styled Components --- //
 
-export default function Layout() {
+export default function Resseler() {
     return (
         <Section>
             <SectionOne>
@@ -74,16 +74,23 @@ export default function Layout() {
                     <div style={{ padding: "30px 40px" }}>
                         <WrapsField>
                             <Label>
-                                <Span>Headline </Span>
+                                <Span>Commision Type </Span>
                             </Label>
                             <div>
                                 <Input
-                                    type="text"
-                                    name="headline"
-                                    id="headline"
+                                    as="select"
+                                    name="commision_type"
+                                    id="commision_type"
                                     value=""
                                     onChange=""
-                                />
+                                >
+                                    <option value="" selected disabled hidden>
+                                        Choose here
+                                    </option>
+                                    <option value="publish">Low</option>
+                                    <option value="private">Middle</option>
+                                    <option value="private">Hight</option>
+                                </Input>
                             </div>
                         </WrapsField>
                         <WrapsField>
