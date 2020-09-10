@@ -199,36 +199,6 @@ export default function AddProduct() {
                                 </div>
                             </WrapsField>
                         </div>
-                        <WrapsField>
-                            <Label>
-                                <Span>Deskripsi Singkat</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="text"
-                                    name="short_desc"
-                                    id="short_desc"
-                                    value={form.short_desc}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </WrapsField>
-
-                        <WrapsField>
-                            <Label>
-                                <Span>Deskripsi</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="textarea"
-                                    name="description"
-                                    id="description"
-                                    value={form.description}
-                                    onChange={handleChange}
-                                    placeholder="add description..."
-                                ></Input>
-                            </div>
-                        </WrapsField>
 
                         <WrapsField>
                             <Label>
@@ -247,7 +217,7 @@ export default function AddProduct() {
 
                         <WrapsField>
                             <Label>
-                                <Span>visibility</Span>
+                                <Span>Status</Span>
                             </Label>
                             <div>
                                 <Input
@@ -262,6 +232,7 @@ export default function AddProduct() {
                                     </option>
                                     <option value="publish">Public</option>
                                     <option value="private">Private</option>
+                                    <option value="private">Draft</option>
                                 </Input>
                             </div>
                         </WrapsField>

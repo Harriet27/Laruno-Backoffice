@@ -14,7 +14,8 @@ import CardDataDashboard from "./elements/Card/CardDataDashboard";
 import Login from "./pages/Login/Login";
 import AddProduct from "./components/AddProduct/AddProduct";
 import Footer from "./components/Footer/Footer";
-
+import Stepper from "./components/AddProduct/Stepper";
+import Layout from "./components/AddProduct/Layout";
 export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
@@ -23,9 +24,9 @@ export default function App() {
                     <Route exact path="/">
                         <Login />
                     </Route>
-                    <Route exact path="/products">
+                    <Route exact path="/layouts">
                         <Header />
-                        <AddProduct />
+                        <Layout />
                     </Route>
                     <Route exact path="/tes-components"></Route>
                 </Switch>
