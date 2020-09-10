@@ -93,107 +93,26 @@ export default function Resseler() {
                                 </Input>
                             </div>
                         </WrapsField>
-                        <WrapsField>
-                            <Label>
-                                <Span>Sub Headline</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="text"
-                                    name="sub_headline"
-                                    id="sub_headline"
-                                    value=""
-                                    onChange=""
-                                />
-                            </div>
-                        </WrapsField>
-                        <WrapsField>
-                            <Label>
-                                <Span>Description</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="textarea"
-                                    name="description"
-                                    id="description"
-                                    value=""
-                                    onChange=""
-                                />
-                            </div>
-                        </WrapsField>
 
                         <WrapsField>
                             <Label>
-                                <Span>What You Learn</Span>
+                                <Span>Promotion Tools</Span>
                             </Label>
                             <div>
                                 <Input
-                                    as="textarea"
-                                    name="what_you_learn"
-                                    id="what_you_learn"
+                                    as="select"
+                                    name="promotion_tools"
+                                    id="promotion_tools"
                                     value=""
                                     onChange=""
-                                />
-                            </div>
-                        </WrapsField>
-
-                        <WrapsField>
-                            <Label>
-                                <Span>Image Bonus</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="file"
-                                    name="image_bonus"
-                                    id="image_bonus"
-                                    value=""
-                                    onChange=""
-                                />
-                            </div>
-                        </WrapsField>
-
-                        <WrapsField>
-                            <Label>
-                                <Span>Image text</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="file"
-                                    name="image_text"
-                                    id="image_text"
-                                    value=""
-                                    onChange=""
-                                />
-                            </div>
-                        </WrapsField>
-
-                        <WrapsField>
-                            <Label>
-                                <Span>Image Bonus</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="file"
-                                    name="image_product"
-                                    id="image_product"
-                                    value=""
-                                    onChange=""
-                                />
-                            </div>
-                        </WrapsField>
-
-                        <WrapsField>
-                            <Label>
-                                <Span>Image Bonus</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="file"
-                                    name="video"
-                                    id="video"
-                                    value=""
-                                    onChange=""
-                                />
+                                >
+                                    <option value="" selected disabled hidden>
+                                        Choose here
+                                    </option>
+                                    <option value="publish">Image</option>
+                                    <option value="private">Video Url</option>
+                                    <option value="private">Text</option>
+                                </Input>
                             </div>
                         </WrapsField>
 

@@ -116,8 +116,8 @@ export default function AddProduct() {
                                     type="text"
                                     name="name"
                                     id="name"
-                                    value={form.name}
-                                    onChange={handleChange}
+                                    value={props.name}
+                                    onChange={props.onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -131,8 +131,8 @@ export default function AddProduct() {
                                     as="select"
                                     name="type"
                                     id="type"
-                                    value={form.type}
-                                    onChange={handleChange}
+                                    value={props.type}
+                                    onChange={props.onChange}
                                 >
                                     <option value="" selected disabled hidden>
                                         Choose here
@@ -144,7 +144,7 @@ export default function AddProduct() {
                                 </Input>
                             </div>
                         </WrapsField>
-                        {/* tes component */}
+
                         <div
                             style={{
                                 display: "flex",
@@ -160,8 +160,8 @@ export default function AddProduct() {
                                         as="select"
                                         name="topic"
                                         id="topic"
-                                        value={form.topic}
-                                        onChange={handleChange}
+                                        value={props.topic}
+                                        onChange={props.onChange}
                                     >
                                         <option
                                             value=""
@@ -193,8 +193,8 @@ export default function AddProduct() {
                                         type="number"
                                         name="price"
                                         id="price"
-                                        value={form.price}
-                                        onChange={handleChange}
+                                        value={props.price}
+                                        onChange={props.onChange}
                                     />
                                 </div>
                             </WrapsField>
@@ -209,8 +209,8 @@ export default function AddProduct() {
                                     type="number"
                                     name="time_period"
                                     id="time_period"
-                                    value={form.time_period}
-                                    onChange={handleChange}
+                                    value={props.time_period}
+                                    onChange={props.onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -224,8 +224,8 @@ export default function AddProduct() {
                                     as="select"
                                     name="visibility"
                                     id="visibility"
-                                    value={form.visibility}
-                                    onChange={handleChange}
+                                    value={props.visibility}
+                                    onChange={props.onChange}
                                 >
                                     <option value="" selected disabled hidden>
                                         Choose here
@@ -246,8 +246,8 @@ export default function AddProduct() {
                                     as="select"
                                     name="form_type"
                                     id="form_type"
-                                    value={form.form_type}
-                                    onChange={handleChange}
+                                    value={props.form_type}
+                                    onChange={props.onChange}
                                 >
                                     <option value="" selected disabled hidden>
                                         Choose here
@@ -267,8 +267,8 @@ export default function AddProduct() {
                                     as="select"
                                     name="form_type"
                                     id="form_type"
-                                    value={form.sale_method}
-                                    onChange={handleChange}
+                                    value={props.sale_method}
+                                    onChange={props.onChange}
                                 >
                                     <option value="" selected disabled hidden>
                                         Choose here
@@ -280,6 +280,7 @@ export default function AddProduct() {
                                 </Input>
                             </div>
                         </WrapsField>
+
                         {/* logic type  */}
                         <div>
                             <TypeCondition

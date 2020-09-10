@@ -18,6 +18,7 @@ import Footer from "./components/Footer/Footer";
 import Layout from "./components/AddProduct/Layout";
 import Nav from "./components/AddProduct/Nav";
 import Resseler from "./components/AddProduct/Resseler";
+import AddsProducts from "./pages/AddsProducts/AddsProducts";
 export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
@@ -28,7 +29,7 @@ export default function App() {
                     </Route>
                     <Route exact path="/layouts">
                         <Header />
-                        <Resseler />
+                        <AddsProducts />
                     </Route>
                     <Route exact path="/tes-components"></Route>
                 </Switch>
