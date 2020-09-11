@@ -39,17 +39,6 @@ const Span = Styled.span`
     font-size: 18px;
 `;
 
-const Button = Styled.button`
-    width: 100%;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 3px;
-    border: none;
-    background-color: #007CB1;
-    color: white;
-    margin-top: 20px;
-`;
 const SectionOne = Styled.div`
     display: flex;
     width: 50%;
@@ -288,6 +277,22 @@ export default function AddProduct(props) {
                                             />
                                         </div>
                                     </WrapsField>
+
+                                    <WrapsField>
+                                        <Label>
+                                            <Span>Start Date</Span>
+                                        </Label>
+                                        <div>
+                                            <Input
+                                                type="date"
+                                                name="start_at"
+                                                id="start_at"
+                                                value={props.start_at}
+                                                onChange={props.onChange}
+                                            />
+                                        </div>
+                                    </WrapsField>
+
                                     <div
                                         style={{
                                             display: "flex",
@@ -296,14 +301,14 @@ export default function AddProduct(props) {
                                     >
                                         <WrapsField style={{ width: "45%" }}>
                                             <Label>
-                                                <Span>Start Date</Span>
+                                                <Span>Start Time</Span>
                                             </Label>
                                             <div>
                                                 <Input
-                                                    type="date"
-                                                    name="start_at"
-                                                    id="start_at"
-                                                    value={props.start_at}
+                                                    type="time"
+                                                    name="start_time"
+                                                    id="start_time"
+                                                    value={props.start_time}
                                                     onChange={props.onChange}
                                                 />
                                             </div>
@@ -311,14 +316,14 @@ export default function AddProduct(props) {
 
                                         <WrapsField style={{ width: "45%" }}>
                                             <Label>
-                                                <Span>End Date</Span>
+                                                <Span>End Time</Span>
                                             </Label>
                                             <div>
                                                 <Input
-                                                    type="date"
-                                                    name="end_at"
-                                                    id="end_at"
-                                                    value={props.end_at}
+                                                    type="time"
+                                                    name="end_time"
+                                                    id="end_time"
+                                                    value={props.end_time}
                                                     onChange={props.onChange}
                                                 />
                                             </div>

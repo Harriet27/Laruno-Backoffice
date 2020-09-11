@@ -17,15 +17,7 @@ const Input = Styled.input`
     border:1px solid #66AFE9;
     }
 `;
-const Section = Styled.section`
-    display: flex;
-    padding: 50px 100px;
-    width: 100%;
-    line-height: 1.5;
-    @media (max-width: 800px) {
-        padding: 20px 40px;
-          }
-`;
+
 const Label = Styled.label`
     
 `;
@@ -38,41 +30,16 @@ const Span = Styled.span`
     font-size: 18px;
 `;
 
-const Button = Styled.button`
-    width: 100%;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 3px;
-    border: none;
-    background-color: #007CB1;
-    color: white;
-    margin-top: 20px;
-`;
-const SectionOne = Styled.div`
-    display: flex;
-    width: 50%;
-    @media (max-width: 800px) {
-        width: 100%
-    }
-`;
-const Form = Styled.form`
-    padding: 50px 40px;
-    @media (max-width: 800px) {
-        padding: 20px;
-    }
-
-`;
 // --- Styled Components --- //
 
 export default function Bump(props) {
-    const [form, setForm] = useState({
+    const [box, setBox] = useState({
         checkbox: "",
     });
 
     // handle change untuk onChange
     const handleChange = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.checked });
+        setBox({ ...box, [event.target.name]: event.target.checked });
     };
     return (
         <div
@@ -87,7 +54,7 @@ export default function Bump(props) {
                             style={{ marginRight: "10PX" }}
                             name="checkbox"
                             id="checkbox"
-                            value={form.checkbox}
+                            value={box.checkbox}
                             type="checkbox"
                             onChange={handleChange}
                         />
@@ -95,7 +62,7 @@ export default function Bump(props) {
                     </label>
 
                     <div>
-                        {form.checkbox === true ? (
+                        {box.checkbox === true ? (
                             <React.Fragment>
                                 <WrapsField>
                                     <Label>

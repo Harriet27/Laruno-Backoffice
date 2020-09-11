@@ -8,17 +8,7 @@ import Header from "./components/Header/Header";
 import "./assets/scss/style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Products from "./pages/Products/Products";
-import CardDataDashboard from "./elements/Card/CardDataDashboard";
-// import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
-import AddProduct from "./components/AddProduct/AddProduct";
-import Footer from "./components/Footer/Footer";
-
-import Layout from "./components/AddProduct/Layout";
-
-import Resseler from "./components/AddProduct/Resseler";
-import AddsProducts from "./pages/AddsProducts/AddsProducts";
 import Bump from "./components/AddProduct/Bump";
 import StepperForm from "./elements/Stepper/StepperForm";
 export default function App() {

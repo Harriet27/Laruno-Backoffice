@@ -39,17 +39,6 @@ const Span = Styled.span`
     font-size: 18px;
 `;
 
-const Button = Styled.button`
-    width: 100%;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 3px;
-    border: none;
-    background-color: #007CB1;
-    color: white;
-    margin-top: 20px;
-`;
 const SectionOne = Styled.div`
 display: flex;
 width: 50%;

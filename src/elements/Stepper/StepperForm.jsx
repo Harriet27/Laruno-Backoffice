@@ -54,9 +54,8 @@ export default function StepperForm() {
         short_desc: "",
         description: "",
         time_period: "",
-
         start_at: "",
-        end_at: "",
+
         image_url: "",
         video_url: "",
         product_redirect: "",
@@ -99,7 +98,8 @@ export default function StepperForm() {
                             sale_method={form.sale_method}
                             zoom_id={form.media_url}
                             start_at={form.start_at}
-                            end_at={form.end_at}
+                            start_time={form.start_time}
+                            end_time={form.end_time}
                             mentor={form.mentor}
                         />
                         <Bump
