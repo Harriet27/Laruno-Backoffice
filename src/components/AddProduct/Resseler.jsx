@@ -115,29 +115,6 @@ export default function Resseler(props) {
                                 </Input>
                             </div>
                         </WrapsField>
-
-                        {/* tes product redirect */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Promotion Tools</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="select"
-                                    name="product_redirect"
-                                    id="product_redirect"
-                                    value={props.product_redirect}
-                                    onChange={props.onChange}
-                                >
-                                    <option value="" selected disabled hidden>
-                                        Choose here
-                                    </option>
-                                    <option value="image">Image</option>
-                                    <option value="video">Video Url</option>
-                                    <option value="text">Text</option>
-                                </Input>
-                            </div>
-                        </WrapsField>
                     </div>
                 </Card>
             </SectionOne>

@@ -74,7 +74,7 @@ export default function AddProduct(props) {
                     <Form as="div">
                         <WrapsField>
                             <Label>
-                                <Span>Nama Produk </Span>
+                                <Span>Nama Produk</Span>
                             </Label>
                             <div>
                                 <Input
@@ -128,9 +128,15 @@ export default function AddProduct(props) {
                                     <option value="5f59b0c4f2041be760e8b3c5">
                                         Bussiness
                                     </option>
-                                    <option value="finance">Finance</option>
-                                    <option value="marketing">Marketing</option>
-                                    <option value="sales">Sales</option>
+                                    <option value="5f59b0c4f2041be760e8b3c5">
+                                        Finance
+                                    </option>
+                                    <option value="5f59b0c4f2041be760e8b3c5">
+                                        Marketing
+                                    </option>
+                                    <option value="5f59b0c4f2041be760e8b3c5s">
+                                        Sales
+                                    </option>
                                 </Input>
                             </div>
                         </WrapsField>
@@ -229,6 +235,38 @@ export default function AddProduct(props) {
                                     <option value="upgrade">Upgrade</option>
                                     <option value="crossale">Crossale</option>
                                 </Input>
+                            </div>
+                        </WrapsField>
+
+                        {/* tes mentor  */}
+                        <WrapsField>
+                            <Label>
+                                <Span>Mentor</Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    type="text"
+                                    name="mentor"
+                                    id="mentor"
+                                    value={props.mentor}
+                                    onChange={props.onChange}
+                                />
+                            </div>
+                        </WrapsField>
+
+                        {/* tes product redirect */}
+                        <WrapsField>
+                            <Label>
+                                <Span>Product Redirect</Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    type="text"
+                                    name="product_redirect"
+                                    id="product_redirect"
+                                    value={props.product_redirect}
+                                    onChange={props.onChange}
+                                />
                             </div>
                         </WrapsField>
 

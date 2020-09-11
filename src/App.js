@@ -19,6 +19,7 @@ import Layout from "./components/AddProduct/Layout";
 import Nav from "./components/AddProduct/Nav";
 import Resseler from "./components/AddProduct/Resseler";
 import AddsProducts from "./pages/AddsProducts/AddsProducts";
+import Bump from "./components/AddProduct/Bump";
 import StepperForm from "./elements/Stepper/StepperForm";
 export default function App() {
     return (
@@ -32,7 +33,9 @@ export default function App() {
                         <Header />
                         <StepperForm />
                     </Route>
-                    <Route exact path="/tes-components"></Route>
+                    <Route exact path="/tes-components">
+                        <Bump />
+                    </Route>
                 </Switch>
             </Router>
         </Provider>

@@ -12,6 +12,7 @@ import Resseler from "../../components/AddProduct/Resseler";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { fetchPostProducts } from "../../store/actions/product";
+import Bump from "../../components/AddProduct/Bump";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -60,7 +61,7 @@ export default function StepperForm() {
         video_url: "",
         product_redirect: "",
         sale_method: "",
-
+        topic: [],
         visibility: "",
         form_type: "",
         media_url: "",
@@ -76,6 +77,12 @@ export default function StepperForm() {
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
+
+    // handle Checked for checkbox
+    const handleChecked = (event) => {
+        setForm({ ...form, [event.target.name]: event.target.checked });
+    };
+
     //  --- Fetching Data beserta logicnya "batas bawah" --- //
 
     // --- Content --- //
@@ -98,7 +105,9 @@ export default function StepperForm() {
                             zoom_id={form.media_url}
                             start_at={form.start_at}
                             end_at={form.end_at}
+                            mentor={form.mentor}
                         />
+                        <Bump />
                     </>
                 );
             case 1:
