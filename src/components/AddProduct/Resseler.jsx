@@ -66,7 +66,7 @@ padding: 50px 40px;
 `;
 // --- Styled Components --- //
 
-export default function Resseler() {
+export default function Resseler(props) {
     return (
         <Section>
             <SectionOne>
@@ -81,15 +81,15 @@ export default function Resseler() {
                                     as="select"
                                     name="commision_type"
                                     id="commision_type"
-                                    value=""
-                                    onChange=""
+                                    value={props.commision_type}
+                                    onChange={props.onChange}
                                 >
                                     <option value="" selected disabled hidden>
                                         Choose here
                                     </option>
-                                    <option value="publish">Low</option>
-                                    <option value="private">Middle</option>
-                                    <option value="private">Hight</option>
+                                    <option value="low">Low</option>
+                                    <option value="middle">Middle</option>
+                                    <option value="high">High</option>
                                 </Input>
                             </div>
                         </WrapsField>
@@ -103,15 +103,15 @@ export default function Resseler() {
                                     as="select"
                                     name="promotion_tools"
                                     id="promotion_tools"
-                                    value=""
-                                    onChange=""
+                                    value={props.promotion_tools}
+                                    onChange={props.onChange}
                                 >
                                     <option value="" selected disabled hidden>
                                         Choose here
                                     </option>
-                                    <option value="publish">Image</option>
-                                    <option value="private">Video Url</option>
-                                    <option value="private">Text</option>
+                                    <option value="image">Image</option>
+                                    <option value="video">Video Url</option>
+                                    <option value="text">Text</option>
                                 </Input>
                             </div>
                         </WrapsField>

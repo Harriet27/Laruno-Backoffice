@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { fetchPostProducts } from "../../store/actions/product";
+
 import Styled from "styled-components";
 import Card from "../../elements/Card/Card";
-import TypeCondition from "./TypeCondition";
+
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
@@ -53,60 +51,27 @@ const Button = Styled.button`
     margin-top: 20px;
 `;
 const SectionOne = Styled.div`
-display: flex;
-width: 50%;
-@media (max-width: 800px) {
-    width: 100%
-      }
+    display: flex;
+    width: 50%;
+    @media (max-width: 800px) {
+        width: 100%
+    }
 `;
 const Form = Styled.form`
-padding: 50px 40px;
-@media (max-width: 800px) {
-    padding: 20px;
-      }
+    padding: 50px 40px;
+    @media (max-width: 800px) {
+        padding: 20px;
+    }
 
 `;
 // --- Styled Components --- //
 
-export default function AddProduct() {
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const [form, setForm] = useState({
-        type: "",
-        name: "",
-        price: "",
-        short_desc: "",
-        description: "",
-        time_period: "",
-        topic: "",
-        start_at: "",
-        end_at: "",
-        image_url: "",
-        video_url: "",
-        product_redirect: "",
-        sale_method: "",
-        topic: "",
-        visibility: "",
-        form_type: "",
-        image_url: "",
-    });
-
-    // handleSubmit untuk enter dan submit button
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        dispatch(fetchPostProducts(form, history));
-    };
-
-    // handle change untuk onChange
-    const handleChange = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.value });
-    };
-
+export default function AddProduct(props) {
     return (
         <Section>
             <SectionOne>
                 <Card isNormal style={{ width: "100%" }}>
-                    <Form onSubmit={handleSubmit}>
+                    <Form as="div">
                         <WrapsField>
                             <Label>
                                 <Span>Nama Produk </Span>
@@ -145,60 +110,44 @@ export default function AddProduct() {
                             </div>
                         </WrapsField>
 
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                            }}
-                        >
-                            <WrapsField style={{ width: "45%" }}>
-                                <Label>
-                                    <Span>Topic</Span>
-                                </Label>
-                                <div>
-                                    <Input
-                                        as="select"
-                                        name="topic"
-                                        id="topic"
-                                        value={props.topic}
-                                        onChange={props.onChange}
-                                    >
-                                        <option
-                                            value=""
-                                            selected
-                                            disabled
-                                            hidden
-                                        >
-                                            Choose here
-                                        </option>
-                                        <option value="bussiness">
-                                            Bussiness
-                                        </option>
-                                        <option value="finance">Finance</option>
-                                        <option value="marketing">
-                                            Marketing
-                                        </option>
-                                        <option value="sales">Sales</option>
-                                    </Input>
-                                </div>
-                            </WrapsField>
+                        <WrapsField>
+                            <Label>
+                                <Span>Topic</Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    as="select"
+                                    name="topic"
+                                    id="topic"
+                                    value={props.topic}
+                                    onChange={props.onChange}
+                                >
+                                    <option value="" selected disabled hidden>
+                                        Choose here
+                                    </option>
+                                    <option value="bussiness">Bussiness</option>
+                                    <option value="finance">Finance</option>
+                                    <option value="marketing">Marketing</option>
+                                    <option value="sales">Sales</option>
+                                </Input>
+                            </div>
+                        </WrapsField>
 
-                            {/* tes components */}
-                            <WrapsField style={{ width: "45%" }}>
-                                <Label>
-                                    <Span>Harga</Span>
-                                </Label>
-                                <div>
-                                    <Input
-                                        type="number"
-                                        name="price"
-                                        id="price"
-                                        value={props.price}
-                                        onChange={props.onChange}
-                                    />
-                                </div>
-                            </WrapsField>
-                        </div>
+                        {/* components harga */}
+                        <WrapsField>
+                            <Label>
+                                <Span>Harga</Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    type="number"
+                                    name="price"
+                                    id="price"
+                                    value={props.price}
+                                    onChange={props.onChange}
+                                />
+                            </div>
+                        </WrapsField>
 
                         <WrapsField>
                             <Label>
@@ -265,8 +214,8 @@ export default function AddProduct() {
                             <div>
                                 <Input
                                     as="select"
-                                    name="form_type"
-                                    id="form_type"
+                                    name="sale_method"
+                                    id="sale_method"
                                     value={props.sale_method}
                                     onChange={props.onChange}
                                 >
@@ -283,15 +232,135 @@ export default function AddProduct() {
 
                         {/* logic type  */}
                         <div>
-                            <TypeCondition
-                                onChange={handleChange}
-                                form={form.type}
-                                start_at={form.start_at}
-                                end_at={form.end_at}
-                                zoom_id={form.zoom_id}
-                            />
+                            {props.form === "webinar" ? (
+                                <div>
+                                    <WrapsField>
+                                        <Label>
+                                            <Span>Zoom ID</Span>
+                                        </Label>
+                                        <div>
+                                            <Input
+                                                type="text"
+                                                name="zoom_id"
+                                                id="zoom_id"
+                                                value={props.zoom_id}
+                                                onChange={props.onChange}
+                                            />
+                                        </div>
+                                    </WrapsField>
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            justifyContent: "space-between",
+                                        }}
+                                    >
+                                        <WrapsField style={{ width: "45%" }}>
+                                            <Label>
+                                                <Span>Start Date</Span>
+                                            </Label>
+                                            <div>
+                                                <Input
+                                                    type="date"
+                                                    name="start_at"
+                                                    id="start_at"
+                                                    value={props.start_at}
+                                                    onChange={props.onChange}
+                                                />
+                                            </div>
+                                        </WrapsField>
+
+                                        <WrapsField style={{ width: "45%" }}>
+                                            <Label>
+                                                <Span>End Date</Span>
+                                            </Label>
+                                            <div>
+                                                <Input
+                                                    type="date"
+                                                    name="end_at"
+                                                    id="end_at"
+                                                    value={props.end_at}
+                                                    onChange={props.onChange}
+                                                />
+                                            </div>
+                                        </WrapsField>
+                                    </div>
+                                </div>
+                            ) : null}
+                            {props.form === "digital" ? (
+                                <WrapsField>
+                                    <Label>
+                                        <Span>Fullfilment</Span>
+                                    </Label>
+                                    <div>
+                                        <Input
+                                            as="select"
+                                            name="cars"
+                                            id="cars"
+                                        >
+                                            <option value="volvo">Buku</option>
+                                            <option value="saab">Video</option>
+                                        </Input>
+                                    </div>
+                                </WrapsField>
+                            ) : null}
+
+                            {props.form === "ecommerce" ? (
+                                <WrapsField
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <div>
+                                        <input
+                                            type="radio"
+                                            value="cod"
+                                            name="cod"
+                                            id="cod"
+                                        />
+                                        <Label>
+                                            <Span
+                                                style={{ marginLeft: "10PX" }}
+                                            >
+                                                COD
+                                            </Span>
+                                        </Label>
+                                    </div>
+
+                                    <div>
+                                        <input
+                                            type="radio"
+                                            value="regular"
+                                            name="regular"
+                                            id="regular"
+                                        />
+                                        <Label>
+                                            <Span
+                                                style={{ marginLeft: "10PX" }}
+                                            >
+                                                Regular
+                                            </Span>
+                                        </Label>
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="radio"
+                                            value="both"
+                                            name="both"
+                                            id="both"
+                                        />
+                                        <Label>
+                                            <Span
+                                                style={{ marginLeft: "10PX" }}
+                                            >
+                                                Both
+                                            </Span>
+                                        </Label>
+                                    </div>
+                                </WrapsField>
+                            ) : null}
                         </div>
-                        <Button>Add Product</Button>
                     </Form>
                 </Card>
             </SectionOne>

@@ -38,7 +38,7 @@ const HeaderStyled = Styled.header`
     font-size: 20px;
     background-color: white;
     padding: 5px 40px;
-    margin-bottom: 50px;
+   
 `;
 // --- Styled Components --- //
 

@@ -66,7 +66,7 @@ padding: 50px 40px;
 `;
 // --- Styled Components --- //
 
-export default function Layout() {
+export default function Layout(props) {
     return (
         <Section>
             <SectionOne>
@@ -81,8 +81,8 @@ export default function Layout() {
                                     type="text"
                                     name="headline"
                                     id="headline"
-                                    value=""
-                                    onChange=""
+                                    value={props.headline}
+                                    onChange={props.onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -95,8 +95,8 @@ export default function Layout() {
                                     type="text"
                                     name="sub_headline"
                                     id="sub_headline"
-                                    value=""
-                                    onChange=""
+                                    value={props.sub_headline}
+                                    onChange={props.onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -109,8 +109,8 @@ export default function Layout() {
                                     as="textarea"
                                     name="description"
                                     id="description"
-                                    value=""
-                                    onChange=""
+                                    value={props.description}
+                                    onChange={props.onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -124,8 +124,8 @@ export default function Layout() {
                                     as="textarea"
                                     name="what_you_learn"
                                     id="what_you_learn"
-                                    value=""
-                                    onChange=""
+                                    value={props.what_you_learn}
+                                    onChange={props.onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -139,8 +139,8 @@ export default function Layout() {
                                     type="file"
                                     name="image_bonus"
                                     id="image_bonus"
-                                    value=""
-                                    onChange=""
+                                    value={props.image_bonus}
+                                    onChange={props.onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -154,43 +154,41 @@ export default function Layout() {
                                     type="file"
                                     name="image_text"
                                     id="image_text"
-                                    value=""
-                                    onChange=""
+                                    value={props.image_text}
+                                    onChange={props.onChange}
                                 />
                             </div>
                         </WrapsField>
 
                         <WrapsField>
                             <Label>
-                                <Span>Image Bonus</Span>
+                                <Span>Image Product</Span>
                             </Label>
                             <div>
                                 <Input
                                     type="file"
                                     name="image_product"
                                     id="image_product"
-                                    value=""
-                                    onChange=""
+                                    value={props.image_product}
+                                    onChange={props.onChange}
                                 />
                             </div>
                         </WrapsField>
 
                         <WrapsField>
                             <Label>
-                                <Span>Image Bonus</Span>
+                                <Span>Video</Span>
                             </Label>
                             <div>
                                 <Input
                                     type="file"
                                     name="video"
                                     id="video"
-                                    value=""
-                                    onChange=""
+                                    value={props.video}
+                                    onChange={props.onChange}
                                 />
                             </div>
                         </WrapsField>
-
-                        <Button>Next</Button>
                     </div>
                 </Card>
             </SectionOne>
