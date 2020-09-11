@@ -107,7 +107,7 @@ export default function Bump(props) {
                                             type="text"
                                             name="bump_product"
                                             id="bump_product"
-                                            value={props.name}
+                                            value={props.bump_product}
                                             onChange={props.onChange}
                                         />
                                     </div>
@@ -137,7 +137,7 @@ export default function Bump(props) {
                                             type="number"
                                             name="bump_weight"
                                             id="bump_weight"
-                                            value={props.price_bump}
+                                            value={props.bump_weight}
                                             onChange={props.onChange}
                                         />
                                     </div>

@@ -9,16 +9,26 @@ import ImageBrand from "../../assets/images/laruno1.png";
 // --- Styled Components --- //
 const Section = Styled.section`
     width: 100%;
-    height: 100vh;  
+    height: 100vh;
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
+    
+    
 `;
 const Input = Styled.input`
     width: 100%;
     padding: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #495057;
     border-radius: 3px;
-    border: 1px solid #D9DEE2;
+    background-color: #FCFCFC;
+    border: 1px solid #ced4da;
+    &:focus{
+    outline: none !important;
+    border:1px solid #66AFE9;
+    }
 `;
 const Brand = Styled.h1`
     text-align: center;
@@ -59,7 +69,13 @@ export default function Login() {
                 }}
             >
                 <Brand>
-                    <img src={ImageBrand} alt="brand" />
+                    <div style={{ width: "100%" }}>
+                        <img
+                            style={{ maxWidth: "100%", height: "100%" }}
+                            src={ImageBrand}
+                            alt="brand"
+                        />
+                    </div>
                 </Brand>
                 <form onSubmit={handleSubmit}>
                     <WrapForm>

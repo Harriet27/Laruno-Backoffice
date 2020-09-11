@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Styled from "styled-components";
+import ImageBrand from "../../assets/images/laruno1.png";
 import {
     Collapse,
     Navbar,
@@ -50,7 +51,18 @@ const Header = (props) => {
     return (
         <HeaderStyled>
             <Navbar light expand="md" style={{ padding: 0 }}>
-                <NavbarBrand href="/">Laruno</NavbarBrand>
+                <NavbarBrand href="/">
+                    <div style={{ height: "40px", marginRight: "40px" }}>
+                        <img
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                            }}
+                            src={ImageBrand}
+                            alt="brand"
+                        />
+                    </div>
+                </NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>

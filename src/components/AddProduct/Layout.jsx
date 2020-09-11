@@ -81,7 +81,7 @@ export default function Layout(props) {
                                     type="text"
                                     name="headline"
                                     id="headline"
-                                    value={props.headline}
+                                    value={props.short_desc}
                                     onChange={props.onChange}
                                 />
                             </div>
@@ -96,21 +96,6 @@ export default function Layout(props) {
                                     name="sub_headline"
                                     id="sub_headline"
                                     value={props.sub_headline}
-                                    onChange={props.onChange}
-                                />
-                            </div>
-                        </WrapsField>
-
-                        <WrapsField>
-                            <Label>
-                                <Span>Short Description</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="textarea"
-                                    name="short_desc"
-                                    id="short_desc"
-                                    value={props.short_desc}
                                     onChange={props.onChange}
                                 />
                             </div>

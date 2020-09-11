@@ -29,7 +29,7 @@ export default function App() {
                     <Route exact path="/">
                         <Login />
                     </Route>
-                    <Route exact path="/layouts">
+                    <Route exact path="/products">
                         <Header />
                         <StepperForm />
                     </Route>

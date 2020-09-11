@@ -78,11 +78,6 @@ export default function StepperForm() {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
-    // handle Checked for checkbox
-    const handleChecked = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.checked });
-    };
-
     //  --- Fetching Data beserta logicnya "batas bawah" --- //
 
     // --- Content --- //
@@ -107,7 +102,13 @@ export default function StepperForm() {
                             end_at={form.end_at}
                             mentor={form.mentor}
                         />
-                        <Bump />
+                        <Bump
+                            bump_product={form.bump_product}
+                            price_bump={form.price_bump}
+                            bump_weight={form.bump_weight}
+                            image_bump={form.image_bump}
+                            onChange={handleChange}
+                        />
                     </>
                 );
             case 1:
@@ -115,7 +116,8 @@ export default function StepperForm() {
                     <>
                         <Layout
                             onChange={handleChange}
-                            headline={form.headline}
+                            // short description di field adalah Headline
+                            short_desc={form.short_desc}
                             sub_headline={form.sub_headline}
                             description={form.description}
                             what_you_learn={form.what_you_learn}
@@ -123,7 +125,6 @@ export default function StepperForm() {
                             image_text={form.image_text}
                             image_product={form.image_product}
                             video={form.video}
-                            short_desc={form.short_desc}
                         />
                     </>
                 );
