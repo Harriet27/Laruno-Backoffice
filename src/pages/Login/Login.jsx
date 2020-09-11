@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPostLogin } from "../../store/actions";
 import Card from "../../elements/Card/Card";
+import ImageBrand from "../../assets/images/laruno1.png";
 
 // --- Styled Components --- //
 const Section = Styled.section`
@@ -16,6 +17,8 @@ const Section = Styled.section`
 const Input = Styled.input`
     width: 100%;
     padding: 10px;
+    border-radius: 3px;
+    border: 1px solid #D9DEE2;
 `;
 const Brand = Styled.h1`
     text-align: center;
@@ -47,8 +50,17 @@ export default function Login() {
 
     return (
         <Section>
-            <Card isLogin style={{ padding: "50px", width: "500px" }}>
-                <Brand>Laruno</Brand>
+            <Card
+                isLogin
+                style={{
+                    padding: "50px",
+                    width: "500px",
+                    borderRadius: "5px",
+                }}
+            >
+                <Brand>
+                    <img src={ImageBrand} alt="brand" />
+                </Brand>
                 <form onSubmit={handleSubmit}>
                     <WrapForm>
                         <Input
@@ -57,7 +69,7 @@ export default function Login() {
                             id="email"
                             value={form.email}
                             onChange={handleChange}
-                            placeholder="Email.."
+                            placeholder="Email"
                             required
                         />
                     </WrapForm>
@@ -69,12 +81,17 @@ export default function Login() {
                             id="password"
                             value={form.password}
                             onChange={handleChange}
-                            placeholder="Password.."
+                            placeholder="Password"
                             required
                         />
                     </WrapForm>
 
-                    <Input as="button">Login</Input>
+                    <Input
+                        as="button"
+                        style={{ backgroundColor: "#0098DA", color: "white" }}
+                    >
+                        Login
+                    </Input>
                 </form>
             </Card>
         </Section>
