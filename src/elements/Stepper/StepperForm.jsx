@@ -43,10 +43,6 @@ export default function StepperForm() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleReset = () => {
-        setActiveStep(0);
-    };
-
     //  --- Fetching Data beserta logicnya --- //
     const dispatch = useDispatch();
     const history = useHistory();
@@ -57,17 +53,17 @@ export default function StepperForm() {
         short_desc: "",
         description: "",
         time_period: "",
-        topic: "",
+
         start_at: "",
         end_at: "",
         image_url: "",
         video_url: "",
         product_redirect: "",
         sale_method: "",
-        topic: "",
+
         visibility: "",
         form_type: "",
-        image_url: "",
+        media_url: "",
     });
 
     // handleSubmit untuk enter dan submit button
@@ -99,7 +95,7 @@ export default function StepperForm() {
                             visibility={form.visibility}
                             form_type={form.form_type}
                             sale_method={form.sale_method}
-                            zoom_id={form.zoom_id}
+                            zoom_id={form.media_url}
                             start_at={form.start_at}
                             end_at={form.end_at}
                         />
@@ -118,6 +114,7 @@ export default function StepperForm() {
                             image_text={form.image_text}
                             image_product={form.image_product}
                             video={form.video}
+                            short_desc={form.short_desc}
                         />
                     </>
                 );
@@ -128,6 +125,7 @@ export default function StepperForm() {
                             onChange={handleChange}
                             commision_type={form.commision_type}
                             promotion_tools={form.promotion_tools}
+                            product_redirect={form.product_redirect}
                         />
                     </>
                 );
@@ -151,52 +149,57 @@ export default function StepperForm() {
                 ))}
             </Stepper>
             <div>
-                {activeStep === steps.length ? (
-                    <div>
-                        <h1>INI SEMUA TAMPILAN YANG SUDAH DI INPUT</h1>
-                        <Button>Confirm</Button>
-                    </div>
-                ) : (
-                    <div>
-                        <Typography className={classes.instructions}>
-                            <form>{getStepContent(activeStep)}</form>
-                        </Typography>
-                        <div>
-                            {activeStep === 0 ? (
-                                <React.Fragment>
-                                    <span
-                                        style={{ marginLeft: "100px" }}
-                                    ></span>
-                                </React.Fragment>
-                            ) : (
-                                <Button
-                                    style={{ marginLeft: "100px" }}
-                                    onClick={handleBack}
-                                    className={classes.backButton}
-                                >
-                                    Back
-                                </Button>
-                            )}
-                            <React.Fragment>
+                <div>
+                    <Typography className={classes.instructions}>
+                        <form onSubmit={handleSubmit}>
+                            {getStepContent(activeStep)}
+                            <>
                                 {activeStep === steps.length - 1 ? (
-                                    <Button variant="contained" color="primary">
+                                    <button
+                                        style={{
+                                            color: "white",
+                                            padding: 10,
+                                            backgroundColor: "#303F9F",
+                                            marginLeft: "100px",
+                                            border: "none",
+                                            borderRadius: "3px",
+                                        }}
+                                    >
                                         Confirm
-                                    </Button>
-                                ) : (
-                                    <React.Fragment>
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={handleNext}
-                                        >
-                                            Next
-                                        </Button>
-                                    </React.Fragment>
-                                )}
+                                    </button>
+                                ) : null}
+                            </>
+                        </form>
+                    </Typography>
+                    <div>
+                        {activeStep === 0 ? (
+                            <React.Fragment>
+                                <span style={{ marginLeft: "100px" }}></span>
                             </React.Fragment>
-                        </div>
+                        ) : (
+                            <Button
+                                style={{ marginLeft: "100px" }}
+                                onClick={handleBack}
+                                className={classes.backButton}
+                            >
+                                Back
+                            </Button>
+                        )}
+                        <React.Fragment>
+                            {activeStep === steps.length - 1 ? null : (
+                                <React.Fragment>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={handleNext}
+                                    >
+                                        Next
+                                    </Button>
+                                </React.Fragment>
+                            )}
+                        </React.Fragment>
                     </div>
-                )}
+                </div>
             </div>
         </div>
     );

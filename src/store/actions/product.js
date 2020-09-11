@@ -14,6 +14,7 @@ const fetchPostProducts = (form, history) => async () => {
             Authorization: `Bearer ${token}`,
         },
     };
+    console.log(options.body);
     console.log(options, "ini options");
     const response = await fetch(url, options);
     await response.json();

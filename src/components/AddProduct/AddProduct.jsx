@@ -125,7 +125,9 @@ export default function AddProduct(props) {
                                     <option value="" selected disabled hidden>
                                         Choose here
                                     </option>
-                                    <option value="bussiness">Bussiness</option>
+                                    <option value="5f59b0c4f2041be760e8b3c5">
+                                        Bussiness
+                                    </option>
                                     <option value="finance">Finance</option>
                                     <option value="marketing">Marketing</option>
                                     <option value="sales">Sales</option>
@@ -241,8 +243,8 @@ export default function AddProduct(props) {
                                         <div>
                                             <Input
                                                 type="text"
-                                                name="zoom_id"
-                                                id="zoom_id"
+                                                name="media_url"
+                                                id="media_url"
                                                 value={props.zoom_id}
                                                 onChange={props.onChange}
                                             />
