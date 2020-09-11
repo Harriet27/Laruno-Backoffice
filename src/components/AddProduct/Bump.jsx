@@ -142,6 +142,21 @@ export default function Bump(props) {
                                         />
                                     </div>
                                 </WrapsField>
+
+                                <WrapsField>
+                                    <Label>
+                                        <Span>Upload Image</Span>
+                                    </Label>
+                                    <div>
+                                        <Input
+                                            type="file"
+                                            name="image_bump"
+                                            id="image_bump"
+                                            value={props.image_bump}
+                                            onChange={props.onChange}
+                                        />
+                                    </div>
+                                </WrapsField>
                             </React.Fragment>
                         ) : null}
                     </div>
