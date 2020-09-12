@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchGetTopic } from '../../store/actions';
 
-import Styled from "styled-components";
-import Card from "../../elements/Card/Card";
+import Styled from 'styled-components';
+import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
 const Input = Styled.input`
@@ -56,10 +58,17 @@ const Form = Styled.form`
 // --- Styled Components --- //
 
 export default function AddProduct(props) {
+    const dispatch = useDispatch();
+    const topic = useSelector((state) => state.topic);
+    console.log(topic.data, 'topic ini isinya apa cih');
+
+    useEffect(() => {
+        dispatch(fetchGetTopic());
+    }, [dispatch]);
     return (
         <Section>
             <SectionOne>
-                <Card isNormal style={{ width: "100%" }}>
+                <Card isNormal style={{ width: '100%' }}>
                     <Form as="div">
                         <WrapsField>
                             <Label>
@@ -114,18 +123,19 @@ export default function AddProduct(props) {
                                     <option value="" selected disabled hidden>
                                         Choose here
                                     </option>
-                                    <option value="5f59b0c4f2041be760e8b3c5">
-                                        Bussiness
-                                    </option>
-                                    <option value="5f59b0c4f2041be760e8b3c5">
-                                        Finance
-                                    </option>
-                                    <option value="5f59b0c4f2041be760e8b3c5">
-                                        Marketing
-                                    </option>
-                                    <option value="5f59b0c4f2041be760e8b3c5s">
-                                        Sales
-                                    </option>
+                                    <React.Fragment>
+                                        {topic.data !== undefined &&
+                                            topic.data.map((item) => {
+                                                return (
+                                                    <option
+                                                        key={item._id}
+                                                        value={item._id}
+                                                    >
+                                                        {item.name}
+                                                    </option>
+                                                );
+                                            })}
+                                    </React.Fragment>
                                 </Input>
                             </div>
                         </WrapsField>
@@ -261,7 +271,7 @@ export default function AddProduct(props) {
 
                         {/* logic type  */}
                         <div>
-                            {props.form === "webinar" ? (
+                            {props.form === 'webinar' ? (
                                 <div>
                                     <WrapsField>
                                         <Label>
@@ -295,11 +305,11 @@ export default function AddProduct(props) {
 
                                     <div
                                         style={{
-                                            display: "flex",
-                                            justifyContent: "space-between",
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
                                         }}
                                     >
-                                        <WrapsField style={{ width: "45%" }}>
+                                        <WrapsField style={{ width: '45%' }}>
                                             <Label>
                                                 <Span>Start Time</Span>
                                             </Label>
@@ -314,7 +324,7 @@ export default function AddProduct(props) {
                                             </div>
                                         </WrapsField>
 
-                                        <WrapsField style={{ width: "45%" }}>
+                                        <WrapsField style={{ width: '45%' }}>
                                             <Label>
                                                 <Span>End Time</Span>
                                             </Label>
@@ -331,7 +341,7 @@ export default function AddProduct(props) {
                                     </div>
                                 </div>
                             ) : null}
-                            {props.form === "digital" ? (
+                            {props.form === 'digital' ? (
                                 <WrapsField>
                                     <Label>
                                         <Span>Fullfilment</Span>
@@ -349,12 +359,12 @@ export default function AddProduct(props) {
                                 </WrapsField>
                             ) : null}
 
-                            {props.form === "ecommerce" ? (
+                            {props.form === 'ecommerce' ? (
                                 <WrapsField
                                     style={{
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        justifyContent: "space-between",
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
                                     }}
                                 >
                                     <div>
@@ -366,7 +376,7 @@ export default function AddProduct(props) {
                                         />
                                         <Label>
                                             <Span
-                                                style={{ marginLeft: "10PX" }}
+                                                style={{ marginLeft: '10PX' }}
                                             >
                                                 COD
                                             </Span>
@@ -382,7 +392,7 @@ export default function AddProduct(props) {
                                         />
                                         <Label>
                                             <Span
-                                                style={{ marginLeft: "10PX" }}
+                                                style={{ marginLeft: '10PX' }}
                                             >
                                                 Regular
                                             </Span>
@@ -397,7 +407,7 @@ export default function AddProduct(props) {
                                         />
                                         <Label>
                                             <Span
-                                                style={{ marginLeft: "10PX" }}
+                                                style={{ marginLeft: '10PX' }}
                                             >
                                                 Both
                                             </Span>

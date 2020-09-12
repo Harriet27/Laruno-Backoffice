@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Card from "../../elements/Card/Card";
-import Styled from "styled-components";
+import React, { useState } from 'react';
+import Card from '../../elements/Card/Card';
+import Styled from 'styled-components';
 
 // --- Styled Components --- //
 const Input = Styled.input`
@@ -34,7 +34,7 @@ const Span = Styled.span`
 
 export default function Bump(props) {
     const [box, setBox] = useState({
-        checkbox: "",
+        checkbox: '',
     });
 
     // handle change untuk onChange
@@ -44,14 +44,14 @@ export default function Bump(props) {
     return (
         <div
             style={{
-                padding: "50px 100px",
+                padding: '50px 100px',
             }}
         >
-            <Card isNormal style={{ width: "50%" }}>
-                <div style={{ padding: "20px 30px" }}>
+            <Card isNormal style={{ width: '50%' }}>
+                <div style={{ padding: '20px 30px' }}>
                     <label>
                         <input
-                            style={{ marginRight: "10PX" }}
+                            style={{ marginRight: '10PX' }}
                             name="checkbox"
                             id="checkbox"
                             value={box.checkbox}

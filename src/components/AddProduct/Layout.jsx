@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Styled from "styled-components";
-import Card from "../../elements/Card/Card";
+import Styled from 'styled-components';
+import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
 const Input = Styled.input`
@@ -59,8 +59,8 @@ export default function Layout(props) {
     return (
         <Section>
             <SectionOne>
-                <Card isNormal style={{ width: "100%" }}>
-                    <div style={{ padding: "30px 40px" }}>
+                <Card isNormal style={{ width: '100%' }}>
+                    <div style={{ padding: '30px 40px' }}>
                         <WrapsField>
                             <Label>
                                 <Span>Headline </Span>
