@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import Layout from "../../components/AddProduct/Layout";
-import AddProduct from "../../components/AddProduct/AddProduct";
-import Resseler from "../../components/AddProduct/Resseler";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Layout from '../../components/AddProduct/Layout';
+import AddProduct from '../../components/AddProduct/AddProduct';
+import Resseler from '../../components/AddProduct/Resseler';
 
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { fetchPostProducts } from "../../store/actions/product";
-import Bump from "../../components/AddProduct/Bump";
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { fetchPostProducts } from '../../store/actions/product';
+import Bump from '../../components/AddProduct/Bump';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "100%",
+        width: '100%',
     },
     backButton: {
         marginRight: theme.spacing(1),
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ["Detail Information", "Layout", "Resseler"];
+    return ['Detail Information', 'Layout', 'Resseler'];
 }
 
 export default function StepperForm() {
@@ -48,22 +48,22 @@ export default function StepperForm() {
     const dispatch = useDispatch();
     const history = useHistory();
     const [form, setForm] = useState({
-        type: "",
-        name: "",
-        price: "",
-        short_desc: "",
-        description: "",
-        time_period: "",
-        start_at: "",
+        type: '',
+        name: '',
+        price: '',
+        short_desc: '',
+        description: '',
+        time_period: '',
+        start_at: '',
 
-        image_url: "",
-        video_url: "",
-        product_redirect: "",
-        sale_method: "",
+        image_url: '',
+        video_url: '',
+        product_redirect: '',
+        sale_method: '',
         topic: [],
-        visibility: "",
-        form_type: "",
-        media_url: "",
+        visibility: '',
+        form_type: '',
+        media_url: '',
     });
 
     // handleSubmit untuk enter dan submit button
@@ -141,14 +141,14 @@ export default function StepperForm() {
                 );
 
             default:
-                return "Unknown stepIndex";
+                return 'Unknown stepIndex';
         }
     }
     // --- content --- "batas bawah" //
 
     return (
         <div
-            style={{ borderTop: "1px solid #ced4da" }}
+            style={{ borderTop: '1px solid #ced4da' }}
             className={classes.root}
         >
             <Stepper activeStep={activeStep} alternativeLabel>
@@ -160,19 +160,22 @@ export default function StepperForm() {
             </Stepper>
             <div>
                 <div>
-                    <Typography className={classes.instructions}>
+                    <Typography
+                        component="span"
+                        className={classes.instructions}
+                    >
                         <form onSubmit={handleSubmit}>
                             {getStepContent(activeStep)}
                             <>
                                 {activeStep === steps.length - 1 ? (
                                     <button
                                         style={{
-                                            color: "white",
+                                            color: 'white',
                                             padding: 10,
-                                            backgroundColor: "#303F9F",
-                                            marginLeft: "100px",
-                                            border: "none",
-                                            borderRadius: "3px",
+                                            backgroundColor: '#303F9F',
+                                            marginLeft: '100px',
+                                            border: 'none',
+                                            borderRadius: '3px',
                                         }}
                                     >
                                         Confirm
@@ -184,11 +187,11 @@ export default function StepperForm() {
                     <div>
                         {activeStep === 0 ? (
                             <React.Fragment>
-                                <span style={{ marginLeft: "100px" }}></span>
+                                <span style={{ marginLeft: '100px' }}></span>
                             </React.Fragment>
                         ) : (
                             <Button
-                                style={{ marginLeft: "100px" }}
+                                style={{ marginLeft: '100px' }}
                                 onClick={handleBack}
                                 className={classes.backButton}
                             >
