@@ -6,7 +6,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Layout from '../../components/AddProduct/Layout';
-import AddProduct from '../../components/AddProduct/AddProduct';
+import DetailProduct from '../../components/AddProduct/DetailProduct';
 import Resseler from '../../components/AddProduct/Resseler';
 
 import { useDispatch } from 'react-redux';
@@ -85,7 +85,7 @@ export default function StepperForm() {
             case 0:
                 return (
                     <>
-                        <AddProduct
+                        <DetailProduct
                             onChange={handleChange}
                             form={form.type}
                             name={form.name}

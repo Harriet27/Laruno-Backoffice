@@ -115,7 +115,7 @@ export default function Login() {
                             id="phone_number"
                             value={form.password}
                             onChange={handleChange}
-                            placeholder="Password"
+                            placeholder="Phone Number"
                             required
                         />
                     </WrapForm>

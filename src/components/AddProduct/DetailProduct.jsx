@@ -57,7 +57,7 @@ const Form = Styled.form`
 `;
 // --- Styled Components --- //
 
-export default function AddProduct(props) {
+export default function DetailProduct(props) {
     const dispatch = useDispatch();
     const topic = useSelector((state) => state.topic);
     console.log(topic.data, 'topic ini isinya apa cih');
@@ -70,6 +70,7 @@ export default function AddProduct(props) {
             <SectionOne>
                 <Card isNormal style={{ width: '100%' }}>
                     <Form as="div">
+                        {/* Field name product */}
                         <WrapsField>
                             <Label>
                                 <Span>Nama Produk</Span>
@@ -85,6 +86,7 @@ export default function AddProduct(props) {
                             </div>
                         </WrapsField>
 
+                        {/* Field Product Category */}
                         <WrapsField>
                             <Label>
                                 <Span>Product Category</Span>
@@ -108,6 +110,7 @@ export default function AddProduct(props) {
                             </div>
                         </WrapsField>
 
+                        {/* Field Topic */}
                         <WrapsField>
                             <Label>
                                 <Span>Topic</Span>
@@ -140,7 +143,7 @@ export default function AddProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* components harga */}
+                        {/* Field Price */}
                         <WrapsField>
                             <Label>
                                 <Span>Harga</Span>
@@ -156,6 +159,7 @@ export default function AddProduct(props) {
                             </div>
                         </WrapsField>
 
+                        {/* Field Time Period */}
                         <WrapsField>
                             <Label>
                                 <Span>Periode waktu</Span>
@@ -171,6 +175,7 @@ export default function AddProduct(props) {
                             </div>
                         </WrapsField>
 
+                        {/* Field Status */}
                         <WrapsField>
                             <Label>
                                 <Span>Status</Span>
@@ -193,27 +198,7 @@ export default function AddProduct(props) {
                             </div>
                         </WrapsField>
 
-                        <WrapsField>
-                            <Label>
-                                <Span>Form Type</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="select"
-                                    name="form_type"
-                                    id="form_type"
-                                    value={props.form_type}
-                                    onChange={props.onChange}
-                                >
-                                    <option value="" selected disabled hidden>
-                                        Choose here
-                                    </option>
-                                    <option value="simple">Simple</option>
-                                    <option value="full">Full</option>
-                                </Input>
-                            </div>
-                        </WrapsField>
-
+                        {/* Field UpSale */}
                         <WrapsField>
                             <Label>
                                 <Span>Upsale</Span>
@@ -237,7 +222,7 @@ export default function AddProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* tes mentor  */}
+                        {/* Field mentor  */}
                         <WrapsField>
                             <Label>
                                 <Span>Mentor</Span>
@@ -253,7 +238,7 @@ export default function AddProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* tes product redirect */}
+                        {/* Filed product redirect */}
                         <WrapsField>
                             <Label>
                                 <Span>Product Redirect</Span>
@@ -269,7 +254,7 @@ export default function AddProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* logic type  */}
+                        {/* Field logic in field product category  */}
                         <div>
                             {props.form === 'webinar' ? (
                                 <div>
