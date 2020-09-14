@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
+import Select from 'react-select';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetTopic } from '../../store/actions';
 
@@ -201,7 +203,7 @@ export default function DetailProduct(props) {
                         {/* Field UpSale */}
                         <WrapsField>
                             <Label>
-                                <Span>Upsale</Span>
+                                <Span>Method Sale</Span>
                             </Label>
                             <div>
                                 <Input

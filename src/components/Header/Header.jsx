@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import Styled from "styled-components";
-import ImageBrand from "../../assets/images/laruno1.png";
+import React, { useState } from 'react';
+
+import Styled from 'styled-components';
+import ImageBrand from '../../assets/images/laruno1.png';
 import {
     Collapse,
     Navbar,
@@ -13,7 +14,7 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
-} from "reactstrap";
+} from 'reactstrap';
 
 // --- Styled components --- //
 const Button = Styled.button`
@@ -39,11 +40,19 @@ const HeaderStyled = Styled.header`
     font-size: 20px;
     background-color: white;
     padding: 5px 40px;
-   
+  
+`;
+const Image = Styled.img`
+width:100%;
+height: 100%;
+`;
+const WrapsImage = Styled.div`
+height: 40px;
+margin-right: 40px;
 `;
 // --- Styled Components --- //
 
-const Header = (props) => {
+const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -52,34 +61,27 @@ const Header = (props) => {
         <HeaderStyled>
             <Navbar light expand="md" style={{ padding: 0 }}>
                 <NavbarBrand href="/">
-                    <div style={{ height: "40px", marginRight: "40px" }}>
-                        <img
-                            style={{
-                                width: "100%",
-                                height: "100%",
-                            }}
-                            src={ImageBrand}
-                            alt="brand"
-                        />
-                    </div>
+                    <WrapsImage>
+                        <Image src={ImageBrand} alt="brand" />
+                    </WrapsImage>
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="/">Dashboard</NavLink>
+                            <NavLink href="/dashboard">Dashboard</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/">Report</NavLink>
+                            <NavLink href="/report">Report</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/">Product</NavLink>
+                            <NavLink href="/product">Product</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/">Order</NavLink>
+                            <NavLink href="/order">Order</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/">Tools</NavLink>
+                            <NavLink href="/tools">Tools</NavLink>
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>

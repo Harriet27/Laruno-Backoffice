@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchPostLogin } from "../../store/actions";
-import Card from "../../elements/Card/Card";
-import ImageBrand from "../../assets/images/laruno1.png";
+import React, { useState, useEffect } from 'react';
+import Styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPostLogin } from '../../store/actions';
+import Card from '../../elements/Card/Card';
+import ImageBrand from '../../assets/images/laruno1.png';
 
 // --- Styled Components --- //
 const Section = Styled.section`
@@ -44,8 +44,8 @@ export default function Login() {
     const dispatch = useDispatch();
     const history = useHistory();
     const [form, setForm] = useState({
-        email: "",
-        password: "",
+        email: '',
+        password: '',
     });
 
     // Fetch submit method Post
@@ -63,15 +63,15 @@ export default function Login() {
             <Card
                 isLogin
                 style={{
-                    padding: "50px",
-                    width: "500px",
-                    borderRadius: "5px",
+                    padding: '50px',
+                    width: '500px',
+                    borderRadius: '5px',
                 }}
             >
                 <Brand>
-                    <div style={{ width: "100%" }}>
+                    <div style={{ width: '100%' }}>
                         <img
-                            style={{ maxWidth: "100%", height: "100%" }}
+                            style={{ maxWidth: '100%', height: '100%' }}
                             src={ImageBrand}
                             alt="brand"
                         />
@@ -104,7 +104,7 @@ export default function Login() {
 
                     <Input
                         as="button"
-                        style={{ backgroundColor: "#0098DA", color: "white" }}
+                        style={{ backgroundColor: '#0098DA', color: 'white' }}
                     >
                         Login
                     </Input>

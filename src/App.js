@@ -12,12 +12,14 @@ import Login from './pages/Login/Login';
 import Bump from './components/AddProduct/Bump';
 import StepperForm from './elements/Stepper/StepperForm';
 import AddAdministrator from './components/AddAdministrator/AddAdministrator';
+import DetailProduct from './components/AddProduct/DetailProduct';
 export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
             <Router>
                 <Switch>
                     <Route exact path="/">
+                        <Header />
                         <Login />
                     </Route>
                     <Route exact path="/products">
@@ -26,7 +28,7 @@ export default function App() {
                     </Route>
 
                     <Route exact path="/tes-components">
-                        <AddAdministrator />
+                        <DetailProduct />
                     </Route>
                 </Switch>
             </Router>

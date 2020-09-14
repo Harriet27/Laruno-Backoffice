@@ -52,7 +52,7 @@ const fetchPostAdministrator = (form, history) => async () => {
             body: JSON.stringify(form),
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Beare ${token}`,
+                Authorization: `Bearer ${token}`,
             },
         };
         const response = await fetch(url, options);
