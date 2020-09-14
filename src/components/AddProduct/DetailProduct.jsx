@@ -95,6 +95,22 @@ export default function DetailProduct(props) {
                             </div>
                         </WrapsField>
 
+                        {/* Slug */}
+                        <WrapsField>
+                            <Label>
+                                <Span>Slug</Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={props.slug}
+                                    onChange={props.onChange}
+                                />
+                            </div>
+                        </WrapsField>
+
                         {/* Field Product Category */}
                         <WrapsField>
                             <Label>

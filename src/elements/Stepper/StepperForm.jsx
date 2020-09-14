@@ -51,19 +51,24 @@ export default function StepperForm() {
         type: '',
         name: '',
         price: '',
-        short_desc: '',
+        headline: '',
         description: '',
         time_period: '',
-        start_at: '',
-
+        date: '',
+        slug: '',
         image_url: '',
         video_url: '',
         product_redirect: '',
         sale_method: '',
         topic: [],
         visibility: '',
-        form_type: '',
-        media_url: '',
+        mentor: '',
+        client_url: '',
+        image_product_url: '',
+        image_bonus_url: '',
+        image_text_url: '',
+        start_time: '',
+        end_time: '',
     });
 
     // handleSubmit untuk enter dan submit button
@@ -94,13 +99,13 @@ export default function StepperForm() {
                             price={form.price}
                             time_period={form.time_period}
                             visibility={form.visibility}
-                            form_type={form.form_type}
                             sale_method={form.sale_method}
-                            zoom_id={form.media_url}
-                            start_at={form.start_at}
+                            zoom_id={form.client_url}
+                            start_at={form.date}
                             start_time={form.start_time}
                             end_time={form.end_time}
                             mentor={form.mentor}
+                            slug={form.slug}
                         />
                         <Bump
                             bump_product={form.bump_product}
@@ -117,14 +122,13 @@ export default function StepperForm() {
                         <Layout
                             onChange={handleChange}
                             // short description di field adalah Headline
-                            short_desc={form.short_desc}
-                            sub_headline={form.sub_headline}
+                            headline={form.headline}
                             description={form.description}
-                            what_you_learn={form.what_you_learn}
-                            image_bonus={form.image_bonus}
-                            image_text={form.image_text}
-                            image_product={form.image_product}
-                            video={form.video}
+                            feedback={form.feedback}
+                            image_bonus_url={form.image_bonus_url}
+                            image_text_url={form.image_text_url}
+                            image_product_url={form.image_product_url}
+                            video={form.video_url}
                         />
                     </>
                 );

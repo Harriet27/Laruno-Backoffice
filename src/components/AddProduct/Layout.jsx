@@ -70,21 +70,7 @@ export default function Layout(props) {
                                     type="text"
                                     name="headline"
                                     id="headline"
-                                    value={props.short_desc}
-                                    onChange={props.onChange}
-                                />
-                            </div>
-                        </WrapsField>
-                        <WrapsField>
-                            <Label>
-                                <Span>Sub Headline</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="text"
-                                    name="sub_headline"
-                                    id="sub_headline"
-                                    value={props.sub_headline}
+                                    value={props.headline}
                                     onChange={props.onChange}
                                 />
                             </div>
@@ -112,9 +98,9 @@ export default function Layout(props) {
                             <div>
                                 <Input
                                     as="textarea"
-                                    name="what_you_learn"
-                                    id="what_you_learn"
-                                    value={props.what_you_learn}
+                                    name="feedback"
+                                    id="feedback"
+                                    value={props.feedback}
                                     onChange={props.onChange}
                                 />
                             </div>
@@ -127,9 +113,9 @@ export default function Layout(props) {
                             <div>
                                 <Input
                                     type="file"
-                                    name="image_bonus"
-                                    id="image_bonus"
-                                    value={props.image_bonus}
+                                    name="image_bonus_url"
+                                    id="image_bonus_url"
+                                    value={props.image_bonus_url}
                                     onChange={props.onChange}
                                 />
                             </div>
@@ -142,9 +128,9 @@ export default function Layout(props) {
                             <div>
                                 <Input
                                     type="file"
-                                    name="image_text"
-                                    id="image_text"
-                                    value={props.image_text}
+                                    name="image_text_url"
+                                    id="image_text_url"
+                                    value={props.image_text_url}
                                     onChange={props.onChange}
                                 />
                             </div>
@@ -157,9 +143,9 @@ export default function Layout(props) {
                             <div>
                                 <Input
                                     type="file"
-                                    name="image_product"
-                                    id="image_product"
-                                    value={props.image_product}
+                                    name="image_product_url"
+                                    id="image_product_url"
+                                    value={props.image_product_url}
                                     onChange={props.onChange}
                                 />
                             </div>
@@ -171,7 +157,7 @@ export default function Layout(props) {
                             </Label>
                             <div>
                                 <Input
-                                    type="file"
+                                    type="text"
                                     name="video"
                                     id="video"
                                     value={props.video}
