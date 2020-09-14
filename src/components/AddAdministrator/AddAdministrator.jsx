@@ -39,7 +39,7 @@ const WrapForm = Styled.div`
 `;
 // --- Styled Components --- //
 
-export default function Login() {
+export default function AddAdministrator() {
     const dispatch = useDispatch();
     const history = useHistory();
     const [form, setForm] = useState({
@@ -113,7 +113,7 @@ export default function Login() {
                             type="number"
                             name="phone_number"
                             id="phone_number"
-                            value={form.password}
+                            value={form.phone_number}
                             onChange={handleChange}
                             placeholder="Phone Number"
                             required

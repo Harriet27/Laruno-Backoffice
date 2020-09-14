@@ -10,7 +10,7 @@ const getTopic = (data) => {
 };
 
 const fetchGetTopic = () => async (dispatch) => {
-    const url = `http://139.162.59.84:7000/api/v1/topics`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics`;
     const token = JSON.parse(localStorage.getItem('user')).accessToken;
     const options = {
         method: 'GET',
@@ -29,7 +29,7 @@ const fetchGetTopic = () => async (dispatch) => {
 const fetchPostTopic = (form, history) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).accessToken;
     try {
-        const url = `http://139.162.59.84:7000/api/v1/topics`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics`;
         const options = {
             method: 'POST',
             body: JSON.stringify(form),

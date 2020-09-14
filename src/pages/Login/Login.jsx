@@ -71,7 +71,7 @@ export default function Login() {
                 <Brand>
                     <div style={{ width: '100%' }}>
                         <img
-                            style={{ maxWidth: '100%', height: '100%' }}
+                            style={{ height: '100%' }}
                             src={ImageBrand}
                             alt="brand"
                         />

@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 // login In BackOffice
 const fetchPostLogin = (form, history) => async (dispatch) => {
     try {
-        const url = `http://139.162.59.84:7000/api/v1/users/login`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/login`;
         const options = {
             method: 'POST',
             body: JSON.stringify(form),
@@ -46,7 +46,7 @@ const fetchPostLogin = (form, history) => async (dispatch) => {
 const fetchPostAdministrator = (form, history) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).accessToken;
     try {
-        const url = `http://139.162.59.84:7000/api/v1/users/add`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/add`;
         const options = {
             method: 'POST',
             body: JSON.stringify(form),

@@ -67,6 +67,13 @@ export default function DetailProduct(props) {
     useEffect(() => {
         dispatch(fetchGetTopic());
     }, [dispatch]);
+
+    // optionsTopic for value select topic
+    let optionsTopic =
+        topic.data !== undefined &&
+        topic.data.map((item) => {
+            return { key: item._id, value: item._id, label: item.name };
+        });
     return (
         <Section>
             <SectionOne>
@@ -118,30 +125,14 @@ export default function DetailProduct(props) {
                                 <Span>Topic</Span>
                             </Label>
                             <div>
-                                <Input
-                                    as="select"
-                                    name="topic"
-                                    id="topic"
-                                    value={props.topic}
-                                    onChange={props.onChange}
-                                >
-                                    <option value="" selected disabled hidden>
-                                        Choose here
-                                    </option>
-                                    <React.Fragment>
-                                        {topic.data !== undefined &&
-                                            topic.data.map((item) => {
-                                                return (
-                                                    <option
-                                                        key={item._id}
-                                                        value={item._id}
-                                                    >
-                                                        {item.name}
-                                                    </option>
-                                                );
-                                            })}
-                                    </React.Fragment>
-                                </Input>
+                                {/* Test components React select */}
+                                <Select
+                                    isMulti
+                                    name="colors"
+                                    options={optionsTopic}
+                                    className="basic-multi-select"
+                                    classNamePrefix="select"
+                                />
                             </div>
                         </WrapsField>
 
