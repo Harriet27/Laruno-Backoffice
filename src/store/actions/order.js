@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { getOrder } from './tes';
+
 const GET_ORDER = 'GET_ORDER';
 
 // --- Post Product --- //
@@ -32,7 +32,7 @@ const fetchPostOrders = (form, history) => async () => {
 };
 
 // --- Get Orders --- //
-const getProduct = (data) => {
+const getOrder = (data) => {
     return {
         type: GET_ORDER,
         data,

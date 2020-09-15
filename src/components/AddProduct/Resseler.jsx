@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Styled from 'styled-components';
 import Card from '../../elements/Card/Card';
@@ -46,13 +46,7 @@ width: 50%;
     width: 100%
       }
 `;
-const Form = Styled.form`
-padding: 50px 40px;
-@media (max-width: 800px) {
-    padding: 20px;
-      }
 
-`;
 // --- Styled Components --- //
 
 export default function Resseler(props) {

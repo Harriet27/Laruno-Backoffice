@@ -1,5 +1,4 @@
 import Swal from 'sweetalert2';
-import jwt_decode from 'jwt-decode';
 
 // login In BackOffice
 const fetchPostLogin = (form, history) => async (dispatch) => {
@@ -56,7 +55,7 @@ const fetchPostAdministrator = (form, history) => async () => {
             },
         };
         const response = await fetch(url, options);
-        const result = await response.json();
+        await response.json();
 
         if (response.status === 201) {
             Swal.fire({

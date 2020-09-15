@@ -9,11 +9,10 @@ import './assets/scss/style.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './pages/Login/Login';
-import Bump from './components/AddProduct/Bump';
+
 import StepperForm from './elements/Stepper/StepperForm';
 import AddAdministrator from './components/AddAdministrator/AddAdministrator';
-import DetailProduct from './components/AddProduct/DetailProduct';
-import AddNewTopic from './components/AddNewTopic/AddNewTopic';
+
 import OrderOnline from './components/OrderOnline/OrderOnline';
 
 export default function App() {
