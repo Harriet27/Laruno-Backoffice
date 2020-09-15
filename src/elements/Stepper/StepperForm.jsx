@@ -58,7 +58,7 @@ export default function StepperForm() {
         slug: '',
         image_url: '',
         video_url: '',
-        product_redirect: '',
+
         sale_method: '',
         topic: [],
         visibility: '',
@@ -69,6 +69,13 @@ export default function StepperForm() {
         image_text_url: '',
         start_time: '',
         end_time: '',
+        commision_type: '',
+        promotion_tools: '',
+        product_redirect: '',
+        bump_product: '',
+        bump_weight: '',
+        image_bump: '',
+        price_bump: '',
     });
 
     // handleSubmit untuk enter dan submit button
@@ -84,6 +91,7 @@ export default function StepperForm() {
 
     //  --- Fetching Data beserta logicnya "batas bawah" --- //
 
+    console.log(form);
     // --- Content --- //
     function getStepContent(stepIndex) {
         switch (stepIndex) {

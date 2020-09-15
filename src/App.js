@@ -14,6 +14,7 @@ import StepperForm from './elements/Stepper/StepperForm';
 import AddAdministrator from './components/AddAdministrator/AddAdministrator';
 import DetailProduct from './components/AddProduct/DetailProduct';
 import AddNewTopic from './components/AddNewTopic/AddNewTopic';
+import OrderOnline from './components/OrderOnline/OrderOnline';
 export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
@@ -23,18 +24,23 @@ export default function App() {
                         <Header />
                         <Login />
                     </Route>
-                    <Route exact path="/products">
+                    <Route exact path="/add-products">
                         <Header />
                         <StepperForm />
                     </Route>
 
-                    <Route exact path="/tes-components">
-                        <DetailProduct />
-
+                    <Route exact path="/add-administrator">
+                        <AddAdministrator />
+                        {/* <DetailProduct />
                         {/* add new adiministrator succes */}
                         {/* <AddAdministrator /> */}
                         {/* add new topic succes */}
-                        {/* <AddNewTopic /> */}
+                        {/* <AddNewTopic />  */}
+                    </Route>
+
+                    <Route exact path="/test-components">
+                        <Header />
+                        <OrderOnline />
                     </Route>
                 </Switch>
             </Router>

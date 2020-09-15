@@ -1,8 +1,8 @@
-import React from "react";
-import Card from "./Card";
-import Styled from "styled-components";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import Card from './Card';
+import Styled from 'styled-components';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Wraps = Styled.div`
 display: flex;
@@ -16,24 +16,32 @@ display: flex;
 flex-direction: row;
 
 `;
-export default function CardGetData() {
+export default function CardGetData(props) {
     return (
         <Card
             isBold
             style={{
-                width: "450px",
-                height: "150px",
-                display: "flex",
-                justifyContent: "center",
+                width: '300px',
+                height: '150px',
+                display: 'flex',
+                justifyContent: 'center',
             }}
         >
             <Wraps>
-                <h1>0</h1>
+                <div
+                    style={{
+                        fontSize: '36px',
+                        color: '#F98A12',
+                        fontWeight: 'Bold',
+                    }}
+                >
+                    {props.number}
+                </div>
                 <WrapRow>
-                    <div>
-                        <FontAwesomeIcon icon={faCoffee} />
+                    <div style={{ marginRight: '10px' }}>
+                        <FontAwesomeIcon icon={props.icon} />
                     </div>
-                    <span>Text Disni</span>
+                    <span>{props.text}</span>
                 </WrapRow>
             </Wraps>
         </Card>

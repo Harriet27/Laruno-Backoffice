@@ -83,7 +83,7 @@ export default function AddNewTopic() {
                         as="button"
                         style={{ backgroundColor: '#0098DA', color: 'white' }}
                     >
-                        Login
+                        Add Topic
                     </Input>
                 </form>
             </Card>

@@ -62,7 +62,7 @@ export default function AddAdministrator() {
     return (
         <Section>
             <Card
-                isLogin
+                isNormal
                 style={{
                     padding: '50px',
                     width: '500px',
