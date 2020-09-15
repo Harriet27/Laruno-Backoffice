@@ -20,7 +20,14 @@ border:1px solid #66AFE9;
 // --- Styled Components --- //
 
 const ModalOrder = (props) => {
-    const { buttonLabel, className, style, modalBody } = props;
+    const {
+        buttonLabel,
+        className,
+        style,
+        modalBody,
+        title,
+        onClickConfirm,
+    } = props;
 
     const [modal, setModal] = useState(false);
 
@@ -32,12 +39,15 @@ const ModalOrder = (props) => {
                 {buttonLabel}
             </ButtonModal>
             <Modal isOpen={modal} toggle={toggle} className={className}>
-                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-                <ModalBody>{modalBody}</ModalBody>
+                <ModalHeader toggle={toggle}>{title}</ModalHeader>
+                <ModalBody>
+                    {/* modal body untuk isi content bisa dengan html */}
+                    {modalBody}
+                </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={toggle}>
-                        Do Something
-                    </Button>{' '}
+                    <Button color="primary" onClick={onClickConfirm}>
+                        Confirm
+                    </Button>
                     <Button color="secondary" onClick={toggle}>
                         Cancel
                     </Button>

@@ -1,6 +1,17 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
+import Styled from 'styled-components';
+
+// --- Styled Components --- //
+
+const Th = Styled.th`
+font-size:  ${(props) => (props.td ? '16px' : '20px')};
+font-weight: ${(props) => (props.td ? 'normal' : '600')};
+text-align: center;
+`;
+
+// --- Styled Components --- //
 
 const TableOrder = (props) => {
     return (
@@ -8,61 +19,106 @@ const TableOrder = (props) => {
             <Table borderless>
                 <thead>
                     <tr>
-                        <th>
+                        <Th>
                             <input type="checkbox" />
-                        </th>
-                        <th>Name</th>
-                        <th>City</th>
-                        <th>Status</th>
-                        <th>Payment status</th>
-                        <th>Date</th>
-                        <th>Gross Revenue</th>
-                        <th>Follow Up</th>
-                        <th>Actions</th>
+                        </Th>
+                        <Th>Name</Th>
+                        <Th>City</Th>
+                        <Th>Status</Th>
+                        <Th>Payment status</Th>
+                        <Th>Date</Th>
+                        <Th>Gross Revenue</Th>
+                        <Th>Follow Up</Th>
+                        <Th>Actions</Th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">
-                            {' '}
+                        <Th scope="row">
                             <input type="checkbox" />
-                        </th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        </Th>
+                        <Th as="td" td>
+                            One
+                        </Th>
+                        <Th as="td" td>
+                            Two
+                        </Th>
+                        <Th as="td" td>
+                            Three
+                        </Th>
+                        <Th as="td" td>
+                            Four
+                        </Th>
+                        <Th as="td" td>
+                            Five
+                        </Th>
+                        <Th as="td" td>
+                            Six
+                        </Th>
+                        <Th as="td" td>
+                            Seven
+                        </Th>
+                        <Th as="td" td>
+                            Eight
+                        </Th>
                     </tr>
                     <tr>
-                        <th scope="row">
-                            {' '}
+                        <Th scope="row">
                             <input type="checkbox" />
-                        </th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        </Th>
+                        <Th as="td" td>
+                            One
+                        </Th>
+                        <Th as="td" td>
+                            Two
+                        </Th>
+                        <Th as="td" td>
+                            Three
+                        </Th>
+                        <Th as="td" td>
+                            Four
+                        </Th>
+                        <Th as="td" td>
+                            Five
+                        </Th>
+                        <Th as="td" td>
+                            Six
+                        </Th>
+                        <Th as="td" td>
+                            Seven
+                        </Th>
+                        <Th as="td" td>
+                            Eight
+                        </Th>
                     </tr>
                     <tr>
-                        <th scope="row">
-                            {' '}
+                        <Th scope="row">
                             <input type="checkbox" />
-                        </th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        </Th>
+                        <Th as="td" td>
+                            One
+                        </Th>
+                        <Th as="td" td>
+                            Two
+                        </Th>
+                        <Th as="td" td>
+                            Three
+                        </Th>
+                        <Th as="td" td>
+                            Four
+                        </Th>
+                        <Th as="td" td>
+                            Five
+                        </Th>
+                        <Th as="td" td>
+                            Six
+                        </Th>
+                        <Th as="td" td>
+                            Seven
+                        </Th>
+                        <Th as="td" td>
+                            Eight
+                        </Th>
                     </tr>
                 </tbody>
             </Table>

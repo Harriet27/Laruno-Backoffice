@@ -15,6 +15,7 @@ const Input = Styled.input`
     &:focus{
     outline: none !important;
     border:1px solid #66AFE9;
+    margin-right: ${(props) => (props.checkbox ? '10px' : null)};
     }
 `;
 
@@ -57,7 +58,6 @@ export default function Bump(props) {
                 <div style={{ padding: '20px 30px' }}>
                     <label>
                         <input
-                            style={{ marginRight: '10PX' }}
                             name="checkbox"
                             id="checkbox"
                             value={box.checkbox}

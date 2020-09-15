@@ -89,7 +89,66 @@ export default function OrderOnline() {
             >
                 <div style={{ display: 'flex' }}>
                     <WrapsTop>
-                        <ModalOrder buttonLabel="input Order" />
+                        <ModalOrder
+                            onClickConfirm={() => {
+                                return alert('succes');
+                            }}
+                            buttonLabel="input Order"
+                            modalBody={
+                                // isi content dari modal
+                                <div>
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            margin: '10px 0',
+                                        }}
+                                    >
+                                        <WrapsTop style={{ width: '45%' }}>
+                                            <label>Product</label>
+                                            <Select name="product">
+                                                <option value="hoodie">
+                                                    Hoodie Face Shield
+                                                </option>
+                                            </Select>
+                                        </WrapsTop>
+
+                                        <WrapsTop style={{ width: '45%' }}>
+                                            <label>Checkout Page</label>
+                                            <Select name="product">
+                                                <option value="hoodie">
+                                                    Hoodie Face Shield
+                                                </option>
+                                            </Select>
+                                        </WrapsTop>
+                                    </div>
+
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                        }}
+                                    >
+                                        <WrapsTop style={{ width: '45%' }}>
+                                            <label>Handled By</label>
+                                            <Select name="product">
+                                                <option value="hoodie">
+                                                    Hoodie Face Shield
+                                                </option>
+                                            </Select>
+                                        </WrapsTop>
+                                        <WrapsTop style={{ width: '45%' }}>
+                                            <label>Contact</label>
+                                            <Select name="product">
+                                                <option value="hoodie">
+                                                    Hoodie Face Shield
+                                                </option>
+                                            </Select>
+                                        </WrapsTop>
+                                    </div>
+                                </div>
+                            }
+                        />
                     </WrapsTop>
                     <WrapsTop>
                         <Select name="product">
@@ -107,7 +166,6 @@ export default function OrderOnline() {
                     </WrapsTop>
                 </div>
                 <div>
-                    {' '}
                     <WrapsTop>
                         <ModalOrder
                             style={{
@@ -115,16 +173,6 @@ export default function OrderOnline() {
                                 color: '#495057',
                             }}
                             buttonLabel="View More Status"
-                            inputTwo={
-                                <div>
-                                    <div>
-                                        <input type="text" />
-                                    </div>
-                                    <div>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                            }
                         />
                     </WrapsTop>
                 </div>

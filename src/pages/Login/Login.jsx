@@ -21,9 +21,9 @@ const Input = Styled.input`
     padding: 10px;
     font-size: 18px;
     font-weight: 400;
-    color: #495057;
+    color:${(props) => (props.button ? 'white' : '#495057')} ;
     border-radius: 3px;
-    background-color: #FCFCFC;
+    background-color:${(props) => (props.button ? '#0098DA' : '#FCFCFC')} ;
     border: 1px solid #ced4da;
     &:focus{
     outline: none !important;
@@ -37,6 +37,10 @@ const Brand = Styled.h1`
 const WrapForm = Styled.div`
     width: 100%;
     margin-bottom: 20px;
+`;
+const Image = Styled.img`
+width: ${(props) => (props.div ? '100%' : null)};
+height: ${(props) => (props.image ? '100%' : null)}
 `;
 // --- Styled Components --- //
 
@@ -60,22 +64,11 @@ export default function Login() {
 
     return (
         <Section>
-            <Card
-                isLogin
-                style={{
-                    padding: '50px',
-                    width: '500px',
-                    borderRadius: '5px',
-                }}
-            >
+            <Card isLogin>
                 <Brand>
-                    <div style={{ width: '100%' }}>
-                        <img
-                            style={{ height: '100%' }}
-                            src={ImageBrand}
-                            alt="brand"
-                        />
-                    </div>
+                    <Image as="div" div>
+                        <Image image src={ImageBrand} alt="brand" />
+                    </Image>
                 </Brand>
                 <form onSubmit={handleSubmit}>
                     <WrapForm>
@@ -102,10 +95,7 @@ export default function Login() {
                         />
                     </WrapForm>
 
-                    <Input
-                        as="button"
-                        style={{ backgroundColor: '#0098DA', color: 'white' }}
-                    >
+                    <Input as="button" button>
                         Login
                     </Input>
                 </form>
