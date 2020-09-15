@@ -1,4 +1,4 @@
-const GET_ORDER = "GET_ORDER";
+const GET_ORDER = 'GET_ORDER';
 
 const getOrder = (data) => {
     return {
@@ -7,23 +7,28 @@ const getOrder = (data) => {
     };
 };
 
-const fetchGetOrder = () => async (dispatch) => {
+const fetchPostTesting = (form) => async () => {
     try {
-        const url = `${process.env.URI_LIVE}/product`;
+        const url = `https://5f1b22af610bde0016fd35ad.mockapi.io/users`;
         const options = {
-            method: "GET",
+            method: 'POST',
+            body: JSON.stringify(form),
             headers: {
-                "Content-type": "application/json",
+                'Content-type': 'application/json',
             },
         };
 
         const response = await fetch(url, options);
         const result = await response.json();
 
-        dispatch(getOrder(result.data));
+        if (response.status === 200 || 201) {
+            alert('post succes');
+        } else {
+            alert('gagal post');
+        }
     } catch (error) {
         console.log(error);
     }
 };
 
-export { fetchGetOrder, getOrder, GET_ORDER };
+export { fetchPostTesting, getOrder, GET_ORDER };

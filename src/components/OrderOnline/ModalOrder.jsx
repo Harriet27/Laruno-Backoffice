@@ -45,6 +45,7 @@ const ModalOrder = (props) => {
                     {modalBody}
                 </ModalBody>
                 <ModalFooter>
+                    {/* onClickConfirm bisa berfungsi untuk mengkonusmi api */}
                     <Button color="primary" onClick={onClickConfirm}>
                         Confirm
                     </Button>

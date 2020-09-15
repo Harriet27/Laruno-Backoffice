@@ -36,6 +36,7 @@ const Label = Styled.label`
 `;
 const WrapsField = Styled.div`
     margin-bottom: 25px;
+    width: ${(props) => (props.dividedByTwo ? '45%' : null)}
 `;
 const Span = Styled.span`
     font-weight: bold;
@@ -319,7 +320,7 @@ export default function DetailProduct(props) {
                                             justifyContent: 'space-between',
                                         }}
                                     >
-                                        <WrapsField style={{ width: '45%' }}>
+                                        <WrapsField dividedByTwo>
                                             <Label>
                                                 <Span>Start Time</Span>
                                             </Label>
@@ -334,7 +335,7 @@ export default function DetailProduct(props) {
                                             </div>
                                         </WrapsField>
 
-                                        <WrapsField style={{ width: '45%' }}>
+                                        <WrapsField dividedByTwo>
                                             <Label>
                                                 <Span>End Time</Span>
                                             </Label>

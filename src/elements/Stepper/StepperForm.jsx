@@ -180,18 +180,20 @@ export default function StepperForm() {
                             {getStepContent(activeStep)}
                             <>
                                 {activeStep === steps.length - 1 ? (
-                                    <button
-                                        style={{
-                                            color: 'white',
-                                            padding: 10,
-                                            backgroundColor: '#303F9F',
-                                            marginLeft: '100px',
-                                            border: 'none',
-                                            borderRadius: '3px',
-                                        }}
-                                    >
-                                        Confirm
-                                    </button>
+                                    <>
+                                        <button
+                                            style={{
+                                                color: 'white',
+                                                padding: 10,
+                                                backgroundColor: '#303F9F',
+                                                marginLeft: '100px',
+                                                border: 'none',
+                                                borderRadius: '3px',
+                                            }}
+                                        >
+                                            Confirm
+                                        </button>
+                                    </>
                                 ) : null}
                             </>
                         </form>

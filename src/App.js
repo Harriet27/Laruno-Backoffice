@@ -15,6 +15,7 @@ import AddAdministrator from './components/AddAdministrator/AddAdministrator';
 import DetailProduct from './components/AddProduct/DetailProduct';
 import AddNewTopic from './components/AddNewTopic/AddNewTopic';
 import OrderOnline from './components/OrderOnline/OrderOnline';
+import PostOrder from './components/OrderOnline/PostOrder';
 export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
@@ -41,6 +42,7 @@ export default function App() {
                     <Route exact path="/test-components">
                         <Header />
                         <OrderOnline />
+                        <PostOrder />
                     </Route>
                 </Switch>
             </Router>
