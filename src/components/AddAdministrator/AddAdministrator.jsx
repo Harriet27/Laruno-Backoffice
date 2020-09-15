@@ -4,11 +4,12 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchPostAdministrator } from '../../store/actions';
 import Card from '../../elements/Card/Card';
+import ModalSmart from '../../elements/Modal/ModalSmart';
 
 // --- Styled Components --- //
 const Section = Styled.section`
     width: 100%;
-    height: 100vh;
+   
     align-items: center;
     display: flex;
     justify-content: center;
@@ -60,73 +61,77 @@ export default function AddAdministrator() {
     };
 
     return (
-        <Section>
-            <Card
-                isNormal
-                style={{
-                    padding: '50px',
-                    width: '500px',
-                    borderRadius: '5px',
-                }}
+        <div style={{ width: '150px' }}>
+            <ModalSmart
+                onClickConfirm={handleSubmit}
+                buttonLabel="Create Admin"
+                title="Create Admin"
             >
-                <Brand>
-                    <div style={{ width: '100%' }}>Add Administrator</div>
-                </Brand>
-                <form onSubmit={handleSubmit}>
-                    <WrapForm>
-                        <Input
-                            type="text"
-                            name="name"
-                            id="name"
-                            value={form.name}
-                            onChange={handleChange}
-                            placeholder="Name"
-                            required
-                        />
-                    </WrapForm>
-
-                    <WrapForm>
-                        <Input
-                            type="email"
-                            name="email"
-                            id="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            placeholder="Email"
-                            required
-                        />
-                    </WrapForm>
-
-                    <WrapForm>
-                        <Input
-                            type="password"
-                            name="password"
-                            id="password"
-                            value={form.password}
-                            onChange={handleChange}
-                            placeholder="Password"
-                            required
-                        />
-                    </WrapForm>
-                    <WrapForm>
-                        <Input
-                            type="number"
-                            name="phone_number"
-                            id="phone_number"
-                            value={form.phone_number}
-                            onChange={handleChange}
-                            placeholder="Phone Number"
-                            required
-                        />
-                    </WrapForm>
-                    <Input
-                        as="button"
-                        style={{ backgroundColor: '#0098DA', color: 'white' }}
+                <Section>
+                    <Card
+                        isNormal
+                        style={{
+                            padding: '50px',
+                            width: '500px',
+                            borderRadius: '5px',
+                        }}
                     >
-                        Login
-                    </Input>
-                </form>
-            </Card>
-        </Section>
+                        <Brand>
+                            <div style={{ width: '100%' }}>
+                                Add Administrator
+                            </div>
+                        </Brand>
+                        <form>
+                            <WrapForm>
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                    placeholder="Name"
+                                    required
+                                />
+                            </WrapForm>
+
+                            <WrapForm>
+                                <Input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    value={form.email}
+                                    onChange={handleChange}
+                                    placeholder="Email"
+                                    required
+                                />
+                            </WrapForm>
+
+                            <WrapForm>
+                                <Input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    value={form.password}
+                                    onChange={handleChange}
+                                    placeholder="Password"
+                                    required
+                                />
+                            </WrapForm>
+                            <WrapForm>
+                                <Input
+                                    type="number"
+                                    name="phone_number"
+                                    id="phone_number"
+                                    value={form.phone_number}
+                                    onChange={handleChange}
+                                    placeholder="Phone Number"
+                                    required
+                                />
+                            </WrapForm>
+                        </form>
+                    </Card>
+                </Section>
+            </ModalSmart>
+        </div>
     );
 }

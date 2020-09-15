@@ -42,7 +42,7 @@ const fetchPostLogin = (form, history) => async (dispatch) => {
     }
 };
 
-// Add Administrator for SuperAdmin
+// --- Add Administrator for SuperAdmin --- //
 const fetchPostAdministrator = (form, history) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).accessToken;
     try {
@@ -60,20 +60,24 @@ const fetchPostAdministrator = (form, history) => async () => {
 
         if (response.status === 201) {
             Swal.fire({
-                title: 'Berhasil Login!',
+                title: 'Succes Add Administrator!',
                 text: '',
                 icon: 'success',
             });
             history.push('/');
         } else {
             Swal.fire({
-                title: 'Email atau Password Salah!',
+                title: 'Email Yang di buat tidak sesuai atau sudah terdaftar',
                 text: '',
                 icon: 'error',
             });
         }
     } catch (error) {
-        console.log(error);
+        Swal.fire({
+            title: 'Email ini sudah terdaftar',
+            text: '',
+            icon: 'error',
+        });
     }
 };
 export { fetchPostLogin, fetchPostAdministrator };

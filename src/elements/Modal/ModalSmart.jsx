@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Children, useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Styled from 'styled-components';
 
@@ -24,7 +24,8 @@ const ModalSmart = (props) => {
         buttonLabel,
         className,
         style,
-        modalBody,
+
+        children,
         title,
         onClickConfirm,
     } = props;
@@ -42,7 +43,7 @@ const ModalSmart = (props) => {
                 <ModalHeader toggle={toggle}>{title}</ModalHeader>
                 <ModalBody>
                     {/* modal body untuk isi content bisa dengan html */}
-                    {modalBody}
+                    {children}
                 </ModalBody>
                 <ModalFooter>
                     {/* onClickConfirm bisa berfungsi untuk mengkonusmi api */}
