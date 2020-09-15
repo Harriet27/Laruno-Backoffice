@@ -90,72 +90,89 @@ export default function OrderOnline() {
             >
                 <div style={{ display: 'flex' }}>
                     <WrapsTop>
+                        {/* Sections Actions */}
                         <ModalSmart
                             onClickConfirm={() => {
                                 return alert('succes');
                             }}
-                            buttonLabel="input Order"
-                            modalBody={
-                                // isi content dari modal
-                                <div>
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                            margin: '10px 0',
-                                        }}
-                                    >
-                                        <WrapsTop style={{ width: '45%' }}>
-                                            <label>Product</label>
-                                            <Select name="product">
-                                                <option value="hoodie">
-                                                    Hoodie Face Shield
-                                                </option>
-                                            </Select>
-                                        </WrapsTop>
+                            buttonLabel="Actions"
+                        >
+                            <div>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        margin: '10px 0',
+                                    }}
+                                >
+                                    <WrapsTop style={{ width: '45%' }}>
+                                        <label>Product</label>
+                                        <Select name="product">
+                                            <option value="hoodie">
+                                                Hoodie Face Shield
+                                            </option>
+                                        </Select>
+                                    </WrapsTop>
 
-                                        <WrapsTop style={{ width: '45%' }}>
-                                            <label>Checkout Page</label>
-                                            <Select name="product">
-                                                <option value="hoodie">
-                                                    Hoodie Face Shield
-                                                </option>
-                                            </Select>
-                                        </WrapsTop>
-                                    </div>
-
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                        }}
-                                    >
-                                        <WrapsTop style={{ width: '45%' }}>
-                                            <label>Handled By</label>
-                                            <Select name="product">
-                                                <option value="hoodie">
-                                                    Hoodie Face Shield
-                                                </option>
-                                            </Select>
-                                        </WrapsTop>
-                                        <WrapsTop style={{ width: '45%' }}>
-                                            <label>Contact</label>
-                                            <Select name="product">
-                                                <option value="hoodie">
-                                                    Hoodie Face Shield
-                                                </option>
-                                            </Select>
-                                        </WrapsTop>
-                                    </div>
+                                    <WrapsTop style={{ width: '45%' }}>
+                                        <label>Checkout Page</label>
+                                        <Select name="product">
+                                            <option value="hoodie">
+                                                Hoodie Face Shield
+                                            </option>
+                                        </Select>
+                                    </WrapsTop>
                                 </div>
-                            }
-                        />
+
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                    }}
+                                >
+                                    <WrapsTop style={{ width: '45%' }}>
+                                        <label>Handled By</label>
+                                        <Select name="product">
+                                            <option value="hoodie">
+                                                Hoodie Face Shield
+                                            </option>
+                                        </Select>
+                                    </WrapsTop>
+                                    <WrapsTop style={{ width: '45%' }}>
+                                        <label>Contact</label>
+                                        <Select name="product">
+                                            <option value="hoodie">
+                                                Hoodie Face Shield
+                                            </option>
+                                        </Select>
+                                    </WrapsTop>
+                                </div>
+                            </div>
+                        </ModalSmart>
                     </WrapsTop>
+
+                    {/* Refund */}
                     <WrapsTop>
-                        <Select name="product">
-                            <option value="hoodie">Export</option>
+                        <Select name="Refund">
+                            <option value="hoodie">
+                                Select Pyament Status
+                            </option>
+                            <option value="hoodie">Paid</option>
+                            <option value="hoodie">Unpaid</option>
+                            <option value="hoodie">Refund</option>
                         </Select>
                     </WrapsTop>
+
+                    {/*  */}
+                    <WrapsTop>
+                        <Select name="Select_Date">
+                            <option value="hoodie">Today</option>
+                            <option value="hoodie">Yesterday</option>
+                            <option value="hoodie">Last 7 days</option>
+                            <option value="hoodie">Last 30 days</option>
+                        </Select>
+                    </WrapsTop>
+
                     <WrapsTop>
                         <ModalSmart
                             style={{

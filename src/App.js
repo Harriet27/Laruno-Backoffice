@@ -9,10 +9,8 @@ import './assets/scss/style.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './pages/Login/Login';
-
 import StepperForm from './elements/Stepper/StepperForm';
 import AddAdministrator from './components/AddAdministrator/AddAdministrator';
-
 import OrderOnline from './components/OrderOnline/OrderOnline';
 
 export default function App() {
