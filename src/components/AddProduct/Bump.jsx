@@ -36,7 +36,13 @@ export default function Bump(props) {
     const [box, setBox] = useState({
         checkbox: '',
     });
-
+    const {
+        bump_product,
+        onChange,
+        bump_weight,
+        image_bump,
+        price_bump,
+    } = props;
     // handle change untuk onChange
     const handleChange = (event) => {
         setBox({ ...box, [event.target.name]: event.target.checked });
@@ -74,8 +80,8 @@ export default function Bump(props) {
                                             type="text"
                                             name="bump_product"
                                             id="bump_product"
-                                            value={props.bump_product}
-                                            onChange={props.onChange}
+                                            value={bump_product}
+                                            onChange={onChange}
                                         />
                                     </div>
                                 </WrapsField>
@@ -89,8 +95,8 @@ export default function Bump(props) {
                                             type="number"
                                             name="price_bump"
                                             id="price_bump"
-                                            value={props.price_bump}
-                                            onChange={props.onChange}
+                                            value={price_bump}
+                                            onChange={onChange}
                                         />
                                     </div>
                                 </WrapsField>
@@ -104,8 +110,8 @@ export default function Bump(props) {
                                             type="number"
                                             name="bump_weight"
                                             id="bump_weight"
-                                            value={props.bump_weight}
-                                            onChange={props.onChange}
+                                            value={bump_weight}
+                                            onChange={onChange}
                                         />
                                     </div>
                                 </WrapsField>
@@ -119,8 +125,8 @@ export default function Bump(props) {
                                             type="file"
                                             name="image_bump"
                                             id="image_bump"
-                                            value={props.image_bump}
-                                            onChange={props.onChange}
+                                            value={image_bump}
+                                            onChange={onChange}
                                         />
                                     </div>
                                 </WrapsField>

@@ -56,6 +56,17 @@ padding: 50px 40px;
 // --- Styled Components --- //
 
 export default function Layout(props) {
+    const {
+        headline,
+        onChange,
+        description,
+        feedback,
+        video,
+        image_bonus_url,
+        image_product_url,
+        image_text_url,
+    } = props;
+
     return (
         <Section>
             <SectionOne>
@@ -70,8 +81,8 @@ export default function Layout(props) {
                                     type="text"
                                     name="headline"
                                     id="headline"
-                                    value={props.headline}
-                                    onChange={props.onChange}
+                                    value={headline}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -85,8 +96,8 @@ export default function Layout(props) {
                                     as="textarea"
                                     name="description"
                                     id="description"
-                                    value={props.description}
-                                    onChange={props.onChange}
+                                    value={description}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -100,8 +111,8 @@ export default function Layout(props) {
                                     as="textarea"
                                     name="feedback"
                                     id="feedback"
-                                    value={props.feedback}
-                                    onChange={props.onChange}
+                                    value={feedback}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -115,8 +126,8 @@ export default function Layout(props) {
                                     type="file"
                                     name="image_bonus_url"
                                     id="image_bonus_url"
-                                    value={props.image_bonus_url}
-                                    onChange={props.onChange}
+                                    value={image_bonus_url}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -130,8 +141,8 @@ export default function Layout(props) {
                                     type="file"
                                     name="image_text_url"
                                     id="image_text_url"
-                                    value={props.image_text_url}
-                                    onChange={props.onChange}
+                                    value={image_text_url}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -145,8 +156,8 @@ export default function Layout(props) {
                                     type="file"
                                     name="image_product_url"
                                     id="image_product_url"
-                                    value={props.image_product_url}
-                                    onChange={props.onChange}
+                                    value={image_product_url}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -160,8 +171,8 @@ export default function Layout(props) {
                                     type="text"
                                     name="video"
                                     id="video"
-                                    value={props.video}
-                                    onChange={props.onChange}
+                                    value={video}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
