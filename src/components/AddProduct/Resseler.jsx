@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Styled from "styled-components";
-import Card from "../../elements/Card/Card";
+import Styled from 'styled-components';
+import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
 const Input = Styled.input`
@@ -56,11 +56,12 @@ padding: 50px 40px;
 // --- Styled Components --- //
 
 export default function Resseler(props) {
+    const { commision_type, promotion_tools, onChange } = props;
     return (
         <Section>
             <SectionOne>
-                <Card isNormal style={{ width: "100%" }}>
-                    <div style={{ padding: "30px 40px" }}>
+                <Card isNormal style={{ width: '100%' }}>
+                    <div style={{ padding: '30px 40px' }}>
                         <WrapsField>
                             <Label>
                                 <Span>Commision Type </Span>
@@ -70,8 +71,8 @@ export default function Resseler(props) {
                                     as="select"
                                     name="commision_type"
                                     id="commision_type"
-                                    value={props.commision_type}
-                                    onChange={props.onChange}
+                                    value={commision_type}
+                                    onChange={onChange}
                                 >
                                     <option value="" selected disabled hidden>
                                         Choose here
@@ -92,8 +93,8 @@ export default function Resseler(props) {
                                     as="select"
                                     name="promotion_tools"
                                     id="promotion_tools"
-                                    value={props.promotion_tools}
-                                    onChange={props.onChange}
+                                    value={promotion_tools}
+                                    onChange={onChange}
                                 >
                                     <option value="" selected disabled hidden>
                                         Choose here

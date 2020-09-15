@@ -5,6 +5,7 @@ import { faWallet } from '@fortawesome/free-solid-svg-icons';
 import { faPercent } from '@fortawesome/free-solid-svg-icons';
 import CardGetData from '../../elements/Card/CardGetData';
 import ModalOrder from './ModalOrder';
+import TableOrder from './TableOrder';
 
 //  --- Styled Components --- //
 const Wraps = Styled.div`
@@ -79,22 +80,58 @@ export default function OrderOnline() {
 
             {/* Section 3 */}
 
-            <div style={{ display: 'flex', margin: '20PX 0' }}>
-                <WrapsTop>
-                    <ModalOrder buttonLabel="input Order" />
-                </WrapsTop>
-                <WrapsTop>
-                    <Select name="product">
-                        <option value="hoodie">Export</option>
-                    </Select>
-                </WrapsTop>
-                <WrapsTop>
-                    <ModalOrder
-                        style={{ backgroundColor: '#fcfcfc', color: '#495057' }}
-                        buttonLabel="Upload Receipt Number"
-                    />
-                </WrapsTop>
+            <div
+                style={{
+                    display: 'flex',
+                    margin: '20PX 0',
+                    justifyContent: 'space-between',
+                }}
+            >
+                <div style={{ display: 'flex' }}>
+                    <WrapsTop>
+                        <ModalOrder buttonLabel="input Order" />
+                    </WrapsTop>
+                    <WrapsTop>
+                        <Select name="product">
+                            <option value="hoodie">Export</option>
+                        </Select>
+                    </WrapsTop>
+                    <WrapsTop>
+                        <ModalOrder
+                            style={{
+                                backgroundColor: '#fcfcfc',
+                                color: '#495057',
+                            }}
+                            buttonLabel="Upload Receipt Number"
+                        />
+                    </WrapsTop>
+                </div>
+                <div>
+                    {' '}
+                    <WrapsTop>
+                        <ModalOrder
+                            style={{
+                                backgroundColor: '#fcfcfc',
+                                color: '#495057',
+                            }}
+                            buttonLabel="View More Status"
+                            inputTwo={
+                                <div>
+                                    <div>
+                                        <input type="text" />
+                                    </div>
+                                    <div>
+                                        <input type="text" />
+                                    </div>
+                                </div>
+                            }
+                        />
+                    </WrapsTop>
+                </div>
             </div>
+
+            {/* section 4 */}
+            <TableOrder />
         </section>
     );
 }
