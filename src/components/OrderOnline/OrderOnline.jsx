@@ -4,7 +4,8 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faWallet } from '@fortawesome/free-solid-svg-icons';
 import { faPercent } from '@fortawesome/free-solid-svg-icons';
 import CardGetData from '../../elements/Card/CardGetData';
-import ModalOrder from './ModalOrder';
+
+import ModalSmart from '../../elements/Modal/ModalSmart';
 import TableOrder from './TableOrder';
 
 //  --- Styled Components --- //
@@ -89,7 +90,7 @@ export default function OrderOnline() {
             >
                 <div style={{ display: 'flex' }}>
                     <WrapsTop>
-                        <ModalOrder
+                        <ModalSmart
                             onClickConfirm={() => {
                                 return alert('succes');
                             }}
@@ -156,7 +157,7 @@ export default function OrderOnline() {
                         </Select>
                     </WrapsTop>
                     <WrapsTop>
-                        <ModalOrder
+                        <ModalSmart
                             style={{
                                 backgroundColor: '#fcfcfc',
                                 color: '#495057',
@@ -167,7 +168,7 @@ export default function OrderOnline() {
                 </div>
                 <div>
                     <WrapsTop>
-                        <ModalOrder
+                        <ModalSmart
                             style={{
                                 backgroundColor: '#fcfcfc',
                                 color: '#495057',
