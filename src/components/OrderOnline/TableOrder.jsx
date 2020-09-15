@@ -22,13 +22,16 @@ const TableOrder = (props) => {
                         <Th>
                             <input type="checkbox" />
                         </Th>
-                        <Th>Name</Th>
-                        <Th>City</Th>
-                        <Th>Status</Th>
-                        <Th>Payment status</Th>
-                        <Th>Date</Th>
-                        <Th>Gross Revenue</Th>
-                        <Th>Follow Up</Th>
+                        <Th>Invoice Number</Th>
+                        <Th>Tag</Th>
+                        <Th>Order Date</Th>
+                        <Th>Costumer Name</Th>
+                        <Th>Customer Phone</Th>
+                        <Th>Product</Th>
+                        <Th>Total Price</Th>
+                        <Th>Payment Status</Th>
+                        <Th>Paid At</Th>
+                        <Th>Seller</Th>
                         <Th>Actions</Th>
                     </tr>
                 </thead>
@@ -61,6 +64,12 @@ const TableOrder = (props) => {
                         <Th as="td" td>
                             Eight
                         </Th>
+                        <Th as="td" td>
+                            Seven
+                        </Th>
+                        <Th as="td" td>
+                            Eight
+                        </Th>
                     </tr>
                     <tr>
                         <Th scope="row">
@@ -90,6 +99,12 @@ const TableOrder = (props) => {
                         <Th as="td" td>
                             Eight
                         </Th>
+                        <Th as="td" td>
+                            Seven
+                        </Th>
+                        <Th as="td" td>
+                            Eight
+                        </Th>
                     </tr>
                     <tr>
                         <Th scope="row">
@@ -112,6 +127,12 @@ const TableOrder = (props) => {
                         </Th>
                         <Th as="td" td>
                             Six
+                        </Th>
+                        <Th as="td" td>
+                            Seven
+                        </Th>
+                        <Th as="td" td>
+                            Eight
                         </Th>
                         <Th as="td" td>
                             Seven
