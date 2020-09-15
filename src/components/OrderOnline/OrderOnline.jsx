@@ -88,6 +88,12 @@ export default function OrderOnline() {
                         <option value="hoodie">Export</option>
                     </Select>
                 </WrapsTop>
+                <WrapsTop>
+                    <ModalOrder
+                        style={{ backgroundColor: '#fcfcfc', color: '#495057' }}
+                        buttonLabel="Upload Receipt Number"
+                    />
+                </WrapsTop>
             </div>
         </section>
     );

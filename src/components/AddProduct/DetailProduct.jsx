@@ -61,6 +61,22 @@ const Form = Styled.form`
 
 export default function DetailProduct(props) {
     const dispatch = useDispatch();
+    const {
+        name,
+        onChange,
+        slug,
+        type,
+        price,
+        time_period,
+        visibility,
+        sale_method,
+        mentor,
+        product_redirect,
+        zoom_id,
+        start_at,
+        start_time,
+        end_time,
+    } = props;
     const topic = useSelector((state) => state.topic);
     console.log(topic.data, 'topic ini isinya apa cih');
 
@@ -89,8 +105,8 @@ export default function DetailProduct(props) {
                                     type="text"
                                     name="name"
                                     id="name"
-                                    value={props.name}
-                                    onChange={props.onChange}
+                                    value={name}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -105,8 +121,8 @@ export default function DetailProduct(props) {
                                     type="text"
                                     name="name"
                                     id="name"
-                                    value={props.slug}
-                                    onChange={props.onChange}
+                                    value={slug}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -121,8 +137,8 @@ export default function DetailProduct(props) {
                                     as="select"
                                     name="type"
                                     id="type"
-                                    value={props.type}
-                                    onChange={props.onChange}
+                                    value={type}
+                                    onChange={onChange}
                                 >
                                     <option value="" selected disabled hidden>
                                         Choose here
@@ -162,8 +178,8 @@ export default function DetailProduct(props) {
                                     type="number"
                                     name="price"
                                     id="price"
-                                    value={props.price}
-                                    onChange={props.onChange}
+                                    value={price}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -178,8 +194,8 @@ export default function DetailProduct(props) {
                                     type="number"
                                     name="time_period"
                                     id="time_period"
-                                    value={props.time_period}
-                                    onChange={props.onChange}
+                                    value={time_period}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -194,8 +210,8 @@ export default function DetailProduct(props) {
                                     as="select"
                                     name="visibility"
                                     id="visibility"
-                                    value={props.visibility}
-                                    onChange={props.onChange}
+                                    value={visibility}
+                                    onChange={onChange}
                                 >
                                     <option value="" selected disabled hidden>
                                         Choose here
@@ -217,8 +233,8 @@ export default function DetailProduct(props) {
                                     as="select"
                                     name="sale_method"
                                     id="sale_method"
-                                    value={props.sale_method}
-                                    onChange={props.onChange}
+                                    value={sale_method}
+                                    onChange={onChange}
                                 >
                                     <option value="" selected disabled hidden>
                                         Choose here
@@ -241,8 +257,8 @@ export default function DetailProduct(props) {
                                     type="text"
                                     name="mentor"
                                     id="mentor"
-                                    value={props.mentor}
-                                    onChange={props.onChange}
+                                    value={mentor}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -257,8 +273,8 @@ export default function DetailProduct(props) {
                                     type="text"
                                     name="product_redirect"
                                     id="product_redirect"
-                                    value={props.product_redirect}
-                                    onChange={props.onChange}
+                                    value={product_redirect}
+                                    onChange={onChange}
                                 />
                             </div>
                         </WrapsField>
@@ -276,8 +292,8 @@ export default function DetailProduct(props) {
                                                 type="text"
                                                 name="media_url"
                                                 id="media_url"
-                                                value={props.zoom_id}
-                                                onChange={props.onChange}
+                                                value={zoom_id}
+                                                onChange={onChange}
                                             />
                                         </div>
                                     </WrapsField>
@@ -291,8 +307,8 @@ export default function DetailProduct(props) {
                                                 type="date"
                                                 name="start_at"
                                                 id="start_at"
-                                                value={props.start_at}
-                                                onChange={props.onChange}
+                                                value={start_at}
+                                                onChange={onChange}
                                             />
                                         </div>
                                     </WrapsField>
@@ -312,8 +328,8 @@ export default function DetailProduct(props) {
                                                     type="time"
                                                     name="start_time"
                                                     id="start_time"
-                                                    value={props.start_time}
-                                                    onChange={props.onChange}
+                                                    value={start_time}
+                                                    onChange={onChange}
                                                 />
                                             </div>
                                         </WrapsField>
@@ -327,8 +343,8 @@ export default function DetailProduct(props) {
                                                     type="time"
                                                     name="end_time"
                                                     id="end_time"
-                                                    value={props.end_time}
-                                                    onChange={props.onChange}
+                                                    value={end_time}
+                                                    onChange={onChange}
                                                 />
                                             </div>
                                         </WrapsField>

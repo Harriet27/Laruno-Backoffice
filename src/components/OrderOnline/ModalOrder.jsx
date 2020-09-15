@@ -3,9 +3,24 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Styled from 'styled-components';
 
 // --- Styled Components --- //
+const ButtonModal = Styled.button`
+background-color: #0098DA;
+color: white;
+width: 100%;
+padding: 5px;
+font-size: 18px;
+font-weight: 400;
+border-radius: 3px;
+border: 1px solid #ced4da;
+&:focus{
+outline: none !important;
+border:1px solid #66AFE9;
+}
+`;
+// --- Styled Components --- //
 
 const ModalOrder = (props) => {
-    const { buttonLabel, className } = props;
+    const { buttonLabel, className, style } = props;
 
     const [modal, setModal] = useState(false);
 
@@ -13,7 +28,9 @@ const ModalOrder = (props) => {
 
     return (
         <div>
-            <button onClick={toggle}>{buttonLabel}</button>
+            <ButtonModal style={style} onClick={toggle}>
+                {buttonLabel}
+            </ButtonModal>
             <Modal isOpen={modal} toggle={toggle} className={className}>
                 <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                 <ModalBody>
