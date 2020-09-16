@@ -7,12 +7,12 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Layout from '../../components/AddProduct/Layout';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
-import Resseler from '../../components/AddProduct/Resseler';
+// import Resseler from '../../components/AddProduct/Resseler';
 
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchPostProducts } from '../../store/actions/product';
-import Bump from '../../components/AddProduct/Bump';
+// import Bump from '../../components/AddProduct/Bump';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ['Detail Information', 'Layout', 'Resseler'];
+    return ['Detail Information', 'Layout'];
 }
 
 export default function StepperForm() {
@@ -72,10 +72,10 @@ export default function StepperForm() {
         commision_type: '',
         promotion_tools: '',
         product_redirect: '',
-        bump_product: '',
-        bump_weight: '',
-        image_bump: '',
-        price_bump: '',
+        // bump_product: '',
+        // bump_weight: '',
+        // image_bump: '',
+        // price_bump: '',
     });
 
     // handleSubmit untuk enter dan submit button
@@ -115,13 +115,13 @@ export default function StepperForm() {
                             mentor={form.mentor}
                             slug={form.slug}
                         />
-                        <Bump
+                        {/* <Bump
                             bump_product={form.bump_product}
                             price_bump={form.price_bump}
                             bump_weight={form.bump_weight}
                             image_bump={form.image_bump}
                             onChange={handleChange}
-                        />
+                        /> */}
                     </>
                 );
             case 1:
@@ -140,17 +140,17 @@ export default function StepperForm() {
                         />
                     </>
                 );
-            case 2:
-                return (
-                    <>
-                        <Resseler
-                            onChange={handleChange}
-                            commision_type={form.commision_type}
-                            promotion_tools={form.promotion_tools}
-                            product_redirect={form.product_redirect}
-                        />
-                    </>
-                );
+            // case 2:
+            //     return (
+            //         <>
+            //             <Resseler
+            //                 onChange={handleChange}
+            //                 commision_type={form.commision_type}
+            //                 promotion_tools={form.promotion_tools}
+            //                 product_redirect={form.product_redirect}
+            //             />
+            //         </>
+            //     );
 
             default:
                 return 'Unknown stepIndex';

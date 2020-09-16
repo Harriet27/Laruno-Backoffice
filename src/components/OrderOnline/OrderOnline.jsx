@@ -40,7 +40,7 @@ margin-right:10px;
 export default function OrderOnline() {
     return (
         <section style={{ margin: '0 50px' }}>
-            {/* Section 1 */}
+            {/* Section 1
             <div style={{ display: 'flex', margin: '20PX 0' }}>
                 <WrapsTop>Orders</WrapsTop>
                 <WrapsTop>
@@ -53,7 +53,7 @@ export default function OrderOnline() {
                         <option value="hoodie">Checkout pages</option>
                     </Select>
                 </WrapsTop>
-            </div>
+            </div> */}
 
             {/* Section 2 */}
             <Wraps>

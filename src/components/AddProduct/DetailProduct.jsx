@@ -71,7 +71,7 @@ export default function DetailProduct(props) {
         time_period,
         visibility,
         sale_method,
-        mentor,
+        // mentor,
         product_redirect,
         zoom_id,
         start_at,
@@ -131,7 +131,7 @@ export default function DetailProduct(props) {
                         {/* Field Product Category */}
                         <WrapsField>
                             <Label>
-                                <Span>Product Category</Span>
+                                <Span>Product Type</Span>
                             </Label>
                             <div>
                                 <Input
@@ -248,7 +248,7 @@ export default function DetailProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* Field mentor  */}
+                        {/* Field mentor 
                         <WrapsField>
                             <Label>
                                 <Span>Mentor</Span>
@@ -262,23 +262,40 @@ export default function DetailProduct(props) {
                                     onChange={onChange}
                                 />
                             </div>
-                        </WrapsField>
+                        </WrapsField> */}
 
-                        {/* Filed product redirect */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Product Redirect</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="text"
-                                    name="product_redirect"
-                                    id="product_redirect"
-                                    value={product_redirect}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
+                        {/* Filed product redirect logic for sale_method */}
+                        {sale_method === 'upsale' ||
+                        sale_method === 'upgrade' ||
+                        sale_method === 'crossale' ? (
+                            <WrapsField>
+                                <Label>
+                                    <Span>Product Redirect</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        as="select"
+                                        name="product_redirect"
+                                        id="product_redirect"
+                                        value={product_redirect}
+                                        onChange={onChange}
+                                    >
+                                        <option
+                                            value=""
+                                            selected
+                                            disabled
+                                            hidden
+                                        >
+                                            Choose here
+                                        </option>
+                                        <option value="normal">
+                                            testing product redirect get data
+                                            product
+                                        </option>
+                                    </Input>
+                                </div>
+                            </WrapsField>
+                        ) : null}
 
                         {/* Field logic in field product category  */}
                         <div>
