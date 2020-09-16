@@ -20,9 +20,9 @@ const Input = Styled.input`
     padding: 10px;
     font-size: 18px;
     font-weight: 400;
-    color: #495057;
+    color:${(props) => (props.isButton ? 'white' : '#495057')} ;
     border-radius: 3px;
-    background-color: #FCFCFC;
+    background-color: ${(props) => (props.isButton ? '#0098DA' : '#FCFCFC')};
     border: 1px solid #ced4da;
     &:focus{
     outline: none !important;
@@ -58,14 +58,7 @@ export default function AddNewTopic() {
 
     return (
         <Section>
-            <Card
-                isLogin
-                style={{
-                    padding: '50px',
-                    width: '500px',
-                    borderRadius: '5px',
-                }}
-            >
+            <Card isLogin>
                 <form onSubmit={handleSubmit}>
                     <WrapForm>
                         <Input
@@ -79,10 +72,7 @@ export default function AddNewTopic() {
                         />
                     </WrapForm>
 
-                    <Input
-                        as="button"
-                        style={{ backgroundColor: '#0098DA', color: 'white' }}
-                    >
+                    <Input as="button" isButton>
                         Add Topic
                     </Input>
                 </form>

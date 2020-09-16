@@ -40,6 +40,10 @@ export default function App() {
                         <Header />
                         <OrderOnline />
                     </Route>
+                    <Route exact path="/topic">
+                        <Header />
+                        <OrderOnline />
+                    </Route>
                 </Switch>
             </Router>
         </Provider>

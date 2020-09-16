@@ -32,6 +32,20 @@ const Select = Styled.select`
         box-shadow: 0px 1px 3px -1px rgba(96,96,96,0.75);
     }
 `;
+const Input = Styled.input`
+    
+    padding: .375rem;
+    font-size: 14px;
+    font-weight: 400;
+    color: #495057;
+    border-radius: 3px;
+    background-color: #FCFCFC;
+    border: 1px solid #ced4da;
+    &:focus{
+    outline: none !important;
+    border:1px solid #66AFE9;
+    }
+`;
 const WrapsTop = Styled.div`
 margin-right:10px;
 `;
@@ -151,7 +165,7 @@ export default function OrderOnline() {
                         </ModalSmart>
                     </WrapsTop>
 
-                    {/* Refund */}
+                    {/* payment status */}
                     <WrapsTop>
                         <Select name="Refund">
                             <option value="hoodie">
@@ -172,26 +186,11 @@ export default function OrderOnline() {
                             <option value="hoodie">Last 30 days</option>
                         </Select>
                     </WrapsTop>
-
-                    <WrapsTop>
-                        <ModalSmart
-                            style={{
-                                backgroundColor: '#fcfcfc',
-                                color: '#495057',
-                            }}
-                            buttonLabel="Upload Receipt Number"
-                        />
-                    </WrapsTop>
                 </div>
+
                 <div>
                     <WrapsTop>
-                        <ModalSmart
-                            style={{
-                                backgroundColor: '#fcfcfc',
-                                color: '#495057',
-                            }}
-                            buttonLabel="View More Status"
-                        />
+                        <lable>Search</lable> <Input type="search" />
                     </WrapsTop>
                 </div>
             </div>
