@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import Styled from 'styled-components';
-
-import { useDispatch } from 'react-redux';
-import { fetchPostTopic } from '../../store/actions';
 import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
+import { fetchUpdateTopic } from '../../store/actions';
+import { useDispatch } from 'react-redux';
+import Styled from 'styled-components';
 
 // --- Styled Components --- //
 const Section = Styled.section`
@@ -40,9 +39,8 @@ const WrapForm = Styled.div`
 `;
 // --- Styled Components --- //
 
-export default function AddNewTopic() {
+export default function UpdateTopic(props) {
     const dispatch = useDispatch();
-
     const [form, setForm] = useState({
         name: '',
     });
@@ -50,7 +48,7 @@ export default function AddNewTopic() {
     // Fetch submit method Post
     const handleSubmit = async (event) => {
         event.preventDefault();
-        dispatch(fetchPostTopic(form));
+        dispatch(fetchUpdateTopic(form, props.id));
     };
     // merubah value setiap kali di ketik
     const handleChange = (event) => {
@@ -58,28 +56,30 @@ export default function AddNewTopic() {
     };
 
     return (
-        <ModalSmart
-            buttonLabel="Add Topic"
-            title="Add Topic"
-            onClickConfirm={handleSubmit}
-        >
-            <Section>
-                <Card isLogin>
-                    <div>
-                        <WrapForm>
-                            <Input
-                                type="text"
-                                name="name"
-                                id="name"
-                                value={form.name}
-                                onChange={handleChange}
-                                placeholder="Name"
-                                required
-                            />
-                        </WrapForm>
-                    </div>
-                </Card>
-            </Section>
-        </ModalSmart>
+        <React.Fragment>
+            <ModalSmart
+                buttonLabel="Update"
+                title="Update Topic"
+                onClickConfirm={handleSubmit}
+            >
+                <Section>
+                    <Card isLogin>
+                        <div>
+                            <WrapForm>
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                    placeholder="Name"
+                                    required
+                                />
+                            </WrapForm>
+                        </div>
+                    </Card>
+                </Section>
+            </ModalSmart>
+        </React.Fragment>
     );
 }

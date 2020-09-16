@@ -1,11 +1,9 @@
 import React from 'react';
-import AddNewTopic from '../../components/Topic/AddNewTopic';
 import DataTopic from '../../components/Topic/DataTopic';
 
 export default function Topic() {
     return (
-        <section>
-            <AddNewTopic />
+        <section style={{ margin: '0 50px' }}>
             <DataTopic />
         </section>
     );

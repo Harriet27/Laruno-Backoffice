@@ -33,7 +33,6 @@ const Select = Styled.select`
     }
 `;
 const Input = Styled.input`
-    
     padding: .375rem;
     font-size: 14px;
     font-weight: 400;
