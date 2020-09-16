@@ -12,6 +12,7 @@ import Login from './pages/Login/Login';
 import StepperForm from './elements/Stepper/StepperForm';
 import AddAdministrator from './components/AddAdministrator/AddAdministrator';
 import OrderOnline from './components/OrderOnline/OrderOnline';
+import Topic from './pages/Topic/Topic';
 
 export default function App() {
     return (
@@ -42,7 +43,7 @@ export default function App() {
                     </Route>
                     <Route exact path="/topic">
                         <Header />
-                        <OrderOnline />
+                        <Topic />
                     </Route>
                 </Switch>
             </Router>

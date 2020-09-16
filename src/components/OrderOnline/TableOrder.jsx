@@ -4,13 +4,11 @@ import Card from '../../elements/Card/Card';
 import Styled from 'styled-components';
 
 // --- Styled Components --- //
-
 const Th = Styled.th`
 font-size:  ${(props) => (props.td ? '16px' : '20px')};
 font-weight: ${(props) => (props.td ? 'normal' : '600')};
 text-align: center;
 `;
-
 // --- Styled Components --- //
 
 const TableOrder = (props) => {

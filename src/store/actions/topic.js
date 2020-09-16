@@ -59,4 +59,6 @@ const fetchPostTopic = (form, history) => async () => {
     }
 };
 
+// --- Delete Topic --- Method Delete --- //
+
 export { getTopic, GET_TOPIC, fetchGetTopic, fetchPostTopic };
