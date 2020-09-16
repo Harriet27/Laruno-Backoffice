@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 const GET_TOPIC = 'GET_TOPIC';
-
+const SHOW_TOPIC = 'SHOW_TOPIC';
 // --- Get Topic --- //
 const getTopic = (data) => {
     return {
@@ -125,6 +125,29 @@ const fetchDeleteTopic = (id) => async () => {
     }
 };
 
+// --- Show tOPIC By ID --- //
+const showTopic = (data) => {
+    return {
+        type: SHOW_TOPIC,
+        data,
+    };
+};
+
+const fetchShowTopic = (id) => async (dispatch) => {
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/${id}`;
+    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result);
+    dispatch(showTopic(result));
+};
 export {
     getTopic,
     GET_TOPIC,
@@ -132,4 +155,7 @@ export {
     fetchPostTopic,
     fetchUpdateTopic,
     fetchDeleteTopic,
+    showTopic,
+    SHOW_TOPIC,
+    fetchShowTopic,
 };

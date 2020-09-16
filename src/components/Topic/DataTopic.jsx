@@ -9,6 +9,7 @@ import moment from 'moment';
 import AddNewTopic from './AddNewTopic';
 import UpdateTopic from './UpdateTopic';
 import DeleteTopic from './DeleteTopic';
+import ShowTopic from './ShowTopic';
 // --- Styled Components --- //
 const Th = Styled.th`
     font-size:  ${(props) => (props.td ? '16px' : '20px')};
@@ -94,6 +95,7 @@ const DataTopic = (props) => {
                                             <div>
                                                 <UpdateTopic id={item._id} />
                                                 <DeleteTopic id={item._id} />
+                                                {/* <ShowTopic id={item._id} /> */}
                                             </div>
                                         </Th>
                                     </tr>
