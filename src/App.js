@@ -13,6 +13,7 @@ import StepperForm from './elements/Stepper/StepperForm';
 import AddAdministrator from './components/AddAdministrator/AddAdministrator';
 import OrderOnline from './components/OrderOnline/OrderOnline';
 import Topic from './pages/Topic/Topic';
+import Products from './pages/Products/Products';
 
 export default function App() {
     return (
@@ -27,7 +28,10 @@ export default function App() {
                         <Header />
                         <StepperForm />
                     </Route>
-
+                    <Route exact path="/product">
+                        <Header />
+                        <Products />
+                    </Route>
                     <Route exact path="/add-administrator">
                         <AddAdministrator />
                         {/* <DetailProduct />
