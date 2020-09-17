@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
-import { fetchUpdateTopic } from '../../store/actions';
-import { useDispatch } from 'react-redux';
+import { fetchUpdateProduct, fetchShowProduct } from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
 
 // --- Styled Components --- //
@@ -41,6 +41,16 @@ const WrapForm = Styled.div`
 
 export default function UpdateTopic(props) {
     const dispatch = useDispatch();
+
+    const product = useSelector((state) => state.detailproduct);
+    console.log(product, 'data show product for pages topic');
+
+    // --- useEffect --- Get data Product ---//
+    useEffect(() => {
+        dispatch(fetchShowProduct(props.id));
+    }, [dispatch]);
+
+    // update
     const [form, setForm] = useState({
         type: '',
         name: '',
@@ -74,7 +84,7 @@ export default function UpdateTopic(props) {
     // Fetch submit method Post
     const handleSubmit = async (event) => {
         event.preventDefault();
-        dispatch(fetchUpdateTopic(form, props.id));
+        dispatch(fetchUpdateProduct(form, props.id));
     };
     // merubah value setiap kali di ketik
     const handleChange = (event) => {
@@ -98,8 +108,93 @@ export default function UpdateTopic(props) {
                                     id="name"
                                     value={form.name}
                                     onChange={handleChange}
-                                    placeholder="Name"
-                                    required
+                                />
+                                <Input
+                                    as="select"
+                                    name="type"
+                                    id="name"
+                                    value={form.type}
+                                    onChange={handleChange}
+                                >
+                                    <option>webinar</option>
+                                </Input>
+                                <Input
+                                    type="number"
+                                    name="price"
+                                    id="price"
+                                    value={form.price}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="headline"
+                                    id="headline"
+                                    value={form.headline}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.description}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                v
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
                                 />
                             </WrapForm>
                         </div>

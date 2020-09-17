@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
 import Styled from 'styled-components';
@@ -7,7 +8,7 @@ import { fetchGetProduct } from '../../store/actions';
 import moment from 'moment';
 
 // import AddNewTopic from './AddNewTopic';
-// import UpdateTopic from './UpdateTopic';
+import UpdateProduct from './UpdateProduct';
 import DeleteProduct from './DeleteProduct';
 import ShowProduct from './ShowProduct';
 // --- Styled Components --- //
@@ -96,10 +97,20 @@ const DataProduct = (props) => {
                                             Rp. {item.price}
                                         </Th>
                                         <Th as="td" td>
-                                            <div>
-                                                {/* <UpdateTopic id={item._id} /> */}
+                                            <div
+                                                style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'row',
+                                                }}
+                                            >
+                                                <Link
+                                                    to={`/test-components/${item._id}`}
+                                                >
+                                                    <button>Show</button>
+                                                </Link>
+                                                <UpdateProduct id={item._id} />
                                                 <DeleteProduct id={item._id} />
-                                                <ShowProduct id={item._id} />
+                                                {/* <ShowProduct id={item._id} /> */}
                                             </div>
                                         </Th>
                                     </tr>

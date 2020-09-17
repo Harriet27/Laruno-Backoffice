@@ -14,6 +14,7 @@ import AddAdministrator from './components/AddAdministrator/AddAdministrator';
 import OrderOnline from './components/OrderOnline/OrderOnline';
 import Topic from './pages/Topic/Topic';
 import Products from './pages/Products/Products';
+import ShowProduct from './components/Product/ShowProduct';
 
 export default function App() {
     return (
@@ -48,6 +49,11 @@ export default function App() {
                     <Route exact path="/topic">
                         <Header />
                         <Topic />
+                    </Route>
+
+                    <Route exact path="/test-components/:id">
+                        <Header />
+                        <ShowProduct />
                     </Route>
                 </Switch>
             </Router>

@@ -3,6 +3,7 @@ import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 import { fetchShowProduct } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import Styled from 'styled-components';
 // import { useHistory } from 'react-router-dom';
 
@@ -20,19 +21,82 @@ const Section = Styled.section`
 
 export default function ShowTopic(props) {
     const dispatch = useDispatch();
-    const product = useSelector((state) => state.detailproduct);
-    console.log(product, 'data show product for pages product');
+    let { id } = useParams();
+    const product = useSelector((state) => state.detailproduct.data);
+    console.log(product, 'data show product for pages topic');
 
     // --- useEffect --- get data topic ---//
     useEffect(() => {
-        dispatch(fetchShowProduct(props.id));
+        dispatch(fetchShowProduct(id));
     }, [dispatch]);
 
     return (
         <React.Fragment>
-            <ModalSmart buttonLabel="show" title="Show Topic">
-                <Section></Section>
-            </ModalSmart>
+            <section style={{ margin: '100px 50px' }}>
+                {product !== undefined && (
+                    <div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                            }}
+                        >
+                            <Card style={{ width: '50%' }} isNormal>
+                                <div>
+                                    <p>Name: {product.name}</p>
+                                    <h5>Description</h5>
+                                    <p>{product.description}</p>
+                                </div>
+                            </Card>
+                            <Card style={{ width: '50%' }} isNormal>
+                                <div>
+                                    <h5>Description</h5>
+                                    <p>{product.description}</p>
+                                </div>
+                            </Card>
+                        </div>
+                        <Card isNormal>
+                            <div>
+                                <h5>Description</h5>
+                                <p>{product.description}</p>
+                            </div>
+                        </Card>
+                        <Card isNormal>
+                            <div>
+                                <h5>Description</h5>
+                                <p>{product.description}</p>
+                            </div>
+                        </Card>
+                        <Card isNormal>
+                            <div>
+                                <h5>Description</h5>
+                                <p>{product.description}</p>
+                            </div>
+                        </Card>
+
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                            }}
+                        >
+                            {' '}
+                            <Card isNormal>
+                                <div>
+                                    <h5>Description</h5>
+                                    <p>{product.description}</p>
+                                </div>
+                            </Card>
+                            <Card isNormal>
+                                <div>
+                                    <h5>Description</h5>
+                                    <p>{product.description}</p>
+                                </div>
+                            </Card>
+                        </div>
+                    </div>
+                )}
+            </section>
         </React.Fragment>
     );
 }
