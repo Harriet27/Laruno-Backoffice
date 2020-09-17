@@ -161,8 +161,8 @@ export default function DetailProduct(props) {
                                 {/* Test components React select */}
                                 <Select
                                     isMulti
-                                    name="topic"
-                                    id="topic"
+                                    onChange={handleSelect}
+                                    value={topic_select}
                                     options={optionsTopic}
                                     className="basic-multi-select"
                                     classNamePrefix="select"

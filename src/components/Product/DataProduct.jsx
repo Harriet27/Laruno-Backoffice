@@ -9,7 +9,7 @@ import moment from 'moment';
 // import AddNewTopic from './AddNewTopic';
 // import UpdateTopic from './UpdateTopic';
 import DeleteProduct from './DeleteProduct';
-// import ShowTopic from './ShowTopic';
+import ShowProduct from './ShowProduct';
 // --- Styled Components --- //
 const Th = Styled.th`
     font-size:  ${(props) => (props.td ? '16px' : '20px')};
@@ -99,7 +99,7 @@ const DataProduct = (props) => {
                                             <div>
                                                 {/* <UpdateTopic id={item._id} /> */}
                                                 <DeleteProduct id={item._id} />
-                                                {/* <ShowTopic id={item._id} /> */}
+                                                <ShowProduct id={item._id} />
                                             </div>
                                         </Th>
                                     </tr>

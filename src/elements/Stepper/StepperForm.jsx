@@ -88,6 +88,10 @@ export default function StepperForm() {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
+    // try handle select multiple
+    const handleSelect = (topic) => {
+        setForm({ ...form, topic });
+    };
     //  --- Fetching Data beserta logicnya "batas bawah" --- //
     console.log(form);
     // --- Content --- //
@@ -97,6 +101,7 @@ export default function StepperForm() {
                 return (
                     <>
                         <DetailProduct
+                            handleSelect={handleSelect}
                             onChange={handleChange}
                             form={form.type}
                             name={form.name}

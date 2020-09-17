@@ -20,19 +20,18 @@ const Section = Styled.section`
 
 export default function ShowTopic(props) {
     const dispatch = useDispatch();
-    const topic = useSelector((state) => state.detailtopic);
-    console.log(topic, 'data show topic for pages topic');
+    const product = useSelector((state) => state.detailproduct);
+    console.log(product, 'data show product for pages product');
+
     // --- useEffect --- get data topic ---//
     useEffect(() => {
-        dispatch(fetchShowTopic(props.id));
+        dispatch(fetchShowProduct(props.id));
     }, [dispatch]);
 
     return (
         <React.Fragment>
             <ModalSmart buttonLabel="show" title="Show Topic">
-                <Section>
-                    <h1>Apakah kamu yakin ingin menghapus Topic ini ?</h1>
-                </Section>
+                <Section></Section>
             </ModalSmart>
         </React.Fragment>
     );
