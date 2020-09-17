@@ -90,7 +90,12 @@ const DataTopic = (props) => {
                                             )}
                                         </Th>
                                         <Th as="td" td>
-                                            <div>
+                                            <div
+                                                style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'row',
+                                                }}
+                                            >
                                                 <UpdateTopic id={item._id} />
                                                 <DeleteTopic id={item._id} />
                                                 {/* <ShowTopic id={item._id} /> */}

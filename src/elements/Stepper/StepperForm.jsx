@@ -58,7 +58,6 @@ export default function StepperForm() {
         slug: '',
         image_url: '',
         video_url: '',
-
         sale_method: '',
         topic: [],
         visibility: '',
@@ -90,7 +89,6 @@ export default function StepperForm() {
     };
 
     //  --- Fetching Data beserta logicnya "batas bawah" --- //
-
     console.log(form);
     // --- Content --- //
     function getStepContent(stepIndex) {
@@ -103,7 +101,7 @@ export default function StepperForm() {
                             form={form.type}
                             name={form.name}
                             type={form.type}
-                            topic={form.topic}
+                            topic_select={form.topic}
                             price={form.price}
                             time_period={form.time_period}
                             visibility={form.visibility}
@@ -112,7 +110,7 @@ export default function StepperForm() {
                             start_at={form.date}
                             start_time={form.start_time}
                             end_time={form.end_time}
-                            mentor={form.mentor}
+                            // mentor={form.mentor}
                             slug={form.slug}
                         />
                         {/* <Bump

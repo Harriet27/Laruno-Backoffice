@@ -5,7 +5,7 @@ const SHOW_PRODUCT = 'SHOW_PRODUCT';
 // --- Post Product --- //
 
 const fetchPostProducts = (form, history) => async () => {
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products`;
 
     const options = {
@@ -40,7 +40,7 @@ const getProduct = (data) => {
 };
 
 const fetchGetProduct = () => async (dispatch) => {
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products`;
         const options = {
@@ -68,7 +68,7 @@ const findProduct = (data) => {
 };
 
 const fetchFindProduct = () => async (dispatch) => {
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/find`;
         const options = {
@@ -88,7 +88,7 @@ const fetchFindProduct = () => async (dispatch) => {
 
 // --- DELETE TOPIC METHOD DELETE --- //
 const fetchDeleteProduct = (id) => async () => {
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/${id}`;
     const options = {
         method: 'DELETE',
@@ -125,7 +125,7 @@ const showProduct = (data) => {
 };
 
 const fetchShowProduct = (id) => async (dispatch) => {
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/${id}`;
     const options = {
         method: 'GET',
@@ -137,6 +137,41 @@ const fetchShowProduct = (id) => async (dispatch) => {
     const response = await fetch(url, options);
     const result = await response.json();
     dispatch(showProduct(result));
+};
+
+// --- Update Product - Method PUT ---- //
+const fetchUpdateProduct = (form, id) => async () => {
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+    try {
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/product/${id}`;
+        const options = {
+            method: 'PUT',
+            body: JSON.stringify(form),
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        const response = await fetch(url, options);
+        await response.json();
+
+        if (response.status === 200) {
+            Swal.fire({
+                title: 'Update Berhasil!',
+                text: '',
+                icon: 'success',
+            });
+            window.location.reload('/product');
+        } else {
+            Swal.fire({
+                title: 'update gagal',
+                text: '',
+                icon: 'error',
+            });
+        }
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export {
@@ -151,4 +186,5 @@ export {
     fetchDeleteProduct,
     fetchShowProduct,
     showProduct,
+    fetchUpdateProduct,
 };

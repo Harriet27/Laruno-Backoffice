@@ -8,7 +8,7 @@ import moment from 'moment';
 
 // import AddNewTopic from './AddNewTopic';
 // import UpdateTopic from './UpdateTopic';
-// import DeleteTopic from './DeleteTopic';
+import DeleteProduct from './DeleteProduct';
 // import ShowTopic from './ShowTopic';
 // --- Styled Components --- //
 const Th = Styled.th`
@@ -97,9 +97,9 @@ const DataProduct = (props) => {
                                         </Th>
                                         <Th as="td" td>
                                             <div>
-                                                {/* <UpdateTopic id={item._id} />
-                                                <DeleteTopic id={item._id} />
-                                                <ShowTopic id={item._id} /> */}
+                                                {/* <UpdateTopic id={item._id} /> */}
+                                                <DeleteProduct id={item._id} />
+                                                {/* <ShowTopic id={item._id} /> */}
                                             </div>
                                         </Th>
                                     </tr>

@@ -31,7 +31,7 @@ export default function DeleteTopic(props) {
     return (
         <React.Fragment>
             <ModalSmart
-                buttonLabel={faTrash}
+                buttonLabel="delete"
                 title="Delete Topic"
                 onClickConfirm={handleSubmit}
             >

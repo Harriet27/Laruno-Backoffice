@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import Select from 'react-select';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetTopic } from '../../store/actions';
-
 import Styled from 'styled-components';
 import Card from '../../elements/Card/Card';
 
@@ -56,7 +54,6 @@ const Form = Styled.form`
     @media (max-width: 800px) {
         padding: 20px;
     }
-
 `;
 // --- Styled Components --- //
 
@@ -77,6 +74,8 @@ export default function DetailProduct(props) {
         start_at,
         start_time,
         end_time,
+        topic_select,
+        handleSelect,
     } = props;
     const topic = useSelector((state) => state.topic);
     console.log(topic.data, 'topic ini isinya apa cih');
@@ -91,6 +90,7 @@ export default function DetailProduct(props) {
         topic.data.map((item) => {
             return { key: item._id, value: item._id, label: item.name };
         });
+
     return (
         <Section>
             <SectionOne>
@@ -120,8 +120,8 @@ export default function DetailProduct(props) {
                             <div>
                                 <Input
                                     type="text"
-                                    name="name"
-                                    id="name"
+                                    name="slug"
+                                    id="slug"
                                     value={slug}
                                     onChange={onChange}
                                 />
@@ -161,7 +161,8 @@ export default function DetailProduct(props) {
                                 {/* Test components React select */}
                                 <Select
                                     isMulti
-                                    name="colors"
+                                    name="topic"
+                                    id="topic"
                                     options={optionsTopic}
                                     className="basic-multi-select"
                                     classNamePrefix="select"
@@ -219,7 +220,7 @@ export default function DetailProduct(props) {
                                     </option>
                                     <option value="publish">Public</option>
                                     <option value="private">Private</option>
-                                    <option value="private">Draft</option>
+                                    <option value="draft">Draft</option>
                                 </Input>
                             </div>
                         </WrapsField>
@@ -288,10 +289,9 @@ export default function DetailProduct(props) {
                                         >
                                             Choose here
                                         </option>
-                                        <option value="normal">
-                                            testing product redirect get data
-                                            product
-                                        </option>
+
+                                        {/*Pekerjaan yang harus di selesaikan fetch data all name product yg sudah ada */}
+                                        <option value="normal">normal</option>
                                     </Input>
                                 </div>
                             </WrapsField>
@@ -377,11 +377,11 @@ export default function DetailProduct(props) {
                                     <div>
                                         <Input
                                             as="select"
-                                            name="cars"
-                                            id="cars"
+                                            name="fullfilment"
+                                            id="fullfilment"
                                         >
-                                            <option value="volvo">Buku</option>
-                                            <option value="saab">Video</option>
+                                            <option value="buku">Buku</option>
+                                            <option value="video">Video</option>
                                         </Input>
                                     </div>
                                 </WrapsField>

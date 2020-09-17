@@ -10,8 +10,8 @@ const getTopic = (data) => {
 };
 
 const fetchGetTopic = () => async (dispatch) => {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics`;
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/categories`;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const options = {
         method: 'GET',
         headers: {
@@ -27,9 +27,9 @@ const fetchGetTopic = () => async (dispatch) => {
 
 // --- Create New Topic, Method Post, component AddNewTopic --- //
 const fetchPostTopic = (form) => async () => {
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/categories`;
         const options = {
             method: 'POST',
             body: JSON.stringify(form),
@@ -61,16 +61,14 @@ const fetchPostTopic = (form) => async () => {
 
 // --- Update Topic --- Method PATCH --- //
 const fetchUpdateTopic = (form, id) => async () => {
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/${id}`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/categories/${id}`;
         const options = {
-            method: 'PATCH',
+            method: 'PUT',
             body: JSON.stringify(form),
             headers: {
-                'Access-Control-Allow-Origin': 'PATCH',
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
+                'Content-type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
         };
@@ -83,6 +81,7 @@ const fetchUpdateTopic = (form, id) => async () => {
                 text: '',
                 icon: 'success',
             });
+            window.location.reload('/topic');
         } else {
             Swal.fire({
                 title: 'update gagal',
@@ -97,8 +96,8 @@ const fetchUpdateTopic = (form, id) => async () => {
 
 // --- DELETE TOPIC METHOD DELETE --- //
 const fetchDeleteTopic = (id) => async () => {
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/${id}`;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/categories/${id}`;
     const options = {
         method: 'DELETE',
         headers: {
@@ -134,8 +133,8 @@ const showTopic = (data) => {
 };
 
 const fetchShowTopic = (id) => async (dispatch) => {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/${id}`;
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/categories/${id}`;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const options = {
         method: 'GET',
         headers: {
