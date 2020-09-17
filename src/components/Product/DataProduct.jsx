@@ -60,7 +60,7 @@ const DataProduct = (props) => {
 
             {/* section 2 */}
             <Card isNormal>
-                <Table borderless>
+                <Table striped>
                     <thead>
                         <tr>
                             <Th>Visibility</Th>

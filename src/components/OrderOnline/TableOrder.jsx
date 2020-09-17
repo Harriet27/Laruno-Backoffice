@@ -14,12 +14,9 @@ text-align: center;
 const TableOrder = (props) => {
     return (
         <Card isNormal>
-            <Table borderless>
+            <Table striped>
                 <thead>
                     <tr>
-                        <Th>
-                            <input type="checkbox" />
-                        </Th>
                         <Th>Invoice Number</Th>
                         <Th>Tag</Th>
                         <Th>Order Date</Th>
@@ -35,9 +32,6 @@ const TableOrder = (props) => {
                 </thead>
                 <tbody>
                     <tr>
-                        <Th scope="row">
-                            <input type="checkbox" />
-                        </Th>
                         <Th as="td" td>
                             One
                         </Th>
@@ -70,9 +64,6 @@ const TableOrder = (props) => {
                         </Th>
                     </tr>
                     <tr>
-                        <Th scope="row">
-                            <input type="checkbox" />
-                        </Th>
                         <Th as="td" td>
                             One
                         </Th>
@@ -105,9 +96,6 @@ const TableOrder = (props) => {
                         </Th>
                     </tr>
                     <tr>
-                        <Th scope="row">
-                            <input type="checkbox" />
-                        </Th>
                         <Th as="td" td>
                             One
                         </Th>

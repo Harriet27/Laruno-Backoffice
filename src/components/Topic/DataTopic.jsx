@@ -14,11 +14,10 @@ import ShowTopic from './ShowTopic';
 const Th = Styled.th`
     font-size:  ${(props) => (props.td ? '16px' : '20px')};
     font-weight: ${(props) => (props.td ? 'normal' : '600')};
-    text-align: center;
+    text-align: left;
 `;
 
 const Input = Styled.input`
-    
     padding: .375rem;
     font-size: 14px;
     font-weight: 400;
@@ -30,6 +29,11 @@ const Input = Styled.input`
     outline: none !important;
     border:1px solid #66AFE9;
     }
+`;
+const SectionOne = Styled.div`
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
 `;
 // --- Styled Components --- //
 
@@ -45,22 +49,16 @@ const DataTopic = (props) => {
     return (
         <React.Fragment>
             {/* section 1 */}
-            <div
-                style={{
-                    margin: '20px 0',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                }}
-            >
+            <SectionOne>
                 <AddNewTopic />
                 <div>
                     <label>Search</label> <Input type="search" />
                 </div>
-            </div>
+            </SectionOne>
 
             {/* section 2 */}
             <Card isNormal>
-                <Table borderless>
+                <Table striped>
                     <thead>
                         <tr>
                             <Th>Name</Th>
