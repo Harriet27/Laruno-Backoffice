@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 import { fetchDeleteTopic } from '../../store/actions';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import Styled from 'styled-components';
 // import { useHistory } from 'react-router-dom';
@@ -30,7 +31,7 @@ export default function DeleteTopic(props) {
     return (
         <React.Fragment>
             <ModalSmart
-                buttonLabel="Delete"
+                buttonLabel={faTrash}
                 title="Delete Topic"
                 onClickConfirm={handleSubmit}
             >

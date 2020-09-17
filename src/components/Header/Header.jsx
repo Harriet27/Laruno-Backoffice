@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
 import ImageBrand from '../../assets/images/laruno1.png';
 import {
@@ -68,34 +69,39 @@ const Header = () => {
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
-                        <NavItem>
-                            <NavLink href="/dashboard">Dashboard</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="/report">Report</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="/product">Product</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="/order">Order</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="/tools">Tools</NavLink>
-                        </NavItem>
+                        <Link to="/dashboard">
+                            <NavLink>Dashboard</NavLink>
+                        </Link>
+                        <Link to="/product">
+                            <NavLink>Product</NavLink>
+                        </Link>
+                        <Link to="/Order">
+                            <NavLink>Order</NavLink>
+                        </Link>
+                        <Link to="/reports">
+                            <NavLink>Report</NavLink>
+                        </Link>
+                        <Link to="/tools">
+                            <NavLink>Tools</NavLink>
+                        </Link>
+
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
                                 Others
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem>Option 1</DropdownItem>
-                                <DropdownItem>Option 2</DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>Reset</DropdownItem>
+                                <Link to="/topic">
+                                    <DropdownItem>Topic</DropdownItem>
+                                </Link>
+                                <Link to="/">
+                                    <DropdownItem>Option 2</DropdownItem>
+                                </Link>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>
-                    <Button>Add Product</Button>
+                    <Link to="/add-product">
+                        <Button> + Add Product</Button>
+                    </Link>
                 </Collapse>
             </Navbar>
         </HeaderStyled>

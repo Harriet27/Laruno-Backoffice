@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 // login In BackOffice
 const fetchPostLogin = (form, history) => async (dispatch) => {
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/login`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/auth/login`;
         const options = {
             method: 'POST',
             body: JSON.stringify(form),
@@ -45,7 +45,7 @@ const fetchPostLogin = (form, history) => async (dispatch) => {
 const fetchPostAdministrator = (form, history) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/add`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/auth/login`;
         const options = {
             method: 'POST',
             body: JSON.stringify(form),

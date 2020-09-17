@@ -24,7 +24,7 @@ export default function App() {
                         <Header />
                         <Login />
                     </Route>
-                    <Route exact path="/add-products">
+                    <Route exact path="/add-product">
                         <Header />
                         <StepperForm />
                     </Route>
@@ -41,7 +41,7 @@ export default function App() {
                         {/* <AddNewTopic />  */}
                     </Route>
 
-                    <Route exact path="/test-components">
+                    <Route exact path="/order">
                         <Header />
                         <OrderOnline />
                     </Route>

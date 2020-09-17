@@ -63,38 +63,7 @@ const TableOrder = (props) => {
                             Eight
                         </Th>
                     </tr>
-                    <tr>
-                        <Th as="td" td>
-                            One
-                        </Th>
-                        <Th as="td" td>
-                            Two
-                        </Th>
-                        <Th as="td" td>
-                            Three
-                        </Th>
-                        <Th as="td" td>
-                            Four
-                        </Th>
-                        <Th as="td" td>
-                            Five
-                        </Th>
-                        <Th as="td" td>
-                            Six
-                        </Th>
-                        <Th as="td" td>
-                            Seven
-                        </Th>
-                        <Th as="td" td>
-                            Eight
-                        </Th>
-                        <Th as="td" td>
-                            Seven
-                        </Th>
-                        <Th as="td" td>
-                            Eight
-                        </Th>
-                    </tr>
+
                     <tr>
                         <Th as="td" td>
                             One

@@ -1,10 +1,17 @@
 import React from 'react';
 import DataTopic from '../../components/Topic/DataTopic';
+import Styled from 'styled-components';
 
+// --- Styled components --- //
+
+const Section = Styled.section`
+margin: 0 50px;
+`;
+// --- styled components --- //
 export default function Topic() {
     return (
-        <section style={{ margin: '0 50px' }}>
+        <Section>
             <DataTopic />
-        </section>
+        </Section>
     );
 }
