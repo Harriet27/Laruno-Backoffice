@@ -59,6 +59,9 @@ export default function Layout(props) {
         image_bonus_url,
         image_product_url,
         image_text_url,
+        feature_onheader,
+        feature_onpage,
+        sale_price,
     } = props;
 
     return (

@@ -71,6 +71,9 @@ export default function StepperForm() {
         commision_type: '',
         promotion_tools: '',
         product_redirect: '',
+        feature_onheader: '',
+        feature_onpage: '',
+        sale_price: '',
         // bump_product: '',
         // bump_weight: '',
         // image_bump: '',
@@ -140,6 +143,9 @@ export default function StepperForm() {
                             image_text_url={form.image_text_url}
                             image_product_url={form.image_product_url}
                             video={form.video_url}
+                            feature_onpage={form.feature_onpage}
+                            feature_onheader={form.feature_onheader}
+                            sale_price={form.sale_price}
                         />
                     </>
                 );
