@@ -10,7 +10,7 @@ const getTopic = (data) => {
 };
 
 const fetchGetTopic = () => async (dispatch) => {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/categories`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics`;
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const options = {
         method: 'GET',
@@ -29,7 +29,7 @@ const fetchGetTopic = () => async (dispatch) => {
 const fetchPostTopic = (form) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/categories`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics`;
         const options = {
             method: 'POST',
             body: JSON.stringify(form),
@@ -63,7 +63,7 @@ const fetchPostTopic = (form) => async () => {
 const fetchUpdateTopic = (form, id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/categories/${id}`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/${id}`;
         const options = {
             method: 'PUT',
             body: JSON.stringify(form),
@@ -97,7 +97,7 @@ const fetchUpdateTopic = (form, id) => async () => {
 // --- DELETE TOPIC METHOD DELETE --- //
 const fetchDeleteTopic = (id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/categories/${id}`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/${id}`;
     const options = {
         method: 'DELETE',
         headers: {
@@ -133,7 +133,7 @@ const showTopic = (data) => {
 };
 
 const fetchShowTopic = (id) => async (dispatch) => {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/categories/${id}`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/${id}`;
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const options = {
         method: 'GET',

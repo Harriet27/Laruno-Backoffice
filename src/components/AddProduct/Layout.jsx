@@ -111,6 +111,56 @@ export default function Layout(props) {
                             </div>
                         </WrapsField>
 
+                        {/* sale price */}
+                        <WrapsField>
+                            <Label>
+                                <Span>Sale Price</Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    as="textarea"
+                                    name="sale_price"
+                                    id="sale_price"
+                                    value={sale_price}
+                                    onChange={onChange}
+                                />
+                            </div>
+                        </WrapsField>
+
+                        {/* feature onpage */}
+
+                        <WrapsField>
+                            <Label>
+                                <Span>Feature Onpage</Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    as="textarea"
+                                    name="feature_onpage"
+                                    id="feature_onpage"
+                                    value={feature_onpage}
+                                    onChange={onChange}
+                                />
+                            </div>
+                        </WrapsField>
+
+                        {/* Feature On Header */}
+
+                        <WrapsField>
+                            <Label>
+                                <Span>Feature Onheader</Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    as="textarea"
+                                    name="feature_onheader"
+                                    id="feature_onheader"
+                                    value={feature_onheader}
+                                    onChange={onChange}
+                                />
+                            </div>
+                        </WrapsField>
+
                         <WrapsField>
                             <Label>
                                 <Span>Image Bonus</Span>

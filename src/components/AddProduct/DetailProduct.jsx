@@ -75,7 +75,6 @@ export default function DetailProduct(props) {
         start_time,
         end_time,
         topic_select,
-        handleSelect,
     } = props;
     const topic = useSelector((state) => state.topic);
     console.log(topic.data, 'topic ini isinya apa cih');
@@ -85,11 +84,11 @@ export default function DetailProduct(props) {
     }, [dispatch]);
 
     // optionsTopic for value select topic
-    let optionsTopic =
-        topic.data !== undefined &&
-        topic.data.map((item) => {
-            return { key: item._id, value: item._id, label: item.name };
-        });
+    // let optionsTopic =
+    //     topic.data !== undefined &&
+    //     topic.data.map((item) => {
+    //         return { key: item._id, value: item._id, label: item.name };
+    //     });
 
     return (
         <Section>
@@ -152,14 +151,45 @@ export default function DetailProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* Field Topic masih error */}
+                        {/* Topic sementara */}
+                        <WrapsField>
+                            <Label>
+                                <Span>Topic</Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    as="select"
+                                    name="topic"
+                                    id="topic"
+                                    value={topic_select}
+                                    onChange={onChange}
+                                >
+                                    <option value="" selected disabled hidden>
+                                        Choose here
+                                    </option>
+                                    {topic.data !== undefined &&
+                                        topic.data.map((item) => {
+                                            return (
+                                                <option
+                                                    key={item._id}
+                                                    value={item._id}
+                                                >
+                                                    {item.name}
+                                                </option>
+                                            );
+                                        })}
+                                </Input>
+                            </div>
+                        </WrapsField>
+
+                        {/* Field Topic masih error
                         <WrapsField>
                             <Label>
                                 <Span>Topic</Span>
                             </Label>
                             <div>
                                 {/* Test components React select */}
-                                <Select
+                        {/* <Select
                                     isMulti
                                     onChange={handleSelect}
                                     value={topic_select}
@@ -168,7 +198,7 @@ export default function DetailProduct(props) {
                                     classNamePrefix="select"
                                 />
                             </div>
-                        </WrapsField>
+                        </WrapsField> */}
 
                         {/* Field Price */}
                         <WrapsField>
@@ -249,22 +279,6 @@ export default function DetailProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* Field mentor 
-                        <WrapsField>
-                            <Label>
-                                <Span>Mentor</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="text"
-                                    name="mentor"
-                                    id="mentor"
-                                    value={mentor}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField> */}
-
                         {/* Filed product redirect logic for sale_method */}
                         {sale_method === 'upsale' ||
                         sale_method === 'upgrade' ||
@@ -308,8 +322,8 @@ export default function DetailProduct(props) {
                                         <div>
                                             <Input
                                                 type="text"
-                                                name="media_url"
-                                                id="media_url"
+                                                name="client_url"
+                                                id="client_url"
                                                 value={zoom_id}
                                                 onChange={onChange}
                                             />
