@@ -99,7 +99,7 @@ export default function UpdateTopic(props) {
                 onClickConfirm={handleSubmit}
             >
                 <Section>
-                    <Card isLogin>
+                    <Card isNormal>
                         <div>
                             <WrapForm>
                                 <Input
