@@ -106,11 +106,24 @@ const DataProduct = (props) => {
                                                 <Link
                                                     to={`/test-components/${item._id}`}
                                                 >
-                                                    <button>Show</button>
+                                                    <button
+                                                        style={{
+                                                            backgroundColor:
+                                                                '#0098DA',
+                                                            padding: '5px',
+                                                            borderRadius: '3px',
+                                                            color: 'white',
+                                                            fontSize: '18px',
+                                                            border:
+                                                                '1px solid #ced4da',
+                                                            fontWeight: '400',
+                                                        }}
+                                                    >
+                                                        Show
+                                                    </button>
                                                 </Link>
                                                 <UpdateProduct id={item._id} />
                                                 <DeleteProduct id={item._id} />
-                                                {/* <ShowProduct id={item._id} /> */}
                                             </div>
                                         </Th>
                                     </tr>

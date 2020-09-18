@@ -101,7 +101,7 @@ export default function StepperForm() {
                 return (
                     <>
                         <DetailProduct
-                            handleSelect={handleSelect}
+                            // handleSelect={handleSelect}
                             onChange={handleChange}
                             form={form.type}
                             name={form.name}
@@ -112,7 +112,7 @@ export default function StepperForm() {
                             visibility={form.visibility}
                             sale_method={form.sale_method}
                             zoom_id={form.client_url}
-                            start_at={form.date}
+                            date={form.date}
                             start_time={form.start_time}
                             end_time={form.end_time}
                             // mentor={form.mentor}

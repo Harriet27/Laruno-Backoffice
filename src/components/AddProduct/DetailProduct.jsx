@@ -71,7 +71,7 @@ export default function DetailProduct(props) {
         // mentor,
         product_redirect,
         zoom_id,
-        start_at,
+        date,
         start_time,
         end_time,
         topic_select,
@@ -152,7 +152,7 @@ export default function DetailProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* Field Topic */}
+                        {/* Field Topic masih error */}
                         <WrapsField>
                             <Label>
                                 <Span>Topic</Span>
@@ -323,9 +323,9 @@ export default function DetailProduct(props) {
                                         <div>
                                             <Input
                                                 type="date"
-                                                name="start_at"
-                                                id="start_at"
-                                                value={start_at}
+                                                name="date"
+                                                id="date"
+                                                value={date}
                                                 onChange={onChange}
                                             />
                                         </div>
