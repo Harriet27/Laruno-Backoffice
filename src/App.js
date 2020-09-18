@@ -22,7 +22,6 @@ export default function App() {
             <Router>
                 <Switch>
                     <Route exact path="/">
-                        <Header />
                         <Login />
                     </Route>
                     <Route exact path="/add-product">

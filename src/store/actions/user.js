@@ -63,7 +63,7 @@ const fetchPostAdministrator = (form, history) => async () => {
                 text: '',
                 icon: 'success',
             });
-            history.push('/');
+            history.push('/dashboard');
         } else {
             Swal.fire({
                 title: 'Email Yang di buat tidak sesuai atau sudah terdaftar',

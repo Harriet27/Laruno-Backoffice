@@ -75,6 +75,7 @@ export default function DetailProduct(props) {
         start_time,
         end_time,
         topic_select,
+        // handleSelect,
     } = props;
     const topic = useSelector((state) => state.topic);
     console.log(topic.data, 'topic ini isinya apa cih');
@@ -150,6 +151,154 @@ export default function DetailProduct(props) {
                                 </Input>
                             </div>
                         </WrapsField>
+
+                        {/* Field logic in field product category  */}
+                        <div>
+                            {props.form === 'webinar' ? (
+                                <div>
+                                    <WrapsField>
+                                        <Label>
+                                            <Span>Zoom ID</Span>
+                                        </Label>
+                                        <div>
+                                            <Input
+                                                type="text"
+                                                name="client_url"
+                                                id="client_url"
+                                                value={zoom_id}
+                                                onChange={onChange}
+                                            />
+                                        </div>
+                                    </WrapsField>
+
+                                    <WrapsField>
+                                        <Label>
+                                            <Span>Start Date</Span>
+                                        </Label>
+                                        <div>
+                                            <Input
+                                                type="date"
+                                                name="date"
+                                                id="date"
+                                                value={date}
+                                                onChange={onChange}
+                                            />
+                                        </div>
+                                    </WrapsField>
+
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                        }}
+                                    >
+                                        <WrapsField dividedByTwo>
+                                            <Label>
+                                                <Span>Start Time</Span>
+                                            </Label>
+                                            <div>
+                                                <Input
+                                                    type="time"
+                                                    name="start_time"
+                                                    id="start_time"
+                                                    value={start_time}
+                                                    onChange={onChange}
+                                                />
+                                            </div>
+                                        </WrapsField>
+
+                                        <WrapsField dividedByTwo>
+                                            <Label>
+                                                <Span>End Time</Span>
+                                            </Label>
+                                            <div>
+                                                <Input
+                                                    type="time"
+                                                    name="end_time"
+                                                    id="end_time"
+                                                    value={end_time}
+                                                    onChange={onChange}
+                                                />
+                                            </div>
+                                        </WrapsField>
+                                    </div>
+                                </div>
+                            ) : null}
+                            {props.form === 'digital' ? (
+                                <WrapsField>
+                                    <Label>
+                                        <Span>Fullfilment</Span>
+                                    </Label>
+                                    <div>
+                                        <Input
+                                            as="select"
+                                            name="fullfilment"
+                                            id="fullfilment"
+                                        >
+                                            <option value="buku">Buku</option>
+                                            <option value="video">Video</option>
+                                        </Input>
+                                    </div>
+                                </WrapsField>
+                            ) : null}
+
+                            {props.form === 'ecommerce' ? (
+                                <WrapsField
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                    }}
+                                >
+                                    <div>
+                                        <input
+                                            type="radio"
+                                            value="cod"
+                                            name="cod"
+                                            id="cod"
+                                        />
+                                        <Label>
+                                            <Span
+                                                style={{ marginLeft: '10PX' }}
+                                            >
+                                                COD
+                                            </Span>
+                                        </Label>
+                                    </div>
+
+                                    <div>
+                                        <input
+                                            type="radio"
+                                            value="regular"
+                                            name="regular"
+                                            id="regular"
+                                        />
+                                        <Label>
+                                            <Span
+                                                style={{ marginLeft: '10PX' }}
+                                            >
+                                                Regular
+                                            </Span>
+                                        </Label>
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="radio"
+                                            value="both"
+                                            name="both"
+                                            id="both"
+                                        />
+                                        <Label>
+                                            <Span
+                                                style={{ marginLeft: '10PX' }}
+                                            >
+                                                Both
+                                            </Span>
+                                        </Label>
+                                    </div>
+                                </WrapsField>
+                            ) : null}
+                        </div>
 
                         {/* Topic sementara */}
                         <WrapsField>
@@ -310,154 +459,6 @@ export default function DetailProduct(props) {
                                 </div>
                             </WrapsField>
                         ) : null}
-
-                        {/* Field logic in field product category  */}
-                        <div>
-                            {props.form === 'webinar' ? (
-                                <div>
-                                    <WrapsField>
-                                        <Label>
-                                            <Span>Zoom ID</Span>
-                                        </Label>
-                                        <div>
-                                            <Input
-                                                type="text"
-                                                name="client_url"
-                                                id="client_url"
-                                                value={zoom_id}
-                                                onChange={onChange}
-                                            />
-                                        </div>
-                                    </WrapsField>
-
-                                    <WrapsField>
-                                        <Label>
-                                            <Span>Start Date</Span>
-                                        </Label>
-                                        <div>
-                                            <Input
-                                                type="date"
-                                                name="date"
-                                                id="date"
-                                                value={date}
-                                                onChange={onChange}
-                                            />
-                                        </div>
-                                    </WrapsField>
-
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                        }}
-                                    >
-                                        <WrapsField dividedByTwo>
-                                            <Label>
-                                                <Span>Start Time</Span>
-                                            </Label>
-                                            <div>
-                                                <Input
-                                                    type="time"
-                                                    name="start_time"
-                                                    id="start_time"
-                                                    value={start_time}
-                                                    onChange={onChange}
-                                                />
-                                            </div>
-                                        </WrapsField>
-
-                                        <WrapsField dividedByTwo>
-                                            <Label>
-                                                <Span>End Time</Span>
-                                            </Label>
-                                            <div>
-                                                <Input
-                                                    type="time"
-                                                    name="end_time"
-                                                    id="end_time"
-                                                    value={end_time}
-                                                    onChange={onChange}
-                                                />
-                                            </div>
-                                        </WrapsField>
-                                    </div>
-                                </div>
-                            ) : null}
-                            {props.form === 'digital' ? (
-                                <WrapsField>
-                                    <Label>
-                                        <Span>Fullfilment</Span>
-                                    </Label>
-                                    <div>
-                                        <Input
-                                            as="select"
-                                            name="fullfilment"
-                                            id="fullfilment"
-                                        >
-                                            <option value="buku">Buku</option>
-                                            <option value="video">Video</option>
-                                        </Input>
-                                    </div>
-                                </WrapsField>
-                            ) : null}
-
-                            {props.form === 'ecommerce' ? (
-                                <WrapsField
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'row',
-                                        justifyContent: 'space-between',
-                                    }}
-                                >
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            value="cod"
-                                            name="cod"
-                                            id="cod"
-                                        />
-                                        <Label>
-                                            <Span
-                                                style={{ marginLeft: '10PX' }}
-                                            >
-                                                COD
-                                            </Span>
-                                        </Label>
-                                    </div>
-
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            value="regular"
-                                            name="regular"
-                                            id="regular"
-                                        />
-                                        <Label>
-                                            <Span
-                                                style={{ marginLeft: '10PX' }}
-                                            >
-                                                Regular
-                                            </Span>
-                                        </Label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            value="both"
-                                            name="both"
-                                            id="both"
-                                        />
-                                        <Label>
-                                            <Span
-                                                style={{ marginLeft: '10PX' }}
-                                            >
-                                                Both
-                                            </Span>
-                                        </Label>
-                                    </div>
-                                </WrapsField>
-                            ) : null}
-                        </div>
                     </Form>
                 </Card>
             </SectionOne>

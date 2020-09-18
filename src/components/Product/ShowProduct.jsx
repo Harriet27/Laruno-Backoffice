@@ -5,6 +5,7 @@ import { fetchShowProduct } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Styled from 'styled-components';
+import { Table } from 'reactstrap';
 // import { useHistory } from 'react-router-dom';
 
 // --- Styled Components --- //
@@ -33,69 +34,115 @@ export default function ShowTopic(props) {
     return (
         <React.Fragment>
             <section style={{ margin: '100px 50px' }}>
-                {product !== undefined && (
-                    <div>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                            }}
-                        >
-                            <Card style={{ width: '50%' }} isNormal>
-                                <div>
-                                    <p>Name: {product.name}</p>
-                                    <h5>Description</h5>
-                                    <p>{product.description}</p>
-                                </div>
-                            </Card>
-                            <Card style={{ width: '50%' }} isNormal>
-                                <div>
-                                    <h5>Description</h5>
-                                    <p>{product.description}</p>
-                                </div>
-                            </Card>
-                        </div>
-                        <Card isNormal>
-                            <div>
-                                <h5>Description</h5>
-                                <p>{product.description}</p>
-                            </div>
-                        </Card>
-                        <Card isNormal>
-                            <div>
-                                <h5>Description</h5>
-                                <p>{product.description}</p>
-                            </div>
-                        </Card>
-                        <Card isNormal>
-                            <div>
-                                <h5>Description</h5>
-                                <p>{product.description}</p>
-                            </div>
-                        </Card>
+                <Card>
+                    {product !== undefined && (
+                        <div>
+                            <Card isNormal style={{ padding: '10px' }}>
+                                <Table borderless size="sm">
+                                    <thead>
+                                        <tr>
+                                            <td style={{ width: '200px' }}>
+                                                Visibility
+                                            </td>
+                                            <td>: {product.visibility}</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Type</td>
+                                            <td>: {product.type}</td>
+                                        </tr>
 
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                            }}
-                        >
-                            {' '}
-                            <Card isNormal>
-                                <div>
-                                    <h5>Description</h5>
-                                    <p>{product.description}</p>
-                                </div>
-                            </Card>
-                            <Card isNormal>
-                                <div>
-                                    <h5>Description</h5>
-                                    <p>{product.description}</p>
-                                </div>
+                                        <tr>
+                                            <td>Product Name</td>
+                                            <td>: {product.name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Code</td>
+                                            <td>: {product.code}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Headline</td>
+                                            <td>: {product.headline}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Description</td>
+                                            <td>
+                                                : {product.description}
+                                                <br />
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        justifyContent:
+                                                            'space-between',
+                                                        margin: '10px 0',
+                                                    }}
+                                                >
+                                                    {product.image_bonus_url &&
+                                                        product.image_bonus_url.map(
+                                                            (item, index) => {
+                                                                return (
+                                                                    <div
+                                                                        key={
+                                                                            index
+                                                                        }
+                                                                        style={{
+                                                                            width:
+                                                                                '49%',
+                                                                        }}
+                                                                    >
+                                                                        <img
+                                                                            width="100%"
+                                                                            src={
+                                                                                item
+                                                                            }
+                                                                            alt={
+                                                                                item
+                                                                            }
+                                                                        />
+                                                                    </div>
+                                                                );
+                                                            }
+                                                        )}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Time Periode</td>
+                                            <td>
+                                                : {product.time_period} Months
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Price</td>
+                                            <td>:Rp. {product.price} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Video</td>
+                                            <td>
+                                                <video
+                                                    width="320"
+                                                    height="240"
+                                                    controls
+                                                    poster
+                                                >
+                                                    <source
+                                                        src={product.video_url}
+                                                        type="video/mp4"
+                                                    />{' '}
+                                                    <source
+                                                        src={product.video_url}
+                                                        type="video/ogg"
+                                                    />
+                                                </video>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
                             </Card>
                         </div>
-                    </div>
-                )}
+                    )}
+                </Card>
             </section>
         </React.Fragment>
     );
