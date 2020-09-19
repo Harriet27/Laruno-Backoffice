@@ -216,8 +216,8 @@ export default function Layout(props) {
                             <div>
                                 <Input
                                     type="text"
-                                    name="video"
-                                    id="video"
+                                    name="video_url"
+                                    id="video_url"
                                     value={video}
                                     onChange={onChange}
                                 />
