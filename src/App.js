@@ -15,6 +15,7 @@ import OrderOnline from './components/OrderOnline/OrderOnline';
 import Topic from './pages/Topic/Topic';
 import Products from './pages/Products/Products';
 import ShowProduct from './components/Product/ShowProduct';
+import UpdateProduct from './components/Product/UpdateProduct';
 import Testing from './components/AddAdministrator/Testing';
 
 export default function App() {
@@ -52,9 +53,14 @@ export default function App() {
                         <Topic />
                     </Route>
 
-                    <Route exact path="/test-components/:id">
+                    <Route exact path="/product/show/:id">
                         <Header />
                         <ShowProduct />
+                    </Route>
+
+                    <Route exact path="/product/show/:id">
+                        <Header />
+                        <UpdateProduct />
                     </Route>
                 </Switch>
             </Router>

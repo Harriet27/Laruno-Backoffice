@@ -1,467 +1,206 @@
-import React, { useEffect } from 'react';
-import Select from 'react-select';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetTopic } from '../../store/actions';
-import Styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 import Card from '../../elements/Card/Card';
+import ModalSmart from '../../elements/Modal/ModalSmart';
+import { fetchUpdateProduct, fetchShowProduct } from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import Styled from 'styled-components';
 
 // --- Styled Components --- //
+const Section = Styled.section`
+    width: 100%;
+   
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    
+    
+`;
 const Input = Styled.input`
     width: 100%;
-    padding: .375rem;
-    font-size: 14px;
+    padding: 10px;
+    font-size: 18px;
     font-weight: 400;
-    color: #495057;
+    color:${(props) => (props.isButton ? 'white' : '#495057')} ;
     border-radius: 3px;
-    background-color: #FCFCFC;
+    background-color: ${(props) => (props.isButton ? '#0098DA' : '#FCFCFC')};
     border: 1px solid #ced4da;
     &:focus{
     outline: none !important;
     border:1px solid #66AFE9;
     }
 `;
-const Section = Styled.section`
-    display: flex;
-    padding: 50px 100px;
+const Brand = Styled.h1`
+    text-align: center;
+    margin-bottom: 20px;
+`;
+const WrapForm = Styled.div`
     width: 100%;
-    line-height: 1.5;
-    @media (max-width: 800px) {
-        padding: 20px 40px;
-          }
-`;
-const Label = Styled.label`
-    
-`;
-const WrapsField = Styled.div`
-    margin-bottom: 25px;
-    width: ${(props) => (props.dividedByTwo ? '45%' : null)}
-`;
-const Span = Styled.span`
-    font-weight: bold;
-    color: #656565;
-    font-size: 18px;
-`;
-
-const SectionOne = Styled.div`
-    display: flex;
-    width: 50%;
-    @media (max-width: 800px) {
-        width: 100%
-    }
-`;
-const Form = Styled.form`
-    padding: 50px 40px;
-    @media (max-width: 800px) {
-        padding: 20px;
-    }
+    margin-bottom: 20px;
 `;
 // --- Styled Components --- //
 
-export default function DetailProduct(props) {
+export default function UpdateTopic(props) {
     const dispatch = useDispatch();
-    const {
-        name,
-        onChange,
-        slug,
-        type,
-        price,
-        time_period,
-        visibility,
-        sale_method,
-        // mentor,
-        product_redirect,
-        zoom_id,
-        date,
-        start_time,
-        end_time,
-        topic_select,
-        // handleSelect,
-    } = props;
-    const topic = useSelector((state) => state.topic);
-    console.log(topic.data, 'topic ini isinya apa cih');
 
+    const product = useSelector((state) => state.detailproduct);
+    console.log(product, 'data show product for pages topic');
+
+    // --- useEffect --- Get data Product ---//
     useEffect(() => {
-        dispatch(fetchGetTopic());
+        dispatch(fetchShowProduct(props.id));
     }, [dispatch]);
 
-    // optionsTopic for value select topic
-    // let optionsTopic =
-    //     topic.data !== undefined &&
-    //     topic.data.map((item) => {
-    //         return { key: item._id, value: item._id, label: item.name };
-    //     });
+    // update
+    const [form, setForm] = useState({
+        type: '',
+        name: '',
+        price: '',
+        headline: '',
+        description: '',
+        time_period: '',
+        date: '',
+        slug: '',
+        image_url: '',
+        video_url: '',
+        sale_method: '',
+        topic: [],
+        visibility: '',
+        mentor: '',
+        client_url: '',
+        image_product_url: '',
+        image_bonus_url: '',
+        image_text_url: '',
+        start_time: '',
+        end_time: '',
+        commision_type: '',
+        promotion_tools: '',
+        product_redirect: '',
+        // bump_product: '',
+        // bump_weight: '',
+        // image_bump: '',
+        // price_bump: '',
+    });
+
+    // Fetch submit method Post
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        dispatch(fetchUpdateProduct(form, props.id));
+    };
+    // merubah value setiap kali di ketik
+    const handleChange = (event) => {
+        setForm({ ...form, [event.target.name]: event.target.value });
+    };
 
     return (
-        <Section>
-            <SectionOne>
-                <Card isNormal style={{ width: '100%' }}>
-                    <Form as="div">
-                        {/* Field name product */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Nama Produk</Span>
-                            </Label>
-                            <div>
+        <React.Fragment>
+            <ModalSmart
+                buttonLabel="Update"
+                title="Update Topic"
+                onClickConfirm={handleSubmit}
+            >
+                <Section>
+                    <Card isNormal>
+                        <div>
+                            <WrapForm>
                                 <Input
                                     type="text"
                                     name="name"
                                     id="name"
-                                    value={name}
-                                    onChange={onChange}
+                                    value={form.name}
+                                    onChange={handleChange}
                                 />
-                            </div>
-                        </WrapsField>
-
-                        {/* Slug */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Slug</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="text"
-                                    name="slug"
-                                    id="slug"
-                                    value={slug}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
-
-                        {/* Field Product Category */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Product Type</Span>
-                            </Label>
-                            <div>
                                 <Input
                                     as="select"
                                     name="type"
-                                    id="type"
-                                    value={type}
-                                    onChange={onChange}
+                                    id="name"
+                                    value={form.type}
+                                    onChange={handleChange}
                                 >
-                                    <option value="" selected disabled hidden>
-                                        Choose here
-                                    </option>
-                                    <option value="webinar">Webinar</option>
-                                    <option value="digital">Digital</option>
-                                    <option value="ecommerce">Ecommerce</option>
-                                    <option value="bonus">Bonus</option>
+                                    <option>webinar</option>
                                 </Input>
-                            </div>
-                        </WrapsField>
-
-                        {/* Field logic in field product category  */}
-                        <div>
-                            {props.form === 'webinar' ? (
-                                <div>
-                                    <WrapsField>
-                                        <Label>
-                                            <Span>Zoom ID</Span>
-                                        </Label>
-                                        <div>
-                                            <Input
-                                                type="text"
-                                                name="client_url"
-                                                id="client_url"
-                                                value={zoom_id}
-                                                onChange={onChange}
-                                            />
-                                        </div>
-                                    </WrapsField>
-
-                                    <WrapsField>
-                                        <Label>
-                                            <Span>Start Date</Span>
-                                        </Label>
-                                        <div>
-                                            <Input
-                                                type="date"
-                                                name="date"
-                                                id="date"
-                                                value={date}
-                                                onChange={onChange}
-                                            />
-                                        </div>
-                                    </WrapsField>
-
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                        }}
-                                    >
-                                        <WrapsField dividedByTwo>
-                                            <Label>
-                                                <Span>Start Time</Span>
-                                            </Label>
-                                            <div>
-                                                <Input
-                                                    type="time"
-                                                    name="start_time"
-                                                    id="start_time"
-                                                    value={start_time}
-                                                    onChange={onChange}
-                                                />
-                                            </div>
-                                        </WrapsField>
-
-                                        <WrapsField dividedByTwo>
-                                            <Label>
-                                                <Span>End Time</Span>
-                                            </Label>
-                                            <div>
-                                                <Input
-                                                    type="time"
-                                                    name="end_time"
-                                                    id="end_time"
-                                                    value={end_time}
-                                                    onChange={onChange}
-                                                />
-                                            </div>
-                                        </WrapsField>
-                                    </div>
-                                </div>
-                            ) : null}
-                            {props.form === 'digital' ? (
-                                <WrapsField>
-                                    <Label>
-                                        <Span>Fullfilment</Span>
-                                    </Label>
-                                    <div>
-                                        <Input
-                                            as="select"
-                                            name="fullfilment"
-                                            id="fullfilment"
-                                        >
-                                            <option value="buku">Buku</option>
-                                            <option value="video">Video</option>
-                                        </Input>
-                                    </div>
-                                </WrapsField>
-                            ) : null}
-
-                            {props.form === 'ecommerce' ? (
-                                <WrapsField
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'row',
-                                        justifyContent: 'space-between',
-                                    }}
-                                >
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            value="cod"
-                                            name="cod"
-                                            id="cod"
-                                        />
-                                        <Label>
-                                            <Span
-                                                style={{ marginLeft: '10PX' }}
-                                            >
-                                                COD
-                                            </Span>
-                                        </Label>
-                                    </div>
-
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            value="regular"
-                                            name="regular"
-                                            id="regular"
-                                        />
-                                        <Label>
-                                            <Span
-                                                style={{ marginLeft: '10PX' }}
-                                            >
-                                                Regular
-                                            </Span>
-                                        </Label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            value="both"
-                                            name="both"
-                                            id="both"
-                                        />
-                                        <Label>
-                                            <Span
-                                                style={{ marginLeft: '10PX' }}
-                                            >
-                                                Both
-                                            </Span>
-                                        </Label>
-                                    </div>
-                                </WrapsField>
-                            ) : null}
-                        </div>
-
-                        {/* Topic sementara */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Topic</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="select"
-                                    name="topic"
-                                    id="topic"
-                                    value={topic_select}
-                                    onChange={onChange}
-                                >
-                                    <option value="" selected disabled hidden>
-                                        Choose here
-                                    </option>
-                                    {topic.data !== undefined &&
-                                        topic.data.map((item) => {
-                                            return (
-                                                <option
-                                                    key={item._id}
-                                                    value={item._id}
-                                                >
-                                                    {item.name}
-                                                </option>
-                                            );
-                                        })}
-                                </Input>
-                            </div>
-                        </WrapsField>
-
-                        {/* Field Topic masih error
-                        <WrapsField>
-                            <Label>
-                                <Span>Topic</Span>
-                            </Label>
-                            <div>
-                                {/* Test components React select */}
-                        {/* <Select
-                                    isMulti
-                                    onChange={handleSelect}
-                                    value={topic_select}
-                                    options={optionsTopic}
-                                    className="basic-multi-select"
-                                    classNamePrefix="select"
-                                />
-                            </div>
-                        </WrapsField> */}
-
-                        {/* Field Price */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Harga</Span>
-                            </Label>
-                            <div>
                                 <Input
                                     type="number"
                                     name="price"
                                     id="price"
-                                    value={price}
-                                    onChange={onChange}
+                                    value={form.price}
+                                    onChange={handleChange}
                                 />
-                            </div>
-                        </WrapsField>
-
-                        {/* Field Time Period */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Periode waktu</Span>
-                            </Label>
-                            <div>
                                 <Input
-                                    type="number"
-                                    name="time_period"
-                                    id="time_period"
-                                    value={time_period}
-                                    onChange={onChange}
+                                    type="text"
+                                    name="headline"
+                                    id="headline"
+                                    value={form.headline}
+                                    onChange={handleChange}
                                 />
-                            </div>
-                        </WrapsField>
-
-                        {/* Field Status */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Status</Span>
-                            </Label>
-                            <div>
                                 <Input
-                                    as="select"
-                                    name="visibility"
-                                    id="visibility"
-                                    value={visibility}
-                                    onChange={onChange}
-                                >
-                                    <option value="" selected disabled hidden>
-                                        Choose here
-                                    </option>
-                                    <option value="publish">Public</option>
-                                    <option value="private">Private</option>
-                                    <option value="draft">Draft</option>
-                                </Input>
-                            </div>
-                        </WrapsField>
-
-                        {/* Field UpSale */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Method Sale</Span>
-                            </Label>
-                            <div>
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.description}
+                                    onChange={handleChange}
+                                />
                                 <Input
-                                    as="select"
-                                    name="sale_method"
-                                    id="sale_method"
-                                    value={sale_method}
-                                    onChange={onChange}
-                                >
-                                    <option value="" selected disabled hidden>
-                                        Choose here
-                                    </option>
-                                    <option value="normal">Normal</option>
-                                    <option value="upsale">Upsale</option>
-                                    <option value="upgrade">Upgrade</option>
-                                    <option value="crossale">Crossale</option>
-                                </Input>
-                            </div>
-                        </WrapsField>
-
-                        {/* Filed product redirect logic for sale_method */}
-                        {sale_method === 'upsale' ||
-                        sale_method === 'upgrade' ||
-                        sale_method === 'crossale' ? (
-                            <WrapsField>
-                                <Label>
-                                    <Span>Product Redirect</Span>
-                                </Label>
-                                <div>
-                                    <Input
-                                        as="select"
-                                        name="product_redirect"
-                                        id="product_redirect"
-                                        value={product_redirect}
-                                        onChange={onChange}
-                                    >
-                                        <option
-                                            value=""
-                                            selected
-                                            disabled
-                                            hidden
-                                        >
-                                            Choose here
-                                        </option>
-
-                                        {/*Pekerjaan yang harus di selesaikan fetch data all name product yg sudah ada */}
-                                        <option value="normal">normal</option>
-                                    </Input>
-                                </div>
-                            </WrapsField>
-                        ) : null}
-                    </Form>
-                </Card>
-            </SectionOne>
-        </Section>
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                v
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                />
+                            </WrapForm>
+                        </div>
+                    </Card>
+                </Section>
+            </ModalSmart>
+        </React.Fragment>
     );
 }

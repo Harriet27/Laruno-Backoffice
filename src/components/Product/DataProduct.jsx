@@ -32,6 +32,15 @@ const Input = Styled.input`
     border:1px solid #66AFE9;
     }
 `;
+const ButtonLink = Styled.button`
+background-color:#0098DA;
+padding: 5px;
+border-radius: 3px;
+color: white;
+font-size: 18px;
+border: 1px solid #ced4da;
+font-Weight: 400;
+`;
 // --- Styled Components --- //
 
 const DataProduct = (props) => {
@@ -104,23 +113,11 @@ const DataProduct = (props) => {
                                                 }}
                                             >
                                                 <Link
-                                                    to={`/test-components/${item._id}`}
+                                                    to={`/product/show/${item._id}`}
                                                 >
-                                                    <button
-                                                        style={{
-                                                            backgroundColor:
-                                                                '#0098DA',
-                                                            padding: '5px',
-                                                            borderRadius: '3px',
-                                                            color: 'white',
-                                                            fontSize: '18px',
-                                                            border:
-                                                                '1px solid #ced4da',
-                                                            fontWeight: '400',
-                                                        }}
-                                                    >
+                                                    <ButtonLink>
                                                         Show
-                                                    </button>
+                                                    </ButtonLink>
                                                 </Link>
                                                 <UpdateProduct id={item._id} />
                                                 <DeleteProduct id={item._id} />

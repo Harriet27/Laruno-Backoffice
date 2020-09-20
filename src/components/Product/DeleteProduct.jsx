@@ -14,7 +14,7 @@ const Section = Styled.section`
 `;
 // --- Styled Components --- //
 
-export default function DeleteTopic(props) {
+export default function DeleteProduct(props) {
     const dispatch = useDispatch();
 
     // Fetch submit method Post
