@@ -91,7 +91,7 @@ export default function StepperForm() {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
-    // try handle select multiple
+    // // try handle select multiple
     const handleSelect = (topic) => {
         setForm({ ...form, topic });
     };

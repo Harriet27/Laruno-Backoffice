@@ -15,6 +15,7 @@ import OrderOnline from './components/OrderOnline/OrderOnline';
 import Topic from './pages/Topic/Topic';
 import Products from './pages/Products/Products';
 import ShowProduct from './components/Product/ShowProduct';
+import Testing from './components/AddAdministrator/Testing';
 
 export default function App() {
     return (
@@ -34,6 +35,7 @@ export default function App() {
                     </Route>
                     <Route exact path="/add-administrator">
                         <AddAdministrator />
+                        <Testing />
                         {/* <DetailProduct />
                         {/* add new adiministrator succes */}
                         {/* <AddAdministrator /> */}

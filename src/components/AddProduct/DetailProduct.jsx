@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import MultiSelect from '@khanacademy/react-multi-select';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetTopic } from '../../store/actions';
@@ -75,7 +76,7 @@ export default function DetailProduct(props) {
         start_time,
         end_time,
         topic_select,
-        // handleSelect,
+        handleSelect,
     } = props;
     const topic = useSelector((state) => state.topic);
     console.log(topic.data, 'topic ini isinya apa cih');
@@ -85,11 +86,11 @@ export default function DetailProduct(props) {
     }, [dispatch]);
 
     // optionsTopic for value select topic
-    // let optionsTopic =
-    //     topic.data !== undefined &&
-    //     topic.data.map((item) => {
-    //         return { key: item._id, value: item._id, label: item.name };
-    //     });
+    let optionsTopic =
+        topic.data !== undefined &&
+        topic.data.map((item) => {
+            return { key: item._id, value: item._id, label: item.name };
+        });
 
     return (
         <Section>
@@ -301,7 +302,7 @@ export default function DetailProduct(props) {
                         </div>
 
                         {/* Topic sementara */}
-                        <WrapsField>
+                        {/* <WrapsField>
                             <Label>
                                 <Span>Topic</Span>
                             </Label>
@@ -329,25 +330,22 @@ export default function DetailProduct(props) {
                                         })}
                                 </Input>
                             </div>
-                        </WrapsField>
+                        </WrapsField> */}
 
-                        {/* Field Topic masih error
+                        {/* Field Topic masih error */}
                         <WrapsField>
                             <Label>
                                 <Span>Topic</Span>
                             </Label>
                             <div>
-                                {/* Test components React select */}
-                        {/* <Select
-                                    isMulti
-                                    onChange={handleSelect}
-                                    value={topic_select}
+                                {/* {/* Test components React select */}
+                                <MultiSelect
                                     options={optionsTopic}
-                                    className="basic-multi-select"
-                                    classNamePrefix="select"
+                                    selected={topic_select}
+                                    onSelectedChanged={handleSelect}
                                 />
                             </div>
-                        </WrapsField> */}
+                        </WrapsField>
 
                         {/* Field Price */}
                         <WrapsField>
