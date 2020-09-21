@@ -4,23 +4,18 @@ import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetProduct } from '../../store/actions';
-import moment from 'moment';
 
-// import AddNewTopic from './AddNewTopic';
-import UpdateProduct from './UpdateProduct';
+// --- Elements, Pages, Components --- //
+import { fetchGetProduct } from '../../store/actions';
 import DeleteProduct from './DeleteProduct';
-import ShowProduct from './ShowProduct';
-import AddProducts from '../../pages/Products/AddProducts';
+
 // --- Styled Components --- //
 const Th = Styled.th`
     font-size:  ${(props) => (props.td ? '16px' : '20px')};
     font-weight: ${(props) => (props.td ? 'normal' : '600')};
     text-align: left;
 `;
-
 const Input = Styled.input`
-    
     padding: .375rem;
     font-size: 14px;
     font-weight: 400;
@@ -42,20 +37,19 @@ font-size: 18px;
 border: 1px solid #ced4da;
 font-Weight: 400;
 `;
-// --- Styled Components --- //
 
 const DataProduct = (props) => {
     const dispatch = useDispatch();
     const product = useSelector((state) => state.product);
     console.log(product, 'data product for pages product');
-    // --- useEffect --- get data topic ---//
+    // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetProduct());
     }, [dispatch]);
 
     return (
         <React.Fragment>
-            {/* section 1 */}
+            {/* --- section 1 --- Button Action link to Add Product ---*/}
             <div
                 style={{
                     margin: '20px 0',
@@ -72,7 +66,7 @@ const DataProduct = (props) => {
                 </div>
             </div>
 
-            {/* section 2 */}
+            {/* --- section 2 --- Get Data Product --- */}
             <Card isNormal>
                 <Table striped>
                     <thead>

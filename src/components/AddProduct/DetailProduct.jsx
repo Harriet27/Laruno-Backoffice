@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import MultiSelect from '@khanacademy/react-multi-select';
-import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
+
+// --- Elements, Pages, Components --- //
 import { fetchGetTopic } from '../../store/actions';
 import Styled from 'styled-components';
 import Card from '../../elements/Card/Card';
@@ -61,7 +62,6 @@ const Form = Styled.form`
         padding: 20px;
     }
 `;
-// --- Styled Components --- //
 
 export default function DetailProduct(props) {
     const dispatch = useDispatch();
@@ -74,12 +74,9 @@ export default function DetailProduct(props) {
         time_period,
         visibility,
         sale_method,
-        // mentor,
         product_redirect,
         zoom_id,
         date,
-        start_time,
-        end_time,
         topic_select,
         handleSelect,
         duration_hours,
@@ -92,7 +89,7 @@ export default function DetailProduct(props) {
         dispatch(fetchGetTopic());
     }, [dispatch]);
 
-    // optionsTopic for value select topic
+    // --- optionsTopic for value select topic --- //
     let optionsTopic =
         topic.data !== undefined &&
         topic.data.map((item) => {
@@ -104,7 +101,7 @@ export default function DetailProduct(props) {
             <SectionOne>
                 <Card isNormal style={{ width: '100%' }}>
                     <Form as="div">
-                        {/* Field name product */}
+                        {/* --- Field name product --- */}
                         <WrapsField>
                             <Label>
                                 <Span>Nama Produk</Span>
@@ -120,7 +117,7 @@ export default function DetailProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* Slug */}
+                        {/* --- Slug --- */}
                         <WrapsField>
                             <Label>
                                 <Span>Slug</Span>
@@ -136,7 +133,7 @@ export default function DetailProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* Field Product Category */}
+                        {/* --- Field Product Category --- */}
                         <WrapsField>
                             <Label>
                                 <Span>Product Type</Span>
@@ -160,7 +157,7 @@ export default function DetailProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* Field logic in field product category  */}
+                        {/* --- Field logic in field product category ---  */}
                         <div>
                             {props.form === 'webinar' ? (
                                 <div>
@@ -222,10 +219,7 @@ export default function DetailProduct(props) {
                                         </WrapsField>
                                     </div>
 
-                                    {/* Start Time picker percobaan */}
-
-                                    {/* time picker percobaan */}
-
+                                    {/* --- time picker try it --- */}
                                     <Label>
                                         <Span>Duration Time</Span>
                                     </Label>
@@ -289,43 +283,6 @@ export default function DetailProduct(props) {
                                         </WrapsField>
                                     </div>
                                     {/* --- Batas Percobaan TIME PICKER --- */}
-
-                                    {/* <div
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                        }}
-                                    >
-                                        <WrapsField dividedByTwo>
-                                            <Label>
-                                                <Span>Start Time</Span>
-                                            </Label>
-                                            <div>
-                                                <Input
-                                                    type="time"
-                                                    name="start_time"
-                                                    id="start_time"
-                                                    value={start_time}
-                                                    onChange={onChange}
-                                                />
-                                            </div>
-                                        </WrapsField>
-
-                                        <WrapsField dividedByTwo>
-                                            <Label>
-                                                <Span>End Time</Span>
-                                            </Label>
-                                            <div>
-                                                <Input
-                                                    type="time"
-                                                    name="end_time"
-                                                    id="end_time"
-                                                    value={end_time}
-                                                    onChange={onChange}
-                                                />
-                                            </div>
-                                        </WrapsField>
-                                    </div> */}
                                 </div>
                             ) : null}
                             {props.form === 'digital' ? (

@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
 import { Table } from 'reactstrap';
-import Card from '../../elements/Card/Card';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetTopic } from '../../store/actions';
 import moment from 'moment';
 
+// --- Elements, Pages, Components --- //
 import AddNewTopic from './AddNewTopic';
 import UpdateTopic from './UpdateTopic';
 import DeleteTopic from './DeleteTopic';
-import ShowTopic from './ShowTopic';
+import Card from '../../elements/Card/Card';
+
 // --- Styled Components --- //
 const Th = Styled.th`
     font-size:  ${(props) => (props.td ? '16px' : '20px')};
     font-weight: ${(props) => (props.td ? 'normal' : '600')};
     text-align: left;
 `;
-
 const Input = Styled.input`
     padding: .375rem;
     font-size: 14px;
@@ -35,7 +35,7 @@ const SectionOne = Styled.div`
     display: flex;
     justify-content: space-between;
 `;
-// --- Styled Components --- //
+// --- Batas --- //
 
 const DataTopic = (props) => {
     const dispatch = useDispatch();
@@ -98,7 +98,6 @@ const DataTopic = (props) => {
                                             >
                                                 <UpdateTopic id={item._id} />
                                                 <DeleteTopic id={item._id} />
-                                                {/* <ShowTopic id={item._id} /> */}
                                             </div>
                                         </Th>
                                     </tr>

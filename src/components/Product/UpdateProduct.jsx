@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+
+// --- Elements, Pages, Components --- //
 import Layout from '../../components/AddProduct/Layout';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { fetchUpdateProduct } from '../../store/actions';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +33,6 @@ function getSteps() {
 export default function UpdateProduct() {
     let { id } = useParams();
     const dispatch = useDispatch();
-
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = getSteps();
@@ -44,16 +44,8 @@ export default function UpdateProduct() {
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
-    // const product = useSelector((state) => state.detailproduct.data);
-    // console.log(product, 'ini detail product');
-    // useEffect(() => {
-    //     dispatch(fetchShowProduct(id));
-    // }, [dispatch]);
 
     //  --- Fetching Data beserta logicnya --- //
-
-    const history = useHistory();
-
     const [form, setForm] = useState({
         type: '',
         name: '',
@@ -81,29 +73,24 @@ export default function UpdateProduct() {
         feature_onheader: '',
         feature_onpage: '',
         sale_price: '',
-        // bump_product: '',
-        // bump_weight: '',
-        // image_bump: '',
-        // price_bump: '',
     });
 
-    // handleSubmit untuk enter dan submit button
+    // --- HandleSubmit For enter and Submit Button --- //
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(fetchUpdateProduct(form, id));
     };
 
-    // handle change untuk onChange
+    // --- Handlechange For Event onChange --- //
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
-    // // try handle select multiple
+    // --- Handleselect for Multiple select (Topic) --- //
     const handleSelect = (topic) => {
         setForm({ ...form, topic });
     };
-    //  --- Fetching Data beserta logicnya "batas bawah" --- //
-    console.log(form);
+
     // --- Content --- //
     function getStepContent(stepIndex) {
         switch (stepIndex) {
@@ -125,7 +112,6 @@ export default function UpdateProduct() {
                             date={form.date}
                             start_time={form.start_time}
                             end_time={form.end_time}
-                            // mentor={form.mentor}
                             slug={form.slug}
                         />
                     </>
@@ -135,7 +121,6 @@ export default function UpdateProduct() {
                     <>
                         <Layout
                             onChange={handleChange}
-                            // short description di field adalah Headline
                             headline={form.headline}
                             description={form.description}
                             feedback={form.feedback}
@@ -154,7 +139,6 @@ export default function UpdateProduct() {
                 return 'Unknown stepIndex';
         }
     }
-    // --- content --- "batas bawah" //
 
     return (
         <div

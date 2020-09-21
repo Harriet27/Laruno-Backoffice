@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
 import ImageBrand from '../../assets/images/laruno1.png';
@@ -9,7 +9,6 @@ import {
     NavbarToggler,
     NavbarBrand,
     Nav,
-    NavItem,
     NavLink,
     UncontrolledDropdown,
     DropdownToggle,

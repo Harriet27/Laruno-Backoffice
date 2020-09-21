@@ -5,14 +5,13 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+
+// Elements, Components, Pages
 import Layout from '../../components/AddProduct/Layout';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
-// import Resseler from '../../components/AddProduct/Resseler';
-
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchPostProducts } from '../../store/actions/product';
-// import Bump from '../../components/AddProduct/Bump';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,7 +43,7 @@ export default function StepperForm() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    //  --- Fetching Data beserta logicnya --- //
+    //  --- Fetching Data include Logic --- //
     const dispatch = useDispatch();
     const history = useHistory();
     const [form, setForm] = useState({
@@ -76,10 +75,6 @@ export default function StepperForm() {
         sale_price: '',
         duration_minute: '',
         duration_hours: '',
-        // bump_product: '',
-        // bump_weight: '',
-        // image_bump: '',
-        // price_bump: '',
     });
 
     // handleSubmit untuk enter dan submit button
@@ -97,8 +92,7 @@ export default function StepperForm() {
     const handleSelect = (topic) => {
         setForm({ ...form, topic });
     };
-    //  --- Fetching Data beserta logicnya "batas bawah" --- //
-    console.log(form);
+
     // --- Content --- //
     function getStepContent(stepIndex) {
         switch (stepIndex) {
@@ -120,18 +114,10 @@ export default function StepperForm() {
                             date={form.date}
                             start_time={form.start_time}
                             end_time={form.end_time}
-                            // mentor={form.mentor}
                             slug={form.slug}
                             duration_minute={form.duration_minute}
                             duration_hours={form.duration_hours}
                         />
-                        {/* <Bump
-                            bump_product={form.bump_product}
-                            price_bump={form.price_bump}
-                            bump_weight={form.bump_weight}
-                            image_bump={form.image_bump}
-                            onChange={handleChange}
-                        /> */}
                     </>
                 );
             case 1:
@@ -139,7 +125,6 @@ export default function StepperForm() {
                     <>
                         <Layout
                             onChange={handleChange}
-                            // short description di field adalah Headline
                             headline={form.headline}
                             description={form.description}
                             feedback={form.feedback}
@@ -153,23 +138,11 @@ export default function StepperForm() {
                         />
                     </>
                 );
-            // case 2:
-            //     return (
-            //         <>
-            //             <Resseler
-            //                 onChange={handleChange}
-            //                 commision_type={form.commision_type}
-            //                 promotion_tools={form.promotion_tools}
-            //                 product_redirect={form.product_redirect}
-            //             />
-            //         </>
-            //     );
 
             default:
                 return 'Unknown stepIndex';
         }
     }
-    // --- content --- "batas bawah" //
 
     return (
         <div

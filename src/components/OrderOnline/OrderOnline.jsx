@@ -53,22 +53,7 @@ margin-right:10px;
 export default function OrderOnline() {
     return (
         <section style={{ margin: '0 50px' }}>
-            {/* Section 1
-            <div style={{ display: 'flex', margin: '20PX 0' }}>
-                <WrapsTop>Orders</WrapsTop>
-                <WrapsTop>
-                    <Select name="product">
-                        <option value="hoodie">Hoodie Face Shield</option>
-                    </Select>
-                </WrapsTop>
-                <WrapsTop>
-                    <Select type="select" name="product">
-                        <option value="hoodie">Checkout pages</option>
-                    </Select>
-                </WrapsTop>
-            </div> */}
-
-            {/* Section 2 */}
+            {/* --- Section 1 --- */}
             <Wraps>
                 <CardGetData
                     icon={faShoppingCart}
@@ -92,8 +77,7 @@ export default function OrderOnline() {
                 ></CardGetData>
             </Wraps>
 
-            {/* Section 3 */}
-
+            {/* --- Section 2 --- */}
             <div
                 style={{
                     display: 'flex',
@@ -103,7 +87,7 @@ export default function OrderOnline() {
             >
                 <div style={{ display: 'flex' }}>
                     <WrapsTop>
-                        {/* Sections Actions */}
+                        {/* --- Actions --- */}
                         <ModalSmart
                             onClickConfirm={() => {
                                 return alert('succes');
@@ -164,7 +148,7 @@ export default function OrderOnline() {
                         </ModalSmart>
                     </WrapsTop>
 
-                    {/* payment status */}
+                    {/* --- payment status --- */}
                     <WrapsTop>
                         <Select name="Refund">
                             <option value="hoodie">
@@ -176,7 +160,6 @@ export default function OrderOnline() {
                         </Select>
                     </WrapsTop>
 
-                    {/*  */}
                     <WrapsTop>
                         <Select name="Select_Date">
                             <option value="hoodie">Today</option>
@@ -194,7 +177,7 @@ export default function OrderOnline() {
                 </div>
             </div>
 
-            {/* section 4 */}
+            {/* --- section 4 --- Table Order --- */}
             <TableOrder />
         </section>
     );

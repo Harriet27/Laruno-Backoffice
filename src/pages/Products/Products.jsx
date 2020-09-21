@@ -3,7 +3,7 @@ import DataProduct from '../../components/Product/DataProduct';
 import Styled from 'styled-components';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faWallet } from '@fortawesome/free-solid-svg-icons';
-import { faPercent } from '@fortawesome/free-solid-svg-icons';
+
 import CardGetData from '../../elements/Card/CardGetData';
 
 // --- Styled Components --- //

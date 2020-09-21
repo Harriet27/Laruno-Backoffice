@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
-import { fetchUpdateTopic, fetchShowTopic } from '../../store/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { fetchUpdateTopic } from '../../store/actions';
+import { useDispatch } from 'react-redux';
 import Styled from 'styled-components';
 
 // --- Styled Components --- //
@@ -29,10 +29,7 @@ const Input = Styled.input`
     border:1px solid #66AFE9;
     }
 `;
-const Brand = Styled.h1`
-    text-align: center;
-    margin-bottom: 20px;
-`;
+
 const WrapForm = Styled.div`
     width: 100%;
     margin-bottom: 20px;

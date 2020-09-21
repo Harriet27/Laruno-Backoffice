@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Card from '../../elements/Card/Card';
+import React from 'react';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 import { fetchDeleteProduct } from '../../store/actions';
 import { useDispatch } from 'react-redux';
@@ -12,12 +11,11 @@ const Section = Styled.section`
     display: flex;
     justify-content: center;
 `;
-// --- Styled Components --- //
 
 export default function DeleteProduct(props) {
     const dispatch = useDispatch();
 
-    // Fetch submit method Post
+    // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();
         dispatch(fetchDeleteProduct(props.id));

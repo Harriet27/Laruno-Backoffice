@@ -8,8 +8,8 @@ import Header from './components/Header/Header';
 import './assets/scss/style.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// --- Pages, Component, Element --- //
 import Login from './pages/Login/Login';
-import StepperForm from './elements/Stepper/StepperForm';
 import AddProducts from './pages/Products/AddProducts';
 import AddAdministrator from './components/AddAdministrator/AddAdministrator';
 import OrderOnline from './components/OrderOnline/OrderOnline';
@@ -38,14 +38,9 @@ export default function App() {
                         <Header />
                         <Products />
                     </Route>
-                    <Route exact path="/add-administrator">
+                    <Route exact path="/test-components">
                         <AddAdministrator />
                         <Testing />
-                        {/* <DetailProduct />
-                        {/* add new adiministrator succes */}
-                        {/* <AddAdministrator /> */}
-                        {/* add new topic succes */}
-                        {/* <AddNewTopic />  */}
                     </Route>
 
                     <Route exact path="/order">

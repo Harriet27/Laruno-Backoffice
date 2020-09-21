@@ -52,12 +52,12 @@ export default function Login() {
         password: '',
     });
 
-    // Fetch submit method Post
+    // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();
         dispatch(fetchPostLogin(form, history));
     };
-    // merubah value setiap kali di ketik
+    // --- Change Value when Input --- //
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };

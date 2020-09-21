@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
-
 import { useDispatch } from 'react-redux';
 import { fetchPostTopic } from '../../store/actions';
+
+// --- Elements, Pages, Components --- //
 import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 
 // --- Styled Components --- //
 const Section = Styled.section`
     width: 100%;
-   
     align-items: center;
     display: flex;
     justify-content: center;
-    
-    
 `;
 const Input = Styled.input`
     width: 100%;
@@ -30,15 +28,11 @@ const Input = Styled.input`
     border:1px solid #66AFE9;
     }
 `;
-const Brand = Styled.h1`
-    text-align: center;
-    margin-bottom: 20px;
-`;
+
 const WrapForm = Styled.div`
     width: 100%;
     margin-bottom: 20px;
 `;
-// --- Styled Components --- //
 
 export default function AddNewTopic() {
     const dispatch = useDispatch();
@@ -47,12 +41,12 @@ export default function AddNewTopic() {
         name: '',
     });
 
-    // Fetch submit method Post
+    // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();
         dispatch(fetchPostTopic(form));
     };
-    // merubah value setiap kali di ketik
+    // --- Change Value when Input Active --- //
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
