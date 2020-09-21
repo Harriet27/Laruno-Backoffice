@@ -151,6 +151,8 @@ const fetchUpdateProduct = (form, id) => async () => {
                 delete form[key];
             }
         }
+        // --- penting nih --- //
+
         const options = {
             method: 'PUT',
             body: JSON.stringify(form),
