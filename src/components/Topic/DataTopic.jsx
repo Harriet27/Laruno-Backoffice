@@ -40,15 +40,15 @@ const SectionOne = Styled.div`
 const DataTopic = (props) => {
     const dispatch = useDispatch();
     const topic = useSelector((state) => state.topic);
-    console.log(topic, 'data topic for pages topic');
-    // --- useEffect --- get data topic ---//
+
+    // --- useEffect --- Get Data topic ---//
     useEffect(() => {
         dispatch(fetchGetTopic());
     }, [dispatch]);
 
     return (
         <React.Fragment>
-            {/* section 1 */}
+            {/* --- section 1 --- Add New Topic and Search Topic --- */}
             <SectionOne>
                 <AddNewTopic />
                 <div>
@@ -56,7 +56,7 @@ const DataTopic = (props) => {
                 </div>
             </SectionOne>
 
-            {/* section 2 */}
+            {/* --- section 2 --- Table Get Data Product In Table --- */}
             <Card isNormal>
                 <Table striped>
                     <thead>
