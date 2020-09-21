@@ -42,7 +42,7 @@ const SectionOne = Styled.div`
 
 const DataUsers = (props) => {
     const dispatch = useDispatch();
-    const admin = useSelector((state) => state.useradmin);
+    const admin = useSelector((state) => state.user.userAdministrator);
     console.log(admin, 'ini data users admin');
     // --- useEffect --- Get Data topic ---//
     useEffect(() => {
@@ -74,7 +74,7 @@ const DataUsers = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {admin.data !== undefined &&
+                        {admin !== null &&
                             admin.data.map((item) => {
                                 return (
                                     <tr key={item._id}>

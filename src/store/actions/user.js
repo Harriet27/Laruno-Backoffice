@@ -1,7 +1,9 @@
 import Swal from 'sweetalert2';
 const GET_USERS_ADMINISTRATOR = 'GET_USERS_ADMINISTRATOR';
+const GET_USERS_AUTHENTICATION = 'GET_USER_AUTHENTICATION';
 
 // ----------- || --- || Authentication || --- || ------------ //
+
 // --- login In BackOffice --- //
 const fetchPostLogin = (form, history) => async (dispatch) => {
     try {
@@ -45,6 +47,29 @@ const fetchPostLogin = (form, history) => async (dispatch) => {
 };
 
 // --- Get Who Iam --- //
+const getUsersAuthentication = (data) => {
+    return {
+        type: GET_USERS_AUTHENTICATION,
+        data,
+    };
+};
+
+// --- fetch Get User Authentication --- //
+const fetchGetUsersAuthentication = () => async (dispatch) => {
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/auth/me`;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result);
+    dispatch(getUsersAuthentication(result));
+};
 
 // ----------- || --- || Users Administrator || --- || ------------ //
 
@@ -116,6 +141,9 @@ export {
     fetchPostLogin,
     fetchPostAdministrator,
     fetchGetUsersAdministrator,
+    fetchGetUsersAuthentication,
     getUsersAdministrator,
+    getUsersAuthentication,
     GET_USERS_ADMINISTRATOR,
+    GET_USERS_AUTHENTICATION,
 };
