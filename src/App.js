@@ -18,6 +18,8 @@ import Products from './pages/Products/Products';
 import ShowProduct from './components/Product/ShowProduct';
 import UpdateProduct from './components/Product/UpdateProduct';
 import Testing from './components/AddAdministrator/Testing';
+import Dashboard from './pages/Dashboard/Dashboard';
+import DataUsers from './components/Users/DataUsers';
 
 export default function App() {
     return (
@@ -29,6 +31,7 @@ export default function App() {
                     </Route>
                     <Route exact path="/dashboard">
                         <Header />
+                        <Dashboard />
                     </Route>
                     <Route exact path="/add-product">
                         <Header />
@@ -39,6 +42,7 @@ export default function App() {
                         <Products />
                     </Route>
                     <Route exact path="/test-components">
+                        <DataUsers />
                         <AddAdministrator />
                         <Testing />
                     </Route>

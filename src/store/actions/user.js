@@ -1,6 +1,8 @@
 import Swal from 'sweetalert2';
+const GET_USERS_ADMINISTRATOR = 'GET_USERS_ADMINISTRATOR';
 
-// login In BackOffice
+// ----------- || --- || Authentication || --- || ------------ //
+// --- login In BackOffice --- //
 const fetchPostLogin = (form, history) => async (dispatch) => {
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/auth/login`;
@@ -41,6 +43,8 @@ const fetchPostLogin = (form, history) => async (dispatch) => {
     }
 };
 
+// ----------- || --- || Users Administrator || --- || ------------ //
+
 // --- Add Administrator for SuperAdmin --- //
 const fetchPostAdministrator = (form, history) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).accessToken;
@@ -79,4 +83,36 @@ const fetchPostAdministrator = (form, history) => async () => {
         });
     }
 };
-export { fetchPostLogin, fetchPostAdministrator };
+
+// --- Get User Administrator --- //
+const getUsersAdministrator = (data) => {
+    return {
+        type: GET_USERS_ADMINISTRATOR,
+        data,
+    };
+};
+
+// --- fetch Get User Administrator --- //
+const fetchGetUsersAdministrator = () => async (dispatch) => {
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users`;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result);
+    dispatch(getUsersAdministrator(result));
+};
+
+export {
+    fetchPostLogin,
+    fetchPostAdministrator,
+    fetchGetUsersAdministrator,
+    getUsersAdministrator,
+    GET_USERS_ADMINISTRATOR,
+};

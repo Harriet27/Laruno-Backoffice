@@ -38,7 +38,6 @@ const WrapForm = Styled.div`
     width: 100%;
     margin-bottom: 20px;
 `;
-// --- Styled Components --- //
 
 export default function AddAdministrator() {
     const dispatch = useDispatch();
@@ -50,12 +49,13 @@ export default function AddAdministrator() {
         phone_number: '',
     });
 
-    // Fetch submit method Post
+    // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();
         dispatch(fetchPostAdministrator(form, history));
     };
-    // merubah value setiap kali di ketik
+
+    // --- merubah value setiap kali di ketik --- //
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
