@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // --- Elements, Pages, Components --- //
 import { fetchGetProduct } from '../../store/actions';
 import DeleteProduct from './DeleteProduct';
-
+import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 // --- Styled Components --- //
 const Th = Styled.th`
     font-size:  ${(props) => (props.td ? '16px' : '20px')};
@@ -101,7 +101,7 @@ const DataProduct = (props) => {
                                             {item.time_period} Months
                                         </Th>
                                         <Th as="td" td>
-                                            Rp. {item.price}
+                                            Rp. {FormatNumber(item.price)}
                                         </Th>
                                         <Th as="td" td>
                                             <div
