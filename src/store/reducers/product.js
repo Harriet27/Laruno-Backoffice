@@ -1,11 +1,22 @@
-import { GET_PRODUCT } from '../actions';
+import { GET_PRODUCT, SHOW_PRODUCT } from '../actions';
 
-const initialState = [];
+const initialState = {
+    getProduct: null,
+    showProduct: null,
+};
 
 export default (state = initialState, actions) => {
     switch (actions.type) {
         case GET_PRODUCT:
-            return actions.data;
+            return {
+                ...state,
+                getProduct: actions.data,
+            };
+        case SHOW_PRODUCT:
+            return {
+                ...state,
+                showProduct: actions.data,
+            };
         default:
             return state;
     }

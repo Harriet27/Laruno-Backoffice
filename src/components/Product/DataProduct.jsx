@@ -40,7 +40,7 @@ font-Weight: 400;
 
 const DataProduct = (props) => {
     const dispatch = useDispatch();
-    const product = useSelector((state) => state.product);
+    const product = useSelector((state) => state.product.getProduct);
     console.log(product, 'data product for pages product');
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
@@ -81,7 +81,7 @@ const DataProduct = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {product.data !== undefined &&
+                        {product !== null &&
                             product.data.map((item) => {
                                 return (
                                     <tr key={item._id}>

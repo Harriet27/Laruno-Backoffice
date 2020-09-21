@@ -10,9 +10,10 @@ import { Table } from 'reactstrap';
 export default function ShowTopic(props) {
     const dispatch = useDispatch();
     let { id } = useParams();
-    const product = useSelector((state) => state.detailproduct.data);
-    console.log(product, 'data show product for pages topic');
-
+    // const product = useSelector((state) => state.detail.data);
+    const product = useSelector((state) => state.product.showProduct);
+    // console.log(product, 'data show product for pages topic');
+    console.log(product, 'testing again');
     // --- useEffect --- get data topic ---//
     useEffect(() => {
         dispatch(fetchShowProduct(id));
@@ -24,7 +25,7 @@ export default function ShowTopic(props) {
         <React.Fragment>
             <section style={{ margin: '100px 50px' }}>
                 <Card>
-                    {product !== undefined && (
+                    {product !== null && (
                         <div>
                             <Card isNormal style={{ padding: '10px' }}>
                                 <Table borderless size="sm">
@@ -33,31 +34,31 @@ export default function ShowTopic(props) {
                                             <td style={{ width: '200px' }}>
                                                 Visibility
                                             </td>
-                                            <td>: {product.visibility}</td>
+                                            <td>: {product.data.visibility}</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>Type</td>
-                                            <td>: {product.type}</td>
+                                            <td>: {product.data.type}</td>
                                         </tr>
 
                                         <tr>
                                             <td>Product Name</td>
-                                            <td>: {product.name}</td>
+                                            <td>: {product.data.name}</td>
                                         </tr>
                                         <tr>
                                             <td>Code</td>
-                                            <td>: {product.code}</td>
+                                            <td>: {product.data.code}</td>
                                         </tr>
                                         <tr>
                                             <td>Headline</td>
-                                            <td>: {product.headline}</td>
+                                            <td>: {product.data.headline}</td>
                                         </tr>
                                         <tr>
                                             <td>Description</td>
                                             <td>
-                                                : {product.description}
+                                                : {product.data.description}
                                                 <br />
                                                 <div
                                                     style={{
@@ -67,8 +68,9 @@ export default function ShowTopic(props) {
                                                         margin: '10px 0',
                                                     }}
                                                 >
-                                                    {product.image_bonus_url &&
-                                                        product.image_bonus_url.map(
+                                                    {product.data
+                                                        .image_bonus_url &&
+                                                        product.data.image_bonus_url.map(
                                                             (item, index) => {
                                                                 return (
                                                                     <div
@@ -99,12 +101,13 @@ export default function ShowTopic(props) {
                                         <tr>
                                             <td>Time Periode</td>
                                             <td>
-                                                : {product.time_period} Months
+                                                : {product.data.time_period}{' '}
+                                                Months
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Price</td>
-                                            <td>:Rp. {product.price} </td>
+                                            <td>:Rp. {product.data.price} </td>
                                         </tr>
                                         <tr>
                                             <td>Video</td>
@@ -116,11 +119,17 @@ export default function ShowTopic(props) {
                                                     poster
                                                 >
                                                     <source
-                                                        src={product.video_url}
+                                                        src={
+                                                            product.data
+                                                                .video_url
+                                                        }
                                                         type="video/mp4"
                                                     />{' '}
                                                     <source
-                                                        src={product.video_url}
+                                                        src={
+                                                            product.data
+                                                                .video_url
+                                                        }
                                                         type="video/ogg"
                                                     />
                                                 </video>
