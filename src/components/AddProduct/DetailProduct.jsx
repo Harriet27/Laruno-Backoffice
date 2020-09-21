@@ -83,7 +83,6 @@ export default function DetailProduct(props) {
         duration_minute,
     } = props;
     const topic = useSelector((state) => state.topic);
-    console.log(topic.data, 'topic ini isinya apa cih');
 
     useEffect(() => {
         dispatch(fetchGetTopic());

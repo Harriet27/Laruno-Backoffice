@@ -144,6 +144,13 @@ const fetchUpdateProduct = (form, id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/${id}`;
+
+        // --- apabila form itu kosong maka hapus formnya --- //
+        for (let key in form) {
+            if (form[key] === '') {
+                delete form[key];
+            }
+        }
         const options = {
             method: 'PUT',
             body: JSON.stringify(form),

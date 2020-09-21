@@ -20,6 +20,7 @@ import UpdateProduct from './components/Product/UpdateProduct';
 import Testing from './components/AddAdministrator/Testing';
 import Dashboard from './pages/Dashboard/Dashboard';
 import DataUsers from './components/Users/DataUsers';
+import Users from './pages/Users/Users';
 
 export default function App() {
     return (
@@ -41,9 +42,10 @@ export default function App() {
                         <Header />
                         <Products />
                     </Route>
-                    <Route exact path="/test-components">
-                        <DataUsers />
-                        <AddAdministrator />
+                    <Route exact path="/test-components/:id">
+                        {/* <Users /> */}
+                        {/* <DataUsers />
+                        <AddAdministrator /> */}
                         <Testing />
                     </Route>
 

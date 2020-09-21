@@ -6,11 +6,11 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-// --- Elements, Pages, Components --- //
+// Elements, Components, Pages
 import Layout from '../../components/AddProduct/Layout';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
-import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { fetchUpdateProduct } from '../../store/actions';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,8 +31,6 @@ function getSteps() {
 }
 
 export default function UpdateProduct() {
-    let { id } = useParams();
-    const dispatch = useDispatch();
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = getSteps();
@@ -45,7 +43,9 @@ export default function UpdateProduct() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    //  --- Fetching Data beserta logicnya --- //
+    //  --- Fetching Data include Logic --- //
+    let { id } = useParams();
+    const dispatch = useDispatch();
     const [form, setForm] = useState({
         type: '',
         name: '',
@@ -73,20 +73,22 @@ export default function UpdateProduct() {
         feature_onheader: '',
         feature_onpage: '',
         sale_price: '',
+        duration_minute: '',
+        duration_hours: '',
     });
 
-    // --- HandleSubmit For enter and Submit Button --- //
+    // handleSubmit untuk enter dan submit button
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(fetchUpdateProduct(form, id));
     };
 
-    // --- Handlechange For Event onChange --- //
+    // handle change untuk onChange
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
-    // --- Handleselect for Multiple select (Topic) --- //
+    // // try handle select multiple
     const handleSelect = (topic) => {
         setForm({ ...form, topic });
     };
@@ -113,6 +115,8 @@ export default function UpdateProduct() {
                             start_time={form.start_time}
                             end_time={form.end_time}
                             slug={form.slug}
+                            duration_minute={form.duration_minute}
+                            duration_hours={form.duration_hours}
                         />
                     </>
                 );
