@@ -143,7 +143,7 @@ const fetchShowProduct = (id) => async (dispatch) => {
 const fetchUpdateProduct = (form, id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/product/${id}`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/${id}`;
         const options = {
             method: 'PUT',
             body: JSON.stringify(form),

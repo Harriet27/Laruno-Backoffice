@@ -74,6 +74,8 @@ export default function StepperForm() {
         feature_onheader: '',
         feature_onpage: '',
         sale_price: '',
+        duration_minute: '',
+        duration_hours: '',
         // bump_product: '',
         // bump_weight: '',
         // image_bump: '',
@@ -120,6 +122,8 @@ export default function StepperForm() {
                             end_time={form.end_time}
                             // mentor={form.mentor}
                             slug={form.slug}
+                            duration_minute={form.duration_minute}
+                            duration_hours={form.duration_hours}
                         />
                         {/* <Bump
                             bump_product={form.bump_product}

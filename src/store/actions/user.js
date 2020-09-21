@@ -22,7 +22,7 @@ const fetchPostLogin = (form, history) => async (dispatch) => {
                 icon: 'success',
             });
             localStorage.setItem('user', JSON.stringify(result));
-            history.push('/products');
+            history.push('/dashboard');
         } else if (response.status === 401) {
             localStorage.clear();
         } else {

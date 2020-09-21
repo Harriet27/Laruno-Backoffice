@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './pages/Login/Login';
 import StepperForm from './elements/Stepper/StepperForm';
+import AddProducts from './pages/Products/AddProducts';
 import AddAdministrator from './components/AddAdministrator/AddAdministrator';
 import OrderOnline from './components/OrderOnline/OrderOnline';
 import Topic from './pages/Topic/Topic';
@@ -26,9 +27,12 @@ export default function App() {
                     <Route exact path="/">
                         <Login />
                     </Route>
+                    <Route exact path="/dashboard">
+                        <Header />
+                    </Route>
                     <Route exact path="/add-product">
                         <Header />
-                        <StepperForm />
+                        <AddProducts />
                     </Route>
                     <Route exact path="/product">
                         <Header />
@@ -58,7 +62,7 @@ export default function App() {
                         <ShowProduct />
                     </Route>
 
-                    <Route exact path="/product/show/:id">
+                    <Route exact path="/product/update/:id">
                         <Header />
                         <UpdateProduct />
                     </Route>

@@ -11,6 +11,7 @@ import moment from 'moment';
 import UpdateProduct from './UpdateProduct';
 import DeleteProduct from './DeleteProduct';
 import ShowProduct from './ShowProduct';
+import AddProducts from '../../pages/Products/AddProducts';
 // --- Styled Components --- //
 const Th = Styled.th`
     font-size:  ${(props) => (props.td ? '16px' : '20px')};
@@ -62,7 +63,10 @@ const DataProduct = (props) => {
                     justifyContent: 'space-between',
                 }}
             >
-                {/* <AddNewTopic /> */}
+                <Link to={`/add-product`}>
+                    <ButtonLink>Add Product</ButtonLink>
+                </Link>
+
                 <div>
                     <label>Search</label> <Input type="search" />
                 </div>
@@ -119,7 +123,13 @@ const DataProduct = (props) => {
                                                         Show
                                                     </ButtonLink>
                                                 </Link>
-                                                <UpdateProduct id={item._id} />
+                                                <Link
+                                                    to={`/product/update/${item._id}`}
+                                                >
+                                                    <ButtonLink>
+                                                        Update
+                                                    </ButtonLink>
+                                                </Link>
                                                 <DeleteProduct id={item._id} />
                                             </div>
                                         </Th>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
-import { fetchUpdateTopic } from '../../store/actions';
-import { useDispatch } from 'react-redux';
+import { fetchUpdateTopic, fetchShowTopic } from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
 
 // --- Styled Components --- //
@@ -41,6 +41,7 @@ const WrapForm = Styled.div`
 
 export default function UpdateTopic(props) {
     const dispatch = useDispatch();
+
     const [form, setForm] = useState({
         name: '',
     });
@@ -72,7 +73,6 @@ export default function UpdateTopic(props) {
                                     id="name"
                                     value={form.name}
                                     onChange={handleChange}
-                                    placeholder="Name"
                                     required
                                 />
                             </WrapForm>

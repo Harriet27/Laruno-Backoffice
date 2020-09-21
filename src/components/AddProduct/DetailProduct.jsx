@@ -5,6 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetTopic } from '../../store/actions';
 import Styled from 'styled-components';
 import Card from '../../elements/Card/Card';
+import {
+    optionsTime,
+    DurationHour,
+    DurationMinutes,
+} from '../FakeData/FakeData';
 
 // --- Styled Components --- //
 const Input = Styled.input`
@@ -77,6 +82,8 @@ export default function DetailProduct(props) {
         end_time,
         topic_select,
         handleSelect,
+        duration_hours,
+        duration_minute,
     } = props;
     const topic = useSelector((state) => state.topic);
     console.log(topic.data, 'topic ini isinya apa cih');
@@ -172,22 +179,118 @@ export default function DetailProduct(props) {
                                         </div>
                                     </WrapsField>
 
-                                    <WrapsField>
-                                        <Label>
-                                            <Span>Start Date</Span>
-                                        </Label>
-                                        <div>
-                                            <Input
-                                                type="date"
-                                                name="date"
-                                                id="date"
-                                                value={date}
-                                                onChange={onChange}
-                                            />
-                                        </div>
-                                    </WrapsField>
+                                    <Label>
+                                        <Span>Start</Span>
+                                    </Label>
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                        }}
+                                    >
+                                        <WrapsField dividedByTwo>
+                                            <div>
+                                                <Input
+                                                    type="date"
+                                                    name="date"
+                                                    id="date"
+                                                    value={date}
+                                                    onChange={onChange}
+                                                />
+                                            </div>
+                                        </WrapsField>
+                                        <WrapsField dividedByTwo>
+                                            <div>
+                                                <Input
+                                                    as="select"
+                                                    name="time"
+                                                    id="time"
+                                                >
+                                                    {optionsTime.map((item) => {
+                                                        return (
+                                                            <option
+                                                                value={
+                                                                    item.value
+                                                                }
+                                                            >
+                                                                {item.label}
+                                                            </option>
+                                                        );
+                                                    })}{' '}
+                                                </Input>
+                                            </div>
+                                        </WrapsField>
+                                    </div>
+
+                                    {/* Start Time picker percobaan */}
+
+                                    {/* time picker percobaan */}
+
+                                    <Label>
+                                        <Span>Duration Time</Span>
+                                    </Label>
 
                                     <div
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                        }}
+                                    >
+                                        <WrapsField dividedByTwo>
+                                            <div>
+                                                <Input
+                                                    as="select"
+                                                    name="duration_hours"
+                                                    id="duration_hours"
+                                                    value={duration_hours}
+                                                    onChange={onChange}
+                                                >
+                                                    {DurationHour.map(
+                                                        (item) => {
+                                                            return (
+                                                                <option
+                                                                    value={
+                                                                        item.value
+                                                                    }
+                                                                >
+                                                                    {item.label}
+                                                                </option>
+                                                            );
+                                                        }
+                                                    )}
+                                                </Input>
+                                            </div>
+                                        </WrapsField>
+
+                                        <WrapsField dividedByTwo>
+                                            <div>
+                                                <Input
+                                                    as="select"
+                                                    name="duration_minute"
+                                                    id="duration_minute"
+                                                    value={duration_minute}
+                                                    onChange={onChange}
+                                                >
+                                                    {DurationMinutes.map(
+                                                        (item) => {
+                                                            return (
+                                                                <option
+                                                                    value={
+                                                                        item.value
+                                                                    }
+                                                                >
+                                                                    {item.label}
+                                                                </option>
+                                                            );
+                                                        }
+                                                    )}
+                                                </Input>
+                                            </div>
+                                        </WrapsField>
+                                    </div>
+                                    {/* --- Batas Percobaan TIME PICKER --- */}
+
+                                    {/* <div
                                         style={{
                                             display: 'flex',
                                             justifyContent: 'space-between',
@@ -222,7 +325,7 @@ export default function DetailProduct(props) {
                                                 />
                                             </div>
                                         </WrapsField>
-                                    </div>
+                                    </div> */}
                                 </div>
                             ) : null}
                             {props.form === 'digital' ? (
@@ -301,44 +404,12 @@ export default function DetailProduct(props) {
                             ) : null}
                         </div>
 
-                        {/* Topic sementara */}
-                        {/* <WrapsField>
-                            <Label>
-                                <Span>Topic</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="select"
-                                    name="topic"
-                                    id="topic"
-                                    value={topic_select}
-                                    onChange={onChange}
-                                >
-                                    <option value="" selected disabled hidden>
-                                        Choose here
-                                    </option>
-                                    {topic.data !== undefined &&
-                                        topic.data.map((item) => {
-                                            return (
-                                                <option
-                                                    key={item._id}
-                                                    value={item._id}
-                                                >
-                                                    {item.name}
-                                                </option>
-                                            );
-                                        })}
-                                </Input>
-                            </div>
-                        </WrapsField> */}
-
                         {/* Field Topic masih error */}
                         <WrapsField>
                             <Label>
                                 <Span>Topic</Span>
                             </Label>
                             <div>
-                                {/* {/* Test components React select */}
                                 <MultiSelect
                                     options={optionsTopic}
                                     selected={topic_select}
