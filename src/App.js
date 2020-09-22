@@ -42,11 +42,11 @@ export default function App() {
                         <Header />
                         <Products />
                     </Route>
-                    <Route exact path="/test-components/:id">
-                        {/* <Users /> */}
+                    <Route exact path="/test-components">
+                        <Users />
                         {/* <DataUsers />
                         <AddAdministrator /> */}
-                        <Testing />
+                        {/* <Testing /> */}
                     </Route>
 
                     <Route exact path="/order">

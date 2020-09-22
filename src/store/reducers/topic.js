@@ -1,11 +1,16 @@
-import { GET_TOPIC } from '../actions/topic';
+import { GET_TOPIC, SHOW_TOPIC } from '../actions/topic';
 
-const initialState = [];
+const initialState = {
+    getTopic: null,
+    showTopic: null,
+};
 
 export default (state = initialState, actions) => {
     switch (actions.type) {
         case GET_TOPIC:
-            return actions.data;
+            return { ...state, getTopic: actions.data };
+        case SHOW_TOPIC:
+            return { ...state, showTopic: actions.data };
         default:
             return state;
     }

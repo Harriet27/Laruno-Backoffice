@@ -8,10 +8,10 @@ import { fetchGetUsersAdministrator } from '../../store/actions';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
+import AddAdministrator from '../AddAdministrator/AddAdministrator';
+import UpdateUser from './UpdateUser';
+import DeleteUser from './DeleteUser';
 
-// import AddNewTopic from './AddNewTopic';
-// import UpdateTopic from './UpdateTopic';
-// import DeleteTopic from './DeleteTopic';
 import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
@@ -53,7 +53,7 @@ const DataUsers = (props) => {
         <React.Fragment>
             {/* --- section 1 --- Add New Topic and Search Topic --- */}
             <SectionOne>
-                {/* <AddNewTopic /> */}
+                <AddAdministrator />
                 <div>
                     <label>Search</label> <Input type="search" />
                 </div>
@@ -93,7 +93,7 @@ const DataUsers = (props) => {
                                             >
                                                 {item.role.map((id) => {
                                                     return (
-                                                        <p>
+                                                        <p key={id._id}>
                                                             {id.adminType}{' '}
                                                             &nbsp;
                                                         </p>
@@ -121,8 +121,8 @@ const DataUsers = (props) => {
                                                     flexDirection: 'row',
                                                 }}
                                             >
-                                                {/* <UpdateTopic id={item._id} />
-                                                <DeleteTopic id={item._id} /> */}
+                                                <UpdateUser id={item._id} />
+                                                <DeleteUser id={item._id} />
                                             </div>
                                         </Th>
                                     </tr>

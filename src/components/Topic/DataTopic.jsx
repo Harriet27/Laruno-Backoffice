@@ -39,8 +39,8 @@ const SectionOne = Styled.div`
 
 const DataTopic = (props) => {
     const dispatch = useDispatch();
-    const topic = useSelector((state) => state.topic);
-
+    const topic = useSelector((state) => state.topic.getTopic);
+    console.log(topic, 'KELUARKAN ISINYA');
     // --- useEffect --- Get Data topic ---//
     useEffect(() => {
         dispatch(fetchGetTopic());
@@ -69,7 +69,7 @@ const DataTopic = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {topic.data !== undefined &&
+                        {topic !== null &&
                             topic.data.map((item) => {
                                 return (
                                     <tr key={item._id}>

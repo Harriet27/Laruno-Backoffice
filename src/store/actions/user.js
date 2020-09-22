@@ -75,9 +75,9 @@ const fetchGetUsersAuthentication = () => async (dispatch) => {
 
 // --- Add Administrator for SuperAdmin --- //
 const fetchPostAdministrator = (form, history) => async () => {
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/auth/login`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users`;
         const options = {
             method: 'POST',
             body: JSON.stringify(form),
@@ -137,11 +137,87 @@ const fetchGetUsersAdministrator = () => async (dispatch) => {
     dispatch(getUsersAdministrator(result));
 };
 
+// --- Update Administrator - Method PUT ---- //
+const fetchUpdateAdministrator = (form, id) => async () => {
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+    try {
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/${id}`;
+
+        // --- apabila form itu kosong maka hapus formnya --- //
+        for (let key in form) {
+            if (form[key] === '') {
+                delete form[key];
+            }
+        }
+        // --- penting nih --- //
+
+        const options = {
+            method: 'PUT',
+            body: JSON.stringify(form),
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        const response = await fetch(url, options);
+        await response.json();
+
+        if (response.status === 200) {
+            Swal.fire({
+                title: 'Update Berhasil!',
+                text: '',
+                icon: 'success',
+            });
+            window.location.reload('/dashboard');
+        } else {
+            Swal.fire({
+                title: 'update gagal',
+                text: '',
+                icon: 'error',
+            });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// --- DELETE ADMINISTRATOR METHOD DELETE --- //
+const fetchDeleteAdministrator = (id) => async () => {
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/${id}`;
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    const response = await fetch(url, options);
+    await response.json();
+
+    if (response.status === 200) {
+        Swal.fire({
+            title: 'Delete Berhasil!',
+            text: '',
+            icon: 'success',
+        });
+        window.location.reload('/dashboard');
+    } else {
+        Swal.fire({
+            title: 'Delete gagal',
+            text: '',
+            icon: 'error',
+        });
+    }
+};
+
 export {
     fetchPostLogin,
     fetchPostAdministrator,
     fetchGetUsersAdministrator,
     fetchGetUsersAuthentication,
+    fetchUpdateAdministrator,
+    fetchDeleteAdministrator,
     getUsersAdministrator,
     getUsersAuthentication,
     GET_USERS_ADMINISTRATOR,
