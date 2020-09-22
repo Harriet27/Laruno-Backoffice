@@ -11,15 +11,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // --- Pages, Component, Element --- //
 import Login from './pages/Login/Login';
 import AddProducts from './pages/Products/AddProducts';
-import AddAdministrator from './components/AddAdministrator/AddAdministrator';
 import OrderOnline from './components/OrderOnline/OrderOnline';
 import Topic from './pages/Topic/Topic';
 import Products from './pages/Products/Products';
 import ShowProduct from './components/Product/ShowProduct';
 import UpdateProduct from './components/Product/UpdateProduct';
-import Testing from './components/AddAdministrator/Testing';
 import Dashboard from './pages/Dashboard/Dashboard';
-import DataUsers from './components/Users/DataUsers';
 import Users from './pages/Users/Users';
 
 export default function App() {

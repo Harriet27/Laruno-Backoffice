@@ -8,7 +8,7 @@ import { fetchGetUsersAdministrator } from '../../store/actions';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
-import AddAdministrator from '../AddAdministrator/AddAdministrator';
+import AddAdministrator from './AddAdministrator';
 import UpdateUser from './UpdateUser';
 import DeleteUser from './DeleteUser';
 
