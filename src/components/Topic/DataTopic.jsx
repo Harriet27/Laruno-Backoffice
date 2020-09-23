@@ -40,7 +40,7 @@ const SectionOne = Styled.div`
 const DataTopic = (props) => {
     const dispatch = useDispatch();
     const topic = useSelector((state) => state.topic.getTopic);
-    console.log(topic, 'KELUARKAN ISINYA');
+
     // --- useEffect --- Get Data topic ---//
     useEffect(() => {
         dispatch(fetchGetTopic());

@@ -53,7 +53,7 @@ const fetchGetRoles = () => async (dispatch) => {
         };
         const response = await fetch(url, options);
         const result = await response.json();
-        dispatch(getProduct(result));
+        dispatch(getRoles(result));
     } catch (error) {
         console.log(error);
     }

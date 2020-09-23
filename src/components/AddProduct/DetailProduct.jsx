@@ -27,6 +27,7 @@ const Input = Styled.input`
     border:1px solid #66AFE9;
     }
 `;
+
 const Section = Styled.section`
     display: flex;
     padding: 50px 100px;
@@ -56,6 +57,7 @@ const SectionOne = Styled.div`
         width: 100%
     }
 `;
+
 const Form = Styled.form`
     padding: 50px 40px;
     @media (max-width: 800px) {

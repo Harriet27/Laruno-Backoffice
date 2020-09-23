@@ -18,6 +18,7 @@ import ShowProduct from './components/Product/ShowProduct';
 import UpdateProduct from './components/Product/UpdateProduct';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Users from './pages/Users/Users';
+import DataRoles from './components/Roles/DataRoles';
 
 export default function App() {
     return (
@@ -39,13 +40,12 @@ export default function App() {
                         <Header />
                         <Products />
                     </Route>
-                    <Route exact path="/test-components">
-                        <Users />
-                        {/* <DataUsers />
-                        <AddAdministrator /> */}
-                        {/* <Testing /> */}
+                    <Route exact path="/roles">
+                        <DataRoles />
                     </Route>
-
+                    <Route exact path="/users">
+                        <Users />
+                    </Route>
                     <Route exact path="/order">
                         <Header />
                         <OrderOnline />

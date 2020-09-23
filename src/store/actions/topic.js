@@ -21,7 +21,7 @@ const fetchGetTopic = () => async (dispatch) => {
     };
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log(result);
+
     dispatch(getTopic(result));
 };
 

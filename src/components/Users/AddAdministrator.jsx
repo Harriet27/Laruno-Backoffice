@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { fetchPostAdministrator } from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPostAdministrator, fetchGetRoles } from '../../store/actions';
 import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
+import MultiSelect from '@khanacademy/react-multi-select';
 
 // --- Styled Components --- //
 const Section = Styled.section`
     width: 100%;
-   
     align-items: center;
     display: flex;
     justify-content: center;
@@ -39,16 +39,39 @@ const WrapForm = Styled.div`
     margin-bottom: 20px;
 `;
 
+const Label = Styled.label`
+    
+`;
+const WrapsField = Styled.div`
+    margin-bottom: 25px;
+    width: ${(props) => (props.dividedByTwo ? '45%' : null)}
+`;
+const Span = Styled.span`
+    font-weight: bold;
+    color: #656565;
+    font-size: 18px;
+`;
+
 export default function AddAdministrator() {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const roles = useSelector((state) => state.roles.getRoles);
+    console.log(roles, 'KELUARKAN ISINYA');
+
+    // --- useEffect --- Get Data topic ---//
+    useEffect(() => {
+        dispatch(fetchGetRoles());
+    }, [dispatch]);
+
     const [form, setForm] = useState({
         name: '',
         email: '',
+        role: [],
         password: '',
         phone_number: '',
     });
-
+    console.log(form, 'testing form');
     // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -59,6 +82,18 @@ export default function AddAdministrator() {
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
+
+    // Handle select
+    const handleSelect = (role) => {
+        setForm({ ...form, role });
+    };
+
+    // --- optionsTopic for value select topic --- //
+    let optionsRoles =
+        roles !== null &&
+        roles.data.map((item) => {
+            return { key: item._id, value: item._id, label: item.adminType };
+        });
 
     return (
         <div style={{ width: '150px' }}>
@@ -104,6 +139,23 @@ export default function AddAdministrator() {
                                     placeholder="Email"
                                     required
                                 />
+                            </WrapForm>
+
+                            <WrapForm>
+                                <div>
+                                    <MultiSelect
+                                        overrideStrings={{
+                                            selectSomeItems: 'select role...',
+                                            allItemsAreSelected:
+                                                'Semua role dipilih',
+                                            selectAll: 'Select All',
+                                            search: 'Search',
+                                        }}
+                                        options={optionsRoles}
+                                        selected={form.role}
+                                        onSelectedChanged={handleSelect}
+                                    />
+                                </div>
                             </WrapForm>
 
                             <WrapForm>

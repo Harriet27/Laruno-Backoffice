@@ -9,7 +9,7 @@ export default (state = initialState, actions) => {
         case GET_ROLES:
             return {
                 ...state,
-                getProduct: actions.data,
+                getRoles: actions.data,
             };
         default:
             return state;
