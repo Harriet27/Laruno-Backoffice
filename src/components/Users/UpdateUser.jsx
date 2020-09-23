@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
-
-import { useDispatch } from 'react-redux';
-import { fetchUpdateAdministrator } from '../../store/actions';
+import MultiSelect from '@khanacademy/react-multi-select';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUpdateAdministrator, fetchGetRoles } from '../../store/actions';
 import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 
@@ -38,10 +38,19 @@ const WrapForm = Styled.div`
 
 export default function UpdateUser(props) {
     const dispatch = useDispatch();
-    // const history = useHistory();
+
+    // --- useEffect --- Get Data Roles ---//
+    useEffect(() => {
+        dispatch(fetchGetRoles());
+    }, [dispatch]);
+
+    // --- Roles --- //
+    const roles = useSelector((state) => state.roles.getRoles);
+
     const [form, setForm] = useState({
         name: '',
         email: '',
+        role: [],
         password: '',
         phone_number: '',
     });
@@ -57,8 +66,19 @@ export default function UpdateUser(props) {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
+    // Handle select
+    const handleSelect = (role) => {
+        setForm({ ...form, role });
+    };
+
+    // value Roles get data roles
+    let optionsRoles =
+        roles !== null &&
+        roles.data.map((item) => {
+            return { key: item._id, value: item._id, label: item.adminType };
+        });
     return (
-        <div style={{ width: '150px' }}>
+        <div>
             <ModalSmart
                 onClickConfirm={handleSubmit}
                 buttonLabel="Update"
@@ -101,6 +121,23 @@ export default function UpdateUser(props) {
                                     placeholder="Email"
                                     required
                                 />
+                            </WrapForm>
+
+                            <WrapForm>
+                                <div>
+                                    <MultiSelect
+                                        overrideStrings={{
+                                            selectSomeItems: 'select role...',
+                                            allItemsAreSelected:
+                                                'Semua role dipilih',
+                                            selectAll: 'Select All',
+                                            search: 'Search',
+                                        }}
+                                        options={optionsRoles}
+                                        selected={form.role}
+                                        onSelectedChanged={handleSelect}
+                                    />
+                                </div>
                             </WrapForm>
 
                             <WrapForm>

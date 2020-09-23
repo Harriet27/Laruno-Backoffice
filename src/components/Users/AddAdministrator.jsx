@@ -59,7 +59,7 @@ export default function AddAdministrator() {
     const roles = useSelector((state) => state.roles.getRoles);
     console.log(roles, 'KELUARKAN ISINYA');
 
-    // --- useEffect --- Get Data topic ---//
+    // --- useEffect --- Get Data Roles ---//
     useEffect(() => {
         dispatch(fetchGetRoles());
     }, [dispatch]);

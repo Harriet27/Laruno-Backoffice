@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
-const GET_Fullfilments = 'GET_Fullfilments';
-const FIND_Fullfilments = 'FIND_Fullfilments';
-const SHOW_Fullfilments = 'SHOW_Fullfilments';
+const GET_FULLFILMENTS = 'GET_FULLFILMENTS';
+const FIND_FULLFILMENTS = 'FIND_FULLFILMENTS';
+const SHOW_FULLFILMENTS = 'SHOW_FULLFILMENTS';
 // --- Post Fullfilments --- //
 
 const fetchPostFullfilments = (form, history) => async () => {
@@ -86,7 +86,7 @@ const fetchFindFullfilments = () => async (dispatch) => {
     }
 };
 
-// --- DELETE TOPIC METHOD DELETE --- //
+// --- DELETE fullfilments METHOD DELETE --- //
 const fetchDeleteFullfilments = (id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fullfilments/${id}`;
@@ -106,7 +106,7 @@ const fetchDeleteFullfilments = (id) => async () => {
             text: '',
             icon: 'success',
         });
-        window.location.reload('/topic');
+        window.location.reload('/fullfilments');
     } else {
         Swal.fire({
             title: 'Delete gagal',
@@ -189,9 +189,9 @@ export {
     fetchFindFullfilments,
     getFullfilments,
     findFullfilments,
-    GET_Fullfilments,
-    FIND_Fullfilments,
-    SHOW_Fullfilments,
+    GET_FULLFILMENTS,
+    FIND_FULLFILMENTS,
+    SHOW_FULLFILMENTS,
     fetchDeleteFullfilments,
     fetchShowFullfilments,
     showFullfilments,
