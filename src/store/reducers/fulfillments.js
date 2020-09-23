@@ -1,21 +1,21 @@
-import { GET_FULLFILMENTS, SHOW_FULLFILMENTS } from '../actions';
+import { GET_FULFILLMENTS, SHOW_FULFILLMENTS } from '../actions';
 
 const initialState = {
-    getFullfilments: null,
-    showFullfilments: null,
+    getFulFillments: null,
+    showFulFillments: null,
 };
 
 export default (state = initialState, actions) => {
     switch (actions.type) {
-        case GET_FULLFILMENTS:
+        case GET_FULFILLMENTS:
             return {
                 ...state,
-                getFullfilments: actions.data,
+                getFulFillments: actions.data,
             };
-        case SHOW_FULLFILMENTS:
+        case SHOW_FULFILLMENTS:
             return {
                 ...state,
-                showFullfilments: actions.data,
+                showFulFillments: actions.data,
             };
         default:
             return state;

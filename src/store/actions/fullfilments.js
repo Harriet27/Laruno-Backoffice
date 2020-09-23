@@ -1,12 +1,12 @@
 import Swal from 'sweetalert2';
-const GET_FULLFILMENTS = 'GET_FULLFILMENTS';
-const FIND_FULLFILMENTS = 'FIND_FULLFILMENTS';
-const SHOW_FULLFILMENTS = 'SHOW_FULLFILMENTS';
-// --- Post Fullfilments --- //
+const GET_FULFILLMENTS = 'GET_FULFILLMENTS';
+const FIND_FULFILLMENTS = 'FIND_FULFILLMENTS';
+const SHOW_FULFILLMENTS = 'SHOW_FULFILLMENTS';
+// --- Post Fulfillments --- //
 
-const fetchPostFullfilments = (form, history) => async () => {
+const fetchPostFulFillments = (form, history) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fullfilments`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments`;
 
     const options = {
         body: JSON.stringify(form),
@@ -31,18 +31,18 @@ const fetchPostFullfilments = (form, history) => async () => {
     }
 };
 
-// --- Get Fullfilments --- //
-const getFullfilments = (data) => {
+// --- Get Fulfillments --- //
+const getFulFillments = (data) => {
     return {
-        type: GET_Fullfilments,
+        type: GET_FULFILLMENTS,
         data,
     };
 };
 
-const fetchGetFullfilments = () => async (dispatch) => {
+const fetchGetFulFillments = () => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fullfilments`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments`;
         const options = {
             method: 'GET',
             headers: {
@@ -52,25 +52,25 @@ const fetchGetFullfilments = () => async (dispatch) => {
         };
         const response = await fetch(url, options);
         const result = await response.json();
-        dispatch(getFullfilments(result));
+        dispatch(getFulFillments(result));
     } catch (error) {
         console.log(error);
     }
 };
 
-// --- Find Fullfilments, Method GET, Search --- //
+// --- Find Fulfillments, Method GET, Search --- //
 
-const findFullfilments = (data) => {
+const findFulFillments = (data) => {
     return {
-        type: FIND_Fullfilments,
+        type: FIND_FULFILLMENTS,
         data,
     };
 };
 
-const fetchFindFullfilments = () => async (dispatch) => {
+const fetchFindFulFillments = () => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fullfilments/find`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments/find`;
         const options = {
             method: 'GET',
             headers: {
@@ -80,16 +80,16 @@ const fetchFindFullfilments = () => async (dispatch) => {
         };
         const response = await fetch(url, options);
         const result = await response.json();
-        dispatch(findFullfilments(result));
+        dispatch(findFulFillments(result));
     } catch (error) {
         console.log(error);
     }
 };
 
-// --- DELETE fullfilments METHOD DELETE --- //
-const fetchDeleteFullfilments = (id) => async () => {
+// --- DELETE fulfillments METHOD DELETE --- //
+const fetchDeleteFulFillments = (id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fullfilments/${id}`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments/${id}`;
     const options = {
         method: 'DELETE',
         headers: {
@@ -106,7 +106,7 @@ const fetchDeleteFullfilments = (id) => async () => {
             text: '',
             icon: 'success',
         });
-        window.location.reload('/fullfilments');
+        window.location.reload('/fulfillments');
     } else {
         Swal.fire({
             title: 'Delete gagal',
@@ -116,17 +116,17 @@ const fetchDeleteFullfilments = (id) => async () => {
     }
 };
 
-//  ---  Show Fullfilments Method Get --- //
-const showFullfilments = (data) => {
+//  ---  Show Fulfillments Method Get --- //
+const showFulFillments = (data) => {
     return {
-        type: SHOW_Fullfilments,
+        type: SHOW_FULFILLMENTS,
         data,
     };
 };
 
-const fetchShowFullfilments = (id) => async (dispatch) => {
+const fetchShowFulFillments = (id) => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fullfilments/${id}`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments/${id}`;
     const options = {
         method: 'GET',
         headers: {
@@ -136,14 +136,14 @@ const fetchShowFullfilments = (id) => async (dispatch) => {
     };
     const response = await fetch(url, options);
     const result = await response.json();
-    dispatch(showFullfilments(result));
+    dispatch(showFulFillments(result));
 };
 
-// --- Update Fullfilments - Method PUT ---- //
-const fetchUpdateFullfilments = (form, id) => async () => {
+// --- Update Fulfillments - Method PUT ---- //
+const fetchUpdateFulFillments = (form, id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fullfilments/${id}`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments/${id}`;
 
         // --- apabila form itu kosong maka hapus formnya --- //
         for (let key in form) {
@@ -170,7 +170,7 @@ const fetchUpdateFullfilments = (form, id) => async () => {
                 text: '',
                 icon: 'success',
             });
-            window.location.reload('/Fullfilments');
+            window.location.reload('/Fulfillments');
         } else {
             Swal.fire({
                 title: 'update gagal',
@@ -184,16 +184,16 @@ const fetchUpdateFullfilments = (form, id) => async () => {
 };
 
 export {
-    fetchPostFullfilments,
-    fetchGetFullfilments,
-    fetchFindFullfilments,
-    getFullfilments,
-    findFullfilments,
-    GET_FULLFILMENTS,
-    FIND_FULLFILMENTS,
-    SHOW_FULLFILMENTS,
-    fetchDeleteFullfilments,
-    fetchShowFullfilments,
-    showFullfilments,
-    fetchUpdateFullfilments,
+    fetchPostFulFillments,
+    fetchGetFulFillments,
+    fetchFindFulFillments,
+    getFulFillments,
+    findFulFillments,
+    GET_FULFILLMENTS,
+    FIND_FULFILLMENTS,
+    SHOW_FULFILLMENTS,
+    fetchDeleteFulFillments,
+    fetchShowFulFillments,
+    showFulFillments,
+    fetchUpdateFulFillments,
 };

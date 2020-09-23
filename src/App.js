@@ -20,25 +20,24 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Users from './pages/Users/Users';
 
 import Roles from './pages/Roles/Roles';
+import Fullfilments from './pages/Fullfilments/Fullfilments';
 
 export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
             <Router>
+                <Header />
                 <Switch>
                     <Route exact path="/">
                         <Login />
                     </Route>
                     <Route exact path="/dashboard">
-                        <Header />
                         <Dashboard />
                     </Route>
                     <Route exact path="/add-product">
-                        <Header />
                         <AddProducts />
                     </Route>
                     <Route exact path="/product">
-                        <Header />
                         <Products />
                     </Route>
                     <Route exact path="/roles">
@@ -48,21 +47,20 @@ export default function App() {
                         <Users />
                     </Route>
                     <Route exact path="/order">
-                        <Header />
                         <OrderOnline />
                     </Route>
                     <Route exact path="/topic">
-                        <Header />
                         <Topic />
+                    </Route>
+                    <Route exact path="/fullfilments">
+                        <Fullfilments />
                     </Route>
 
                     <Route exact path="/product/show/:id">
-                        <Header />
                         <ShowProduct />
                     </Route>
 
                     <Route exact path="/product/update/:id">
-                        <Header />
                         <UpdateProduct />
                     </Route>
                 </Switch>

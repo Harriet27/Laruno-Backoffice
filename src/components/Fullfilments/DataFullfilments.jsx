@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetFullfilments } from '../../store/actions';
+import { fetchGetFulFillments } from '../../store/actions';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
-import AddNewFullfilments from './AddNewFullfilments';
-import UpdateFullfilments from './UpdateFullfilments';
-import DeleteFullfilments from './DeleteFullfilments';
+// import AddNewFulfillments from './AddNewFulfillments';
+// import UpdateFulfillments from './UpdateFulfillments';
+// import DeleteFulfillments from './DeleteFulfillments';
 import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
@@ -37,22 +37,23 @@ const SectionOne = Styled.div`
 `;
 // --- Batas --- //
 
-const DataFullfilments = (props) => {
+const DataFulfillments = (props) => {
     const dispatch = useDispatch();
-    const fullfilments = useSelector(
-        (state) => state.fullfilments.getFullfilments
+    const fulfillments = useSelector(
+        (state) => state.fulfillments.getFulFillments
     );
 
-    // --- useEffect --- Get Data fullfilments ---//
+    console.log(fulfillments, 'ini data fulfillments');
+    // --- useEffect --- Get Data fulfillments ---//
     useEffect(() => {
-        dispatch(fetchGetFullfilments());
+        dispatch(fetchGetFulFillments());
     }, [dispatch]);
 
     return (
         <React.Fragment>
-            {/* --- section 1 --- Add New Fullfilments and Search Fullfilments --- */}
+            {/* --- section 1 --- Add New Fulfillments and Search Fulfillments --- */}
             <SectionOne>
-                <AddNewFullfilments />
+                {/* <AddNewFulfillments /> */}
                 <div>
                     <label>Search</label> <Input type="search" />
                 </div>
@@ -71,8 +72,8 @@ const DataFullfilments = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {fullfilments !== null &&
-                            fullfilments.data.map((item) => {
+                        {/* {fulfillments !== null &&
+                            fulfillments.data.map((item) => {
                                 return (
                                     <tr key={item._id}>
                                         <Th as="td" td>
@@ -97,18 +98,18 @@ const DataFullfilments = (props) => {
                                                     display: 'flex',
                                                     flexDirection: 'row',
                                                 }}
-                                            >
-                                                <UpdateFullfilments
+                                            > */}
+                        {/* <UpdateFulfillments
                                                     id={item._id}
                                                 />
-                                                <DeleteFullfilments
+                                                <DeleteFulfillments
                                                     id={item._id}
-                                                />
-                                            </div>
+                                                /> */}
+                        {/* </div>
                                         </Th>
                                     </tr>
                                 );
-                            })}
+                            })} */}
                     </tbody>
                 </Table>
             </Card>
@@ -116,4 +117,4 @@ const DataFullfilments = (props) => {
     );
 };
 
-export default DataFullfilments;
+export default DataFulfillments;
