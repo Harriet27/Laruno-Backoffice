@@ -92,8 +92,11 @@ const Header = () => {
                                 <Link to="/topic">
                                     <DropdownItem>Topic</DropdownItem>
                                 </Link>
-                                <Link to="/">
-                                    <DropdownItem>Option 2</DropdownItem>
+                                <Link to="/roles">
+                                    <DropdownItem>roles</DropdownItem>
+                                </Link>
+                                <Link to="/users">
+                                    <DropdownItem>Users</DropdownItem>
                                 </Link>
                             </DropdownMenu>
                         </UncontrolledDropdown>

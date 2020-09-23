@@ -46,6 +46,7 @@ export default function StepperForm() {
     //  --- Fetching Data include Logic --- //
     const dispatch = useDispatch();
     const history = useHistory();
+
     const [form, setForm] = useState({
         type: '',
         name: '',
@@ -66,15 +67,13 @@ export default function StepperForm() {
         image_bonus_url: '',
         image_text_url: '',
         start_time: '',
-        end_time: '',
         commision_type: '',
         promotion_tools: '',
         product_redirect: '',
         feature_onheader: '',
         feature_onpage: '',
         sale_price: '',
-        duration_minute: '',
-        duration_hours: '',
+        duration: '',
     });
 
     // handleSubmit untuk enter dan submit button
@@ -83,6 +82,7 @@ export default function StepperForm() {
         dispatch(fetchPostProducts(form, history));
     };
 
+    console.log(form, 'ini form');
     // handle change untuk onChange
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -113,10 +113,9 @@ export default function StepperForm() {
                             zoom_id={form.client_url}
                             date={form.date}
                             start_time={form.start_time}
-                            end_time={form.end_time}
                             slug={form.slug}
-                            duration_minute={form.duration_minute}
-                            duration_hours={form.duration_hours}
+                            duration_minute={form.duration}
+                            duration_hours={form.duration}
                         />
                     </>
                 );

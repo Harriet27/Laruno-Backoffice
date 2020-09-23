@@ -6,10 +6,10 @@ import { fetchGetRoles } from '../../store/actions';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
-// import AddNewTopic from './AddNewTopic';
-// import UpdateTopic from './UpdateTopic';
-// import DeleteTopic from './DeleteTopic';
+import AddRoles from './AddRoles';
+
 import Card from '../../elements/Card/Card';
+import DeleteRoles from './DeleteRoles';
 
 // --- Styled Components --- //
 const Th = Styled.th`
@@ -51,7 +51,7 @@ const DataRoles = (props) => {
         <React.Fragment>
             {/* --- section 1 --- Add New Topic and Search Topic --- */}
             <SectionOne>
-                {/* <AddNewTopic /> */}
+                <AddRoles />
                 <div>
                     <label>Search</label> <Input type="search" />
                 </div>
@@ -101,8 +101,8 @@ const DataRoles = (props) => {
                                                     flexDirection: 'row',
                                                 }}
                                             >
-                                                {/* <UpdateTopic id={item._id} />
-                                                <DeleteTopic id={item._id} /> */}
+                                                {/* <UpdateTopic id={item._id} /> */}
+                                                <DeleteRoles id={item._id} />
                                             </div>
                                         </Th>
                                     </tr>

@@ -12,7 +12,7 @@ const Section = Styled.section`
     justify-content: center;
 `;
 
-export default function DeleteTopic(props) {
+export default function DeleteRoles(props) {
     const dispatch = useDispatch();
 
     // --- Fetch Submit Method Post --- //

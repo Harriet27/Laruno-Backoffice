@@ -79,6 +79,7 @@ export default function DetailProduct(props) {
         product_redirect,
         zoom_id,
         date,
+        start_time,
         topic_select,
         handleSelect,
         duration_hours,
@@ -201,8 +202,10 @@ export default function DetailProduct(props) {
                                             <div>
                                                 <Input
                                                     as="select"
-                                                    name="time"
-                                                    id="time"
+                                                    name="start_time"
+                                                    id="start_time"
+                                                    value={start_time}
+                                                    onChange={onChange}
                                                 >
                                                     {optionsTime.map((item) => {
                                                         return (
@@ -214,7 +217,7 @@ export default function DetailProduct(props) {
                                                                 {item.label}
                                                             </option>
                                                         );
-                                                    })}{' '}
+                                                    })}
                                                 </Input>
                                             </div>
                                         </WrapsField>

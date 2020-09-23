@@ -34,12 +34,12 @@ const WrapForm = Styled.div`
     margin-bottom: 20px;
 `;
 
-export default function AddNewTopic() {
+export default function AddRoles() {
     const dispatch = useDispatch();
 
     const [form, setForm] = useState({
         adminType: '',
-        readWrite: '',
+        readWrite: false,
     });
 
     // --- Fetch submit method Post --- //
@@ -50,13 +50,22 @@ export default function AddNewTopic() {
 
     // --- Change Value when Input Active --- //
     const handleChange = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.value });
+        setForm({
+            ...form,
+            adminType: event.target.value,
+        });
     };
-
+    const handleCheckbox = (event) => {
+        setForm({
+            ...form,
+            readWrite: true,
+        });
+    };
+    console.log(form, 'checkbox');
     return (
         <ModalSmart
-            buttonLabel="Add Topic"
-            title="Add Topic"
+            buttonLabel="Add Roles"
+            title="Add Roles"
             onClickConfirm={handleSubmit}
         >
             <Section>
@@ -76,13 +85,11 @@ export default function AddNewTopic() {
 
                         <WrapForm>
                             <Input
-                                type="text"
-                                name="name"
-                                id="name"
+                                type="checkbox"
+                                name="readWrite"
+                                id="readWrite"
                                 value={form.readWrite}
-                                onChange={handleChange}
-                                placeholder="Name"
-                                required
+                                onChange={handleCheckbox}
                             />
                         </WrapForm>
                     </div>
