@@ -11,14 +11,14 @@ import DeleteProduct from './DeleteProduct';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 // --- Styled Components --- //
 const Th = Styled.th`
-    font-size:  ${(props) => (props.td ? '16px' : '20px')};
+    font-size:  ${(props) => (props.td ? '16px' : '18px')};
     font-weight: ${(props) => (props.td ? 'normal' : '600')};
     text-align: left;
 `;
 const Input = Styled.input`
     padding: .375rem;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: normal;
     color: #495057;
     border-radius: 3px;
     background-color: #FCFCFC;
@@ -29,13 +29,13 @@ const Input = Styled.input`
     }
 `;
 const ButtonLink = Styled.button`
-background-color:#0098DA;
-padding: 5px;
-border-radius: 3px;
-color: white;
-font-size: 18px;
-border: 1px solid #ced4da;
-font-Weight: 400;
+    background-color:#0098DA;
+    padding: 5px;
+    border-radius: 3px;
+    color: white;
+    font-size: 18px;
+    border: 1px solid #ced4da;
+    font-Weight: 400;
 `;
 
 const DataProduct = (props) => {

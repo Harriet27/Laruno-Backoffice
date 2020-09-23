@@ -13,7 +13,7 @@ import DeleteRoles from './DeleteRoles';
 
 // --- Styled Components --- //
 const Th = Styled.th`
-    font-size:  ${(props) => (props.td ? '16px' : '20px')};
+    font-size:  ${(props) => (props.td ? '16px' : '18px')};
     font-weight: ${(props) => (props.td ? 'normal' : '600')};
     text-align: left;
 `;
