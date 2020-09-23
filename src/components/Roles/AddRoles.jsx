@@ -55,10 +55,15 @@ export default function AddRoles() {
             adminType: event.target.value,
         });
     };
+
+    //handle Checkbox
     const handleCheckbox = (event) => {
-        setForm({
-            ...form,
-            readWrite: true,
+        // worth it , harus di pelajari
+        setForm((form) => {
+            return {
+                ...form,
+                readWrite: !form.readWrite,
+            };
         });
     };
     console.log(form, 'checkbox');
@@ -81,16 +86,16 @@ export default function AddRoles() {
                                 placeholder="Name"
                                 required
                             />
-                        </WrapForm>
-
-                        <WrapForm>
-                            <Input
-                                type="checkbox"
-                                name="readWrite"
-                                id="readWrite"
-                                value={form.readWrite}
-                                onChange={handleCheckbox}
-                            />
+                            <div>
+                                {' '}
+                                <Input
+                                    type="checkbox"
+                                    name="readWrite"
+                                    id="readWrite"
+                                    value={form.readWrite}
+                                    onChange={handleCheckbox}
+                                />
+                            </div>
                         </WrapForm>
                     </div>
                 </Card>
