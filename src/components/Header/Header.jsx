@@ -29,7 +29,9 @@ const Button = Styled.button`
 `;
 
 const NavigationLink = Styled.p`
-color: black;
+    color: black;
+    margin-right: 10px;
+    margin-top: 10px;
 `;
 
 const HeaderStyled = Styled.header`
@@ -47,16 +49,17 @@ const HeaderStyled = Styled.header`
   
 `;
 const Image = Styled.img`
-width:100%;
-height: 100%;
+    width:100%;
+    height: 100%;
 `;
 const WrapsImage = Styled.div`
-height: 40px;
-margin-right: 40px;
+    height: 40px;
+    margin-right: 40px;
 `;
 // --- Styled Components --- //
 
 const Header = () => {
+    //  --- Is Open --- //
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -89,7 +92,11 @@ const Header = () => {
                         </Link>
 
                         <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle nav caret>
+                            <DropdownToggle
+                                nav
+                                caret
+                                style={{ color: 'black' }}
+                            >
                                 Others
                             </DropdownToggle>
                             <DropdownMenu right>
