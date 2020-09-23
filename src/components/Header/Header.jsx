@@ -28,6 +28,10 @@ const Button = Styled.button`
     }
 `;
 
+const NavigationLink = Styled.p`
+color: black;
+`;
+
 const HeaderStyled = Styled.header`
     -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
@@ -69,19 +73,19 @@ const Header = () => {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <Link to="/dashboard">
-                            <NavLink>Dashboard</NavLink>
+                            <NavigationLink>Dashboard</NavigationLink>
                         </Link>
                         <Link to="/product">
-                            <NavLink>Product</NavLink>
+                            <NavigationLink>Product</NavigationLink>
                         </Link>
                         <Link to="/Order">
-                            <NavLink>Order</NavLink>
+                            <NavigationLink>Order</NavigationLink>
                         </Link>
                         <Link to="/reports">
-                            <NavLink>Report</NavLink>
+                            <NavigationLink>Report</NavigationLink>
                         </Link>
                         <Link to="/tools">
-                            <NavLink>Tools</NavLink>
+                            <NavigationLink>Tools</NavigationLink>
                         </Link>
 
                         <UncontrolledDropdown nav inNavbar>
