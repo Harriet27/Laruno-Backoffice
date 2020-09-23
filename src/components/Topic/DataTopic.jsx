@@ -21,7 +21,7 @@ const Th = Styled.th`
 `;
 const Input = Styled.input`
     padding: .375rem;
-    font-size: 14px;
+    font-size: ${sm};
     font-weight: 400;
     color: #495057;
     border-radius: 3px;

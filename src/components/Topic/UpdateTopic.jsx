@@ -8,7 +8,6 @@ import Styled from 'styled-components';
 // --- Styled Components --- //
 const Section = Styled.section`
     width: 100%;
-   
     align-items: center;
     display: flex;
     justify-content: center;

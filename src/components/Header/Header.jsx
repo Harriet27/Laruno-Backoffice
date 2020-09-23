@@ -91,6 +91,7 @@ const Header = () => {
                             <NavigationLink>Tools</NavigationLink>
                         </Link>
 
+                        {/* --- Dropdown Others --- */}
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle
                                 nav
@@ -112,6 +113,8 @@ const Header = () => {
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>
+
+                    {/* --- Button Add Product --- */}
                     <Link to="/add-product">
                         <Button> + Add Product</Button>
                     </Link>

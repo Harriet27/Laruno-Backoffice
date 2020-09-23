@@ -8,6 +8,8 @@ import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 
 // --- Styled Components --- //
+const [sm, md, lg] = ['16px', '18px', '20px'];
+
 const Section = Styled.section`
     width: 100%;
     align-items: center;
@@ -17,7 +19,7 @@ const Section = Styled.section`
 const Input = Styled.input`
     width: 100%;
     padding: 10px;
-    font-size: 18px;
+    font-size: ${md};
     font-weight: 400;
     color:${(props) => (props.isButton ? 'white' : '#495057')} ;
     border-radius: 3px;
@@ -31,7 +33,7 @@ const Input = Styled.input`
 
 const WrapForm = Styled.div`
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: ${lg};
 `;
 
 export default function AddRoles() {
