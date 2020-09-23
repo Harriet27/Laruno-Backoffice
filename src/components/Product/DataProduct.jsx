@@ -10,8 +10,11 @@ import { fetchGetProduct } from '../../store/actions';
 import DeleteProduct from './DeleteProduct';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 // --- Styled Components --- //
+
+const [sm, md, lg] = ['16px', '18px', '20px'];
+
 const Th = Styled.th`
-    font-size:  ${(props) => (props.td ? '16px' : '18px')};
+    font-size:  ${(props) => (props.td ? `${sm}` : `${md}`)};
     font-weight: ${(props) => (props.td ? 'normal' : '600')};
     text-align: left;
 `;
@@ -33,7 +36,7 @@ const ButtonLink = Styled.button`
     padding: 5px;
     border-radius: 3px;
     color: white;
-    font-size: 18px;
+    font-size: ${md};
     border: 1px solid #ced4da;
     font-Weight: 400;
 `;

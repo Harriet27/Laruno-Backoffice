@@ -15,8 +15,11 @@ import DeleteUser from './DeleteUser';
 import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
+// const sm,md,lg = ;
+
+const [sm, md, lg] = ['16px', '18px', '20px'];
 const Th = Styled.th`
-    font-size:  ${(props) => (props.td ? '16px' : '18px')};
+    font-size:  ${(props) => (props.td ? `${sm}` : `${md}`)};
     font-weight: ${(props) => (props.td ? 'normal' : '600')};
     text-align: left;
 `;
@@ -34,7 +37,7 @@ const Input = Styled.input`
     }
 `;
 const SectionOne = Styled.div`
-    margin: 20px 0;
+    margin: ${lg} 0;
     display: flex;
     justify-content: space-between;
 `;
