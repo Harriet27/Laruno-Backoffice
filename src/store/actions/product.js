@@ -8,6 +8,14 @@ const fetchPostProducts = (form, history) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products`;
 
+    // --- apabila form itu kosong maka hapus formnya --- //
+    for (let key in form) {
+        if (form[key] === '') {
+            delete form[key];
+        }
+    }
+    // --- penting nih --- //
+
     const options = {
         body: JSON.stringify(form),
         method: 'POST',
