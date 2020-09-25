@@ -74,6 +74,7 @@ export default function StepperForm() {
         feature_onpage: '',
         sale_price: '',
         duration: '',
+        agent: [],
     });
 
     // handleSubmit untuk enter dan submit button
@@ -114,8 +115,9 @@ export default function StepperForm() {
                             date={form.date}
                             start_time={form.start_time}
                             slug={form.slug}
-                            duration_minute={form.duration}
-                            duration_hours={form.duration}
+                            duration={form.duration}
+                            // duration_minute={form.duration}
+                            // duration_hours={form.duration}
                         />
                     </>
                 );
@@ -123,6 +125,7 @@ export default function StepperForm() {
                 return (
                     <>
                         <Layout
+                            handleSelect={handleSelect}
                             onChange={handleChange}
                             headline={form.headline}
                             description={form.description}
@@ -134,6 +137,7 @@ export default function StepperForm() {
                             feature_onpage={form.feature_onpage}
                             feature_onheader={form.feature_onheader}
                             sale_price={form.sale_price}
+                            agent={form.agent}
                         />
                     </>
                 );

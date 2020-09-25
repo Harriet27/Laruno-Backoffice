@@ -5,3 +5,4 @@ export * from './product';
 export * from './order';
 export * from './resellers';
 export * from './fullfilments';
+export * from './agent';

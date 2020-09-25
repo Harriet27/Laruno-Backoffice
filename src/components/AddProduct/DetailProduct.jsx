@@ -9,7 +9,7 @@ import Card from '../../elements/Card/Card';
 import {
     optionsTime,
     DurationHour,
-    DurationMinutes,
+    // DurationMinutes,
 } from '../FakeData/FakeData';
 
 // --- Styled Components --- //
@@ -82,10 +82,12 @@ export default function DetailProduct(props) {
         start_time,
         topic_select,
         handleSelect,
-        duration_hours,
-        duration_minute,
+        duration,
+        // duration_hours,
+        // duration_minute,
     } = props;
-    const topic = useSelector((state) => state.topic);
+
+    const topic = useSelector((state) => state.topic.getTopic);
 
     useEffect(() => {
         dispatch(fetchGetTopic());
@@ -93,7 +95,7 @@ export default function DetailProduct(props) {
 
     // --- optionsTopic for value select topic --- //
     let optionsTopic =
-        topic.data !== undefined &&
+        topic !== null &&
         topic.data.map((item) => {
             return { key: item._id, value: item._id, label: item.name };
         });
@@ -225,42 +227,38 @@ export default function DetailProduct(props) {
 
                                     {/* --- time picker try it --- */}
                                     <Label>
-                                        <Span>Duration Time</Span>
+                                        <Span>Duration</Span>
                                     </Label>
 
-                                    <div
+                                    {/* <div
                                         style={{
                                             display: 'flex',
                                             justifyContent: 'space-between',
                                         }}
-                                    >
-                                        <WrapsField dividedByTwo>
-                                            <div>
-                                                <Input
-                                                    as="select"
-                                                    name="duration_hours"
-                                                    id="duration_hours"
-                                                    value={duration_hours}
-                                                    onChange={onChange}
-                                                >
-                                                    {DurationHour.map(
-                                                        (item) => {
-                                                            return (
-                                                                <option
-                                                                    value={
-                                                                        item.value
-                                                                    }
-                                                                >
-                                                                    {item.label}
-                                                                </option>
-                                                            );
-                                                        }
-                                                    )}
-                                                </Input>
-                                            </div>
-                                        </WrapsField>
+                                    > */}
+                                    <WrapsField>
+                                        <div>
+                                            <Input
+                                                as="select"
+                                                name="duration"
+                                                id="duration"
+                                                value={duration}
+                                                onChange={onChange}
+                                            >
+                                                {DurationHour.map((item) => {
+                                                    return (
+                                                        <option
+                                                            value={item.value}
+                                                        >
+                                                            {item.label}
+                                                        </option>
+                                                    );
+                                                })}
+                                            </Input>
+                                        </div>
+                                    </WrapsField>
 
-                                        <WrapsField dividedByTwo>
+                                    {/* <WrapsField dividedByTwo>
                                             <div>
                                                 <Input
                                                     as="select"
@@ -284,8 +282,8 @@ export default function DetailProduct(props) {
                                                     )}
                                                 </Input>
                                             </div>
-                                        </WrapsField>
-                                    </div>
+                                        </WrapsField> */}
+                                    {/* </div> */}
                                     {/* --- Batas Percobaan TIME PICKER --- */}
                                 </div>
                             ) : null}

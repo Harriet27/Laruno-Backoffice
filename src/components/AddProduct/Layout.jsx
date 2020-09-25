@@ -1,7 +1,9 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import MultiSelect from '@khanacademy/react-multi-select';
+import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
 import Card from '../../elements/Card/Card';
+import { fetchGetAgents } from '../../store/actions';
 
 // --- Styled Components --- //
 const Input = Styled.input`
@@ -50,6 +52,7 @@ width: 50%;
 // --- Styled Components --- //
 
 export default function Layout(props) {
+    const dispatch = useDispatch();
     const {
         headline,
         onChange,
@@ -62,7 +65,22 @@ export default function Layout(props) {
         feature_onheader,
         feature_onpage,
         sale_price,
+        agent,
+        handleSelect,
     } = props;
+
+    // --- Agents --- //
+    const agents = useSelector((state) => state.agents.getAgents);
+    console.log(agents, 'ini agents');
+    useEffect(() => {
+        dispatch(fetchGetAgents());
+    }, [dispatch]);
+
+    let optionsAgents =
+        agents !== null &&
+        agents.data.map((item) => {
+            return { value: item._id, label: item.name };
+        });
 
     return (
         <Section>
@@ -121,11 +139,24 @@ export default function Layout(props) {
                             </Label>
                             <div>
                                 <Input
-                                    as="textarea"
+                                    type="number"
                                     name="sale_price"
                                     id="sale_price"
                                     value={sale_price}
                                     onChange={onChange}
+                                />
+                            </div>
+                        </WrapsField>
+
+                        <WrapsField>
+                            <Label>
+                                <Span>Agent</Span>
+                            </Label>
+                            <div>
+                                <MultiSelect
+                                    options={optionsAgents}
+                                    selected={agent}
+                                    onSelectedChanged={handleSelect}
                                 />
                             </div>
                         </WrapsField>
