@@ -304,8 +304,7 @@ export default function DetailProduct(props) {
                                     </div>
                                 </WrapsField>
                             ) : null}
-
-                            {props.form === 'ecommerce' ? (
+                            {/* {props.form === 'ecommerce' ? (
                                 <WrapsField
                                     style={{
                                         display: 'flex',
@@ -360,7 +359,7 @@ export default function DetailProduct(props) {
                                         </Label>
                                     </div>
                                 </WrapsField>
-                            ) : null}
+                            ) : null}*/}
                         </div>
 
                         {/* Field Topic masih error */}

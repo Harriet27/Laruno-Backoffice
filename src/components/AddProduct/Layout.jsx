@@ -66,7 +66,7 @@ export default function Layout(props) {
         feature_onpage,
         sale_price,
         agent,
-        handleSelect,
+        handleSelectAgent,
     } = props;
 
     // --- Agents --- //
@@ -79,7 +79,7 @@ export default function Layout(props) {
     let optionsAgents =
         agents !== null &&
         agents.data.map((item) => {
-            return { value: item._id, label: item.name };
+            return { key: item._id, value: item._id, label: item.name };
         });
 
     return (
@@ -154,9 +154,16 @@ export default function Layout(props) {
                             </Label>
                             <div>
                                 <MultiSelect
+                                    overrideStrings={{
+                                        selectSomeItems: 'select role...',
+                                        allItemsAreSelected:
+                                            'Semua role dipilih',
+                                        selectAll: 'Select All',
+                                        search: 'Search',
+                                    }}
                                     options={optionsAgents}
                                     selected={agent}
-                                    onSelectedChanged={handleSelect}
+                                    onSelectedChanged={handleSelectAgent}
                                 />
                             </div>
                         </WrapsField>

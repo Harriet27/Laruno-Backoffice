@@ -89,9 +89,13 @@ export default function StepperForm() {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
-    // // try handle select multiple
+    // --- try handle select multiple --- //
     const handleSelect = (topic) => {
         setForm({ ...form, topic });
+    };
+
+    const handleSelectAgent = (agent) => {
+        setForm({ ...form, agent });
     };
 
     // --- Content --- //
@@ -125,7 +129,7 @@ export default function StepperForm() {
                 return (
                     <>
                         <Layout
-                            handleSelect={handleSelect}
+                            handleSelectAgent={handleSelectAgent}
                             onChange={handleChange}
                             headline={form.headline}
                             description={form.description}
