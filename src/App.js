@@ -21,6 +21,7 @@ import Users from './pages/Users/Users';
 
 import Roles from './pages/Roles/Roles';
 import Fullfilments from './pages/Fullfilments/Fullfilments';
+import AlertDelete from './elements/Alert/AlertDelete';
 
 export default function App() {
     return (
@@ -62,6 +63,10 @@ export default function App() {
 
                     <Route exact path="/product/update/:id">
                         <UpdateProduct />
+                    </Route>
+
+                    <Route exact path="/test-components">
+                        <AlertDelete />
                     </Route>
                 </Switch>
             </Router>

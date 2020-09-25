@@ -15,7 +15,6 @@ import DeleteUser from './DeleteUser';
 import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
-// const sm,md,lg = ;
 
 const [sm, md, lg] = ['16px', '18px', '20px'];
 const Th = Styled.th`
