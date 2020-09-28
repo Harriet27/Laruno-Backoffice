@@ -4,7 +4,8 @@ import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-
+import DeleteIcon from '@material-ui/icons/Delete';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 // --- Elements, Pages, Components --- //
 import {
     fetchGetProduct,
@@ -42,6 +43,12 @@ const ButtonLink = Styled.button`
     font-size: ${md};
     border: 1px solid #ced4da;
     font-Weight: 400;
+`;
+const Overflow = Styled.div`
+overflow-x: none;
+@media (max-width: 1000px) {
+    overflow-x: auto;
+  }
 `;
 
 const DataProduct = (props) => {
@@ -95,91 +102,98 @@ const DataProduct = (props) => {
             {/* --- section 2 --- Get Data Product --- */}
             <Card isNormal>
                 {/* --- untuk hapus melalui button --- */}
+                <Overflow>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <Th>
+                                    {/* --- Logic untuk multiple delete --- */}
+                                    {form.id[0] ? (
+                                        <div onClick={handlleMultipleDelete}>
+                                            <DeleteIcon color="error" />
+                                        </div>
+                                    ) : (
+                                        <DehazeIcon />
+                                    )}
+                                </Th>
+                                <Th>Visibility</Th>
+                                <Th>Product Code</Th>
+                                <Th>Name</Th>
+                                <Th>Product Type</Th>
+                                <Th>Time Period</Th>
+                                <Th>Price</Th>
+                                <Th>Actions</Th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {product !== null &&
+                                product.data.map((item) => {
+                                    return (
+                                        <tr key={item._id}>
+                                            <Th>
+                                                <input
+                                                    style={{
+                                                        marginLeft: '9px',
+                                                    }}
+                                                    type="checkbox"
+                                                    id={item._id}
+                                                    value={item._id}
+                                                    onChange={
+                                                        handleCheckboxChange
+                                                    }
+                                                />
+                                            </Th>
 
-                <Table striped>
-                    <thead>
-                        <tr>
-                            <Th>
-                                <input type="checkbox" />
-                            </Th>
-                            <Th>Visibility</Th>
-                            <Th>Product Code</Th>
-                            <Th>Name</Th>
-                            <Th>Product Type</Th>
-                            <Th>Time Period</Th>
-                            <Th>Price</Th>
-                            <Th>
-                                Actions
-                                {/* --- Logic untuk multiple delete --- */}
-                                {form.id[0] ? (
-                                    <button onClick={handlleMultipleDelete}>
-                                        hapus
-                                    </button>
-                                ) : null}
-                            </Th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {product !== null &&
-                            product.data.map((item) => {
-                                return (
-                                    <tr key={item._id}>
-                                        <Th as="td" td>
-                                            <input
-                                                type="checkbox"
-                                                id={item._id}
-                                                value={item._id}
-                                                onChange={handleCheckboxChange}
-                                            />
-                                        </Th>
-
-                                        <Th as="td" td>
-                                            {item.visibility}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {item.code}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {item.name}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {item.type}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {item.time_period} Months
-                                        </Th>
-                                        <Th as="td" td>
-                                            Rp. {FormatNumber(item.price)}
-                                        </Th>
-                                        <Th as="td" td>
-                                            <div
-                                                style={{
-                                                    display: 'flex',
-                                                    flexDirection: 'row',
-                                                }}
-                                            >
-                                                <Link
-                                                    to={`/product/show/${item._id}`}
+                                            <Th as="td" td>
+                                                {item.visibility}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.code}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.name}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.type}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.time_period} Months
+                                            </Th>
+                                            <Th as="td" td>
+                                                Rp. {FormatNumber(item.price)}
+                                            </Th>
+                                            <Th as="td" td>
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        flexDirection: 'row',
+                                                    }}
                                                 >
-                                                    <ButtonLink>
-                                                        Show
-                                                    </ButtonLink>
-                                                </Link>
-                                                <Link
-                                                    to={`/product/update/${item._id}`}
-                                                >
-                                                    <ButtonLink>
-                                                        Update
-                                                    </ButtonLink>
-                                                </Link>
-                                                <DeleteProduct id={item._id} />
-                                            </div>
-                                        </Th>
-                                    </tr>
-                                );
-                            })}
-                    </tbody>
-                </Table>
+                                                    <Link
+                                                        to={`/product/show/${item._id}`}
+                                                    >
+                                                        <ButtonLink>
+                                                            Show
+                                                        </ButtonLink>
+                                                    </Link>
+                                                    <Link
+                                                        to={`/product/update/${item._id}`}
+                                                    >
+                                                        <ButtonLink>
+                                                            Update
+                                                        </ButtonLink>
+                                                    </Link>
+                                                    <DeleteProduct
+                                                        id={item._id}
+                                                    />
+                                                </div>
+                                            </Th>
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
+                    </Table>
+                </Overflow>
             </Card>
         </React.Fragment>
     );
