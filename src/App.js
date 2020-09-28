@@ -22,6 +22,7 @@ import Users from './pages/Users/Users';
 import Roles from './pages/Roles/Roles';
 import Fullfilments from './pages/Fullfilments/Fullfilments';
 import AlertDelete from './elements/Alert/AlertDelete';
+import DataReseller from './components/Reseller/DataReseller';
 
 export default function App() {
     return (
@@ -67,6 +68,9 @@ export default function App() {
 
                     <Route exact path="/test-components">
                         <AlertDelete />
+                    </Route>
+                    <Route exact path="/reseller">
+                        <DataReseller />
                     </Route>
                 </Switch>
             </Router>

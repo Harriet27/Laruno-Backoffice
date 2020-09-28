@@ -75,6 +75,8 @@ const DataProduct = (props) => {
 
             {/* --- section 2 --- Get Data Product --- */}
             <Card isNormal>
+                {/* --- untuk hapus melalui button --- */}
+                <button>hapus</button>
                 <Table striped>
                     <thead>
                         <tr>
@@ -98,7 +100,7 @@ const DataProduct = (props) => {
                                         <Th as="td" td>
                                             <input
                                                 type="checkbox"
-                                                value={item._id}
+                                                value={form.id}
                                             />
                                         </Th>
 
