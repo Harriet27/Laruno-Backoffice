@@ -74,6 +74,9 @@ const DataProduct = (props) => {
                 <Table striped>
                     <thead>
                         <tr>
+                            <Th>
+                                <input type="checkbox" />
+                            </Th>
                             <Th>Visibility</Th>
                             <Th>Product Code</Th>
                             <Th>Name</Th>
@@ -88,6 +91,7 @@ const DataProduct = (props) => {
                             product.data.map((item) => {
                                 return (
                                     <tr key={item._id}>
+                                        <input type="checkbox" />
                                         <Th as="td" td>
                                             {item.visibility}
                                         </Th>
