@@ -6,7 +6,10 @@ import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
 // --- Elements, Pages, Components --- //
-import { fetchGetProduct } from '../../store/actions';
+import {
+    fetchGetProduct,
+    fetchMultipleDeleteProduct,
+} from '../../store/actions';
 import DeleteProduct from './DeleteProduct';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 // --- Styled Components --- //
@@ -65,7 +68,11 @@ const DataProduct = (props) => {
         });
     };
 
-    console.log(...form.id, 'isi id');
+    // --- Multiple Delete --- //
+    const handlleMultipleDelete = (event) => {
+        event.preventDefault();
+        dispatch(fetchMultipleDeleteProduct(form));
+    };
     return (
         <React.Fragment>
             {/* --- section 1 --- Button Action link to Add Product ---*/}
@@ -88,7 +95,7 @@ const DataProduct = (props) => {
             {/* --- section 2 --- Get Data Product --- */}
             <Card isNormal>
                 {/* --- untuk hapus melalui button --- */}
-                <button>hapus</button>
+
                 <Table striped>
                     <thead>
                         <tr>
@@ -101,7 +108,15 @@ const DataProduct = (props) => {
                             <Th>Product Type</Th>
                             <Th>Time Period</Th>
                             <Th>Price</Th>
-                            <Th>Actions</Th>
+                            <Th>
+                                Actions
+                                {/* --- Logic untuk multiple delete --- */}
+                                {form.id[0] ? (
+                                    <button onClick={handlleMultipleDelete}>
+                                        hapus
+                                    </button>
+                                ) : null}
+                            </Th>
                         </tr>
                     </thead>
                     <tbody>
