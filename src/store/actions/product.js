@@ -192,11 +192,12 @@ const fetchUpdateProduct = (form, id) => async () => {
 };
 
 // --- Multiple Delete --- //
-const fetchMultipleDeleteProduct = () => async () => {
+const fetchMultipleDeleteProduct = (form) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/delete/multiple`;
     const options = {
         method: 'DELETE',
+        body: JSON.stringify(form),
         headers: {
             'Content-type': 'application/json',
             Authorization: `Bearer ${token}`,
