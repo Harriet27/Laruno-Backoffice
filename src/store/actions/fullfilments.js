@@ -6,7 +6,7 @@ const SHOW_FULFILLMENTS = 'SHOW_FULFILLMENTS';
 
 const fetchPostFulFillments = (form, history) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents`;
 
     const options = {
         body: JSON.stringify(form),
@@ -42,7 +42,7 @@ const getFulFillments = (data) => {
 const fetchGetFulFillments = () => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents`;
         const options = {
             method: 'GET',
             headers: {
@@ -70,7 +70,7 @@ const findFulFillments = (data) => {
 const fetchFindFulFillments = () => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments/find`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/find`;
         const options = {
             method: 'GET',
             headers: {
@@ -89,7 +89,7 @@ const fetchFindFulFillments = () => async (dispatch) => {
 // --- DELETE fulfillments METHOD DELETE --- //
 const fetchDeleteFulFillments = (id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments/${id}`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
     const options = {
         method: 'DELETE',
         headers: {
@@ -126,7 +126,7 @@ const showFulFillments = (data) => {
 
 const fetchShowFulFillments = (id) => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments/${id}`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
     const options = {
         method: 'GET',
         headers: {
@@ -143,7 +143,7 @@ const fetchShowFulFillments = (id) => async (dispatch) => {
 const fetchUpdateFulFillments = (form, id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/fulfillments/${id}`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
 
         // --- apabila form itu kosong maka hapus formnya --- //
         for (let key in form) {

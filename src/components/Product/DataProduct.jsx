@@ -48,12 +48,24 @@ const DataProduct = (props) => {
     const [form, setForm] = useState({
         id: [],
     });
-
+    console.log(form, 'isinya');
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetProduct());
     }, [dispatch]);
 
+    // --- handleCheckboxChange --- //
+    const handleCheckboxChange = (event) => {
+        let newArray = [...form.id, event.target.id];
+        if (form.id.includes(event.target.id)) {
+            newArray = newArray.filter((item) => item !== event.target.id);
+        }
+        setForm({
+            id: newArray,
+        });
+    };
+
+    console.log(...form.id, 'isi id');
     return (
         <React.Fragment>
             {/* --- section 1 --- Button Action link to Add Product ---*/}
@@ -100,7 +112,9 @@ const DataProduct = (props) => {
                                         <Th as="td" td>
                                             <input
                                                 type="checkbox"
-                                                value={form.id}
+                                                id={item._id}
+                                                value={item._id}
+                                                onChange={handleCheckboxChange}
                                             />
                                         </Th>
 
