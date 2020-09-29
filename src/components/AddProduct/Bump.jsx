@@ -31,32 +31,36 @@ const Span = Styled.span`
     font-size: 18px;
 `;
 
+const Section = Styled.div`
+    padding: 50px 750px 50px 100px;
+    line-height: 1.5;
+    @media (max-width: 1000px) {
+      padding: 40px
+    }
+`;
+const SectionOne = Styled.div`
+    display: flex;
+    width: 50%;
+    @media (max-width: 800px) {
+        width: 100%
+    }
+`;
 // --- Styled Components --- //
 
 export default function Bump(props) {
     const [box, setBox] = useState({
         checkbox: '',
     });
-    const {
-        bump_product,
-        onChange,
-        bump_weight,
-        image_bump,
-        price_bump,
-    } = props;
+    const { bump_name, onChange, bump_weight, bump_image, bump_price } = props;
     // handle change untuk onChange
     const handleChange = (event) => {
         setBox({ ...box, [event.target.name]: event.target.checked });
     };
     return (
-        <div
-            style={{
-                padding: '50px 100px',
-            }}
-        >
-            <Card isNormal style={{ width: '50%' }}>
+        <Section>
+            <Card isNormal>
                 <div style={{ padding: '20px 30px' }}>
-                    <label>
+                    {/* <label>
                         <input
                             name="checkbox"
                             id="checkbox"
@@ -65,76 +69,76 @@ export default function Bump(props) {
                             onChange={handleChange}
                         />
                         Do you want to show a bump offer on this product?
-                    </label>
+                    </label> */}
 
                     <div>
-                        {box.checkbox === true ? (
-                            <React.Fragment>
-                                <WrapsField>
-                                    <Label>
-                                        <Span>Bump Product</Span> Name will
-                                        appear on the cart & invoice
-                                    </Label>
-                                    <div>
-                                        <Input
-                                            type="text"
-                                            name="bump_product"
-                                            id="bump_product"
-                                            value={bump_product}
-                                            onChange={onChange}
-                                        />
-                                    </div>
-                                </WrapsField>
+                        {/* {box.checkbox === true ? ( */}
+                        <React.Fragment>
+                            <WrapsField>
+                                <Label>
+                                    <Span>Bump Product</Span> Name will appear
+                                    on the cart & invoice
+                                </Label>
+                                <div>
+                                    <Input
+                                        type="text"
+                                        name="bump_name"
+                                        id="bump_name"
+                                        value={bump_name}
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </WrapsField>
 
-                                <WrapsField>
-                                    <Label>
-                                        <Span>Harga</Span>
-                                    </Label>
-                                    <div>
-                                        <Input
-                                            type="number"
-                                            name="price_bump"
-                                            id="price_bump"
-                                            value={price_bump}
-                                            onChange={onChange}
-                                        />
-                                    </div>
-                                </WrapsField>
+                            <WrapsField>
+                                <Label>
+                                    <Span>Harga</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        type="number"
+                                        name="bump_price"
+                                        id="bump_price"
+                                        value={bump_price}
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </WrapsField>
 
-                                <WrapsField>
-                                    <Label>
-                                        <Span>Bump Weight</Span> (gr)
-                                    </Label>
-                                    <div>
-                                        <Input
-                                            type="number"
-                                            name="bump_weight"
-                                            id="bump_weight"
-                                            value={bump_weight}
-                                            onChange={onChange}
-                                        />
-                                    </div>
-                                </WrapsField>
+                            <WrapsField>
+                                <Label>
+                                    <Span>Bump Weight</Span> (gr)
+                                </Label>
+                                <div>
+                                    <Input
+                                        type="number"
+                                        name="bump_weight"
+                                        id="bump_weight"
+                                        value={bump_weight}
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </WrapsField>
 
-                                <WrapsField>
-                                    <Label>
-                                        <Span>Upload Image</Span>
-                                    </Label>
-                                    <div>
-                                        <Input
-                                            type="file"
-                                            name="image_bump"
-                                            id="image_bump"
-                                            value={image_bump}
-                                            onChange={onChange}
-                                        />
-                                    </div>
-                                </WrapsField>
-                            </React.Fragment>
-                        ) : null}
+                            <WrapsField>
+                                <Label>
+                                    <Span>Upload Image</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        type="file"
+                                        name="bump_image"
+                                        id="bump_image"
+                                        value={bump_image}
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </WrapsField>
+                        </React.Fragment>
+                        {/* ) : null} */}
                     </div>
                 </div>
             </Card>
-        </div>
+        </Section>
     );
 }

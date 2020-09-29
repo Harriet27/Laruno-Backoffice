@@ -12,6 +12,7 @@ import DetailProduct from '../../components/AddProduct/DetailProduct';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchPostProducts } from '../../store/actions/product';
+import Bump from '../../components/AddProduct/Bump';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -75,6 +76,11 @@ export default function StepperForm() {
         sale_price: '',
         duration: '',
         agent: [],
+        // --- Order Bump --- //
+        bump: []['bump_name'],
+        bump: []['bump_image'],
+        bump: []['bump_price'],
+        bump: []['bump_weight'],
     });
 
     // handleSubmit untuk enter dan submit button
@@ -120,8 +126,13 @@ export default function StepperForm() {
                             start_time={form.start_time}
                             slug={form.slug}
                             duration={form.duration}
-                            // duration_minute={form.duration}
-                            // duration_hours={form.duration}
+                        />
+                        <Bump
+                            onChange={handleChange}
+                            bump_name={form.bump_name}
+                            bump_price={form.bump_price}
+                            bump_weight={form.bump_weight}
+                            bump_image={form.bump_image}
                         />
                     </>
                 );

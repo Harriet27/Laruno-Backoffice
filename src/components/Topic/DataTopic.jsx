@@ -55,7 +55,7 @@ const DataTopic = (props) => {
     const [form, setForm] = useState({
         id: [],
     });
-    console.log(form, 'isinyaa keluarin');
+
     // --- handleCheckboxChange --- //
     const handleCheckboxChange = (event) => {
         let newArray = [...form.id, event.target.id];
