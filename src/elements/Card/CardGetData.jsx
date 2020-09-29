@@ -18,15 +18,7 @@ flex-direction: row;
 `;
 export default function CardGetData(props) {
     return (
-        <Card
-            isBold
-            style={{
-                width: '20%',
-                height: '150px',
-                display: 'flex',
-                justifyContent: 'center',
-            }}
-        >
+        <Card isBold>
             <Wraps>
                 <div
                     style={{

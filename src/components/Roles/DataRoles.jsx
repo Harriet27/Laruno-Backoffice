@@ -92,10 +92,8 @@ const DataRoles = (props) => {
                                 return (
                                     <tr key={item._id}>
                                         <Th>
-                                            <input
-                                                style={{
-                                                    marginLeft: '9px',
-                                                }}
+                                            <Input
+                                                checkbox
                                                 type="checkbox"
                                                 id={item._id}
                                                 value={item._id}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchPostProducts } from '../../store/actions/product';
 import Bump from '../../components/AddProduct/Bump';
+import { array } from 'yup';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,11 +78,22 @@ export default function StepperForm() {
         duration: '',
         agent: [],
         // --- Order Bump --- //
-        bump: []['bump_name'],
-        bump: []['bump_image'],
-        bump: []['bump_price'],
-        bump: []['bump_weight'],
+        bump: [],
     });
+
+    // --- Test Order Bump  catatatan ini masih dalam proses testing--- //
+    const [objBump, setObjBump] = useState({
+        bump_name: '',
+        bump_price: '',
+        bump_image: '',
+        bump_weight: '',
+    });
+    const handleBump = (event) => {
+        setObjBump({ ...objBump, [event.target.name]: event.target.value });
+    };
+
+    form.bump.push(objBump);
+    // --- Testing objBump --- //
 
     // handleSubmit untuk enter dan submit button
     const handleSubmit = (event) => {
@@ -89,7 +101,7 @@ export default function StepperForm() {
         dispatch(fetchPostProducts(form, history));
     };
 
-    console.log(form, 'ini form');
+    console.log(form, 'ini form isinya apa aja. ORDER BUMP');
     // handle change untuk onChange
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -128,11 +140,11 @@ export default function StepperForm() {
                             duration={form.duration}
                         />
                         <Bump
-                            onChange={handleChange}
-                            bump_name={form.bump_name}
-                            bump_price={form.bump_price}
-                            bump_weight={form.bump_weight}
-                            bump_image={form.bump_image}
+                            onChange={handleBump}
+                            bump_name={objBump.bump_name}
+                            bump_price={objBump.bump_price}
+                            bump_weight={objBump.bump_weight}
+                            bump_image={objBump.bump_image}
                         />
                     </>
                 );

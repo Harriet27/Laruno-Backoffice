@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import { Input, Th } from '../../elements/Styled/StyledForm';
+import CircularProgress from '@material-ui/core/CircularProgress';
 // --- Elements, Pages, Components --- //
 import {
     fetchGetProduct,
@@ -109,71 +110,71 @@ const DataProduct = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {product !== null &&
-                                product.data.map((item) => {
-                                    return (
-                                        <tr key={item._id}>
-                                            <Th>
-                                                <input
-                                                    style={{
-                                                        marginLeft: '9px',
-                                                    }}
-                                                    type="checkbox"
-                                                    id={item._id}
-                                                    value={item._id}
-                                                    onChange={
-                                                        handleCheckboxChange
-                                                    }
-                                                />
-                                            </Th>
+                            {product === null
+                                ? // --- Test Logic Loading get data --- //
+                                  null
+                                : product.data.map((item) => {
+                                      return (
+                                          <tr key={item._id}>
+                                              <Th>
+                                                  <Input
+                                                      checkbox
+                                                      type="checkbox"
+                                                      id={item._id}
+                                                      value={item._id}
+                                                      onChange={
+                                                          handleCheckboxChange
+                                                      }
+                                                  />
+                                              </Th>
 
-                                            <Th as="td" td>
-                                                {item.visibility}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.code}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.name}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.type}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.time_period} Months
-                                            </Th>
-                                            <Th as="td" td>
-                                                Rp. {FormatNumber(item.price)}
-                                            </Th>
-                                            <Th as="td" td>
-                                                <div
-                                                    style={{
-                                                        display: 'flex',
-                                                        flexDirection: 'row',
-                                                    }}
-                                                >
-                                                    <Link
-                                                        to={`/product/show/${item._id}`}
-                                                    >
-                                                        <ButtonLink>
-                                                            Show
-                                                        </ButtonLink>
-                                                    </Link>
-                                                    <Link
-                                                        to={`/product/update/${item._id}`}
-                                                    >
-                                                        <ButtonLink>
-                                                            Update
-                                                        </ButtonLink>
-                                                    </Link>
-                                                    <DeleteProduct
-                                                        id={item._id}
-                                                    />
-                                                </div>
-                                            </Th>
-                                        </tr>
-                                    );
-                                })}
+                                              <Th as="td" td>
+                                                  {item.visibility}
+                                              </Th>
+                                              <Th as="td" td>
+                                                  {item.code}
+                                              </Th>
+                                              <Th as="td" td>
+                                                  {item.name}
+                                              </Th>
+                                              <Th as="td" td>
+                                                  {item.type}
+                                              </Th>
+                                              <Th as="td" td>
+                                                  {item.time_period} Months
+                                              </Th>
+                                              <Th as="td" td>
+                                                  Rp. {FormatNumber(item.price)}
+                                              </Th>
+                                              <Th as="td" td>
+                                                  <div
+                                                      style={{
+                                                          display: 'flex',
+                                                          flexDirection: 'row',
+                                                      }}
+                                                  >
+                                                      <Link
+                                                          to={`/product/show/${item._id}`}
+                                                      >
+                                                          <ButtonLink>
+                                                              Show
+                                                          </ButtonLink>
+                                                      </Link>
+                                                      <Link
+                                                          to={`/product/update/${item._id}`}
+                                                      >
+                                                          <ButtonLink>
+                                                              Update
+                                                          </ButtonLink>
+                                                      </Link>
+                                                      <DeleteProduct
+                                                          id={item._id}
+                                                      />
+                                                  </div>
+                                              </Th>
+                                          </tr>
+                                      );
+                                  })}
                         </tbody>
                     </Table>
                 </Overflow>
