@@ -30,4 +30,10 @@ const SectionOne = Styled.div`
     justify-content: space-between;
 `;
 
-export { sm, md, lg, Input, Th, SectionOne };
+const Overflow = Styled.div`
+overflow-x: none;
+@media (max-width: 1000px) {
+    overflow-x: auto;
+  }
+`;
+export { sm, md, lg, Input, Th, SectionOne, Overflow };

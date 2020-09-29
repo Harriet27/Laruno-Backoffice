@@ -6,7 +6,7 @@ import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DehazeIcon from '@material-ui/icons/Dehaze';
-import { Input, Th } from '../../elements/Styled/StyledForm';
+import { Input, Th, Overflow, md } from '../../elements/Styled/StyledForm';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // --- Elements, Pages, Components --- //
 import {
@@ -17,8 +17,6 @@ import DeleteProduct from './DeleteProduct';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 // --- Styled Components --- //
 
-const [sm, md, lg] = ['16px', '18px', '20px'];
-
 const ButtonLink = Styled.button`
     background-color:#0098DA;
     padding: 5px;
@@ -27,12 +25,6 @@ const ButtonLink = Styled.button`
     font-size: ${md};
     border: 1px solid #ced4da;
     font-Weight: 400;
-`;
-const Overflow = Styled.div`
-overflow-x: none;
-@media (max-width: 1000px) {
-    overflow-x: auto;
-  }
 `;
 
 const DataProduct = (props) => {
@@ -112,7 +104,7 @@ const DataProduct = (props) => {
                         <tbody>
                             {product === null
                                 ? // --- Test Logic Loading get data --- //
-                                  null
+                                  'loading ....'
                                 : product.data.map((item) => {
                                       return (
                                           <tr key={item._id}>

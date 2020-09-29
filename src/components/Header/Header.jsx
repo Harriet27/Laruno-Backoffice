@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
 import ImageBrand from '../../assets/images/laruno1.png';
+import PersonIcon from '@material-ui/icons/Person';
 import {
     Collapse,
     Navbar,
@@ -15,6 +17,7 @@ import {
     DropdownMenu,
     DropdownItem,
 } from 'reactstrap';
+import { fetchGetUsersAuthentication } from '../../store/actions/';
 
 // --- Styled components --- //
 const Button = Styled.button`
@@ -46,7 +49,6 @@ const HeaderStyled = Styled.header`
     font-size: 20px;
     background-color: white;
     padding: 5px 40px;
-  
 `;
 const Image = Styled.img`
     width:100%;
@@ -59,10 +61,19 @@ const WrapsImage = Styled.div`
 // --- Styled Components --- //
 
 const Header = () => {
+    const dispatch = useDispatch();
+
     //  --- Is Open --- //
     const [isOpen, setIsOpen] = useState(false);
-
     const toggle = () => setIsOpen(!isOpen);
+
+    // --- Who I am --- //
+    const user = useSelector((state) => state.user.userAuthentication);
+
+    console.log(user, 'isi user apaan dah');
+    useEffect(() => {
+        dispatch(fetchGetUsersAuthentication());
+    }, [dispatch]);
 
     return (
         <HeaderStyled>
@@ -118,6 +129,11 @@ const Header = () => {
                     <Link to="/add-product">
                         <Button> + Add Product</Button>
                     </Link>
+                    {user === null ? null : (
+                        <div style={{ margin: '0 20px' }}>
+                            <PersonIcon /> {user.data.name}
+                        </div>
+                    )}
                 </Collapse>
             </Navbar>
         </HeaderStyled>
