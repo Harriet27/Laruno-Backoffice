@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetRoles } from '../../store/actions';
+import { fetchGetRoles, fetchMultipleDeleteRoles } from '../../store/actions';
+import DeleteIcon from '@material-ui/icons/Delete';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
@@ -49,6 +51,27 @@ const DataRoles = (props) => {
         dispatch(fetchGetRoles());
     }, [dispatch]);
 
+    // --- For Multiple Delete --- //
+    const [form, setForm] = useState({
+        id: [],
+    });
+
+    // --- handleCheckboxChange --- //
+    const handleCheckboxChange = (event) => {
+        let newArray = [...form.id, event.target.id];
+        if (form.id.includes(event.target.id)) {
+            newArray = newArray.filter((item) => item !== event.target.id);
+        }
+        setForm({
+            id: newArray,
+        });
+    };
+
+    // --- Multiple Delete --- //
+    const handlleMultipleDelete = (event) => {
+        event.preventDefault();
+        dispatch(fetchMultipleDeleteRoles(form));
+    };
     return (
         <React.Fragment>
             {/* --- section 1 --- Add New Topic and Search Topic --- */}
@@ -64,6 +87,16 @@ const DataRoles = (props) => {
                 <Table striped>
                     <thead>
                         <tr>
+                            <Th>
+                                {/* --- Logic untuk multiple delete --- */}
+                                {form.id[0] ? (
+                                    <div onClick={handlleMultipleDelete}>
+                                        <DeleteIcon color="error" />
+                                    </div>
+                                ) : (
+                                    <DehazeIcon />
+                                )}
+                            </Th>
                             <Th>Admin Type</Th>
                             <Th>Read Write</Th>
                             <Th>Created At</Th>
@@ -76,6 +109,17 @@ const DataRoles = (props) => {
                             roles.data.map((item) => {
                                 return (
                                     <tr key={item._id}>
+                                        <Th>
+                                            <input
+                                                style={{
+                                                    marginLeft: '9px',
+                                                }}
+                                                type="checkbox"
+                                                id={item._id}
+                                                value={item._id}
+                                                onChange={handleCheckboxChange}
+                                            />
+                                        </Th>
                                         <Th as="td" td>
                                             {item.adminType}
                                         </Th>

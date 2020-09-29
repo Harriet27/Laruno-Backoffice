@@ -112,6 +112,9 @@ const DataTopic = (props) => {
                                     <tr key={item._id}>
                                         <Th>
                                             <input
+                                                style={{
+                                                    marginLeft: '9px',
+                                                }}
                                                 type="checkbox"
                                                 id={item._id}
                                                 value={item._id}
