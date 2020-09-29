@@ -4,5 +4,5 @@ export * from './topic';
 export * from './product';
 export * from './order';
 export * from './resellers';
-export * from './fullfilments';
+export * from './contents';
 export * from './agent';

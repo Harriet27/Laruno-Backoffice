@@ -1,10 +1,10 @@
 import Swal from 'sweetalert2';
-const GET_FULFILLMENTS = 'GET_FULFILLMENTS';
-const FIND_FULFILLMENTS = 'FIND_FULFILLMENTS';
-const SHOW_FULFILLMENTS = 'SHOW_FULFILLMENTS';
+const GET_CONTENTS = 'GET_CONTENTS';
+const FIND_CONTENTS = 'FIND_CONTENTS';
+const SHOW_CONTENTS = 'SHOW_CONTENTS';
 // --- Post Fulfillments --- //
 
-const fetchPostFulFillments = (form, history) => async () => {
+const fetchPostContents = (form, history) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents`;
 
@@ -32,14 +32,14 @@ const fetchPostFulFillments = (form, history) => async () => {
 };
 
 // --- Get Fulfillments --- //
-const getFulFillments = (data) => {
+const getContents = (data) => {
     return {
-        type: GET_FULFILLMENTS,
+        type: GET_CONTENTS,
         data,
     };
 };
 
-const fetchGetFulFillments = () => async (dispatch) => {
+const fetchGetContents = () => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents`;
@@ -52,7 +52,7 @@ const fetchGetFulFillments = () => async (dispatch) => {
         };
         const response = await fetch(url, options);
         const result = await response.json();
-        dispatch(getFulFillments(result));
+        dispatch(getContents(result));
     } catch (error) {
         console.log(error);
     }
@@ -60,14 +60,14 @@ const fetchGetFulFillments = () => async (dispatch) => {
 
 // --- Find Fulfillments, Method GET, Search --- //
 
-const findFulFillments = (data) => {
+const findContents = (data) => {
     return {
-        type: FIND_FULFILLMENTS,
+        type: FIND_CONTENTS,
         data,
     };
 };
 
-const fetchFindFulFillments = () => async (dispatch) => {
+const fetchFindContents = () => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/find`;
@@ -80,14 +80,14 @@ const fetchFindFulFillments = () => async (dispatch) => {
         };
         const response = await fetch(url, options);
         const result = await response.json();
-        dispatch(findFulFillments(result));
+        dispatch(findContents(result));
     } catch (error) {
         console.log(error);
     }
 };
 
-// --- DELETE fulfillments METHOD DELETE --- //
-const fetchDeleteFulFillments = (id) => async () => {
+// --- DELETE contents METHOD DELETE --- //
+const fetchDeleteContents = (id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
     const options = {
@@ -106,7 +106,7 @@ const fetchDeleteFulFillments = (id) => async () => {
             text: '',
             icon: 'success',
         });
-        window.location.reload('/fulfillments');
+        window.location.reload('/contents');
     } else {
         Swal.fire({
             title: 'Delete gagal',
@@ -117,14 +117,14 @@ const fetchDeleteFulFillments = (id) => async () => {
 };
 
 //  ---  Show Fulfillments Method Get --- //
-const showFulFillments = (data) => {
+const showContents = (data) => {
     return {
-        type: SHOW_FULFILLMENTS,
+        type: SHOW_CONTENTS,
         data,
     };
 };
 
-const fetchShowFulFillments = (id) => async (dispatch) => {
+const fetchShowContents = (id) => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
     const options = {
@@ -136,11 +136,11 @@ const fetchShowFulFillments = (id) => async (dispatch) => {
     };
     const response = await fetch(url, options);
     const result = await response.json();
-    dispatch(showFulFillments(result));
+    dispatch(showContents(result));
 };
 
 // --- Update Fulfillments - Method PUT ---- //
-const fetchUpdateFulFillments = (form, id) => async () => {
+const fetchUpdateContents = (form, id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
@@ -184,16 +184,16 @@ const fetchUpdateFulFillments = (form, id) => async () => {
 };
 
 export {
-    fetchPostFulFillments,
-    fetchGetFulFillments,
-    fetchFindFulFillments,
-    getFulFillments,
-    findFulFillments,
-    GET_FULFILLMENTS,
-    FIND_FULFILLMENTS,
-    SHOW_FULFILLMENTS,
-    fetchDeleteFulFillments,
-    fetchShowFulFillments,
-    showFulFillments,
-    fetchUpdateFulFillments,
+    fetchPostContents,
+    fetchGetContents,
+    fetchFindContents,
+    getContents,
+    findContents,
+    GET_CONTENTS,
+    FIND_CONTENTS,
+    SHOW_CONTENTS,
+    fetchDeleteContents,
+    fetchShowContents,
+    showContents,
+    fetchUpdateContents,
 };

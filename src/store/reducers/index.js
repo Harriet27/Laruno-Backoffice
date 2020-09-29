@@ -4,7 +4,7 @@ import topic from './topic';
 import product from './product';
 import user from './user';
 import roles from './roles';
-import fulfillments from './fulfillments';
+import contents from './contents';
 import agents from './agents';
 import reseller from './reseller';
 
@@ -13,7 +13,7 @@ export default combineReducers({
     product,
     user,
     roles,
-    fulfillments,
+    contents,
     agents,
     reseller,
 });
