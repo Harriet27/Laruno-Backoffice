@@ -21,7 +21,6 @@ const Input = Styled.input`
     color: #495057;
     border-radius: ${(props) => (props.price ? '0' : '3px')};
     background-color: #FCFCFC;
-    
     border:${(props) => (props.price ? '0' : '1px solid #ced4da')};
     &:focus{
     outline: none !important;

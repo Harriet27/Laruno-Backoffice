@@ -1,11 +1,16 @@
 // --- Khusus Super Admin --- //
-
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetUsersAdministrator } from '../../store/actions';
+import {
+    fetchGetUsersAdministrator,
+    fetchMultipleDeleteUsers,
+} from '../../store/actions';
+import DeleteIcon from '@material-ui/icons/Delete';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 import moment from 'moment';
+import { Input, Th, sm, md, lg } from '../../elements/Styled/StyledForm';
 
 // --- Elements, Pages, Components --- //
 import AddAdministrator from './AddAdministrator';
@@ -16,25 +21,6 @@ import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
 
-const [sm, md, lg] = ['16px', '18px', '20px'];
-const Th = Styled.th`
-    font-size:  ${(props) => (props.td ? `${sm}` : `${md}`)};
-    font-weight: ${(props) => (props.td ? 'normal' : '600')};
-    text-align: left;
-`;
-const Input = Styled.input`
-    padding: .375rem;
-    font-size: ${sm};
-    font-weight: 400;
-    color: #495057;
-    border-radius: 3px;
-    background-color: #FCFCFC;
-    border: 1px solid #ced4da;
-    &:focus{
-    outline: none !important;
-    border:1px solid #66AFE9;
-    }
-`;
 const SectionOne = Styled.div`
     margin: ${lg} 0;
     display: flex;
@@ -51,6 +37,27 @@ const DataUsers = (props) => {
         dispatch(fetchGetUsersAdministrator());
     }, [dispatch]);
 
+    // --- For Multiple Delete --- //
+    const [form, setForm] = useState({
+        id: [],
+    });
+
+    // --- handleCheckboxChange --- //
+    const handleCheckboxChange = (event) => {
+        let newArray = [...form.id, event.target.id];
+        if (form.id.includes(event.target.id)) {
+            newArray = newArray.filter((item) => item !== event.target.id);
+        }
+        setForm({
+            id: newArray,
+        });
+    };
+
+    // --- Multiple Delete --- //
+    const handlleMultipleDelete = (event) => {
+        event.preventDefault();
+        dispatch(fetchMultipleDeleteUsers(form));
+    };
     return (
         <React.Fragment>
             {/* --- section 1 --- Add New Topic and Search Topic --- */}
@@ -66,10 +73,20 @@ const DataUsers = (props) => {
                 <Table striped>
                     <thead>
                         <tr>
+                            <Th>
+                                {/* --- Logic untuk multiple delete --- */}
+                                {form.id[0] ? (
+                                    <div onClick={handlleMultipleDelete}>
+                                        <DeleteIcon color="error" />
+                                    </div>
+                                ) : (
+                                    <DehazeIcon />
+                                )}
+                            </Th>
                             <Th>Name</Th>
                             <Th>Email</Th>
                             <Th>Role</Th>
-                            <Th>Phone Number</Th>
+                            <Th>Phone</Th>
                             <Th>Created At</Th>
                             <Th>Updated At</Th>
                             <Th>Actions</Th>
@@ -80,6 +97,17 @@ const DataUsers = (props) => {
                             admin.data.map((item) => {
                                 return (
                                     <tr key={item._id}>
+                                        <Th>
+                                            <input
+                                                style={{
+                                                    marginLeft: '9px',
+                                                }}
+                                                type="checkbox"
+                                                id={item._id}
+                                                value={item._id}
+                                                onChange={handleCheckboxChange}
+                                            />
+                                        </Th>
                                         <Th as="td" td>
                                             {item.name}
                                         </Th>

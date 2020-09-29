@@ -6,6 +6,7 @@ import { fetchGetRoles, fetchMultipleDeleteRoles } from '../../store/actions';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import moment from 'moment';
+import { Input, Th, sm, md, lg } from '../../elements/Styled/StyledForm';
 
 // --- Elements, Pages, Components --- //
 import AddRoles from './AddRoles';
@@ -14,26 +15,7 @@ import Card from '../../elements/Card/Card';
 import DeleteRoles from './DeleteRoles';
 
 // --- Styled Components --- //
-const [sm, md, lg] = ['16px', '18px', '20px'];
 
-const Th = Styled.th`
-    font-size:  ${(props) => (props.td ? `${sm}` : `${md}`)};
-    font-weight: ${(props) => (props.td ? 'normal' : '600')};
-    text-align: left;
-`;
-const Input = Styled.input`
-    padding: .375rem;
-    font-size: ${sm};
-    font-weight: 400;
-    color: #495057;
-    border-radius: 3px;
-    background-color: #FCFCFC;
-    border: 1px solid #ced4da;
-    &:focus{
-    outline: none !important;
-    border:1px solid #66AFE9;
-    }
-`;
 const SectionOne = Styled.div`
     margin: ${lg} 0;
     display: flex;
