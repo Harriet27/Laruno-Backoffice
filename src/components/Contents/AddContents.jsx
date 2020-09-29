@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { fetchPostFulFillments } from '../../store/actions';
+import { fetchPostContents } from '../../store/actions';
 
 // --- Elements, Pages, Components --- //
 import Card from '../../elements/Card/Card';
@@ -34,7 +34,7 @@ const WrapForm = Styled.div`
     margin-bottom: 20px;
 `;
 
-export default function AddNewFulFillments() {
+export default function AddContents() {
     const dispatch = useDispatch();
 
     const [form, setForm] = useState({
@@ -44,7 +44,7 @@ export default function AddNewFulFillments() {
     // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();
-        dispatch(fetchPostFulFillments(form));
+        dispatch(fetchPostContents(form));
     };
     // --- Change Value when Input Active --- //
     const handleChange = (event) => {
@@ -53,8 +53,8 @@ export default function AddNewFulFillments() {
 
     return (
         <ModalSmart
-            buttonLabel="Add FulFillments"
-            title="Add FulFillments"
+            buttonLabel="Add Contents"
+            title="Add Contents"
             onClickConfirm={handleSubmit}
         >
             <Section>

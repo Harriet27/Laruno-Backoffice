@@ -1,10 +1,10 @@
 import React from 'react';
-import DataFullfilments from '../../components/Fullfilments/DataFullfilments';
+import DataContents from '../../components/Contents/DataContents';
 
 export default function Fullfilments() {
     return (
         <div>
-            <DataFullfilments />
+            <DataContents />
         </div>
     );
 }

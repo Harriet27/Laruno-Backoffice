@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetFulFillments } from '../../store/actions';
+import { fetchGetContents } from '../../store/actions';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
@@ -39,16 +39,14 @@ const SectionOne = Styled.div`
 `;
 // --- Batas --- //
 
-const DataFulfillments = (props) => {
+const DataContents = (props) => {
     const dispatch = useDispatch();
-    const fulfillments = useSelector(
-        (state) => state.fulfillments.getFulFillments
-    );
+    const contents = useSelector((state) => state.contents.getContents);
 
-    console.log(fulfillments, 'ini data fulfillments');
-    // --- useEffect --- Get Data fulfillments ---//
+    console.log(contents, 'ini data contents');
+    // --- useEffect --- Get Data contents ---//
     useEffect(() => {
-        dispatch(fetchGetFulFillments());
+        dispatch(fetchGetContents());
     }, [dispatch]);
 
     return (
@@ -74,8 +72,8 @@ const DataFulfillments = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {fulfillments !== null &&
-                            fulfillments.data.map((item) => {
+                        {/* {contents !== null &&
+                            contents.data.map((item) => {
                                 return (
                                     <tr key={item._id}>
                                         <Th as="td" td>
@@ -119,4 +117,4 @@ const DataFulfillments = (props) => {
     );
 };
 
-export default DataFulfillments;
+export default DataContents;

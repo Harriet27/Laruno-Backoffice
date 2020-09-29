@@ -92,7 +92,7 @@ export default function StepperForm() {
         setObjBump({ ...objBump, [event.target.name]: event.target.value });
     };
 
-    form.bump.push(objBump);
+    form.bump = [{ ...objBump }];
     // --- Testing objBump --- //
 
     // handleSubmit untuk enter dan submit button

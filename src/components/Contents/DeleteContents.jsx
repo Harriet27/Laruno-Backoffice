@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetFulFillment } from '../../store/actions';
+import { fetchGetContents } from '../../store/actions';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
-import AddNewFulFillment from './AddNewFulFillment';
-import UpdateFulFillment from './UpdateFulFillment';
-import DeleteFulFillment from './DeleteFulFillment';
+import AddNewContents from './AddNewContents';
+import UpdateContents from './UpdateContents';
+import DeleteContents from './DeleteContents';
 import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
@@ -37,22 +37,20 @@ const SectionOne = Styled.div`
 `;
 // --- Batas --- //
 
-const DataFulFillment = (props) => {
+const DataContents = (props) => {
     const dispatch = useDispatch();
-    const fulfillment = useSelector(
-        (state) => state.fulfillment.getFulFillment
-    );
-    console.log(fulfillment);
-    // --- useEffect --- Get Data fulfillment ---//
+    const contents = useSelector((state) => state.contents.getContents);
+    console.log(contents);
+    // --- useEffect --- Get Data contents ---//
     useEffect(() => {
-        dispatch(fetchGetFulFillment());
+        dispatch(fetchGetContents());
     }, [dispatch]);
 
     return (
         <React.Fragment>
-            {/* --- section 1 --- Add New FulFillment and Search FulFillment --- */}
+            {/* --- section 1 --- Add New Contents and Search Contents --- */}
             <SectionOne>
-                <AddNewFulFillment />
+                <AddNewContents />
                 <div>
                     <label>Search</label> <Input type="search" />
                 </div>
@@ -71,8 +69,8 @@ const DataFulFillment = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {fulfillment !== null &&
-                            fulfillment.data.map((item) => {
+                        {contents !== null &&
+                            contents.data.map((item) => {
                                 return (
                                     <tr key={item._id}>
                                         <Th as="td" td>
@@ -98,12 +96,8 @@ const DataFulFillment = (props) => {
                                                     flexDirection: 'row',
                                                 }}
                                             >
-                                                <UpdateFulFillment
-                                                    id={item._id}
-                                                />
-                                                <DeleteFulFillment
-                                                    id={item._id}
-                                                />
+                                                <UpdateContents id={item._id} />
+                                                <DeleteContents id={item._id} />
                                             </div>
                                         </Th>
                                     </tr>
@@ -116,4 +110,4 @@ const DataFulFillment = (props) => {
     );
 };
 
-export default DataFulFillment;
+export default DataContents;
