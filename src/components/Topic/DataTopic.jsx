@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetTopic } from '../../store/actions';
+import { fetchGetTopic, fetchMultipleDeleteTopics } from '../../store/actions';
+import DeleteIcon from '@material-ui/icons/Delete';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
@@ -49,6 +51,27 @@ const DataTopic = (props) => {
         dispatch(fetchGetTopic());
     }, [dispatch]);
 
+    // --- For Multiple Delete --- //
+    const [form, setForm] = useState({
+        id: [],
+    });
+    console.log(form, 'isinyaa keluarin');
+    // --- handleCheckboxChange --- //
+    const handleCheckboxChange = (event) => {
+        let newArray = [...form.id, event.target.id];
+        if (form.id.includes(event.target.id)) {
+            newArray = newArray.filter((item) => item !== event.target.id);
+        }
+        setForm({
+            id: newArray,
+        });
+    };
+
+    // --- Multiple Delete --- //
+    const handlleMultipleDelete = (event) => {
+        event.preventDefault();
+        dispatch(fetchMultipleDeleteTopics(form));
+    };
     return (
         <React.Fragment>
             {/* --- section 1 --- Add New Topic and Search Topic --- */}
@@ -64,6 +87,17 @@ const DataTopic = (props) => {
                 <Table striped>
                     <thead>
                         <tr>
+                            <Th>
+                                <div>
+                                    {form.id[0] ? (
+                                        <div onClick={handlleMultipleDelete}>
+                                            <DeleteIcon color="error" />
+                                        </div>
+                                    ) : (
+                                        <DehazeIcon />
+                                    )}
+                                </div>
+                            </Th>
                             <Th>Name</Th>
                             <Th>Slug</Th>
                             <Th>Created At</Th>
@@ -76,6 +110,14 @@ const DataTopic = (props) => {
                             topic.data.map((item) => {
                                 return (
                                     <tr key={item._id}>
+                                        <Th>
+                                            <input
+                                                type="checkbox"
+                                                id={item._id}
+                                                value={item._id}
+                                                onChange={handleCheckboxChange}
+                                            />
+                                        </Th>
                                         <Th as="td" td>
                                             {item.name}
                                         </Th>

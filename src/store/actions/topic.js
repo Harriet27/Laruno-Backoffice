@@ -152,6 +152,37 @@ const fetchShowTopic = (id) => async (dispatch) => {
     console.log(result);
     dispatch(showTopic(result));
 };
+
+// --- Multiple Delete --- //
+const fetchMultipleDeleteTopics = (form) => async () => {
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/delete/multiple`;
+    const options = {
+        method: 'DELETE',
+        body: JSON.stringify(form),
+        headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    const response = await fetch(url, options);
+    await response.json();
+
+    if (response.status === 200) {
+        Swal.fire({
+            title: 'Delete Berhasil!',
+            text: '',
+            icon: 'success',
+        });
+        window.location.reload('/topic');
+    } else {
+        Swal.fire({
+            title: 'Delete gagal',
+            text: '',
+            icon: 'error',
+        });
+    }
+};
 export {
     getTopic,
     GET_TOPIC,
@@ -159,6 +190,7 @@ export {
     fetchPostTopic,
     fetchUpdateTopic,
     fetchDeleteTopic,
+    fetchMultipleDeleteTopics,
     showTopic,
     SHOW_TOPIC,
     fetchShowTopic,

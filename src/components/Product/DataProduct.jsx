@@ -54,11 +54,11 @@ overflow-x: none;
 const DataProduct = (props) => {
     const dispatch = useDispatch();
     const product = useSelector((state) => state.product.getProduct);
-    console.log(product, 'data product for pages product');
+
     const [form, setForm] = useState({
         id: [],
     });
-    console.log(form, 'isinya');
+
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetProduct());
