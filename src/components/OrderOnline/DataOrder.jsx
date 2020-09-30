@@ -6,6 +6,7 @@ import { fetchGetOrders } from '../../store/actions';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import moment from 'moment';
+import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import { Input, Th, sm, md, lg } from '../../elements/Styled/StyledForm';
 
 // --- Elements, Pages, Components --- //
@@ -111,7 +112,7 @@ const DataOrders = (props) => {
                                         <Th as="td" td></Th>
                                         <Th as="td" td></Th>
                                         <Th as="td" td>
-                                            Rp.{item.amount}
+                                            Rp. {FormatNumber(item.amount)}
                                         </Th>
                                         <Th as="td" td>
                                             {item.status}
