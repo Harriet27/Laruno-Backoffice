@@ -237,7 +237,7 @@ const fetchMultipleCloneProduct = (form) => async () => {
     const response = await fetch(url, options);
     await response.json();
 
-    if (response.status === 200) {
+    if (response.status === 201) {
         Swal.fire({
             title: 'Clone Berhasil!',
             text: '',

@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import {
+    Dropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
@@ -12,6 +18,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {
     fetchGetProduct,
     fetchMultipleDeleteProduct,
+    fetchMultipleCloneProduct,
 } from '../../store/actions';
 import DeleteProduct from './DeleteProduct';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
@@ -30,6 +37,10 @@ const ButtonLink = Styled.button`
 const DataProduct = (props) => {
     const dispatch = useDispatch();
     const product = useSelector((state) => state.product.getProduct);
+
+    // --- Dropdown --- //
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const toggle = () => setDropdownOpen((prevState) => !prevState);
 
     const [form, setForm] = useState({
         id: [],
@@ -56,6 +67,13 @@ const DataProduct = (props) => {
         event.preventDefault();
         dispatch(fetchMultipleDeleteProduct(form));
     };
+
+    // --- Multiple Clone --- //
+    const handlleMultipleClone = (event) => {
+        event.preventDefault();
+        dispatch(fetchMultipleCloneProduct(form));
+    };
+
     return (
         <React.Fragment>
             {/* --- section 1 --- Button Action link to Add Product ---*/}
@@ -66,10 +84,41 @@ const DataProduct = (props) => {
                     justifyContent: 'space-between',
                 }}
             >
-                <Link to={`/add-product`}>
-                    <ButtonLink>Add Product</ButtonLink>
-                </Link>
+                <div style={{ display: 'flex', justifyContent: 'row' }}>
+                    {form.id[0] ? (
+                        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+                            <DropdownToggle
+                                style={{ backgroundColor: '#0098DA' }}
+                                caret
+                            >
+                                Actions
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem onClick={handlleMultipleDelete}>
+                                    Delete
+                                </DropdownItem>
+                                <DropdownItem onClick={handlleMultipleClone}>
+                                    Clone
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                    ) : (
+                        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+                            {' '}
+                            <DropdownToggle
+                                style={{ backgroundColor: '#0098DA' }}
+                                caret
+                                disabled
+                            >
+                                Actions
+                            </DropdownToggle>
+                        </Dropdown>
+                    )}
 
+                    <Link to={`/add-product`}>
+                        <ButtonLink>Add Product</ButtonLink>
+                    </Link>
+                </div>
                 <div>
                     <label>Search</label> <Input type="search" />
                 </div>
@@ -83,14 +132,7 @@ const DataProduct = (props) => {
                         <thead>
                             <tr>
                                 <Th>
-                                    {/* --- Logic untuk multiple delete --- */}
-                                    {form.id[0] ? (
-                                        <div onClick={handlleMultipleDelete}>
-                                            <DeleteIcon color="error" />
-                                        </div>
-                                    ) : (
-                                        <DehazeIcon />
-                                    )}
+                                    <DehazeIcon />
                                 </Th>
                                 <Th>Visibility</Th>
                                 <Th>Product Code</Th>
