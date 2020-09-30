@@ -84,41 +84,36 @@ const DataProduct = (props) => {
                     justifyContent: 'space-between',
                 }}
             >
-                <div style={{ display: 'flex', justifyContent: 'row' }}>
-                    {form.id[0] ? (
-                        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-                            <DropdownToggle
-                                style={{ backgroundColor: '#0098DA' }}
-                                caret
-                            >
-                                Actions
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem onClick={handlleMultipleDelete}>
-                                    Delete
-                                </DropdownItem>
-                                <DropdownItem onClick={handlleMultipleClone}>
-                                    Clone
-                                </DropdownItem>
-                            </DropdownMenu>
-                        </Dropdown>
-                    ) : (
-                        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-                            {' '}
-                            <DropdownToggle
-                                style={{ backgroundColor: '#0098DA' }}
-                                caret
-                                disabled
-                            >
-                                Actions
-                            </DropdownToggle>
-                        </Dropdown>
-                    )}
+                {form.id[0] ? (
+                    <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+                        <DropdownToggle
+                            style={{ backgroundColor: '#0098DA' }}
+                            caret
+                        >
+                            Actions
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem onClick={handlleMultipleDelete}>
+                                Delete
+                            </DropdownItem>
+                            <DropdownItem onClick={handlleMultipleClone}>
+                                Clone
+                            </DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                ) : (
+                    <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+                        {' '}
+                        <DropdownToggle
+                            style={{ backgroundColor: '#0098DA' }}
+                            caret
+                            disabled
+                        >
+                            Actions
+                        </DropdownToggle>
+                    </Dropdown>
+                )}
 
-                    <Link to={`/add-product`}>
-                        <ButtonLink>Add Product</ButtonLink>
-                    </Link>
-                </div>
                 <div>
                     <label>Search</label> <Input type="search" />
                 </div>

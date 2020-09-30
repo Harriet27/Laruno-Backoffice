@@ -381,6 +381,7 @@ export default function DetailProduct(props) {
                             <Label>
                                 <Span>Harga</Span>
                             </Label>
+                            {/*  Styled for Rp */}
                             <div
                                 style={{
                                     display: 'flex',
@@ -409,19 +410,38 @@ export default function DetailProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* Field Time Period */}
+                        {/* --- Field Time Period --- */}
+
                         <WrapsField>
                             <Label>
-                                <Span>Periode waktu</Span>
+                                <Span>Periode Waktu</Span>
                             </Label>
-                            <div>
+                            {/*  Styled for Rp */}
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    border: '1px solid #ced4da',
+                                    borderRadius: '3px',
+                                }}
+                            >
                                 <Input
+                                    price
                                     type="number"
                                     name="time_period"
                                     id="time_period"
                                     value={time_period}
                                     onChange={onChange}
-                                />
+                                />{' '}
+                                <div
+                                    style={{
+                                        backgroundColor: '#e9ecef',
+                                        width: '80px',
+                                    }}
+                                >
+                                    <div style={{ textAlign: 'center' }}>
+                                        Month
+                                    </div>
+                                </div>
                             </div>
                         </WrapsField>
 

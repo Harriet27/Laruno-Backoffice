@@ -9,9 +9,9 @@ const Input = Styled.input`
     font-size: 14px;
     font-weight: 400;
     color: #495057;
-    border-radius: 3px;
+    border-radius:${(props) => (props.price ? '0' : '3px')};
     background-color: #FCFCFC;
-    border: 1px solid #ced4da;
+    border: ${(props) => (props.price ? '0' : '1px solid #ced4da')};
     &:focus{
     outline: none !important;
     border:1px solid #66AFE9;
@@ -94,8 +94,26 @@ export default function Bump(props) {
                                 <Label>
                                     <Span>Harga</Span>
                                 </Label>
-                                <div>
+                                {/*  Styled for Rp */}
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        border: '1px solid #ced4da',
+                                        borderRadius: '3px',
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            backgroundColor: '#e9ecef',
+                                            width: '50px',
+                                        }}
+                                    >
+                                        <div style={{ textAlign: 'center' }}>
+                                            Rp
+                                        </div>
+                                    </div>
                                     <Input
+                                        price
                                         type="number"
                                         name="bump_price"
                                         id="bump_price"
