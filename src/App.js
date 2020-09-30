@@ -23,6 +23,7 @@ import Roles from './pages/Roles/Roles';
 import Fullfilments from './pages/Fullfilments/Fullfilments';
 import AlertDelete from './elements/Alert/AlertDelete';
 import DataReseller from './components/Reseller/DataReseller';
+import DataOrders from './components/OrderOnline/DataOrder';
 
 export default function App() {
     return (
@@ -49,7 +50,7 @@ export default function App() {
                         <Users />
                     </Route>
                     <Route exact path="/order">
-                        <OrderOnline />
+                        <DataOrders />
                     </Route>
                     <Route exact path="/topic">
                         <Topic />

@@ -9,9 +9,9 @@ import moment from 'moment';
 import { Input, Th, sm, md, lg } from '../../elements/Styled/StyledForm';
 
 // --- Elements, Pages, Components --- //
-import AddNewOrders from './AddNewOrders';
-import UpdateOrders from './UpdateOrders';
-import DeleteOrders from './DeleteOrders';
+// import AddNewOrders from './AddNewOrders';
+// import UpdateOrders from './UpdateOrders';
+// import DeleteOrders from './DeleteOrders';
 import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
@@ -39,26 +39,26 @@ const DataOrders = (props) => {
     });
 
     // --- handleCheckboxChange --- //
-    const handleCheckboxChange = (event) => {
-        let newArray = [...form.id, event.target.id];
-        if (form.id.includes(event.target.id)) {
-            newArray = newArray.filter((item) => item !== event.target.id);
-        }
-        setForm({
-            id: newArray,
-        });
-    };
+    // const handleCheckboxChange = (event) => {
+    //     let newArray = [...form.id, event.target.id];
+    //     if (form.id.includes(event.target.id)) {
+    //         newArray = newArray.filter((item) => item !== event.target.id);
+    //     }
+    //     setForm({
+    //         id: newArray,
+    //     });
+    // };
 
-    // --- Multiple Delete --- //
-    const handlleMultipleDelete = (event) => {
-        event.preventDefault();
-        dispatch(fetchMultipleDeleteOrderss(form));
-    };
+    // // --- Multiple Delete --- //
+    // const handlleMultipleDelete = (event) => {
+    //     event.preventDefault();
+    //     dispatch(fetchMultipleDeleteOrderss(form));
+    // };
     return (
         <React.Fragment>
             {/* --- section 1 --- Add New Orders and Search Orders --- */}
             <SectionOne>
-                <AddNewOrders />
+                {/* <AddNewOrders /> */}
                 <div>
                     <label>Search</label> <Input type="search" />
                 </div>
@@ -70,21 +70,18 @@ const DataOrders = (props) => {
                     <thead>
                         <tr>
                             <Th>
-                                <div>
-                                    {form.id[0] ? (
-                                        <div onClick={handlleMultipleDelete}>
-                                            <DeleteIcon color="error" />
-                                        </div>
-                                    ) : (
-                                        <DehazeIcon />
-                                    )}
-                                </div>
+                                <input type="checkbox" />
                             </Th>
-                            <Th>Name</Th>
-                            <Th>Slug</Th>
-                            <Th>Created At</Th>
-                            <Th>Updated At</Th>
-                            <Th>Actions</Th>
+                            <Th>Invoice Number</Th>
+                            <Th>Tag</Th>
+                            <Th>Order Date</Th>
+                            <Th>Costumer Name</Th>
+                            <Th>Costumer Phone</Th>
+                            <Th>Product</Th>
+                            <Th>Total Price</Th>
+                            <Th>Payment Status</Th>
+                            <Th>Paid At</Th>
+                            <Th>Seller</Th>
                         </tr>
                     </thead>
                     <tbody>
@@ -98,36 +95,29 @@ const DataOrders = (props) => {
                                                 type="checkbox"
                                                 id={item._id}
                                                 value={item._id}
-                                                onChange={handleCheckboxChange}
+                                                // onChange={handleCheckboxChange}
                                             />
                                         </Th>
-                                        <Th as="td" td>
-                                            {item.name}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {item.slug}
-                                        </Th>
+                                        <Th as="td" td></Th>
+                                        <Th as="td" td></Th>
                                         <Th as="td" td>
                                             {moment(item.created_at).format(
                                                 'MMMM Do YYYY, h:mm:ss a'
                                             )}
                                         </Th>
                                         <Th as="td" td>
-                                            {moment(item.updated_at).format(
-                                                'MMMM Do YYYY, h:mm:ss a'
-                                            )}
+                                            {item.merchant_name}
+                                        </Th>
+                                        <Th as="td" td></Th>
+                                        <Th as="td" td></Th>
+                                        <Th as="td" td>
+                                            Rp.{item.amount}
                                         </Th>
                                         <Th as="td" td>
-                                            <div
-                                                style={{
-                                                    display: 'flex',
-                                                    flexDirection: 'row',
-                                                }}
-                                            >
-                                                <UpdateOrders id={item._id} />
-                                                <DeleteOrders id={item._id} />
-                                            </div>
+                                            {item.status}
                                         </Th>
+                                        <Th as="td" td></Th>
+                                        <Th as="td" td></Th>
                                     </tr>
                                 );
                             })}

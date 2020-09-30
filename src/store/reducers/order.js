@@ -1,7 +1,7 @@
 import { GET_ORDER } from '../actions';
 
 const initialState = {
-    getOrder: null,
+    getOrders: null,
 };
 
 export default (state = initialState, actions) => {
@@ -9,7 +9,7 @@ export default (state = initialState, actions) => {
         case GET_ORDER:
             return {
                 ...state,
-                getProduct: actions.data,
+                getOrders: actions.data,
             };
         default:
             return state;

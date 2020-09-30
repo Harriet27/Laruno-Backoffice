@@ -11,7 +11,7 @@ const getOrder = (data) => {
 };
 
 const fetchGetOrders = () => async (dispatch) => {
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/orders`;
         const options = {
