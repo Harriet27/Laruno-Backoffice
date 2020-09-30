@@ -223,7 +223,7 @@ const fetchMultipleDeleteProduct = (form) => async () => {
 };
 
 // --- Clone Method POST, Multiple Clone--- //
-const fetchMultipleDeleteProduct = (form) => async () => {
+const fetchMultipleCloneProduct = (form) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/multiple/clone`;
     const options = {
@@ -266,4 +266,5 @@ export {
     showProduct,
     fetchUpdateProduct,
     fetchMultipleDeleteProduct,
+    fetchMultipleCloneProduct,
 };

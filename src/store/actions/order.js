@@ -2,35 +2,6 @@ import Swal from 'sweetalert2';
 
 const GET_ORDER = 'GET_ORDER';
 
-// --- Post Product --- //
-
-const fetchPostOrders = (form, history) => async () => {
-    const token = JSON.parse(localStorage.getItem('user')).accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/orders`;
-
-    const options = {
-        body: JSON.stringify(form),
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
-    };
-
-    const response = await fetch(url, options);
-    await response.json();
-
-    if (response.status === 201) {
-        Swal.fire({
-            title: 'Add Succes!',
-            text: '',
-            icon: 'success',
-        });
-
-        history.push('/');
-    }
-};
-
 // --- Get Orders --- //
 const getOrder = (data) => {
     return {
@@ -42,7 +13,7 @@ const getOrder = (data) => {
 const fetchGetOrders = () => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).accessToken;
     try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products`;
+        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/orders`;
         const options = {
             method: 'GET',
             headers: {
@@ -58,4 +29,4 @@ const fetchGetOrders = () => async (dispatch) => {
     }
 };
 
-export { getOrder, GET_ORDER, fetchGetOrders, fetchPostOrders };
+export { getOrder, GET_ORDER, fetchGetOrders };
