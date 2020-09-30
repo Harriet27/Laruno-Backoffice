@@ -19,6 +19,8 @@ import {
     fetchGetProduct,
     fetchMultipleDeleteProduct,
     fetchMultipleCloneProduct,
+    fetchFindProduct,
+    fetchPostProducts,
 } from '../../store/actions';
 import DeleteProduct from './DeleteProduct';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
@@ -46,6 +48,10 @@ const DataProduct = (props) => {
         id: [],
     });
 
+    const [searching, setSearching] = useState({
+        search: '',
+    });
+    console.log(searching, 'pen tau');
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetProduct());
@@ -72,6 +78,16 @@ const DataProduct = (props) => {
     const handlleMultipleClone = (event) => {
         event.preventDefault();
         dispatch(fetchMultipleCloneProduct(form));
+    };
+
+    // --- handle Change --- //
+    const handleChange = (event) => {
+        setSearching({ ...searching, [event.target.name]: event.target.value });
+    };
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+        dispatch(fetchFindProduct(searching));
     };
 
     return (
@@ -115,8 +131,15 @@ const DataProduct = (props) => {
                 )}
 
                 <div>
-                    <label>Search</label> <Input type="search" />
+                    <label>Search</label>{' '}
+                    <Input
+                        type="search"
+                        name="search"
+                        value={searching.search}
+                        onChange={handleChange}
+                    />
                 </div>
+                <input type="button" onClick={handleSearch} value="KLIK" />
             </div>
 
             {/* --- section 2 --- Get Data Product --- */}

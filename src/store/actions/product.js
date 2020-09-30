@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 const GET_PRODUCT = 'GET_PRODUCT';
-const FIND_PRODUCT = 'FIND_PRODUCT';
+
 const SHOW_PRODUCT = 'SHOW_PRODUCT';
 // --- Post Product --- //
 
@@ -66,32 +66,31 @@ const fetchGetProduct = () => async (dispatch) => {
     }
 };
 
-// --- Find Product, Method GET, Search --- //
+// --- Find Product, Method POST, Search --- //
 
-const findProduct = (data) => {
-    return {
-        type: FIND_PRODUCT,
-        data,
-    };
-};
-
-const fetchFindProduct = () => async (dispatch) => {
+const fetchFindProduct = (form) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/find`;
-        const options = {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-        };
-        const response = await fetch(url, options);
-        const result = await response.json();
-        dispatch(findProduct(result));
-    } catch (error) {
-        console.log(error);
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/find/search`;
+
+    // --- apabila form itu kosong maka hapus formnya --- //
+    for (let key in form) {
+        if (form[key] === '') {
+            delete form[key];
+        }
     }
+    // --- penting nih --- //
+
+    const options = {
+        body: JSON.stringify(form),
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const response = await fetch(url, options);
+    await response.json();
 };
 
 // --- DELETE TOPIC METHOD DELETE --- //
@@ -257,9 +256,7 @@ export {
     fetchGetProduct,
     fetchFindProduct,
     getProduct,
-    findProduct,
     GET_PRODUCT,
-    FIND_PRODUCT,
     SHOW_PRODUCT,
     fetchDeleteProduct,
     fetchShowProduct,
