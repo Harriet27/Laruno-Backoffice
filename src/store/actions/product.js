@@ -148,7 +148,7 @@ const fetchShowProduct = (id) => async (dispatch) => {
 };
 
 // --- Update Product - Method PUT ---- //
-const fetchUpdateProduct = (form, id) => async () => {
+const fetchUpdateProduct = (form, id, history) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/${id}`;
@@ -178,7 +178,7 @@ const fetchUpdateProduct = (form, id) => async () => {
                 text: '',
                 icon: 'success',
             });
-            window.location.reload('/product');
+            history.push('/product');
         } else {
             Swal.fire({
                 title: 'update gagal',

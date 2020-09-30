@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useParams } from 'react-router-dom';
 
 // Elements, Components, Pages
 import Layout from '../../components/AddProduct/Layout';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { fetchUpdateProduct } from '../../store/actions';
+import Bump from '../../components/AddProduct/Bump';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,7 +32,8 @@ function getSteps() {
     return ['Detail Information', 'Layout'];
 }
 
-export default function UpdateProduct() {
+export default function StepperForm() {
+    let { id } = useParams();
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = getSteps();
@@ -44,8 +47,9 @@ export default function UpdateProduct() {
     };
 
     //  --- Fetching Data include Logic --- //
-    let { id } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const [form, setForm] = useState({
         type: '',
         name: '',
@@ -66,31 +70,51 @@ export default function UpdateProduct() {
         image_bonus_url: '',
         image_text_url: '',
         start_time: '',
-        end_time: '',
         commision_type: '',
         promotion_tools: '',
         product_redirect: '',
         feature_onheader: '',
         feature_onpage: '',
         sale_price: '',
-        duration_minute: '',
-        duration_hours: '',
+        duration: '',
+        agent: [],
+        // --- Order Bump --- //
+        bump: [],
     });
+
+    // --- Test Order Bump  catatatan ini masih dalam proses testing--- //
+    const [objBump, setObjBump] = useState({
+        bump_name: '',
+        bump_price: '',
+        bump_image: '',
+        bump_weight: '',
+    });
+    const handleBump = (event) => {
+        setObjBump({ ...objBump, [event.target.name]: event.target.value });
+    };
+
+    form.bump = [{ ...objBump }];
+    // --- Testing objBump --- //
 
     // handleSubmit untuk enter dan submit button
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(fetchUpdateProduct(form, id));
+        dispatch(fetchUpdateProduct(form, id, history));
     };
 
+    console.log(form, 'ini form isinya apa aja. ORDER BUMP');
     // handle change untuk onChange
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
-    // // try handle select multiple
+    // --- try handle select multiple --- //
     const handleSelect = (topic) => {
         setForm({ ...form, topic });
+    };
+
+    const handleSelectAgent = (agent) => {
+        setForm({ ...form, agent });
     };
 
     // --- Content --- //
@@ -113,10 +137,15 @@ export default function UpdateProduct() {
                             zoom_id={form.client_url}
                             date={form.date}
                             start_time={form.start_time}
-                            end_time={form.end_time}
                             slug={form.slug}
-                            duration_minute={form.duration_minute}
-                            duration_hours={form.duration_hours}
+                            duration={form.duration}
+                        />
+                        <Bump
+                            onChange={handleBump}
+                            bump_name={objBump.bump_name}
+                            bump_price={objBump.bump_price}
+                            bump_weight={objBump.bump_weight}
+                            bump_image={objBump.bump_image}
                         />
                     </>
                 );
@@ -124,6 +153,7 @@ export default function UpdateProduct() {
                 return (
                     <>
                         <Layout
+                            handleSelectAgent={handleSelectAgent}
                             onChange={handleChange}
                             headline={form.headline}
                             description={form.description}
@@ -135,6 +165,7 @@ export default function UpdateProduct() {
                             feature_onpage={form.feature_onpage}
                             feature_onheader={form.feature_onheader}
                             sale_price={form.sale_price}
+                            agent={form.agent}
                         />
                     </>
                 );
