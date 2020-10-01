@@ -83,6 +83,9 @@ export default function DetailProduct(props) {
         topic_select,
         handleSelect,
         duration,
+        ongkir_gratis,
+        tambah_ongkir,
+        weight,
         // duration_hours,
         // duration_minute,
     } = props;
@@ -287,79 +290,54 @@ export default function DetailProduct(props) {
                                     {/* --- Batas Percobaan TIME PICKER --- */}
                                 </div>
                             ) : null}
-                            {props.form === 'digital' ? (
-                                <WrapsField>
-                                    <Label>
-                                        <Span>Fullfilment</Span>
-                                    </Label>
-                                    <div>
-                                        <Input
-                                            as="select"
-                                            name="fullfilment"
-                                            id="fullfilment"
-                                        >
-                                            <option value="buku">Buku</option>
-                                            <option value="video">Video</option>
-                                        </Input>
-                                    </div>
-                                </WrapsField>
-                            ) : null}
-                            {/* {props.form === 'ecommerce' ? (
-                                <WrapsField
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'row',
-                                        justifyContent: 'space-between',
-                                    }}
-                                >
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            value="cod"
-                                            name="cod"
-                                            id="cod"
-                                        />
-                                        <Label>
-                                            <Span
-                                                style={{ marginLeft: '10PX' }}
-                                            >
-                                                COD
-                                            </Span>
-                                        </Label>
-                                    </div>
 
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            value="regular"
-                                            name="regular"
-                                            id="regular"
-                                        />
+                            {/* ---- Ecommerce --- Testing nunggu Service dari Backend ---- */}
+                            {props.form === 'ecommerce' ? (
+                                <div>
+                                    <WrapsField>
                                         <Label>
-                                            <Span
-                                                style={{ marginLeft: '10PX' }}
-                                            >
-                                                Regular
-                                            </Span>
+                                            <Span>Weight</Span> (gr)
                                         </Label>
-                                    </div>
-                                    <div>
-                                        <input
+                                        <div>
+                                            <Input
+                                                type="number"
+                                                name="weight"
+                                                id="weight"
+                                                value={weight}
+                                                onChange={onChange}
+                                            />
+                                        </div>
+                                    </WrapsField>
+
+                                    {/* --- Radio Button 1 --- */}
+                                    <WrapsField>
+                                        <Input
+                                            style={{ width: '3%' }}
                                             type="radio"
-                                            value="both"
-                                            name="both"
-                                            id="both"
-                                        />
-                                        <Label>
-                                            <Span
-                                                style={{ marginLeft: '10PX' }}
-                                            >
-                                                Both
-                                            </Span>
-                                        </Label>
-                                    </div>
-                                </WrapsField>
-                            ) : null}*/}
+                                            name="tambah_ongkir"
+                                            id="tambah_ongkir"
+                                            value={tambah_ongkir}
+                                            onChange={onChange}
+                                        />{' '}
+                                        <Span>Mau Tambah Ongkos Kirim ?</Span>
+                                    </WrapsField>
+
+                                    {/* Radio Button 2 --- */}
+                                    <WrapsField>
+                                        <Input
+                                            style={{ width: '3%' }}
+                                            type="radio"
+                                            name="weight"
+                                            id="weight"
+                                            value={ongkir_gratis}
+                                            onChange={onChange}
+                                        />{' '}
+                                        <Span>
+                                            Mau Ongkos Kirim Secara Gratis ?
+                                        </Span>
+                                    </WrapsField>
+                                </div>
+                            ) : null}
                         </div>
 
                         {/* Field Topic masih error */}
