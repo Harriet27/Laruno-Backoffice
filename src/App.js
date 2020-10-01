@@ -23,7 +23,8 @@ import Roles from './pages/Roles/Roles';
 import Fullfilments from './pages/Fullfilments/Fullfilments';
 import AlertDelete from './elements/Alert/AlertDelete';
 import DataReseller from './components/Reseller/DataReseller';
-import DataOrders from './components/OrderOnline/DataOrder';
+import Order from './pages/Order/Order';
+import DataCoupons from './components/Coupons/DataCoupons';
 
 export default function App() {
     return (
@@ -50,7 +51,7 @@ export default function App() {
                         <Users />
                     </Route>
                     <Route exact path="/order">
-                        <DataOrders />
+                        <Order />
                     </Route>
                     <Route exact path="/topic">
                         <Topic />
@@ -72,6 +73,9 @@ export default function App() {
                     </Route>
                     <Route exact path="/reseller">
                         <DataReseller />
+                    </Route>
+                    <Route exact path="/coupons">
+                        <DataCoupons />
                     </Route>
                 </Switch>
             </Router>

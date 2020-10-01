@@ -8,6 +8,7 @@ import contents from './contents';
 import agents from './agents';
 import reseller from './reseller';
 import order from './order';
+import coupons from './coupons';
 
 export default combineReducers({
     topic,
@@ -18,4 +19,5 @@ export default combineReducers({
     agents,
     reseller,
     order,
+    coupons,
 });

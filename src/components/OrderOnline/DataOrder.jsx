@@ -70,9 +70,9 @@ const DataOrders = (props) => {
                 <Table striped>
                     <thead>
                         <tr>
-                            <Th>
+                            {/* <Th>
                                 <input type="checkbox" />
-                            </Th>
+                            </Th> */}
                             <Th>Invoice Number</Th>
                             <Th>Tag</Th>
                             <Th>Order Date</Th>
@@ -90,7 +90,7 @@ const DataOrders = (props) => {
                             order.data.map((item) => {
                                 return (
                                     <tr key={item._id}>
-                                        <Th>
+                                        {/* <Th>
                                             <Input
                                                 checkbox
                                                 type="checkbox"
@@ -98,7 +98,7 @@ const DataOrders = (props) => {
                                                 value={item._id}
                                                 // onChange={handleCheckboxChange}
                                             />
-                                        </Th>
+                                        </Th> */}
                                         <Th as="td" td></Th>
                                         <Th as="td" td></Th>
                                         <Th as="td" td>
