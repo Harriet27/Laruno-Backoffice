@@ -73,7 +73,7 @@ export default function StepperForm() {
             {
                 bump_name: '',
                 bump_price: '',
-                bump_weight: 30,
+                bump_weight: 0,
                 bump_image: '',
             },
         ],
@@ -105,7 +105,6 @@ export default function StepperForm() {
             feature_onheader: '',
             feature_onpage: '',
         },
-        on_sale: false,
     });
 
     // --- Test Order Bump  catatatan ini masih dalam proses testing--- //
