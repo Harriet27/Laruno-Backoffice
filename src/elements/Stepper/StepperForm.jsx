@@ -50,26 +50,10 @@ export default function StepperForm() {
     const history = useHistory();
 
     const [form, setForm] = useState({
-        type: '',
+        // --- section one --- //
         name: '',
         slug: '',
-        visibility: '',
-        headline: '',
-        subheadline: '',
-        description: '',
-        learn_about: [
-            {
-                title: '',
-                content: '',
-            },
-        ],
-        time_period: '',
-        price: 0,
-        sale_price: 0,
-        topic: [],
-        image_url: '',
-        video_url: '',
-
+        type: '',
         webinar: {
             date: '',
             duration: '',
@@ -80,7 +64,33 @@ export default function StepperForm() {
             weight: 0,
             shipping_charges: true,
         },
+        topic: [],
+        price: 0,
+        time_period: '',
+        visibility: '',
         sale_method: '',
+        bump: [
+            {
+                bump_name: '',
+                bump_price: '',
+                bump_weight: 30,
+                bump_image: '',
+            },
+        ],
+
+        // --- Section 2 --- //
+        headline: '',
+        subheadline: '',
+        description: '',
+        learn_about: [
+            {
+                title: '',
+                content: '',
+            },
+        ],
+        sale_price: 0,
+        image_url: '',
+        video_url: '',
         agent: [],
         image_bonus_url: [],
         image_text_url: [],
@@ -96,14 +106,6 @@ export default function StepperForm() {
             feature_onpage: '',
         },
         on_sale: false,
-        bump: [
-            {
-                bump_name: '',
-                bump_price: '',
-                bump_weight: 30,
-                bump_image: '',
-            },
-        ],
     });
 
     // --- Test Order Bump  catatatan ini masih dalam proses testing--- //
