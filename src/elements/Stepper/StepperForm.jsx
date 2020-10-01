@@ -52,33 +52,58 @@ export default function StepperForm() {
     const [form, setForm] = useState({
         type: '',
         name: '',
-        price: '',
-        headline: '',
-        description: '',
-        time_period: '',
-        date: '',
         slug: '',
+        visibility: '',
+        headline: '',
+        subheadline: '',
+        description: '',
+        learn_about: [
+            {
+                title: '',
+                content: '',
+            },
+        ],
+        time_period: '',
+        price: 0,
+        sale_price: 0,
+        topic: [],
         image_url: '',
         video_url: '',
+
+        webinar: {
+            date: '',
+            duration: '',
+            start_time: '',
+            client_url: '',
+        },
+        ecommerce: {
+            weight: 0,
+            shipping_charges: true,
+        },
         sale_method: '',
-        topic: [],
-        visibility: '',
-        mentor: '',
-        client_url: '',
-        image_product_url: '',
-        image_bonus_url: '',
-        image_text_url: '',
-        start_time: '',
-        commision_type: '',
-        promotion_tools: '',
-        product_redirect: '',
-        feature_onheader: '',
-        feature_onpage: '',
-        sale_price: '',
-        duration: '',
         agent: [],
-        // --- Order Bump --- //
-        bump: [],
+        image_bonus_url: [],
+        image_text_url: [],
+        image_product_url: [],
+        section: [
+            {
+                title: '',
+                content: '',
+            },
+        ],
+        feature: {
+            feature_onheader: '',
+            feature_onpage: '',
+        },
+        on_sale: false,
+        bump: [
+            {
+                bump_name: '',
+                bump_price: '',
+                bump_weight: 30,
+                bump_image: '',
+            },
+        ],
     });
 
     // --- Test Order Bump  catatatan ini masih dalam proses testing--- //
