@@ -26,10 +26,10 @@ const SectionOne = Styled.div`
 
 const DataOrders = (props) => {
     const dispatch = useDispatch();
-    const order = useSelector((state) => state.order.getOrders);
-    console.log(order);
+    const orders = useSelector((state) => state.orders.getOrders);
+    console.log(orders);
 
-    // --- useEffect --- Get Data order ---//
+    // --- useEffect --- Get Data orders ---//
     useEffect(() => {
         dispatch(fetchGetOrders());
     }, [dispatch]);
@@ -75,7 +75,7 @@ const DataOrders = (props) => {
                             </Th> */}
                             <Th>Invoice Number</Th>
                             <Th>Tag</Th>
-                            <Th>Order Date</Th>
+                            <Th>Orders Date</Th>
                             <Th>Costumer Name</Th>
                             <Th>Costumer Phone</Th>
                             <Th>Product</Th>
@@ -86,8 +86,8 @@ const DataOrders = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {order !== null &&
-                            order.data.map((item) => {
+                        {orders !== null &&
+                            orders.data.map((item) => {
                                 return (
                                     <tr key={item._id}>
                                         {/* <Th>

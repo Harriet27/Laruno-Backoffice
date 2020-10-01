@@ -7,7 +7,7 @@ import roles from './roles';
 import contents from './contents';
 import agents from './agents';
 import reseller from './reseller';
-import order from './order';
+import orders from './order';
 import coupons from './coupons';
 
 export default combineReducers({
@@ -18,6 +18,6 @@ export default combineReducers({
     contents,
     agents,
     reseller,
-    order,
+    orders,
     coupons,
 });
