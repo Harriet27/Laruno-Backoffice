@@ -12,7 +12,7 @@ import moment from 'moment';
 import { Input, Th, sm, md, lg } from '../../elements/Styled/StyledForm';
 
 // --- Elements, Pages, Components --- //
-// import AddNewCoupons from './AddNewCoupons';
+import AddCoupons from './AddCoupons';
 // import UpdateCoupons from './UpdateCoupons';
 // import DeleteCoupons from './DeleteCoupons';
 import Card from '../../elements/Card/Card';
@@ -58,7 +58,7 @@ const DataCoupons = (props) => {
         dispatch(fetchMultipleDeleteCoupons(form));
     };
     return (
-        <React.Fragment>
+        <section style={{ margin: '50px' }}>
             {/* --- section 1 --- Add New Coupons and Search Coupons --- */}
             <SectionOne>
                 {/* <AddNewCoupons /> */}
@@ -127,13 +127,16 @@ const DataCoupons = (props) => {
                                         <Th as="td" td>
                                             {item.payment_method}
                                         </Th>
+                                        <Th as="td" td>
+                                            <AddCoupons />
+                                        </Th>
                                     </tr>
                                 );
                             })}
                     </tbody>
                 </Table>
             </Card>
-        </React.Fragment>
+        </section>
     );
 };
 

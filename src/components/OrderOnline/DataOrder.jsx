@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +8,14 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import moment from 'moment';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
-import { Input, Th, sm, md, lg } from '../../elements/Styled/StyledForm';
+import {
+    Input,
+    Th,
+    sm,
+    md,
+    lg,
+    Overflow,
+} from '../../elements/Styled/StyledForm';
 
 // --- Elements, Pages, Components --- //
 // import AddNewOrders from './AddNewOrders';
@@ -21,6 +29,16 @@ const SectionOne = Styled.div`
     margin: ${lg} 0;
     display: flex;
     justify-content: space-between;
+`;
+
+const ButtonLink = Styled.button`
+    background-color:#0098DA;
+    padding: 5px;
+    border-radius: 3px;
+    color: white;
+    font-size: ${md};
+    border: 1px solid #ced4da;
+    font-Weight: 400;
 `;
 // --- Batas --- //
 
@@ -67,63 +85,98 @@ const DataOrders = (props) => {
 
             {/* --- section 2 --- Table Get Data Product In Table --- */}
             <Card isNormal>
-                <Table striped>
-                    <thead>
-                        <tr>
-                            {/* <Th>
-                                <input type="checkbox" />
-                            </Th> */}
-                            <Th>Invoice Number</Th>
-                            <Th>Tag</Th>
-                            <Th>Orders Date</Th>
-                            <Th>Costumer Name</Th>
-                            <Th>Costumer Phone</Th>
-                            <Th>Product</Th>
-                            <Th>Total Price</Th>
-                            <Th>Payment Status</Th>
-                            <Th>Paid At</Th>
-                            <Th>Seller</Th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {orders !== null &&
-                            orders.data.map((item) => {
-                                return (
-                                    <tr key={item._id}>
-                                        {/* <Th>
-                                            <Input
-                                                checkbox
-                                                type="checkbox"
-                                                id={item._id}
-                                                value={item._id}
-                                                // onChange={handleCheckboxChange}
-                                            />
-                                        </Th> */}
-                                        <Th as="td" td></Th>
-                                        <Th as="td" td></Th>
-                                        <Th as="td" td>
-                                            {moment(item.created_at).format(
-                                                'MMMM Do YYYY, h:mm:ss a'
-                                            )}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {item.merchant_name}
-                                        </Th>
-                                        <Th as="td" td></Th>
-                                        <Th as="td" td></Th>
-                                        <Th as="td" td>
-                                            Rp. {FormatNumber(item.amount)}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {item.status}
-                                        </Th>
-                                        <Th as="td" td></Th>
-                                        <Th as="td" td></Th>
-                                    </tr>
-                                );
-                            })}
-                    </tbody>
-                </Table>
+                <Overflow>
+                    <Table striped>
+                        <thead>
+                            <tr>
+                                <Th>
+                                    <DehazeIcon />
+                                </Th>
+                                <Th>Invoice Number</Th>
+                                <Th>Tag</Th>
+                                <Th>Orders Date</Th>
+                                <Th>Costumer Name</Th>
+                                <Th>Costumer Phone</Th>
+                                <Th>Product</Th>
+                                <Th>Total Price</Th>
+                                <Th>Payment Status</Th>
+                                <Th>Paid At</Th>
+                                <Th>Follow Up</Th>
+                                <Th>Actions</Th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orders !== null &&
+                                orders.data.map((item) => {
+                                    return (
+                                        <tr key={item._id}>
+                                            <Th>
+                                                <Input
+                                                    checkbox
+                                                    type="checkbox"
+                                                    id={item._id}
+                                                    value={item._id}
+                                                    // onChange={handleCheckboxChange}
+                                                />
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.invoice_id}
+                                            </Th>
+                                            <Th as="td" td>
+                                                -
+                                            </Th>
+                                            <Th as="td" td>
+                                                {moment(item.created_at).format(
+                                                    'MMMM Do YYYY, h:mm:ss a'
+                                                )}
+                                            </Th>
+                                            <Th as="td" td>
+                                                -
+                                            </Th>
+                                            <Th as="td" td>
+                                                -
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.cart.items.map((user) => {
+                                                    return (
+                                                        <React.Fragment
+                                                            key={item._id}
+                                                        >
+                                                            {user.item.name}
+                                                        </React.Fragment>
+                                                    );
+                                                })}
+                                            </Th>
+                                            <Th as="td" td>
+                                                Rp.{' '}
+                                                {FormatNumber(
+                                                    item.cart.total_price
+                                                )}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.status}
+                                            </Th>
+                                            <Th as="td" td>
+                                                -
+                                            </Th>
+                                            <Th as="td" td>
+                                                -
+                                            </Th>
+                                            <Th as="td" td>
+                                                <Link
+                                                    to={`/order/detail/${item._id}`}
+                                                >
+                                                    <ButtonLink>
+                                                        detail
+                                                    </ButtonLink>
+                                                </Link>
+                                            </Th>
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
+                    </Table>
+                </Overflow>
             </Card>
         </React.Fragment>
     );

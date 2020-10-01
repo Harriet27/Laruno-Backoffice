@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 const GET_PRODUCT = 'GET_PRODUCT';
-
+const FIND_PRODUCT = 'FIND_PRODUCT';
 const SHOW_PRODUCT = 'SHOW_PRODUCT';
 // --- Post Product --- //
 
@@ -67,8 +67,14 @@ const fetchGetProduct = () => async (dispatch) => {
 };
 
 // --- Find Product, Method POST, Search --- //
+const findProduct = (data) => {
+    return {
+        type: FIND_PRODUCT,
+        data,
+    };
+};
 
-const fetchFindProduct = (form) => async () => {
+const fetchFindProduct = (form) => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/find/search`;
 
@@ -90,7 +96,8 @@ const fetchFindProduct = (form) => async () => {
     };
 
     const response = await fetch(url, options);
-    await response.json();
+    const result = await response.json();
+    dispatch(findProduct(result));
 };
 
 // --- DELETE TOPIC METHOD DELETE --- //
@@ -258,10 +265,12 @@ export {
     getProduct,
     GET_PRODUCT,
     SHOW_PRODUCT,
+    FIND_PRODUCT,
     fetchDeleteProduct,
     fetchShowProduct,
     showProduct,
     fetchUpdateProduct,
     fetchMultipleDeleteProduct,
     fetchMultipleCloneProduct,
+    findProduct,
 };

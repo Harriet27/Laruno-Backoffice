@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 
 const GET_ORDERS = 'GET_ORDERS';
-const SHOW_ORDERS = 'SHOW_ORDERS';
+const DETAIL_ORDERS = 'DETAIL_ORDERS';
 
 // --- Get Orders --- //
 const getOrder = (data) => {
@@ -31,9 +31,9 @@ const fetchGetOrders = () => async (dispatch) => {
 };
 
 //  ---  Show Orders Method Get --- //
-const showOrders = (data) => {
+const detailOrders = (data) => {
     return {
-        type: SHOW_ORDERS,
+        type: DETAIL_ORDERS,
         data,
     };
 };
@@ -50,14 +50,14 @@ const fetchShowOrders = (id) => async (dispatch) => {
     };
     const response = await fetch(url, options);
     const result = await response.json();
-    dispatch(showOrders(result));
+    dispatch(detailOrders(result));
 };
 
 export {
     getOrder,
     GET_ORDERS,
     fetchGetOrders,
-    showOrders,
+    detailOrders,
     fetchShowOrders,
-    SHOW_ORDERS,
+    DETAIL_ORDERS,
 };

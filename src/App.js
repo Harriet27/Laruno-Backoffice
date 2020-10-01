@@ -25,7 +25,7 @@ import AlertDelete from './elements/Alert/AlertDelete';
 import DataReseller from './components/Reseller/DataReseller';
 import Order from './pages/Order/Order';
 import DataCoupons from './components/Coupons/DataCoupons';
-
+import DetailOrder from './components/OrderOnline/DetailOrder';
 export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
@@ -76,6 +76,9 @@ export default function App() {
                     </Route>
                     <Route exact path="/coupons">
                         <DataCoupons />
+                    </Route>
+                    <Route exact path="/order/detail/:id">
+                        <DetailOrder />
                     </Route>
                 </Switch>
             </Router>

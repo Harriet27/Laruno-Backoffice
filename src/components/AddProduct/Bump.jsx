@@ -32,19 +32,13 @@ const Span = Styled.span`
 `;
 
 const Section = Styled.div`
-    padding: 50px 750px 50px 100px;
+    padding: 25px 750px 50px 100px;
     line-height: 1.5;
     @media (max-width: 1000px) {
       padding: 40px
     }
 `;
-const SectionOne = Styled.div`
-    display: flex;
-    width: 50%;
-    @media (max-width: 800px) {
-        width: 100%
-    }
-`;
+
 // --- Styled Components --- //
 
 export default function Bump(props) {

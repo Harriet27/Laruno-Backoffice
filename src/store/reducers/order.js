@@ -1,8 +1,8 @@
-import { GET_ORDERS, SHOW_ORDERS } from '../actions/';
+import { GET_ORDERS, DETAIL_ORDERS } from '../actions/';
 
 const initialState = {
     getOrders: null,
-    showOrders: null,
+    detailOrders: null,
 };
 
 export default (state = initialState, actions) => {
@@ -12,10 +12,10 @@ export default (state = initialState, actions) => {
                 ...state,
                 getOrders: actions.data,
             };
-        case SHOW_ORDERS:
+        case DETAIL_ORDERS:
             return {
                 ...state,
-                showOrders: actions.data,
+                detailOrders: actions.data,
             };
         default:
             return state;
