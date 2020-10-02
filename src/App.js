@@ -30,54 +30,68 @@ export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
             <Router>
-                <Header />
                 <Switch>
                     <Route exact path="/">
                         <Login />
                     </Route>
+
                     <Route exact path="/dashboard">
+                        <Header />
                         <Dashboard />
                     </Route>
                     <Route exact path="/add-product">
+                        <Header />
                         <AddProducts />
                     </Route>
                     <Route exact path="/product">
+                        <Header />
                         <Products />
                     </Route>
                     <Route exact path="/roles">
+                        <Header />
                         <Roles />
                     </Route>
                     <Route exact path="/users">
+                        <Header />
                         <Users />
                     </Route>
                     <Route exact path="/order">
+                        <Header />
                         <Order />
                     </Route>
                     <Route exact path="/topic">
+                        <Header />
                         <Topic />
                     </Route>
                     <Route exact path="/fullfilments">
+                        <Header />
                         <Fullfilments />
                     </Route>
 
                     <Route exact path="/product/show/:id">
+                        <Header />
                         <ShowProduct />
                     </Route>
 
                     <Route exact path="/product/update/:id">
+                        <Header />
                         <UpdateProduct />
                     </Route>
 
                     <Route exact path="/test-components">
+                        <Header />
                         <AlertDelete />
                     </Route>
                     <Route exact path="/reseller">
+                        <Header />
                         <DataReseller />
                     </Route>
                     <Route exact path="/coupons">
+                        <Header />
                         <DataCoupons />
                     </Route>
                     <Route exact path="/order/detail/:id">
+                        <Header />
                         <DetailOrder />
                     </Route>
                 </Switch>

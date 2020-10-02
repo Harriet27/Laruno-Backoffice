@@ -154,6 +154,21 @@ export default function StepperForm() {
         });
     };
 
+    const bayar_ongkir = 'true';
+    const gratis_ongkir = 'false';
+    // handle radio button
+    const handleRadio = (event) => {
+        if (event.target.value === 'true') {
+            setObjEcommerce({
+                shipping_charges: true,
+            });
+        } else if (event.target.value === 'false') {
+            setObjEcommerce({
+                shipping_charges: false,
+            });
+        }
+    };
+
     form.bump = [{ ...objBump }];
     form.webinar = { ...objWebinar };
     form.ecommerce = { ...objEcommerce };
@@ -186,6 +201,15 @@ export default function StepperForm() {
                 return (
                     <>
                         <DetailProduct
+                            checked_bayar={
+                                objEcommerce.shipping_charges === false
+                            }
+                            checked_gratis={
+                                objEcommerce.shipping_charges === false
+                            }
+                            bayar_ongkir={bayar_ongkir}
+                            gratis_ongkir={gratis_ongkir}
+                            handleRadio={handleRadio}
                             handleSelect={handleSelect}
                             onChange={handleChange}
                             handleWebinar={handleWebinar}
@@ -204,7 +228,7 @@ export default function StepperForm() {
                             duration={form.duration}
                         />
                         <Bump
-                            onChange={handleChange}
+                            onChange={handleBump}
                             bump_name={objBump.bump_name}
                             bump_price={objBump.bump_price}
                             bump_weight={objBump.bump_weight}

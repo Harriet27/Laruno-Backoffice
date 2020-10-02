@@ -83,10 +83,14 @@ export default function DetailProduct(props) {
         topic_select,
         handleSelect,
         duration,
-        ongkir_gratis,
-        tambah_ongkir,
         weight,
         handleWebinar,
+        // --- radio button --- //
+        checked_bayar,
+        checked_gratis,
+        bayar_ongkir,
+        gratis_ongkir,
+        handleRadio,
         // duration_hours,
         // duration_minute,
     } = props;
@@ -317,8 +321,9 @@ export default function DetailProduct(props) {
                                             type="radio"
                                             name="tambah_ongkir"
                                             id="tambah_ongkir"
-                                            value={tambah_ongkir}
-                                            onChange={onChange}
+                                            value={bayar_ongkir}
+                                            checked={checked_bayar}
+                                            onChange={handleRadio}
                                         />{' '}
                                         <Span>Mau Tambah Ongkos Kirim ?</Span>
                                     </WrapsField>
@@ -330,8 +335,9 @@ export default function DetailProduct(props) {
                                             type="radio"
                                             name="weight"
                                             id="weight"
-                                            value={ongkir_gratis}
-                                            onChange={onChange}
+                                            value={gratis_ongkir}
+                                            checked={checked_gratis}
+                                            onChange={handleRadio}
                                         />{' '}
                                         <Span>
                                             Mau Ongkos Kirim Secara Gratis ?
