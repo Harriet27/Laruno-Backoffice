@@ -67,6 +67,7 @@ export default function Layout(props) {
         sale_price,
         agent,
         handleSelectAgent,
+        handleFeature,
     } = props;
 
     // --- Agents --- //
@@ -180,7 +181,7 @@ export default function Layout(props) {
                                     name="feature_onpage"
                                     id="feature_onpage"
                                     value={feature_onpage}
-                                    onChange={onChange}
+                                    onChange={handleFeature}
                                 />
                             </div>
                         </WrapsField>
@@ -197,7 +198,7 @@ export default function Layout(props) {
                                     name="feature_onheader"
                                     id="feature_onheader"
                                     value={feature_onheader}
-                                    onChange={onChange}
+                                    onChange={handleFeature}
                                 />
                             </div>
                         </WrapsField>

@@ -86,6 +86,7 @@ export default function DetailProduct(props) {
         ongkir_gratis,
         tambah_ongkir,
         weight,
+        handleWebinar,
         // duration_hours,
         // duration_minute,
     } = props;
@@ -178,7 +179,7 @@ export default function DetailProduct(props) {
                                                 name="client_url"
                                                 id="client_url"
                                                 value={zoom_id}
-                                                onChange={onChange}
+                                                onChange={handleWebinar}
                                             />
                                         </div>
                                     </WrapsField>
@@ -199,7 +200,7 @@ export default function DetailProduct(props) {
                                                     name="date"
                                                     id="date"
                                                     value={date}
-                                                    onChange={onChange}
+                                                    onChange={handleWebinar}
                                                 />
                                             </div>
                                         </WrapsField>
@@ -210,7 +211,7 @@ export default function DetailProduct(props) {
                                                     name="start_time"
                                                     id="start_time"
                                                     value={start_time}
-                                                    onChange={onChange}
+                                                    onChange={handleWebinar}
                                                 >
                                                     {optionsTime.map((item) => {
                                                         return (
@@ -246,7 +247,7 @@ export default function DetailProduct(props) {
                                                 name="duration"
                                                 id="duration"
                                                 value={duration}
-                                                onChange={onChange}
+                                                onChange={handleWebinar}
                                             >
                                                 {DurationHour.map((item) => {
                                                     return (

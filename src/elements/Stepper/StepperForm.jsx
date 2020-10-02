@@ -107,20 +107,57 @@ export default function StepperForm() {
         },
     });
 
-    // --- Test Order Bump  catatatan ini masih dalam proses testing--- //
+    // --- Test Order Bump,  Webinar, ecommerce--- //
     const [objBump, setObjBump] = useState({
         bump_name: '',
         bump_price: '',
         bump_image: '',
         bump_weight: '',
     });
+
+    const [objWebinar, setObjWebinar] = useState({
+        date: '',
+        duration: '',
+        start_time: '',
+        client_url: '',
+    });
+
+    const [objEcommerce, setObjEcommerce] = useState({
+        weight: 0,
+        shipping_charges: true,
+    });
+
+    const [objFeature, setObjFeature] = useState({
+        feature_onheader: '',
+        feature_onpage: '',
+    });
+
     const handleBump = (event) => {
         setObjBump({ ...objBump, [event.target.name]: event.target.value });
     };
+    const handleWebinar = (event) => {
+        setObjWebinar({
+            ...objWebinar,
+            [event.target.name]: event.target.value,
+        });
+    };
+    const handleEcommerce = (event) => {
+        setObjEcommerce({
+            ...objEcommerce,
+            [event.target.name]: event.target.value,
+        });
+    };
+    const handleFeature = (event) => {
+        setObjFeature({
+            ...objFeature,
+            [event.target.name]: event.target.value,
+        });
+    };
 
     form.bump = [{ ...objBump }];
-    // --- Testing objBump --- //
-
+    form.webinar = { ...objWebinar };
+    form.ecommerce = { ...objEcommerce };
+    form.feature = { ...objFeature };
     // handleSubmit untuk enter dan submit button
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -151,6 +188,7 @@ export default function StepperForm() {
                         <DetailProduct
                             handleSelect={handleSelect}
                             onChange={handleChange}
+                            handleWebinar={handleWebinar}
                             form={form.type}
                             name={form.name}
                             type={form.type}
@@ -166,7 +204,7 @@ export default function StepperForm() {
                             duration={form.duration}
                         />
                         <Bump
-                            onChange={handleBump}
+                            onChange={handleChange}
                             bump_name={objBump.bump_name}
                             bump_price={objBump.bump_price}
                             bump_weight={objBump.bump_weight}
@@ -180,6 +218,7 @@ export default function StepperForm() {
                         <Layout
                             handleSelectAgent={handleSelectAgent}
                             onChange={handleChange}
+                            handleFeature={handleFeature}
                             headline={form.headline}
                             description={form.description}
                             feedback={form.feedback}
