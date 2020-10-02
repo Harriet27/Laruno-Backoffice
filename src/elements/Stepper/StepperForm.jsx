@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Layout from '../../components/AddProduct/Layout';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
 import DynamicField from '../../components/AddProduct/DynamicField';
+import DynamicFieldSection from '../../components/AddProduct/DynamicFieldSection';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchPostProducts } from '../../store/actions/product';
@@ -52,9 +53,9 @@ export default function StepperForm() {
 
     const [form, setForm] = useState({
         // --- section one --- //
-        name: '',
-        slug: '',
-        type: '',
+        name: null,
+        slug: null,
+        type: null,
         webinar: {
             date: '',
             duration: '',
@@ -200,13 +201,12 @@ export default function StepperForm() {
 
     // ======>>> lOGIC DETAIL PRODUCT SECTION 2 "layout" <<<====== //
 
+    // ------> Logic untuk Dynamic Form Learn About <------ //
     const [fields, setFields] = useState([{ title: '', contents: '' }]);
-    // ===>> Handle Change <<=== ---- //
+    // ===>> Handle Change <<===  //
     function handleChangeDynamic(i, event) {
         const values = [...fields];
-
         values[i].title = event.target.value;
-
         setFields(values);
     }
     function handleChangeContents(i, event) {
@@ -233,6 +233,40 @@ export default function StepperForm() {
         setFields(values);
     }
     form.learn_about = [...fields];
+    // ---- BATAS BAWAH !!!! ---- //
+
+    // ------> Logic untuk Dynamic Form Section <------ //
+    const [sectionAdd, setSectionAdd] = useState([{ title: '', contents: '' }]);
+    // ===>> Handle Change <<===  //
+    function handleChangeDynamicSection(i, event) {
+        const values = [...sectionAdd];
+        values[i].title = event.target.value;
+        setSectionAdd(values);
+    }
+    function handleChangeContentsSection(i, event) {
+        // semua object di dalam fields
+        const values = [...sectionAdd];
+        // untuk semua object yang berisi key 'contents' di dalam fields yg kita klik maka valuenya merupakan hasil inputan kita
+        values[i].contents = event.target.value;
+
+        setSectionAdd(values);
+    }
+
+    function handleAddSection() {
+        //  menambahkan field ke dalam value input terbaru
+        const values = [...sectionAdd];
+        values.push({ title: '', contents: '' });
+        setSectionAdd(values);
+    }
+
+    // --- Optional "just test" ---- //
+    function handleRemoveSection(i) {
+        const values = [...sectionAdd];
+        // splice (i = indeks, (2) berarti delete 2 value di mulai dari indeks ke i)
+        values.splice(i, 1);
+        setSectionAdd(values);
+    }
+    form.section = [...sectionAdd];
     // ---- BATAS BAWAH !!!! ---- //
 
     // --- Content --- //
@@ -295,6 +329,7 @@ export default function StepperForm() {
                             feature_onheader={form.feature_onheader}
                             sale_price={form.sale_price}
                             agent={form.agent}
+                            weight={objEcommerce.weight}
                         >
                             <DynamicField
                                 fields={fields}
@@ -304,6 +339,13 @@ export default function StepperForm() {
                                 handleRemove={handleRemove}
                             />
                         </Layout>
+                        <DynamicFieldSection
+                            fields={sectionAdd}
+                            handleAdd={handleAddSection}
+                            handleChange={handleChangeDynamicSection}
+                            handleChangeContents={handleChangeContentsSection}
+                            handleRemove={handleRemoveSection}
+                        />
                     </>
                 );
 

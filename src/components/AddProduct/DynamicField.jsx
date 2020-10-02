@@ -66,28 +66,21 @@ export default function DynamicField(props) {
     console.log(fields, 'isi dari fields');
 
     return (
-        <div className="App">
-            <h1>Test Untuk learn about</h1>
+        <div
+            style={{ display: 'flex', flexDirection: 'column' }}
+            className="App"
+        >
+            <Label>Learn About</Label>
 
             <button type="button" onClick={() => handleAdd()}>
                 +
             </button>
 
             {/* --- Testing --- */}
-            <div
-                name="test"
-                style={{ display: 'flex', justifyContent: 'center' }}
-            >
+            <div name="test">
                 {fields.map((field, idx) => {
                     return (
-                        <div
-                            style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                width: '200px',
-                            }}
-                            key={`${field}-${idx}`}
-                        >
+                        <WrapsField key={`${field}-${idx}`}>
                             <label>Title</label>
                             <Input
                                 type="text"
@@ -108,7 +101,7 @@ export default function DynamicField(props) {
                             >
                                 X
                             </button>
-                        </div>
+                        </WrapsField>
                     );
                 })}
             </div>
