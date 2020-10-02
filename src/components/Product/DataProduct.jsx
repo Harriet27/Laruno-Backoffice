@@ -139,7 +139,7 @@ const DataProduct = (props) => {
                         onChange={handleChange}
                     />
                 </div>
-                <input type="button" onClick={handleSearch} value="KLIK" />
+                {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
             </div>
 
             {/* --- section 2 --- Get Data Product --- */}

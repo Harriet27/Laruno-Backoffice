@@ -202,7 +202,7 @@ export default function StepperForm() {
                     <>
                         <DetailProduct
                             checked_bayar={
-                                objEcommerce.shipping_charges === false
+                                objEcommerce.shipping_charges === true
                             }
                             checked_gratis={
                                 objEcommerce.shipping_charges === false
