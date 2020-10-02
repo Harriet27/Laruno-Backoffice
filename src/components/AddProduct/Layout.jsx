@@ -68,6 +68,7 @@ export default function Layout(props) {
         agent,
         handleSelectAgent,
         handleFeature,
+        children,
     } = props;
 
     // --- Agents --- //
@@ -169,8 +170,10 @@ export default function Layout(props) {
                             </div>
                         </WrapsField>
 
-                        {/* feature onpage */}
+                        {/* Children untuk learn about  */}
+                        <React.Fragment>{children}</React.Fragment>
 
+                        {/* feature onpage */}
                         <WrapsField>
                             <Label>
                                 <Span>Feature Onpage</Span>

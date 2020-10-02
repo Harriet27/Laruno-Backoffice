@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 // Elements, Components, Pages
 import Layout from '../../components/AddProduct/Layout';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
+import DynamicField from '../../components/AddProduct/DynamicField';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchPostProducts } from '../../store/actions/product';
@@ -107,6 +108,8 @@ export default function StepperForm() {
         },
     });
 
+    // ======>>> lOGIC DETAIL PRODUCT SECTION 1 <<<====== //
+
     // --- Test Order Bump,  Webinar, ecommerce--- //
     const [objBump, setObjBump] = useState({
         bump_name: '',
@@ -173,7 +176,8 @@ export default function StepperForm() {
     form.webinar = { ...objWebinar };
     form.ecommerce = { ...objEcommerce };
     form.feature = { ...objFeature };
-    // handleSubmit untuk enter dan submit button
+
+    // --- handleSubmit untuk enter dan submit button --- //
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(fetchPostProducts(form, history));
@@ -193,6 +197,43 @@ export default function StepperForm() {
     const handleSelectAgent = (agent) => {
         setForm({ ...form, agent });
     };
+
+    // ======>>> lOGIC DETAIL PRODUCT SECTION 2 "layout" <<<====== //
+
+    const [fields, setFields] = useState([{ title: '', contents: '' }]);
+    // ===>> Handle Change <<=== ---- //
+    function handleChangeDynamic(i, event) {
+        const values = [...fields];
+
+        values[i].title = event.target.value;
+
+        setFields(values);
+    }
+    function handleChangeContents(i, event) {
+        // semua object di dalam fields
+        const values = [...fields];
+        // untuk semua object yang berisi key 'contents' di dalam fields yg kita klik maka valuenya merupakan hasil inputan kita
+        values[i].contents = event.target.value;
+
+        setFields(values);
+    }
+
+    function handleAdd() {
+        //  menambahkan field ke dalam value input terbaru
+        const values = [...fields];
+        values.push({ title: '', contents: '' });
+        setFields(values);
+    }
+
+    // --- Optional "just test" ---- //
+    function handleRemove(i) {
+        const values = [...fields];
+        // splice (i = indeks, (2) berarti delete 2 value di mulai dari indeks ke i)
+        values.splice(i, 1);
+        setFields(values);
+    }
+    form.learn_about = [...fields];
+    // ---- BATAS BAWAH !!!! ---- //
 
     // --- Content --- //
     function getStepContent(stepIndex) {
@@ -254,7 +295,15 @@ export default function StepperForm() {
                             feature_onheader={form.feature_onheader}
                             sale_price={form.sale_price}
                             agent={form.agent}
-                        />
+                        >
+                            <DynamicField
+                                fields={fields}
+                                handleAdd={handleAdd}
+                                handleChange={handleChangeDynamic}
+                                handleChangeContents={handleChangeContents}
+                                handleRemove={handleRemove}
+                            />
+                        </Layout>
                     </>
                 );
 
