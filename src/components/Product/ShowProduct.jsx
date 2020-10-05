@@ -116,7 +116,6 @@ export default function ShowTopic(props) {
                                                     width="320"
                                                     height="240"
                                                     controls
-                                                    poster
                                                 >
                                                     <source
                                                         src={

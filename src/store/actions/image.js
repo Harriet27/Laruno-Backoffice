@@ -24,7 +24,7 @@ const postMultipleImage = (data) => {
 };
 
 // --- Fetching data Image --- //
-const fetchGetImage = (imgpath) => (dispatch) => {
+const fetchGetImage = (imgpath) => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads/${imgpath}`;
@@ -41,10 +41,10 @@ const fetchGetImage = (imgpath) => (dispatch) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 // --- Single Image --- //
-const fetchPostMultipleImage = () => () => {
+const fetchPostMultipleImage = (form) => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads`;
 
@@ -59,11 +59,11 @@ const fetchPostMultipleImage = () => () => {
 
     const response = await fetch(url, options);
     const result = await response.json();
-    dispatch(postSingleImage(result))
-}
+    dispatch(postSingleImage(result));
+};
 
 // --- Multiple Image --- //
-const fetchPostSingleImage = () => () => {
+const fetchPostSingleImage = (form) => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads/multiple`;
 
@@ -78,7 +78,17 @@ const fetchPostSingleImage = () => () => {
 
     const response = await fetch(url, options);
     const result = await response.json();
-    dispatch(postMultipleImage(result))
-}
+    dispatch(postMultipleImage(result));
+};
 
-export {getImage,postSingleImage,postMultipleImage,GET_IMAGE,POST_MULTIPLE_IMAGE,POST_SINGLE_IMAGE,fetchGetImage,fetchPostSingleImage,fetchPostMultipleImage}
+export {
+    getImage,
+    postSingleImage,
+    postMultipleImage,
+    GET_IMAGE,
+    POST_MULTIPLE_IMAGE,
+    POST_SINGLE_IMAGE,
+    fetchGetImage,
+    fetchPostSingleImage,
+    fetchPostMultipleImage,
+};

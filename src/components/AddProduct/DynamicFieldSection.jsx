@@ -1,4 +1,4 @@
-import { Card } from '@material-ui/core';
+import Card from '../../elements/Card/Card';
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 
