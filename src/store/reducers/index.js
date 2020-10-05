@@ -9,7 +9,7 @@ import agents from './agents';
 import reseller from './reseller';
 import orders from './order';
 import coupons from './coupons';
-
+import image from './image';
 export default combineReducers({
     topic,
     product,
@@ -20,4 +20,5 @@ export default combineReducers({
     reseller,
     orders,
     coupons,
+    image,
 });
