@@ -26,6 +26,7 @@ import DataReseller from './components/Reseller/DataReseller';
 import Order from './pages/Order/Order';
 import DataCoupons from './components/Coupons/DataCoupons';
 import DetailOrder from './components/OrderOnline/DetailOrder';
+
 export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
@@ -93,6 +94,10 @@ export default function App() {
                     <Route exact path="/order/detail/:id">
                         <Header />
                         <DetailOrder />
+                    </Route>
+                    {/* --- Testing --- */}
+                    <Route exact path="/testing">
+                        <Header />
                     </Route>
                 </Switch>
             </Router>
