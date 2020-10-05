@@ -10,10 +10,12 @@ import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import DeleteIcon from '@material-ui/icons/Delete';
+
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import { Input, Th, Overflow, md } from '../../elements/Styled/StyledForm';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CreateIcon from '@material-ui/icons/Create';
+import DescriptionIcon from '@material-ui/icons/Description';
 // --- Elements, Pages, Components --- //
 import {
     fetchGetProduct,
@@ -27,7 +29,7 @@ import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 // --- Styled Components --- //
 
 const ButtonLink = Styled.button`
-    background-color:#0098DA;
+    background-color:${(props) => (props.detail ? 'grey' : '#0098DA')};
     padding: 5px;
     border-radius: 3px;
     color: white;
@@ -208,15 +210,15 @@ const DataProduct = (props) => {
                                                       <Link
                                                           to={`/product/show/${item._id}`}
                                                       >
-                                                          <ButtonLink>
-                                                              Show
+                                                          <ButtonLink detail>
+                                                              <DescriptionIcon />
                                                           </ButtonLink>
                                                       </Link>
                                                       <Link
                                                           to={`/product/update/${item._id}`}
                                                       >
                                                           <ButtonLink>
-                                                              Update
+                                                              <CreateIcon />
                                                           </ButtonLink>
                                                       </Link>
                                                       <DeleteProduct

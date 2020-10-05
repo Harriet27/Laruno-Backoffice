@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetOrders } from '../../store/actions';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DehazeIcon from '@material-ui/icons/Dehaze';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import moment from 'moment';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import {
@@ -21,6 +22,7 @@ import {
 // import AddNewOrders from './AddNewOrders';
 // import UpdateOrders from './UpdateOrders';
 // import DeleteOrders from './DeleteOrders';
+import FollowUp from './FollowUp';
 import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
@@ -73,6 +75,12 @@ const DataOrders = (props) => {
     //     event.preventDefault();
     //     dispatch(fetchMultipleDeleteOrderss(form));
     // };
+
+    function raiseInvoiceClicked() {
+        const url =
+            'https://wa.me/6281212408246?text=I%20am%20interested%20in%20your%20car%20for%20sale';
+        window.open(url, '_blank');
+    }
     return (
         <React.Fragment>
             {/* --- section 1 --- Add New Orders and Search Orders --- */}
@@ -160,7 +168,7 @@ const DataOrders = (props) => {
                                                 -
                                             </Th>
                                             <Th as="td" td>
-                                                -
+                                                <FollowUp />
                                             </Th>
                                             <Th as="td" td>
                                                 <Link

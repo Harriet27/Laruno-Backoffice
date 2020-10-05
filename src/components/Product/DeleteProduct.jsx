@@ -3,7 +3,7 @@ import ModalSmart from '../../elements/Modal/ModalSmart';
 import { fetchDeleteProduct } from '../../store/actions';
 import { useDispatch } from 'react-redux';
 import Styled from 'styled-components';
-
+import DeleteIcon from '@material-ui/icons/Delete';
 // --- Styled Components --- //
 const Section = Styled.section`
     width: 100%;
@@ -24,7 +24,8 @@ export default function DeleteProduct(props) {
     return (
         <React.Fragment>
             <ModalSmart
-                buttonLabel="delete"
+                style={{ backgroundColor: 'red' }}
+                buttonLabel={<DeleteIcon />}
                 title="Delete Product"
                 onClickConfirm={handleSubmit}
             >
