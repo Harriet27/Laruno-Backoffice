@@ -17,7 +17,36 @@ const Section = Styled.section`
 export default function FollowUp(props) {
     const [form, setForm] = useState({
         number: '',
-        text: '',
+        text:
+            '' ||
+            `Halo Kak clara . Selamat datang di *Fiterus* ☺️
+Kami sudah terima pesanan anda dengan rincian sebagai berikut,
+Produk: Minyak Kelapa Murni VCO 250ml
+Harga: Rp109.000
+Ongkir: Rp9.000
+Total: Rp118.564
+        
+Dikirim ke:
+Nama: clara
+No HP: +6285100261388
+Alamat: duta garden f1 no 6
+Kota: Kota Tangerang
+Kecamatan: Benda
+        
+Silahkan transfer senilai Rp118.564, ke salah satu rekening dibawah ini:
+BCA
+No. Rek: 8015053824
+Atas Nama: Salvian Kumara
+        
+CIMB Niaga
+No. Rek: 700815470400
+Atas Nama: Salvian Kumara
+        
+Danamon
+No. Rek: 3626078921
+Atas Nama: Salvian Kumara
+        
+Jika Kak clara sudah transfer, silahkan konfirmasi  https://fiterus.orderonline.id/payment-confirmation?order_id=18796037 `,
     });
     console.log(form, 'isinya apa');
     const dispatch = useDispatch();
@@ -57,6 +86,7 @@ export default function FollowUp(props) {
                     <label>Text</label>
                     <Input
                         as="textarea"
+                        rows="5"
                         name="text"
                         value={form.text}
                         onChange={handleChange}

@@ -168,7 +168,14 @@ const DataOrders = (props) => {
                                                 -
                                             </Th>
                                             <Th as="td" td>
-                                                <FollowUp />
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        flexDirection: 'row',
+                                                    }}
+                                                >
+                                                    <FollowUp />
+                                                </div>
                                             </Th>
                                             <Th as="td" td>
                                                 <Link
