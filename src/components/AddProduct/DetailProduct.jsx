@@ -157,10 +157,9 @@ export default function DetailProduct(props) {
                                     id="type"
                                     value={type}
                                     onChange={onChange}
+                                    defaultValue="tes"
                                 >
-                                    <option value="" selected disabled hidden>
-                                        Choose here
-                                    </option>
+                                    <option disabled>Choose here</option>
                                     <option value="webinar">Webinar</option>
                                     <option value="digital">Digital</option>
                                     <option value="ecommerce">Ecommerce</option>
@@ -443,9 +442,7 @@ export default function DetailProduct(props) {
                                     value={visibility}
                                     onChange={onChange}
                                 >
-                                    <option value="" selected disabled hidden>
-                                        Choose here
-                                    </option>
+                                    <option disabled>Choose here</option>
                                     <option value="publish">Public</option>
                                     <option value="private">Private</option>
                                     <option value="draft">Draft</option>
