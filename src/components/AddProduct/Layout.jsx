@@ -118,22 +118,6 @@ export default function Layout(props) {
                             </div>
                         </WrapsField>
 
-                        {/* sale price */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Harga Penjualan</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="number"
-                                    name="sale_price"
-                                    id="sale_price"
-                                    value={sale_price}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
-
                         <WrapsField>
                             <Label>
                                 <Span>Agent</Span>

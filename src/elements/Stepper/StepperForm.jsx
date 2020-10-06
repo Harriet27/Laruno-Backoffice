@@ -202,7 +202,7 @@ export default function StepperForm() {
     // ======>>> lOGIC DETAIL PRODUCT SECTION 2 "layout" <<<====== //
 
     // ------> Logic untuk Dynamic Form Learn About <------ //
-    const [fields, setFields] = useState([{ title: '', contents: '' }]);
+    const [fields, setFields] = useState([{ title: '', content: '' }]);
     // ===>> Handle Change <<===  //
     function handleChangeDynamic(i, event) {
         const values = [...fields];
@@ -212,8 +212,8 @@ export default function StepperForm() {
     function handleChangeContents(i, event) {
         // semua object di dalam fields
         const values = [...fields];
-        // untuk semua object yang berisi key 'contents' di dalam fields yg kita klik maka valuenya merupakan hasil inputan kita
-        values[i].contents = event.target.value;
+        // untuk semua object yang berisi key 'content' di dalam fields yg kita klik maka valuenya merupakan hasil inputan kita
+        values[i].content = event.target.value;
 
         setFields(values);
     }
@@ -221,7 +221,7 @@ export default function StepperForm() {
     function handleAdd() {
         //  menambahkan field ke dalam value input terbaru
         const values = [...fields];
-        values.push({ title: '', contents: '' });
+        values.push({ title: '', content: '' });
         setFields(values);
     }
 
@@ -236,7 +236,7 @@ export default function StepperForm() {
     // ---- BATAS BAWAH !!!! ---- //
 
     // ------> Logic untuk Dynamic Form Section <------ //
-    const [sectionAdd, setSectionAdd] = useState([{ title: '', contents: '' }]);
+    const [sectionAdd, setSectionAdd] = useState([{ title: '', content: '' }]);
     // ===>> Handle Change <<===  //
     function handleChangeDynamicSection(i, event) {
         const values = [...sectionAdd];
@@ -246,8 +246,8 @@ export default function StepperForm() {
     function handleChangeContentsSection(i, event) {
         // semua object di dalam fields
         const values = [...sectionAdd];
-        // untuk semua object yang berisi key 'contents' di dalam fields yg kita klik maka valuenya merupakan hasil inputan kita
-        values[i].contents = event.target.value;
+        // untuk semua object yang berisi key 'content' di dalam fields yg kita klik maka valuenya merupakan hasil inputan kita
+        values[i].content = event.target.value;
 
         setSectionAdd(values);
     }
@@ -255,7 +255,7 @@ export default function StepperForm() {
     function handleAddSection() {
         //  menambahkan field ke dalam value input terbaru
         const values = [...sectionAdd];
-        values.push({ title: '', contents: '' });
+        values.push({ title: '', content: '' });
         setSectionAdd(values);
     }
 
