@@ -94,28 +94,28 @@ const DataOrders = (props) => {
             {/* --- section 2 --- Table Get Data Product In Table --- */}
             <Card isNormal>
                 <Overflow>
-                    <Table>
-                        <thead>
-                            <tr>
-                                <Th>
-                                    <DehazeIcon />
-                                </Th>
-                                <Th>Invoice Number</Th>
-                                <Th>Tag</Th>
-                                <Th>Orders Date</Th>
-                                <Th>Costumer Name</Th>
-                                <Th>Costumer Phone</Th>
-                                <Th>Product</Th>
-                                <Th>Total Price</Th>
-                                <Th>Payment Status</Th>
-                                <Th>Paid At</Th>
-                                <Th>Follow Up</Th>
-                                <Th>Actions</Th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {orders !== null &&
-                                orders.data.map((item) => {
+                    {orders !== null && orders.data.length > 0 ? (
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <Th>
+                                        <DehazeIcon />
+                                    </Th>
+                                    <Th>Invoice Number</Th>
+                                    <Th>Tag</Th>
+                                    <Th>Orders Date</Th>
+                                    <Th>Costumer Name</Th>
+                                    <Th>Costumer Phone</Th>
+                                    <Th>Product</Th>
+                                    <Th>Total Price</Th>
+                                    <Th>Payment Status</Th>
+                                    <Th>Paid At</Th>
+                                    <Th>Follow Up</Th>
+                                    <Th>Actions</Th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {orders.data.map((item) => {
                                     return (
                                         <tr key={item._id}>
                                             <Th>
@@ -189,8 +189,40 @@ const DataOrders = (props) => {
                                         </tr>
                                     );
                                 })}
-                        </tbody>
-                    </Table>
+                            </tbody>
+                        </Table>
+                    ) : (
+                        <React.Fragment>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <Th>
+                                            <DehazeIcon />
+                                        </Th>
+                                        <Th>Invoice Number</Th>
+                                        <Th>Tag</Th>
+                                        <Th>Orders Date</Th>
+                                        <Th>Costumer Name</Th>
+                                        <Th>Costumer Phone</Th>
+                                        <Th>Product</Th>
+                                        <Th>Total Price</Th>
+                                        <Th>Payment Status</Th>
+                                        <Th>Paid At</Th>
+                                        <Th>Follow Up</Th>
+                                        <Th>Actions</Th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                            <div
+                                style={{
+                                    textAlign: 'center',
+                                    padding: '100px',
+                                }}
+                            >
+                                You have no orders in this date range.
+                            </div>
+                        </React.Fragment>
+                    )}
                 </Overflow>
             </Card>
         </React.Fragment>

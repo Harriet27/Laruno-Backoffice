@@ -44,8 +44,8 @@ export default function Products() {
                 ></CardGetData>
             </Wraps>
             {/* --- section 2 --- */}
-            <DataProduct />
-            {/* <DataProductTest /> */}
+            {/* <DataProduct /> */}
+            <DataProductTest />
         </section>
     );
 }

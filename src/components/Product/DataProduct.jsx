@@ -162,29 +162,29 @@ const DataProduct = (props) => {
             <Card isNormal>
                 {/* --- untuk hapus melalui button --- */}
                 <Overflow>
-                    <Table>
-                        <thead>
-                            <tr>
-                                <Th>
-                                    <DehazeIcon />
-                                </Th>
-                                <Th>Visibility</Th>
-                                <Th>Product Code</Th>
-                                <Th>Name</Th>
-                                <Th>Product Type</Th>
-                                <Th>Time Period</Th>
-                                <Th>Price</Th>
-                                <Th>Actions</Th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/* {(rowsPerPage > 0
+                    {product !== null ? (
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <Th>
+                                        <DehazeIcon />
+                                    </Th>
+                                    <Th>Visibility</Th>
+                                    <Th>Product Code</Th>
+                                    <Th>Name</Th>
+                                    <Th>Product Type</Th>
+                                    <Th>Time Period</Th>
+                                    <Th>Price</Th>
+                                    <Th style={{ width: '100px' }}>Actions</Th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row)  */}
 
-                            {product !== null &&
-                                product.data
+                                {product.data
                                     .slice(
                                         page * rowsPerPage,
                                         page * rowsPerPage + rowsPerPage
@@ -235,14 +235,14 @@ const DataProduct = (props) => {
                                                             to={`/product/show/${item._id}`}
                                                         >
                                                             <ButtonLink detail>
-                                                                <DescriptionIcon />
+                                                                <DescriptionIcon fontSize="small" />
                                                             </ButtonLink>
                                                         </Link>
                                                         <Link
                                                             to={`/product/update/${item._id}`}
                                                         >
                                                             <ButtonLink>
-                                                                <CreateIcon />
+                                                                <CreateIcon fontSize="small" />
                                                             </ButtonLink>
                                                         </Link>
                                                         <DeleteProduct
@@ -253,28 +253,35 @@ const DataProduct = (props) => {
                                             </tr>
                                         );
                                     })}
-                        </tbody>
-                        <tfoot>
-                            <TablePagination
-                                rowsPerPageOptions={[10, 20, 100]}
-                                // component="div"
-                                // colSpan={3}
-                                count={product !== null && product.data.length}
-                                rowsPerPage={rowsPerPage}
-                                page={page}
-                                // component="div"
-                                // SelectProps={{
-                                //     inputProps: {
-                                //         'aria-label': 'rows per page',
-                                //     },
-                                //     native: true,
-                                // }}
-                                onChangePage={handleChangePage}
-                                onChangeRowsPerPage={handleChangeRowsPerPage}
-                                // ActionsComponent={TablePaginationActions}
-                            />
-                        </tfoot>
-                    </Table>
+                            </tbody>
+                            <tfoot>
+                                <TablePagination
+                                    rowsPerPageOptions={[10, 20, 100]}
+                                    // component="div"
+                                    // colSpan={3}
+                                    count={
+                                        product !== null && product.data.length
+                                    }
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    // component="div"
+                                    // SelectProps={{
+                                    //     inputProps: {
+                                    //         'aria-label': 'rows per page',
+                                    //     },
+                                    //     native: true,
+                                    // }}
+                                    onChangePage={handleChangePage}
+                                    onChangeRowsPerPage={
+                                        handleChangeRowsPerPage
+                                    }
+                                    // ActionsComponent={TablePaginationActions}
+                                />
+                            </tfoot>
+                        </Table>
+                    ) : (
+                        'testing logi'
+                    )}
                 </Overflow>
             </Card>
         </React.Fragment>

@@ -43,32 +43,13 @@ const fetchGetImage = (imgpath) => async (dispatch) => {
     }
 };
 
-// --- Single Image --- //
-const fetchPostMultipleImage = (form) => async (dispatch) => {
-    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads`;
-
-    const options = {
-        body: JSON.stringify(form),
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
-    };
-
-    const response = await fetch(url, options);
-    const result = await response.json();
-    dispatch(postSingleImage(result));
-};
-
 // --- Multiple Image --- //
-const fetchPostSingleImage = (form) => async (dispatch) => {
+const fetchPostMultipleImage = (form) => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads/multiple`;
 
     const options = {
-        body: JSON.stringify(form),
+        body: form,
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -77,8 +58,48 @@ const fetchPostSingleImage = (form) => async (dispatch) => {
     };
 
     const response = await fetch(url, options);
+    await response.json();
     const result = await response.json();
     dispatch(postMultipleImage(result));
+};
+
+// --- Single Image --- //
+const fetchPostSingleImage = (form) => (dispatch) => {
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+    // try {
+    //     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads`;
+    //     const options = {
+    //         body: form,
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data',
+    //             Authorization: `Bearer ${token}`,
+    //         },
+    //     };
+
+    //     const response = await fetch(url, options);
+    //     const result = await response.json();
+    //     dispatch(postSingleImage(result));
+    // } catch (error) {
+    //     console.log(error);
+    // }
+    var myHeaders = new Headers();
+    myHeaders.append('Authorization', `Bearer ${token}`);
+
+    var formdata = new FormData();
+    formdata.append('image', form);
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow',
+    };
+
+    fetch('http://139.162.59.84:7000/api/v1/uploads', requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log('error', error));
 };
 
 export {
