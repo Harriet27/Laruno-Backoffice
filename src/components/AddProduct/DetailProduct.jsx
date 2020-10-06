@@ -91,6 +91,7 @@ export default function DetailProduct(props) {
         bayar_ongkir,
         gratis_ongkir,
         handleRadio,
+        sale_price,
         // duration_hours,
         // duration_minute,
     } = props;
@@ -363,7 +364,7 @@ export default function DetailProduct(props) {
                         {/* Field Price ---- Styled masih di inject ----*/}
                         <WrapsField>
                             <Label>
-                                <Span>Harga</Span>
+                                <Span>Harga Normal</Span>
                             </Label>
                             {/*  Styled for Rp */}
                             <div
@@ -389,6 +390,39 @@ export default function DetailProduct(props) {
                                     name="price"
                                     id="price"
                                     value={price}
+                                    onChange={onChange}
+                                />
+                            </div>
+                        </WrapsField>
+
+                        {/* --- Harga Penjualan */}
+                        <WrapsField>
+                            <Label>
+                                <Span>Harga Penjualan</Span>
+                            </Label>
+                            {/*  Styled for Rp */}
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    border: '1px solid #ced4da',
+                                    borderRadius: '3px',
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        backgroundColor: '#e9ecef',
+                                        width: '50px',
+                                    }}
+                                >
+                                    <div style={{ textAlign: 'center' }}>
+                                        Rp
+                                    </div>
+                                </div>
+                                <Input
+                                    type="number"
+                                    name="sale_price"
+                                    id="sale_price"
+                                    value={sale_price}
                                     onChange={onChange}
                                 />
                             </div>

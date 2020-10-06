@@ -53,9 +53,9 @@ export default function StepperForm() {
 
     const [form, setForm] = useState({
         // --- section one --- //
-        name: null,
-        slug: null,
-        type: null,
+        name: '',
+        slug: '',
+        type: '',
         webinar: {
             date: '',
             duration: '',
@@ -74,8 +74,8 @@ export default function StepperForm() {
         bump: [
             {
                 bump_name: '',
-                bump_price: '',
-                bump_weight: 0,
+                bump_price: 0,
+                bump_weight: '',
                 bump_image: '',
             },
         ],
@@ -116,7 +116,7 @@ export default function StepperForm() {
         bump_name: '',
         bump_price: '',
         bump_image: '',
-        bump_weight: '',
+        bump_weight: 0,
     });
 
     const [objWebinar, setObjWebinar] = useState({
@@ -301,6 +301,7 @@ export default function StepperForm() {
                             start_time={form.start_time}
                             slug={form.slug}
                             duration={form.duration}
+                            sale_price={form.sale_price}
                         />
                         <Bump
                             onChange={handleBump}
@@ -320,14 +321,12 @@ export default function StepperForm() {
                             handleFeature={handleFeature}
                             headline={form.headline}
                             description={form.description}
-                            feedback={form.feedback}
                             image_bonus_url={form.image_bonus_url}
                             image_text_url={form.image_text_url}
                             image_product_url={form.image_product_url}
                             video={form.video_url}
                             feature_onpage={form.feature_onpage}
                             feature_onheader={form.feature_onheader}
-                            sale_price={form.sale_price}
                             agent={form.agent}
                             weight={objEcommerce.weight}
                         >

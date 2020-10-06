@@ -57,7 +57,6 @@ export default function Layout(props) {
         headline,
         onChange,
         description,
-        feedback,
         video,
         image_bonus_url,
         image_product_url,
@@ -119,25 +118,10 @@ export default function Layout(props) {
                             </div>
                         </WrapsField>
 
-                        <WrapsField>
-                            <Label>
-                                <Span>What You Learn</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="textarea"
-                                    name="feedback"
-                                    id="feedback"
-                                    value={feedback}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
-
                         {/* sale price */}
                         <WrapsField>
                             <Label>
-                                <Span>Sale Price</Span>
+                                <Span>Harga Penjualan</Span>
                             </Label>
                             <div>
                                 <Input
