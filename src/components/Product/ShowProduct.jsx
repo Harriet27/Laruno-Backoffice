@@ -110,6 +110,15 @@ export default function ShowTopic(props) {
                                             <td>:Rp. {product.data.price} </td>
                                         </tr>
                                         <tr>
+                                            <td>Image</td>
+                                            <td>
+                                                <img
+                                                    src={product.data.image_url}
+                                                    alt={product.data.image_url}
+                                                />
+                                            </td>
+                                        </tr>
+                                        {/* <tr>
                                             <td>Video</td>
                                             <td>
                                                 <video
@@ -133,7 +142,7 @@ export default function ShowTopic(props) {
                                                     />
                                                 </video>
                                             </td>
-                                        </tr>
+                                        </tr> */}
                                     </tbody>
                                 </Table>
                             </Card>
