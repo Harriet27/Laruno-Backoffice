@@ -94,7 +94,7 @@ const DataOrders = (props) => {
             {/* --- section 2 --- Table Get Data Product In Table --- */}
             <Card isNormal>
                 <Overflow>
-                    <Table striped>
+                    <Table>
                         <thead>
                             <tr>
                                 <Th>

@@ -442,7 +442,14 @@ export default function DetailProduct(props) {
                                     value={visibility}
                                     onChange={onChange}
                                 >
-                                    <option disabled>Choose here</option>
+                                    <option
+                                        value="choose here"
+                                        selected
+                                        disabled
+                                        hidden
+                                    >
+                                        Choose here
+                                    </option>
                                     <option value="publish">Public</option>
                                     <option value="private">Private</option>
                                     <option value="draft">Draft</option>

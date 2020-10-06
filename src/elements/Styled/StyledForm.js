@@ -1,9 +1,10 @@
 import Styled from 'styled-components';
 
-const [sm, md, lg] = ['16px', '18px', '20px'];
+const [sm, md, lg] = ['1rem', '0.9em', '20px'];
 const Th = Styled.th`
     font-size:  ${(props) => (props.td ? `${sm}` : `${md}`)};
-    font-weight: ${(props) => (props.td ? 'normal' : '600')};
+    font-weight: ${(props) => (props.td ? 'normal' : 'bold')};
+    color:  ${(props) => (props.td ? '#606060' : '#586994')};
     text-align: left;
 `;
 const Input = Styled.input`

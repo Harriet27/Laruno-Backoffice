@@ -66,7 +66,7 @@ const DataTopic = (props) => {
 
             {/* --- section 2 --- Table Get Data Product In Table --- */}
             <Card isNormal>
-                <Table striped>
+                <Table>
                     <thead>
                         <tr>
                             <Th>
