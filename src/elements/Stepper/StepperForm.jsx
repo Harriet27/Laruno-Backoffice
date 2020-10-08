@@ -41,10 +41,12 @@ export default function StepperForm() {
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        window.scrollTo(1, 0);
     };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        window.scrollTo(1, 0);
     };
 
     //  --- Fetching Data include Logic --- //
