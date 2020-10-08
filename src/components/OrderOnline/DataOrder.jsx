@@ -94,7 +94,38 @@ const DataOrders = (props) => {
             {/* --- section 2 --- Table Get Data Product In Table --- */}
             <Card isNormal>
                 <Overflow>
-                    {orders !== null && orders.data.length > 0 ? (
+                    {orders === null ? (
+                        <React.Fragment>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <Th>
+                                            <DehazeIcon />
+                                        </Th>
+                                        <Th>Invoice Number</Th>
+                                        <Th>Tag</Th>
+                                        <Th>Orders Date</Th>
+                                        <Th>Costumer Name</Th>
+                                        <Th>Costumer Phone</Th>
+                                        <Th>Product</Th>
+                                        <Th>Total Price</Th>
+                                        <Th>Payment Status</Th>
+                                        <Th>Paid At</Th>
+                                        <Th>Follow Up</Th>
+                                        <Th>Actions</Th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                            <div
+                                style={{
+                                    textAlign: 'center',
+                                    padding: '100px',
+                                }}
+                            >
+                                Loading ...
+                            </div>
+                        </React.Fragment>
+                    ) : orders.data.length >= 1 ? (
                         <Table>
                             <thead>
                                 <tr>

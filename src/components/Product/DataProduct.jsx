@@ -162,7 +162,38 @@ const DataProduct = (props) => {
             <Card isNormal>
                 {/* --- untuk hapus melalui button --- */}
                 <Overflow>
-                    {product !== null ? (
+                    {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
+                     di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
+                    {product === null ? (
+                        <React.Fragment>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <Th>
+                                            <DehazeIcon />
+                                        </Th>
+                                        <Th>Visibility</Th>
+                                        <Th>Product Code</Th>
+                                        <Th>Name</Th>
+                                        <Th>Product Type</Th>
+                                        <Th>Time Period</Th>
+                                        <Th>Price</Th>
+                                        <Th style={{ width: '100px' }}>
+                                            Actions
+                                        </Th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                            <div
+                                style={{
+                                    textAlign: 'center',
+                                    padding: '100px',
+                                }}
+                            >
+                                Loading ...
+                            </div>
+                        </React.Fragment>
+                    ) : product.data.length >= 1 ? (
                         <Table>
                             <thead>
                                 <tr>
@@ -183,7 +214,6 @@ const DataProduct = (props) => {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row)  */}
-
                                 {product.data
                                     .slice(
                                         page * rowsPerPage,
@@ -280,7 +310,34 @@ const DataProduct = (props) => {
                             </tfoot>
                         </Table>
                     ) : (
-                        'testing logi'
+                        <React.Fragment>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <Th>
+                                            <DehazeIcon />
+                                        </Th>
+                                        <Th>Visibility</Th>
+                                        <Th>Product Code</Th>
+                                        <Th>Name</Th>
+                                        <Th>Product Type</Th>
+                                        <Th>Time Period</Th>
+                                        <Th>Price</Th>
+                                        <Th style={{ width: '100px' }}>
+                                            Actions
+                                        </Th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                            <div
+                                style={{
+                                    textAlign: 'center',
+                                    padding: '100px',
+                                }}
+                            >
+                                You have no product in this date range.
+                            </div>
+                        </React.Fragment>
                     )}
                 </Overflow>
             </Card>
