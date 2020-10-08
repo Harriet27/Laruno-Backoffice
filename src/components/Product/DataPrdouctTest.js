@@ -20,30 +20,31 @@ const Section = Styled.section`
 function ModalFile(props) {
     const dispatch = useDispatch();
     const [form, setForm] = useState({
-        image: '',
+        file: null,
     });
-    const image = '';
+    console.log(form, 'ini form');
     // console.log(form.image, 'form image');
     // const [image, setImage] = useState('');
     // console.log(image, 'ini file');
-
-    const images = useSelector((state) => state.image);
-    console.log(images, 'ini image');
+    const image = useSelector((state) => state.image.getImage);
+    console.log(image, 'hasilnya');
     // --- Fetch Submit Method Post --- //
     const handleSubmit = async (event) => {
-        event.preventDefault();
         dispatch(fetchPostSingleImage(form));
     };
     // const handleChange = (e) => {
     //     setImage({ [e.target.name]: e.target.value });
     // };
     const handleChange = (e) => {
-        console.log(e, 'handlechange');
-        setForm({ ...form, [e.target.name]: e.target.value });
+        // Update the state
+        setForm({ file: e.target.files[0] });
     };
 
     return (
         <React.Fragment>
+            {image !== null && (
+                <img src={image.result.url} alt={image.result.url} />
+            )}
             <ModalSmart
                 buttonLabel="delete"
                 title="Delete Roles"

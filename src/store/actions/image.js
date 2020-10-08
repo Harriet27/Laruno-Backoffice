@@ -64,7 +64,7 @@ const fetchPostMultipleImage = (form) => async (dispatch) => {
 };
 
 // --- Single Image --- //
-const fetchPostSingleImage = (form) => (dispatch) => {
+const fetchPostSingleImage = (form) => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     // try {
     //     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads`;
@@ -83,11 +83,12 @@ const fetchPostSingleImage = (form) => (dispatch) => {
     // } catch (error) {
     //     console.log(error);
     // }
+
     var myHeaders = new Headers();
     myHeaders.append('Authorization', `Bearer ${token}`);
-
+    let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/product`;
     var formdata = new FormData();
-    formdata.append('image', form);
+    formdata.append('file', form.file, form.file.name);
 
     var requestOptions = {
         method: 'POST',
@@ -95,11 +96,14 @@ const fetchPostSingleImage = (form) => (dispatch) => {
         body: formdata,
         redirect: 'follow',
     };
-
-    fetch('http://139.162.59.84:7000/api/v1/uploads', requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log('error', error));
+    const response = await fetch(url, requestOptions);
+    const result = await response.json();
+    console.log(result, 'isi result apa');
+    dispatch(getImage(result));
+    // fetch('http://139.162.59.84:7000/api/v1/upload/product', requestOptions)
+    //     .then((response) => response.text())
+    //     .then((result) =>
+    // dispatch(getImage(result));
 };
 
 export {

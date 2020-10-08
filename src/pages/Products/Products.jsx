@@ -53,7 +53,7 @@ export default function Products() {
             {/* --- section 2 --- */}
             <DataProduct />
             {/* <DaTest /> */}
-            {/* <DataProductTest /> */}
+            <DataProductTest />
         </section>
     );
 }
