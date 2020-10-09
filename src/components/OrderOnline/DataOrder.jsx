@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetOrders } from '../../store/actions';
-import DeleteIcon from '@material-ui/icons/Delete';
+
 import DehazeIcon from '@material-ui/icons/Dehaze';
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+
 import moment from 'moment';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
-import {
-    Input,
-    Th,
-    sm,
-    md,
-    lg,
-    Overflow,
-} from '../../elements/Styled/StyledForm';
+import { Input, Th, md, lg, Overflow } from '../../elements/Styled/StyledForm';
 
 // --- Elements, Pages, Components --- //
 // import AddNewOrders from './AddNewOrders';
@@ -55,9 +48,6 @@ const DataOrders = (props) => {
     }, [dispatch]);
 
     // --- For Multiple Delete --- //
-    const [form, setForm] = useState({
-        id: [],
-    });
 
     // --- handleCheckboxChange --- //
     // const handleCheckboxChange = (event) => {
@@ -76,11 +66,6 @@ const DataOrders = (props) => {
     //     dispatch(fetchMultipleDeleteOrderss(form));
     // };
 
-    function raiseInvoiceClicked() {
-        const url =
-            'https://wa.me/6281212408246?text=I%20am%20interested%20in%20your%20car%20for%20sale';
-        window.open(url, '_blank');
-    }
     return (
         <React.Fragment>
             {/* --- section 1 --- Add New Orders and Search Orders --- */}

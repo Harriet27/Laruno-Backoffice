@@ -63,7 +63,6 @@ export default function Layout(props) {
         image_text_url,
         feature_onheader,
         feature_onpage,
-        sale_price,
         agent,
         handleSelectAgent,
         handleFeature,

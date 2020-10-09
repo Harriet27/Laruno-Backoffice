@@ -1,18 +1,9 @@
 import React, { useState } from 'react';
 import ModalSmart from '../../elements/Modal/ModalSmart';
-import { fetchDeleteProduct } from '../../store/actions';
-import { useDispatch } from 'react-redux';
-import Styled from 'styled-components';
-import DeleteIcon from '@material-ui/icons/Delete';
+
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import { Input } from '../../elements/Styled/StyledForm';
 // --- Styled Components --- //
-const Section = Styled.section`
-    width: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-`;
 
 export default function FollowUp(props) {
     const [form, setForm] = useState({
@@ -49,7 +40,6 @@ Atas Nama: Salvian Kumara
 Jika Kak clara sudah transfer, silahkan konfirmasi  https://fiterus.orderonline.id/payment-confirmation?order_id=18796037 `,
     });
     console.log(form, 'isinya apa');
-    const dispatch = useDispatch();
 
     function raiseInvoiceClicked() {
         // %0A INI UNTUK ENTER

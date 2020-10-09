@@ -3,7 +3,6 @@ import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetContents } from '../../store/actions';
-import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
 // import AddNewFulfillments from './AddNewFulfillments';

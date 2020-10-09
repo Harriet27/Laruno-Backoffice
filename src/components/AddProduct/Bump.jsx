@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../../elements/Card/Card';
 import Styled from 'styled-components';
-import BumpImage from './bumpImage';
+
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
@@ -42,14 +42,9 @@ const Section = Styled.div`
 // --- Styled Components --- //
 
 export default function Bump(props) {
-    const [box, setBox] = useState({
-        checkbox: '',
-    });
     const { bump_name, onChange, bump_weight, bump_image, bump_price } = props;
     // handle change untuk onChange
-    const handleChange = (event) => {
-        setBox({ ...box, [event.target.name]: event.target.checked });
-    };
+
     return (
         <Section>
             <Card isNormal>

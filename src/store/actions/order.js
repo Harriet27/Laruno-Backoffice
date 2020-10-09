@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 
 const GET_ORDERS = 'GET_ORDERS';
 const DETAIL_ORDERS = 'DETAIL_ORDERS';

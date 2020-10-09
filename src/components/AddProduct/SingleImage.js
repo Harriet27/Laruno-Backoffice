@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 
-import {
-    fetchDeleteRoles,
-    fetchPostSingleImage,
-    fetchGetImage,
-} from '../../store/actions';
+import { fetchPostSingleImage } from '../../store/actions';
 
 import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';

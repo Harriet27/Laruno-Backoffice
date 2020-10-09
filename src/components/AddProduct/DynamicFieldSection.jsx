@@ -1,5 +1,5 @@
 import Card from '../../elements/Card/Card';
-import React, { useState } from 'react';
+import React from 'react';
 import Styled from 'styled-components';
 
 const Input = Styled.input`
@@ -33,11 +33,6 @@ const WrapsField = Styled.div`
     margin-bottom: 25px;
     width: ${(props) => (props.dividedByTwo ? '45%' : null)}
 `;
-const Span = Styled.span`
-    font-weight: bold;
-    color: #656565;
-    font-size: 18px;
-`;
 
 const SectionOne = Styled.div`
     display: flex;
@@ -47,12 +42,6 @@ const SectionOne = Styled.div`
     }
 `;
 
-const Form = Styled.form`
-    padding: 50px 40px;
-    @media (max-width: 800px) {
-        padding: 20px;
-    }
-`;
 // --- BATAS BAWAH --- //
 
 export default function DynamicFieldSection(props) {
@@ -106,7 +95,9 @@ export default function DynamicFieldSection(props) {
                                             />
                                             <button
                                                 type="button"
-                                                onClick={() => handleRemove(idx)}
+                                                onClick={() =>
+                                                    handleRemove(idx)
+                                                }
                                             >
                                                 X
                                             </button>
