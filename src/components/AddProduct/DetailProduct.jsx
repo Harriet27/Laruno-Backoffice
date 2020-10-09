@@ -545,7 +545,7 @@ export default function DetailProduct(props) {
                                     </div>
                                 </WrapsField>
                             ) : null}
-                        <SingleImage />
+                       <WrapsField> <SingleImage /> </WrapsField>
                     </Form>
                 </Card>
             </SectionOne>

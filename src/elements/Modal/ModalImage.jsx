@@ -24,7 +24,6 @@ const ModalImage = (props) => {
         buttonLabel,
         className,
         style,
-
         children,
         title,
         onClickConfirm,

@@ -63,7 +63,7 @@ export default function ModalFile(props) {
                     />
                 </Section>
             </ModalImage>
-            {image === null? '':
+            {image !== null &&
                 <img src={image.result.url} alt={image.result.url} />
             }
         </React.Fragment>

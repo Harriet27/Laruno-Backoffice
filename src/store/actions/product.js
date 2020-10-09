@@ -35,7 +35,7 @@ const fetchPostProducts = (form, history) => async () => {
             icon: 'success',
         });
 
-        history.push('/');
+        history.push('/product');
     }
 };
 

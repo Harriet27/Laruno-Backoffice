@@ -20,7 +20,7 @@ const Input = Styled.input`
 const Section = Styled.section`
     display: flex;
     padding: 50px 100px;
-    width: 100%;
+    width: 150%;
     line-height: 1.5;
     @media (max-width: 800px) {
         padding: 20px 40px;
@@ -41,7 +41,7 @@ const Span = Styled.span`
 
 const SectionOne = Styled.div`
     display: flex;
-    width: 50%;
+    width: 32%;
     @media (max-width: 800px) {
         width: 100%
     }
@@ -68,54 +68,56 @@ export default function DynamicFieldSection(props) {
 
     return (
         <Section>
-            <Card isNormal>
-                <div style={{ padding: '20px 30px' }}>
-                    <div
-                        style={{ display: 'flex', flexDirection: 'column' }}
-                        className="App"
-                    >
-                        <Label>Add Section</Label>
+            <SectionOne>
+                <Card isNormal style={{ width: '100%' }}>
+                    <div style={{ padding: '20px 30px' }}>
+                        <div
+                            style={{ display: 'flex', flexDirection: 'column' }}
+                            className="App"
+                        >
+                            <Label>Add Section</Label>
 
-                        <button type="button" onClick={() => handleAdd()}>
-                            +
-                        </button>
+                            <button type="button" onClick={() => handleAdd()}>
+                                +
+                            </button>
 
-                        {/* --- Testing --- */}
-                        <div name="test">
-                            {fields.map((field, idx) => {
-                                return (
-                                    <WrapsField key={`${field}-${idx}`}>
-                                        <label>Title</label>
-                                        <Input
-                                            type="text"
-                                            name={`one-${idx}`}
-                                            placeholder="Enter text"
-                                            onChange={(e) =>
-                                                handleChange(idx, e)
-                                            }
-                                        />
-                                        <label>Content</label>
-                                        <Input
-                                            as="textarea"
-                                            name={`number-${idx}`}
-                                            placeholder="Enter text"
-                                            onChange={(e) =>
-                                                handleChangeContents(idx, e)
-                                            }
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => handleRemove(idx)}
-                                        >
-                                            X
-                                        </button>
-                                    </WrapsField>
-                                );
-                            })}
+                            {/* --- Testing --- */}
+                            <div name="test">
+                                {fields.map((field, idx) => {
+                                    return (
+                                        <WrapsField key={`${field}-${idx}`}>
+                                            <label>Title</label>
+                                            <Input
+                                                type="text"
+                                                name={`one-${idx}`}
+                                                placeholder="Enter text"
+                                                onChange={(e) =>
+                                                    handleChange(idx, e)
+                                                }
+                                            />
+                                            <label>Content</label>
+                                            <Input
+                                                as="textarea"
+                                                name={`number-${idx}`}
+                                                placeholder="Enter text"
+                                                onChange={(e) =>
+                                                    handleChangeContents(idx, e)
+                                                }
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => handleRemove(idx)}
+                                            >
+                                                X
+                                            </button>
+                                        </WrapsField>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </Card>
+                </Card>
+            </SectionOne>
         </Section>
     );
 }
