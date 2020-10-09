@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchPostProducts } from '../../store/actions';
 import Bump from '../../components/AddProduct/Bump';
-import { array } from 'yup';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -150,12 +149,12 @@ export default function StepperForm() {
             [event.target.name]: event.target.value,
         });
     };
-    const handleEcommerce = (event) => {
-        setObjEcommerce({
-            ...objEcommerce,
-            [event.target.name]: event.target.value,
-        });
-    };
+    // const handleEcommerce = (event) => {
+    //     setObjEcommerce({
+    //         ...objEcommerce,
+    //         [event.target.name]: event.target.value,
+    //     });
+    // };
     const handleFeature = (event) => {
         setObjFeature({
             ...objFeature,

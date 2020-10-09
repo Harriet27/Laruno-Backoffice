@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Styled from 'styled-components';
 
 const Input = Styled.input`
@@ -16,15 +16,6 @@ const Input = Styled.input`
     }
 `;
 
-const Section = Styled.section`
-    display: flex;
-    padding: 50px 100px;
-    width: 100%;
-    line-height: 1.5;
-    @media (max-width: 800px) {
-        padding: 20px 40px;
-          }
-`;
 const Label = Styled.label`
     
 `;
@@ -32,26 +23,7 @@ const WrapsField = Styled.div`
     margin-bottom: 25px;
     width: ${(props) => (props.dividedByTwo ? '45%' : null)}
 `;
-const Span = Styled.span`
-    font-weight: bold;
-    color: #656565;
-    font-size: 18px;
-`;
 
-const SectionOne = Styled.div`
-    display: flex;
-    width: 50%;
-    @media (max-width: 800px) {
-        width: 100%
-    }
-`;
-
-const Form = Styled.form`
-    padding: 50px 40px;
-    @media (max-width: 800px) {
-        padding: 20px;
-    }
-`;
 // --- BATAS BAWAH --- //
 
 export default function DynamicField(props) {

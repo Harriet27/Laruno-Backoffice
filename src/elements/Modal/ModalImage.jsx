@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Styled from 'styled-components';
 
@@ -28,10 +28,8 @@ const ModalImage = (props) => {
         title,
         onClickConfirm,
         modal,
-        toggle
+        toggle,
     } = props;
-
-    
 
     return (
         <div>
