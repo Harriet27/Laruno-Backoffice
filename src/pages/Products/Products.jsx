@@ -23,7 +23,33 @@ export default function Products() {
     console.log(product, 'product di product menu');
     return (
         <section style={{ margin: '0 50px' }}>
-            {product !== null && (
+            {product === null ? (
+                <Wraps>
+                    <CardGetData
+                        icon={faShoppingCart}
+                        number="0"
+                        text="Total Products"
+                    ></CardGetData>
+
+                    <CardGetData
+                        icon={faWallet}
+                        number="2"
+                        text="Total Paid"
+                    ></CardGetData>
+
+                    <CardGetData
+                        icon={faShoppingCart}
+                        number="0"
+                        text="Unpaid Orders"
+                    ></CardGetData>
+
+                    <CardGetData
+                        icon={faShoppingCart}
+                        number="0"
+                        text="Unpaid Orders"
+                    ></CardGetData>
+                </Wraps>
+            ) : (
                 <Wraps>
                     <CardGetData
                         icon={faShoppingCart}

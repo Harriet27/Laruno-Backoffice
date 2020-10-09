@@ -286,7 +286,7 @@ const DataProduct = (props) => {
                             </tbody>
                             <tfoot>
                                 <TablePagination
-                                    rowsPerPageOptions={[10, 20, 100]}
+                                    rowsPerPageOptions={[5, 10, 15]}
                                     // component="div"
                                     // colSpan={3}
                                     count={

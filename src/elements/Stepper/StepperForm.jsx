@@ -52,7 +52,7 @@ export default function StepperForm() {
     //  --- Fetching Data include Logic --- //
     const dispatch = useDispatch();
     const history = useHistory();
-    const image = useSelector((state) => state.image.getImage);
+    const image = useSelector((state) => state.image.imageProduct);
 
     const [form, setForm] = useState({
         // --- section one --- //

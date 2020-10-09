@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../../elements/Card/Card';
 import Styled from 'styled-components';
-
+import BumpImage from './bumpImage';
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
@@ -132,20 +132,7 @@ export default function Bump(props) {
                                 </div>
                             </WrapsField>
 
-                            <WrapsField>
-                                <Label>
-                                    <Span>Upload Image</Span>
-                                </Label>
-                                <div>
-                                    <Input
-                                        type="file"
-                                        name="bump_image"
-                                        id="bump_image"
-                                        value={bump_image}
-                                        onChange={onChange}
-                                    />
-                                </div>
-                            </WrapsField>
+                            <WrapsField>{/* <BumpImage /> */}</WrapsField>
                         </React.Fragment>
                         {/* ) : null} */}
                     </div>
