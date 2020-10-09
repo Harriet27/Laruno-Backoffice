@@ -11,7 +11,7 @@ import {
     DurationHour,
     // DurationMinutes,
 } from '../FakeData/FakeData';
-
+import SingleImage from './SingleImage'
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
@@ -158,11 +158,10 @@ export default function DetailProduct(props) {
                                     id="type"
                                     value={type}
                                     onChange={onChange}
-                                    defaultValue="tes"
+
                                 >
-                                    <option disabled>Choose here</option>
+                                    <option value="digital">Product Digital</option>
                                     <option value="webinar">Webinar</option>
-                                    <option value="digital">Digital</option>
                                     <option value="ecommerce">Ecommerce</option>
                                     <option value="bonus">Bonus</option>
                                 </Input>
@@ -517,35 +516,36 @@ export default function DetailProduct(props) {
 
                         {/* Filed product redirect logic for sale_method */}
                         {sale_method === 'upsale' ||
-                        sale_method === 'upgrade' ||
-                        sale_method === 'crossale' ? (
-                            <WrapsField>
-                                <Label>
-                                    <Span>Product Redirect</Span>
-                                </Label>
-                                <div>
-                                    <Input
-                                        as="select"
-                                        name="product_redirect"
-                                        id="product_redirect"
-                                        value={product_redirect}
-                                        onChange={onChange}
-                                    >
-                                        <option
-                                            value=""
-                                            selected
-                                            disabled
-                                            hidden
+                            sale_method === 'upgrade' ||
+                            sale_method === 'crossale' ? (
+                                <WrapsField>
+                                    <Label>
+                                        <Span>Product Redirect</Span>
+                                    </Label>
+                                    <div>
+                                        <Input
+                                            as="select"
+                                            name="product_redirect"
+                                            id="product_redirect"
+                                            value={product_redirect}
+                                            onChange={onChange}
                                         >
-                                            Choose here
+                                            <option
+                                                value=""
+                                                selected
+                                                disabled
+                                                hidden
+                                            >
+                                                Choose here
                                         </option>
 
-                                        {/*Pekerjaan yang harus di selesaikan fetch data all name product yg sudah ada */}
-                                        <option value="normal">normal</option>
-                                    </Input>
-                                </div>
-                            </WrapsField>
-                        ) : null}
+                                            {/*Pekerjaan yang harus di selesaikan fetch data all name product yg sudah ada */}
+                                            <option value="normal">normal</option>
+                                        </Input>
+                                    </div>
+                                </WrapsField>
+                            ) : null}
+                        <SingleImage />
                     </Form>
                 </Card>
             </SectionOne>

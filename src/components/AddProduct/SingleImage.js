@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ModalSmart from '../../elements/Modal/ModalSmart';
+
 import {
     fetchDeleteRoles,
     fetchPostSingleImage,
@@ -8,6 +8,7 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
+import ModalImage from '../../elements/Modal/ModalImage';
 
 // --- Styled Components --- //
 const Section = Styled.section`
@@ -17,38 +18,41 @@ const Section = Styled.section`
     justify-content: center;
 `;
 
-function ModalFile(props) {
+export default function ModalFile(props) {
     const dispatch = useDispatch();
     const [form, setForm] = useState({
         file: null,
     });
     console.log(form, 'ini form');
-    // console.log(form.image, 'form image');
-    // const [image, setImage] = useState('');
-    // console.log(image, 'ini file');
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
     const image = useSelector((state) => state.image.getImage);
     console.log(image, 'hasilnya');
     // --- Fetch Submit Method Post --- //
     const handleSubmit = async (event) => {
         dispatch(fetchPostSingleImage(form));
+       setModal(!modal)
     };
     // const handleChange = (e) => {
     //     setImage({ [e.target.name]: e.target.value });
     // };
     const handleChange = (e) => {
         // Update the state
+        e.preventDefault()
         setForm({ file: e.target.files[0] });
+        
     };
 
     return (
         <React.Fragment>
-            {image !== null && (
-                <img src={image.result.url} alt={image.result.url} />
-            )}
-            <ModalSmart
-                buttonLabel="delete"
-                title="Delete Roles"
+            
+            <ModalImage
+                buttonLabel="Update Image"
+                title="Update Image"
                 onClickConfirm={handleSubmit}
+                modal={modal}
+                toggle={toggle}
             >
                 <Section>
                     <input
@@ -58,15 +62,12 @@ function ModalFile(props) {
                         onChange={handleChange}
                     />
                 </Section>
-            </ModalSmart>
+            </ModalImage>
+            {image === null? '':
+                <img src={image.result.url} alt={image.result.url} />
+            }
         </React.Fragment>
     );
 }
 
-export default function DataPrdouctTest() {
-    return (
-        <div>
-            <ModalFile />
-        </div>
-    );
-}
+

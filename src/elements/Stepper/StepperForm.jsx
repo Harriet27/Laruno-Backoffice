@@ -11,9 +11,9 @@ import Layout from '../../components/AddProduct/Layout';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
 import DynamicField from '../../components/AddProduct/DynamicField';
 import DynamicFieldSection from '../../components/AddProduct/DynamicFieldSection';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { fetchPostProducts } from '../../store/actions/product';
+import { fetchPostProducts} from '../../store/actions';
 import Bump from '../../components/AddProduct/Bump';
 import { array } from 'yup';
 
@@ -52,7 +52,8 @@ export default function StepperForm() {
     //  --- Fetching Data include Logic --- //
     const dispatch = useDispatch();
     const history = useHistory();
-
+    const image = useSelector((state) => state.image.getImage);
+   
     const [form, setForm] = useState({
         // --- section one --- //
         name: '',
@@ -112,6 +113,8 @@ export default function StepperForm() {
     });
 
     // ======>>> lOGIC DETAIL PRODUCT SECTION 1 <<<====== //
+const reqImage = image !== null && image.result.url;
+form.image_url = reqImage;
 
     // --- Test Order Bump,  Webinar, ecommerce--- //
     const [objBump, setObjBump] = useState({

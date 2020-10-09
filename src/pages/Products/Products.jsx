@@ -8,7 +8,7 @@ import { fetchGetProduct } from '../../store/actions';
 // --- Elements, Pages, Components --- //
 import CardGetData from '../../elements/Card/CardGetData';
 import DataProduct from '../../components/Product/DataProduct';
-import DataProductTest from '../../components/Product/DataPrdouctTest';
+
 // --- Styled Components --- //
 const Wraps = Styled.div`
     display: flex;
@@ -53,7 +53,7 @@ export default function Products() {
             {/* --- section 2 --- */}
             <DataProduct />
             {/* <DaTest /> */}
-            <DataProductTest />
+            {/* <DataProductTest /> */}
         </section>
     );
 }
