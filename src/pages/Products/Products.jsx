@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 // --- Elements, Pages, Components --- //
 import CardGetData from '../../elements/Card/CardGetData';
 import DataProduct from '../../components/Product/DataProduct';
-
+import ImageBonus from '../../components/AddProduct/imageBonus';
 // --- Styled Components --- //
 const Wraps = Styled.div`
     display: flex;
@@ -77,6 +77,7 @@ export default function Products() {
             )}
             {/* --- section 2 --- */}
             <DataProduct />
+            <ImageBonus />
             {/* <DaTest /> */}
             {/* <DataProductTest /> */}
         </section>

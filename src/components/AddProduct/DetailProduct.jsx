@@ -76,7 +76,7 @@ export default function DetailProduct(props) {
         time_period,
         visibility,
         sale_method,
-        product_redirect,
+        // product_redirect,
         zoom_id,
         date,
         start_time,
@@ -521,7 +521,7 @@ export default function DetailProduct(props) {
                         </WrapsField>
 
                         {/* Filed product redirect logic for sale_method */}
-                        {sale_method === 'upsale' ||
+                        {/* {sale_method === 'upsale' ||
                         sale_method === 'upgrade' ||
                         sale_method === 'crossale' ? (
                             <WrapsField>
@@ -543,14 +543,14 @@ export default function DetailProduct(props) {
                                             hidden
                                         >
                                             Choose here
-                                        </option>
+                                        </option> */}
 
-                                        {/*Pekerjaan yang harus di selesaikan fetch data all name product yg sudah ada */}
-                                        <option value="normal">normal</option>
+                        {/*Pekerjaan yang harus di selesaikan fetch data all name product yg sudah ada */}
+                        {/* <option value="normal">normal</option>
                                     </Input>
                                 </div>
                             </WrapsField>
-                        ) : null}
+                        ) : null} */}
                         <WrapsField>
                             {' '}
                             <SingleImage />{' '}

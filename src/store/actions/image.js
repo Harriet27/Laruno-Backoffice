@@ -20,7 +20,7 @@ const fetchPostSingleImage = (form) => async (dispatch) => {
 
     var myHeaders = new Headers();
     myHeaders.append('Authorization', `Bearer ${token}`);
-    let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/product`;
+    let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products`;
     var formdata = new FormData();
     formdata.append('file', form.file, form.file.name);
 
@@ -42,7 +42,7 @@ const fetchPostMultipleImage = (form) => async (dispatch) => {
 
     var myHeaders = new Headers();
     myHeaders.append('Authorization', `Bearer ${token}`);
-    let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/product/multiple`;
+    let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products/multiple`;
     var formdata = new FormData();
     formdata.append('file', form.file, form.file.name);
 
