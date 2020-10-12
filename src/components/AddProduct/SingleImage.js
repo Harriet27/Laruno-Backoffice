@@ -14,7 +14,7 @@ const Section = Styled.section`
     justify-content: center;
 `;
 
-export default function ModalFile(props) {
+export default function SingleImage(props) {
     const dispatch = useDispatch();
     const [form, setForm] = useState({
         file: null,

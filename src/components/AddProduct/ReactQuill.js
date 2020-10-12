@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
-
+import Styled from 'styled-components';
 import 'react-quill/dist/quill.core.css';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
@@ -56,6 +56,7 @@ export default function ReactQuillTest(props) {
 
     return (
         <ReactQuill
+            style={{ height: '150px' }}
             value={value}
             onChange={setValue}
             modules={modules}

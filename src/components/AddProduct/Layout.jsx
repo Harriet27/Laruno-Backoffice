@@ -102,7 +102,7 @@ export default function Layout(props) {
                             </div>
                         </WrapsField>
 
-                        <WrapsField>
+                        <WrapsField style={{ marginBottom: '100px' }}>
                             <Label>
                                 <Span>Description</Span>
                             </Label>
