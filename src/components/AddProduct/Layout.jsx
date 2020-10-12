@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
 import Card from '../../elements/Card/Card';
 import { fetchGetAgents } from '../../store/actions';
-
+import ReactQuillTest from './ReactQuill';
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
@@ -106,7 +106,7 @@ export default function Layout(props) {
                             <Label>
                                 <Span>Description</Span>
                             </Label>
-                            <div>
+                            {/* <div>
                                 <Input
                                     as="textarea"
                                     name="description"
@@ -114,7 +114,8 @@ export default function Layout(props) {
                                     value={description}
                                     onChange={onChange}
                                 />
-                            </div>
+                            </div> */}
+                            <ReactQuillTest />
                         </WrapsField>
 
                         <WrapsField>
