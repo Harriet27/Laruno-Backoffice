@@ -8,12 +8,12 @@ import { useState } from 'react';
 
 export default function ReactQuillTest(props) {
     // --- in Props --- //
-    const { test } = props;
-    const [value, setValue] = useState('');
-    console.log(value);
-    const handleChange = (event) => {
-        setValue({ ...value });
-    };
+    const { value, setValue } = props;
+    // const [value, setValue] = useState('');
+    // console.log(value);
+    // const handleChange = (event) => {
+    //     setValue({ ...value });
+    // };
     const modules = {
         toolbar: [
             [{ header: '1' }, { header: '2' }, { font: [] }],

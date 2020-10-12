@@ -284,6 +284,11 @@ export default function StepperForm() {
         setDuration({ ...duration, [e.target.name]: e.target.value });
     };
     objWebinar.duration = duration.hours + ':' + duration.minutes;
+
+    // --- react quill --- //
+    const [value, setValue] = useState('');
+
+    form.description = value;
     // --- Content --- //
     function getStepContent(stepIndex) {
         switch (stepIndex) {
@@ -347,6 +352,8 @@ export default function StepperForm() {
                             feature_onheader={form.feature_onheader}
                             agent={form.agent}
                             weight={objEcommerce.weight}
+                            value={value}
+                            setValue={setValue}
                         >
                             <DynamicField
                                 fields={fields}

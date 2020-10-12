@@ -115,7 +115,10 @@ export default function Layout(props) {
                                     onChange={onChange}
                                 />
                             </div> */}
-                            <ReactQuillTest />
+                            <ReactQuillTest
+                                value={props.value}
+                                setValue={props.setValue}
+                            />
                         </WrapsField>
 
                         <WrapsField>
