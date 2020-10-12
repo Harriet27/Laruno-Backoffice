@@ -285,28 +285,21 @@ const DataProduct = (props) => {
                                     })}
                             </tbody>
                             <tfoot>
-                                <TablePagination
-                                    rowsPerPageOptions={[5, 10, 15]}
-                                    // component="div"
-                                    // colSpan={3}
-                                    count={
-                                        product !== null && product.data.length
-                                    }
-                                    rowsPerPage={rowsPerPage}
-                                    page={page}
-                                    // component="div"
-                                    // SelectProps={{
-                                    //     inputProps: {
-                                    //         'aria-label': 'rows per page',
-                                    //     },
-                                    //     native: true,
-                                    // }}
-                                    onChangePage={handleChangePage}
-                                    onChangeRowsPerPage={
-                                        handleChangeRowsPerPage
-                                    }
-                                    // ActionsComponent={TablePaginationActions}
-                                />
+                                <tr>
+                                    <TablePagination
+                                        rowsPerPageOptions={[5, 10, 15]}
+                                        count={
+                                            product !== null &&
+                                            product.data.length
+                                        }
+                                        rowsPerPage={rowsPerPage}
+                                        page={page}
+                                        onChangePage={handleChangePage}
+                                        onChangeRowsPerPage={
+                                            handleChangeRowsPerPage
+                                        }
+                                    />
+                                </tr>
                             </tfoot>
                         </Table>
                     ) : (
