@@ -4,15 +4,23 @@ import ModalSmart from '../../elements/Modal/ModalSmart';
 import { fetchUpdateTopic } from '../../store/actions';
 import { useDispatch } from 'react-redux';
 import Styled from 'styled-components';
-
+import CreateIcon from '@material-ui/icons/Create';
+import { md } from '../../elements/Styled/StyledForm';
 // --- Styled Components --- //
 const Section = Styled.section`
     width: 100%;
     align-items: center;
     display: flex;
     justify-content: center;
-    
-    
+`;
+const ButtonLink = Styled.button`
+    background-color:${(props) => (props.detail ? 'grey' : '#0098DA')};
+    padding: 5px;
+    border-radius: 3px;
+    color: white;
+    font-size: ${md};
+    border: 1px solid #ced4da;
+    font-Weight: 400;
 `;
 const Input = Styled.input`
     width: 100%;
@@ -55,7 +63,7 @@ export default function UpdateTopic(props) {
     return (
         <React.Fragment>
             <ModalSmart
-                buttonLabel="Update"
+                buttonLabel={<CreateIcon fontSize="small" />}
                 title="Update Topic"
                 onClickConfirm={handleSubmit}
             >

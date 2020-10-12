@@ -16,7 +16,7 @@ import DehazeIcon from '@material-ui/icons/Dehaze';
 import { Input, Th, Overflow, md } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import CreateIcon from '@material-ui/icons/Create';
+
 import DescriptionIcon from '@material-ui/icons/Description';
 // --- Elements, Pages, Components --- //
 import {
@@ -113,6 +113,36 @@ const DataTopic = (props) => {
     return (
         <React.Fragment>
             {/* --- section 1 --- Button Action link to Add Product ---*/}
+            {form.id[0] ? (
+                <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+                    <DropdownToggle
+                        style={{ backgroundColor: '#0098DA' }}
+                        caret
+                    >
+                        Actions
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem onClick={handlleMultipleDelete}>
+                            Delete
+                        </DropdownItem>
+                        {/* <DropdownItem onClick={handlleMultipleClone}>
+                                Clone
+                            </DropdownItem> */}
+                    </DropdownMenu>
+                </Dropdown>
+            ) : (
+                <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+                    {' '}
+                    <DropdownToggle
+                        style={{ backgroundColor: '#0098DA' }}
+                        caret
+                        disabled
+                    >
+                        Actions
+                    </DropdownToggle>
+                </Dropdown>
+            )}
+
             <div
                 style={{
                     margin: '20px 0',
@@ -120,35 +150,7 @@ const DataTopic = (props) => {
                     justifyContent: 'space-between',
                 }}
             >
-                {form.id[0] ? (
-                    <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-                        <DropdownToggle
-                            style={{ backgroundColor: '#0098DA' }}
-                            caret
-                        >
-                            Actions
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem onClick={handlleMultipleDelete}>
-                                Delete
-                            </DropdownItem>
-                            {/* <DropdownItem onClick={handlleMultipleClone}>
-                                Clone
-                            </DropdownItem> */}
-                        </DropdownMenu>
-                    </Dropdown>
-                ) : (
-                    <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-                        {' '}
-                        <DropdownToggle
-                            style={{ backgroundColor: '#0098DA' }}
-                            caret
-                            disabled
-                        >
-                            Actions
-                        </DropdownToggle>
-                    </Dropdown>
-                )}
+                <AddNewTopic />
 
                 <div>
                     <label>Search</label>{' '}

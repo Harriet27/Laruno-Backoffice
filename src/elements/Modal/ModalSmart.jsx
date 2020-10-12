@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Styled from 'styled-components';
-
+import { md } from '../../elements/Styled/StyledForm';
 // --- Styled Components --- //
-const ButtonModal = Styled.button`
-background-color: #0098DA;
-color: white;
-width: 100%;
-padding: 5px;
-font-size: 18px;
-font-weight: 400;
-border-radius: 3px;
-border: 1px solid #ced4da;
-&:focus{
-outline: none !important;
-border:1px solid #66AFE9;
-}
+
+const ButtonLink = Styled.button`
+    background-color:${(props) => (props.detail ? 'grey' : '#0098DA')};
+    padding: 5px;
+    border-radius: 3px;
+    color: white;
+    font-size: ${md};
+    border: 1px solid #ced4da;
+    font-Weight: 400;
 `;
 // --- Styled Components --- //
 
@@ -24,7 +20,7 @@ const ModalSmart = (props) => {
         buttonLabel,
         className,
         style,
-
+        component,
         children,
         title,
         onClickConfirm,
@@ -36,9 +32,9 @@ const ModalSmart = (props) => {
 
     return (
         <div>
-            <ButtonModal style={style} onClick={toggle}>
+            <ButtonLink style={style} onClick={toggle}>
                 {buttonLabel}
-            </ButtonModal>
+            </ButtonLink>
             <Modal isOpen={modal} toggle={toggle} className={className}>
                 <ModalHeader toggle={toggle}>{title}</ModalHeader>
                 <ModalBody>
