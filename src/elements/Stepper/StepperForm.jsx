@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchPostProducts } from '../../store/actions';
 import Bump from '../../components/AddProduct/Bump';
+import { duration } from 'moment';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -273,6 +274,16 @@ export default function StepperForm() {
     form.section = [...sectionAdd];
     // ---- BATAS BAWAH !!!! ---- //
 
+    // --- DURATION --- ///
+    const [duration, setDuration] = useState({
+        hours: '',
+        minutes: '',
+    });
+    console.log('duration disini', duration);
+    const handleDuration = (e) => {
+        setDuration({ ...duration, [e.target.name]: e.target.value });
+    };
+    objWebinar.duration = duration.hours + ':' + duration.minutes;
     // --- Content --- //
     function getStepContent(stepIndex) {
         switch (stepIndex) {
@@ -292,6 +303,7 @@ export default function StepperForm() {
                             handleSelect={handleSelect}
                             onChange={handleChange}
                             handleWebinar={handleWebinar}
+                            handleDuration={handleDuration}
                             form={form.type}
                             name={form.name}
                             type={form.type}
@@ -304,8 +316,10 @@ export default function StepperForm() {
                             date={form.date}
                             start_time={form.start_time}
                             slug={form.slug}
-                            duration={form.duration}
+                            // duration={form.duration}
                             sale_price={form.sale_price}
+                            duration_hours={duration.hours}
+                            duration_minutes={duration.minutes}
                         />
                         <Bump
                             onChange={handleBump}

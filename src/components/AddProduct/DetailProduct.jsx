@@ -9,9 +9,9 @@ import Card from '../../elements/Card/Card';
 import {
     optionsTime,
     DurationHour,
-    // DurationMinutes,
+    DurationMinutes,
 } from '../FakeData/FakeData';
-import SingleImage from './SingleImage'
+import SingleImage from './SingleImage';
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
@@ -82,7 +82,7 @@ export default function DetailProduct(props) {
         start_time,
         topic_select,
         handleSelect,
-        duration,
+        // duration,
         weight,
         handleWebinar,
         // --- radio button --- //
@@ -92,8 +92,9 @@ export default function DetailProduct(props) {
         gratis_ongkir,
         handleRadio,
         sale_price,
-        // duration_hours,
-        // duration_minute,
+        duration_hours,
+        duration_minute,
+        handleDuration,
     } = props;
 
     const topic = useSelector((state) => state.topic.getTopic);
@@ -158,9 +159,10 @@ export default function DetailProduct(props) {
                                     id="type"
                                     value={type}
                                     onChange={onChange}
-
                                 >
-                                    <option value="digital">Product Digital</option>
+                                    <option value="digital">
+                                        Product Digital
+                                    </option>
                                     <option value="webinar">Webinar</option>
                                     <option value="ecommerce">Ecommerce</option>
                                     <option value="bonus">Bonus</option>
@@ -237,42 +239,46 @@ export default function DetailProduct(props) {
                                         <Span>Duration</Span>
                                     </Label>
 
-                                    {/* <div
+                                    <div
                                         style={{
                                             display: 'flex',
                                             justifyContent: 'space-between',
                                         }}
-                                    > */}
-                                    <WrapsField>
-                                        <div>
-                                            <Input
-                                                as="select"
-                                                name="duration"
-                                                id="duration"
-                                                value={duration}
-                                                onChange={handleWebinar}
-                                            >
-                                                {DurationHour.map((item) => {
-                                                    return (
-                                                        <option
-                                                            value={item.value}
-                                                        >
-                                                            {item.label}
-                                                        </option>
-                                                    );
-                                                })}
-                                            </Input>
-                                        </div>
-                                    </WrapsField>
-
-                                    {/* <WrapsField dividedByTwo>
+                                    >
+                                        <WrapsField dividedByTwo>
                                             <div>
                                                 <Input
                                                     as="select"
-                                                    name="duration_minute"
-                                                    id="duration_minute"
+                                                    name="hours"
+                                                    id="duration"
+                                                    value={duration_hours}
+                                                    onChange={handleDuration}
+                                                >
+                                                    {DurationHour.map(
+                                                        (item) => {
+                                                            return (
+                                                                <option
+                                                                    value={
+                                                                        item.value
+                                                                    }
+                                                                >
+                                                                    {item.label}
+                                                                </option>
+                                                            );
+                                                        }
+                                                    )}
+                                                </Input>
+                                            </div>
+                                        </WrapsField>
+
+                                        <WrapsField dividedByTwo>
+                                            <div>
+                                                <Input
+                                                    as="select"
+                                                    name="minutes"
+                                                    id="minutes"
                                                     value={duration_minute}
-                                                    onChange={onChange}
+                                                    onChange={handleDuration}
                                                 >
                                                     {DurationMinutes.map(
                                                         (item) => {
@@ -289,8 +295,8 @@ export default function DetailProduct(props) {
                                                     )}
                                                 </Input>
                                             </div>
-                                        </WrapsField> */}
-                                    {/* </div> */}
+                                        </WrapsField>
+                                    </div>
                                     {/* --- Batas Percobaan TIME PICKER --- */}
                                 </div>
                             ) : null}
@@ -516,36 +522,39 @@ export default function DetailProduct(props) {
 
                         {/* Filed product redirect logic for sale_method */}
                         {sale_method === 'upsale' ||
-                            sale_method === 'upgrade' ||
-                            sale_method === 'crossale' ? (
-                                <WrapsField>
-                                    <Label>
-                                        <Span>Product Redirect</Span>
-                                    </Label>
-                                    <div>
-                                        <Input
-                                            as="select"
-                                            name="product_redirect"
-                                            id="product_redirect"
-                                            value={product_redirect}
-                                            onChange={onChange}
+                        sale_method === 'upgrade' ||
+                        sale_method === 'crossale' ? (
+                            <WrapsField>
+                                <Label>
+                                    <Span>Product Redirect</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        as="select"
+                                        name="product_redirect"
+                                        id="product_redirect"
+                                        value={product_redirect}
+                                        onChange={onChange}
+                                    >
+                                        <option
+                                            value=""
+                                            selected
+                                            disabled
+                                            hidden
                                         >
-                                            <option
-                                                value=""
-                                                selected
-                                                disabled
-                                                hidden
-                                            >
-                                                Choose here
+                                            Choose here
                                         </option>
 
-                                            {/*Pekerjaan yang harus di selesaikan fetch data all name product yg sudah ada */}
-                                            <option value="normal">normal</option>
-                                        </Input>
-                                    </div>
-                                </WrapsField>
-                            ) : null}
-                       <WrapsField> <SingleImage /> </WrapsField>
+                                        {/*Pekerjaan yang harus di selesaikan fetch data all name product yg sudah ada */}
+                                        <option value="normal">normal</option>
+                                    </Input>
+                                </div>
+                            </WrapsField>
+                        ) : null}
+                        <WrapsField>
+                            {' '}
+                            <SingleImage />{' '}
+                        </WrapsField>
                     </Form>
                 </Card>
             </SectionOne>
