@@ -26,7 +26,7 @@ export default function ShowTopic(props) {
             <section style={{ margin: '100px 50px' }}>
                 <Card>
                     {product !== null && (
-                        <div>
+                        <div key={product.data._id}>
                             <React.Fragment></React.Fragment>
                             <Card isNormal style={{ padding: '10px' }}>
                                 <Table borderless size="sm">
@@ -60,13 +60,12 @@ export default function ShowTopic(props) {
                                             <td>Description</td>
                                             <td>
                                                 :
-                                                <React.Fragment>
-                                                    <React.Fragment
-                                                        dangerouslySetInnerHTML={{
-                                                            __html: `${product.data.description}`,
-                                                        }}
-                                                    ></React.Fragment>
-                                                </React.Fragment>
+                                                <div
+                                                    key={product.data._id}
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: `${product.data.description}`,
+                                                    }}
+                                                />
                                                 <br />
                                                 <div
                                                     style={{

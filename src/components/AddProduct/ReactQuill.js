@@ -18,6 +18,7 @@ export default function ReactQuillTest(props) {
         toolbar: [
             [{ header: '1' }, { header: '2' }, { font: [] }],
             [{ size: [] }],
+            [{ color: [] }, { background: [] }],
             ['bold', 'italic', 'underline', 'strike', 'blockquote'],
             [
                 { list: 'ordered' },
@@ -38,6 +39,8 @@ export default function ReactQuillTest(props) {
         'header',
         'font',
         'size',
+        'color',
+        'background',
         'bold',
         'italic',
         'underline',
