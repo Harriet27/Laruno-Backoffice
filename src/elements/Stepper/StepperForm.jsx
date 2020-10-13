@@ -358,13 +358,15 @@ export default function StepperForm() {
                             setValue={setValue}
                             subheadline={form.subheadline}
                         >
-                            <DynamicField
-                                fields={fields}
-                                handleAdd={handleAdd}
-                                handleChange={handleChangeDynamic}
-                                handleChangeContents={handleChangeContents}
-                                handleRemove={handleRemove}
-                            />
+                            {form.type === 'ecommerce' ? null : (
+                                <DynamicField
+                                    fields={fields}
+                                    handleAdd={handleAdd}
+                                    handleChange={handleChangeDynamic}
+                                    handleChangeContents={handleChangeContents}
+                                    handleRemove={handleRemove}
+                                />
+                            )}
                         </Layout>
                         <DynamicFieldSection
                             fields={sectionAdd}
