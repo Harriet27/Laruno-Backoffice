@@ -97,6 +97,7 @@ export default function DetailProduct(props) {
         duration_minute,
         handleDuration,
         handleEcommerce,
+        code,
     } = props;
 
     const topic = useSelector((state) => state.topic.getTopic);
@@ -128,6 +129,22 @@ export default function DetailProduct(props) {
                                     name="name"
                                     id="name"
                                     value={name}
+                                    onChange={onChange}
+                                />
+                            </div>
+                        </WrapsField>
+
+                        {/* --- Product code --- */}
+                        <WrapsField>
+                            <Label>
+                                <Span>Produk Code</Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    type="text"
+                                    name="code"
+                                    id="code"
+                                    value={code}
                                     onChange={onChange}
                                 />
                             </div>

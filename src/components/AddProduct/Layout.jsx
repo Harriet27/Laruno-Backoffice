@@ -56,7 +56,8 @@ export default function Layout(props) {
     const {
         headline,
         onChange,
-        description,
+        // description,
+        subheadline,
         video,
         image_bonus_url,
         image_product_url,
@@ -97,6 +98,22 @@ export default function Layout(props) {
                                     name="headline"
                                     id="headline"
                                     value={headline}
+                                    onChange={onChange}
+                                />
+                            </div>
+                        </WrapsField>
+
+                        {/* subheadline */}
+                        <WrapsField>
+                            <Label>
+                                <Span>Subheadline </Span>
+                            </Label>
+                            <div>
+                                <Input
+                                    type="text"
+                                    name="subheadline"
+                                    id="subheadline"
+                                    value={subheadline}
                                     onChange={onChange}
                                 />
                             </div>

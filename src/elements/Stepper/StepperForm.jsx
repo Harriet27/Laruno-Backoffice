@@ -57,6 +57,7 @@ export default function StepperForm() {
     const [form, setForm] = useState({
         // --- section one --- //
         name: '',
+        code: '',
         slug: '',
         type: '',
         webinar: {
@@ -326,6 +327,7 @@ export default function StepperForm() {
                             stock={objEcommerce.stock}
                             handleEcommerce={handleEcommerce}
                             weight={objEcommerce.weight}
+                            code={form.code}
                         />
                         <Bump
                             onChange={handleBump}
@@ -354,6 +356,7 @@ export default function StepperForm() {
                             agent={form.agent}
                             value={value}
                             setValue={setValue}
+                            subheadline={form.subheadline}
                         >
                             <DynamicField
                                 fields={fields}
