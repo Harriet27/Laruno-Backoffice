@@ -84,6 +84,7 @@ export default function DetailProduct(props) {
         handleSelect,
         // duration,
         weight,
+        stock,
         handleWebinar,
         // --- radio button --- //
         checked_bayar,
@@ -95,6 +96,7 @@ export default function DetailProduct(props) {
         duration_hours,
         duration_minute,
         handleDuration,
+        handleEcommerce,
     } = props;
 
     const topic = useSelector((state) => state.topic.getTopic);
@@ -314,7 +316,21 @@ export default function DetailProduct(props) {
                                                 name="weight"
                                                 id="weight"
                                                 value={weight}
-                                                onChange={onChange}
+                                                onChange={handleEcommerce}
+                                            />
+                                        </div>
+                                    </WrapsField>
+                                    <WrapsField>
+                                        <Label>
+                                            <Span>Stock</Span>
+                                        </Label>
+                                        <div>
+                                            <Input
+                                                type="number"
+                                                name="stock"
+                                                id="stock"
+                                                value={stock}
+                                                onChange={handleEcommerce}
                                             />
                                         </div>
                                     </WrapsField>

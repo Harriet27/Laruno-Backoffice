@@ -68,6 +68,7 @@ export default function StepperForm() {
         ecommerce: {
             weight: 0,
             shipping_charges: true,
+            stock: 0,
         },
         topic: [],
         price: 0,
@@ -134,6 +135,7 @@ export default function StepperForm() {
     const [objEcommerce, setObjEcommerce] = useState({
         weight: 0,
         shipping_charges: true,
+        stock: 0,
     });
 
     const [objFeature, setObjFeature] = useState({
@@ -150,12 +152,12 @@ export default function StepperForm() {
             [event.target.name]: event.target.value,
         });
     };
-    // const handleEcommerce = (event) => {
-    //     setObjEcommerce({
-    //         ...objEcommerce,
-    //         [event.target.name]: event.target.value,
-    //     });
-    // };
+    const handleEcommerce = (event) => {
+        setObjEcommerce({
+            ...objEcommerce,
+            [event.target.name]: event.target.value,
+        });
+    };
     const handleFeature = (event) => {
         setObjFeature({
             ...objFeature,
@@ -168,13 +170,9 @@ export default function StepperForm() {
     // handle radio button
     const handleRadio = (event) => {
         if (event.target.value === 'true') {
-            setObjEcommerce({
-                shipping_charges: true,
-            });
+            setObjEcommerce({ ...objEcommerce, shipping_charges: true });
         } else if (event.target.value === 'false') {
-            setObjEcommerce({
-                shipping_charges: false,
-            });
+            setObjEcommerce({ ...objEcommerce, shipping_charges: false });
         }
     };
 
@@ -325,6 +323,9 @@ export default function StepperForm() {
                             sale_price={form.sale_price}
                             duration_hours={duration.hours}
                             duration_minutes={duration.minutes}
+                            stock={objEcommerce.stock}
+                            handleEcommerce={handleEcommerce}
+                            weight={objEcommerce.weight}
                         />
                         <Bump
                             onChange={handleBump}
@@ -351,7 +352,6 @@ export default function StepperForm() {
                             feature_onpage={form.feature_onpage}
                             feature_onheader={form.feature_onheader}
                             agent={form.agent}
-                            weight={objEcommerce.weight}
                             value={value}
                             setValue={setValue}
                         >

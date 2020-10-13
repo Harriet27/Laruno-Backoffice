@@ -44,6 +44,7 @@ const fetchPostMultipleImage = (form) => async (dispatch) => {
     myHeaders.append('Authorization', `Bearer ${token}`);
     let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products/multiple`;
     var formdata = new FormData();
+
     formdata.append('file', form.file, form.file.name);
 
     var requestOptions = {

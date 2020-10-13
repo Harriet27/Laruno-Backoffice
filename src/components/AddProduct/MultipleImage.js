@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { fetchPostSingleImage } from '../../store/actions';
+import { fetchPostMultipleImage } from '../../store/actions';
 
 import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
@@ -17,26 +17,28 @@ const Section = Styled.section`
 export default function SingleImage(props) {
     const dispatch = useDispatch();
     const [form, setForm] = useState({
-        file: null,
+        file: [],
     });
 
     console.log(form, 'ini form');
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
-    const image = useSelector((state) => state.image.imageProduct);
+    const image = useSelector((state) => state.image);
     console.log(image, 'hasilnya');
 
     // --- Fetch Submit Method Post --- //
     const handleSubmit = async (event) => {
-        dispatch(fetchPostSingleImage(form));
+        dispatch(fetchPostMultipleImage(form));
         setModal(!modal);
     };
-
+    // const handleChange = (e) => {
+    //     setImage({ [e.target.name]: e.target.value });
+    // };
     const handleChange = (e) => {
         // Update the state
         e.preventDefault();
-        setForm({ file: e.target.files[0] });
+        setForm({ file: e.target.files });
     };
 
     return (
@@ -52,15 +54,12 @@ export default function SingleImage(props) {
                     <input
                         type="file"
                         name="image"
-                        id="img_single"
+                        id="multiple-image"
                         onChange={handleChange}
+                        multiple
                     />
                 </Section>
             </ModalImage>
-
-            {image !== null && (
-                <img src={image.result.url} alt={image.result.url} />
-            )}
         </React.Fragment>
     );
 }
