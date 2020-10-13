@@ -351,8 +351,8 @@ export default function StepperForm() {
                             image_text_url={form.image_text_url}
                             image_product_url={form.image_product_url}
                             video={form.video_url}
-                            feature_onpage={form.feature_onpage}
-                            feature_onheader={form.feature_onheader}
+                            feature_onpage={objFeature.feature_onpage}
+                            feature_onheader={objFeature.feature_onheader}
                             agent={form.agent}
                             value={value}
                             setValue={setValue}
