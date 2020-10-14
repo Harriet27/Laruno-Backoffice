@@ -578,37 +578,6 @@ export default function DetailProduct(props) {
                             </div>
                         </WrapsField>
 
-                        {/* Filed product redirect logic for sale_method */}
-                        {/* {sale_method === 'upsale' ||
-                        sale_method === 'upgrade' ||
-                        sale_method === 'crossale' ? (
-                            <WrapsField>
-                                <Label>
-                                    <Span>Product Redirect</Span>
-                                </Label>
-                                <div>
-                                    <Input
-                                        as="select"
-                                        name="product_redirect"
-                                        id="product_redirect"
-                                        value={product_redirect}
-                                        onChange={onChange}
-                                    >
-                                        <option
-                                            value=""
-                                            selected
-                                            disabled
-                                            hidden
-                                        >
-                                            Choose here
-                                        </option> */}
-
-                        {/*Pekerjaan yang harus di selesaikan fetch data all name product yg sudah ada */}
-                        {/* <option value="normal">normal</option>
-                                    </Input>
-                                </div>
-                            </WrapsField>
-                        ) : null} */}
                         <WrapsField>
                             {' '}
                             <SingleImage

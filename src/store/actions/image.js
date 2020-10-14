@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 // ---Product Image --- //
 const POST_SINGLE_IMAGE = 'POST_SINGLE_IMAGE';
 const POST_MULTIPLE_IMAGE = 'POST_MULTIPLE_IMAGE';
@@ -41,7 +42,22 @@ const fetchPostSingleImage = (
     // const result = await response.json();
     // console.log(result, 'isi result apa');
     // dispatch(postSingleImage(result));
+    // const Toast = Swal.mixin({
+    //     toast: true,
+    //     position: 'top-end',
+    //     showConfirmButton: false,
+    //     timer: 3000,
+    //     timerProgressBar: true,
+    //     didOpen: (toast) => {
+    //         toast.addEventListener('mouseenter', Swal.stopTimer);
+    //         toast.addEventListener('mouseleave', Swal.resumeTimer);
+    //     },
+    // });
 
+    // Toast.fire({
+    //     icon: 'success',
+    //     title: 'Upload successfully',
+    // });
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
 
     let image = formulir.image;
@@ -64,6 +80,7 @@ const fetchPostSingleImage = (
     setFormulir({ image });
     console.log(result, 'isi result apa');
     // dispatch(postSingleImage(result));
+
     setModal(!modal);
 };
 
