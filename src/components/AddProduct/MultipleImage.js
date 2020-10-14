@@ -20,7 +20,7 @@ export default function SingleImage(props) {
         file: [],
     });
 
-    console.log(form, 'ini form');
+    console.log(form, 'ini form isinya apa aja');
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);

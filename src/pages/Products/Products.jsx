@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import CardGetData from '../../elements/Card/CardGetData';
 import DataProduct from '../../components/Product/DataProduct';
 import ImageBonus from '../../components/AddProduct/imageBonus';
+import Image from '../../components/AddProduct/image';
 // import ReactQuill from '../../components/AddProduct/ReactQuill';
 // --- Styled Components --- //
 const Wraps = Styled.div`
@@ -78,6 +79,7 @@ export default function Products() {
             )}
             {/* --- section 2 --- */}
             <DataProduct />
+            <Image />
             {/* <ImageBonus /> */}
             {/* <ReactQuill /> */}
             {/* <DaTest /> */}

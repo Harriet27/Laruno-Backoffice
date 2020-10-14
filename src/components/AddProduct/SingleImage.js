@@ -16,6 +16,7 @@ const Section = Styled.section`
 
 export default function SingleImage(props) {
     const dispatch = useDispatch();
+    const { id, onChange, onSubmit } = props;
     const [form, setForm] = useState({
         file: null,
     });
@@ -44,23 +45,23 @@ export default function SingleImage(props) {
             <ModalImage
                 buttonLabel="Update Image"
                 title="Update Image"
-                onClickConfirm={handleSubmit}
+                onClickConfirm={onSubmit}
                 modal={modal}
                 toggle={toggle}
             >
                 <Section>
                     <input
                         type="file"
-                        name="image"
-                        id="img_single"
-                        onChange={handleChange}
+                        name="file"
+                        id={id}
+                        onChange={onChange}
                     />
                 </Section>
             </ModalImage>
 
-            {image !== null && (
+            {/* {image !== null && (
                 <img src={image.result.url} alt={image.result.url} />
-            )}
+            )} */}
         </React.Fragment>
     );
 }
