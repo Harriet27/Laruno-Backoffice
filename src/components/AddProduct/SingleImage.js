@@ -16,35 +16,33 @@ const Section = Styled.section`
 
 export default function SingleImage(props) {
     const dispatch = useDispatch();
-    const { id, onChange, onSubmit } = props;
+    const { id, onChange, onSubmit, modal, toggle } = props;
     const [form, setForm] = useState({
         file: null,
     });
 
     console.log(form, 'ini form');
-    const [modal, setModal] = useState(false);
 
-    const toggle = () => setModal(!modal);
     const image = useSelector((state) => state.image.imageProduct);
     console.log(image, 'hasilnya');
 
     // --- Fetch Submit Method Post --- //
-    const handleSubmit = async (event) => {
-        dispatch(fetchPostSingleImage(form));
-        setModal(!modal);
-    };
+    // const handleSubmit = async (event) => {
+    //     dispatch(fetchPostSingleImage(form));
+    //     setModal(!modal);
+    // };
 
-    const handleChange = (e) => {
-        // Update the state
-        e.preventDefault();
-        setForm({ file: e.target.files[0] });
-    };
+    // const handleChange = (e) => {
+    //     // Update the state
+    //     e.preventDefault();
+    //     setForm({ file: e.target.files[0] });
+    // };
 
     return (
         <React.Fragment>
             <ModalImage
-                buttonLabel="Update Image"
-                title="Update Image"
+                buttonLabel="Upload Image"
+                title="Upload Image"
                 onClickConfirm={onSubmit}
                 modal={modal}
                 toggle={toggle}

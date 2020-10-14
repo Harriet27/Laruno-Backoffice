@@ -15,14 +15,41 @@ const postMultipleImage = (data) => {
 };
 
 // --- Single Image --- //
-const fetchPostSingleImage = (form) => async (dispatch) => {
+const fetchPostSingleImage = (
+    formulir,
+    e,
+    id,
+    setFormulir,
+    modal,
+    setModal
+) => async (dispatch) => {
+    // const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+
+    // var myHeaders = new Headers();
+    // myHeaders.append('Authorization', `Bearer ${token}`);
+    // let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products`;
+    // var formdata = new FormData();
+    // formdata.append('file', form.file, form.file.name);
+
+    // var requestOptions = {
+    //     method: 'POST',
+    //     headers: myHeaders,
+    //     body: formdata,
+    //     redirect: 'follow',
+    // };
+    // const response = await fetch(url, requestOptions);
+    // const result = await response.json();
+    // console.log(result, 'isi result apa');
+    // dispatch(postSingleImage(result));
+
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
 
+    let image = formulir.image;
     var myHeaders = new Headers();
     myHeaders.append('Authorization', `Bearer ${token}`);
     let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products`;
     var formdata = new FormData();
-    formdata.append('file', form.file, form.file.name);
+    formdata.append('file', image[id], image.name);
 
     var requestOptions = {
         method: 'POST',
@@ -31,9 +58,13 @@ const fetchPostSingleImage = (form) => async (dispatch) => {
         redirect: 'follow',
     };
     const response = await fetch(url, requestOptions);
+    console.log(response, 'response isinya apa sih');
     const result = await response.json();
+    image[id] = result.result.url;
+    setFormulir({ image });
     console.log(result, 'isi result apa');
-    dispatch(postSingleImage(result));
+    // dispatch(postSingleImage(result));
+    setModal(!modal);
 };
 
 // --- Post Multiple Image --- //
@@ -58,6 +89,8 @@ const fetchPostMultipleImage = (form) => async (dispatch) => {
     console.log(result, 'isi result apa');
     dispatch(postMultipleImage(result));
 };
+
+// --- Post Single Image --- //
 
 export {
     postSingleImage,

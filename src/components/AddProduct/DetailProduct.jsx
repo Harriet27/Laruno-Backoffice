@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import MultiSelect from '@khanacademy/react-multi-select';
 import { useDispatch, useSelector } from 'react-redux';
 
 // --- Elements, Pages, Components --- //
-import { fetchGetTopic } from '../../store/actions';
+import { fetchGetTopic, fetchPostSingleImage } from '../../store/actions';
 import Styled from 'styled-components';
 import Card from '../../elements/Card/Card';
 import {
@@ -99,6 +99,8 @@ export default function DetailProduct(props) {
         handleDuration,
         handleEcommerce,
         code,
+        formulir,
+        setFormulir,
     } = props;
 
     const topic = useSelector((state) => state.topic.getTopic);
@@ -114,6 +116,30 @@ export default function DetailProduct(props) {
             return { key: item._id, value: item._id, label: item.name };
         });
 
+    // --- HandleChange upload Image --- //
+    const handleChange = (e) => {
+        let image = formulir.image;
+
+        let field = e.target.id;
+
+        image[field] = e.target.files[0];
+        console.log('img[]', image);
+
+        setFormulir({ image });
+        // this.setState({img_value: e.target.files[0]})
+    };
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
+    // --- handleSubmit Upload Image --- //
+    const handleSubmit = async (e, id) => {
+        e.preventDefault();
+
+        //  upload image
+        dispatch(
+            fetchPostSingleImage(formulir, e, id, setFormulir, modal, setModal)
+        );
+    };
     return (
         <Section>
             <SectionOne>
@@ -180,6 +206,9 @@ export default function DetailProduct(props) {
                                     value={type}
                                     onChange={onChange}
                                 >
+                                    <option value="" selected disabled hidden>
+                                        Choose here
+                                    </option>
                                     <option value="digital">
                                         Product Digital
                                     </option>
@@ -515,12 +544,7 @@ export default function DetailProduct(props) {
                                     value={visibility}
                                     onChange={onChange}
                                 >
-                                    <option
-                                        value="choose here"
-                                        selected
-                                        disabled
-                                        hidden
-                                    >
+                                    <option value="" selected disabled hidden>
                                         Choose here
                                     </option>
                                     <option value="publish">Public</option>
@@ -587,8 +611,20 @@ export default function DetailProduct(props) {
                         ) : null} */}
                         <WrapsField>
                             {' '}
-                            {/* <SingleImage />  */}
-                            <MultipleImage />
+                            <SingleImage
+                                modal={modal}
+                                toggle={toggle}
+                                id="image_url"
+                                onChange={handleChange}
+                                onSubmit={(e) => handleSubmit(e, 'image_url')}
+                            />
+                            {typeof formulir.image.image_url ===
+                            'object' ? null : (
+                                <img
+                                    src={formulir.image.image_url}
+                                    alt={formulir.image.image_url}
+                                />
+                            )}
                         </WrapsField>
                     </Form>
                 </Card>

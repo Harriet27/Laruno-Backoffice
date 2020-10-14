@@ -115,8 +115,6 @@ export default function StepperForm() {
     });
 
     // ======>>> lOGIC DETAIL PRODUCT SECTION 1 <<<====== //
-    const reqImage = image !== null && image.result.url;
-    form.image_url = reqImage;
 
     // --- Test Order Bump,  Webinar, ecommerce--- //
     const [objBump, setObjBump] = useState({
@@ -288,6 +286,19 @@ export default function StepperForm() {
     const [value, setValue] = useState('');
 
     form.description = value;
+
+    // --- Upload Image --- //
+    const [formulir, setFormulir] = useState({
+        image: {},
+    });
+    console.log(formulir, 'formulir ini sinya apa sih');
+    console.log(formulir.image.image_url, 'formulir ini isinya apa sih');
+    console.log(
+        formulir.image.bump_image,
+        'formulir ini isinya apa bump image'
+    );
+    form.image_url = formulir.image.image_url;
+    objBump.bump_image = formulir.image.bump_image;
     // --- Content --- //
     function getStepContent(stepIndex) {
         switch (stepIndex) {
@@ -328,6 +339,8 @@ export default function StepperForm() {
                             handleEcommerce={handleEcommerce}
                             weight={objEcommerce.weight}
                             code={form.code}
+                            formulir={formulir}
+                            setFormulir={setFormulir}
                         />
                         <Bump
                             onChange={handleBump}
@@ -335,6 +348,8 @@ export default function StepperForm() {
                             bump_price={objBump.bump_price}
                             bump_weight={objBump.bump_weight}
                             bump_image={objBump.bump_image}
+                            formulir={formulir}
+                            setFormulir={setFormulir}
                         />
                     </>
                 );

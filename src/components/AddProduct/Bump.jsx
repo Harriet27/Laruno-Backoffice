@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '../../elements/Card/Card';
+import { useDispatch } from 'react-redux';
 import Styled from 'styled-components';
-
+import SingleImage from './SingleImage';
+import { fetchPostSingleImage } from '../../store/actions';
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
@@ -42,9 +44,41 @@ const Section = Styled.div`
 // --- Styled Components --- //
 
 export default function Bump(props) {
-    const { bump_name, onChange, bump_weight, bump_image, bump_price } = props;
-    // handle change untuk onChange
+    const dispatch = useDispatch();
+    const {
+        bump_name,
+        onChange,
+        bump_weight,
+        bump_image,
+        bump_price,
+        formulir,
+        setFormulir,
+    } = props;
 
+    // --- HandleChange upload Image --- //
+    const handleChange = (e) => {
+        let image = formulir.image;
+
+        let field = e.target.id;
+
+        image[field] = e.target.files[0];
+        console.log('img[]', image);
+
+        setFormulir({ image });
+        // this.setState({img_value: e.target.files[0]})
+    };
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
+    // --- handleSubmit Upload Image --- //
+    const handleSubmit = async (e, id) => {
+        e.preventDefault();
+
+        //  upload image
+        dispatch(
+            fetchPostSingleImage(formulir, e, id, setFormulir, modal, setModal)
+        );
+    };
     return (
         <Section>
             <Card isNormal>
@@ -127,7 +161,24 @@ export default function Bump(props) {
                                 </div>
                             </WrapsField>
 
-                            <WrapsField>{/* <BumpImage /> */}</WrapsField>
+                            <WrapsField>
+                                <SingleImage
+                                    modal={modal}
+                                    toggle={toggle}
+                                    id="bump_image"
+                                    onChange={handleChange}
+                                    onSubmit={(e) =>
+                                        handleSubmit(e, 'bump_image')
+                                    }
+                                />
+                                {typeof formulir.image.bump_image ===
+                                'object' ? null : (
+                                    <img
+                                        src={formulir.image.bump_image}
+                                        alt={formulir.image.bump_image}
+                                    />
+                                )}
+                            </WrapsField>
                         </React.Fragment>
                         {/* ) : null} */}
                     </div>
