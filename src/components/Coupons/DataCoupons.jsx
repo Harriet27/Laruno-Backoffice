@@ -6,7 +6,7 @@ import {
     DropdownMenu,
     DropdownItem,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
 import Styled from 'styled-components';
@@ -15,9 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import { Input, Th, Overflow, md } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
-import DescriptionIcon from '@material-ui/icons/Description';
 // --- Elements, Pages, Components --- //
 import {
     fetchGetCoupons,
@@ -28,20 +26,8 @@ import {
     // fetchPostTopic,
 } from '../../store/actions';
 import AddCoupons from './AddCoupons';
-// import UpdateTopic from './UpdateTopic';
-// import DeleteTopic from './DeleteTopic';
 
 // --- Styled Components --- //
-
-const ButtonLink = Styled.button`
-    background-color:${(props) => (props.detail ? 'grey' : '#0098DA')};
-    padding: 5px;
-    border-radius: 3px;
-    color: white;
-    font-size: ${md};
-    border: 1px solid #ced4da;
-    font-Weight: 400;
-`;
 
 const DataTopic = (props) => {
     const dispatch = useDispatch();
