@@ -270,6 +270,7 @@ export default function DetailProduct(props) {
                                                     {optionsTime.map((item) => {
                                                         return (
                                                             <option
+                                                                key={item.value}
                                                                 value={
                                                                     item.value
                                                                 }
@@ -307,6 +308,9 @@ export default function DetailProduct(props) {
                                                         (item) => {
                                                             return (
                                                                 <option
+                                                                    key={
+                                                                        item.value
+                                                                    }
                                                                     value={
                                                                         item.value
                                                                     }
@@ -333,6 +337,9 @@ export default function DetailProduct(props) {
                                                         (item) => {
                                                             return (
                                                                 <option
+                                                                    key={
+                                                                        item.value
+                                                                    }
                                                                     value={
                                                                         item.value
                                                                     }
