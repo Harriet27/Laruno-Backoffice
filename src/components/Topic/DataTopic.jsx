@@ -66,6 +66,7 @@ const DataTopic = (props) => {
 
     const [form, setForm] = useState({
         id: [],
+        allChecked: false,
     });
 
     const [searching, setSearching] = useState({
@@ -202,7 +203,7 @@ const DataTopic = (props) => {
                             <thead>
                                 <tr>
                                     <Th>
-                                        <DehazeIcon />
+                                        <Input checkbox type="checkbox" />
                                     </Th>
                                     <Th>Name</Th>
                                     <Th>Slug</Th>

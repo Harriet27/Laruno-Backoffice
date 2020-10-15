@@ -131,7 +131,12 @@ export default function Bump(props) {
                                             width: '50px',
                                         }}
                                     >
-                                        <div style={{ textAlign: 'center' }}>
+                                        <div
+                                            style={{
+                                                textAlign: 'center',
+                                                marginTop: '3px',
+                                            }}
+                                        >
                                             Rp
                                         </div>
                                     </div>

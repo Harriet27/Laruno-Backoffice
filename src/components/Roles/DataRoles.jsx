@@ -333,7 +333,7 @@ const DataRoles = (props) => {
                             <thead>
                                 <tr>
                                     <Th>
-                                        <DehazeIcon />
+                                        <Input checkbox type="checkbox" />
                                     </Th>
                                     <Th>Admin Type</Th>
                                     <Th>Read Write</Th>

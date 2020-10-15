@@ -448,7 +448,12 @@ export default function DetailProduct(props) {
                                         width: '50px',
                                     }}
                                 >
-                                    <div style={{ textAlign: 'center' }}>
+                                    <div
+                                        style={{
+                                            textAlign: 'center',
+                                            marginTop: '3px',
+                                        }}
+                                    >
                                         Rp
                                     </div>
                                 </div>
@@ -482,7 +487,12 @@ export default function DetailProduct(props) {
                                         width: '50px',
                                     }}
                                 >
-                                    <div style={{ textAlign: 'center' }}>
+                                    <div
+                                        style={{
+                                            textAlign: 'center',
+                                            marginTop: '3px',
+                                        }}
+                                    >
                                         Rp
                                     </div>
                                 </div>
@@ -524,7 +534,12 @@ export default function DetailProduct(props) {
                                         width: '80px',
                                     }}
                                 >
-                                    <div style={{ textAlign: 'center' }}>
+                                    <div
+                                        style={{
+                                            textAlign: 'center',
+                                            marginTop: '3px',
+                                        }}
+                                    >
                                         Month
                                     </div>
                                 </div>

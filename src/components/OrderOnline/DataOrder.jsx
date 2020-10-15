@@ -115,7 +115,7 @@ const DataOrders = (props) => {
                             <thead>
                                 <tr>
                                     <Th>
-                                        <DehazeIcon />
+                                        <Input checkbox type="checkbox" />
                                     </Th>
                                     <Th>Invoice Number</Th>
                                     <Th>Tag</Th>

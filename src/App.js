@@ -26,6 +26,7 @@ import DataReseller from './components/Reseller/DataReseller';
 import Order from './pages/Order/Order';
 import DataCoupons from './components/Coupons/DataCoupons';
 import DetailOrder from './components/OrderOnline/DetailOrder';
+import MultipleImage from './components/AddProduct/MultipleImage';
 
 export default function App() {
     return (
@@ -81,7 +82,7 @@ export default function App() {
 
                     <Route exact path="/test-components">
                         <Header />
-                        <AlertDelete />
+                        <MultipleImage />
                     </Route>
                     <Route exact path="/reseller">
                         <Header />

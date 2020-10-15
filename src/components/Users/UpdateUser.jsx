@@ -3,6 +3,7 @@ import Styled from 'styled-components';
 import MultiSelect from '@khanacademy/react-multi-select';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUpdateAdministrator, fetchGetRoles } from '../../store/actions';
+import CreateIcon from '@material-ui/icons/Create';
 import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 
@@ -83,7 +84,7 @@ export default function UpdateUser(props) {
         <div>
             <ModalSmart
                 onClickConfirm={handleSubmit}
-                buttonLabel="Update"
+                buttonLabel={<CreateIcon fontSize="small" />}
                 title="Update Admin"
             >
                 <Section>

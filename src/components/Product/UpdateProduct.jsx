@@ -13,7 +13,7 @@ import DynamicField from '../../components/AddProduct/DynamicField';
 import DynamicFieldSection from '../../components/AddProduct/DynamicFieldSection';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { fetchPostProducts } from '../../store/actions';
+import { fetchUpdateProduct } from '../../store/actions';
 import Bump from '../../components/AddProduct/Bump';
 import { duration } from 'moment';
 
@@ -34,7 +34,7 @@ function getSteps() {
     return ['Detail Information', 'Layout'];
 }
 
-export default function UpdateProduct() {
+export default function StepperForm() {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = getSteps();
@@ -57,6 +57,7 @@ export default function UpdateProduct() {
     const [form, setForm] = useState({
         // --- section one --- //
         name: '',
+        code: '',
         slug: '',
         type: '',
         webinar: {
@@ -68,6 +69,7 @@ export default function UpdateProduct() {
         ecommerce: {
             weight: 0,
             shipping_charges: true,
+            stock: 0,
         },
         topic: [],
         price: 0,
@@ -113,8 +115,6 @@ export default function UpdateProduct() {
     });
 
     // ======>>> lOGIC DETAIL PRODUCT SECTION 1 <<<====== //
-    const reqImage = image !== null && image.result.url;
-    form.image_url = reqImage;
 
     // --- Test Order Bump,  Webinar, ecommerce--- //
     const [objBump, setObjBump] = useState({
@@ -134,6 +134,7 @@ export default function UpdateProduct() {
     const [objEcommerce, setObjEcommerce] = useState({
         weight: 0,
         shipping_charges: true,
+        stock: 0,
     });
 
     const [objFeature, setObjFeature] = useState({
@@ -150,12 +151,12 @@ export default function UpdateProduct() {
             [event.target.name]: event.target.value,
         });
     };
-    // const handleEcommerce = (event) => {
-    //     setObjEcommerce({
-    //         ...objEcommerce,
-    //         [event.target.name]: event.target.value,
-    //     });
-    // };
+    const handleEcommerce = (event) => {
+        setObjEcommerce({
+            ...objEcommerce,
+            [event.target.name]: event.target.value,
+        });
+    };
     const handleFeature = (event) => {
         setObjFeature({
             ...objFeature,
@@ -168,13 +169,9 @@ export default function UpdateProduct() {
     // handle radio button
     const handleRadio = (event) => {
         if (event.target.value === 'true') {
-            setObjEcommerce({
-                shipping_charges: true,
-            });
+            setObjEcommerce({ ...objEcommerce, shipping_charges: true });
         } else if (event.target.value === 'false') {
-            setObjEcommerce({
-                shipping_charges: false,
-            });
+            setObjEcommerce({ ...objEcommerce, shipping_charges: false });
         }
     };
 
@@ -186,7 +183,7 @@ export default function UpdateProduct() {
     // --- handleSubmit untuk enter dan submit button --- //
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(fetchPostProducts(form, history));
+        dispatch(fetchUpdateProduct(form, history));
     };
 
     console.log(form, 'ini form isinya apa aja. ORDER BUMP');
@@ -284,6 +281,24 @@ export default function UpdateProduct() {
         setDuration({ ...duration, [e.target.name]: e.target.value });
     };
     objWebinar.duration = duration.hours + ':' + duration.minutes;
+
+    // --- react quill --- //
+    const [value, setValue] = useState('');
+
+    form.description = value;
+
+    // --- Upload Image --- //
+    const [formulir, setFormulir] = useState({
+        image: {},
+    });
+    console.log(formulir, 'formulir ini sinya apa sih');
+    console.log(formulir.image.image_url, 'formulir ini isinya apa sih');
+    console.log(
+        formulir.image.bump_image,
+        'formulir ini isinya apa bump image'
+    );
+    form.image_url = formulir.image.image_url;
+    objBump.bump_image = formulir.image.bump_image;
     // --- Content --- //
     function getStepContent(stepIndex) {
         switch (stepIndex) {
@@ -320,6 +335,12 @@ export default function UpdateProduct() {
                             sale_price={form.sale_price}
                             duration_hours={duration.hours}
                             duration_minutes={duration.minutes}
+                            stock={objEcommerce.stock}
+                            handleEcommerce={handleEcommerce}
+                            weight={objEcommerce.weight}
+                            code={form.code}
+                            formulir={formulir}
+                            setFormulir={setFormulir}
                         />
                         <Bump
                             onChange={handleBump}
@@ -327,6 +348,8 @@ export default function UpdateProduct() {
                             bump_price={objBump.bump_price}
                             bump_weight={objBump.bump_weight}
                             bump_image={objBump.bump_image}
+                            formulir={formulir}
+                            setFormulir={setFormulir}
                         />
                     </>
                 );
@@ -343,18 +366,22 @@ export default function UpdateProduct() {
                             image_text_url={form.image_text_url}
                             image_product_url={form.image_product_url}
                             video={form.video_url}
-                            feature_onpage={form.feature_onpage}
-                            feature_onheader={form.feature_onheader}
+                            feature_onpage={objFeature.feature_onpage}
+                            feature_onheader={objFeature.feature_onheader}
                             agent={form.agent}
-                            weight={objEcommerce.weight}
+                            value={value}
+                            setValue={setValue}
+                            subheadline={form.subheadline}
                         >
-                            <DynamicField
-                                fields={fields}
-                                handleAdd={handleAdd}
-                                handleChange={handleChangeDynamic}
-                                handleChangeContents={handleChangeContents}
-                                handleRemove={handleRemove}
-                            />
+                            {form.type === 'ecommerce' ? null : (
+                                <DynamicField
+                                    fields={fields}
+                                    handleAdd={handleAdd}
+                                    handleChange={handleChangeDynamic}
+                                    handleChangeContents={handleChangeContents}
+                                    handleRemove={handleRemove}
+                                />
+                            )}
                         </Layout>
                         <DynamicFieldSection
                             fields={sectionAdd}

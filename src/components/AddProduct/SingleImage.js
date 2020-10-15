@@ -23,21 +23,6 @@ export default function SingleImage(props) {
 
     console.log(form, 'ini form');
 
-    const image = useSelector((state) => state.image.imageProduct);
-    console.log(image, 'hasilnya');
-
-    // --- Fetch Submit Method Post --- //
-    // const handleSubmit = async (event) => {
-    //     dispatch(fetchPostSingleImage(form));
-    //     setModal(!modal);
-    // };
-
-    // const handleChange = (e) => {
-    //     // Update the state
-    //     e.preventDefault();
-    //     setForm({ file: e.target.files[0] });
-    // };
-
     return (
         <React.Fragment>
             <ModalImage
@@ -56,10 +41,6 @@ export default function SingleImage(props) {
                     />
                 </Section>
             </ModalImage>
-
-            {/* {image !== null && (
-                <img src={image.result.url} alt={image.result.url} />
-            )} */}
         </React.Fragment>
     );
 }

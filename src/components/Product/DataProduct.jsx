@@ -198,7 +198,7 @@ const DataProduct = (props) => {
                             <thead>
                                 <tr>
                                     <Th>
-                                        <DehazeIcon />
+                                        <Input checkbox type="checkbox" />
                                     </Th>
                                     <Th>Visibility</Th>
                                     <Th>Product Code</Th>
