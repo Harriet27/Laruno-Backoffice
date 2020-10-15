@@ -21,6 +21,7 @@ import DescriptionIcon from '@material-ui/icons/Description';
 // --- Elements, Pages, Components --- //
 import {
     fetchGetCoupons,
+    fetchMultipleCloneCoupons,
     fetchMultipleDeleteCoupons,
     // fetchMultipleClone,
     // fetchFindProduct,
@@ -100,10 +101,10 @@ const DataTopic = (props) => {
     };
 
     // --- Multiple Clone --- //
-    // const handlleMultipleClone = (event) => {
-    //     event.preventDefault();
-    //     dispatch(fetchMultipleCloneProduct(form));
-    // };
+    const handlleMultipleClone = (event) => {
+        event.preventDefault();
+        dispatch(fetchMultipleCloneCoupons(form));
+    };
 
     // --- handle Change --- //
     const handleChange = (event) => {
@@ -130,9 +131,9 @@ const DataTopic = (props) => {
                         <DropdownItem onClick={handlleMultipleDelete}>
                             Delete
                         </DropdownItem>
-                        {/* <DropdownItem onClick={handlleMultipleClone}>
-                                Clone
-                            </DropdownItem> */}
+                        <DropdownItem onClick={handlleMultipleClone}>
+                            Clone
+                        </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             ) : (
