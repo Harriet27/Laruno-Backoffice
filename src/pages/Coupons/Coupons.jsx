@@ -3,8 +3,8 @@ import DataCoupons from '../../components/Coupons/DataCoupons';
 
 export default function Coupons() {
     return (
-        <div>
+        <section style={{ margin: '50px' }}>
             <DataCoupons />
-        </div>
+        </section>
     );
 }

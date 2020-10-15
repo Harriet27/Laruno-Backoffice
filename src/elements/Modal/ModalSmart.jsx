@@ -24,6 +24,7 @@ const ModalSmart = (props) => {
         children,
         title,
         onClickConfirm,
+        styleModal,
     } = props;
 
     const [modal, setModal] = useState(false);
@@ -35,7 +36,12 @@ const ModalSmart = (props) => {
             <ButtonLink style={style} onClick={toggle}>
                 {buttonLabel}
             </ButtonLink>
-            <Modal isOpen={modal} toggle={toggle} className={className}>
+            <Modal
+                style={styleModal}
+                isOpen={modal}
+                toggle={toggle}
+                className={className}
+            >
                 <ModalHeader toggle={toggle}>{title}</ModalHeader>
                 <ModalBody>
                     {/* modal body untuk isi content bisa dengan html */}

@@ -10,6 +10,12 @@ import ModalSmart from '../../elements/Modal/ModalSmart';
 // --- Styled Components --- //
 const [sm, md, lg] = ['16px', '18px', '20px'];
 
+const Span = Styled.span`
+    font-weight: bold;
+    color: #656565;
+    font-size: 18px;
+`;
+
 const Section = Styled.section`
     width: 100%;
     align-items: center;
@@ -47,6 +53,7 @@ export default function AddCoupons() {
         end_date: '',
         max_discount: 0,
         payment_method: '',
+        is_active: true,
     });
 
     // --- Fetch submit method Post --- //
@@ -61,118 +68,131 @@ export default function AddCoupons() {
 
     return (
         <ModalSmart
+            styleModal={{ maxWidth: '700px', width: '100%' }}
             buttonLabel="Add Coupons"
             title="Add Coupons"
             onClickConfirm={handleSubmit}
         >
-            <Section>
-                <Card isLogin>
-                    <div>
-                        {/* --- Name --- */}
-                        <WrapForm>
-                            <Input
-                                type="text"
-                                name="name"
-                                id="name"
-                                value={form.name}
-                                onChange={handleChange}
-                                placeholder="Name"
-                                required
-                            />
-                        </WrapForm>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <WrapForm style={{ width: '45%' }}>
+                    <label>
+                        <Span>Name</Span>
+                    </label>
+                    <Input
+                        type="text"
+                        name="name"
+                        id="name"
+                        value={form.name}
+                        onChange={handleChange}
+                        placeholder="Name Coupons"
+                        required
+                    />
+                </WrapForm>
 
-                        {/* --- Code --- */}
-                        <WrapForm>
-                            <Input
-                                type="text"
-                                name="code"
-                                id="code"
-                                value={form.code}
-                                onChange={handleChange}
-                                placeholder="code"
-                                required
-                            />
-                        </WrapForm>
+                <WrapForm style={{ width: '45%' }}>
+                    <label>
+                        <Span>Coupon Code</Span>
+                    </label>
+                    <Input
+                        type="text"
+                        name="code"
+                        id="code"
+                        value={form.code}
+                        onChange={handleChange}
+                        placeholder="Code Coupons"
+                        required
+                    />
+                </WrapForm>
+            </div>
 
-                        {/* --- Value --- */}
-                        <WrapForm>
-                            <Input
-                                type="text"
-                                name="value"
-                                id="value"
-                                value={form.value}
-                                onChange={handleChange}
-                                placeholder="Value"
-                                required
-                            />
-                        </WrapForm>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <WrapForm style={{ width: '45%' }}>
+                    <label>
+                        <Span>Start Coupons</Span>
+                    </label>
+                    <Input
+                        type="date"
+                        name="start_date"
+                        id="start_date"
+                        value={form.start_date}
+                        onChange={handleChange}
+                        placeholder="Start Date"
+                        required
+                    />
+                </WrapForm>
 
-                        {/* --- Start_Date --- */}
-                        <WrapForm>
-                            <Input
-                                type="date"
-                                name="start_date"
-                                id="start_date"
-                                value={form.start_date}
-                                onChange={handleChange}
-                                placeholder="Start Date"
-                                required
-                            />
-                        </WrapForm>
+                <WrapForm style={{ width: '45%' }}>
+                    <label>
+                        <Span>End Coupons</Span>
+                    </label>
+                    <Input
+                        type="date"
+                        name="end_date"
+                        id="end_date"
+                        value={form.end_date}
+                        onChange={handleChange}
+                        placeholder="End Date"
+                        required
+                    />
+                </WrapForm>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <WrapForm style={{ width: '45%' }}>
+                    <label>
+                        <Span>Max Discount</Span>
+                    </label>
+                    <Input
+                        type="number"
+                        name="max_discount"
+                        id="max_discount"
+                        value={form.max_discount}
+                        onChange={handleChange}
+                        placeholder="Maksimal Discount"
+                        required
+                    />
+                </WrapForm>
+                <WrapForm style={{ width: '45%' }}>
+                    <label>
+                        <Span>Payment Method</Span>
+                    </label>
+                    <Input
+                        type="text"
+                        name="payment_method"
+                        id="payment_method"
+                        value={form.payment_method}
+                        onChange={handleChange}
+                        placeholder="Payment method"
+                        required
+                    />
+                </WrapForm>
+            </div>
 
-                        {/* --- End_Date --- */}
-                        <WrapForm>
-                            <Input
-                                type="date"
-                                name="end_date"
-                                id="end_date"
-                                value={form.end_date}
-                                onChange={handleChange}
-                                placeholder="End Date"
-                                required
-                            />
-                        </WrapForm>
-
-                        {/* --- Max Discount --- */}
-                        <WrapForm>
-                            <Input
-                                type="number"
-                                name="max_discount"
-                                id="max_discount"
-                                value={form.max_discount}
-                                onChange={handleChange}
-                                placeholder="Maksimal Discount"
-                                required
-                            />
-                        </WrapForm>
-
-                        {/* --- Payment Method - Transfer - ovo - LinkAja  ---- Radio Button--- */}
-                        <WrapForm>
-                            <Input
-                                type="text"
-                                name="name"
-                                id="name"
-                                value={form.name}
-                                onChange={handleChange}
-                                placeholder="Name"
-                                required
-                            />
-                        </WrapForm>
-
-                        <WrapForm>
-                            <Input
-                                type="text"
-                                name="name"
-                                id="name"
-                                value={form.name}
-                                onChange={handleChange}
-                                placeholder="Name"
-                                required
-                            />
-                        </WrapForm>
-                    </div>
-                </Card>
-            </Section>
+            <WrapForm>
+                <label>
+                    <Span>Nilai Coupons</Span>
+                </label>
+                <Input
+                    type="number"
+                    name="value"
+                    id="value"
+                    value={form.value}
+                    onChange={handleChange}
+                    required
+                />
+            </WrapForm>
+            <WrapForm style={{ width: '45%' }}>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="is_active"
+                        id="is_active"
+                        value={form.is_active}
+                        onChange={handleChange}
+                        required
+                    />
+                    Click to active this coupons
+                </label>
+            </WrapForm>
         </ModalSmart>
     );
 }
