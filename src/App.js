@@ -27,6 +27,7 @@ import Order from './pages/Order/Order';
 import DataCoupons from './components/Coupons/DataCoupons';
 import DetailOrder from './components/OrderOnline/DetailOrder';
 import MultipleImage from './components/AddProduct/MultipleImage';
+import Coupons from './pages/Coupons/Coupons';
 
 export default function App() {
     return (
@@ -90,7 +91,7 @@ export default function App() {
                     </Route>
                     <Route exact path="/coupons">
                         <Header />
-                        <DataCoupons />
+                        <Coupons />
                     </Route>
                     <Route exact path="/order/detail/:id">
                         <Header />

@@ -121,6 +121,9 @@ const Header = () => {
                                 <Link to="/users">
                                     <DropdownItem>Users</DropdownItem>
                                 </Link>
+                                <Link to="/coupons">
+                                    <DropdownItem>coupons</DropdownItem>
+                                </Link>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>
