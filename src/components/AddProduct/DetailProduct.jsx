@@ -206,7 +206,7 @@ export default function DetailProduct(props) {
                                     value={type}
                                     onChange={onChange}
                                 >
-                                    <option value="" selected disabled hidden>
+                                    <option value="" disabled hidden>
                                         Choose here
                                     </option>
                                     <option value="digital">
@@ -566,7 +566,7 @@ export default function DetailProduct(props) {
                                     value={visibility}
                                     onChange={onChange}
                                 >
-                                    <option value="" selected disabled hidden>
+                                    <option value="" disabled hidden>
                                         Choose here
                                     </option>
                                     <option value="publish">Public</option>
@@ -589,7 +589,7 @@ export default function DetailProduct(props) {
                                     value={sale_method}
                                     onChange={onChange}
                                 >
-                                    <option value="" selected disabled hidden>
+                                    <option value="" disabled hidden>
                                         Choose here
                                     </option>
                                     <option value="normal">Normal</option>
