@@ -47,9 +47,9 @@ export default function AddCoupons() {
         end_date: '',
         max_discount: 0,
         payment_method: '',
-        is_active: true,
+        is_active: false,
     });
-
+    console.log(form, 'form disini change ke ganti ga ');
     // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -60,6 +60,9 @@ export default function AddCoupons() {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
+    const handleCheckbox = (event) => {
+        setForm({ ...form, is_active: !form.is_active });
+    };
     return (
         <ModalSmart
             styleModal={{ maxWidth: '700px', width: '100%' }}
@@ -150,14 +153,19 @@ export default function AddCoupons() {
                         <Span>Payment Method</Span>
                     </label>
                     <Input
-                        type="text"
+                        as="select"
                         name="payment_method"
                         id="payment_method"
                         value={form.payment_method}
                         onChange={handleChange}
-                        placeholder="Payment method"
-                        required
-                    />
+                    >
+                        <option value="" disabled hidden>
+                            Choose here
+                        </option>
+                        <option value="OVO">OVO</option>
+                        <option value="TRANSFER">Transfer</option>
+                        <option value="E-WALLET">E-wallet</option>
+                    </Input>
                 </WrapForm>
             </div>
 
@@ -181,7 +189,7 @@ export default function AddCoupons() {
                         name="is_active"
                         id="is_active"
                         value={form.is_active}
-                        onChange={handleChange}
+                        onChange={handleCheckbox}
                         required
                     />
                     Click to active this coupons

@@ -11,10 +11,6 @@ import moment from 'moment';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import { Input, Th, md, lg, Overflow } from '../../elements/Styled/StyledForm';
 
-// --- Elements, Pages, Components --- //
-// import AddNewOrders from './AddNewOrders';
-// import UpdateOrders from './UpdateOrders';
-// import DeleteOrders from './DeleteOrders';
 import FollowUp from './FollowUp';
 import Card from '../../elements/Card/Card';
 
@@ -46,25 +42,6 @@ const DataOrders = (props) => {
     useEffect(() => {
         dispatch(fetchGetOrders());
     }, [dispatch]);
-
-    // --- For Multiple Delete --- //
-
-    // --- handleCheckboxChange --- //
-    // const handleCheckboxChange = (event) => {
-    //     let newArray = [...form.id, event.target.id];
-    //     if (form.id.includes(event.target.id)) {
-    //         newArray = newArray.filter((item) => item !== event.target.id);
-    //     }
-    //     setForm({
-    //         id: newArray,
-    //     });
-    // };
-
-    // // --- Multiple Delete --- //
-    // const handlleMultipleDelete = (event) => {
-    //     event.preventDefault();
-    //     dispatch(fetchMultipleDeleteOrderss(form));
-    // };
 
     return (
         <React.Fragment>

@@ -35,7 +35,7 @@ const fetchPostCoupons = (form, history) => async () => {
             icon: 'success',
         });
 
-        history.push('/');
+        window.location.reload('/coupons');
     }
 };
 

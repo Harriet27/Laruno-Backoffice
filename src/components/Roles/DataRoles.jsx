@@ -265,7 +265,6 @@ const DataRoles = (props) => {
                 </Dropdown>
             ) : (
                 <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-                    {' '}
                     <DropdownToggle
                         style={{ backgroundColor: '#0098DA' }}
                         caret
@@ -343,10 +342,6 @@ const DataRoles = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row)  */}
                                 {roles.data
                                     .slice(
                                         page * rowsPerPage,
