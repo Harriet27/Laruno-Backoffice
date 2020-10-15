@@ -143,11 +143,12 @@ const fetchShowCoupons = (id) => async (dispatch) => {
     };
     const response = await fetch(url, options);
     const result = await response.json();
-    dispatch(showCoupons(result));
+    console.log(result, 'isi result coupons');
+    dispatch(showCoupons(result.data));
 };
 
 // --- Update Coupons - Method PUT ---- //
-const fetchUpdateCoupons = (form, id, history) => async () => {
+const fetchUpdateCoupons = (form, id) => async () => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/coupons/${id}`;
@@ -177,7 +178,7 @@ const fetchUpdateCoupons = (form, id, history) => async () => {
                 text: '',
                 icon: 'success',
             });
-            history.push('/coupons');
+            window.location.reload('coupons');
         } else {
             Swal.fire({
                 title: 'update gagal',

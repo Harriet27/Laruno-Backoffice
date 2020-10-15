@@ -26,7 +26,8 @@ import {
     // fetchPostTopic,
 } from '../../store/actions';
 import AddCoupons from './AddCoupons';
-
+import DeleteCoupons from './DeleteCoupons';
+import UpdateCoupons from './UpdateCoupons';
 // --- Styled Components --- //
 
 const DataTopic = (props) => {
@@ -261,7 +262,12 @@ const DataTopic = (props) => {
                                                                 'row',
                                                         }}
                                                     >
-                                                        - {/* <AddCoupons /> */}
+                                                        <UpdateCoupons
+                                                            id={item._id}
+                                                        />
+                                                        <DeleteCoupons
+                                                            id={item._id}
+                                                        />
                                                     </div>
                                                 </Th>
                                             </tr>
