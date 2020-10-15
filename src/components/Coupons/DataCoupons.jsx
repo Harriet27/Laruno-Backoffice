@@ -221,10 +221,6 @@ const DataTopic = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row)  */}
                                 {coupons.data
                                     .slice(
                                         page * rowsPerPage,
@@ -233,7 +229,7 @@ const DataTopic = (props) => {
                                     .map((item) => {
                                         return (
                                             <tr key={item._id}>
-                                                <Th>
+                                                <Th as="td">
                                                     <Input
                                                         checkbox
                                                         type="checkbox"
@@ -266,7 +262,7 @@ const DataTopic = (props) => {
                                                     ).format(
                                                         'MMMM Do YYYY, h:mm:ss a'
                                                     )}
-                                                </Th>{' '}
+                                                </Th>
                                                 <Th as="td" td>
                                                     {item.payment_method}
                                                 </Th>
@@ -278,12 +274,7 @@ const DataTopic = (props) => {
                                                                 'row',
                                                         }}
                                                     >
-                                                        {/* <UpdateTopic
-                                                            id={item._id}
-                                                        />
-                                                        <DeleteTopic
-                                                            id={item._id}
-                                                        /> */}
+                                                        - {/* <AddCoupons /> */}
                                                     </div>
                                                 </Th>
                                             </tr>
