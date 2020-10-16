@@ -13,10 +13,14 @@ const Wraps = Styled.div`
     justify-content: space-between;
     margin: 20px 0;
 `;
+const Section = Styled.section`
+    margin: 50px;
+`;
 export default function Order() {
     const order = useSelector((state) => state.orders.getOrders);
+
     return (
-        <section style={{ margin: '50px' }}>
+        <Section>
             {order === null ? (
                 <Wraps>
                     <CardGetData
@@ -71,6 +75,6 @@ export default function Order() {
                 </Wraps>
             )}
             <DataOrder />
-        </section>
+        </Section>
     );
 }
