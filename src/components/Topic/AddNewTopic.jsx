@@ -59,23 +59,19 @@ export default function AddNewTopic() {
             title="Add Topic"
             onClickConfirm={handleSubmit}
         >
-            <Section>
-                <Card isLogin>
-                    <div>
-                        <WrapForm>
-                            <Input
-                                type="text"
-                                name="name"
-                                id="name"
-                                value={form.name}
-                                onChange={handleChange}
-                                placeholder="Name"
-                                required
-                            />
-                        </WrapForm>
-                    </div>
-                </Card>
-            </Section>
+            <Card>
+                <WrapForm>
+                    <Input
+                        type="text"
+                        name="name"
+                        id="name"
+                        value={form.name}
+                        onChange={handleChange}
+                        placeholder="Name"
+                        required
+                    />
+                </WrapForm>
+            </Card>
         </ModalSmart>
     );
 }

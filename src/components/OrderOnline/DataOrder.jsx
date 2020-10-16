@@ -4,7 +4,7 @@ import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetOrders } from '../../store/actions';
-
+import { FakeOrder } from '../FakeData/FakeOrder';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 
 import moment from 'moment';
@@ -13,7 +13,7 @@ import { Input, Th, md, lg, Overflow } from '../../elements/Styled/StyledForm';
 
 import FollowUp from './FollowUp';
 import Card from '../../elements/Card/Card';
-
+import InputOrder from './InputOrder';
 // --- Styled Components --- //
 
 const SectionOne = Styled.div`
@@ -48,6 +48,8 @@ const DataOrders = (props) => {
             {/* --- section 1 --- Add New Orders and Search Orders --- */}
             <SectionOne>
                 {/* <AddNewOrders /> */}
+                <InputOrder />
+
                 <div>
                     <label>Search</label> <Input type="search" />
                 </div>
@@ -87,7 +89,7 @@ const DataOrders = (props) => {
                                 Loading ...
                             </div>
                         </React.Fragment>
-                    ) : orders.data.length >= 1 ? (
+                    ) : orders.data.length >= 0 ? (
                         <Table>
                             <thead>
                                 <tr>
@@ -108,7 +110,7 @@ const DataOrders = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {orders.data.map((item) => {
+                                {/* {orders.data.map((item) => {
                                     return (
                                         <tr key={item._id}>
                                             <Th>
@@ -178,6 +180,70 @@ const DataOrders = (props) => {
                                                         detail
                                                     </ButtonLink>
                                                 </Link>
+                                            </Th>
+                                        </tr>
+                                    );
+                                })} */}
+
+                                {/* test fake data */}
+                                {FakeOrder.map((item) => {
+                                    return (
+                                        <tr key={item._id}>
+                                            <Th>
+                                                <Input
+                                                    checkbox
+                                                    type="checkbox"
+                                                    id={item._id}
+                                                    value={item._id}
+                                                    // onChange={handleCheckboxChange}
+                                                />
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.invoice_number}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.tag}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.order_date}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.costumer_name}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.costumer_phone}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.product}
+                                            </Th>
+                                            <Th as="td" td>
+                                                Rp.{item.total_price}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.payment_status}
+                                            </Th>
+                                            <Th as="td" td>
+                                                {item.paid_at}
+                                            </Th>
+                                            <Th as="td" td>
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        flexDirection: 'row',
+                                                    }}
+                                                >
+                                                    <FollowUp />
+                                                </div>
+                                            </Th>
+                                            <Th as="td" td>
+                                                {/* <Link
+                                                    to={`/order/detail/${item._id}`}
+                                                >
+                                                    <ButtonLink>
+                                                        detail
+                                                    </ButtonLink>
+                                                </Link> */}
+                                                -
                                             </Th>
                                         </tr>
                                     );
