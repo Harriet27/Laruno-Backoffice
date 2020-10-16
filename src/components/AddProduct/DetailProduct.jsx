@@ -52,8 +52,8 @@ const Span = Styled.span`
 `;
 
 const SectionOne = Styled.div`
-    display: flex;
-    width: 50%;
+    // display: flex;
+    width: 100%;
     @media (max-width: 800px) {
         width: 100%
     }
@@ -146,53 +146,59 @@ export default function DetailProduct(props) {
                 <Card isNormal style={{ width: '100%' }}>
                     <Form as="div">
                         {/* --- Field name product --- */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Nama Produk</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    value={name}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                            }}
+                        >
+                            <WrapsField>
+                                <Label>
+                                    <Span>Nama Produk</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        value={name}
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </WrapsField>
 
-                        {/* --- Product code --- */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Produk Code</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="text"
-                                    name="code"
-                                    id="code"
-                                    value={code}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
+                            {/* --- Product code --- */}
+                            <WrapsField>
+                                <Label>
+                                    <Span>Produk Code</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        type="text"
+                                        name="code"
+                                        id="code"
+                                        value={code}
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </WrapsField>
 
-                        {/* --- Slug --- */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Slug</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="text"
-                                    name="slug"
-                                    id="slug"
-                                    value={slug}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
-
+                            {/* --- Slug --- */}
+                            <WrapsField>
+                                <Label>
+                                    <Span>Slug</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        type="text"
+                                        name="slug"
+                                        id="slug"
+                                        value={slug}
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </WrapsField>
+                        </div>
                         {/* --- Field Product Category --- */}
                         <WrapsField>
                             <Label>

@@ -28,6 +28,7 @@ import DataCoupons from './components/Coupons/DataCoupons';
 import DetailOrder from './components/OrderOnline/DetailOrder';
 import MultipleImage from './components/AddProduct/MultipleImage';
 import Coupons from './pages/Coupons/Coupons';
+import TestAddProduct from './pages/Testing/TestAddProduct';
 
 export default function App() {
     return (
@@ -81,9 +82,14 @@ export default function App() {
                         <UpdateProduct />
                     </Route>
 
-                    <Route exact path="/test-components">
+                    {/* <Route exact path="/test-components">
                         <Header />
                         <MultipleImage />
+                    </Route> */}
+                    <Route exact path="/test-components">
+                        <Header />
+
+                        <TestAddProduct />
                     </Route>
                     <Route exact path="/reseller">
                         <Header />
