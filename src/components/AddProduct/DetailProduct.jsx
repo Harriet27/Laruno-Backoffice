@@ -152,7 +152,7 @@ export default function DetailProduct(props) {
                                 justifyContent: 'space-between',
                             }}
                         >
-                            <WrapsField>
+                            <WrapsField style={{ width: '30%' }}>
                                 <Label>
                                     <Span>Nama Produk</Span>
                                 </Label>
@@ -163,12 +163,13 @@ export default function DetailProduct(props) {
                                         id="name"
                                         value={name}
                                         onChange={onChange}
+                                        placeholder="Product Name..."
                                     />
                                 </div>
                             </WrapsField>
 
                             {/* --- Product code --- */}
-                            <WrapsField>
+                            <WrapsField style={{ width: '30%' }}>
                                 <Label>
                                     <Span>Produk Code</Span>
                                 </Label>
@@ -179,12 +180,13 @@ export default function DetailProduct(props) {
                                         id="code"
                                         value={code}
                                         onChange={onChange}
+                                        placeholder="Product Code..."
                                     />
                                 </div>
                             </WrapsField>
 
                             {/* --- Slug --- */}
-                            <WrapsField>
+                            <WrapsField style={{ width: '30%' }}>
                                 <Label>
                                     <Span>Slug</Span>
                                 </Label>
@@ -195,6 +197,7 @@ export default function DetailProduct(props) {
                                         id="slug"
                                         value={slug}
                                         onChange={onChange}
+                                        placeholder="Product Slug..."
                                     />
                                 </div>
                             </WrapsField>
