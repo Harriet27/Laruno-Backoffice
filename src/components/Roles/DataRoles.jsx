@@ -246,34 +246,6 @@ const DataRoles = (props) => {
     return (
         <React.Fragment>
             {/* --- section 1 --- Button Action link to Add Product ---*/}
-            {form.id[0] ? (
-                <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-                    <DropdownToggle
-                        style={{ backgroundColor: '#0098DA' }}
-                        caret
-                    >
-                        Actions
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <DropdownItem onClick={handlleMultipleDelete}>
-                            Delete
-                        </DropdownItem>
-                        {/* <DropdownItem onClick={handlleMultipleClone}>
-                                Clone
-                            </DropdownItem> */}
-                    </DropdownMenu>
-                </Dropdown>
-            ) : (
-                <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-                    <DropdownToggle
-                        style={{ backgroundColor: '#0098DA' }}
-                        caret
-                        disabled
-                    >
-                        Actions
-                    </DropdownToggle>
-                </Dropdown>
-            )}
 
             <div
                 style={{
@@ -282,6 +254,34 @@ const DataRoles = (props) => {
                     justifyContent: 'space-between',
                 }}
             >
+                {form.id[0] ? (
+                    <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+                        <DropdownToggle
+                            style={{ backgroundColor: '#0098DA' }}
+                            caret
+                        >
+                            Actions
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem onClick={handlleMultipleDelete}>
+                                Delete
+                            </DropdownItem>
+                            {/* <DropdownItem onClick={handlleMultipleClone}>
+                                Clone
+                            </DropdownItem> */}
+                        </DropdownMenu>
+                    </Dropdown>
+                ) : (
+                    <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+                        <DropdownToggle
+                            style={{ backgroundColor: '#0098DA' }}
+                            caret
+                            disabled
+                        >
+                            Actions
+                        </DropdownToggle>
+                    </Dropdown>
+                )}
                 <div>
                     <label>Search</label>{' '}
                     <Input

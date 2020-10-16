@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUpdateCoupons, fetchShowCoupons } from '../../store/actions';
-
+import CreateIcon from '@material-ui/icons/Create';
 // --- Elements, Pages, Components --- //
 
 import ModalSmart from '../../elements/Modal/ModalSmart';
@@ -76,7 +76,7 @@ export default function UpdateCoupons(props) {
     return (
         <ModalSmart
             styleModal={{ maxWidth: '700px', width: '100%' }}
-            buttonLabel="Update"
+            buttonLabel={<CreateIcon fontSize="small" />}
             title="Update"
             onClickConfirm={handleSubmit}
         >

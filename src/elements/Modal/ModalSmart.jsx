@@ -20,7 +20,7 @@ const ModalSmart = (props) => {
         buttonLabel,
         className,
         style,
-        component,
+        tooltip,
         children,
         title,
         onClickConfirm,
@@ -33,9 +33,10 @@ const ModalSmart = (props) => {
 
     return (
         <div>
-            <ButtonLink style={style} onClick={toggle}>
+            <ButtonLink id="button-label" style={style} onClick={toggle}>
                 {buttonLabel}
             </ButtonLink>
+            {tooltip}
             <Modal
                 style={styleModal}
                 isOpen={modal}

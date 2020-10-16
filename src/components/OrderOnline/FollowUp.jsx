@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import { Tooltip } from 'reactstrap';
 import { Input } from '../../elements/Styled/StyledForm';
 // --- Styled Components --- //
 
 export default function FollowUp(props) {
     const [form, setForm] = useState({
-        number: '',
+        number: '6281212408246',
         text:
             '' ||
             `Halo Kak clara . Selamat datang di *Fiterus* ☺️
@@ -56,12 +57,29 @@ Jika Kak clara sudah transfer, silahkan konfirmasi  https://fiterus.orderonline.
     };
 
     // --- test replace to persen --- //
+    const [tooltipOpen, setTooltipOpen] = useState(false);
 
+    const toggleTooltip = () => setTooltipOpen(!tooltipOpen);
     return (
         <React.Fragment>
             <ModalSmart
-                style={{ backgroundColor: 'green' }}
-                buttonLabel={<CheckCircleOutlineIcon />}
+                style={{ backgroundColor: 'white', border: 'none' }}
+                buttonLabel={
+                    <i
+                        style={{ color: '#25D366' }}
+                        class="fa fa-whatsapp fa-2x"
+                    ></i>
+                }
+                tooltip={
+                    <Tooltip
+                        placement="top"
+                        isOpen={tooltipOpen}
+                        target="button-label"
+                        toggle={toggleTooltip}
+                    >
+                        Follow Up
+                    </Tooltip>
+                }
                 title="Follow Up"
                 onClickConfirm={raiseInvoiceClicked}
             >

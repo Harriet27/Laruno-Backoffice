@@ -67,22 +67,19 @@ export default function UpdateTopic(props) {
                 title="Update Topic"
                 onClickConfirm={handleSubmit}
             >
-                <Section>
-                    <Card isLogin>
-                        <div>
-                            <WrapForm>
-                                <Input
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    value={form.name}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </WrapForm>
-                        </div>
-                    </Card>
-                </Section>
+                <Card>
+                    <WrapForm>
+                        <Input
+                            type="text"
+                            name="name"
+                            id="name"
+                            value={form.name}
+                            onChange={handleChange}
+                            placeholder="name"
+                            required
+                        />
+                    </WrapForm>
+                </Card>
             </ModalSmart>
         </React.Fragment>
     );

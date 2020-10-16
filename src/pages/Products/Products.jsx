@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 // --- Elements, Pages, Components --- //
 import CardGetData from '../../elements/Card/CardGetData';
 import DataProduct from '../../components/Product/DataProduct';
-import ImageBonus from '../../components/AddProduct/imageBonus';
 
 // import ReactQuill from '../../components/AddProduct/ReactQuill';
 // --- Styled Components --- //
@@ -23,7 +22,7 @@ export default function Products() {
     const product = useSelector((state) => state.product.getProduct);
     console.log(product, 'product di product menu');
     return (
-        <section style={{ margin: '0 50px' }}>
+        <section style={{ margin: '50px' }}>
             {product === null ? (
                 <Wraps>
                     <CardGetData
