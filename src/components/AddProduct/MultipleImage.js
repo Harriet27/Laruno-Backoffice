@@ -18,13 +18,12 @@ export default function MultipleImage(props) {
     const dispatch = useDispatch();
     const { id, onChange, onSubmit } = props;
     const [formulir, setFormulir] = useState({
-        image: {},
+        image: [],
     });
-    const [dumb, setDumb] = useState({
-        log: [],
-    });
+    const [arr, setArr] = useState([]);
+    console.log(arr);
     console.log(formulir, 'isi dari formulir ini apa');
-    console.log(dumb, 'isi dari dumb log');
+
     // console.log(formulir.image[0], 'array 1');
     const handleChange = (e) => {
         let image = formulir.image;
@@ -32,7 +31,6 @@ export default function MultipleImage(props) {
         let field = e.target.id;
 
         image[field] = e.target.files[0];
-        console.log('img[]', image);
 
         setFormulir({ image });
     };
@@ -64,22 +62,25 @@ export default function MultipleImage(props) {
         image[id] = result.result.url;
         setFormulir({ image });
     };
-    const handleImage = (e) => {
-        e.preventDefault();
 
-        setDumb({ ...dumb.log, ...dumb.log.push(formulir.image) });
+    const handlePush = () => {
+        const values = [...arr];
+        values.push(formulir.image.image_bonus);
+        setArr(values);
     };
-
     return (
         <React.Fragment>
             <SingleImage
                 modal={modal}
                 toggle={toggle}
-                id="image_url"
+                id="image_bonus"
                 onChange={handleChange}
-                onSubmit={(e) => handleSubmit(e, 'image_url')}
+                onSubmit={(e) => handleSubmit(e, 'image_bonus')}
             />
-            <button onClick={handleImage}>BUTTON</button>
+            <button onClick={handlePush}>Click</button>
+            {arr.map((item, i) => {
+                return <img key={i} src={item} alt={item} />;
+            })}
         </React.Fragment>
     );
 }

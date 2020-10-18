@@ -42,6 +42,7 @@ export default function UpdateCoupons(props) {
     const coupons = useSelector((state) => state.coupons.showCoupons);
     useEffect(() => {
         dispatch(fetchShowCoupons(props.id));
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // // console.log(coupons, 'isinya lihat');
