@@ -61,13 +61,13 @@ export default function MultipleImage(props) {
         const result = await response.json();
         image[id] = result.result.url;
         setFormulir({ image });
-    };
 
-    const handlePush = () => {
+        // test
         const values = [...arr];
         values.push(formulir.image.image_bonus);
         setArr(values);
     };
+
     return (
         <React.Fragment>
             <SingleImage
@@ -77,7 +77,7 @@ export default function MultipleImage(props) {
                 onChange={handleChange}
                 onSubmit={(e) => handleSubmit(e, 'image_bonus')}
             />
-            <button onClick={handlePush}>Click</button>
+
             {arr.map((item, i) => {
                 return <img key={i} src={item} alt={item} />;
             })}
