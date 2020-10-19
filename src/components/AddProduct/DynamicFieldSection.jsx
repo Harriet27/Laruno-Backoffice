@@ -20,7 +20,7 @@ const Input = Styled.input`
 const Section = Styled.section`
     display: flex;
     padding: 50px 100px;
-    width: 150%;
+    width: 100%;
     line-height: 1.5;
     @media (max-width: 800px) {
         padding: 20px 40px;
@@ -35,8 +35,8 @@ const WrapsField = Styled.div`
 `;
 
 const SectionOne = Styled.div`
-    display: flex;
-    width: 32%;
+    // display: flex;
+    width: 100%;
     @media (max-width: 800px) {
         width: 100%
     }
@@ -59,7 +59,7 @@ export default function DynamicFieldSection(props) {
         <Section>
             <SectionOne>
                 <Card isNormal style={{ width: '100%' }}>
-                    <div style={{ padding: '20px 30px' }}>
+                    <div style={{ padding: '30px 40px' }}>
                         <div
                             style={{ display: 'flex', flexDirection: 'column' }}
                             className="App"

@@ -34,7 +34,7 @@ const Span = Styled.span`
 `;
 
 const Section = Styled.div`
-    padding: 0 100px;
+    padding: 50px 100px;
     line-height: 1.5;
     @media (max-width: 1000px) {
       padding: 40px

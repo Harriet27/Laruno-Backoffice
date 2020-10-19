@@ -14,6 +14,8 @@ import DataOrders from '../../components/OrderOnline/DataOrder';
 import TabPanel from './TabPanel';
 import Layout from '../../components/AddProduct/Layout';
 import DynamicField from '../../components/AddProduct/DynamicField';
+import DynamicFieldSection from '../../components/AddProduct/DynamicFieldSection';
+import Bump from '../../components/AddProduct/Bump';
 // --- Fetch/Store/Actions --- //
 import { fetchPostProducts } from '../../store/actions';
 
@@ -283,7 +285,7 @@ export default function TestAddProduct() {
     objBump.bump_image = formulir.image.bump_image;
     return (
         <div style={{ margin: '50px' }}>
-            <AppBar position="static" color="white">
+            <AppBar position="static" style={{ background: 'white' }}>
                 <Tabs
                     value={value}
                     onChange={handleChange}
@@ -292,8 +294,10 @@ export default function TestAddProduct() {
                     variant="fullWidth"
                     aria-label="full width tabs example"
                 >
-                    <Tab label="Item One" {...a11yProps(0)} />
-                    <Tab label="Item Two" {...a11yProps(1)} />
+                    <Tab label="Detail Product" {...a11yProps(0)} />
+                    <Tab label="Layout" {...a11yProps(1)} />
+                    <Tab label="Bump" {...a11yProps(2)} />
+                    <Tab label="Section" {...a11yProps(3)} />
                 </Tabs>
             </AppBar>
 
@@ -302,7 +306,6 @@ export default function TestAddProduct() {
                     style={{
                         width: '100%',
                         background: 'white',
-                        height: '900px',
                     }}
                 >
                     <DetailProduct
@@ -312,7 +315,7 @@ export default function TestAddProduct() {
                         gratis_ongkir={gratis_ongkir}
                         handleRadio={handleRadio}
                         handleSelect={handleSelect}
-                        onChange={handleChange}
+                        onChange={handleChangeForm}
                         handleWebinar={handleWebinar}
                         handleDuration={handleDuration}
                         form={form.type}
@@ -345,12 +348,11 @@ export default function TestAddProduct() {
                     style={{
                         width: '100%',
                         background: 'white',
-                        height: '900px',
                     }}
                 >
                     <Layout
                         handleSelectAgent={handleSelectAgent}
-                        onChange={handleChange}
+                        onChange={handleChangeForm}
                         handleFeature={handleFeature}
                         headline={form.headline}
                         description={form.description}
@@ -375,6 +377,40 @@ export default function TestAddProduct() {
                             />
                         )}
                     </Layout>
+                </div>
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+                <div
+                    style={{
+                        width: '100%',
+                        background: 'white',
+                    }}
+                >
+                    <Bump
+                        onChange={handleBump}
+                        bump_name={objBump.bump_name}
+                        bump_price={objBump.bump_price}
+                        bump_weight={objBump.bump_weight}
+                        bump_image={objBump.bump_image}
+                        formulir={formulir}
+                        setFormulir={setFormulir}
+                    />
+                </div>
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+                <div
+                    style={{
+                        width: '100%',
+                        background: 'white',
+                    }}
+                >
+                    <DynamicFieldSection
+                        fields={sectionAdd}
+                        handleAdd={handleAddSection}
+                        handleChange={handleChangeDynamicSection}
+                        handleChangeContents={handleChangeContentsSection}
+                        handleRemove={handleRemoveSection}
+                    />
                 </div>
             </TabPanel>
         </div>
