@@ -290,31 +290,31 @@ export default function DetailProduct(props) {
                         <div>
                             {props.form === 'webinar' ? (
                                 <div>
-                                    <WrapsField>
-                                        <Label>
-                                            <Span>Zoom ID</Span>
-                                        </Label>
-                                        <div>
-                                            <Input
-                                                type="text"
-                                                name="client_url"
-                                                id="client_url"
-                                                value={zoom_id}
-                                                onChange={handleWebinar}
-                                            />
-                                        </div>
-                                    </WrapsField>
-
-                                    <Label>
-                                        <Span>Start</Span>
-                                    </Label>
                                     <div
                                         style={{
                                             display: 'flex',
                                             justifyContent: 'space-between',
                                         }}
                                     >
-                                        <WrapsField dividedByTwo>
+                                        <WrapsField>
+                                            <Label>
+                                                <Span>Zoom ID</Span>
+                                            </Label>
+                                            <div>
+                                                <Input
+                                                    type="text"
+                                                    name="client_url"
+                                                    id="client_url"
+                                                    value={zoom_id}
+                                                    onChange={handleWebinar}
+                                                />
+                                            </div>
+                                        </WrapsField>
+
+                                        <WrapsField>
+                                            <Label>
+                                                <Span>Start</Span>
+                                            </Label>
                                             <div>
                                                 <Input
                                                     type="date"
@@ -325,9 +325,14 @@ export default function DetailProduct(props) {
                                                 />
                                             </div>
                                         </WrapsField>
-                                        <WrapsField dividedByTwo>
+                                        <WrapsField>
+                                            <Label></Label>
                                             <div>
                                                 <Input
+                                                    style={{
+                                                        height: '35px',
+                                                        marginTop: '10PX',
+                                                    }}
                                                     as="select"
                                                     name="start_time"
                                                     id="start_time"
@@ -350,7 +355,6 @@ export default function DetailProduct(props) {
                                             </div>
                                         </WrapsField>
                                     </div>
-
                                     {/* --- time picker try it --- */}
                                     <Label>
                                         <Span>Duration</Span>
@@ -362,7 +366,7 @@ export default function DetailProduct(props) {
                                             justifyContent: 'space-between',
                                         }}
                                     >
-                                        <WrapsField dividedByTwo>
+                                        <WrapsField>
                                             <div>
                                                 <Input
                                                     as="select"
@@ -391,7 +395,9 @@ export default function DetailProduct(props) {
                                             </div>
                                         </WrapsField>
 
-                                        <WrapsField dividedByTwo>
+                                        <WrapsField
+                                            style={{ marginRight: '35%' }}
+                                        >
                                             <div>
                                                 <Input
                                                     as="select"

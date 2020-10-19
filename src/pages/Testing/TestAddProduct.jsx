@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -28,6 +29,7 @@ function a11yProps(index) {
 
 export default function TestAddProduct() {
     const [value, setValue] = React.useState(0);
+    const history = useHistory();
     const dispatch = useDispatch();
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -411,6 +413,7 @@ export default function TestAddProduct() {
                         handleChangeContents={handleChangeContentsSection}
                         handleRemove={handleRemoveSection}
                     />
+                    <button onClick={handleSubmit}>Kirim</button>
                 </div>
             </TabPanel>
         </div>
