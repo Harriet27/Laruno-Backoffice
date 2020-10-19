@@ -169,7 +169,7 @@ export default function TestAddProduct() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // history
-        dispatch(fetchPostProducts(form));
+        dispatch(fetchPostProducts(form, history));
     };
 
     console.log(form, 'ini form isinya apa aja. ORDER BUMP');
@@ -271,7 +271,7 @@ export default function TestAddProduct() {
     // --- react quill --- //
     const [quill, setQuill] = useState('');
 
-    form.description = value;
+    form.description = quill;
 
     // --- Upload Image --- //
     const [formulir, setFormulir] = useState({
@@ -358,7 +358,6 @@ export default function TestAddProduct() {
                         onChange={handleChangeForm}
                         handleFeature={handleFeature}
                         headline={form.headline}
-                        description={form.description}
                         image_bonus_url={form.image_bonus_url}
                         image_text_url={form.image_text_url}
                         image_product_url={form.image_product_url}
@@ -366,9 +365,10 @@ export default function TestAddProduct() {
                         feature_onpage={objFeature.feature_onpage}
                         feature_onheader={objFeature.feature_onheader}
                         agent={form.agent}
+                        subheadline={form.subheadline}
+                        // --- React Quill --- //
                         value={quill}
                         setValue={setQuill}
-                        subheadline={form.subheadline}
                     >
                         {form.type === 'ecommerce' ? null : (
                             <DynamicField

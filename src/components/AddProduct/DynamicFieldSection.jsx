@@ -41,7 +41,11 @@ const SectionOne = Styled.div`
         width: 100%
     }
 `;
-
+const Span = Styled.span`
+    font-weight: bold;
+    color: #656565;
+    font-size: 16px;
+`;
 // --- BATAS BAWAH --- //
 
 export default function DynamicFieldSection(props) {
@@ -64,7 +68,9 @@ export default function DynamicFieldSection(props) {
                             style={{ display: 'flex', flexDirection: 'column' }}
                             className="App"
                         >
-                            <Label>Add Section</Label>
+                            <Label>
+                                <Span>Add Section</Span>
+                            </Label>
 
                             <button type="button" onClick={() => handleAdd()}>
                                 +

@@ -15,6 +15,11 @@ const Input = Styled.input`
     border:1px solid #66AFE9;
     }
 `;
+const Span = Styled.span`
+    font-weight: bold;
+    color: #656565;
+    font-size: 16px;
+`;
 
 const Label = Styled.label`
     
@@ -42,7 +47,9 @@ export default function DynamicField(props) {
             style={{ display: 'flex', flexDirection: 'column' }}
             className="App"
         >
-            <Label>Learn About</Label>
+            <Label>
+                <Span>Learn About</Span>
+            </Label>
 
             <button type="button" onClick={() => handleAdd()}>
                 +

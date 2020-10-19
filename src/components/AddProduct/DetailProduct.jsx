@@ -48,7 +48,7 @@ const WrapsField = Styled.div`
 const Span = Styled.span`
     font-weight: bold;
     color: #656565;
-    font-size: 18px;
+    font-size: 16px;
 `;
 
 const SectionOne = Styled.div`
