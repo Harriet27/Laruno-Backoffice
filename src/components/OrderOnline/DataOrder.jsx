@@ -12,6 +12,10 @@ import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import { Input, Th, md, lg, Overflow } from '../../elements/Styled/StyledForm';
 
 import FollowUp from './FollowUp';
+import FollowUp_1 from './FollowUp_1';
+import FollowUp_2 from './FollowUp_2';
+import FollowUp_3 from './FollowUp_3';
+import FollowUp_4 from './FollowUp_4';
 import Card from '../../elements/Card/Card';
 import InputOrder from './InputOrder';
 // --- Styled Components --- //
@@ -75,8 +79,12 @@ const DataOrders = (props) => {
                                         <Th>Total Price</Th>
                                         <Th>Payment Status</Th>
                                         <Th>Paid At</Th>
-                                        <Th>Follow Up</Th>
-                                        <Th>Actions</Th>
+                                        <Th style={{ width: '100px' }}>
+                                            Follow Up
+                                        </Th>
+                                        <Th style={{ width: '100px' }}>
+                                            Actions
+                                        </Th>
                                     </tr>
                                 </thead>
                             </Table>
@@ -105,8 +113,10 @@ const DataOrders = (props) => {
                                     <Th>Total Price</Th>
                                     <Th>Payment Status</Th>
                                     <Th>Paid At</Th>
-                                    <Th>Follow Up</Th>
-                                    <Th>Actions</Th>
+                                    <Th style={{ width: '100px' }}>
+                                        Follow Up
+                                    </Th>
+                                    <Th style={{ width: '100px' }}>Actions</Th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -188,13 +198,13 @@ const DataOrders = (props) => {
                                 {/* test fake data */}
                                 {FakeOrder.map((item) => {
                                     return (
-                                        <tr key={item._id}>
+                                        <tr key={item.id}>
                                             <Th>
                                                 <Input
                                                     checkbox
                                                     type="checkbox"
-                                                    id={item._id}
-                                                    value={item._id}
+                                                    id={item.id}
+                                                    value={item.id}
                                                     // onChange={handleCheckboxChange}
                                                 />
                                             </Th>
@@ -229,10 +239,13 @@ const DataOrders = (props) => {
                                                 <div
                                                     style={{
                                                         display: 'flex',
-                                                        flexDirection: 'row',
                                                     }}
                                                 >
                                                     <FollowUp />
+                                                    <FollowUp_1 />
+                                                    <FollowUp_2 />
+                                                    <FollowUp_3 />
+                                                    <FollowUp_4 />
                                                 </div>
                                             </Th>
                                             <Th as="td" td>

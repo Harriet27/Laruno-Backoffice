@@ -11,7 +11,10 @@ const ButtonLink = Styled.button`
     color: white;
     font-size: ${md};
     border: 1px solid #ced4da;
-    font-Weight: 400;
+    font-Weight: bold;
+    &:focus{
+        outline: none;
+    }
 `;
 // --- Styled Components --- //
 
@@ -33,7 +36,7 @@ const ModalSmart = (props) => {
 
     return (
         <div>
-            <ButtonLink id="button-label" style={style} onClick={toggle}>
+            <ButtonLink style={style} onClick={toggle}>
                 {buttonLabel}
             </ButtonLink>
             {tooltip}

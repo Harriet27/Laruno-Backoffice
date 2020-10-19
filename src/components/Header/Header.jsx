@@ -29,6 +29,9 @@ const Button = Styled.button`
     &:hover {
         border-radius: 2em;
     }
+    &:focus{
+        outline: none;
+    }
 `;
 
 const NavigationLink = Styled.p`

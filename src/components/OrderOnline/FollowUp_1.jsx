@@ -6,44 +6,16 @@ import { Tooltip } from 'reactstrap';
 import { Input } from '../../elements/Styled/StyledForm';
 // --- Styled Components --- //
 
-export default function FollowUp(props) {
+export default function FollowUp_1(props) {
     const [form, setForm] = useState({
         number: '6281212408246',
         text:
             '' ||
-            `Selamat datang di Toko kami Salvian Kumara ☺️
-
-Kami sudah terima pesanan anda dengan rincian sebagai berikut,
-Produk: Panci Elektrik
-Harga: Rp197.000
-Ongkir: Rp19.000
-Total: Rp265.677
-            
-            
-Dikirim ke:
-Nama: Salvian Kumara
-No HP: +6281310620752
-Alamat: Jalan Janur Hijau 1 Blok Aa5 No 17
-Kota: Kab. Tangerang
-Kecamatan: Pagedangan
-            
-            
-Silahkan transfer senilai Rp265.677, ke salah satu rekening dibawah ini:
-BCA
-No. Rek: 8015053824
-Atas Nama: Salvian Kumara
-            
-CIMB Niaga
-No. Rek: 700815470400
-Atas Nama: Salvian Kumara
-            
-Danamon
-No. Rek: 3626078921
-Atas Nama: Salvian Kumara`,
+            `Hari ini mau transfer jam berapa Salvian Kumara?
+Pesanan kami siapkan ya...`,
     });
     console.log(form, 'isinya apa');
 
-    const color = localStorage.getItem('color');
     function raiseInvoiceClicked() {
         // %0A INI UNTUK ENTER
         // %20 INI UNTUK SPACE
@@ -51,8 +23,8 @@ Atas Nama: Salvian Kumara`,
         form.text = form.text.replace(/\n+/g, '%0A', /\s+/g, '%20');
         const url = `https://wa.me/${form.number}?text=${form.text}`;
         window.open(url, '_blank');
+        console.log(form.text);
     }
-
     const handleChange = (e) => {
         let name = e.target.name;
         setForm({ ...form, [name]: e.target.value });
@@ -65,15 +37,12 @@ Atas Nama: Salvian Kumara`,
     return (
         <React.Fragment>
             <ModalSmart
-                style={{
-                    backgroundColor: 'white',
-                    border: 'none',
-                }}
+                style={{ backgroundColor: 'white', border: 'none' }}
                 buttonLabel={
                     <i
                         style={{ background: 'white', color: '#d7d7da' }}
                         className="fa fa-comment fa-2x"
-                        id="button-label-w"
+                        id="button-label-1"
                     >
                         <span
                             style={{
@@ -84,19 +53,18 @@ Atas Nama: Salvian Kumara`,
                                 fontSize: '14px',
                             }}
                         >
-                            w
+                            1
                         </span>
                     </i>
                 }
-                target_tooltip="w"
                 tooltip={
                     <Tooltip
                         placement="top"
                         isOpen={tooltipOpen}
-                        target="button-label-w"
+                        target={`button-label-1`}
                         toggle={toggleTooltip}
                     >
-                        Welcome
+                        Follow-Up 1
                     </Tooltip>
                 }
                 title="Follow Up"

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Styled from 'styled-components';
 
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
