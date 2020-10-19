@@ -297,10 +297,18 @@ export default function TestAddProduct() {
                     variant="fullWidth"
                     aria-label="full width tabs example"
                 >
-                    <Tab label="Detail Product" {...a11yProps(0)} />
-                    <Tab label="Layout" {...a11yProps(1)} />
-                    <Tab label="Bump" {...a11yProps(2)} />
-                    <Tab label="Section" {...a11yProps(3)} />
+                    <Tab
+                        className="outline"
+                        label="Detail Product"
+                        {...a11yProps(0)}
+                    />
+                    <Tab className="outline" label="Layout" {...a11yProps(1)} />
+                    <Tab className="outline" label="Bump" {...a11yProps(2)} />
+                    <Tab
+                        className="outline"
+                        label="Section"
+                        {...a11yProps(3)}
+                    />
                 </Tabs>
             </AppBar>
 

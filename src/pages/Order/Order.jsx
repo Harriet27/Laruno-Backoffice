@@ -38,7 +38,7 @@ export default function Order() {
                     <CardGetData
                         icon={faShoppingCart}
                         number="0"
-                        text="Unpaid Orders"
+                        text="Total Income"
                     ></CardGetData>
 
                     <CardGetData
@@ -64,7 +64,7 @@ export default function Order() {
                     <CardGetData
                         icon={faShoppingCart}
                         number="0"
-                        text="Unpaid Orders"
+                        text="Total Income"
                     ></CardGetData>
 
                     <CardGetData
