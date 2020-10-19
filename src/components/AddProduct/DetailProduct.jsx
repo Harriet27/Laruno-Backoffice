@@ -203,31 +203,89 @@ export default function DetailProduct(props) {
                             </WrapsField>
                         </div>
                         {/* --- Field Product Category --- */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Product Type</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="select"
-                                    name="type"
-                                    id="type"
-                                    value={type}
-                                    onChange={onChange}
-                                >
-                                    <option value="" disabled hidden>
-                                        Choose here
-                                    </option>
-                                    <option value="digital">
-                                        Product Digital
-                                    </option>
-                                    <option value="webinar">Webinar</option>
-                                    <option value="ecommerce">Ecommerce</option>
-                                    <option value="bonus">Bonus</option>
-                                </Input>
-                            </div>
-                        </WrapsField>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                            }}
+                        >
+                            <WrapsField style={{ width: '30%' }}>
+                                <Label>
+                                    <Span>Product Type</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        as="select"
+                                        name="type"
+                                        id="type"
+                                        value={type}
+                                        onChange={onChange}
+                                    >
+                                        <option value="" disabled hidden>
+                                            Choose here
+                                        </option>
+                                        <option value="digital">
+                                            Product Digital
+                                        </option>
+                                        <option value="webinar">Webinar</option>
+                                        <option value="ecommerce">
+                                            Ecommerce
+                                        </option>
+                                        <option value="bonus">Bonus</option>
+                                    </Input>
+                                </div>
+                            </WrapsField>
+                            <WrapsField style={{ width: '30%' }}>
+                                <Label>
+                                    <Span>Topic</Span>
+                                </Label>
+                                <div>
+                                    <MultiSelect
+                                        options={optionsTopic}
+                                        selected={topic_select}
+                                        onSelectedChanged={handleSelect}
+                                    />
+                                </div>
+                            </WrapsField>
 
+                            <WrapsField style={{ width: '30%' }}>
+                                <Label>
+                                    <Span>Periode Waktu</Span>
+                                </Label>
+                                {/*  Styled for Rp */}
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        border: '1px solid #ced4da',
+                                        borderRadius: '3px',
+                                    }}
+                                >
+                                    <Input
+                                        price
+                                        type="number"
+                                        name="time_period"
+                                        id="time_period"
+                                        value={time_period}
+                                        onChange={onChange}
+                                    />{' '}
+                                    <div
+                                        style={{
+                                            backgroundColor: '#e9ecef',
+                                            width: '80px',
+                                        }}
+                                    >
+                                        <div
+                                            style={{
+                                                textAlign: 'center',
+                                                marginTop: '3px',
+                                            }}
+                                        >
+                                            Month
+                                        </div>
+                                    </div>
+                                </div>
+                            </WrapsField>
+                        </div>
                         {/* --- Field logic in field product category ---  */}
                         <div>
                             {props.form === 'webinar' ? (
@@ -432,183 +490,151 @@ export default function DetailProduct(props) {
                         </div>
 
                         {/* Field Topic masih error */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Topic</Span>
-                            </Label>
-                            <div>
-                                <MultiSelect
-                                    options={optionsTopic}
-                                    selected={topic_select}
-                                    onSelectedChanged={handleSelect}
-                                />
-                            </div>
-                        </WrapsField>
 
                         {/* Field Price ---- Styled masih di inject ----*/}
-                        <WrapsField>
-                            <Label>
-                                <Span>Harga Normal</Span>
-                            </Label>
-                            {/*  Styled for Rp */}
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    border: '1px solid #ced4da',
-                                    borderRadius: '3px',
-                                }}
-                            >
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                            }}
+                        >
+                            <WrapsField style={{ width: '30%' }}>
+                                <Label>
+                                    <Span>Harga Normal</Span>
+                                </Label>
+                                {/*  Styled for Rp */}
                                 <div
                                     style={{
-                                        backgroundColor: '#e9ecef',
-                                        width: '50px',
+                                        display: 'flex',
+                                        border: '1px solid #ced4da',
+                                        borderRadius: '3px',
                                     }}
                                 >
                                     <div
                                         style={{
-                                            textAlign: 'center',
-                                            marginTop: '3px',
+                                            backgroundColor: '#e9ecef',
+                                            width: '50px',
                                         }}
                                     >
-                                        Rp
+                                        <div
+                                            style={{
+                                                textAlign: 'center',
+                                                marginTop: '3px',
+                                            }}
+                                        >
+                                            Rp
+                                        </div>
                                     </div>
+                                    <Input
+                                        price
+                                        type="number"
+                                        name="price"
+                                        id="price"
+                                        value={price}
+                                        onChange={onChange}
+                                    />
                                 </div>
-                                <Input
-                                    price
-                                    type="number"
-                                    name="price"
-                                    id="price"
-                                    value={price}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
+                            </WrapsField>
 
-                        {/* --- Harga Penjualan */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Harga Penjualan</Span>
-                            </Label>
-                            {/*  Styled for Rp */}
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    border: '1px solid #ced4da',
-                                    borderRadius: '3px',
-                                }}
+                            {/* --- Harga Penjualan */}
+                            <WrapsField
+                                style={{ width: '30%', marginRight: '35%' }}
                             >
+                                <Label>
+                                    <Span>Harga Penjualan</Span>
+                                </Label>
+                                {/*  Styled for Rp */}
                                 <div
                                     style={{
-                                        backgroundColor: '#e9ecef',
-                                        width: '50px',
+                                        display: 'flex',
+                                        border: '1px solid #ced4da',
+                                        borderRadius: '3px',
                                     }}
                                 >
                                     <div
                                         style={{
-                                            textAlign: 'center',
-                                            marginTop: '3px',
+                                            backgroundColor: '#e9ecef',
+                                            width: '50px',
                                         }}
                                     >
-                                        Rp
+                                        <div
+                                            style={{
+                                                textAlign: 'center',
+                                                marginTop: '3px',
+                                            }}
+                                        >
+                                            Rp
+                                        </div>
                                     </div>
+                                    <Input
+                                        type="number"
+                                        name="sale_price"
+                                        id="sale_price"
+                                        value={sale_price}
+                                        onChange={onChange}
+                                    />
                                 </div>
-                                <Input
-                                    type="number"
-                                    name="sale_price"
-                                    id="sale_price"
-                                    value={sale_price}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
-
+                            </WrapsField>
+                        </div>
                         {/* --- Field Time Period --- */}
 
-                        <WrapsField>
-                            <Label>
-                                <Span>Periode Waktu</Span>
-                            </Label>
-                            {/*  Styled for Rp */}
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    border: '1px solid #ced4da',
-                                    borderRadius: '3px',
-                                }}
-                            >
-                                <Input
-                                    price
-                                    type="number"
-                                    name="time_period"
-                                    id="time_period"
-                                    value={time_period}
-                                    onChange={onChange}
-                                />{' '}
-                                <div
-                                    style={{
-                                        backgroundColor: '#e9ecef',
-                                        width: '80px',
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            textAlign: 'center',
-                                            marginTop: '3px',
-                                        }}
-                                    >
-                                        Month
-                                    </div>
-                                </div>
-                            </div>
-                        </WrapsField>
-
                         {/* Field Status */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Status</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="select"
-                                    name="visibility"
-                                    id="visibility"
-                                    value={visibility}
-                                    onChange={onChange}
-                                >
-                                    <option value="" disabled hidden>
-                                        Choose here
-                                    </option>
-                                    <option value="publish">Public</option>
-                                    <option value="private">Private</option>
-                                    <option value="draft">Draft</option>
-                                </Input>
-                            </div>
-                        </WrapsField>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                            }}
+                        >
+                            <WrapsField style={{ width: '30%' }}>
+                                <Label>
+                                    <Span>Status</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        as="select"
+                                        name="visibility"
+                                        id="visibility"
+                                        value={visibility}
+                                        onChange={onChange}
+                                    >
+                                        <option value="" disabled hidden>
+                                            Choose here
+                                        </option>
+                                        <option value="publish">Public</option>
+                                        <option value="private">Private</option>
+                                        <option value="draft">Draft</option>
+                                    </Input>
+                                </div>
+                            </WrapsField>
 
-                        {/* Field UpSale */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Method Sale</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="select"
-                                    name="sale_method"
-                                    id="sale_method"
-                                    value={sale_method}
-                                    onChange={onChange}
-                                >
-                                    <option value="" disabled hidden>
-                                        Choose here
-                                    </option>
-                                    <option value="normal">Normal</option>
-                                    <option value="upsale">Upsale</option>
-                                    <option value="upgrade">Upgrade</option>
-                                    <option value="crossale">Crossale</option>
-                                </Input>
-                            </div>
-                        </WrapsField>
-
+                            {/* Field UpSale */}
+                            <WrapsField
+                                style={{ width: '30%', marginRight: '35%' }}
+                            >
+                                <Label>
+                                    <Span>Method Sale</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        as="select"
+                                        name="sale_method"
+                                        id="sale_method"
+                                        value={sale_method}
+                                        onChange={onChange}
+                                    >
+                                        <option value="" disabled hidden>
+                                            Choose here
+                                        </option>
+                                        <option value="normal">Normal</option>
+                                        <option value="upsale">Upsale</option>
+                                        <option value="upgrade">Upgrade</option>
+                                        <option value="crossale">
+                                            Crossale
+                                        </option>
+                                    </Input>
+                                </div>
+                            </WrapsField>
+                        </div>
                         <WrapsField>
                             {' '}
                             <SingleImage
