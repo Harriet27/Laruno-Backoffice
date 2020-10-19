@@ -43,7 +43,7 @@ const Label = Styled.label`
 `;
 const WrapsField = Styled.div`
     margin-bottom: 25px;
-    width: ${(props) => (props.dividedByTwo ? '45%' : null)}
+    width: ${(props) => (props.dividedByTwo ? '45%' : '30%')}
 `;
 const Span = Styled.span`
     font-weight: bold;
@@ -152,7 +152,7 @@ export default function DetailProduct(props) {
                                 justifyContent: 'space-between',
                             }}
                         >
-                            <WrapsField style={{ width: '30%' }}>
+                            <WrapsField>
                                 <Label>
                                     <Span>Nama Produk</Span>
                                 </Label>
@@ -169,7 +169,7 @@ export default function DetailProduct(props) {
                             </WrapsField>
 
                             {/* --- Product code --- */}
-                            <WrapsField style={{ width: '30%' }}>
+                            <WrapsField>
                                 <Label>
                                     <Span>Produk Code</Span>
                                 </Label>
@@ -186,7 +186,7 @@ export default function DetailProduct(props) {
                             </WrapsField>
 
                             {/* --- Slug --- */}
-                            <WrapsField style={{ width: '30%' }}>
+                            <WrapsField>
                                 <Label>
                                     <Span>Slug</Span>
                                 </Label>
@@ -209,7 +209,7 @@ export default function DetailProduct(props) {
                                 justifyContent: 'space-between',
                             }}
                         >
-                            <WrapsField style={{ width: '30%' }}>
+                            <WrapsField>
                                 <Label>
                                     <Span>Product Type</Span>
                                 </Label>
@@ -235,7 +235,7 @@ export default function DetailProduct(props) {
                                     </Input>
                                 </div>
                             </WrapsField>
-                            <WrapsField style={{ width: '30%' }}>
+                            <WrapsField>
                                 <Label>
                                     <Span>Topic</Span>
                                 </Label>
@@ -248,7 +248,7 @@ export default function DetailProduct(props) {
                                 </div>
                             </WrapsField>
 
-                            <WrapsField style={{ width: '30%' }}>
+                            <WrapsField>
                                 <Label>
                                     <Span>Periode Waktu</Span>
                                 </Label>
@@ -498,7 +498,7 @@ export default function DetailProduct(props) {
                                 justifyContent: 'space-between',
                             }}
                         >
-                            <WrapsField style={{ width: '30%' }}>
+                            <WrapsField>
                                 <Label>
                                     <Span>Harga Normal</Span>
                                 </Label>
@@ -537,9 +537,7 @@ export default function DetailProduct(props) {
                             </WrapsField>
 
                             {/* --- Harga Penjualan */}
-                            <WrapsField
-                                style={{ width: '30%', marginRight: '35%' }}
-                            >
+                            <WrapsField style={{ marginRight: '35%' }}>
                                 <Label>
                                     <Span>Harga Penjualan</Span>
                                 </Label>
@@ -585,7 +583,7 @@ export default function DetailProduct(props) {
                                 justifyContent: 'space-between',
                             }}
                         >
-                            <WrapsField style={{ width: '30%' }}>
+                            <WrapsField>
                                 <Label>
                                     <Span>Status</Span>
                                 </Label>
@@ -608,9 +606,7 @@ export default function DetailProduct(props) {
                             </WrapsField>
 
                             {/* Field UpSale */}
-                            <WrapsField
-                                style={{ width: '30%', marginRight: '35%' }}
-                            >
+                            <WrapsField style={{ marginRight: '35%' }}>
                                 <Label>
                                     <Span>Method Sale</Span>
                                 </Label>

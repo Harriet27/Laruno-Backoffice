@@ -82,15 +82,15 @@ export default function App() {
                         <UpdateProduct />
                     </Route>
 
-                    <Route exact path="/test-components">
+                    {/* <Route exact path="/test-components">
                         <Header />
                         <MultipleImage />
-                    </Route>
-                    {/* <Route exact path="/test-components">
+                    </Route> */}
+                    <Route exact path="/test-components">
                         <Header />
 
                         <TestAddProduct />
-                    </Route> */}
+                    </Route>
                     <Route exact path="/reseller">
                         <Header />
                         <DataReseller />

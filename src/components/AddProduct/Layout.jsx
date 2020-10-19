@@ -34,6 +34,7 @@ const Label = Styled.label`
 `;
 const WrapsField = Styled.div`
     margin-bottom: 25px;
+    width: ${(props) => (props.normal ? '100%' : '30%')}
 `;
 const Span = Styled.span`
     font-weight: bold;
@@ -42,8 +43,8 @@ const Span = Styled.span`
 `;
 
 const SectionOne = Styled.div`
-display: flex;
-width: 50%;
+// display: flex;
+width: 100%;
 @media (max-width: 800px) {
     width: 100%
       }
@@ -88,81 +89,79 @@ export default function Layout(props) {
             <SectionOne>
                 <Card isNormal style={{ width: '100%' }}>
                     <div style={{ padding: '30px 40px' }}>
-                        <WrapsField>
-                            <Label>
-                                <Span>Headline </Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="text"
-                                    name="headline"
-                                    id="headline"
-                                    value={headline}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                            }}
+                        >
+                            <WrapsField>
+                                <Label>
+                                    <Span>Headline </Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        type="text"
+                                        name="headline"
+                                        id="headline"
+                                        value={headline}
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </WrapsField>
 
-                        {/* subheadline */}
-                        <WrapsField>
-                            <Label>
-                                <Span>Subheadline </Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="text"
-                                    name="subheadline"
-                                    id="subheadline"
-                                    value={subheadline}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
+                            {/* subheadline */}
+                            <WrapsField>
+                                <Label>
+                                    <Span>Subheadline </Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        type="text"
+                                        name="subheadline"
+                                        id="subheadline"
+                                        value={subheadline}
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </WrapsField>
 
-                        <WrapsField style={{ marginBottom: '100px' }}>
+                            <WrapsField>
+                                <Label>
+                                    <Span>Agent</Span>
+                                </Label>
+                                <div>
+                                    <MultiSelect
+                                        overrideStrings={{
+                                            selectSomeItems: 'select role...',
+                                            allItemsAreSelected:
+                                                'Semua role dipilih',
+                                            selectAll: 'Select All',
+                                            search: 'Search',
+                                        }}
+                                        options={optionsAgents}
+                                        selected={agent}
+                                        onSelectedChanged={handleSelectAgent}
+                                    />
+                                </div>
+                            </WrapsField>
+                        </div>
+                        <WrapsField normal style={{ marginBottom: '100px' }}>
                             <Label>
                                 <Span>Description</Span>
                             </Label>
-                            {/* <div>
-                                <Input
-                                    as="textarea"
-                                    name="description"
-                                    id="description"
-                                    value={description}
-                                    onChange={onChange}
-                                />
-                            </div> */}
+
                             <ReactQuillTest
                                 value={props.value}
                                 setValue={props.setValue}
                             />
                         </WrapsField>
 
-                        <WrapsField>
-                            <Label>
-                                <Span>Agent</Span>
-                            </Label>
-                            <div>
-                                <MultiSelect
-                                    overrideStrings={{
-                                        selectSomeItems: 'select role...',
-                                        allItemsAreSelected:
-                                            'Semua role dipilih',
-                                        selectAll: 'Select All',
-                                        search: 'Search',
-                                    }}
-                                    options={optionsAgents}
-                                    selected={agent}
-                                    onSelectedChanged={handleSelectAgent}
-                                />
-                            </div>
-                        </WrapsField>
-
                         {/* Children untuk learn about  */}
                         <React.Fragment>{children}</React.Fragment>
 
                         {/* feature onpage */}
-                        <WrapsField>
+                        <WrapsField normal>
                             <Label>
                                 <Span>Feature Onpage</Span>
                             </Label>
@@ -179,7 +178,7 @@ export default function Layout(props) {
 
                         {/* Feature On Header */}
 
-                        <WrapsField>
+                        <WrapsField normal>
                             <Label>
                                 <Span>Feature Onheader</Span>
                             </Label>
