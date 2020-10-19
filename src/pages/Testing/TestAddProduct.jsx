@@ -311,15 +311,9 @@ export default function TestAddProduct() {
                     }}
                 >
                     <DetailProduct
-                        checked_bayar={objEcommerce.shipping_charges === true}
-                        checked_gratis={objEcommerce.shipping_charges === false}
-                        bayar_ongkir={bayar_ongkir}
-                        gratis_ongkir={gratis_ongkir}
                         handleRadio={handleRadio}
                         handleSelect={handleSelect}
                         onChange={handleChangeForm}
-                        handleWebinar={handleWebinar}
-                        handleDuration={handleDuration}
                         form={form.type}
                         name={form.name}
                         type={form.type}
@@ -328,20 +322,27 @@ export default function TestAddProduct() {
                         time_period={form.time_period}
                         visibility={form.visibility}
                         sale_method={form.sale_method}
-                        zoom_id={objWebinar.client_url}
-                        date={objWebinar.date}
-                        start_time={objWebinar.start_time}
                         slug={form.slug}
-                        // duration={form.duration}
                         sale_price={form.sale_price}
-                        duration_hours={duration.hours}
-                        duration_minute={duration.minutes}
-                        stock={objEcommerce.stock}
-                        handleEcommerce={handleEcommerce}
-                        weight={objEcommerce.weight}
                         code={form.code}
                         formulir={formulir}
                         setFormulir={setFormulir}
+                        // --- Ecommerce --- //
+                        stock={objEcommerce.stock}
+                        handleEcommerce={handleEcommerce}
+                        weight={objEcommerce.weight}
+                        checked_bayar={objEcommerce.shipping_charges === true}
+                        checked_gratis={objEcommerce.shipping_charges === false}
+                        bayar_ongkir={bayar_ongkir}
+                        gratis_ongkir={gratis_ongkir}
+                        // --- Webinar --- //
+                        zoom_id={objWebinar.client_url}
+                        date={objWebinar.date}
+                        start_time={objWebinar.start_time}
+                        duration_hours={duration.hours}
+                        duration_minute={duration.minutes}
+                        handleWebinar={handleWebinar}
+                        handleDuration={handleDuration}
                     />
                 </div>
             </TabPanel>
