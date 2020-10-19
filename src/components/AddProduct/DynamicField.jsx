@@ -57,6 +57,7 @@ export default function DynamicField(props) {
                             <Input
                                 type="text"
                                 name={`one-${idx}`}
+                                value={field.title}
                                 placeholder="Enter text"
                                 onChange={(e) => handleChange(idx, e)}
                             />
@@ -65,6 +66,7 @@ export default function DynamicField(props) {
                                 as="textarea"
                                 name={`number-${idx}`}
                                 placeholder="Enter text"
+                                value={field.content}
                                 onChange={(e) => handleChangeContents(idx, e)}
                             />
                             <button
