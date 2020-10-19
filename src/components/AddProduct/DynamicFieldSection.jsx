@@ -79,7 +79,7 @@ export default function DynamicFieldSection(props) {
                                             <Input
                                                 type="text"
                                                 name={`one-${idx}`}
-                                                placeholder="Enter text"
+                                                placeholder="Enter title..."
                                                 value={field.title}
                                                 onChange={(e) =>
                                                     handleChange(idx, e)
@@ -90,7 +90,7 @@ export default function DynamicFieldSection(props) {
                                                 as="textarea"
                                                 name={`number-${idx}`}
                                                 value={field.content}
-                                                placeholder="Enter text"
+                                                placeholder="Enter content.."
                                                 onChange={(e) =>
                                                     handleChangeContents(idx, e)
                                                 }

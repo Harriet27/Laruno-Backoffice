@@ -45,7 +45,7 @@ export default function App() {
                     </Route>
                     <Route exact path="/add-product">
                         <Header />
-                        <AddProducts />
+                        <TestAddProduct />
                     </Route>
                     <Route exact path="/product">
                         <Header />
@@ -82,15 +82,11 @@ export default function App() {
                         <UpdateProduct />
                     </Route>
 
-                    {/* <Route exact path="/test-components">
-                        <Header />
-                        <MultipleImage />
-                    </Route> */}
                     <Route exact path="/test-components">
                         <Header />
-
-                        <TestAddProduct />
+                        <MultipleImage />
                     </Route>
+
                     <Route exact path="/reseller">
                         <Header />
                         <DataReseller />
@@ -104,9 +100,6 @@ export default function App() {
                         <DetailOrder />
                     </Route>
                     {/* --- Testing --- */}
-                    <Route exact path="/testing">
-                        <Header />
-                    </Route>
                 </Switch>
             </Router>
         </Provider>

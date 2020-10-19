@@ -106,6 +106,7 @@ export default function Layout(props) {
                                         id="headline"
                                         value={headline}
                                         onChange={onChange}
+                                        placeholder="Headline..."
                                     />
                                 </div>
                             </WrapsField>
@@ -122,6 +123,7 @@ export default function Layout(props) {
                                         id="subheadline"
                                         value={subheadline}
                                         onChange={onChange}
+                                        placeholder="Short Description..."
                                     />
                                 </div>
                             </WrapsField>
@@ -172,6 +174,7 @@ export default function Layout(props) {
                                     id="feature_onpage"
                                     value={feature_onpage}
                                     onChange={handleFeature}
+                                    placeholder="fetaure Onpage.."
                                 />
                             </div>
                         </WrapsField>
@@ -189,6 +192,7 @@ export default function Layout(props) {
                                     id="feature_onheader"
                                     value={feature_onheader}
                                     onChange={handleFeature}
+                                    placeholder="feature onheader..."
                                 />
                             </div>
                         </WrapsField>
