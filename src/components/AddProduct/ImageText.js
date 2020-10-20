@@ -12,7 +12,7 @@ const Section = Styled.section`
     justify-content: center;
 `;
 
-export default function ImageBonus(props) {
+export default function ImageText(props) {
     const dispatch = useDispatch();
     const { id, onChange, onSubmit, modal, toggle } = props;
     const [form, setForm] = useState({

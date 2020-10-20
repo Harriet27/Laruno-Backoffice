@@ -68,12 +68,8 @@ export default function DynamicFieldSection(props) {
                             style={{ display: 'flex', flexDirection: 'column' }}
                             className="App"
                         >
-                            <Label>
-                                <Span>Add Section</Span>
-                            </Label>
-
                             <button type="button" onClick={() => handleAdd()}>
-                                +
+                                <Span>Add Section</Span>
                             </button>
 
                             {/* --- Testing --- */}

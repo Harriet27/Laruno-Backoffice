@@ -52,7 +52,7 @@ export default function DynamicField(props) {
             </Label>
 
             <button type="button" onClick={() => handleAdd()}>
-                +
+                <Span>Add</Span>
             </button>
 
             {/* --- Testing --- */}

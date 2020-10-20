@@ -286,6 +286,12 @@ export default function TestAddProduct() {
     );
     form.image_url = formulir.image.image_url;
     objBump.bump_image = formulir.image.bump_image;
+
+    const [arrImageProduct, setArrImageProduct] = useState([]);
+    const [arrImageBonus, setArrImageBonus] = useState([]);
+    console.log(arrImageBonus, 'image bonus');
+    console.log(arrImageProduct, 'imageProduct');
+    form.image_product_url = arrImageProduct;
     return (
         <div style={{ margin: '50px' }}>
             <AppBar position="static" style={{ background: 'white' }}>
@@ -378,6 +384,13 @@ export default function TestAddProduct() {
                         // --- React Quill --- //
                         value={quill}
                         setValue={setQuill}
+                        // --- multiple image --- //
+                        setArrImageProduct={setArrImageProduct}
+                        arrImageProduct={arrImageProduct}
+                        setArrImageBonus={setArrImageBonus}
+                        arrImageBonus={arrImageBonus}
+                        formulir={formulir}
+                        setFormulir={setFormulir}
                     >
                         {form.type === 'ecommerce' ? null : (
                             <DynamicField

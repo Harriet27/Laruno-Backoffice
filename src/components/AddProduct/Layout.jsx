@@ -1,10 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import MultiSelect from '@khanacademy/react-multi-select';
 import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
 import Card from '../../elements/Card/Card';
-import { fetchGetAgents } from '../../store/actions';
+import {
+    fetchGetAgents,
+    fetchPostSingleImage,
+    fetchPostMultipleImage,
+    fetchPostMultipleImageBonus,
+} from '../../store/actions';
 import ReactQuillTest from './ReactQuill';
+import SingleImage from './SingleImage';
+import ImageBonus from './imageBonus';
+import ImageText from './ImageText';
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
@@ -69,6 +77,13 @@ export default function Layout(props) {
         handleSelectAgent,
         handleFeature,
         children,
+        // --- upload image --- //
+        formulir,
+        setFormulir,
+        arrImageProduct,
+        setArrImageProduct,
+        arrImageBonus,
+        setArrImageBonus,
     } = props;
 
     // --- Agents --- //
@@ -84,6 +99,51 @@ export default function Layout(props) {
             return { key: item._id, value: item._id, label: item.name };
         });
 
+    // --- HandleChange upload Image --- //
+    const handleChange = (e) => {
+        let image = formulir.image;
+
+        let field = e.target.id;
+        console.log(field, 'field id isinya apa');
+        image[field] = e.target.files[0];
+
+        setFormulir({ image });
+    };
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
+    // --- handleSubmit Upload Image --- //
+    const handleSubmit = async (e, id) => {
+        e.preventDefault();
+        //  upload image
+        dispatch(
+            fetchPostMultipleImage(
+                formulir,
+                e,
+                id,
+                setFormulir,
+                arrImageProduct,
+                setArrImageProduct
+            )
+        );
+    };
+    // const handleSubmitBonus = async (e, id) => {
+    //     e.preventDefault();
+    //     //  upload image
+    //     dispatch(
+    //         fetchPostMultipleImageBonus(
+    //             formulir,
+    //             e,
+    //             id,
+    //             setFormulir,
+    //             modal,
+    //             setModal,
+
+    //             arrImageBonus,
+    //             setArrImageBonus
+    //         )
+    //     );
+    // };
     return (
         <Section>
             <SectionOne>
@@ -198,47 +258,39 @@ export default function Layout(props) {
                         </WrapsField>
 
                         <WrapsField>
-                            <Label>
-                                <Span>Image Bonus</Span>
-                            </Label>
                             <div>
-                                <Input
-                                    type="file"
-                                    name="image_bonus_url"
-                                    id="image_bonus_url"
-                                    value={image_bonus_url}
-                                    onChange={onChange}
+                                <SingleImage
+                                    modal={modal}
+                                    toggle={toggle}
+                                    id="image_product"
+                                    onChange={handleChange}
+                                    onSubmit={(e) =>
+                                        handleSubmit(e, 'image_product')
+                                    }
                                 />
-                            </div>
-                        </WrapsField>
-
-                        <WrapsField>
-                            <Label>
-                                <Span>Image text</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="file"
-                                    name="image_text_url"
-                                    id="image_text_url"
-                                    value={image_text_url}
-                                    onChange={onChange}
-                                />
-                            </div>
-                        </WrapsField>
-
-                        <WrapsField>
-                            <Label>
-                                <Span>Image Product</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    type="file"
-                                    name="image_product_url"
-                                    id="image_product_url"
-                                    value={image_product_url}
-                                    onChange={onChange}
-                                />
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                    }}
+                                >
+                                    {arrImageProduct.map((item, i) => {
+                                        return (
+                                            <>
+                                                <div
+                                                    key={item}
+                                                    style={{ width: '100px' }}
+                                                >
+                                                    <img
+                                                        width="100%"
+                                                        src={item}
+                                                        alt={item}
+                                                    />
+                                                </div>
+                                            </>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </WrapsField>
 

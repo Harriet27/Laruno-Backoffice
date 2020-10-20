@@ -12,7 +12,7 @@ import {
     DurationMinutes,
 } from '../FakeData/FakeData';
 import SingleImage from './SingleImage';
-import MultipleImage from './MultipleImage';
+
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
