@@ -115,29 +115,13 @@ export default function Layout(props) {
     // --- handleSubmit Upload Image --- //
     const handleSubmit = async (e, id) => {
         e.preventDefault();
+
         //  upload image
         dispatch(
-            fetchPostMultipleImage(formulir, e, id, setFormulir, arr, setArr)
+            fetchPostSingleImage(formulir, e, id, setFormulir, modal, setModal)
         );
     };
 
-    // const handleSubmitBonus = async (e, id) => {
-    //     e.preventDefault();
-    //     //  upload image
-    //     dispatch(
-    //         fetchPostMultipleImageBonus(
-    //             formulir,
-    //             e,
-    //             id,
-    //             setFormulir,
-    //             modal,
-    //             setModal,
-
-    //             arrImageBonus,
-    //             setArrImageBonus
-    //         )
-    //     );
-    // };
     return (
         <Section>
             <SectionOne>
@@ -293,12 +277,12 @@ export default function Layout(props) {
                                 <Span>Video</Span>
                             </Label>
                             <div>
-                                <Input
-                                    type="text"
-                                    name="video_url"
-                                    id="video_url"
-                                    value={video}
-                                    onChange={onChange}
+                                <SingleImage
+                                    modal={modal}
+                                    toggle={toggle}
+                                    id="video"
+                                    onChange={handleChange}
+                                    onSubmit={(e) => handleSubmit(e, 'video')}
                                 />
                             </div>
                         </WrapsField>

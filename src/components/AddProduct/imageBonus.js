@@ -47,14 +47,15 @@ export default function ImageBonus(props) {
                 onChange={handleChange}
                 onSubmit={(e) => handleSubmit(e, 'image_bonus')}
             />
-
-            {arr.image_bonus.map((item, index) => {
-                return (
-                    <div key={item[index]} style={{ width: '100px' }}>
-                        <img width="100%" src={item} alt={item} />
-                    </div>
-                );
-            })}
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                {arr.image_bonus.map((item, index) => {
+                    return (
+                        <div key={item[index]} style={{ width: '100px' }}>
+                            <img width="100%" src={item} alt={item} />
+                        </div>
+                    );
+                })}
+            </div>
         </React.Fragment>
     );
 }

@@ -279,11 +279,7 @@ export default function TestAddProduct() {
         image: {},
     });
     console.log(formulir, 'formulir ini sinya apa sih');
-    console.log(formulir.image.image_url, 'formulir ini isinya apa sih');
-    console.log(
-        formulir.image.bump_image,
-        'formulir ini isinya apa bump image'
-    );
+
     form.image_url = formulir.image.image_url;
     objBump.bump_image = formulir.image.bump_image;
 
@@ -297,6 +293,9 @@ export default function TestAddProduct() {
 
     // console.log(arrImageProduct, 'imageProduct');
     form.image_product_url = arr.image_product;
+    form.image_bonus_url = arr.image_bonus;
+    form.image_text_url = arr.image_text;
+    form.video_url = formulir.image.video;
     return (
         <div style={{ margin: '50px' }}>
             <AppBar position="static" style={{ background: 'white' }}>
