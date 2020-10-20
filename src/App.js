@@ -26,7 +26,7 @@ import DataReseller from './components/Reseller/DataReseller';
 import Order from './pages/Order/Order';
 import DataCoupons from './components/Coupons/DataCoupons';
 import DetailOrder from './components/OrderOnline/DetailOrder';
-import MultipleImage from './components/AddProduct/MultipleImage';
+
 import Coupons from './pages/Coupons/Coupons';
 import TestAddProduct from './pages/Testing/TestAddProduct';
 
@@ -84,7 +84,6 @@ export default function App() {
 
                     <Route exact path="/test-components">
                         <Header />
-                        <MultipleImage />
                     </Route>
 
                     <Route exact path="/reseller">

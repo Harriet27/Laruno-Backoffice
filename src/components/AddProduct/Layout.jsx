@@ -13,7 +13,8 @@ import ReactQuillTest from './ReactQuill';
 import SingleImage from './SingleImage';
 import ImageBonus from './imageBonus';
 import ImageText from './ImageText';
-import MultipleImage from './MultipleImage';
+import ImageProduct from './ImageProduct';
+
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
@@ -251,41 +252,42 @@ export default function Layout(props) {
                         </WrapsField>
 
                         <WrapsField>
-                            <div>
-                                <SingleImage
-                                    modal={modal}
-                                    toggle={toggle}
-                                    id="image_product"
-                                    onChange={handleChange}
-                                    onSubmit={(e) =>
-                                        handleSubmit(e, 'image_product')
-                                    }
-                                />
-                                {/* <MultipleImage /> */}
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                    }}
-                                >
-                                    {arr.image_product.map((item, index) => {
-                                        return (
-                                            <div
-                                                key={item[index]}
-                                                style={{ width: '100px' }}
-                                            >
-                                                <img
-                                                    width="100%"
-                                                    src={item}
-                                                    alt={item}
-                                                />
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
+                            <Label>
+                                <Span>Image Product</Span>
+                            </Label>
+                            <ImageProduct
+                                arr={arr}
+                                setArr={setArr}
+                                formulir={formulir}
+                                setFormulir={setFormulir}
+                            />
                         </WrapsField>
 
+                        {/* Image Bonus */}
+                        <WrapsField>
+                            <Label>
+                                <Span>Image Bonus</Span>
+                            </Label>
+                            <ImageBonus
+                                arr={arr}
+                                setArr={setArr}
+                                formulir={formulir}
+                                setFormulir={setFormulir}
+                            />
+                        </WrapsField>
+
+                        {/* image text */}
+                        <WrapsField>
+                            <Label>
+                                <Span>Image Text</Span>
+                            </Label>
+                            <ImageText
+                                arr={arr}
+                                setArr={setArr}
+                                formulir={formulir}
+                                setFormulir={setFormulir}
+                            />
+                        </WrapsField>
                         <WrapsField>
                             <Label>
                                 <Span>Video</Span>

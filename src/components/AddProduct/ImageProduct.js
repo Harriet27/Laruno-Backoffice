@@ -14,7 +14,7 @@ const Section = Styled.section`
     justify-content: center;
 `;
 
-export default function ImageText(props) {
+export default function ImageProduct(props) {
     const dispatch = useDispatch();
     const { arr, setArr, formulir, setFormulir } = props;
 
@@ -44,12 +44,12 @@ export default function ImageText(props) {
             <SingleImage
                 modal={modal}
                 toggle={toggle}
-                id="image_text"
+                id="image_product"
                 onChange={handleChange}
-                onSubmit={(e) => handleSubmit(e, 'image_text')}
+                onSubmit={(e) => handleSubmit(e, 'image_product')}
             />
 
-            {arr.image_text.map((item, index) => {
+            {arr.image_product.map((item, index) => {
                 return (
                     <div key={item[index]} style={{ width: '100px' }}>
                         <img width="100%" src={item} alt={item} />

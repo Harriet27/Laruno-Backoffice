@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { fetchPostSingleImage } from '../../store/actions';
+
+import { fetchPostMultipleImage } from '../../store/actions';
+import SingleImage from './SingleImage';
 import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
-import ModalImage from '../../elements/Modal/ModalImage';
 
 // --- Styled Components --- //
 const Section = Styled.section`
@@ -14,31 +15,46 @@ const Section = Styled.section`
 
 export default function ImageBonus(props) {
     const dispatch = useDispatch();
-    const { id, onChange, onSubmit, modal, toggle } = props;
-    const [form, setForm] = useState({
-        file: null,
-    });
+    const { arr, setArr, formulir, setFormulir } = props;
 
-    console.log(form, 'ini form');
+    // console.log(formulir.image[0], 'array 1');
+    const handleChange = (e) => {
+        let image = formulir.image;
+
+        let field = e.target.id;
+
+        image[field] = e.target.files[0];
+        console.log(field, 'field ini apa');
+        setFormulir({ image });
+    };
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
+    const handleSubmit = async (e, id) => {
+        e.preventDefault();
+
+        dispatch(
+            fetchPostMultipleImage(formulir, e, id, setFormulir, arr, setArr)
+        );
+    };
 
     return (
         <React.Fragment>
-            <ModalImage
-                buttonLabel="Upload Image"
-                title="Upload Image"
-                onClickConfirm={onSubmit}
+            <SingleImage
                 modal={modal}
                 toggle={toggle}
-            >
-                <Section>
-                    <input
-                        type="file"
-                        name="file"
-                        id={id}
-                        onChange={onChange}
-                    />
-                </Section>
-            </ModalImage>
+                id="image_bonus"
+                onChange={handleChange}
+                onSubmit={(e) => handleSubmit(e, 'image_bonus')}
+            />
+
+            {arr.image_bonus.map((item, index) => {
+                return (
+                    <div key={item[index]} style={{ width: '100px' }}>
+                        <img width="100%" src={item} alt={item} />
+                    </div>
+                );
+            })}
         </React.Fragment>
     );
 }

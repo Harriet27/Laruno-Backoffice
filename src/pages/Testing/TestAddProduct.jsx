@@ -290,6 +290,7 @@ export default function TestAddProduct() {
     const [arr, setArr] = useState({
         image_product: [],
         image_bonus: [],
+        image_text: [],
     });
     console.log(arr, 'ini array sesungguhnya');
     // const [arrImageProduct, setArrImageProduct] = useState([]);
