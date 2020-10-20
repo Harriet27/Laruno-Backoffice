@@ -1,44 +1,66 @@
-import React, { useState } from 'react';
-import { fetchPostSingleImage } from '../../store/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Styled from 'styled-components';
-import ModalImage from '../../elements/Modal/ModalImage';
 
 // --- Styled Components --- //
-const Section = Styled.section`
-    width: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+const ButtonModal = Styled.button`
+background-color: #0098DA;
+color: white;
+width: 100%;
+padding: 5px;
+font-size: 18px;
+font-weight: 400;
+border-radius: 3px;
+border: 1px solid #ced4da;
+&:focus{
+outline: none !important;
+border:1px solid #66AFE9;
+}
 `;
+// --- Styled Components --- //
 
-export default function ImageText(props) {
-    const dispatch = useDispatch();
-    const { id, onChange, onSubmit, modal, toggle } = props;
-    const [form, setForm] = useState({
-        file: null,
-    });
-
-    console.log(form, 'ini form');
+const ImageText = (props) => {
+    const {
+        buttonLabel,
+        className,
+        style,
+        children,
+        title,
+        onClickConfirm,
+        modal,
+        toggle,
+        id,
+        onChange,
+    } = props;
 
     return (
-        <React.Fragment>
-            <ModalImage
-                buttonLabel="Upload Image"
-                title="Upload Image"
-                onClickConfirm={onSubmit}
-                modal={modal}
-                toggle={toggle}
-            >
-                <Section>
+        <div>
+            <div style={style} onClick={toggle}>
+                {buttonLabel}
+            </div>
+            <Modal isOpen={modal} toggle={toggle} className={className}>
+                <ModalHeader toggle={toggle}>{title}</ModalHeader>
+                <ModalBody>
+                    {/* modal body untuk isi content bisa dengan html */}
                     <input
                         type="file"
                         name="file"
-                        id={id}
+                        id="image-text"
                         onChange={onChange}
                     />
-                </Section>
-            </ModalImage>
-        </React.Fragment>
+                </ModalBody>
+                <ModalFooter>
+                    {/* onClickConfirm bisa berfungsi untuk mengkonusmi api */}
+                    <Button color="primary" onClick={onClickConfirm}>
+                        Confirm
+                    </Button>
+                    <Button color="secondary" onClick={toggle}>
+                        Cancel
+                    </Button>
+                </ModalFooter>
+            </Modal>
+        </div>
     );
-}
+};
+
+export default ImageText;

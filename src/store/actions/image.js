@@ -53,8 +53,8 @@ const fetchPostMultipleImage = (
     e,
     id,
     setFormulir,
-    arrImageProduct,
-    setArrImageProduct
+    arr,
+    setArr
 ) => async (dispatch) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
 
@@ -77,9 +77,9 @@ const fetchPostMultipleImage = (
     image[id] = result.result.url;
     setFormulir({ image });
     console.log(result, 'isi result apa');
-    const values = [...arrImageProduct];
-    values.push(formulir.image.image_product);
-    setArrImageProduct(values);
+    const values = { ...arr };
+    values[id].push(formulir.image[id]);
+    setArr(values);
 };
 
 // --- Post Single Image --- //

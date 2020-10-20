@@ -5,6 +5,7 @@ import SingleImage from './SingleImage';
 import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
 import ModalImage from '../../elements/Modal/ModalImage';
+import ImageText from '../../components/AddProduct/ImageText';
 
 // --- Styled Components --- //
 const Section = Styled.section`
@@ -21,7 +22,7 @@ export default function MultipleImage(props) {
         image: [],
     });
     const [arr, setArr] = useState([]);
-    console.log(arr);
+    console.log(arr, 'ini arr');
     console.log(formulir, 'isi dari formulir ini apa');
 
     // console.log(formulir.image[0], 'array 1');
@@ -31,7 +32,7 @@ export default function MultipleImage(props) {
         let field = e.target.id;
 
         image[field] = e.target.files[0];
-
+        console.log(field, 'field ini apa');
         setFormulir({ image });
     };
     const [modal, setModal] = useState(false);
@@ -64,7 +65,7 @@ export default function MultipleImage(props) {
 
         // test
         const values = [...arr];
-        values.push(formulir.image.image_bonus);
+        values.push(formulir.image.video);
         setArr(values);
     };
 
@@ -73,13 +74,18 @@ export default function MultipleImage(props) {
             <SingleImage
                 modal={modal}
                 toggle={toggle}
-                id="image_bonus"
+                id="video"
                 onChange={handleChange}
-                onSubmit={(e) => handleSubmit(e, 'image_bonus')}
+                onSubmit={(e) => handleSubmit(e, 'video')}
             />
 
-            {arr.map((item, i) => {
-                return <img key={i} src={item} alt={item} />;
+            {arr.map((item, index) => {
+                return (
+                    <video key={index} width="320" height="240">
+                        <source src={item} type="video/mp4" />
+                        <source src={item} type="video/ogg" />
+                    </video>
+                );
             })}
         </React.Fragment>
     );

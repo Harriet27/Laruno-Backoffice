@@ -13,6 +13,7 @@ import ReactQuillTest from './ReactQuill';
 import SingleImage from './SingleImage';
 import ImageBonus from './imageBonus';
 import ImageText from './ImageText';
+import MultipleImage from './MultipleImage';
 // --- Styled Components --- //
 const Input = Styled.input`
     width: 100%;
@@ -80,10 +81,8 @@ export default function Layout(props) {
         // --- upload image --- //
         formulir,
         setFormulir,
-        arrImageProduct,
-        setArrImageProduct,
-        arrImageBonus,
-        setArrImageBonus,
+        arr,
+        setArr,
     } = props;
 
     // --- Agents --- //
@@ -117,16 +116,10 @@ export default function Layout(props) {
         e.preventDefault();
         //  upload image
         dispatch(
-            fetchPostMultipleImage(
-                formulir,
-                e,
-                id,
-                setFormulir,
-                arrImageProduct,
-                setArrImageProduct
-            )
+            fetchPostMultipleImage(formulir, e, id, setFormulir, arr, setArr)
         );
     };
+
     // const handleSubmitBonus = async (e, id) => {
     //     e.preventDefault();
     //     //  upload image
@@ -268,26 +261,25 @@ export default function Layout(props) {
                                         handleSubmit(e, 'image_product')
                                     }
                                 />
+                                {/* <MultipleImage /> */}
                                 <div
                                     style={{
                                         display: 'flex',
                                         justifyContent: 'space-between',
                                     }}
                                 >
-                                    {arrImageProduct.map((item, i) => {
+                                    {arr.image_product.map((item, index) => {
                                         return (
-                                            <>
-                                                <div
-                                                    key={item}
-                                                    style={{ width: '100px' }}
-                                                >
-                                                    <img
-                                                        width="100%"
-                                                        src={item}
-                                                        alt={item}
-                                                    />
-                                                </div>
-                                            </>
+                                            <div
+                                                key={item[index]}
+                                                style={{ width: '100px' }}
+                                            >
+                                                <img
+                                                    width="100%"
+                                                    src={item}
+                                                    alt={item}
+                                                />
+                                            </div>
                                         );
                                     })}
                                 </div>
