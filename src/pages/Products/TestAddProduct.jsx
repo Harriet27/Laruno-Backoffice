@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import Styled from 'styled-components';
 
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 
 import { ButtonStyled } from '../../elements/Styled/StyledForm';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
 
-import DataOrders from '../../components/OrderOnline/DataOrder';
 import TabPanel from './TabPanel';
 import Layout from '../../components/AddProduct/Layout';
 import DynamicField from '../../components/AddProduct/DynamicField';

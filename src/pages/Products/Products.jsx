@@ -88,11 +88,6 @@ export default function Products() {
             )}
             {/* --- section 2 --- */}
             <DataProduct />
-
-            {/* <ImageBonus /> */}
-            {/* <ReactQuill /> */}
-            {/* <DaTest /> */}
-            {/* <DataProductTest /> */}
         </section>
     );
 }

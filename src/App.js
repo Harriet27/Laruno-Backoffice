@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // --- Pages, Component, Element --- //
 import Login from './pages/Login/Login';
-import AddProducts from './pages/Products/AddProducts';
+
 import OrderOnline from './components/OrderOnline/OrderOnline';
 import Topic from './pages/Topic/Topic';
 import Products from './pages/Products/Products';
@@ -28,7 +28,8 @@ import DataCoupons from './components/Coupons/DataCoupons';
 import DetailOrder from './components/OrderOnline/DetailOrder';
 
 import Coupons from './pages/Coupons/Coupons';
-import TestAddProduct from './pages/Testing/TestAddProduct';
+import TestAddProduct from './pages/Products/TestAddProduct';
+import TestUploadIMage from './pages/Testing/TestUploadIMage';
 
 export default function App() {
     return (
@@ -84,6 +85,7 @@ export default function App() {
 
                     <Route exact path="/test-components">
                         <Header />
+                        <TestUploadIMage />
                     </Route>
 
                     <Route exact path="/reseller">
