@@ -648,14 +648,25 @@ export default function DetailProduct(props) {
                                 onChange={handleChange}
                                 onSubmit={(e) => handleSubmit(e, 'image_url')}
                             />
+                        </WrapsField>
+                        <div
+                            style={{
+                                width: '100%',
+                                border: '1px dotted gray',
+                                height: '150px',
+                            }}
+                        >
                             {typeof formulir.image.image_url ===
                             'object' ? null : (
-                                <img
-                                    src={formulir.image.image_url}
-                                    alt={formulir.image.image_url}
-                                />
+                                <div style={{ width: '300px' }}>
+                                    <img
+                                        width="100%"
+                                        src={formulir.image.image_url}
+                                        alt={formulir.image.image_url}
+                                    />
+                                </div>
                             )}
-                        </WrapsField>
+                        </div>
                     </Form>
                 </Card>
             </SectionOne>

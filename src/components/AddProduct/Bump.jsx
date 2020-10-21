@@ -178,6 +178,14 @@ export default function Bump(props) {
                                         handleSubmit(e, 'bump_image')
                                     }
                                 />
+                            </WrapsField>
+                            <div
+                                style={{
+                                    width: '100%',
+                                    border: '1px dotted gray',
+                                    height: '150px',
+                                }}
+                            >
                                 {typeof formulir.image.bump_image ===
                                 'object' ? null : (
                                     <img
@@ -185,7 +193,7 @@ export default function Bump(props) {
                                         alt={formulir.image.bump_image}
                                     />
                                 )}
-                            </WrapsField>
+                            </div>
                         </React.Fragment>
                         {/* ) : null} */}
                     </div>

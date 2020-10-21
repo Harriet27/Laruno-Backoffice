@@ -33,6 +33,13 @@ const Button = Styled.button`
         outline: none;
     }
 `;
+const Span = Styled.span`
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(0,0,0,.6);
+    font-size: 18px;
+
+`;
 
 const NavigationLink = Styled.p`
     color: black;
@@ -80,7 +87,7 @@ const Header = () => {
 
     return (
         <HeaderStyled>
-            <Navbar light expand="md" style={{ padding: 0 }}>
+            <Navbar light expand="md">
                 <NavbarBrand href="/">
                     <WrapsImage>
                         <Image src={ImageBrand} alt="brand" />
@@ -89,43 +96,47 @@ const Header = () => {
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
-                        <Link to="/dashboard">
-                            <NavigationLink>Dashboard</NavigationLink>
+                        <Link style={{ padding: '8px' }} to="/dashboard">
+                            <Span>Dashboard</Span>
                         </Link>
-                        <Link to="/product">
-                            <NavigationLink>Product</NavigationLink>
+                        <Link style={{ padding: '8px' }} to="/product">
+                            <Span>Product</Span>
                         </Link>
-                        <Link to="/Order">
-                            <NavigationLink>Order</NavigationLink>
+                        <Link style={{ padding: '8px' }} to="/Order">
+                            <Span>Order</Span>
                         </Link>
-                        <Link to="/reports">
-                            <NavigationLink>Report</NavigationLink>
+                        <Link style={{ padding: '8px' }} to="/reports">
+                            <Span>Report</Span>
                         </Link>
-                        <Link to="/tools">
-                            <NavigationLink>Tools</NavigationLink>
+                        <Link style={{ padding: '8px' }} to="/tools">
+                            <Span>Tools</Span>
                         </Link>
 
                         {/* --- Dropdown Others --- */}
                         <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle
-                                nav
-                                caret
-                                style={{ color: 'black' }}
-                            >
-                                Others
+                            <DropdownToggle nav caret>
+                                <Span>Others</Span>
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <Link to="/topic">
-                                    <DropdownItem>Topic</DropdownItem>
+                                    <DropdownItem>
+                                        <Span>Topic</Span>
+                                    </DropdownItem>
                                 </Link>
                                 <Link to="/roles">
-                                    <DropdownItem>roles</DropdownItem>
+                                    <DropdownItem>
+                                        <Span>roles</Span>
+                                    </DropdownItem>
                                 </Link>
                                 <Link to="/users">
-                                    <DropdownItem>Users</DropdownItem>
+                                    <DropdownItem>
+                                        <Span>Users</Span>
+                                    </DropdownItem>
                                 </Link>
                                 <Link to="/coupons">
-                                    <DropdownItem>coupons</DropdownItem>
+                                    <DropdownItem>
+                                        <Span>coupons</Span>
+                                    </DropdownItem>
                                 </Link>
                             </DropdownMenu>
                         </UncontrolledDropdown>

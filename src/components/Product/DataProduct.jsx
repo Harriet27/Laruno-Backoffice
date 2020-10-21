@@ -13,7 +13,13 @@ import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DehazeIcon from '@material-ui/icons/Dehaze';
-import { Input, Th, Overflow, md } from '../../elements/Styled/StyledForm';
+import {
+    Input,
+    Th,
+    Overflow,
+    md,
+    ButtonActions,
+} from '../../elements/Styled/StyledForm';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CreateIcon from '@material-ui/icons/Create';
 import DescriptionIcon from '@material-ui/icons/Description';
@@ -27,6 +33,7 @@ import {
 } from '../../store/actions';
 import DeleteProduct from './DeleteProduct';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
+import MultipleDelete from '../../elements/Alert/MultipleDelete';
 // --- Styled Components --- //
 
 const ButtonLink = Styled.button`
@@ -125,12 +132,11 @@ const DataProduct = (props) => {
                             Actions
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem onClick={handlleMultipleDelete}>
-                                Delete
-                            </DropdownItem>
-                            <DropdownItem onClick={handlleMultipleClone}>
+                            <MultipleDelete onSubmit={handlleMultipleDelete} />
+
+                            <ButtonActions onClick={handlleMultipleClone}>
                                 Clone
-                            </DropdownItem>
+                            </ButtonActions>
                         </DropdownMenu>
                     </Dropdown>
                 ) : (

@@ -18,7 +18,7 @@ const Input = Styled.input`
 `;
 
 const ButtonModal = Styled.button`
-    background-color: #0098DA;
+    background-color: ${(props) => (props.delete ? 'red' : '#0098DA')};
     color: white;
     width: 100%;
     padding: 5px;
@@ -109,20 +109,22 @@ export default function DynamicFieldSection(props) {
                                             <Input
                                                 as="textarea"
                                                 name={`number-${idx}`}
+                                                rows="5"
                                                 value={field.content}
                                                 placeholder="Enter content.."
                                                 onChange={(e) =>
                                                     handleChangeContents(idx, e)
                                                 }
                                             />
-                                            <button
+                                            <ButtonModal
+                                                delete
                                                 type="button"
                                                 onClick={() =>
                                                     handleRemove(idx)
                                                 }
                                             >
-                                                X
-                                            </button>
+                                                Delete Section {idx + 1}
+                                            </ButtonModal>
                                         </WrapsField>
                                     );
                                 })}

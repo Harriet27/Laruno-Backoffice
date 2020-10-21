@@ -10,6 +10,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
+import { ButtonStyled } from '../../elements/Styled/StyledForm';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
 
 import DataOrders from '../../components/OrderOnline/DataOrder';
@@ -438,7 +439,26 @@ export default function TestAddProduct() {
                         handleChangeContents={handleChangeContentsSection}
                         handleRemove={handleRemoveSection}
                     />
-                    <button onClick={handleSubmit}>Kirim</button>
+                    <div
+                        style={{
+                            margin: '0 100px',
+                            paddingBottom: '20px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        <ButtonStyled
+                            style={{ color: '#656565', background: '#F2F5F7' }}
+                        >
+                            <i class="fa fa-undo"></i> Cancel
+                        </ButtonStyled>
+                        <ButtonStyled
+                            onClick={handleSubmit}
+                            style={{ background: '#70CA63' }}
+                        >
+                            <i class="fa fa-save"></i> Save
+                        </ButtonStyled>
+                    </div>
                 </div>
             </TabPanel>
         </div>

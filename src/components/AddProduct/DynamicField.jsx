@@ -2,7 +2,7 @@ import React from 'react';
 import Styled from 'styled-components';
 
 const ButtonModal = Styled.button`
-    background-color: #0098DA;
+    background-color:${(props) => (props.delete ? 'red' : '#0098DA')} ;
     color: white;
     width: 100%;
     padding: 5px;
@@ -85,17 +85,19 @@ export default function DynamicField(props) {
                             <label>Content</label>
                             <Input
                                 as="textarea"
+                                rows="5"
                                 name={`number-${idx}`}
                                 placeholder="Enter Content.."
                                 value={field.content}
                                 onChange={(e) => handleChangeContents(idx, e)}
                             />
-                            <button
+                            <ButtonModal
+                                delete
                                 type="button"
                                 onClick={() => handleRemove(idx)}
                             >
-                                X
-                            </button>
+                                Delete Learn About {idx + 1}
+                            </ButtonModal>
                         </WrapsField>
                     );
                 })}

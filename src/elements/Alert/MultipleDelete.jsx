@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
-import { md } from '../../elements/Styled/StyledForm';
+import { md, ButtonActions } from '../Styled/StyledForm';
 import {
     Button,
     Dialog,
@@ -24,17 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ButtonLink = Styled.button`
-    background-color:${(props) => (props.detail ? 'grey' : '#0098DA')};
-    padding: 5px;
-    border-radius: 3px;
-    color: white;
-    font-size: ${md};
-    border: 1px solid #ced4da;
-    font-Weight: 400;
-`;
-
-export default function ModalDeleteData(props) {
+export default function MultipleDelete(props) {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const classes = useStyles();
@@ -47,19 +37,9 @@ export default function ModalDeleteData(props) {
         setOpen(false);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        dispatch(fetchDeleteProduct(props.id));
-    };
-
     return (
         <div>
-            <ButtonLink
-                style={{ backgroundColor: 'red' }}
-                onClick={handleClickOpen}
-            >
-                <DeleteIcon fontSize="small" />
-            </ButtonLink>
+            <ButtonActions onClick={handleClickOpen}>Delete</ButtonActions>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -68,7 +48,7 @@ export default function ModalDeleteData(props) {
                 <DialogTitle id="alert-dialog-title">
                     {'Are You Sure Want to Delete ?'}
                 </DialogTitle>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={props.onSubmit}>
                     <FormControl className={classes.formControl}>
                         <DialogActions>
                             <Button onClick={handleClose} color="primary">
