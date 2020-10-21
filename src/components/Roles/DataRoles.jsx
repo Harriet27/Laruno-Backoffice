@@ -50,7 +50,7 @@
 //     };
 
 //     // --- Multiple Delete --- //
-//     const handlleMultipleDelete = (event) => {
+//     const handleMultipleDelete = (event) => {
 //         event.preventDefault();
 //         dispatch(fetchMultipleDeleteRoles(form));
 //     };
@@ -72,7 +72,7 @@
 //                             <Th>
 //                                 {/* --- Logic untuk multiple delete --- */}
 //                                 {form.id[0] ? (
-//                                     <div onClick={handlleMultipleDelete}>
+//                                     <div onClick={handleMultipleDelete}>
 //                                         <DeleteIcon color="error" />
 //                                     </div>
 //                                 ) : (
@@ -158,7 +158,13 @@ import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DehazeIcon from '@material-ui/icons/Dehaze';
-import { Input, Th, Overflow, md } from '../../elements/Styled/StyledForm';
+import {
+    Input,
+    Th,
+    Overflow,
+    md,
+    ButtonActions,
+} from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -173,6 +179,7 @@ import {
     // fetchPostTopic,
 } from '../../store/actions';
 import DeleteRoles from './DeleteRoles';
+import MultipleDelete from '../../elements/Alert/MultipleDelete';
 
 // --- Styled Components --- //
 
@@ -233,7 +240,7 @@ const DataRoles = (props) => {
     };
 
     // --- Multiple Delete --- //
-    const handlleMultipleDelete = (event) => {
+    const handleMultipleDelete = (event) => {
         event.preventDefault();
         dispatch(fetchMultipleDeleteRoles(form));
     };
@@ -263,10 +270,9 @@ const DataRoles = (props) => {
                             Actions
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem onClick={handlleMultipleDelete}>
-                                Delete
-                            </DropdownItem>
-                            {/* <DropdownItem onClick={handlleMultipleClone}>
+                            <MultipleDelete onSubmit={handleMultipleDelete} />
+
+                            {/* <DropdownItem onClick={handleMultipleClone}>
                                 Clone
                             </DropdownItem> */}
                         </DropdownMenu>

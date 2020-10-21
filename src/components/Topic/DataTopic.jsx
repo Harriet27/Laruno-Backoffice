@@ -21,7 +21,7 @@ import { fetchGetTopic, fetchMultipleDeleteTopics } from '../../store/actions';
 import AddNewTopic from './AddNewTopic';
 import UpdateTopic from './UpdateTopic';
 import DeleteTopic from './DeleteTopic';
-
+import MultipleDelete from '../../elements/Alert/MultipleDelete';
 // --- Styled Components --- //
 
 const DataTopic = (props) => {
@@ -72,13 +72,13 @@ const DataTopic = (props) => {
     };
 
     // --- Multiple Delete --- //
-    const handlleMultipleDelete = (event) => {
+    const handleMultipleDelete = (event) => {
         event.preventDefault();
         dispatch(fetchMultipleDeleteTopics(form));
     };
 
     // --- Multiple Clone --- //
-    // const handlleMultipleClone = (event) => {
+    // const handleMultipleClone = (event) => {
     //     event.preventDefault();
     //     dispatch(fetchMultipleCloneProduct(form));
     // };
@@ -105,10 +105,9 @@ const DataTopic = (props) => {
                         Actions
                     </DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem onClick={handlleMultipleDelete}>
-                            Delete
-                        </DropdownItem>
-                        {/* <DropdownItem onClick={handlleMultipleClone}>
+                        <MultipleDelete onSubmit={handleMultipleDelete} />
+
+                        {/* <DropdownItem onClick={handleMultipleClone}>
                                 Clone
                             </DropdownItem> */}
                     </DropdownMenu>

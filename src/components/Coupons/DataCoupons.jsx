@@ -82,13 +82,13 @@ const DataTopic = (props) => {
     };
 
     // --- Multiple Delete --- //
-    const handlleMultipleDelete = (event) => {
+    const handleMultipleDelete = (event) => {
         event.preventDefault();
         dispatch(fetchMultipleDeleteCoupons(form));
     };
 
     // --- Multiple Clone --- //
-    const handlleMultipleClone = (event) => {
+    const handleMultipleClone = (event) => {
         event.preventDefault();
         dispatch(fetchMultipleCloneCoupons(form));
     };
@@ -115,10 +115,10 @@ const DataTopic = (props) => {
                         Actions
                     </DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem onClick={handlleMultipleDelete}>
+                        <DropdownItem onClick={handleMultipleDelete}>
                             Delete
                         </DropdownItem>
-                        <DropdownItem onClick={handlleMultipleClone}>
+                        <DropdownItem onClick={handleMultipleClone}>
                             Clone
                         </DropdownItem>
                     </DropdownMenu>

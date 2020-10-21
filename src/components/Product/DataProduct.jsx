@@ -92,13 +92,13 @@ const DataProduct = (props) => {
     };
 
     // --- Multiple Delete --- //
-    const handlleMultipleDelete = (event) => {
+    const handleMultipleDelete = (event) => {
         event.preventDefault();
         dispatch(fetchMultipleDeleteProduct(form));
     };
 
     // --- Multiple Clone --- //
-    const handlleMultipleClone = (event) => {
+    const handleMultipleClone = (event) => {
         event.preventDefault();
         dispatch(fetchMultipleCloneProduct(form));
     };
@@ -132,9 +132,9 @@ const DataProduct = (props) => {
                             Actions
                         </DropdownToggle>
                         <DropdownMenu>
-                            <MultipleDelete onSubmit={handlleMultipleDelete} />
+                            <MultipleDelete onSubmit={handleMultipleDelete} />
 
-                            <ButtonActions onClick={handlleMultipleClone}>
+                            <ButtonActions onClick={handleMultipleClone}>
                                 Clone
                             </ButtonActions>
                         </DropdownMenu>
