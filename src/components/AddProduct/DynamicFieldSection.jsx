@@ -17,6 +17,21 @@ const Input = Styled.input`
     }
 `;
 
+const ButtonModal = Styled.button`
+    background-color: #0098DA;
+    color: white;
+    width: 100%;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 3px;
+    border: 1px solid #ced4da;
+    &:focus{
+        outline: none !important;
+        border:1px solid #66AFE9;
+    }
+`;
+
 const Section = Styled.section`
     display: flex;
     padding: 50px 100px;
@@ -68,9 +83,12 @@ export default function DynamicFieldSection(props) {
                             style={{ display: 'flex', flexDirection: 'column' }}
                             className="App"
                         >
-                            <button type="button" onClick={() => handleAdd()}>
-                                <Span>Add Section</Span>
-                            </button>
+                            <ButtonModal
+                                type="button"
+                                onClick={() => handleAdd()}
+                            >
+                                Add Section
+                            </ButtonModal>
 
                             {/* --- Testing --- */}
                             <div name="test">

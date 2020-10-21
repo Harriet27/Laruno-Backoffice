@@ -33,9 +33,9 @@ const ModalImage = (props) => {
 
     return (
         <div>
-            <div style={style} onClick={toggle}>
+            <ButtonModal style={style} onClick={toggle}>
                 {buttonLabel}
-            </div>
+            </ButtonModal>
             <Modal isOpen={modal} toggle={toggle} className={className}>
                 <ModalHeader toggle={toggle}>{title}</ModalHeader>
                 <ModalBody>

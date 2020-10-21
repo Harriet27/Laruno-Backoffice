@@ -280,6 +280,8 @@ export default function Layout(props) {
                                 <SingleImage
                                     modal={modal}
                                     toggle={toggle}
+                                    title="Video"
+                                    label="Upload Video"
                                     id="video"
                                     onChange={handleChange}
                                     onSubmit={(e) => handleSubmit(e, 'video')}

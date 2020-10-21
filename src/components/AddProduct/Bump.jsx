@@ -170,6 +170,8 @@ export default function Bump(props) {
                                 <SingleImage
                                     modal={modal}
                                     toggle={toggle}
+                                    title="Image Bump"
+                                    label="Upload Image"
                                     id="bump_image"
                                     onChange={handleChange}
                                     onSubmit={(e) =>

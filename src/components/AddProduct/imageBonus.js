@@ -43,6 +43,8 @@ export default function ImageBonus(props) {
             <SingleImage
                 modal={modal}
                 toggle={toggle}
+                title="Image Bonus"
+                label="Upload Image"
                 id="image_bonus"
                 onChange={handleChange}
                 onSubmit={(e) => handleSubmit(e, 'image_bonus')}

@@ -1,6 +1,20 @@
 import React from 'react';
 import Styled from 'styled-components';
 
+const ButtonModal = Styled.button`
+    background-color: #0098DA;
+    color: white;
+    width: 100%;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 3px;
+    border: 1px solid #ced4da;
+    &:focus{
+        outline: none !important;
+        border:1px solid #66AFE9;
+    }
+`;
 const Input = Styled.input`
     width: 100%;
     padding: .375rem;
@@ -51,9 +65,9 @@ export default function DynamicField(props) {
                 <Span>Learn About</Span>
             </Label>
 
-            <button type="button" onClick={() => handleAdd()}>
-                <Span>Add</Span>
-            </button>
+            <ButtonModal type="button" onClick={() => handleAdd()}>
+                Add Learn About
+            </ButtonModal>
 
             {/* --- Testing --- */}
             <div name="test">

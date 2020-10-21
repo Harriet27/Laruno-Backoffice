@@ -44,6 +44,8 @@ export default function ImageProduct(props) {
             <SingleImage
                 modal={modal}
                 toggle={toggle}
+                title="Image Product"
+                label="Upload Image"
                 id="image_product"
                 onChange={handleChange}
                 onSubmit={(e) => handleSubmit(e, 'image_product')}

@@ -44,6 +44,8 @@ export default function ImageText(props) {
             <SingleImage
                 modal={modal}
                 toggle={toggle}
+                title="Image Text"
+                label="Upload Image"
                 id="image_text"
                 onChange={handleChange}
                 onSubmit={(e) => handleSubmit(e, 'image_text')}

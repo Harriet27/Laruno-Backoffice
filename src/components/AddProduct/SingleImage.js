@@ -14,7 +14,7 @@ const Section = Styled.section`
 
 export default function SingleImage(props) {
     const dispatch = useDispatch();
-    const { id, onChange, onSubmit, modal, toggle } = props;
+    const { id, onChange, onSubmit, modal, toggle, title, label } = props;
     const [form, setForm] = useState({
         file: null,
     });
@@ -24,8 +24,8 @@ export default function SingleImage(props) {
     return (
         <React.Fragment>
             <ModalImage
-                buttonLabel="Upload Image"
-                title="Upload Image"
+                buttonLabel={label}
+                title={title}
                 onClickConfirm={onSubmit}
                 modal={modal}
                 toggle={toggle}

@@ -545,7 +545,7 @@ export default function DetailProduct(props) {
                             {/* --- Harga Penjualan */}
                             <WrapsField style={{ marginRight: '35%' }}>
                                 <Label>
-                                    <Span>Harga Penjualan</Span>
+                                    <Span>Harga Promo</Span>
                                 </Label>
                                 {/*  Styled for Rp */}
                                 <div
@@ -642,6 +642,8 @@ export default function DetailProduct(props) {
                             <SingleImage
                                 modal={modal}
                                 toggle={toggle}
+                                title="Image"
+                                label="Upload Image"
                                 id="image_url"
                                 onChange={handleChange}
                                 onSubmit={(e) => handleSubmit(e, 'image_url')}
