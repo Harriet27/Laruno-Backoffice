@@ -17,7 +17,7 @@ export default function TestUploadIMage() {
         console.log(event.target.files, 'target files');
         console.log(event.target.files[0], 'target files pake indeks 0');
         if (event.target.files && event.target.files[0]) {
-            var img = event.target.files[0];
+            let img = event.target.files[0];
             setForm({ ...form, posting: URL.createObjectURL(img) });
         }
     };
