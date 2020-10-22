@@ -186,13 +186,16 @@ export default function Bump(props) {
                                     height: '150px',
                                 }}
                             >
-                                {typeof formulir.image.bump_image ===
-                                'object' ? null : (
-                                    <img
-                                        src={formulir.image.bump_image}
-                                        alt={formulir.image.bump_image}
-                                    />
-                                )}
+                                <div style={{ width: '100px' }}>
+                                    {typeof formulir.image.bump_image ===
+                                    'object' ? null : (
+                                        <img
+                                            width="100%"
+                                            src={formulir.image.bump_image}
+                                            alt={formulir.image.bump_image}
+                                        />
+                                    )}
+                                </div>
                             </div>
                         </React.Fragment>
                         {/* ) : null} */}

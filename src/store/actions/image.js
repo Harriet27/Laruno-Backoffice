@@ -16,14 +16,9 @@ const postMultipleImage = (data) => {
 };
 
 // --- Single Image --- //
-const fetchPostSingleImage = (
-    formulir,
-    e,
-    id,
-    setFormulir,
-    modal,
-    setModal
-) => async (dispatch) => {
+const fetchPostSingleImage = (formulir, e, id, setFormulir) => async (
+    dispatch
+) => {
     const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
 
     let image = formulir.image;

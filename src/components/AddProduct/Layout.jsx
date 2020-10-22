@@ -239,23 +239,17 @@ export default function Layout(props) {
                                 onChange={handleChange}
                                 onSubmit={(e) => handleSubmit(e, 'image_bonus')}
                             />
-                            <div
-                                style={{
-                                    border: '1px dotted gray',
-                                    height: '200px',
-                                }}
-                            >
-                                {typeof formulir.image.image_bonus ===
-                                'object' ? null : (
-                                    <div style={{ width: '150px' }}>
-                                        <img
-                                            width="100%"
-                                            src={formulir.image.image_bonus}
-                                            alt={formulir.image.image_bonus}
-                                        />
-                                    </div>
-                                )}
-                            </div>
+
+                            {typeof formulir.image.image_bonus ===
+                            'object' ? null : (
+                                <div style={{ width: '150px' }}>
+                                    <img
+                                        width="100%"
+                                        src={formulir.image.image_bonus}
+                                        alt={formulir.image.image_bonus}
+                                    />
+                                </div>
+                            )}
                         </WrapsField>
 
                         <WrapsField>
@@ -267,24 +261,17 @@ export default function Layout(props) {
                                 onChange={handleChange}
                                 onSubmit={(e) => handleSubmit(e, 'media_url')}
                             />
-                            <div
-                                style={{
-                                    width: '100%',
-                                    border: '1px dotted gray',
-                                    height: '150px',
-                                }}
-                            >
-                                {typeof formulir.image.media_url ===
-                                'object' ? null : (
-                                    <div style={{ width: '300px' }}>
-                                        <img
-                                            width="100%"
-                                            src={formulir.image.media_url}
-                                            alt={formulir.image.media_url}
-                                        />
-                                    </div>
-                                )}
-                            </div>
+
+                            {typeof formulir.image.media_url ===
+                            'object' ? null : (
+                                <div style={{ width: '200px' }}>
+                                    <img
+                                        width="100%"
+                                        src={formulir.image.media_url}
+                                        alt={formulir.image.media_url}
+                                    />
+                                </div>
+                            )}
                         </WrapsField>
                         {/* <WrapsField>
                             <Label>

@@ -86,7 +86,6 @@ export default function DynamicField(props) {
                                 }}
                             >
                                 <Input
-                                    style={{ width: '30%' }}
                                     type="text"
                                     name={`one-${idx}`}
                                     value={field.title}
@@ -94,6 +93,7 @@ export default function DynamicField(props) {
                                     onChange={(e) => handleChange(idx, e)}
                                 />
                                 <Input
+                                    style={{ width: '30%' }}
                                     type="text"
                                     name={`note-${idx}`}
                                     value={field.note}

@@ -83,16 +83,10 @@ export default function DynamicFieldSection(props) {
 
     const handleChangeImage = (e, idx) => {
         let image = formulir.image;
-
         let field = e.target.id;
         console.log(field, 'field id');
         image[field] = e.target.files[0];
-
         setFormulir({ image });
-        // this.setState({img_value: e.target.files[0]})
-        // const values = [...sectionAdd];
-        // values[idx].image = formulir.image.field;
-        // setSectionAdd(values);
     };
 
     const handleSubmit = async (e, id) => {
@@ -149,14 +143,14 @@ export default function DynamicFieldSection(props) {
                                                 // toggle={toggle}
                                                 title="Image"
                                                 label="Upload Image"
-                                                id={`image-section-${idx}`}
+                                                id={`image_section_${idx}`}
                                                 onChange={(e) =>
                                                     handleChangeImage(e, idx)
                                                 }
                                                 onSubmit={(e) =>
                                                     handleSubmit(
                                                         e,
-                                                        `image-section-${idx}`
+                                                        `image_section_${idx}`
                                                     )
                                                 }
                                             />
