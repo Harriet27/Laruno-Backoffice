@@ -15,30 +15,21 @@ const Section = Styled.section`
 export default function SingleImage(props) {
     const dispatch = useDispatch();
     const { id, onChange, onSubmit, modal, toggle, title, label } = props;
-    const [form, setForm] = useState({
-        file: null,
-    });
-
-    console.log(form, 'ini form');
 
     return (
         <React.Fragment>
-            <ModalImage
+            {/* <ModalImage
                 buttonLabel={label}
                 title={title}
                 onClickConfirm={onSubmit}
                 modal={modal}
                 toggle={toggle}
             >
-                <Section>
-                    <input
-                        type="file"
-                        name="file"
-                        id={id}
-                        onChange={onChange}
-                    />
-                </Section>
-            </ModalImage>
+                <Section> */}
+            <input type="file" name="file" id={id} onChange={onChange} />
+            <button onClick={onSubmit}>Upload</button>
+            {/* </Section>
+            </ModalImage> */}
         </React.Fragment>
     );
 }

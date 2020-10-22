@@ -46,12 +46,12 @@ export default function ImageProduct(props) {
                 toggle={toggle}
                 title="Image Product"
                 label="Upload Image"
-                id="image_product"
+                id="image_url"
                 onChange={handleChange}
-                onSubmit={(e) => handleSubmit(e, 'image_product')}
+                onSubmit={(e) => handleSubmit(e, 'image_url')}
             />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                {arr.image_product.map((item, index) => {
+                {arr.image_url.map((item, index) => {
                     return (
                         <div key={item[index]} style={{ width: '100px' }}>
                             <img width="100%" src={item} alt={item} />

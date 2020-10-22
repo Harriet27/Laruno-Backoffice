@@ -12,6 +12,7 @@ import {
     DurationMinutes,
 } from '../FakeData/FakeData';
 import SingleImage from './SingleImage';
+import ImageProduct from './ImageProduct';
 
 // --- Styled Components --- //
 const Input = Styled.input`
@@ -101,6 +102,8 @@ export default function DetailProduct(props) {
         code,
         formulir,
         setFormulir,
+        arr,
+        setArr,
     } = props;
 
     const topic = useSelector((state) => state.topic.getTopic);
@@ -241,6 +244,7 @@ export default function DetailProduct(props) {
                                 </Label>
                                 <div>
                                     <MultiSelect
+                                        style={{ border: '1 px solid green' }}
                                         options={optionsTopic}
                                         selected={topic_select}
                                         onSelectedChanged={handleSelect}
@@ -638,35 +642,14 @@ export default function DetailProduct(props) {
                             </WrapsField>
                         </div>
                         <WrapsField>
-                            {' '}
-                            <SingleImage
-                                modal={modal}
-                                toggle={toggle}
-                                title="Image"
-                                label="Upload Image"
-                                id="image_url"
-                                onChange={handleChange}
-                                onSubmit={(e) => handleSubmit(e, 'image_url')}
+                            {/* image product */}
+                            <ImageProduct
+                                arr={arr}
+                                setArr={setArr}
+                                formulir={formulir}
+                                setFormulir={setFormulir}
                             />
                         </WrapsField>
-                        <div
-                            style={{
-                                width: '100%',
-                                border: '1px dotted gray',
-                                height: '150px',
-                            }}
-                        >
-                            {typeof formulir.image.image_url ===
-                            'object' ? null : (
-                                <div style={{ width: '300px' }}>
-                                    <img
-                                        width="100%"
-                                        src={formulir.image.image_url}
-                                        alt={formulir.image.image_url}
-                                    />
-                                </div>
-                            )}
-                        </div>
                     </Form>
                 </Card>
             </SectionOne>

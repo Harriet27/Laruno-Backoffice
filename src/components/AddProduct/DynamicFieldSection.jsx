@@ -1,7 +1,9 @@
 import Card from '../../elements/Card/Card';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchPostSingleImage } from '../../store/actions';
 import Styled from 'styled-components';
-
+import SingleImage from './SingleImage';
 const Input = Styled.input`
     width: 100%;
     padding: .375rem;
@@ -64,15 +66,41 @@ const Span = Styled.span`
 // --- BATAS BAWAH --- //
 
 export default function DynamicFieldSection(props) {
+    const dispatch = useDispatch();
     const {
         handleAdd,
         handleChange,
         handleChangeContents,
         fields,
         handleRemove,
+        formulir,
+        setFormulir,
+        sectionAdd,
+        setSectionAdd,
     } = props;
 
     console.log(fields, 'isi dari fields');
+
+    const handleChangeImage = (e, idx) => {
+        let image = formulir.image;
+
+        let field = e.target.id;
+        console.log(field, 'field id');
+        image[field] = e.target.files[0];
+
+        setFormulir({ image });
+        // this.setState({img_value: e.target.files[0]})
+        // const values = [...sectionAdd];
+        // values[idx].image = formulir.image.field;
+        // setSectionAdd(values);
+    };
+
+    const handleSubmit = async (e, id) => {
+        e.preventDefault();
+
+        //  upload image
+        dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
+    };
 
     return (
         <Section>
@@ -114,6 +142,22 @@ export default function DynamicFieldSection(props) {
                                                 placeholder="Enter content.."
                                                 onChange={(e) =>
                                                     handleChangeContents(idx, e)
+                                                }
+                                            />
+                                            <SingleImage
+                                                // modal={modal}
+                                                // toggle={toggle}
+                                                title="Image"
+                                                label="Upload Image"
+                                                id={`image-section-${idx}`}
+                                                onChange={(e) =>
+                                                    handleChangeImage(e, idx)
+                                                }
+                                                onSubmit={(e) =>
+                                                    handleSubmit(
+                                                        e,
+                                                        `image-section-${idx}`
+                                                    )
                                                 }
                                             />
                                             <ButtonModal

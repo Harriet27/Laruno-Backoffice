@@ -52,6 +52,7 @@ export default function DynamicField(props) {
         handleChangeContents,
         fields,
         handleRemove,
+        handleChangeNote,
     } = props;
 
     console.log(fields, 'isi dari fields');
@@ -65,7 +66,11 @@ export default function DynamicField(props) {
                 <Span>Learn About</Span>
             </Label>
 
-            <ButtonModal type="button" onClick={() => handleAdd()}>
+            <ButtonModal
+                style={{ marginBottom: '10px' }}
+                type="button"
+                onClick={() => handleAdd()}
+            >
                 Add Learn About
             </ButtonModal>
 
@@ -74,15 +79,28 @@ export default function DynamicField(props) {
                 {fields.map((field, idx) => {
                     return (
                         <WrapsField key={`${field}-${idx}`}>
-                            <label>Title</label>
-                            <Input
-                                type="text"
-                                name={`one-${idx}`}
-                                value={field.title}
-                                placeholder="Enter title.."
-                                onChange={(e) => handleChange(idx, e)}
-                            />
-                            <label>Content</label>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                }}
+                            >
+                                <Input
+                                    style={{ width: '30%' }}
+                                    type="text"
+                                    name={`one-${idx}`}
+                                    value={field.title}
+                                    placeholder="Enter title.."
+                                    onChange={(e) => handleChange(idx, e)}
+                                />
+                                <Input
+                                    type="text"
+                                    name={`note-${idx}`}
+                                    value={field.note}
+                                    placeholder="Enter note.."
+                                    onChange={(e) => handleChangeNote(idx, e)}
+                                />
+                            </div>
                             <Input
                                 as="textarea"
                                 rows="5"

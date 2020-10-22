@@ -11,8 +11,7 @@ import {
 } from '../../store/actions';
 import ReactQuillTest from './ReactQuill';
 import SingleImage from './SingleImage';
-import ImageBonus from './imageBonus';
-import ImageText from './ImageText';
+
 import ImageProduct from './ImageProduct';
 
 // --- Styled Components --- //
@@ -69,10 +68,7 @@ export default function Layout(props) {
         onChange,
         // description,
         subheadline,
-        video,
-        image_bonus_url,
-        image_product_url,
-        image_text_url,
+
         feature_onheader,
         feature_onpage,
         agent,
@@ -117,9 +113,7 @@ export default function Layout(props) {
         e.preventDefault();
 
         //  upload image
-        dispatch(
-            fetchPostSingleImage(formulir, e, id, setFormulir, modal, setModal)
-        );
+        dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
     };
 
     return (
@@ -235,44 +229,64 @@ export default function Layout(props) {
                             </div>
                         </WrapsField>
 
-                        <WrapsField>
-                            <Label>
-                                <Span>Image Product</Span>
-                            </Label>
-                            <ImageProduct
-                                arr={arr}
-                                setArr={setArr}
-                                formulir={formulir}
-                                setFormulir={setFormulir}
-                            />
-                        </WrapsField>
-
                         {/* Image Bonus */}
                         <WrapsField>
                             <Label>
                                 <Span>Image Bonus</Span>
                             </Label>
-                            <ImageBonus
-                                arr={arr}
-                                setArr={setArr}
-                                formulir={formulir}
-                                setFormulir={setFormulir}
+                            <SingleImage
+                                id="image_bonus"
+                                onChange={handleChange}
+                                onSubmit={(e) => handleSubmit(e, 'image_bonus')}
                             />
+                            <div
+                                style={{
+                                    border: '1px dotted gray',
+                                    height: '200px',
+                                }}
+                            >
+                                {typeof formulir.image.image_bonus ===
+                                'object' ? null : (
+                                    <div style={{ width: '150px' }}>
+                                        <img
+                                            width="100%"
+                                            src={formulir.image.image_bonus}
+                                            alt={formulir.image.image_bonus}
+                                        />
+                                    </div>
+                                )}
+                            </div>
                         </WrapsField>
 
-                        {/* image text */}
                         <WrapsField>
                             <Label>
-                                <Span>Image Text</Span>
+                                <Span>Media Url</Span>
                             </Label>
-                            <ImageText
-                                arr={arr}
-                                setArr={setArr}
-                                formulir={formulir}
-                                setFormulir={setFormulir}
+                            <SingleImage
+                                id="media_url"
+                                onChange={handleChange}
+                                onSubmit={(e) => handleSubmit(e, 'media_url')}
                             />
+                            <div
+                                style={{
+                                    width: '100%',
+                                    border: '1px dotted gray',
+                                    height: '150px',
+                                }}
+                            >
+                                {typeof formulir.image.media_url ===
+                                'object' ? null : (
+                                    <div style={{ width: '300px' }}>
+                                        <img
+                                            width="100%"
+                                            src={formulir.image.media_url}
+                                            alt={formulir.image.media_url}
+                                        />
+                                    </div>
+                                )}
+                            </div>
                         </WrapsField>
-                        <WrapsField>
+                        {/* <WrapsField>
                             <Label>
                                 <Span>Video</Span>
                             </Label>
@@ -287,7 +301,7 @@ export default function Layout(props) {
                                     onSubmit={(e) => handleSubmit(e, 'video')}
                                 />
                             </div>
-                        </WrapsField>
+                        </WrapsField> */}
                     </div>
                 </Card>
             </SectionOne>

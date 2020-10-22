@@ -77,19 +77,23 @@ export default function TestAddProduct() {
             {
                 title: '',
                 content: '',
+                note: '',
             },
         ],
         sale_price: 0,
-        image_url: '',
-        video_url: '',
+        image_url: [],
+        // video_url: '',
         agent: [],
-        image_bonus_url: [],
-        image_text_url: [],
-        image_product_url: [],
+        image_bonus_url: '',
+        // image_text_url: [],
+        // image_product_url: [],
+        // --- media url --- //
+        media_url: '',
         section: [
             {
                 title: '',
                 content: '',
+                image: '',
             },
         ],
         feature: {
@@ -188,7 +192,9 @@ export default function TestAddProduct() {
     // ======>>> lOGIC DETAIL PRODUCT SECTION 2 "layout" <<<====== //
 
     // ------> Logic untuk Dynamic Form Learn About <------ //
-    const [fields, setFields] = useState([{ title: '', content: '' }]);
+    const [fields, setFields] = useState([
+        { title: '', content: '', note: '' },
+    ]);
     // ===>> Handle Change <<===  //
     function handleChangeDynamic(i, event) {
         const values = [...fields];
@@ -203,11 +209,15 @@ export default function TestAddProduct() {
 
         setFields(values);
     }
-
+    function handleChangeNote(i, event) {
+        const values = [...fields];
+        values[i].note = event.target.value;
+        setFields(values);
+    }
     function handleAdd() {
         //  menambahkan field ke dalam value input terbaru
         const values = [...fields];
-        values.push({ title: '', content: '' });
+        values.push({ title: '', content: '', note: '' });
         setFields(values);
     }
 
@@ -222,7 +232,10 @@ export default function TestAddProduct() {
     // ---- BATAS BAWAH !!!! ---- //
 
     // ------> Logic untuk Dynamic Form Section <------ //
-    const [sectionAdd, setSectionAdd] = useState([{ title: '', content: '' }]);
+    const [sectionAdd, setSectionAdd] = useState([
+        { title: '', content: '', image: '' },
+    ]);
+
     // ===>> Handle Change <<===  //
     function handleChangeDynamicSection(i, event) {
         const values = [...sectionAdd];
@@ -237,11 +250,16 @@ export default function TestAddProduct() {
 
         setSectionAdd(values);
     }
+    // function handleChangeImageSection(i, event) {
+    //     const values = [...sectionAdd];
+    //     values[i].image = event.target.value;
+    //     setSectionAdd(values);
+    // }
 
     function handleAddSection() {
         //  menambahkan field ke dalam value input terbaru
         const values = [...sectionAdd];
-        values.push({ title: '', content: '' });
+        values.push({ title: '', content: '', image: '' });
         setSectionAdd(values);
     }
 
@@ -273,7 +291,12 @@ export default function TestAddProduct() {
 
     // --- Upload Image --- //
     const [formulir, setFormulir] = useState({
-        image: {},
+        image: {
+            image_url: '',
+            bump_image: '',
+            media_url: '',
+            image_bonus: '',
+        },
     });
     console.log(formulir, 'formulir ini sinya apa sih');
 
@@ -281,18 +304,16 @@ export default function TestAddProduct() {
     objBump.bump_image = formulir.image.bump_image;
 
     const [arr, setArr] = useState({
-        image_product: [],
-        image_bonus: [],
-        image_text: [],
+        image_url: [],
     });
     console.log(arr, 'ini array sesungguhnya');
     // const [arrImageProduct, setArrImageProduct] = useState([]);
 
     // console.log(arrImageProduct, 'imageProduct');
-    form.image_product_url = arr.image_product;
-    form.image_bonus_url = arr.image_bonus;
-    form.image_text_url = arr.image_text;
-    form.video_url = formulir.image.video;
+    form.image_url = arr.image_url;
+    form.image_bonus_url = formulir.image.image_bonus;
+    // form.image_text_url = arr.image_text;
+    form.media_url = formulir.image.media_url;
     return (
         <div style={{ margin: '50px' }}>
             <AppBar position="static" style={{ background: 'white' }}>
@@ -341,8 +362,11 @@ export default function TestAddProduct() {
                         slug={form.slug}
                         sale_price={form.sale_price}
                         code={form.code}
+                        // image
                         formulir={formulir}
                         setFormulir={setFormulir}
+                        setArr={setArr}
+                        arr={arr}
                         // --- Ecommerce --- //
                         stock={objEcommerce.stock}
                         handleEcommerce={handleEcommerce}
@@ -375,9 +399,9 @@ export default function TestAddProduct() {
                         handleFeature={handleFeature}
                         headline={form.headline}
                         image_bonus_url={form.image_bonus_url}
-                        image_text_url={form.image_text_url}
-                        image_product_url={form.image_product_url}
-                        video={form.video_url}
+                        // image_text_url={form.image_text_url}
+                        // image_product_url={form.image_product_url}
+                        // video={form.video_url}
                         feature_onpage={objFeature.feature_onpage}
                         feature_onheader={objFeature.feature_onheader}
                         agent={form.agent}
@@ -398,6 +422,7 @@ export default function TestAddProduct() {
                                 handleChange={handleChangeDynamic}
                                 handleChangeContents={handleChangeContents}
                                 handleRemove={handleRemove}
+                                handleChangeNote={handleChangeNote}
                             />
                         )}
                     </Layout>
@@ -434,6 +459,10 @@ export default function TestAddProduct() {
                         handleChange={handleChangeDynamicSection}
                         handleChangeContents={handleChangeContentsSection}
                         handleRemove={handleRemoveSection}
+                        formulir={formulir}
+                        setFormulir={setFormulir}
+                        sectionAdd={sectionAdd}
+                        setSectionAdd={setSectionAdd}
                     />
                     <div
                         style={{
@@ -446,13 +475,13 @@ export default function TestAddProduct() {
                         <ButtonStyled
                             style={{ color: '#656565', background: '#F2F5F7' }}
                         >
-                            <i class="fa fa-undo"></i> Cancel
+                            <i className="fa fa-undo"></i> Cancel
                         </ButtonStyled>
                         <ButtonStyled
                             onClick={handleSubmit}
                             style={{ background: '#70CA63' }}
                         >
-                            <i class="fa fa-save"></i> Save
+                            <i className="fa fa-save"></i> Save
                         </ButtonStyled>
                     </div>
                 </div>
