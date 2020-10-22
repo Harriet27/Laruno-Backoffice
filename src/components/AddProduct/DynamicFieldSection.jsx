@@ -1,7 +1,7 @@
 import Card from '../../elements/Card/Card';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchPostSingleImage } from '../../store/actions';
+import { fetchPostDynamicImage } from '../../store/actions';
 import Styled from 'styled-components';
 import SingleImage from './SingleImage';
 const Input = Styled.input`
@@ -89,11 +89,21 @@ export default function DynamicFieldSection(props) {
         setFormulir({ image });
     };
 
-    const handleSubmit = async (e, id) => {
+    const handleSubmit = async (e, id, i) => {
         e.preventDefault();
 
         //  upload image
-        dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
+        dispatch(
+            fetchPostDynamicImage(
+                formulir,
+                e,
+                id,
+                setFormulir,
+                sectionAdd,
+                setSectionAdd,
+                i
+            )
+        );
     };
 
     return (
@@ -138,6 +148,7 @@ export default function DynamicFieldSection(props) {
                                                     handleChangeContents(idx, e)
                                                 }
                                             />
+
                                             <SingleImage
                                                 // modal={modal}
                                                 // toggle={toggle}
@@ -150,10 +161,12 @@ export default function DynamicFieldSection(props) {
                                                 onSubmit={(e) =>
                                                     handleSubmit(
                                                         e,
-                                                        `image_section_${idx}`
+                                                        `image_section_${idx}`,
+                                                        idx
                                                     )
                                                 }
                                             />
+
                                             <ButtonModal
                                                 delete
                                                 type="button"

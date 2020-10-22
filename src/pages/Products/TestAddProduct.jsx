@@ -235,6 +235,15 @@ export default function TestAddProduct() {
     const [sectionAdd, setSectionAdd] = useState([
         { title: '', content: '', image: '' },
     ]);
+    const [formulir, setFormulir] = useState({
+        image: {
+            image_url: '',
+            bump_image: '',
+            media_url: '',
+            image_bonus: '',
+        },
+    });
+    console.log(formulir, 'formulir ini sinya apa sih');
 
     // ===>> Handle Change <<===  //
     function handleChangeDynamicSection(i, event) {
@@ -247,19 +256,16 @@ export default function TestAddProduct() {
         const values = [...sectionAdd];
         // untuk semua object yang berisi key 'content' di dalam fields yg kita klik maka valuenya merupakan hasil inputan kita
         values[i].content = event.target.value;
+        // values[i].image = formulir.image[`image_section_${i}`];
 
         setSectionAdd(values);
     }
-    // function handleChangeImageSection(i, event) {
-    //     const values = [...sectionAdd];
-    //     values[i].image = event.target.value;
-    //     setSectionAdd(values);
-    // }
 
     function handleAddSection() {
         //  menambahkan field ke dalam value input terbaru
         const values = [...sectionAdd];
         values.push({ title: '', content: '', image: '' });
+
         setSectionAdd(values);
     }
 
@@ -290,15 +296,6 @@ export default function TestAddProduct() {
     form.description = quill;
 
     // --- Upload Image --- //
-    const [formulir, setFormulir] = useState({
-        image: {
-            image_url: '',
-            bump_image: '',
-            media_url: '',
-            image_bonus: '',
-        },
-    });
-    console.log(formulir, 'formulir ini sinya apa sih');
 
     form.image_url = formulir.image.image_url;
     objBump.bump_image = formulir.image.bump_image;
@@ -306,7 +303,7 @@ export default function TestAddProduct() {
     const [arr, setArr] = useState({
         image_url: [],
     });
-    console.log(arr, 'ini array sesungguhnya');
+
     // const [arrImageProduct, setArrImageProduct] = useState([]);
 
     // console.log(arrImageProduct, 'imageProduct');
