@@ -3,16 +3,9 @@ import MultiSelect from '@khanacademy/react-multi-select';
 import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
 import Card from '../../elements/Card/Card';
-import {
-    fetchGetAgents,
-    fetchPostSingleImage,
-    fetchPostMultipleImage,
-    fetchPostMultipleImageBonus,
-} from '../../store/actions';
+import { fetchGetAgents, fetchPostSingleImage } from '../../store/actions';
 import ReactQuillTest from './ReactQuill';
 import SingleImage from './SingleImage';
-
-import ImageProduct from './ImageProduct';
 
 // --- Styled Components --- //
 const Input = Styled.input`
@@ -59,16 +52,12 @@ width: 100%;
       }
 `;
 
-// --- Styled Components --- //
-
 export default function Layout(props) {
     const dispatch = useDispatch();
     const {
         headline,
         onChange,
-        // description,
         subheadline,
-
         feature_onheader,
         feature_onpage,
         agent,
@@ -78,8 +67,6 @@ export default function Layout(props) {
         // --- upload image --- //
         formulir,
         setFormulir,
-        arr,
-        setArr,
     } = props;
 
     // --- Agents --- //
@@ -111,8 +98,7 @@ export default function Layout(props) {
     // --- handleSubmit Upload Image --- //
     const handleSubmit = async (e, id) => {
         e.preventDefault();
-
-        //  upload image
+        // --- upload image --- //
         dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
     };
 
@@ -273,22 +259,6 @@ export default function Layout(props) {
                                 </div>
                             )}
                         </WrapsField>
-                        {/* <WrapsField>
-                            <Label>
-                                <Span>Video</Span>
-                            </Label>
-                            <div>
-                                <SingleImage
-                                    modal={modal}
-                                    toggle={toggle}
-                                    title="video"
-                                    label="Upload Video"
-                                    id="video"
-                                    onChange={handleChange}
-                                    onSubmit={(e) => handleSubmit(e, 'video')}
-                                />
-                            </div>
-                        </WrapsField> */}
                     </div>
                 </Card>
             </SectionOne>

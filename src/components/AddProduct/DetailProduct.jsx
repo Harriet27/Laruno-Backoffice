@@ -11,7 +11,7 @@ import {
     DurationHour,
     DurationMinutes,
 } from '../FakeData/FakeData';
-import SingleImage from './SingleImage';
+
 import ImageProduct from './ImageProduct';
 
 // --- Styled Components --- //
@@ -119,30 +119,6 @@ export default function DetailProduct(props) {
             return { key: item._id, value: item._id, label: item.name };
         });
 
-    // --- HandleChange upload Image --- //
-    const handleChange = (e) => {
-        let image = formulir.image;
-
-        let field = e.target.id;
-
-        image[field] = e.target.files[0];
-        console.log('img[]', image);
-
-        setFormulir({ image });
-        // this.setState({img_value: e.target.files[0]})
-    };
-    const [modal, setModal] = useState(false);
-
-    const toggle = () => setModal(!modal);
-    // --- handleSubmit Upload Image --- //
-    const handleSubmit = async (e, id) => {
-        e.preventDefault();
-
-        //  upload image
-        dispatch(
-            fetchPostSingleImage(formulir, e, id, setFormulir, modal, setModal)
-        );
-    };
     return (
         <Section>
             <SectionOne>

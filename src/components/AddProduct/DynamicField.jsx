@@ -43,8 +43,6 @@ const WrapsField = Styled.div`
     width: ${(props) => (props.dividedByTwo ? '45%' : null)}
 `;
 
-// --- BATAS BAWAH --- //
-
 export default function DynamicField(props) {
     const {
         handleAdd,

@@ -43,9 +43,7 @@ const Section = Styled.section`
         padding: 20px 40px;
           }
 `;
-const Label = Styled.label`
 
-`;
 const WrapsField = Styled.div`
     margin-bottom: 25px;
     width: ${(props) => (props.dividedByTwo ? '45%' : null)}
@@ -58,12 +56,6 @@ const SectionOne = Styled.div`
         width: 100%
     }
 `;
-const Span = Styled.span`
-    font-weight: bold;
-    color: #656565;
-    font-size: 16px;
-`;
-// --- BATAS BAWAH --- //
 
 export default function DynamicFieldSection(props) {
     const dispatch = useDispatch();
@@ -89,7 +81,7 @@ export default function DynamicFieldSection(props) {
         setFormulir({ image });
     };
 
-    const handleSubmit = async (e, id, i) => {
+    const handleSubmit = async (e, id, index) => {
         e.preventDefault();
 
         //  upload image
@@ -101,7 +93,7 @@ export default function DynamicFieldSection(props) {
                 setFormulir,
                 sectionAdd,
                 setSectionAdd,
-                i
+                index
             )
         );
     };
@@ -150,10 +142,6 @@ export default function DynamicFieldSection(props) {
                                             />
 
                                             <SingleImage
-                                                // modal={modal}
-                                                // toggle={toggle}
-                                                title="Image"
-                                                label="Upload Image"
                                                 id={`image_section_${idx}`}
                                                 onChange={(e) =>
                                                     handleChangeImage(e, idx)

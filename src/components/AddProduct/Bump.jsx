@@ -58,49 +58,25 @@ export default function Bump(props) {
     // --- HandleChange upload Image --- //
     const handleChange = (e) => {
         let image = formulir.image;
-
         let field = e.target.id;
-
         image[field] = e.target.files[0];
-        console.log('img[]', image);
-
         setFormulir({ image });
-        // this.setState({img_value: e.target.files[0]})
     };
-    const [modal, setModal] = useState(false);
 
-    const toggle = () => setModal(!modal);
     // --- handleSubmit Upload Image --- //
     const handleSubmit = async (e, id) => {
         e.preventDefault();
-
-        //  upload image
-        dispatch(
-            fetchPostSingleImage(formulir, e, id, setFormulir, modal, setModal)
-        );
+        dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
     };
     return (
         <Section>
             <Card isNormal>
                 <div style={{ padding: '20px 30px' }}>
-                    {/* <label>
-                        <input
-                            name="checkbox"
-                            id="checkbox"
-                            value={box.checkbox}
-                            type="checkbox"
-                            onChange={handleChange}
-                        />
-                        Do you want to show a bump offer on this product?
-                    </label> */}
-
                     <div>
-                        {/* {box.checkbox === true ? ( */}
                         <React.Fragment>
                             <WrapsField>
                                 <Label>
-                                    <Span>Bump Product</Span> Name will appear
-                                    on the cart & invoice
+                                    <Span>Bump Name</Span>
                                 </Label>
                                 <div>
                                     <Input
@@ -168,10 +144,6 @@ export default function Bump(props) {
 
                             <WrapsField>
                                 <SingleImage
-                                    modal={modal}
-                                    toggle={toggle}
-                                    title="Image Bump"
-                                    label="Upload Image"
                                     id="bump_image"
                                     onChange={handleChange}
                                     onSubmit={(e) =>
@@ -198,7 +170,6 @@ export default function Bump(props) {
                                 </div>
                             </div>
                         </React.Fragment>
-                        {/* ) : null} */}
                     </div>
                 </div>
             </Card>

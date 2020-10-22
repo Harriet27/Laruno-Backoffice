@@ -2,17 +2,7 @@ import React, { useState } from 'react';
 
 import { fetchPostMultipleImage } from '../../store/actions';
 import SingleImage from './SingleImage';
-import { useDispatch, useSelector } from 'react-redux';
-import Styled from 'styled-components';
-import ModalImage from '../../elements/Modal/ModalImage';
-
-// --- Styled Components --- //
-const Section = Styled.section`
-    width: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-`;
+import { useDispatch } from 'react-redux';
 
 export default function ImageProduct(props) {
     const dispatch = useDispatch();
@@ -21,11 +11,8 @@ export default function ImageProduct(props) {
     // console.log(formulir.image[0], 'array 1');
     const handleChange = (e) => {
         let image = formulir.image;
-
         let field = e.target.id;
-
         image[field] = e.target.files[0];
-        console.log(field, 'field ini apa');
         setFormulir({ image });
     };
     const [modal, setModal] = useState(false);
@@ -42,10 +29,6 @@ export default function ImageProduct(props) {
     return (
         <React.Fragment>
             <SingleImage
-                modal={modal}
-                toggle={toggle}
-                title="Image Product"
-                label="Upload Image"
                 id="image_url"
                 onChange={handleChange}
                 onSubmit={(e) => handleSubmit(e, 'image_url')}
