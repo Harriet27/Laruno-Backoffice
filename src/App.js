@@ -29,7 +29,7 @@ import DetailOrder from './components/OrderOnline/DetailOrder';
 
 import Coupons from './pages/Coupons/Coupons';
 import TestAddProduct from './pages/Products/TestAddProduct';
-import TestUploadIMage from './pages/Testing/TestUploadIMage';
+import Example from './pages/Testing/ReactMultiSelect';
 
 export default function App() {
     return (
@@ -85,7 +85,7 @@ export default function App() {
 
                     <Route exact path="/test-components">
                         <Header />
-                        <TestUploadIMage />
+                        <Example />
                     </Route>
 
                     <Route exact path="/reseller">
