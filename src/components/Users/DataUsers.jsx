@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
-import {
-    Dropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
-import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DehazeIcon from '@material-ui/icons/Dehaze';
-import { Input, Th, Overflow, md } from '../../elements/Styled/StyledForm';
+import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
-import DescriptionIcon from '@material-ui/icons/Description';
 // --- Elements, Pages, Components --- //
 import MultipleDelete from '../../elements/Alert/MultipleDelete';
 import {
@@ -28,17 +20,6 @@ import {
 import AddAdministrator from './AddAdministrator';
 import UpdateUser from './UpdateUser';
 import DeleteUser from './DeleteUser';
-// --- Styled Components --- //
-
-const ButtonLink = Styled.button`
-    background-color:${(props) => (props.detail ? 'grey' : '#0098DA')};
-    padding: 5px;
-    border-radius: 3px;
-    color: white;
-    font-size: ${md};
-    border: 1px solid #ced4da;
-    font-Weight: 400;
-`;
 
 const DataTopic = (props) => {
     const dispatch = useDispatch();

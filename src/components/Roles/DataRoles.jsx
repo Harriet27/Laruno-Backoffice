@@ -4,11 +4,11 @@ import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
-import Styled from 'styled-components';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import DehazeIcon from '@material-ui/icons/Dehaze';
-import { Input, Th, Overflow, md } from '../../elements/Styled/StyledForm';
+import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //

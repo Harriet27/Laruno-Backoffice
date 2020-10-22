@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
-import {
-    Dropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-} from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
@@ -20,7 +15,6 @@ import {
     md,
     ButtonActions,
 } from '../../elements/Styled/StyledForm';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import CreateIcon from '@material-ui/icons/Create';
 import DescriptionIcon from '@material-ui/icons/Description';
 // --- Elements, Pages, Components --- //

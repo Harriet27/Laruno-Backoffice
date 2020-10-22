@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import { Tooltip } from 'reactstrap';
 import { Input } from '../../elements/Styled/StyledForm';
 // --- Styled Components --- //

@@ -52,6 +52,7 @@ const optionsTime = [
 ];
 
 const DurationHour = [
+    { value: '00', label: '0 jam' },
     { value: '01', label: '1 jam' },
     { value: '02', label: '2 jam' },
     { value: '03', label: '3 jam' },

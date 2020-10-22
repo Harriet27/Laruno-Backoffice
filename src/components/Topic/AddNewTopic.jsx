@@ -8,14 +8,8 @@ import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 
 // --- Styled Components --- //
-const [sm, md, lg] = ['16px', '18px', '20px'];
+const [md, lg] = ['16px', '18px', '20px'];
 
-const Section = Styled.section`
-    width: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-`;
 const Input = Styled.input`
     width: 100%;
     padding: 10px;

@@ -89,9 +89,7 @@ export default function Layout(props) {
         image[field] = e.target.files[0];
         setFormulir({ image });
     };
-    const [modal, setModal] = useState(false);
 
-    const toggle = () => setModal(!modal);
     // --- handleSubmit Upload Image --- //
     const handleSubmit = async (e, id) => {
         e.preventDefault();

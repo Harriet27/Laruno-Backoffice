@@ -8,7 +8,7 @@ import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 
 // --- Styled Components --- //
-const [sm, md, lg] = ['16px', '18px', '20px'];
+const [md, lg] = ['18px', '20px'];
 
 const Section = Styled.section`
     width: 100%;

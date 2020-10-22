@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,9 +6,7 @@ import { fetchGetOrders } from '../../store/actions';
 import { FakeOrder } from '../FakeData/FakeOrder';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 
-import moment from 'moment';
-import FormatNumber from '../../elements/FormatNumber/FormatNumber';
-import { Input, Th, md, lg, Overflow } from '../../elements/Styled/StyledForm';
+import { Input, Th, lg, Overflow } from '../../elements/Styled/StyledForm';
 
 import FollowUp from './FollowUp';
 import FollowUp_1 from './FollowUp_1';
@@ -26,18 +23,9 @@ const SectionOne = Styled.div`
     justify-content: space-between;
 `;
 
-const ButtonLink = Styled.button`
-    background-color:#0098DA;
-    padding: 5px;
-    border-radius: 3px;
-    color: white;
-    font-size: ${md};
-    border: 1px solid #ced4da;
-    font-Weight: 400;
-`;
 // --- Batas --- //
 
-const DataOrders = (props) => {
+const DataOrders = () => {
     const dispatch = useDispatch();
     const orders = useSelector((state) => state.orders.getOrders);
 

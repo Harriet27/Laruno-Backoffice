@@ -7,7 +7,6 @@ import { faPercent } from '@fortawesome/free-solid-svg-icons';
 import CardGetData from '../../elements/Card/CardGetData';
 
 import ModalSmart from '../../elements/Modal/ModalSmart';
-import TableOrder from './TableOrder';
 
 //  --- Styled Components --- //
 const Wraps = Styled.div`
@@ -179,7 +178,6 @@ export default function OrderOnline() {
             </div>
 
             {/* --- section 4 --- Table Order --- */}
-            <TableOrder />
         </section>
     );
 }

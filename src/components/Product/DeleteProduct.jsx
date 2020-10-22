@@ -9,7 +9,6 @@ import {
     FormControl,
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-// import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { makeStyles } from '@material-ui/core/styles';
 import { fetchDeleteProduct } from '../../store/actions';
 import { useDispatch } from 'react-redux';

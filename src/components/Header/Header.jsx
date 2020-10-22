@@ -11,7 +11,6 @@ import {
     NavbarToggler,
     NavbarBrand,
     Nav,
-    NavLink,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
@@ -38,13 +37,6 @@ const Span = Styled.span`
     font-weight: 600;
     color: rgba(0,0,0,.6);
     font-size: 18px;
-
-`;
-
-const NavigationLink = Styled.p`
-    color: black;
-    margin-right: 10px;
-    margin-top: 10px;
 `;
 
 const HeaderStyled = Styled.header`
@@ -68,7 +60,6 @@ const WrapsImage = Styled.div`
     height: 40px;
     margin-right: 40px;
 `;
-// --- Styled Components --- //
 
 const Header = () => {
     const dispatch = useDispatch();
