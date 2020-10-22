@@ -15,7 +15,6 @@ export default function FollowUp_4(props) {
 Produk Panci Elektrik laris manis nih, stok kami sisa 5 item saja ya...
 Jangan sampe kehabisan ☺🙏🏻 `,
     });
-    console.log(form, 'isinya apa');
 
     function raiseInvoiceClicked() {
         // %0A INI UNTUK ENTER
@@ -24,7 +23,6 @@ Jangan sampe kehabisan ☺🙏🏻 `,
         form.text = form.text.replace(/\n+/g, '%0A', /\s+/g, '%20');
         const url = `https://wa.me/${form.number}?text=${form.text}`;
         window.open(url, '_blank');
-        console.log(form.text);
     }
     const handleChange = (e) => {
         let name = e.target.name;

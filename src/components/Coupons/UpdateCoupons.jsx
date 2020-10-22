@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+
+// --- Elements, Pages, Components --- //
+import ModalSmart from '../../elements/Modal/ModalSmart';
+import { useDispatch } from 'react-redux';
 import { fetchUpdateCoupons, fetchShowCoupons } from '../../store/actions';
 import CreateIcon from '@material-ui/icons/Create';
-// --- Elements, Pages, Components --- //
-
-import ModalSmart from '../../elements/Modal/ModalSmart';
-import { faRoad } from '@fortawesome/free-solid-svg-icons';
 
 // --- Styled Components --- //
 const [md, lg] = ['16px', '18px', '20px'];
@@ -39,17 +38,14 @@ const WrapForm = Styled.div`
 
 export default function UpdateCoupons(props) {
     const dispatch = useDispatch();
-    const coupons = useSelector((state) => state.coupons.showCoupons);
+    // const coupons = useSelector((state) => state.coupons.showCoupons);
     useEffect(() => {
         dispatch(fetchShowCoupons(props.id));
         // eslint-disable-next-line
     }, [dispatch]);
 
-    // // console.log(coupons, 'isinya lihat');
-    // const [cops, setCops] = useState(coupons.name);
-    // console.log(a);
     const [form, setForm] = useState({
-        name: coupons.name || '',
+        name: '',
         code: '',
         value: '',
         start_date: '',
@@ -59,7 +55,6 @@ export default function UpdateCoupons(props) {
         is_active: false,
     });
 
-    console.log(form, 'form disini isnya ada name ');
     // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();

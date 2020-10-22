@@ -14,7 +14,6 @@ export default function FollowUp_1(props) {
             `Hari ini mau transfer jam berapa Salvian Kumara?
 Pesanan kami siapkan ya...`,
     });
-    console.log(form, 'isinya apa');
 
     function raiseInvoiceClicked() {
         // %0A INI UNTUK ENTER
@@ -23,7 +22,6 @@ Pesanan kami siapkan ya...`,
         form.text = form.text.replace(/\n+/g, '%0A', /\s+/g, '%20');
         const url = `https://wa.me/${form.number}?text=${form.text}`;
         window.open(url, '_blank');
-        console.log(form.text);
     }
     const handleChange = (e) => {
         let name = e.target.name;

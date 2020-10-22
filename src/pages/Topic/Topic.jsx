@@ -21,7 +21,7 @@ const Wraps = Styled.div`
 // --- styled components --- //
 export default function Topic() {
     const topic = useSelector((state) => state.topic.getTopic);
-    console.log(topic, 'product di product menu');
+
     return (
         <Section>
             {topic === null ? (

@@ -44,7 +44,6 @@ export default function AddAdministrator() {
     const history = useHistory();
 
     const roles = useSelector((state) => state.roles.getRoles);
-    console.log(roles, 'KELUARKAN ISINYA');
 
     // --- useEffect --- Get Data Roles ---//
     useEffect(() => {
@@ -58,7 +57,7 @@ export default function AddAdministrator() {
         password: '',
         phone_number: '',
     });
-    console.log(form, 'testing form');
+
     // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();

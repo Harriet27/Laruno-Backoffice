@@ -66,7 +66,7 @@ export default function UpdateRoles(props) {
             };
         });
     };
-    console.log(form, 'checkbox');
+
     return (
         <ModalSmart
             buttonLabel="Add Roles"

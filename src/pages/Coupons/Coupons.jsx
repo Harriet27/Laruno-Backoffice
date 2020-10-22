@@ -28,7 +28,7 @@ export default function Coupons() {
         coupons.data.filter(function (el) {
             return el.payment_method === 'TRANSFER';
         });
-    console.log(newArray, 'NEWaRRAY');
+
     return (
         <Section>
             {coupons === null ? (

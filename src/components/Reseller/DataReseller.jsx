@@ -42,7 +42,6 @@ const SectionOne = Styled.div`
 const DataTopic = (props) => {
     const dispatch = useDispatch();
     const reseller = useSelector((state) => state.reseller.getReseller);
-    console.log(reseller, 'ini resseler isinya  what?');
 
     // --- useEffect --- Get Data topic ---//
     useEffect(() => {

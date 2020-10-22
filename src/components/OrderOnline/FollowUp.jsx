@@ -41,9 +41,8 @@ Danamon
 No. Rek: 3626078921
 Atas Nama: Salvian Kumara`,
     });
-    console.log(form, 'isinya apa');
 
-    const color = localStorage.getItem('color');
+    // const color = localStorage.getItem('color');
     function raiseInvoiceClicked() {
         // %0A INI UNTUK ENTER
         // %20 INI UNTUK SPACE

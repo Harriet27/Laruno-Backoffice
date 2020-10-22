@@ -71,12 +71,10 @@ export default function DynamicFieldSection(props) {
         setSectionAdd,
     } = props;
 
-    console.log(fields, 'isi dari fields');
-
     const handleChangeImage = (e, idx) => {
         let image = formulir.image;
         let field = e.target.id;
-        console.log(field, 'field id');
+
         image[field] = e.target.files[0];
         setFormulir({ image });
     };

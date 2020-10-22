@@ -22,7 +22,7 @@
 // export default function ShowTopic(props) {
 //     const dispatch = useDispatch();
 //     const topic = useSelector((state) => state.detailtopic);
-//     console.log(topic, 'data show topic for pages topic');
+
 //     // --- useEffect --- get data topic ---//
 //     useEffect(() => {
 //         dispatch(fetchShowTopic(props.id));

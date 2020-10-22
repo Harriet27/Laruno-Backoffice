@@ -45,7 +45,7 @@ export default function InputOrder() {
         phone_number: '',
         handled_by: '',
     });
-    console.log(form, 'form disini change ke ganti ga ');
+
     // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();

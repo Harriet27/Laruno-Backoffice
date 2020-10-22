@@ -40,7 +40,6 @@ const ButtonLink = Styled.button`
 const DataOrders = (props) => {
     const dispatch = useDispatch();
     const orders = useSelector((state) => state.orders.getOrders);
-    console.log(orders);
 
     // --- useEffect --- Get Data orders ---//
     useEffect(() => {

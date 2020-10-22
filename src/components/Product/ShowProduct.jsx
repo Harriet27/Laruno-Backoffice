@@ -12,8 +12,7 @@ export default function ShowTopic(props) {
     let { id } = useParams();
     // const product = useSelector((state) => state.detail.data);
     const product = useSelector((state) => state.product.showProduct);
-    // console.log(product, 'data show product for pages topic');
-    console.log(product, 'testing again');
+
     // --- useEffect --- get data topic ---//
     useEffect(() => {
         dispatch(fetchShowProduct(id));

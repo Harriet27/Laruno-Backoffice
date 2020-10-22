@@ -4,18 +4,15 @@ import { useDispatch } from 'react-redux';
 import { fetchPostCoupons } from '../../store/actions';
 
 // --- Elements, Pages, Components --- //
-
 import ModalSmart from '../../elements/Modal/ModalSmart';
 
 // --- Styled Components --- //
 const [md, lg] = ['16px', '18px', '20px'];
-
 const Span = Styled.span`
     font-weight: bold;
     color: #656565;
     font-size: 18px;
 `;
-
 const Input = Styled.input`
     width: 100%;
     padding: 10px;
@@ -30,7 +27,6 @@ const Input = Styled.input`
     border:1px solid #66AFE9;
     }
 `;
-
 const WrapForm = Styled.div`
     width: 100%;
     margin-bottom: ${lg};
@@ -49,7 +45,7 @@ export default function AddCoupons() {
         payment_method: '',
         is_active: false,
     });
-    console.log(form, 'form disini change ke ganti ga ');
+
     // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -60,7 +56,7 @@ export default function AddCoupons() {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
-    const handleCheckbox = (event) => {
+    const handleCheckbox = () => {
         setForm({ ...form, is_active: !form.is_active });
     };
     return (

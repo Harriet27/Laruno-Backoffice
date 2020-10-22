@@ -13,7 +13,7 @@ import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DehazeIcon from '@material-ui/icons/Dehaze';
-import { Input, Th, Overflow, md } from '../../elements/Styled/StyledForm';
+import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
@@ -21,19 +21,14 @@ import {
     fetchGetCoupons,
     fetchMultipleCloneCoupons,
     fetchMultipleDeleteCoupons,
-    // fetchMultipleClone,
-    // fetchFindProduct,
-    // fetchPostTopic,
 } from '../../store/actions';
 import AddCoupons from './AddCoupons';
 import DeleteCoupons from './DeleteCoupons';
 import UpdateCoupons from './UpdateCoupons';
-// --- Styled Components --- //
 
 const DataTopic = (props) => {
     const dispatch = useDispatch();
     const coupons = useSelector((state) => state.coupons.getCoupons);
-    console.log(coupons, 'isi coupon');
 
     // --- useEffect --- Get Data coupons ---//
     useEffect(() => {
@@ -43,7 +38,7 @@ const DataTopic = (props) => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-    const handleChangePage = (event, newPage) => {
+    const handleChangePage = (newPage) => {
         setPage(newPage);
     };
 
@@ -64,7 +59,7 @@ const DataTopic = (props) => {
     const [searching, setSearching] = useState({
         search: '',
     });
-    console.log(searching, 'pen tau');
+
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetCoupons());
@@ -97,11 +92,6 @@ const DataTopic = (props) => {
     const handleChange = (event) => {
         setSearching({ ...searching, [event.target.name]: event.target.value });
     };
-
-    // const handleSearch = (event) => {
-    //     event.preventDefault();
-    //     dispatch(fetchFindProduct(searching));
-    // };
 
     return (
         <React.Fragment>

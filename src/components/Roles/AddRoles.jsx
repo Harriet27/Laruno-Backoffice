@@ -68,7 +68,7 @@ export default function AddRoles() {
             };
         });
     };
-    console.log(form, 'checkbox');
+
     return (
         <ModalSmart
             buttonLabel="Add Roles"

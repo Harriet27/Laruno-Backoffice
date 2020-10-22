@@ -40,7 +40,7 @@ const SectionOne = Styled.div`
 const DataContents = (props) => {
     const dispatch = useDispatch();
     const contents = useSelector((state) => state.contents.getContents);
-    console.log(contents);
+
     // --- useEffect --- Get Data contents ---//
     useEffect(() => {
         dispatch(fetchGetContents());

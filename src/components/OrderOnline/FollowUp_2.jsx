@@ -13,7 +13,6 @@ export default function FollowUp_2(props) {
             '' ||
             `Selamat siang Salvian Kumara... Pesanan Panci Elektrik sudah siap kirim ya... ☺🙏🏻 `,
     });
-    console.log(form, 'isinya apa');
 
     function raiseInvoiceClicked() {
         // %0A INI UNTUK ENTER
@@ -22,7 +21,6 @@ export default function FollowUp_2(props) {
         form.text = form.text.replace(/\n+/g, '%0A', /\s+/g, '%20');
         const url = `https://wa.me/${form.number}?text=${form.text}`;
         window.open(url, '_blank');
-        console.log(form.text);
     }
     const handleChange = (e) => {
         let name = e.target.name;

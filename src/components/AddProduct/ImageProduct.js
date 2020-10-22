@@ -8,7 +8,6 @@ export default function ImageProduct(props) {
     const dispatch = useDispatch();
     const { arr, setArr, formulir, setFormulir } = props;
 
-    // console.log(formulir.image[0], 'array 1');
     const handleChange = (e) => {
         let image = formulir.image;
         let field = e.target.id;

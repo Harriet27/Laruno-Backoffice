@@ -27,7 +27,6 @@ import MultipleDelete from '../../elements/Alert/MultipleDelete';
 const DataTopic = (props) => {
     const dispatch = useDispatch();
     const topic = useSelector((state) => state.topic.getTopic);
-    console.log(topic);
 
     // --- PAGINATION --- //
     const [page, setPage] = React.useState(0);
@@ -54,7 +53,7 @@ const DataTopic = (props) => {
     const [searching, setSearching] = useState({
         search: '',
     });
-    console.log(searching, 'pen tau');
+
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetTopic());

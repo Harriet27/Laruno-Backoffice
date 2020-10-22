@@ -53,8 +53,6 @@ export default function DynamicField(props) {
         handleChangeNote,
     } = props;
 
-    console.log(fields, 'isi dari fields');
-
     return (
         <div
             style={{ display: 'flex', flexDirection: 'column' }}

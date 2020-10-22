@@ -71,7 +71,7 @@ export default function Layout(props) {
 
     // --- Agents --- //
     const agents = useSelector((state) => state.agents.getAgents);
-    console.log(agents, 'ini agents');
+
     useEffect(() => {
         dispatch(fetchGetAgents());
     }, [dispatch]);
@@ -85,11 +85,8 @@ export default function Layout(props) {
     // --- HandleChange upload Image --- //
     const handleChange = (e) => {
         let image = formulir.image;
-
         let field = e.target.id;
-        console.log(field, 'field id isinya apa');
         image[field] = e.target.files[0];
-
         setFormulir({ image });
     };
     const [modal, setModal] = useState(false);

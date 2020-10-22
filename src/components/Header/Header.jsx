@@ -80,7 +80,6 @@ const Header = () => {
     // --- Who I am --- //
     const user = useSelector((state) => state.user.userAuthentication);
 
-    console.log(user, 'isi user apaan dah');
     useEffect(() => {
         dispatch(fetchGetUsersAuthentication());
     }, [dispatch]);

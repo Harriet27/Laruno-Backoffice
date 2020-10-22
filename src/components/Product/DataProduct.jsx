@@ -74,7 +74,7 @@ const DataProduct = (props) => {
     const [searching, setSearching] = useState({
         search: '',
     });
-    console.log(searching, 'pen tau');
+
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetProduct());

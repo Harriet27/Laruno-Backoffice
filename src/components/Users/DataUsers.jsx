@@ -43,7 +43,7 @@ const ButtonLink = Styled.button`
 const DataTopic = (props) => {
     const dispatch = useDispatch();
     const users = useSelector((state) => state.user.userAdministrator);
-    console.log(users, 'ini data users admin');
+
     // --- useEffect --- Get Data users ---//
     useEffect(() => {
         dispatch(fetchGetUsersAdministrator());
@@ -73,7 +73,6 @@ const DataTopic = (props) => {
     const [searching, setSearching] = useState({
         search: '',
     });
-    console.log(searching, 'pen tau');
 
     // --- handleCheckboxChange --- //
     const handleCheckboxChange = (event) => {

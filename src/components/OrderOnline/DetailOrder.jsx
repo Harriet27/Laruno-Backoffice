@@ -12,8 +12,7 @@ export default function DetailOrder(props) {
     let { id } = useParams();
     // const orders = useSelector((state) => state.detail.data);
     const orders = useSelector((state) => state.orders.detailOrders);
-    // console.log(orders, 'data show orders for pages topic');
-    console.log(orders, 'testing again');
+
     // --- useEffect --- get data topic ---//
     useEffect(() => {
         dispatch(fetchShowOrders(id));

@@ -1,59 +1,43 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
-// Elements, Components, Pages
-import Layout from '../../components/AddProduct/Layout';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
+import { ButtonStyled } from '../../elements/Styled/StyledForm';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
+
+import TabPanel from '../../pages/Products/TabPanel';
+import Layout from '../../components/AddProduct/Layout';
 import DynamicField from '../../components/AddProduct/DynamicField';
 import DynamicFieldSection from '../../components/AddProduct/DynamicFieldSection';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { fetchUpdateProduct } from '../../store/actions';
 import Bump from '../../components/AddProduct/Bump';
-import { duration } from 'moment';
+// --- Fetch/Store/Actions --- //
+import { fetchPostProducts } from '../../store/actions';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-    },
-    backButton: {
-        marginRight: theme.spacing(1),
-    },
-    instructions: {
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-    },
-}));
-
-function getSteps() {
-    return ['Detail Information', 'Layout'];
+function a11yProps(index) {
+    return {
+        id: `full-width-tab-${index}`,
+        'aria-controls': `full-width-tabpanel-${index}`,
+    };
 }
 
-export default function StepperForm() {
-    const classes = useStyles();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const steps = getSteps();
-
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        window.scrollTo(1, 0);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-        window.scrollTo(1, 0);
-    };
-
-    //  --- Fetching Data include Logic --- //
-    const dispatch = useDispatch();
+export default function TestAddProduct() {
+    const [value, setValue] = React.useState(0);
     const history = useHistory();
-    const image = useSelector((state) => state.image.imageProduct);
+    const dispatch = useDispatch();
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
+    const handleChangeIndex = (index) => {
+        setValue(index);
+    };
+
+    // --- Form All --- //
     const [form, setForm] = useState({
         // --- section one --- //
         name: '',
@@ -93,19 +77,23 @@ export default function StepperForm() {
             {
                 title: '',
                 content: '',
+                note: '',
             },
         ],
         sale_price: 0,
-        image_url: '',
-        video_url: '',
+        image_url: [],
+        // video_url: '',
         agent: [],
-        image_bonus_url: [],
-        image_text_url: [],
-        image_product_url: [],
+        image_bonus_url: '',
+        // image_text_url: [],
+        // image_product_url: [],
+        // --- media url --- //
+        media_url: '',
         section: [
             {
                 title: '',
                 content: '',
+                image: '',
             },
         ],
         feature: {
@@ -114,8 +102,7 @@ export default function StepperForm() {
         },
     });
 
-    // ======>>> lOGIC DETAIL PRODUCT SECTION 1 <<<====== //
-
+    // --- Detail Product --- //
     // --- Test Order Bump,  Webinar, ecommerce--- //
     const [objBump, setObjBump] = useState({
         bump_name: '',
@@ -183,12 +170,12 @@ export default function StepperForm() {
     // --- handleSubmit untuk enter dan submit button --- //
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(fetchUpdateProduct(form, history));
+        // history
+        dispatch(fetchPostProducts(form, history));
     };
 
-    console.log(form, 'ini form isinya apa aja. ORDER BUMP');
     // handle change untuk onChange
-    const handleChange = (event) => {
+    const handleChangeForm = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
@@ -204,7 +191,9 @@ export default function StepperForm() {
     // ======>>> lOGIC DETAIL PRODUCT SECTION 2 "layout" <<<====== //
 
     // ------> Logic untuk Dynamic Form Learn About <------ //
-    const [fields, setFields] = useState([{ title: '', content: '' }]);
+    const [fields, setFields] = useState([
+        { title: '', content: '', note: '' },
+    ]);
     // ===>> Handle Change <<===  //
     function handleChangeDynamic(i, event) {
         const values = [...fields];
@@ -219,11 +208,15 @@ export default function StepperForm() {
 
         setFields(values);
     }
-
+    function handleChangeNote(i, event) {
+        const values = [...fields];
+        values[i].note = event.target.value;
+        setFields(values);
+    }
     function handleAdd() {
         //  menambahkan field ke dalam value input terbaru
         const values = [...fields];
-        values.push({ title: '', content: '' });
+        values.push({ title: '', content: '', note: '' });
         setFields(values);
     }
 
@@ -238,7 +231,18 @@ export default function StepperForm() {
     // ---- BATAS BAWAH !!!! ---- //
 
     // ------> Logic untuk Dynamic Form Section <------ //
-    const [sectionAdd, setSectionAdd] = useState([{ title: '', content: '' }]);
+    const [sectionAdd, setSectionAdd] = useState([
+        { title: '', content: '', image: '' },
+    ]);
+    const [formulir, setFormulir] = useState({
+        image: {
+            image_url: '',
+            bump_image: '',
+            media_url: '',
+            image_bonus: '',
+        },
+    });
+
     // ===>> Handle Change <<===  //
     function handleChangeDynamicSection(i, event) {
         const values = [...sectionAdd];
@@ -250,6 +254,7 @@ export default function StepperForm() {
         const values = [...sectionAdd];
         // untuk semua object yang berisi key 'content' di dalam fields yg kita klik maka valuenya merupakan hasil inputan kita
         values[i].content = event.target.value;
+        // values[i].image = formulir.image[`image_section_${i}`];
 
         setSectionAdd(values);
     }
@@ -257,7 +262,8 @@ export default function StepperForm() {
     function handleAddSection() {
         //  menambahkan field ke dalam value input terbaru
         const values = [...sectionAdd];
-        values.push({ title: '', content: '' });
+        values.push({ title: '', content: '', image: '' });
+
         setSectionAdd(values);
     }
 
@@ -276,198 +282,204 @@ export default function StepperForm() {
         hours: '',
         minutes: '',
     });
-    console.log('duration disini', duration);
+
     const handleDuration = (e) => {
         setDuration({ ...duration, [e.target.name]: e.target.value });
     };
     objWebinar.duration = duration.hours + ':' + duration.minutes;
 
     // --- react quill --- //
-    const [value, setValue] = useState('');
+    const [quill, setQuill] = useState('');
 
-    form.description = value;
+    form.description = quill;
 
     // --- Upload Image --- //
-    const [formulir, setFormulir] = useState({
-        image: {},
-    });
-    console.log(formulir, 'formulir ini sinya apa sih');
-    console.log(formulir.image.image_url, 'formulir ini isinya apa sih');
-    console.log(
-        formulir.image.bump_image,
-        'formulir ini isinya apa bump image'
-    );
+
     form.image_url = formulir.image.image_url;
     objBump.bump_image = formulir.image.bump_image;
-    // --- Content --- //
-    function getStepContent(stepIndex) {
-        switch (stepIndex) {
-            case 0:
-                return (
-                    <>
-                        <DetailProduct
-                            checked_bayar={
-                                objEcommerce.shipping_charges === true
-                            }
-                            checked_gratis={
-                                objEcommerce.shipping_charges === false
-                            }
-                            bayar_ongkir={bayar_ongkir}
-                            gratis_ongkir={gratis_ongkir}
-                            handleRadio={handleRadio}
-                            handleSelect={handleSelect}
-                            onChange={handleChange}
-                            handleWebinar={handleWebinar}
-                            handleDuration={handleDuration}
-                            form={form.type}
-                            name={form.name}
-                            type={form.type}
-                            topic_select={form.topic}
-                            price={form.price}
-                            time_period={form.time_period}
-                            visibility={form.visibility}
-                            sale_method={form.sale_method}
-                            zoom_id={form.client_url}
-                            date={form.date}
-                            start_time={form.start_time}
-                            slug={form.slug}
-                            // duration={form.duration}
-                            sale_price={form.sale_price}
-                            duration_hours={duration.hours}
-                            duration_minutes={duration.minutes}
-                            stock={objEcommerce.stock}
-                            handleEcommerce={handleEcommerce}
-                            weight={objEcommerce.weight}
-                            code={form.code}
-                            formulir={formulir}
-                            setFormulir={setFormulir}
-                        />
-                        <Bump
-                            onChange={handleBump}
-                            bump_name={objBump.bump_name}
-                            bump_price={objBump.bump_price}
-                            bump_weight={objBump.bump_weight}
-                            bump_image={objBump.bump_image}
-                            formulir={formulir}
-                            setFormulir={setFormulir}
-                        />
-                    </>
-                );
-            case 1:
-                return (
-                    <>
-                        <Layout
-                            handleSelectAgent={handleSelectAgent}
-                            onChange={handleChange}
-                            handleFeature={handleFeature}
-                            headline={form.headline}
-                            description={form.description}
-                            image_bonus_url={form.image_bonus_url}
-                            image_text_url={form.image_text_url}
-                            image_product_url={form.image_product_url}
-                            video={form.video_url}
-                            feature_onpage={objFeature.feature_onpage}
-                            feature_onheader={objFeature.feature_onheader}
-                            agent={form.agent}
-                            value={value}
-                            setValue={setValue}
-                            subheadline={form.subheadline}
-                        >
-                            {form.type === 'ecommerce' ? null : (
-                                <DynamicField
-                                    fields={fields}
-                                    handleAdd={handleAdd}
-                                    handleChange={handleChangeDynamic}
-                                    handleChangeContents={handleChangeContents}
-                                    handleRemove={handleRemove}
-                                />
-                            )}
-                        </Layout>
-                        <DynamicFieldSection
-                            fields={sectionAdd}
-                            handleAdd={handleAddSection}
-                            handleChange={handleChangeDynamicSection}
-                            handleChangeContents={handleChangeContentsSection}
-                            handleRemove={handleRemoveSection}
-                        />
-                    </>
-                );
 
-            default:
-                return 'Unknown stepIndex';
-        }
-    }
+    const [arr, setArr] = useState({
+        image_url: [],
+    });
 
+    // const [arrImageProduct, setArrImageProduct] = useState([]);
+
+    form.image_url = arr.image_url;
+    form.image_bonus_url = formulir.image.image_bonus;
+    // form.image_text_url = arr.image_text;
+    form.media_url = formulir.image.media_url;
     return (
-        <div
-            style={{ borderTop: '1px solid #ced4da' }}
-            className={classes.root}
-        >
-            <Stepper activeStep={activeStep} alternativeLabel>
-                {steps.map((label) => (
-                    <Step key={label}>
-                        <StepLabel>{label}</StepLabel>
-                    </Step>
-                ))}
-            </Stepper>
-            <div>
-                <div>
-                    <Typography
-                        component="span"
-                        className={classes.instructions}
+        <div style={{ margin: '50px' }}>
+            <AppBar position="static" style={{ background: 'white' }}>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    variant="fullWidth"
+                    aria-label="full width tabs example"
+                >
+                    <Tab
+                        className="outline"
+                        label="Detail Product"
+                        {...a11yProps(0)}
+                    />
+                    <Tab className="outline" label="Layout" {...a11yProps(1)} />
+                    <Tab className="outline" label="Bump" {...a11yProps(2)} />
+                    <Tab
+                        className="outline"
+                        label="Section"
+                        {...a11yProps(3)}
+                    />
+                </Tabs>
+            </AppBar>
+
+            <TabPanel value={value} index={0}>
+                <div
+                    style={{
+                        width: '100%',
+                        background: 'white',
+                    }}
+                >
+                    <DetailProduct
+                        handleRadio={handleRadio}
+                        handleSelect={handleSelect}
+                        onChange={handleChangeForm}
+                        form={form.type}
+                        name={form.name}
+                        type={form.type}
+                        topic_select={form.topic}
+                        price={form.price}
+                        time_period={form.time_period}
+                        visibility={form.visibility}
+                        sale_method={form.sale_method}
+                        slug={form.slug}
+                        sale_price={form.sale_price}
+                        code={form.code}
+                        // image
+                        formulir={formulir}
+                        setFormulir={setFormulir}
+                        setArr={setArr}
+                        arr={arr}
+                        // --- Ecommerce --- //
+                        stock={objEcommerce.stock}
+                        handleEcommerce={handleEcommerce}
+                        weight={objEcommerce.weight}
+                        checked_bayar={objEcommerce.shipping_charges === true}
+                        checked_gratis={objEcommerce.shipping_charges === false}
+                        bayar_ongkir={bayar_ongkir}
+                        gratis_ongkir={gratis_ongkir}
+                        // --- Webinar --- //
+                        zoom_id={objWebinar.client_url}
+                        date={objWebinar.date}
+                        start_time={objWebinar.start_time}
+                        duration_hours={duration.hours}
+                        duration_minute={duration.minutes}
+                        handleWebinar={handleWebinar}
+                        handleDuration={handleDuration}
+                    />
+                </div>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+                <div
+                    style={{
+                        width: '100%',
+                        background: 'white',
+                    }}
+                >
+                    <Layout
+                        handleSelectAgent={handleSelectAgent}
+                        onChange={handleChangeForm}
+                        handleFeature={handleFeature}
+                        headline={form.headline}
+                        image_bonus_url={form.image_bonus_url}
+                        // image_text_url={form.image_text_url}
+                        // image_product_url={form.image_product_url}
+                        // video={form.video_url}
+                        feature_onpage={objFeature.feature_onpage}
+                        feature_onheader={objFeature.feature_onheader}
+                        agent={form.agent}
+                        subheadline={form.subheadline}
+                        // --- React Quill --- //
+                        value={quill}
+                        setValue={setQuill}
+                        // --- multiple image --- //
+                        setArr={setArr}
+                        arr={arr}
+                        formulir={formulir}
+                        setFormulir={setFormulir}
                     >
-                        <form onSubmit={handleSubmit}>
-                            {getStepContent(activeStep)}
-                            <>
-                                {activeStep === steps.length - 1 ? (
-                                    <>
-                                        <button
-                                            style={{
-                                                color: 'white',
-                                                padding: 10,
-                                                backgroundColor: '#303F9F',
-                                                marginLeft: '100px',
-                                                border: 'none',
-                                                borderRadius: '3px',
-                                            }}
-                                        >
-                                            Confirm
-                                        </button>
-                                    </>
-                                ) : null}
-                            </>
-                        </form>
-                    </Typography>
-                    <div>
-                        {activeStep === 0 ? (
-                            <React.Fragment>
-                                <span style={{ marginLeft: '100px' }}></span>
-                            </React.Fragment>
-                        ) : (
-                            <Button
-                                style={{ marginLeft: '100px' }}
-                                onClick={handleBack}
-                                className={classes.backButton}
-                            >
-                                Back
-                            </Button>
+                        {form.type === 'ecommerce' ? null : (
+                            <DynamicField
+                                fields={fields}
+                                handleAdd={handleAdd}
+                                handleChange={handleChangeDynamic}
+                                handleChangeContents={handleChangeContents}
+                                handleRemove={handleRemove}
+                                handleChangeNote={handleChangeNote}
+                            />
                         )}
-                        <React.Fragment>
-                            {activeStep === steps.length - 1 ? null : (
-                                <React.Fragment>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={handleNext}
-                                    >
-                                        Next
-                                    </Button>
-                                </React.Fragment>
-                            )}
-                        </React.Fragment>
+                    </Layout>
+                </div>
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+                <div
+                    style={{
+                        width: '100%',
+                        background: 'white',
+                    }}
+                >
+                    <Bump
+                        onChange={handleBump}
+                        bump_name={objBump.bump_name}
+                        bump_price={objBump.bump_price}
+                        bump_weight={objBump.bump_weight}
+                        bump_image={objBump.bump_image}
+                        formulir={formulir}
+                        setFormulir={setFormulir}
+                    />
+                </div>
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+                <div
+                    style={{
+                        width: '100%',
+                        background: 'white',
+                    }}
+                >
+                    <DynamicFieldSection
+                        fields={sectionAdd}
+                        handleAdd={handleAddSection}
+                        handleChange={handleChangeDynamicSection}
+                        handleChangeContents={handleChangeContentsSection}
+                        handleRemove={handleRemoveSection}
+                        formulir={formulir}
+                        setFormulir={setFormulir}
+                        sectionAdd={sectionAdd}
+                        setSectionAdd={setSectionAdd}
+                    />
+                    <div
+                        style={{
+                            margin: '0 100px',
+                            paddingBottom: '20px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        <ButtonStyled
+                            style={{ color: '#656565', background: '#F2F5F7' }}
+                        >
+                            <i className="fa fa-undo"></i> Cancel
+                        </ButtonStyled>
+                        <ButtonStyled
+                            onClick={handleSubmit}
+                            style={{ background: '#70CA63' }}
+                        >
+                            <i className="fa fa-save"></i> Save
+                        </ButtonStyled>
                     </div>
                 </div>
-            </div>
+            </TabPanel>
         </div>
     );
 }

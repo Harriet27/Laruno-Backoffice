@@ -3,16 +3,10 @@ import { Table } from 'reactstrap';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetContents } from '../../store/actions';
-
-// --- Elements, Pages, Components --- //
-// import AddNewFulfillments from './AddNewFulfillments';
-// import UpdateFulfillments from './UpdateFulfillments';
-// import DeleteFulfillments from './DeleteFulfillments';
 import Card from '../../elements/Card/Card';
 
 // --- Styled Components --- //
 const [sm, md, lg] = ['16px', '18px', '20px'];
-
 const Th = Styled.th`
     font-size:  ${(props) => (props.td ? `${sm}` : `${md}`)};
     font-weight: ${(props) => (props.td ? 'normal' : '600')};
@@ -42,7 +36,6 @@ const DataContents = (props) => {
     const dispatch = useDispatch();
     const contents = useSelector((state) => state.contents.getContents);
 
-    console.log(contents, 'ini data contents');
     // --- useEffect --- Get Data contents ---//
     useEffect(() => {
         dispatch(fetchGetContents());
@@ -52,7 +45,6 @@ const DataContents = (props) => {
         <React.Fragment>
             {/* --- section 1 --- Add New Fulfillments and Search Fulfillments --- */}
             <SectionOne>
-                {/* <AddNewFulfillments /> */}
                 <div>
                     <label>Search</label> <Input type="search" />
                 </div>
@@ -70,46 +62,7 @@ const DataContents = (props) => {
                             <Th>Actions</Th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {/* {contents !== null &&
-                            contents.data.map((item) => {
-                                return (
-                                    <tr key={item._id}>
-                                        <Th as="td" td>
-                                            {item.name}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {item.slug}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {moment(item.created_at).format(
-                                                'MMMM Do YYYY, h:mm:ss a'
-                                            )}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {moment(item.updated_at).format(
-                                                'MMMM Do YYYY, h:mm:ss a'
-                                            )}
-                                        </Th>
-                                        <Th as="td" td>
-                                            <div
-                                                style={{
-                                                    display: 'flex',
-                                                    flexDirection: 'row',
-                                                }}
-                                            > */}
-                        {/* <UpdateFulfillments
-                                                    id={item._id}
-                                                />
-                                                <DeleteFulfillments
-                                                    id={item._id}
-                                                /> */}
-                        {/* </div>
-                                        </Th>
-                                    </tr>
-                                );
-                            })} */}
-                    </tbody>
+                    <tbody></tbody>
                 </Table>
             </Card>
         </React.Fragment>

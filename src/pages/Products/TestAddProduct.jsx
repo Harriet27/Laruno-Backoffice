@@ -174,7 +174,6 @@ export default function TestAddProduct() {
         dispatch(fetchPostProducts(form, history));
     };
 
-    console.log(form, 'ini form isinya apa aja. ORDER BUMP');
     // handle change untuk onChange
     const handleChangeForm = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -243,7 +242,6 @@ export default function TestAddProduct() {
             image_bonus: '',
         },
     });
-    console.log(formulir, 'formulir ini sinya apa sih');
 
     // ===>> Handle Change <<===  //
     function handleChangeDynamicSection(i, event) {
@@ -284,7 +282,7 @@ export default function TestAddProduct() {
         hours: '',
         minutes: '',
     });
-    console.log('duration disini', duration);
+
     const handleDuration = (e) => {
         setDuration({ ...duration, [e.target.name]: e.target.value });
     };
@@ -306,7 +304,6 @@ export default function TestAddProduct() {
 
     // const [arrImageProduct, setArrImageProduct] = useState([]);
 
-    // console.log(arrImageProduct, 'imageProduct');
     form.image_url = arr.image_url;
     form.image_bonus_url = formulir.image.image_bonus;
     // form.image_text_url = arr.image_text;
