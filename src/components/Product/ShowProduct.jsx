@@ -74,9 +74,8 @@ export default function ShowTopic(props) {
                                                         margin: '10px 0',
                                                     }}
                                                 >
-                                                    {product.data
-                                                        .image_bonus_url &&
-                                                        product.data.image_bonus_url.map(
+                                                    {product.data.image_url &&
+                                                        product.data.image_url.map(
                                                             (item, index) => {
                                                                 return (
                                                                     <div
@@ -119,8 +118,12 @@ export default function ShowTopic(props) {
                                             <td>Image</td>
                                             <td>
                                                 <img
-                                                    src={product.data.image_url}
-                                                    alt={product.data.image_url}
+                                                    src={
+                                                        product.data.image_bonus
+                                                    }
+                                                    alt={
+                                                        product.data.image_bonus
+                                                    }
                                                 />
                                             </td>
                                         </tr>
