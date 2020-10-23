@@ -1,79 +1,54 @@
-import React, { useState } from 'react';
-import Styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { fetchPostContents } from '../../store/actions';
+import React from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import TabPanel from '../../elements/TabPanel/TabPanel';
+import Detail from './Detail';
+import Media from './Media';
+import Contents from './Contents';
 
-// --- Elements, Pages, Components --- //
-import Card from '../../elements/Card/Card';
-import ModalSmart from '../../elements/Modal/ModalSmart';
-
-// --- Styled Components --- //
-const Section = Styled.section`
-    width: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-`;
-const Input = Styled.input`
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
-    font-weight: 400;
-    color:${(props) => (props.isButton ? 'white' : '#495057')} ;
-    border-radius: 3px;
-    background-color: ${(props) => (props.isButton ? '#0098DA' : '#FCFCFC')};
-    border: 1px solid #ced4da;
-    &:focus{
-    outline: none !important;
-    border:1px solid #66AFE9;
-    }
-`;
-
-const WrapForm = Styled.div`
-    width: 100%;
-    margin-bottom: 20px;
-`;
-
+// --- a11yProps --- //
+function a11yProps(index) {
+    return {
+        id: `full-width-tab-${index}`,
+        'aria-controls': `full-width-tabpanel-${index}`,
+    };
+}
 export default function AddContents() {
-    const dispatch = useDispatch();
-
-    const [form, setForm] = useState({
-        name: '',
-    });
-
-    // --- Fetch submit method Post --- //
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        dispatch(fetchPostContents(form));
+    const [value, setValue] = React.useState(0);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
-    // --- Change Value when Input Active --- //
-    const handleChange = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.value });
-    };
-
     return (
-        <ModalSmart
-            buttonLabel="Add Contents"
-            title="Add Contents"
-            onClickConfirm={handleSubmit}
-        >
-            <Section>
-                <Card isLogin>
-                    <div>
-                        <WrapForm>
-                            <Input
-                                type="text"
-                                name="name"
-                                id="name"
-                                value={form.name}
-                                onChange={handleChange}
-                                placeholder="Name"
-                                required
-                            />
-                        </WrapForm>
-                    </div>
-                </Card>
-            </Section>
-        </ModalSmart>
+        <div style={{ margin: '50px' }}>
+            <AppBar position="static" style={{ background: 'white' }}>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    variant="fullWidth"
+                    aria-label="full width tabs example"
+                >
+                    <Tab className="outline" label="Detail" {...a11yProps(0)} />
+                    <Tab className="outline" label="Media" {...a11yProps(1)} />
+                    <Tab
+                        className="outline"
+                        label="Content"
+                        {...a11yProps(2)}
+                    />
+                </Tabs>
+            </AppBar>
+
+            <TabPanel value={value} index={0}>
+                <Detail />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+                <Media />
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+                <Contents />
+            </TabPanel>
+        </div>
     );
 }

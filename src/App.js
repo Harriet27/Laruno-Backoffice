@@ -30,6 +30,7 @@ import DetailOrder from './components/OrderOnline/DetailOrder';
 import Coupons from './pages/Coupons/Coupons';
 import TestAddProduct from './pages/Products/TestAddProduct';
 import Example from './pages/Testing/ReactMultiSelect';
+import AddContents from './components/Contents/AddContents';
 
 export default function App() {
     return (
@@ -85,7 +86,7 @@ export default function App() {
 
                     <Route exact path="/test-components">
                         <Header />
-                        <Example />
+                        <AddContents />
                     </Route>
 
                     <Route exact path="/reseller">

@@ -10,7 +10,7 @@ import Tab from '@material-ui/core/Tab';
 import { ButtonStyled } from '../../elements/Styled/StyledForm';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
 
-import TabPanel from './TabPanel';
+import TabPanel from '../../elements/TabPanel/TabPanel';
 import Layout from '../../components/AddProduct/Layout';
 import DynamicField from '../../components/AddProduct/DynamicField';
 import DynamicFieldSection from '../../components/AddProduct/DynamicFieldSection';
