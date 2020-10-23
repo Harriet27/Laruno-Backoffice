@@ -22,10 +22,7 @@ export default function ReactQuillTest(props) {
             ],
             ['link', 'image', 'video'],
             ['clean'],
-            [{ align: 'center' }],
-            // [{ align: 'left' }],
-            [{ align: 'right' }],
-            [{ align: 'justify' }],
+            [{ align: ['', 'right', 'center', 'justify'] }],
         ],
 
         clipboard: {
