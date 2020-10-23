@@ -152,7 +152,18 @@ export default function DynamicFieldSection(props) {
                                                     )
                                                 }
                                             />
-
+                                            <img
+                                                src={
+                                                    formulir.image[
+                                                        `image_section_${idx}`
+                                                    ]
+                                                }
+                                                alt={
+                                                    formulir.image[
+                                                        `image_section_${idx}`
+                                                    ]
+                                                }
+                                            />
                                             <ButtonModal
                                                 delete
                                                 type="button"

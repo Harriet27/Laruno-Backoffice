@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { fetchPostTopic } from '../../store/actions';
+import { fetchPostTopic, fetchPostSingleImage } from '../../store/actions';
 
 // --- Elements, Pages, Components --- //
 import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
+import SingleImage from '../AddProduct/SingleImage';
 
 // --- Styled Components --- //
 const [md, lg] = ['16px', '18px', '20px'];
@@ -35,8 +36,14 @@ export default function AddNewTopic() {
 
     const [form, setForm] = useState({
         name: '',
+        icon: '',
     });
+    const [formulir, setFormulir] = useState({
+        image: {},
+    });
+    console.log(form, 'ini form');
 
+    form.icon = formulir.image.icon;
     // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -47,6 +54,20 @@ export default function AddNewTopic() {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
+    // --- HandleChange upload Image --- //
+    const handleChangeImage = (e) => {
+        let image = formulir.image;
+        let field = e.target.id;
+        image[field] = e.target.files[0];
+        setFormulir({ image });
+    };
+
+    // --- handleSubmit Upload Image --- //
+    const handleSubmitImage = async (e, id) => {
+        e.preventDefault();
+        // --- upload image --- //
+        dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
+    };
     return (
         <ModalSmart
             buttonLabel="Add Topic"
@@ -63,6 +84,13 @@ export default function AddNewTopic() {
                         onChange={handleChange}
                         placeholder="Name"
                         required
+                    />
+                </WrapForm>
+                <WrapForm>
+                    <SingleImage
+                        id="icon"
+                        onChange={handleChangeImage}
+                        onSubmit={(e) => handleSubmitImage(e, 'icon')}
                     />
                 </WrapForm>
             </Card>

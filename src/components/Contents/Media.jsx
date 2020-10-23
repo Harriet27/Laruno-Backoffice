@@ -8,6 +8,17 @@ import {
     Label,
     Input,
 } from '../../elements/Styled/StyledTabs';
+import Card from '../../elements/Card/Card';
 export default function Media() {
-    return <div></div>;
+    return (
+        <>
+            <Section>
+                <SectionOne>
+                    <Card isNormal style={{ width: '100%' }}>
+                        <Form></Form>
+                    </Card>
+                </SectionOne>
+            </Section>
+        </>
+    );
 }
