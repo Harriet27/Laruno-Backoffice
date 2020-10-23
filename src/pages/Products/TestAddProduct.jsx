@@ -101,7 +101,7 @@ export default function TestAddProduct() {
             feature_onpage: '',
         },
     });
-
+    console.log('FORM ADD PRODUCT', form);
     // --- Detail Product --- //
     // --- Test Order Bump,  Webinar, ecommerce--- //
     const [objBump, setObjBump] = useState({

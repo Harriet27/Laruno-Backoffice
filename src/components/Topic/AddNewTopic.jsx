@@ -92,6 +92,7 @@ export default function AddNewTopic() {
                         onChange={handleChangeImage}
                         onSubmit={(e) => handleSubmitImage(e, 'icon')}
                     />
+                    <img src={formulir.image.icon} alt={formulir.image.icon} />
                 </WrapForm>
             </Card>
         </ModalSmart>

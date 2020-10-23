@@ -75,7 +75,7 @@ export default function DetailProduct(props) {
         topic.data.map((item) => {
             return { key: item._id, value: item._id, label: item.name };
         });
-
+    let topicNull = [{ key: '1', value: '1', label: 'Loading...' }];
     return (
         <Section>
             <SectionOne>
@@ -177,8 +177,11 @@ export default function DetailProduct(props) {
                                 </Label>
                                 <div>
                                     <MultiSelect
-                                        style={{ border: '1 px solid green' }}
-                                        options={optionsTopic}
+                                        options={
+                                            topic === null
+                                                ? topicNull
+                                                : optionsTopic
+                                        }
                                         selected={topic_select}
                                         onSelectedChanged={handleSelect}
                                     />
