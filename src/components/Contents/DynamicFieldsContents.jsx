@@ -63,7 +63,6 @@ export default function DynamicFieldsContents(props) {
     const {
         handleAdd,
         handleChange,
-        fields,
         handleRemove,
         formulir,
         setFormulir,
@@ -112,7 +111,7 @@ export default function DynamicFieldsContents(props) {
                 </div>
                 {/* --- Testing --- */}
                 <div name="test">
-                    {fields.map((field, idx) => {
+                    {sectionAdd.map((field, idx) => {
                         return (
                             <WrapsField key={`${field}-${idx}`}>
                                 <div style={{ display: 'flex' }}>
@@ -127,29 +126,21 @@ export default function DynamicFieldsContents(props) {
 
                                     <SingleImage
                                         style={{ width: '35%' }}
-                                        id={`image_section_${idx}`}
+                                        id={`video_section_${idx}`}
                                         onChange={(e) =>
                                             handleChangeImage(e, idx)
                                         }
                                         onSubmit={(e) =>
                                             handleSubmit(
                                                 e,
-                                                `image_section_${idx}`,
+                                                `video_section_${idx}`,
                                                 idx
                                             )
                                         }
                                     />
                                     <img
-                                        src={
-                                            formulir.image[
-                                                `image_section_${idx}`
-                                            ]
-                                        }
-                                        alt={
-                                            formulir.image[
-                                                `image_section_${idx}`
-                                            ]
-                                        }
+                                        src={sectionAdd[idx].video}
+                                        alt={sectionAdd[idx].video}
                                     />
                                     <ButtonModal
                                         style={{ width: '10%' }}

@@ -52,6 +52,7 @@ export default function AddContents() {
     const [sectionAdd, setSectionAdd] = useState([
         { video_url: '', video: '' },
     ]);
+    console.log(sectionAdd, 'video');
     function handleAddSection() {
         //  menambahkan field ke dalam value input terbaru
         const values = [...sectionAdd];
@@ -156,7 +157,6 @@ export default function AddContents() {
                 >
                     <Media>
                         <DynamicFieldsContent
-                            fields={sectionAdd}
                             handleAdd={handleAddSection}
                             handleChange={handleChangeDynamicSection}
                             handleRemove={handleRemoveSection}

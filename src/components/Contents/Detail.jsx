@@ -13,7 +13,7 @@ import { fetchGetTopic, fetchGetProduct } from '../../store/actions';
 import MultiSelect from '@khanacademy/react-multi-select';
 import Card from '../../elements/Card/Card';
 export default function Detail(props) {
-    const { onChange, name } = props;
+    const { onChange, name, type, visibility } = props;
     const dispatch = useDispatch();
     const topic = useSelector((state) => state.topic.getTopic);
     const product = useSelector((state) => state.product.getProduct);
@@ -60,10 +60,10 @@ export default function Detail(props) {
                             <div>
                                 <Input
                                     as="select"
-                                    name="type"
-                                    id="type"
-                                    // value={type}
-                                    // onChange={onChange}
+                                    name="isFulfillment"
+                                    id="isFulFillment"
+                                    value={type}
+                                    onChange={onChange}
                                 >
                                     <option value="" disabled hidden>
                                         Choose here
@@ -85,8 +85,8 @@ export default function Detail(props) {
                                     as="select"
                                     name="status"
                                     id="status"
-                                    // value={visibility}
-                                    // onChange={onChange}
+                                    value={visibility}
+                                    onChange={onChange}
                                 >
                                     <option value="" disabled hidden>
                                         Choose here

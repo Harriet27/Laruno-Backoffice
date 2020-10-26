@@ -140,18 +140,7 @@ export default function DynamicPodcastContents(props) {
                                             )
                                         }
                                     />
-                                    <img
-                                        src={
-                                            formulir.image[
-                                                `image_section_${idx}`
-                                            ]
-                                        }
-                                        alt={
-                                            formulir.image[
-                                                `image_section_${idx}`
-                                            ]
-                                        }
-                                    />
+                                    <img src={field.video} alt={field.video} />
                                     <ButtonModal
                                         style={{ width: '10%' }}
                                         delete

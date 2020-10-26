@@ -74,7 +74,7 @@ const fetchPostDynamicImage = (
     setFormulir({ image });
     console.log(result, 'isi result apa');
     const values = [...sectionAdd];
-    values[i].image = formulir.image[`image_section_${i}`];
+    values[i].video = formulir.image[`video_section_${i}`];
     setSectionAdd(values);
 };
 
