@@ -234,6 +234,7 @@ export default function TestAddProduct() {
     const [sectionAdd, setSectionAdd] = useState([
         { title: '', content: '', image: '' },
     ]);
+    console.log(sectionAdd, 'section add isinya apa');
     const [formulir, setFormulir] = useState({
         image: {
             image_url: '',

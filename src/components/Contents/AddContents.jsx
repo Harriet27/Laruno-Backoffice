@@ -37,6 +37,10 @@ export default function AddContents() {
         podcash_url: '',
     });
 
+    console.log(form, 'form di dalam content berisi apa');
+    const handleChangeForm = (event) => {
+        setForm({ ...form, [event.target.name]: event.target.value });
+    };
     // quill
     const [quill, setQuill] = useState('');
     const [formulir, setFormulir] = useState({

@@ -12,7 +12,8 @@ import {
 import { fetchGetTopic, fetchGetProduct } from '../../store/actions';
 import MultiSelect from '@khanacademy/react-multi-select';
 import Card from '../../elements/Card/Card';
-export default function Detail() {
+export default function Detail(props) {
+    const { onChange, name } = props;
     const dispatch = useDispatch();
     const topic = useSelector((state) => state.topic.getTopic);
     const product = useSelector((state) => state.product.getProduct);
@@ -36,23 +37,23 @@ export default function Detail() {
                     <Form>
                         {/* --- Field name product --- */}
 
-                        <WrapsField>
+                        <WrapsField fullwidth>
                             <Label>
                                 <Span>Tittle Content</Span>
                             </Label>
                             <div>
                                 <Input
                                     type="text"
-                                    name="title"
-                                    id="title"
-                                    // value={name}
-                                    // onChange={onChange}
+                                    name="name"
+                                    id="name"
+                                    value={name}
+                                    onChange={onChange}
                                     placeholder="Title Content..."
                                 />
                             </div>
                         </WrapsField>
 
-                        <WrapsField>
+                        <WrapsField fullwidth>
                             <Label>
                                 <Span>Content Type</Span>
                             </Label>
@@ -75,7 +76,7 @@ export default function Detail() {
                             </div>
                         </WrapsField>
 
-                        <WrapsField>
+                        <WrapsField fullwidth>
                             <Label>
                                 <Span>Status</Span>
                             </Label>
@@ -98,7 +99,7 @@ export default function Detail() {
                         </WrapsField>
 
                         {/* product dan module */}
-                        <WrapsField>
+                        <WrapsField fullwidth>
                             <Label>
                                 <Span>Product</Span>
                             </Label>
@@ -132,7 +133,7 @@ export default function Detail() {
                                 </Input>
                             </div>
                         </WrapsField>
-                        <WrapsField>
+                        <WrapsField fullwidth>
                             {' '}
                             <label>
                                 <input
@@ -146,7 +147,7 @@ export default function Detail() {
                                 Click to active Module
                             </label>
                         </WrapsField>
-                        <WrapsField>
+                        <WrapsField fullwidth>
                             {/* <MultiSelect
                                 options={optionsTopic}
                                 selected={topic_select}
