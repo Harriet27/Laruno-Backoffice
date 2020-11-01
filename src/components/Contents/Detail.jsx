@@ -134,7 +134,6 @@ export default function Detail(props) {
                             </div>
                         </WrapsField>
                         <WrapsField fullwidth>
-                            {' '}
                             <label>
                                 <input
                                     type="checkbox"

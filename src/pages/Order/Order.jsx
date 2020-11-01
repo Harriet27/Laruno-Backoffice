@@ -18,10 +18,10 @@ const Section = Styled.section`
 `;
 export default function Order() {
     const order = useSelector((state) => state.orders.getOrders);
-
+    console.log(order, 'order');
     return (
         <Section>
-            {order === null ? (
+            {/* {order === null ? (
                 <Wraps>
                     <CardGetData
                         icon={faShoppingCart}
@@ -73,8 +73,8 @@ export default function Order() {
                         text="Unpaid Orders"
                     ></CardGetData>
                 </Wraps>
-            )}
-            <DataOrder />
+            )} */}
+            {/* <DataOrder /> */}
         </Section>
     );
 }
