@@ -8,3 +8,4 @@ export * from './contents';
 export * from './agent';
 export * from './coupons';
 export * from './image';
+export * from './payment';

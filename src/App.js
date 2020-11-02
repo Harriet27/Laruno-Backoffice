@@ -32,6 +32,8 @@ import TestAddProduct from './pages/Products/TestAddProduct';
 import Example from './pages/Testing/ReactMultiSelect';
 import AddContents from './components/Contents/AddContents';
 
+import Payments from './pages/Payments/Payments';
+
 export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
@@ -96,6 +98,10 @@ export default function App() {
                     <Route exact path="/coupons">
                         <Header />
                         <Coupons />
+                    </Route>
+                    <Route exact path="/payments">
+                        <Header />
+                        <Payments />
                     </Route>
                     <Route exact path="/order/detail/:id">
                         <Header />

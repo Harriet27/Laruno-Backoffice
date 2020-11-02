@@ -1,51 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
-import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-
 import DehazeIcon from '@material-ui/icons/Dehaze';
-import {
-    Input,
-    Th,
-    Overflow,
-    md,
-    ButtonActions,
-} from '../../elements/Styled/StyledForm';
-import CreateIcon from '@material-ui/icons/Create';
-import DescriptionIcon from '@material-ui/icons/Description';
+import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
+import moment from 'moment';
+
 // --- Elements, Pages, Components --- //
-import {
-    fetchGetProduct,
-    fetchMultipleDeleteProduct,
-    fetchMultipleCloneProduct,
-    fetchFindProduct,
-    fetchPostProducts,
-} from '../../store/actions';
-import DeleteProduct from './DeleteProduct';
-import FormatNumber from '../../elements/FormatNumber/FormatNumber';
-import MultipleDelete from '../../elements/Alert/MultipleDelete';
+import { fetchGetPaymentsMethod } from '../../store/actions';
+import AddPaymentsMethod from './AddPaymentsMethod';
+
 // --- Styled Components --- //
 
-const ButtonLink = Styled.button`
-    background-color:${(props) => (props.detail ? 'grey' : '#0098DA')};
-    padding: 5px;
-    border-radius: 3px;
-    color: white;
-    font-size: ${md};
-    border: 1px solid #ced4da;
-    font-Weight: 400;
-`;
-
-const DataProduct = (props) => {
+const DataPaymentsMethod = (props) => {
     const dispatch = useDispatch();
-    const product = useSelector((state) => state.product.getProduct);
-    const payment = useSelector((state) => state.payment);
-    console.log(payment, 'payments isinya apa');
-    console.log('product', product);
+    const payments = useSelector((state) => state.payment.getPaymentsMethod);
+
+    console.log(payments, 'payment isinya apa');
     // --- PAGINATION --- //
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -65,6 +38,7 @@ const DataProduct = (props) => {
 
     const [form, setForm] = useState({
         id: [],
+        allChecked: false,
     });
 
     const [searching, setSearching] = useState({
@@ -73,7 +47,7 @@ const DataProduct = (props) => {
 
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
-        dispatch(fetchGetProduct());
+        dispatch(fetchGetPaymentsMethod());
     }, [dispatch]);
 
     // --- handleCheckboxChange --- //
@@ -90,13 +64,7 @@ const DataProduct = (props) => {
     // --- Multiple Delete --- //
     const handleMultipleDelete = (event) => {
         event.preventDefault();
-        dispatch(fetchMultipleDeleteProduct(form));
-    };
-
-    // --- Multiple Clone --- //
-    const handleMultipleClone = (event) => {
-        event.preventDefault();
-        dispatch(fetchMultipleCloneProduct(form));
+        // dispatch(fetchMultipleDeleteTopics(form));
     };
 
     // --- handle Change --- //
@@ -104,14 +72,34 @@ const DataProduct = (props) => {
         setSearching({ ...searching, [event.target.name]: event.target.value });
     };
 
-    const handleSearch = (event) => {
-        event.preventDefault();
-        dispatch(fetchFindProduct(searching));
-    };
-
     return (
         <React.Fragment>
             {/* --- section 1 --- Button Action link to Add Product ---*/}
+            {form.id[0] ? (
+                <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+                    <DropdownToggle
+                        style={{ backgroundColor: '#0098DA' }}
+                        caret
+                    >
+                        Actions
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        {/* <MultipleDelete onSubmit={handleMultipleDelete} /> */}
+                    </DropdownMenu>
+                </Dropdown>
+            ) : (
+                <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+                    {' '}
+                    <DropdownToggle
+                        style={{ backgroundColor: '#0098DA' }}
+                        caret
+                        disabled
+                    >
+                        Actions
+                    </DropdownToggle>
+                </Dropdown>
+            )}
+
             <div
                 style={{
                     margin: '20px 0',
@@ -119,34 +107,7 @@ const DataProduct = (props) => {
                     justifyContent: 'space-between',
                 }}
             >
-                {form.id[0] ? (
-                    <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-                        <DropdownToggle
-                            style={{ backgroundColor: '#0098DA' }}
-                            caret
-                        >
-                            Actions
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <MultipleDelete onSubmit={handleMultipleDelete} />
-
-                            <ButtonActions onClick={handleMultipleClone}>
-                                Clone
-                            </ButtonActions>
-                        </DropdownMenu>
-                    </Dropdown>
-                ) : (
-                    <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-                        {' '}
-                        <DropdownToggle
-                            style={{ backgroundColor: '#0098DA' }}
-                            caret
-                            disabled
-                        >
-                            Actions
-                        </DropdownToggle>
-                    </Dropdown>
-                )}
+                <AddPaymentsMethod />
 
                 <div>
                     <label>Search</label>{' '}
@@ -166,7 +127,7 @@ const DataProduct = (props) => {
                 <Overflow>
                     {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
                      di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
-                    {product === null ? (
+                    {payments === null ? (
                         <React.Fragment>
                             <Table>
                                 <thead>
@@ -174,12 +135,10 @@ const DataProduct = (props) => {
                                         <Th>
                                             <DehazeIcon />
                                         </Th>
-                                        <Th>Visibility</Th>
-                                        <Th>Product Code</Th>
                                         <Th>Name</Th>
-                                        <Th>Product Type</Th>
-                                        <Th>Time Period</Th>
-                                        <Th>Price</Th>
+                                        <Th>Slug</Th>
+                                        <Th>Created At</Th>
+                                        <Th>Update At</Th>
                                         <Th style={{ width: '100px' }}>
                                             Actions
                                         </Th>
@@ -195,19 +154,18 @@ const DataProduct = (props) => {
                                 Loading ...
                             </div>
                         </React.Fragment>
-                    ) : product.data.length >= 1 ? (
+                    ) : payments.data.length >= 1 ? (
                         <Table>
                             <thead>
                                 <tr>
                                     <Th>
                                         <Input checkbox type="checkbox" />
                                     </Th>
-                                    <Th>Visibility</Th>
-                                    <Th>Product Code</Th>
+                                    <Th>Nomor ID</Th>
                                     <Th>Name</Th>
-                                    <Th>Product Type</Th>
-                                    <Th>Time Period</Th>
-                                    <Th>Price</Th>
+                                    <Th>Info</Th>
+                                    <Th>Created At</Th>
+                                    <Th>Update At</Th>
                                     <Th style={{ width: '100px' }}>Actions</Th>
                                 </tr>
                             </thead>
@@ -216,7 +174,7 @@ const DataProduct = (props) => {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row)  */}
-                                {product.data
+                                {payments.data
                                     .slice(
                                         page * rowsPerPage,
                                         page * rowsPerPage + rowsPerPage
@@ -237,24 +195,29 @@ const DataProduct = (props) => {
                                                 </Th>
 
                                                 <Th as="td" td>
-                                                    {item.visibility}
-                                                </Th>
-                                                <Th as="td" td>
-                                                    {item.code}
+                                                    {item._id}
                                                 </Th>
                                                 <Th as="td" td>
                                                     {item.name}
                                                 </Th>
                                                 <Th as="td" td>
-                                                    {item.type}
+                                                    {item.info}
                                                 </Th>
                                                 <Th as="td" td>
-                                                    {item.time_period} Months
+                                                    {moment(
+                                                        item.created_at
+                                                    ).format(
+                                                        'MMMM Do YYYY, h:mm:ss a'
+                                                    )}
                                                 </Th>
                                                 <Th as="td" td>
-                                                    Rp.{' '}
-                                                    {FormatNumber(item.price)}
+                                                    {moment(
+                                                        item.updated_at
+                                                    ).format(
+                                                        'MMMM Do YYYY, h:mm:ss a'
+                                                    )}
                                                 </Th>
+
                                                 <Th as="td" td>
                                                     <div
                                                         style={{
@@ -263,23 +226,12 @@ const DataProduct = (props) => {
                                                                 'row',
                                                         }}
                                                     >
-                                                        <Link
-                                                            to={`/product/show/${item._id}`}
-                                                        >
-                                                            <ButtonLink detail>
-                                                                <DescriptionIcon fontSize="small" />
-                                                            </ButtonLink>
-                                                        </Link>
-                                                        <Link
-                                                            to={`/product/update/${item._id}`}
-                                                        >
-                                                            <ButtonLink>
-                                                                <CreateIcon fontSize="small" />
-                                                            </ButtonLink>
-                                                        </Link>
-                                                        <DeleteProduct
+                                                        {/* <UpdateTopic
                                                             id={item._id}
                                                         />
+                                                        <DeleteTopic
+                                                            id={item._id}
+                                                        /> */}
                                                     </div>
                                                 </Th>
                                             </tr>
@@ -291,8 +243,8 @@ const DataProduct = (props) => {
                                     <TablePagination
                                         rowsPerPageOptions={[5, 10, 15]}
                                         count={
-                                            product !== null &&
-                                            product.data.length
+                                            payments !== null &&
+                                            payments.data.length
                                         }
                                         rowsPerPage={rowsPerPage}
                                         page={page}
@@ -312,12 +264,10 @@ const DataProduct = (props) => {
                                         <Th>
                                             <DehazeIcon />
                                         </Th>
-                                        <Th>Visibility</Th>
-                                        <Th>Product Code</Th>
                                         <Th>Name</Th>
-                                        <Th>Product Type</Th>
-                                        <Th>Time Period</Th>
-                                        <Th>Price</Th>
+                                        <Th>Slug</Th>
+                                        <Th>Created At</Th>
+                                        <Th>Update At</Th>
                                         <Th style={{ width: '100px' }}>
                                             Actions
                                         </Th>
@@ -330,7 +280,7 @@ const DataProduct = (props) => {
                                     padding: '100px',
                                 }}
                             >
-                                You have no product in this date range.
+                                You have no payments in this date range.
                             </div>
                         </React.Fragment>
                     )}
@@ -340,4 +290,4 @@ const DataProduct = (props) => {
     );
 };
 
-export default DataProduct;
+export default DataPaymentsMethod;

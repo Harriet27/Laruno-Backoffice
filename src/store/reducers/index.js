@@ -10,6 +10,7 @@ import reseller from './reseller';
 import orders from './order';
 import coupons from './coupons';
 import image from './image';
+import payment from './payment';
 export default combineReducers({
     topic,
     product,
@@ -21,4 +22,5 @@ export default combineReducers({
     orders,
     coupons,
     image,
+    payment,
 });
