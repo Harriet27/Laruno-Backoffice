@@ -29,13 +29,15 @@ import DetailOrder from './components/OrderOnline/DetailOrder';
 
 import Coupons from './pages/Coupons/Coupons';
 import TestAddProduct from './pages/Products/TestAddProduct';
-import Example from './pages/Testing/ReactMultiSelect';
+import Example from './pages/Testing/Premium';
 import AddContents from './components/Contents/AddContents';
 
 import Payments from './pages/Payments/Payments';
 
 // --- PrivatePrivateRoute --- //
 import PrivateRoute from './Helpers/PrivateRoute';
+
+// import {Premium} from './pages/Testing/Premium';
 export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
@@ -88,11 +90,14 @@ export default function App() {
                         <UpdateProduct />
                     </PrivateRoute>
 
-                    <PrivateRoute exact path="/test-components">
+                    <PrivateRoute exact path="/add-contents">
                         <Header />
                         <AddContents />
                     </PrivateRoute>
-
+                    {/* <PrivateRoute exact path="validate">
+                        <Header />
+                        <Premium />
+                    </PrivateRoute> */}
                     <PrivateRoute exact path="/reseller">
                         <Header />
                         <DataReseller />
