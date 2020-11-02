@@ -17,7 +17,7 @@ export default function Contents(props) {
                 <SectionOne>
                     <Card isNormal style={{ width: '100%' }}>
                         <Form>
-                            <WrapsField>
+                            <WrapsField fullwidth>
                                 <Label>
                                     <Span>Tags</Span>
                                 </Label>
@@ -32,14 +32,19 @@ export default function Contents(props) {
                                     />
                                 </div>
                             </WrapsField>
-                            <>{props.children}</>
-                            <Label>
-                                <Span>Content</Span>
-                            </Label>
-                            <ReactQuillTest
-                                value={props.value}
-                                setValue={props.setValue}
-                            />
+                            {checked === true ? (
+                                <>{props.children}</>
+                            ) : (
+                                <>
+                                    <Label>
+                                        <Span>Content</Span>
+                                    </Label>
+                                    <ReactQuillTest
+                                        value={props.value}
+                                        setValue={props.setValue}
+                                    />
+                                </>
+                            )}
                         </Form>
                     </Card>
                 </SectionOne>

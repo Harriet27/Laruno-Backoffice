@@ -26,7 +26,7 @@ export default function AddContents() {
     // --- Form --- //
     const [form, setForm] = useState({
         name: '',
-        isFullfillment: false,
+        isFulfillment: true,
         cover_img: '',
         short_content: '',
         product: [],
@@ -41,6 +41,17 @@ export default function AddContents() {
     const handleChangeForm = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
+
+    const handleRadio = (event) => {
+        if (event.target.value === 'true') {
+            setForm({ ...form, isFulfillment: true });
+        } else if (event.target.value === 'false') {
+            setForm({ ...form, isFulfillment: false });
+        }
+    };
+
+    const [checked, setChecked] = useState(false);
+    console.log(checked);
     // quill
     const [quill, setQuill] = useState('');
     const [formulir, setFormulir] = useState({
@@ -145,7 +156,18 @@ export default function AddContents() {
                         background: 'white',
                     }}
                 >
-                    <Detail />
+                    <Detail
+                        isFulfillment={form.isFullfillment}
+                        onChange={handleChangeForm}
+                        name={form.name}
+                        visibility={form.visibility}
+                        handleRadio={handleRadio}
+                        checkedFalse={form.isFulfillment === false}
+                        checkedTrue={form.isFulfillment === true}
+                        form={form}
+                        checked={checked}
+                        setChecked={setChecked}
+                    />
                 </div>
             </TabPanel>
             <TabPanel value={value} index={1}>

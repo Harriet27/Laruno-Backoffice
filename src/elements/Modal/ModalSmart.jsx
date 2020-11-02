@@ -11,7 +11,8 @@ const ButtonLink = Styled.button`
     color: white;
     font-size: ${md};
     border: 1px solid #ced4da;
-    font-Weight: bold;
+    // --- ini catatan untuk sementara --- //
+    // font-Weight: bold;
     &:focus{
         outline: none;
     }

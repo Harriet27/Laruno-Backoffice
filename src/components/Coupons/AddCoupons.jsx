@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { fetchPostCoupons } from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPostCoupons, fetchGetPaymentsMethod } from '../../store/actions';
 
 // --- Elements, Pages, Components --- //
 import ModalSmart from '../../elements/Modal/ModalSmart';
@@ -45,6 +45,12 @@ export default function AddCoupons() {
         payment_method: '',
         is_active: false,
     });
+
+    const payment = useSelector((state) => state.payment.getPaymentsMethod);
+    console.log(payment, 'payments');
+    useEffect(() => {
+        dispatch(fetchGetPaymentsMethod());
+    }, [dispatch]);
 
     // --- Fetch submit method Post --- //
     const handleSubmit = async (event) => {
@@ -158,9 +164,17 @@ export default function AddCoupons() {
                         <option value="" disabled hidden>
                             Choose here
                         </option>
-                        <option value="OVO">OVO</option>
-                        <option value="TRANSFER">Transfer</option>
-                        <option value="E-WALLET">E-wallet</option>
+                        {payment == null ? (
+                            <option value="OVO">Loading...</option>
+                        ) : (
+                            payment.data.map((item) => {
+                                return (
+                                    <option key={item._id} value={item.name}>
+                                        {item.name}
+                                    </option>
+                                );
+                            })
+                        )}
                     </Input>
                 </WrapForm>
             </div>

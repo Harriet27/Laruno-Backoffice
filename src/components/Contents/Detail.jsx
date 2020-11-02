@@ -13,7 +13,18 @@ import { fetchGetTopic, fetchGetProduct } from '../../store/actions';
 import MultiSelect from '@khanacademy/react-multi-select';
 import Card from '../../elements/Card/Card';
 export default function Detail(props) {
-    const { onChange, name, type, visibility } = props;
+    const {
+        onChange,
+        name,
+        isFulfillment,
+        visibility,
+        handleRadio,
+        checkedFalse,
+        checkedTrue,
+        form,
+        checked,
+        setChecked,
+    } = props;
     const dispatch = useDispatch();
     const topic = useSelector((state) => state.topic.getTopic);
     const product = useSelector((state) => state.product.getProduct);
@@ -30,6 +41,7 @@ export default function Detail(props) {
         topic.data.map((item) => {
             return { key: item._id, value: item._id, label: item.name };
         });
+
     return (
         <Section>
             <SectionOne>
@@ -55,29 +67,6 @@ export default function Detail(props) {
 
                         <WrapsField fullwidth>
                             <Label>
-                                <Span>Content Type</Span>
-                            </Label>
-                            <div>
-                                <Input
-                                    as="select"
-                                    name="isFulfillment"
-                                    id="isFulFillment"
-                                    value={type}
-                                    onChange={onChange}
-                                >
-                                    <option value="" disabled hidden>
-                                        Choose here
-                                    </option>
-                                    <option value="blog">Blog</option>
-                                    <option value="fulfillment">
-                                        Fulfillment
-                                    </option>
-                                </Input>
-                            </div>
-                        </WrapsField>
-
-                        <WrapsField fullwidth>
-                            <Label>
                                 <Span>Status</Span>
                             </Label>
                             <div>
@@ -97,55 +86,95 @@ export default function Detail(props) {
                                 </Input>
                             </div>
                         </WrapsField>
-
-                        {/* product dan module */}
+                        {/* test */}
                         <WrapsField fullwidth>
                             <Label>
-                                <Span>Product</Span>
+                                <Span>Content Type</Span>
                             </Label>
-                            <div>
-                                <Input
-                                    as="select"
-                                    name="status"
-                                    id="status"
-                                    // value={visibility}
-                                    // onChange={onChange}
-                                >
-                                    <option value="" disabled hidden>
-                                        Choose here
-                                    </option>
-                                    {product === null ? (
-                                        <option value="publish">
-                                            Loading...
-                                        </option>
-                                    ) : (
-                                        product.data.map((item) => {
-                                            return (
-                                                <option
-                                                    key={item._id}
-                                                    value={item.name}
-                                                >
-                                                    {item.name}
-                                                </option>
-                                            );
-                                        })
-                                    )}
-                                </Input>
+                            <div style={{ display: 'flex' }}>
+                                <WrapsField>
+                                    <Input
+                                        style={{ width: '3%' }}
+                                        type="radio"
+                                        name="content-type"
+                                        value="true"
+                                        checked={checkedTrue}
+                                        onChange={handleRadio}
+                                    />{' '}
+                                    Fulfillment
+                                </WrapsField>
+                                {/* blog */}
+                                <WrapsField>
+                                    <Input
+                                        style={{ width: '3%' }}
+                                        type="radio"
+                                        name="content_type"
+                                        value="false"
+                                        checked={checkedFalse}
+                                        onChange={handleRadio}
+                                    />{' '}
+                                    Blog
+                                </WrapsField>
+
+                                {/* Radio Button 2 --- */}
                             </div>
                         </WrapsField>
-                        <WrapsField fullwidth>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="is_active"
-                                    id="is_active"
-                                    // value={form.is_active}
-                                    // onChange={handleCheckbox}
-                                    // required
-                                />
-                                Click to active Module
-                            </label>
-                        </WrapsField>
+
+                        {/* product dan module */}
+                        {form.isFulfillment === false ? (
+                            <>
+                                <WrapsField fullwidth>
+                                    <Label>
+                                        <Span>Product</Span>
+                                    </Label>
+                                    <div>
+                                        <Input
+                                            as="select"
+                                            name="status"
+                                            id="status"
+                                            // value={visibility}
+                                            // onChange={onChange}
+                                        >
+                                            <option value="" disabled hidden>
+                                                Choose here
+                                            </option>
+                                            {product === null ? (
+                                                <option value="publish">
+                                                    Loading...
+                                                </option>
+                                            ) : (
+                                                product.data.map((item) => {
+                                                    return (
+                                                        <option
+                                                            key={item._id}
+                                                            value={item.name}
+                                                        >
+                                                            {item.name}
+                                                        </option>
+                                                    );
+                                                })
+                                            )}
+                                        </Input>
+                                    </div>
+                                </WrapsField>
+                                <WrapsField fullwidth>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="module"
+                                            checked={checked}
+                                            onChange={() =>
+                                                setChecked(!checked)
+                                            }
+                                            // onChange={handleCheckbox}
+                                            // required
+                                        />
+                                        Click to active Module
+                                    </label>
+                                </WrapsField>
+                            </>
+                        ) : null}
+
                         <WrapsField fullwidth>
                             {/* <MultiSelect
                                 options={optionsTopic}

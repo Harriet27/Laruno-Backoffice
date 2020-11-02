@@ -43,8 +43,7 @@ const ButtonLink = Styled.button`
 const DataProduct = (props) => {
     const dispatch = useDispatch();
     const product = useSelector((state) => state.product.getProduct);
-    const payment = useSelector((state) => state.payment);
-    console.log(payment, 'payments isinya apa');
+
     console.log('product', product);
     // --- PAGINATION --- //
     const [page, setPage] = React.useState(0);
@@ -208,7 +207,7 @@ const DataProduct = (props) => {
                                     <Th>Product Type</Th>
                                     <Th>Time Period</Th>
                                     <Th>Price</Th>
-                                    <Th style={{ width: '100px' }}>Actions</Th>
+                                    <Th style={{ width: '10%' }}>Actions</Th>
                                 </tr>
                             </thead>
                             <tbody>
