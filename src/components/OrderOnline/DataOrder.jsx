@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetOrders } from '../../store/actions';
 import { FakeOrder } from '../FakeData/FakeOrder';
 import DehazeIcon from '@material-ui/icons/Dehaze';
-
+import { Link } from 'react-router-dom';
+import moment from 'moment';
+import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import { Input, Th, lg, Overflow } from '../../elements/Styled/StyledForm';
 
 import FollowUp from './FollowUp';
@@ -107,7 +109,7 @@ const DataOrders = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {orders.data.map((item) => {
+                                {orders.data.map((item) => {
                                     return (
                                         <tr key={item._id}>
                                             <Th>
@@ -137,7 +139,7 @@ const DataOrders = () => {
                                                 -
                                             </Th>
                                             <Th as="td" td>
-                                                {item.cart.items.map((user) => {
+                                                {/* {item.cart.items.map((user) => {
                                                     return (
                                                         <React.Fragment
                                                             key={item._id}
@@ -145,13 +147,11 @@ const DataOrders = () => {
                                                             {user.item.name}
                                                         </React.Fragment>
                                                     );
-                                                })}
+                                                })} */}
                                             </Th>
                                             <Th as="td" td>
                                                 Rp.{' '}
-                                                {FormatNumber(
-                                                    item.cart.total_price
-                                                )}
+                                                {FormatNumber(item.total_price)}
                                             </Th>
                                             <Th as="td" td>
                                                 {item.status}
@@ -173,17 +173,15 @@ const DataOrders = () => {
                                                 <Link
                                                     to={`/order/detail/${item._id}`}
                                                 >
-                                                    <ButtonLink>
-                                                        detail
-                                                    </ButtonLink>
+                                                    <button>detail</button>
                                                 </Link>
                                             </Th>
                                         </tr>
                                     );
-                                })} */}
+                                })}
 
                                 {/* test fake data */}
-                                {FakeOrder.map((item) => {
+                                {/* {FakeOrder.map((item) => {
                                     return (
                                         <tr key={item.id}>
                                             <Th>
@@ -235,19 +233,10 @@ const DataOrders = () => {
                                                     <FollowUp_4 />
                                                 </div>
                                             </Th>
-                                            <Th as="td" td>
-                                                {/* <Link
-                                                    to={`/order/detail/${item._id}`}
-                                                >
-                                                    <ButtonLink>
-                                                        detail
-                                                    </ButtonLink>
-                                                </Link> */}
-                                                -
-                                            </Th>
+                                     
                                         </tr>
                                     );
-                                })}
+                                })} */}
                             </tbody>
                         </Table>
                     ) : (

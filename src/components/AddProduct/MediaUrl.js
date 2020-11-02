@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SingleImage(props) {
+export default function MediaUrl(props) {
     const { id, onChange, onSubmit } = props;
 
     return (
@@ -10,7 +10,7 @@ export default function SingleImage(props) {
                 name="file"
                 id={id}
                 onChange={onChange}
-                accept="image/x-png,image/gif,image/jpeg"
+                accept="video/mp4,video/x-m4v,video/*,image/x-png,image/gif,image/jpeg"
             />
             <button onClick={onSubmit}>Upload</button>
         </React.Fragment>

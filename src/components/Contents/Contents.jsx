@@ -11,6 +11,7 @@ import {
 import Card from '../../elements/Card/Card';
 import ReactQuillTest from '../AddProduct/ReactQuill';
 export default function Contents(props) {
+    const { checked } = props;
     return (
         <>
             <Section>

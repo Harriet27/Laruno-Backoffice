@@ -6,6 +6,7 @@ import Card from '../../elements/Card/Card';
 import { fetchGetAgents, fetchPostSingleImage } from '../../store/actions';
 import ReactQuillTest from './ReactQuill';
 import SingleImage from './SingleImage';
+import MediaUrl from './MediaUrl';
 
 // --- Styled Components --- //
 const Input = Styled.input`
@@ -237,7 +238,7 @@ export default function Layout(props) {
                             <Label>
                                 <Span>Media Url</Span>
                             </Label>
-                            <SingleImage
+                            <MediaUrl
                                 id="media_url"
                                 onChange={handleChange}
                                 onSubmit={(e) => handleSubmit(e, 'media_url')}

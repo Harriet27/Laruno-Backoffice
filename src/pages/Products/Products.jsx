@@ -21,14 +21,6 @@ const Wraps = Styled.div`
 export default function Products() {
     const product = useSelector((state) => state.product.getProduct);
 
-    // --- code for total sum --- //
-    // var total = 0;
-    // product !== null &&
-    //     product.data.map((item, index) => {
-
-    //         return (total += item.price);
-    //     });
-
     return (
         <section style={{ margin: '50px' }}>
             {product === null ? (

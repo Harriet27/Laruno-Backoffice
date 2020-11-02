@@ -208,7 +208,11 @@ export default function AddContents() {
                         background: 'white',
                     }}
                 >
-                    <Contents value={quill} setValue={setQuill}>
+                    <Contents
+                        checked={checked}
+                        value={quill}
+                        setValue={setQuill}
+                    >
                         <DynamicFieldsModule
                             fields={sectionModule}
                             handleAdd={handleAddSectionModule}

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Styled from 'styled-components';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faWallet } from '@fortawesome/free-solid-svg-icons';
-
-import { useSelector } from 'react-redux';
+import { fetchGetOrders } from '../../store/actions';
+import { useSelector, useDispatch } from 'react-redux';
 import CardGetData from '../../elements/Card/CardGetData';
 import DataOrder from '../../components/OrderOnline/DataOrder';
+import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 
 const Wraps = Styled.div`
     display: flex;
@@ -17,11 +18,23 @@ const Section = Styled.section`
     margin: 50px;
 `;
 export default function Order() {
+    const dispatch = useDispatch();
     const order = useSelector((state) => state.orders.getOrders);
-    console.log(order, 'order');
+    console.log(order, 'order isi apa');
+    useEffect(() => {
+        dispatch(fetchGetOrders());
+    }, [dispatch]);
+
+    // --- code for total sum --- //
+    let total = 0;
+    order !== null &&
+        order.data.map((item, index) => {
+            return (total += item.total_price);
+        });
+    console.log(total);
     return (
         <Section>
-            {/* {order === null ? (
+            {order === null ? (
                 <Wraps>
                     <CardGetData
                         icon={faShoppingCart}
@@ -31,7 +44,7 @@ export default function Order() {
 
                     <CardGetData
                         icon={faWallet}
-                        number="2"
+                        number="0"
                         text="Total Paid"
                     ></CardGetData>
 
@@ -63,7 +76,7 @@ export default function Order() {
 
                     <CardGetData
                         icon={faShoppingCart}
-                        number="0"
+                        number={`Rp ${FormatNumber(total)}`}
                         text="Total Income"
                     ></CardGetData>
 
@@ -73,8 +86,8 @@ export default function Order() {
                         text="Unpaid Orders"
                     ></CardGetData>
                 </Wraps>
-            )} */}
-            {/* <DataOrder /> */}
+            )}
+            <DataOrder />
         </Section>
     );
 }
