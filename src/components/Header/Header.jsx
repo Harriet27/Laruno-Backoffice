@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { Link } from 'react-router-dom';
+import { logout } from '../../store/actions';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
 import ImageBrand from '../../assets/images/laruno1.png';
@@ -63,7 +64,7 @@ const WrapsImage = Styled.div`
 
 const Header = () => {
     const dispatch = useDispatch();
-
+    const history = useHistory();
     //  --- Is Open --- //
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
@@ -141,9 +142,47 @@ const Header = () => {
                     <Link to="/add-product">
                         <Button> + Add Product</Button>
                     </Link>
-                    {user === null ? null : (
+                    {user === null ? (
                         <div style={{ margin: '0 20px' }}>
-                            <PersonIcon /> {user.data.name}
+                            <Nav>
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        <Span>
+                                            <PersonIcon />
+                                        </Span>
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem>
+                                            <Span>Looading...</Span>
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </Nav>
+                        </div>
+                    ) : (
+                        <div style={{ margin: '0 20px' }}>
+                            <Nav>
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        <Span>
+                                            <PersonIcon />
+                                        </Span>
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem>
+                                            <Span>{user.data.name}</Span>
+                                        </DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem
+                                            onClick={() =>
+                                                dispatch(logout(history))
+                                            }
+                                        >
+                                            <Span>Logout</Span>
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </Nav>
                         </div>
                     )}
                 </Collapse>

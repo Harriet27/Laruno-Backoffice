@@ -109,6 +109,21 @@ export default function App() {
                         <Header />
                         <DetailOrder />
                     </PrivateRoute>
+                    <PrivateRoute path="*">
+                        <Header />
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                flexDirection: 'column',
+                                height: '100vh',
+                            }}
+                        >
+                            <h1>This Is Not WebPage You Are Looking For</h1>
+                            <h2>404 Not Found</h2>
+                        </div>
+                    </PrivateRoute>
                     {/* --- Testing --- */}
                 </Switch>
             </Router>

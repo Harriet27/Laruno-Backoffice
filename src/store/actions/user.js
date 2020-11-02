@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 const GET_USERS_ADMINISTRATOR = 'GET_USERS_ADMINISTRATOR';
 const GET_USERS_AUTHENTICATION = 'GET_USER_AUTHENTICATION';
-
+const LOGOUT = 'LOGOUT';
 // ----------- || --- || Authentication || --- || ------------ //
 
 // --- login In BackOffice --- //
@@ -242,6 +242,16 @@ const fetchMultipleDeleteUsers = (form) => async () => {
     }
 };
 
+// --- logout --- //
+const logout = (history) => (dispatch, getState) => {
+    Swal.fire({
+        icon: 'success',
+        title: 'Terima Kasih',
+    });
+    localStorage.clear();
+    history.push('/');
+    dispatch({ type: LOGOUT });
+};
 export {
     fetchPostLogin,
     fetchPostAdministrator,
@@ -254,4 +264,6 @@ export {
     getUsersAuthentication,
     GET_USERS_ADMINISTRATOR,
     GET_USERS_AUTHENTICATION,
+    LOGOUT,
+    logout,
 };

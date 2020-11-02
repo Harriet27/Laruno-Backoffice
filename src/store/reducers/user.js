@@ -1,4 +1,8 @@
-import { GET_USERS_ADMINISTRATOR, GET_USERS_AUTHENTICATION } from '../actions';
+import {
+    GET_USERS_ADMINISTRATOR,
+    GET_USERS_AUTHENTICATION,
+    LOGOUT,
+} from '../actions';
 
 const initialState = {
     userAdministrator: null,
@@ -17,6 +21,8 @@ export default (state = initialState, actions) => {
                 ...state,
                 userAuthentication: actions.data,
             };
+        case LOGOUT:
+            return initialState;
         default:
             return state;
     }
