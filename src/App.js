@@ -34,6 +34,8 @@ import AddContents from './components/Contents/AddContents';
 
 import Payments from './pages/Payments/Payments';
 
+// --- PrivatePrivateRoute --- //
+import PrivateRoute from './Helpers/PrivateRoute';
 export default function App() {
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
@@ -43,70 +45,70 @@ export default function App() {
                         <Login />
                     </Route>
 
-                    <Route exact path="/dashboard">
+                    <PrivateRoute exact path="/dashboard">
                         <Header />
                         <Dashboard />
-                    </Route>
-                    <Route exact path="/add-product">
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/add-product">
                         <Header />
                         <TestAddProduct />
-                    </Route>
-                    <Route exact path="/product">
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/product">
                         <Header />
                         <Products />
-                    </Route>
-                    <Route exact path="/roles">
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/roles">
                         <Header />
                         <Roles />
-                    </Route>
-                    <Route exact path="/users">
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/users">
                         <Header />
                         <Users />
-                    </Route>
-                    <Route exact path="/order">
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/order">
                         <Header />
                         <Order />
-                    </Route>
-                    <Route exact path="/topic">
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/topic">
                         <Header />
                         <Topic />
-                    </Route>
-                    <Route exact path="/fullfilments">
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/fullfilments">
                         <Header />
                         <Fullfilments />
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route exact path="/product/show/:id">
+                    <PrivateRoute exact path="/product/show/:id">
                         <Header />
                         <ShowProduct />
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route exact path="/product/update/:id">
+                    <PrivateRoute exact path="/product/update/:id">
                         <Header />
                         <UpdateProduct />
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route exact path="/test-components">
+                    <PrivateRoute exact path="/test-components">
                         <Header />
                         <AddContents />
-                    </Route>
+                    </PrivateRoute>
 
-                    <Route exact path="/reseller">
+                    <PrivateRoute exact path="/reseller">
                         <Header />
                         <DataReseller />
-                    </Route>
-                    <Route exact path="/coupons">
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/coupons">
                         <Header />
                         <Coupons />
-                    </Route>
-                    <Route exact path="/payments">
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/payments">
                         <Header />
                         <Payments />
-                    </Route>
-                    <Route exact path="/order/detail/:id">
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/order/detail/:id">
                         <Header />
                         <DetailOrder />
-                    </Route>
+                    </PrivateRoute>
                     {/* --- Testing --- */}
                 </Switch>
             </Router>
