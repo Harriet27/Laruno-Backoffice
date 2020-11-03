@@ -78,7 +78,7 @@ const fetchPostDynamicImage = (
     setSectionAdd(values);
 };
 
-const fetchPostDynamicImageVideo = (
+const fetchPostDynamicVideo = (
     formulir,
     e,
     id,
@@ -114,7 +114,7 @@ const fetchPostDynamicImageVideo = (
 };
 
 // --- Post Dynamic Image --- //
-const fetchPostDynamicImagePodcast = (
+const fetchPostDynamicPodcast = (
     formulir,
     e,
     id,
@@ -145,7 +145,7 @@ const fetchPostDynamicImagePodcast = (
     setFormulir({ image });
     console.log(result, 'isi result apa');
     const values = [...sectionAdd];
-    values[i].url = formulir.image[`video_section_${i}`];
+    values[i].url = formulir.image[`podcast_section_${i}`];
     setSectionAdd(values);
 };
 
@@ -192,8 +192,8 @@ export {
     fetchPostSingleImage,
     fetchPostMultipleImage,
     fetchPostDynamicImage,
-    fetchPostDynamicImageVideo,
-    fetchPostDynamicImagePodcast,
+    fetchPostDynamicVideo,
+    fetchPostDynamicPodcast,
     postMultipleImage,
     POST_MULTIPLE_IMAGE,
 };

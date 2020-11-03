@@ -1,7 +1,7 @@
 import Card from '../../elements/Card/Card';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchPostDynamicImage } from '../../store/actions';
+import { fetchPostDynamicPodcast } from '../../store/actions';
 import Styled from 'styled-components';
 import SingleImage from '../AddProduct/SingleImage';
 import { Span } from '../../elements/Styled/StyledTabs';
@@ -72,10 +72,9 @@ export default function DynamicPodcastContents(props) {
         setSectionAdd,
     } = props;
 
-    const handleChangeImage = (e, idx) => {
+    const handleChangePodcast = (e, idx) => {
         let image = formulir.image;
         let field = e.target.id;
-
         image[field] = e.target.files[0];
         setFormulir({ image });
     };
@@ -85,7 +84,7 @@ export default function DynamicPodcastContents(props) {
 
         //  upload image
         dispatch(
-            fetchPostDynamicImage(
+            fetchPostDynamicPodcast(
                 formulir,
                 e,
                 id,
@@ -122,25 +121,25 @@ export default function DynamicPodcastContents(props) {
                                         type="text"
                                         name={`one-${idx}`}
                                         placeholder="Podcast Url..."
-                                        value={field.podcast_url}
+                                        value={field.url}
                                         onChange={(e) => handleChange(idx, e)}
                                     />
 
                                     <SingleImage
                                         style={{ width: '35%' }}
-                                        id={`image_section_${idx}`}
+                                        id={`podcast_section_${idx}`}
                                         onChange={(e) =>
-                                            handleChangeImage(e, idx)
+                                            handleChangePodcast(e, idx)
                                         }
                                         onSubmit={(e) =>
                                             handleSubmit(
                                                 e,
-                                                `image_section_${idx}`,
+                                                `podcast_section_${idx}`,
                                                 idx
                                             )
                                         }
                                     />
-                                    <img src={field.video} alt={field.video} />
+
                                     <ButtonModal
                                         style={{ width: '10%' }}
                                         delete

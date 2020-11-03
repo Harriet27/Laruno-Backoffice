@@ -130,19 +130,19 @@ export default function AddContents() {
     // --- Podcast --- //
     const [sectionPodcast, setSectionPodcast] = useState([
         {
-            podcast_url: '',
-            podcast: '',
+            url: '',
         },
     ]);
+    form.podcast = sectionPodcast;
     const handleAddSectionPodcast = () => {
         const values = [...sectionPodcast];
-        values.push({ podcast_url: '', podcast: '' });
+        values.push({ url: '' });
 
         setSectionPodcast(values);
     };
     function handleChangeDynamicSectionPodcast(i, event) {
         const values = [...sectionPodcast];
-        values[i].podcast_url = event.target.value;
+        values[i].url = event.target.value;
         setSectionPodcast(values);
     }
     function handleRemoveSectionPodcast(i) {
