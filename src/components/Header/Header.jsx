@@ -134,6 +134,11 @@ const Header = () => {
                                         <Span>Payments</Span>
                                     </DropdownItem>
                                 </Link>
+                                <Link to="/add-contents">
+                                    <DropdownItem>
+                                        <Span>Add Contents</Span>
+                                    </DropdownItem>
+                                </Link>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>
