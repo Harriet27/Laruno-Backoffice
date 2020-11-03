@@ -94,7 +94,7 @@ export default function App() {
                         <Header />
                         <AddContents />
                     </PrivateRoute>
-                    {/* <PrivateRoute exact path="validate">
+                    {/* <PrivateRoute exact path="test">
                         <Header />
                         <Premium />
                     </PrivateRoute> */}

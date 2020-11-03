@@ -26,15 +26,29 @@ export default function AddContents() {
     // --- Form --- //
     const [form, setForm] = useState({
         name: '',
-        isFulfillment: true,
+        isFullfillment: true,
         cover_img: '',
-        short_content: '',
+        // short_content: '',
         product: [],
         topic: [],
         content: '',
         images: [],
-        video_url: '',
-        podcash_url: '',
+        module: [
+            {
+                question: '',
+            },
+        ],
+        video: [
+            {
+                url: '',
+            },
+        ],
+        podcast: [
+            {
+                url: '',
+            },
+        ],
+        tag: [],
     });
 
     console.log(form, 'form di dalam content berisi apa');
@@ -49,11 +63,18 @@ export default function AddContents() {
             setForm({ ...form, isFulfillment: false });
         }
     };
+    const handleSelectTopic = (topic) => {
+        setForm({ ...form, topic });
+    };
+    const handleSelectProduct = (product) => {
+        setForm({ ...form, product });
+    };
 
     const [checked, setChecked] = useState(false);
     console.log(checked);
     // quill
     const [quill, setQuill] = useState('');
+    form.content = quill;
     const [formulir, setFormulir] = useState({
         image: {},
         media: {},
@@ -167,6 +188,10 @@ export default function AddContents() {
                         form={form}
                         checked={checked}
                         setChecked={setChecked}
+                        topic_select={form.topic}
+                        handleSelectTopic={handleSelectTopic}
+                        handleSelectProduct={handleSelectProduct}
+                        product_select={form.product}
                     />
                 </div>
             </TabPanel>

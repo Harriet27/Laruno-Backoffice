@@ -24,6 +24,10 @@ export default function Detail(props) {
         form,
         checked,
         setChecked,
+        handleSelectTopic,
+        topic_select,
+        handleSelectProduct,
+        product_select,
     } = props;
     const dispatch = useDispatch();
     const topic = useSelector((state) => state.topic.getTopic);
@@ -41,6 +45,12 @@ export default function Detail(props) {
         topic.data.map((item) => {
             return { key: item._id, value: item._id, label: item.name };
         });
+    let optionsProduct =
+        product !== null &&
+        product.data.map((item) => {
+            return { key: item._id, value: item._id, label: item.name };
+        });
+    let SelectNull = [{ key: '1', value: '1', label: 'Loading...' }];
 
     return (
         <Section>
@@ -97,11 +107,12 @@ export default function Detail(props) {
                                         style={{ width: '3%' }}
                                         type="radio"
                                         name="content-type"
+                                        id="fulfillment"
                                         value="true"
                                         checked={checkedTrue}
                                         onChange={handleRadio}
-                                    />{' '}
-                                    Fulfillment
+                                    />
+                                    <label for="fulfillment">Fulfillment</label>
                                 </WrapsField>
                                 {/* blog */}
                                 <WrapsField>
@@ -109,11 +120,12 @@ export default function Detail(props) {
                                         style={{ width: '3%' }}
                                         type="radio"
                                         name="content_type"
+                                        id="blog"
                                         value="false"
                                         checked={checkedFalse}
                                         onChange={handleRadio}
                                     />{' '}
-                                    Blog
+                                    <label for="blog">Blog</label>
                                 </WrapsField>
 
                                 {/* Radio Button 2 --- */}
@@ -128,7 +140,7 @@ export default function Detail(props) {
                                         <Span>Product</Span>
                                     </Label>
                                     <div>
-                                        <Input
+                                        {/* <Input
                                             as="select"
                                             name="status"
                                             id="status"
@@ -154,7 +166,18 @@ export default function Detail(props) {
                                                     );
                                                 })
                                             )}
-                                        </Input>
+                                        </Input> */}
+                                        <MultiSelect
+                                            options={
+                                                product === null
+                                                    ? SelectNull
+                                                    : optionsProduct
+                                            }
+                                            selected={product_select}
+                                            onSelectedChanged={
+                                                handleSelectProduct
+                                            }
+                                        />
                                     </div>
                                 </WrapsField>
                                 <WrapsField fullwidth>
@@ -176,11 +199,20 @@ export default function Detail(props) {
                         ) : null}
 
                         <WrapsField fullwidth>
-                            {/* <MultiSelect
-                                options={optionsTopic}
-                                selected={topic_select}
-                                onSelectedChanged={handleSelect}
-                            /> */}
+                            <Label>
+                                <Span>Topic</Span>
+                            </Label>
+                            <div>
+                                <MultiSelect
+                                    options={
+                                        topic === null
+                                            ? SelectNull
+                                            : optionsTopic
+                                    }
+                                    selected={topic_select}
+                                    onSelectedChanged={handleSelectTopic}
+                                />
+                            </div>
                         </WrapsField>
                     </Form>
                 </Card>
