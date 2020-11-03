@@ -97,40 +97,39 @@ export default function Detail(props) {
                             </div>
                         </WrapsField>
                         {/* test */}
-                        <WrapsField fullwidth>
-                            <Label>
-                                <Span>Content Type</Span>
-                            </Label>
-                            <div style={{ display: 'flex' }}>
-                                <WrapsField>
-                                    <Input
-                                        isRadioButton
-                                        type="radio"
-                                        name="content-type"
-                                        id="fulfillment"
-                                        value="true"
-                                        checked={checkedTrue}
-                                        onChange={handleRadio}
-                                    />
-                                    <label for="fulfillment">Fulfillment</label>
-                                </WrapsField>
-                                {/* blog */}
-                                <WrapsField>
-                                    <Input
-                                        isRadioButton
-                                        type="radio"
-                                        name="content_type"
-                                        id="blog"
-                                        value="false"
-                                        checked={checkedFalse}
-                                        onChange={handleRadio}
-                                    />{' '}
-                                    <label for="blog">Blog</label>
-                                </WrapsField>
 
-                                {/* Radio Button 2 --- */}
-                            </div>
-                        </WrapsField>
+                        <Label>
+                            <Span>Content Type</Span>
+                        </Label>
+                        <div style={{ display: 'flex' }}>
+                            <WrapsField>
+                                <Input
+                                    isRadioButton
+                                    type="radio"
+                                    name="content-type"
+                                    id="fulfillment"
+                                    value="true"
+                                    checked={checkedTrue}
+                                    onChange={handleRadio}
+                                />{' '}
+                                <label htmlFor="fulfillment">Fulfillment</label>
+                            </WrapsField>
+                            {/* blog */}
+                            <WrapsField>
+                                <Input
+                                    isRadioButton
+                                    type="radio"
+                                    name="content_type"
+                                    id="blog"
+                                    value="false"
+                                    checked={checkedFalse}
+                                    onChange={handleRadio}
+                                />{' '}
+                                <label htmlFor="blog">Blog</label>
+                            </WrapsField>
+
+                            {/* Radio Button 2 --- */}
+                        </div>
 
                         {/* product dan module */}
                         {form.isFulfillment === false ? (
@@ -140,33 +139,6 @@ export default function Detail(props) {
                                         <Span>Product</Span>
                                     </Label>
                                     <div>
-                                        {/* <Input
-                                            as="select"
-                                            name="status"
-                                            id="status"
-                                            // value={visibility}
-                                            // onChange={onChange}
-                                        >
-                                            <option value="" disabled hidden>
-                                                Choose here
-                                            </option>
-                                            {product === null ? (
-                                                <option value="publish">
-                                                    Loading...
-                                                </option>
-                                            ) : (
-                                                product.data.map((item) => {
-                                                    return (
-                                                        <option
-                                                            key={item._id}
-                                                            value={item.name}
-                                                        >
-                                                            {item.name}
-                                                        </option>
-                                                    );
-                                                })
-                                            )}
-                                        </Input> */}
                                         <MultiSelect
                                             options={
                                                 product === null

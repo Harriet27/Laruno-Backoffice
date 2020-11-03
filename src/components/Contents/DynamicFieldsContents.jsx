@@ -1,7 +1,7 @@
 import Card from '../../elements/Card/Card';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchPostDynamicImage } from '../../store/actions';
+import { fetchPostDynamicImageVideo } from '../../store/actions';
 import Styled from 'styled-components';
 import SingleImage from '../AddProduct/SingleImage';
 import { Span } from '../../elements/Styled/StyledTabs';
@@ -83,7 +83,7 @@ export default function DynamicFieldsContents(props) {
 
         //  upload image
         dispatch(
-            fetchPostDynamicImage(
+            fetchPostDynamicImageVideo(
                 formulir,
                 e,
                 id,
@@ -120,7 +120,7 @@ export default function DynamicFieldsContents(props) {
                                         type="text"
                                         name={`one-${idx}`}
                                         placeholder="Video Url..."
-                                        value={field.video_url}
+                                        value={field.url}
                                         onChange={(e) => handleChange(idx, e)}
                                     />
 

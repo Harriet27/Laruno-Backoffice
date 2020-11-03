@@ -76,19 +76,21 @@ export default function AddContents() {
     const [quill, setQuill] = useState('');
     form.content = quill;
     const [formulir, setFormulir] = useState({
-        image: {},
+        image: {
+            cover: '',
+        },
         media: {},
     });
+    form.cover_img = formulir.image.cover;
 
     // --- Video --- //
-    const [sectionAdd, setSectionAdd] = useState([
-        { video_url: '', video: '' },
-    ]);
+    const [sectionAdd, setSectionAdd] = useState([{ url: '' }]);
     console.log(sectionAdd, 'video');
+    form.video = sectionAdd;
     function handleAddSection() {
         //  menambahkan field ke dalam value input terbaru
         const values = [...sectionAdd];
-        values.push({ video_url: '', video: '' });
+        values.push({ url: '' });
 
         setSectionAdd(values);
     }
@@ -102,7 +104,7 @@ export default function AddContents() {
     }
     function handleChangeDynamicSection(i, event) {
         const values = [...sectionAdd];
-        values[i].video_url = event.target.value;
+        values[i].url = event.target.value;
         setSectionAdd(values);
     }
 
@@ -202,7 +204,7 @@ export default function AddContents() {
                         background: 'white',
                     }}
                 >
-                    <Media>
+                    <Media formulir={formulir} setFormulir={setFormulir}>
                         <DynamicFieldsContent
                             handleAdd={handleAddSection}
                             handleChange={handleChangeDynamicSection}

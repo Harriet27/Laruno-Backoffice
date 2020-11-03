@@ -74,7 +74,78 @@ const fetchPostDynamicImage = (
     setFormulir({ image });
     console.log(result, 'isi result apa');
     const values = [...sectionAdd];
-    values[i].video = formulir.image[`video_section_${i}`];
+    values[i].image = formulir.image[`image_section_${i}`];
+    setSectionAdd(values);
+};
+
+const fetchPostDynamicImageVideo = (
+    formulir,
+    e,
+    id,
+    setFormulir,
+    sectionAdd,
+    setSectionAdd,
+    i
+) => async (dispatch) => {
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+
+    let image = formulir.image;
+    var myHeaders = new Headers();
+    myHeaders.append('Authorization', `Bearer ${token}`);
+    let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products`;
+    var formdata = new FormData();
+    formdata.append('file', image[id], image.name);
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow',
+    };
+    const response = await fetch(url, requestOptions);
+    console.log(response, 'response isinya apa sih');
+    const result = await response.json();
+    image[id] = result.result.url;
+    setFormulir({ image });
+    console.log(result, 'isi result apa');
+    const values = [...sectionAdd];
+    values[i].url = formulir.image[`video_section_${i}`];
+    setSectionAdd(values);
+};
+
+// --- Post Dynamic Image --- //
+const fetchPostDynamicImagePodcast = (
+    formulir,
+    e,
+    id,
+    setFormulir,
+    sectionAdd,
+    setSectionAdd,
+    i
+) => async (dispatch) => {
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+
+    let image = formulir.image;
+    var myHeaders = new Headers();
+    myHeaders.append('Authorization', `Bearer ${token}`);
+    let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products`;
+    var formdata = new FormData();
+    formdata.append('file', image[id], image.name);
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow',
+    };
+    const response = await fetch(url, requestOptions);
+    console.log(response, 'response isinya apa sih');
+    const result = await response.json();
+    image[id] = result.result.url;
+    setFormulir({ image });
+    console.log(result, 'isi result apa');
+    const values = [...sectionAdd];
+    values[i].url = formulir.image[`video_section_${i}`];
     setSectionAdd(values);
 };
 
@@ -121,6 +192,8 @@ export {
     fetchPostSingleImage,
     fetchPostMultipleImage,
     fetchPostDynamicImage,
+    fetchPostDynamicImageVideo,
+    fetchPostDynamicImagePodcast,
     postMultipleImage,
     POST_MULTIPLE_IMAGE,
 };
