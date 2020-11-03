@@ -144,7 +144,7 @@ const Header = () => {
                     </Link>
                     {user === null ? (
                         <div style={{ margin: '0 20px' }}>
-                            <Nav>
+                            <Nav className="mr-auto" navbar>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
                                         <Span>
@@ -161,7 +161,7 @@ const Header = () => {
                         </div>
                     ) : (
                         <div style={{ margin: '0 20px' }}>
-                            <Nav>
+                            <Nav className="mr-auto" navbar>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
                                         <Span>
@@ -172,6 +172,7 @@ const Header = () => {
                                         <DropdownItem>
                                             <Span>{user.data.name}</Span>
                                         </DropdownItem>
+
                                         <DropdownItem divider />
                                         <DropdownItem
                                             onClick={() =>
