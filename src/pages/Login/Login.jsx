@@ -9,6 +9,7 @@ import ImageBrand from '../../assets/images/laruno1.png';
 // --- React hook form test --- //
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { LoginSchema } from '../../elements/Validation';
 import * as yup from 'yup';
 
 // --- Styled Components --- //
@@ -49,13 +50,13 @@ height: ${(props) => (props.image ? '100%' : null)}
 `;
 // --- Styled Components --- //
 
-const schema = yup.object().shape({
-    email: yup.string().required('Wajib isi').email('Email not valid'),
-    password: yup
-        .string()
-        .required('Please enter your password')
-        .min(4, 'Minimal 4 karakter'),
-});
+// const schema = yup.object().shape({
+//     email: yup.string().required('Wajib isi').email('Email not valid'),
+//     password: yup
+//         .string()
+//         .required('Please enter your password')
+//         .min(4, 'Minimal 4 karakter'),
+// });
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -67,13 +68,13 @@ export default function Login() {
     console.log(form, 'form login');
     // react hook form
     const { register, handleSubmit, errors } = useForm({
-        resolver: yupResolver(schema),
+        resolver: yupResolver(LoginSchema),
     });
 
     // --- Fetch submit method Post --- //
     // const handleSubmit = async (event) => {};
     const onSubmit = async (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         dispatch(fetchPostLogin(form, history));
     };
     // --- Change Value when Input --- //

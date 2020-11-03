@@ -1,8 +1,11 @@
-import * as Yup from 'yup';
+import * as yup from 'yup';
 
-const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email'),
-    password: Yup.string().required('Password Required').min(8, 'min 8 '),
+const LoginSchema = yup.object().shape({
+    email: yup.string().required('Wajib isi').email('Email not valid'),
+    password: yup
+        .string()
+        .required('Please enter your password')
+        .min(4, 'Minimal 4 karakter'),
 });
 
 export { LoginSchema };
