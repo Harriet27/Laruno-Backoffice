@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
-
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
 import { ButtonStyled } from '../../elements/Styled/StyledForm';
-import DetailProduct from '../../components/AddProduct/DetailProduct';
 
+// --- React Hook Form --- //
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AddProductSchema } from '../../elements/Validation/AddProductSchema';
+
+// --- Fetch/Store/Actions/ elements --- //
+import { fetchPostProducts } from '../../store/actions';
+import DetailProduct from '../../components/AddProduct/DetailProduct';
 import TabPanel from '../../elements/TabPanel/TabPanel';
 import Layout from '../../components/AddProduct/Layout';
 import DynamicField from '../../components/AddProduct/DynamicField';
 import DynamicFieldSection from '../../components/AddProduct/DynamicFieldSection';
 import Bump from '../../components/AddProduct/Bump';
-// --- Fetch/Store/Actions --- //
-import { fetchPostProducts } from '../../store/actions';
-
 function a11yProps(index) {
     return {
         id: `full-width-tab-${index}`,
@@ -36,6 +37,11 @@ export default function TestAddProduct() {
     const handleChangeIndex = (index) => {
         setValue(index);
     };
+
+    // --- React Hook Form --- //
+    // const { register, handleSubmit, errors } = useForm({
+    //     resolver: yupResolver(AddProductSchema),
+    // });
 
     // --- Form All --- //
     const [form, setForm] = useState({
@@ -168,6 +174,11 @@ export default function TestAddProduct() {
     form.feature = { ...objFeature };
 
     // --- handleSubmit untuk enter dan submit button --- //
+
+    // const onSubmit = async (event) => {
+    //     // event.preventDefault();
+    //     dispatch(fetchPostProducts(form, history));
+    // };
     const handleSubmit = (event) => {
         event.preventDefault();
         // history
@@ -378,6 +389,9 @@ export default function TestAddProduct() {
                         duration_minute={duration.minutes}
                         handleWebinar={handleWebinar}
                         handleDuration={handleDuration}
+                        // --- REACT HOOK FORM --- //
+                        // register={register}
+                        // errors={errors}
                     />
                 </div>
             </TabPanel>
@@ -409,6 +423,9 @@ export default function TestAddProduct() {
                         arr={arr}
                         formulir={formulir}
                         setFormulir={setFormulir}
+                        // --- REACT HOOK FORM --- //
+                        // register={register}
+                        // errors={errors}
                     >
                         {form.type === 'ecommerce' ? null : (
                             <DynamicField
@@ -473,6 +490,7 @@ export default function TestAddProduct() {
                             <i className="fa fa-undo"></i> Cancel
                         </ButtonStyled>
                         <ButtonStyled
+                            // onClick={handleSubmit}
                             onClick={handleSubmit}
                             style={{ background: '#70CA63' }}
                         >

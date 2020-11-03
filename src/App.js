@@ -114,8 +114,7 @@ export default function App() {
                         <Header />
                         <DetailOrder />
                     </PrivateRoute>
-                    <PrivateRoute path="*">
-                        <Header />
+                    <Route path="*">
                         <div
                             style={{
                                 display: 'flex',
@@ -128,7 +127,7 @@ export default function App() {
                             <h1>This Is Not WebPage You Are Looking For</h1>
                             <h2>404 Not Found</h2>
                         </div>
-                    </PrivateRoute>
+                    </Route>
                     {/* --- Testing --- */}
                 </Switch>
             </Router>

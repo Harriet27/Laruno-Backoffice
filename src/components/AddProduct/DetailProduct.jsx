@@ -61,6 +61,8 @@ export default function DetailProduct(props) {
         setFormulir,
         arr,
         setArr,
+        register,
+        errors,
     } = props;
 
     const topic = useSelector((state) => state.topic.getTopic);
@@ -97,11 +99,13 @@ export default function DetailProduct(props) {
                                         type="text"
                                         name="name"
                                         id="name"
-                                        value={name}
+                                        defaultValue={name}
                                         onChange={onChange}
                                         placeholder="Product Name..."
+                                        // ref={register}
                                     />
                                 </div>
+                                {/* <span> {errors.name?.message}</span> */}
                             </WrapsField>
 
                             {/* --- Product code --- */}
@@ -114,11 +118,13 @@ export default function DetailProduct(props) {
                                         type="text"
                                         name="code"
                                         id="code"
-                                        value={code}
+                                        defaultValue={code}
                                         onChange={onChange}
                                         placeholder="Product Code..."
+                                        // ref={register}
                                     />
                                 </div>
+                                {/* <span> {errors.code?.message}</span> */}
                             </WrapsField>
 
                             {/* --- Slug --- */}
@@ -131,11 +137,13 @@ export default function DetailProduct(props) {
                                         type="text"
                                         name="slug"
                                         id="slug"
-                                        value={slug}
+                                        defaultValue={slug}
                                         onChange={onChange}
                                         placeholder="Product Slug..."
+                                        // ref={register}
                                     />
                                 </div>
+                                {/* <span> {errors.slug?.message}</span> */}
                             </WrapsField>
                         </div>
                         {/* --- Field Product Category --- */}
@@ -154,8 +162,9 @@ export default function DetailProduct(props) {
                                         as="select"
                                         name="type"
                                         id="type"
-                                        value={type}
+                                        defaultValue={type}
                                         onChange={onChange}
+                                        // ref={register}
                                     >
                                         <option value="" disabled hidden>
                                             Choose here
@@ -170,6 +179,7 @@ export default function DetailProduct(props) {
                                         <option value="bonus">Bonus</option>
                                     </Input>
                                 </div>
+                                {/* <span> {errors.name?.message}</span> */}
                             </WrapsField>
                             <WrapsField>
                                 <Label>
@@ -538,8 +548,9 @@ export default function DetailProduct(props) {
                                         as="select"
                                         name="visibility"
                                         id="visibility"
-                                        value={visibility}
+                                        defaultValue={visibility}
                                         onChange={onChange}
+                                        // ref={register}
                                     >
                                         <option value="" disabled hidden>
                                             Choose here
@@ -549,6 +560,7 @@ export default function DetailProduct(props) {
                                         <option value="draft">Draft</option>
                                     </Input>
                                 </div>
+                                {/* <span> {errors.visibility?.message}</span> */}
                             </WrapsField>
 
                             {/* Field UpSale */}
@@ -561,8 +573,9 @@ export default function DetailProduct(props) {
                                         as="select"
                                         name="sale_method"
                                         id="sale_method"
-                                        value={sale_method}
+                                        defaultValue={sale_method}
                                         onChange={onChange}
+                                        // ref={register}
                                     >
                                         <option value="" disabled hidden>
                                             Choose here
@@ -575,6 +588,7 @@ export default function DetailProduct(props) {
                                         </option>
                                     </Input>
                                 </div>
+                                {/* <span> {errors.sale_method?.message}</span> */}
                             </WrapsField>
                         </div>
                         <WrapsField>

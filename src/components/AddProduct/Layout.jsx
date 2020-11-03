@@ -68,6 +68,9 @@ export default function Layout(props) {
         // --- upload image --- //
         formulir,
         setFormulir,
+        // --- REACT HOOK FORM --- //
+        register,
+        errors,
     } = props;
 
     // --- Agents --- //

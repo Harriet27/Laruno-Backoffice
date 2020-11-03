@@ -10,7 +10,6 @@ import ImageBrand from '../../assets/images/laruno1.png';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoginSchema } from '../../elements/Validation';
-import * as yup from 'yup';
 
 // --- Styled Components --- //
 const Section = Styled.section`
@@ -45,18 +44,10 @@ const WrapForm = Styled.div`
     margin-bottom: 20px;
 `;
 const Image = Styled.img`
-width: ${(props) => (props.div ? '100%' : null)};
-height: ${(props) => (props.image ? '100%' : null)}
+    width: ${(props) => (props.div ? '100%' : null)};
+    height: ${(props) => (props.image ? '100%' : null)}
 `;
 // --- Styled Components --- //
-
-// const schema = yup.object().shape({
-//     email: yup.string().required('Wajib isi').email('Email not valid'),
-//     password: yup
-//         .string()
-//         .required('Please enter your password')
-//         .min(4, 'Minimal 4 karakter'),
-// });
 
 export default function Login() {
     const dispatch = useDispatch();
