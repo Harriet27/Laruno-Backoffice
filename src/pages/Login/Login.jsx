@@ -6,6 +6,11 @@ import { fetchPostLogin } from '../../store/actions';
 import Card from '../../elements/Card/Card';
 import ImageBrand from '../../assets/images/laruno1.png';
 
+// --- React hook form test --- //
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
 // --- Styled Components --- //
 const Section = Styled.section`
     width: 100%;
@@ -44,6 +49,11 @@ height: ${(props) => (props.image ? '100%' : null)}
 `;
 // --- Styled Components --- //
 
+const schema = yup.object().shape({
+    email: yup.string().required('wajib isi').email('email not valid'),
+    password: yup.string().required('Please Enter your password'),
+});
+
 export default function Login() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -51,9 +61,15 @@ export default function Login() {
         email: '',
         password: '',
     });
+    console.log(form, 'form login');
+    // react hook form
+    const { register, handleSubmit, errors } = useForm({
+        resolver: yupResolver(schema),
+    });
 
     // --- Fetch submit method Post --- //
-    const handleSubmit = async (event) => {
+    // const handleSubmit = async (event) => {};
+    const onSubmit = async (event) => {
         event.preventDefault();
         dispatch(fetchPostLogin(form, history));
     };
@@ -70,17 +86,18 @@ export default function Login() {
                         <Image image src={ImageBrand} alt="brand" />
                     </Image>
                 </Brand>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <WrapForm>
                         <Input
                             type="email"
                             name="email"
                             id="email"
-                            value={form.email}
+                            defaultValue={form.email}
                             onChange={handleChange}
                             placeholder="Email"
-                            required
+                            ref={register}
                         />
+                        <p>{errors.email?.message}</p>
                     </WrapForm>
 
                     <WrapForm>
@@ -88,11 +105,12 @@ export default function Login() {
                             type="password"
                             name="password"
                             id="password"
-                            value={form.password}
+                            defaultValue={form.password}
                             onChange={handleChange}
                             placeholder="Password"
-                            required
+                            ref={register}
                         />
+                        <p>{errors.password?.message}</p>
                     </WrapForm>
 
                     <Input as="button" button>
