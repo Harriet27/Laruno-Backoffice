@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { fetchPostContents } from '../../store/actions';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -9,7 +12,7 @@ import Contents from './Contents';
 import DynamicFieldsContent from './DynamicFieldsContents';
 import DynamicPodcastContent from './DynamicPodcastContent';
 import DynamicFieldsModule from './DynamicFieldsModule';
-
+import { ButtonStyled } from '../../elements/Styled/StyledForm';
 // --- a11yProps --- //
 function a11yProps(index) {
     return {
@@ -19,6 +22,8 @@ function a11yProps(index) {
 }
 export default function AddContents() {
     const [value, setValue] = React.useState(0);
+    const dispatch = useDispatch();
+    const history = useHistory();
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -51,6 +56,11 @@ export default function AddContents() {
         tag: [],
     });
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // history
+        dispatch(fetchPostContents(form, history));
+    };
     console.log(form, 'form di dalam content berisi apa');
     const handleChangeForm = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -248,6 +258,27 @@ export default function AddContents() {
                             handleRemove={handleRemoveSectionModule}
                         />
                     </Contents>
+                    <div
+                        style={{
+                            margin: '0 100px',
+                            paddingBottom: '20px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        <ButtonStyled
+                            style={{ color: '#656565', background: '#F2F5F7' }}
+                        >
+                            <i className="fa fa-undo"></i> Cancel
+                        </ButtonStyled>
+                        <ButtonStyled
+                            // onClick={handleSubmit}
+                            onClick={handleSubmit}
+                            style={{ background: '#70CA63' }}
+                        >
+                            <i className="fa fa-save"></i> Save
+                        </ButtonStyled>
+                    </div>
                 </div>
             </TabPanel>
         </div>
