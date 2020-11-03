@@ -16,7 +16,7 @@ export default function Detail(props) {
     const {
         onChange,
         name,
-        isFulfillment,
+        isBlog,
         visibility,
         handleRadio,
         checkedFalse,
@@ -106,33 +106,34 @@ export default function Detail(props) {
                                 <Input
                                     isRadioButton
                                     type="radio"
-                                    name="content-type"
-                                    id="fulfillment"
-                                    value="true"
-                                    checked={checkedTrue}
-                                    onChange={handleRadio}
-                                />{' '}
-                                <label htmlFor="fulfillment">Fulfillment</label>
-                            </WrapsField>
-                            {/* blog */}
-                            <WrapsField>
-                                <Input
-                                    isRadioButton
-                                    type="radio"
                                     name="content_type"
                                     id="blog"
                                     value="false"
                                     checked={checkedFalse}
                                     onChange={handleRadio}
                                 />{' '}
-                                <label htmlFor="blog">Blog</label>
+                                <label htmlFor="blog">Fulfillment</label>
                             </WrapsField>
+
+                            <WrapsField>
+                                <Input
+                                    isRadioButton
+                                    type="radio"
+                                    name="content-type"
+                                    id="fulfillment"
+                                    value="true"
+                                    checked={checkedTrue}
+                                    onChange={handleRadio}
+                                />{' '}
+                                <label htmlFor="fulfillment">Blog</label>
+                            </WrapsField>
+                            {/* blog */}
 
                             {/* Radio Button 2 --- */}
                         </div>
 
                         {/* product dan module */}
-                        {form.isFulfillment === false ? (
+                        {form.isBlog === true ? (
                             <>
                                 <WrapsField fullwidth>
                                     <Label>

@@ -26,7 +26,7 @@ export default function AddContents() {
     // --- Form --- //
     const [form, setForm] = useState({
         name: '',
-        isFullfillment: true,
+        isBlog: false,
         cover_img: '',
         // short_content: '',
         product: [],
@@ -58,9 +58,9 @@ export default function AddContents() {
 
     const handleRadio = (event) => {
         if (event.target.value === 'true') {
-            setForm({ ...form, isFulfillment: true });
+            setForm({ ...form, isBlog: true });
         } else if (event.target.value === 'false') {
-            setForm({ ...form, isFulfillment: false });
+            setForm({ ...form, isBlog: false });
         }
     };
     const handleSelectTopic = (topic) => {
@@ -181,13 +181,13 @@ export default function AddContents() {
                     }}
                 >
                     <Detail
-                        isFulfillment={form.isFullfillment}
+                        isBlog={form.isBlog}
                         onChange={handleChangeForm}
                         name={form.name}
                         visibility={form.visibility}
                         handleRadio={handleRadio}
-                        checkedFalse={form.isFulfillment === false}
-                        checkedTrue={form.isFulfillment === true}
+                        checkedFalse={form.isBlog === false}
+                        checkedTrue={form.isBlog === true}
                         form={form}
                         checked={checked}
                         setChecked={setChecked}
