@@ -87,7 +87,7 @@ export default function DynamicFieldsModule(props) {
                                         type="text"
                                         name={`module-${idx}`}
                                         placeholder="Question..."
-                                        value={field.module}
+                                        value={field.question}
                                         onChange={(e) => handleChange(idx, e)}
                                     />
 

@@ -109,16 +109,17 @@ export default function AddContents() {
     }
 
     // --- module --- //
-    const [sectionModule, setSectionModule] = useState([{ module: '' }]);
+    const [sectionModule, setSectionModule] = useState([{ question: '' }]);
+    form.module = sectionModule;
     const handleAddSectionModule = () => {
         const values = [...sectionModule];
-        values.push({ module: '' });
+        values.push({ question: '' });
 
         setSectionModule(values);
     };
     function handleChangeDynamicSectionModule(i, event) {
         const values = [...sectionModule];
-        values[i].module = event.target.value;
+        values[i].question = event.target.value;
         setSectionModule(values);
     }
     function handleRemoveSectionModule(i) {
