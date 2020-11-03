@@ -50,8 +50,11 @@ height: ${(props) => (props.image ? '100%' : null)}
 // --- Styled Components --- //
 
 const schema = yup.object().shape({
-    email: yup.string().required('wajib isi').email('email not valid'),
-    password: yup.string().required('Please Enter your password'),
+    email: yup.string().required('Wajib isi').email('Email not valid'),
+    password: yup
+        .string()
+        .required('Please enter your password')
+        .min(4, 'Minimal 4 karakter'),
 });
 
 export default function Login() {
@@ -97,7 +100,15 @@ export default function Login() {
                             placeholder="Email"
                             ref={register}
                         />
-                        <p>{errors.email?.message}</p>
+                        <span
+                            style={{
+                                color: 'red',
+                                display: 'flex',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            {errors.email?.message}
+                        </span>
                     </WrapForm>
 
                     <WrapForm>
@@ -110,7 +121,15 @@ export default function Login() {
                             placeholder="Password"
                             ref={register}
                         />
-                        <p>{errors.password?.message}</p>
+                        <span
+                            style={{
+                                color: 'red',
+                                display: 'flex',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            {errors.password?.message}
+                        </span>
                     </WrapForm>
 
                     <Input as="button" button>
