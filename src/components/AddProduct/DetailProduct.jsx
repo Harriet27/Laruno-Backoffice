@@ -211,7 +211,7 @@ export default function DetailProduct(props) {
                                     }}
                                 >
                                     <Input
-                                        price
+                                        isPrice
                                         type="number"
                                         name="time_period"
                                         id="time_period"
@@ -415,7 +415,7 @@ export default function DetailProduct(props) {
                                     {/* --- Radio Button 1 --- */}
                                     <WrapsField>
                                         <Input
-                                            style={{ width: '3%' }}
+                                            isRadioButton
                                             type="radio"
                                             name="tambah_ongkir"
                                             id="tambah_ongkir"
@@ -429,7 +429,7 @@ export default function DetailProduct(props) {
                                     {/* Radio Button 2 --- */}
                                     <WrapsField>
                                         <Input
-                                            style={{ width: '3%' }}
+                                            isRadioButton
                                             type="radio"
                                             name="weight"
                                             id="weight"
@@ -482,7 +482,7 @@ export default function DetailProduct(props) {
                                         </div>
                                     </div>
                                     <Input
-                                        price
+                                        isPrice
                                         type="number"
                                         name="price"
                                         id="price"
@@ -521,6 +521,7 @@ export default function DetailProduct(props) {
                                         </div>
                                     </div>
                                     <Input
+                                        isPrice
                                         type="number"
                                         name="sale_price"
                                         id="sale_price"

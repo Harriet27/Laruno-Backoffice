@@ -11,9 +11,9 @@ const Input = Styled.input`
     font-size: 14px;
     font-weight: 400;
     color: #495057;
-    border-radius:${(props) => (props.price ? '0' : '3px')};
+    border-radius:${(props) => (props.isPrice ? '0' : '3px')};
     background-color: #FCFCFC;
-    border: ${(props) => (props.price ? '0' : '1px solid #ced4da')};
+    border: ${(props) => (props.isPrice ? '0' : '1px solid #ced4da')};
     &:focus{
     outline: none !important;
     border:1px solid #66AFE9;
@@ -117,7 +117,7 @@ export default function Bump(props) {
                                         </div>
                                     </div>
                                     <Input
-                                        price
+                                        isPrice
                                         type="number"
                                         name="bump_price"
                                         id="bump_price"

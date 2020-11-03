@@ -104,7 +104,7 @@ export default function Detail(props) {
                             <div style={{ display: 'flex' }}>
                                 <WrapsField>
                                     <Input
-                                        style={{ width: '3%' }}
+                                        isRadioButton
                                         type="radio"
                                         name="content-type"
                                         id="fulfillment"
@@ -117,7 +117,7 @@ export default function Detail(props) {
                                 {/* blog */}
                                 <WrapsField>
                                     <Input
-                                        style={{ width: '3%' }}
+                                        isRadioButton
                                         type="radio"
                                         name="content_type"
                                         id="blog"

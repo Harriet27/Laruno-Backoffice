@@ -1,7 +1,7 @@
 import Styled from 'styled-components';
 
 const Input = Styled.input`
-    width: 100%;
+    width: ${(props) => (props.isRadioButton ? '3%' : '100%')};
     padding: .375rem;
     font-size: 14px;
     font-weight: 400;
