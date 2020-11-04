@@ -7,6 +7,7 @@ const AddAdministratorSchema = yup.object().shape({
         .number()
         // .required('Wajib isi')
         .typeError('Wajib di isi hanya dengan nomer')
+        .positive('Tidak boleh negatif')
         .test(
             'len',
             'Minimal 9 Karakter',

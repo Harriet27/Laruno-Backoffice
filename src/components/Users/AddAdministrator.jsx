@@ -99,10 +99,10 @@ export default function AddAdministrator() {
             <ModalSmart
                 onClickConfirm={handleSubmit(onSubmit)}
                 buttonLabel="Create Admin"
-                title="Create Admin"
+                title="Add Administrator"
             >
-                <Section>
-                    <Card
+                {/* <Section> */}
+                {/* <Card
                         isNormal
                         style={{
                             padding: '50px',
@@ -114,94 +114,93 @@ export default function AddAdministrator() {
                             <div style={{ width: '100%' }}>
                                 Add Administrator
                             </div>
-                        </Brand>
-                        <form>
-                            <WrapForm>
-                                <Input
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    defaultValue={form.name}
-                                    onChange={handleChange}
-                                    placeholder="Name"
-                                    ref={register}
-                                />
-                                <>
-                                    <SpanErrosMessage>
-                                        {errors.name?.message}
-                                    </SpanErrosMessage>
-                                </>
-                            </WrapForm>
+                        </Brand> */}
+                <form>
+                    <WrapForm>
+                        <div>
+                            <MultiSelect
+                                overrideStrings={{
+                                    selectSomeItems: 'select role...',
+                                    allItemsAreSelected: 'Semua role dipilih',
+                                    selectAll: 'Select All',
+                                    search: 'Search',
+                                }}
+                                options={optionsRoles}
+                                selected={form.role}
+                                onSelectedChanged={handleSelect}
+                            />
+                        </div>
+                    </WrapForm>
 
-                            <WrapForm>
-                                <Input
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    defaultValue={form.email}
-                                    onChange={handleChange}
-                                    placeholder="Email"
-                                    ref={register}
-                                />
-                                <>
-                                    <SpanErrosMessage>
-                                        {errors.email?.message}
-                                    </SpanErrosMessage>
-                                </>
-                            </WrapForm>
+                    <WrapForm>
+                        <Input
+                            type="text"
+                            name="name"
+                            id="name"
+                            defaultValue={form.name}
+                            onChange={handleChange}
+                            placeholder="Name"
+                            ref={register}
+                        />
+                        <>
+                            <SpanErrosMessage>
+                                {errors.name?.message}
+                            </SpanErrosMessage>
+                        </>
+                    </WrapForm>
 
-                            <WrapForm>
-                                <div>
-                                    <MultiSelect
-                                        overrideStrings={{
-                                            selectSomeItems: 'select role...',
-                                            allItemsAreSelected:
-                                                'Semua role dipilih',
-                                            selectAll: 'Select All',
-                                            search: 'Search',
-                                        }}
-                                        options={optionsRoles}
-                                        selected={form.role}
-                                        onSelectedChanged={handleSelect}
-                                    />
-                                </div>
-                            </WrapForm>
+                    <WrapForm>
+                        <Input
+                            type="email"
+                            name="email"
+                            id="email"
+                            defaultValue={form.email}
+                            onChange={handleChange}
+                            placeholder="Email"
+                            ref={register}
+                        />
+                        <>
+                            <SpanErrosMessage>
+                                {errors.email?.message}
+                            </SpanErrosMessage>
+                        </>
+                    </WrapForm>
 
-                            <WrapForm>
-                                <Input
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    defaultValue={form.password}
-                                    onChange={handleChange}
-                                    placeholder="Password"
-                                    ref={register}
-                                />
-                                <>
-                                    <SpanErrosMessage>
-                                        {errors.password?.message}
-                                    </SpanErrosMessage>
-                                </>
-                            </WrapForm>
-                            <WrapForm>
-                                <Input
-                                    type="number"
-                                    name="phone_number"
-                                    id="phone_number"
-                                    defaultValue={form.phone_number}
-                                    onChange={handleChange}
-                                    placeholder="Phone Number"
-                                    ref={register}
-                                />
-                                <>
-                                    <SpanErrosMessage>
-                                        {errors.phone_number?.message}
-                                    </SpanErrosMessage>
-                                </>
-                            </WrapForm>
-                        </form>
-                    </Card>
-                </Section>
+                    <WrapForm>
+                        <Input
+                            type="password"
+                            name="password"
+                            id="password"
+                            defaultValue={form.password}
+                            onChange={handleChange}
+                            placeholder="Password"
+                            ref={register}
+                        />
+                        <>
+                            <SpanErrosMessage>
+                                {errors.password?.message}
+                            </SpanErrosMessage>
+                        </>
+                    </WrapForm>
+                    <WrapForm>
+                        <Input
+                            type="number"
+                            name="phone_number"
+                            id="phone_number"
+                            defaultValue={form.phone_number}
+                            onChange={handleChange}
+                            placeholder="Phone Number"
+                            ref={register}
+                        />
+                        <>
+                            <SpanErrosMessage>
+                                {errors.phone_number?.message}
+                            </SpanErrosMessage>
+                        </>
+                    </WrapForm>
+                </form>
+                {/* </Card> */}
+                {/* </Section> */}
             </ModalSmart>
         </div>
     );

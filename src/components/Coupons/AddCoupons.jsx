@@ -6,6 +6,12 @@ import { fetchPostCoupons, fetchGetPaymentsMethod } from '../../store/actions';
 // --- Elements, Pages, Components --- //
 import ModalSmart from '../../elements/Modal/ModalSmart';
 
+// --- Validation --- //
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AddCouponsSchema } from '../../elements/Validation';
+import { SpanErrosMessage } from '../../elements/Styled/StyledForm';
+
 // --- Styled Components --- //
 const [md, lg] = ['16px', '18px', '20px'];
 const Span = Styled.span`
@@ -53,8 +59,10 @@ export default function AddCoupons() {
     }, [dispatch]);
 
     // --- Fetch submit method Post --- //
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const { register, handleSubmit, errors } = useForm({
+        resolver: yupResolver(AddCouponsSchema),
+    });
+    const onSubmit = async (event) => {
         dispatch(fetchPostCoupons(form));
     };
     // --- Change Value when Input Active --- //
@@ -70,7 +78,7 @@ export default function AddCoupons() {
             styleModal={{ maxWidth: '700px', width: '100%' }}
             buttonLabel="Add Coupons"
             title="Add Coupons"
-            onClickConfirm={handleSubmit}
+            onClickConfirm={handleSubmit(onSubmit)}
         >
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <WrapForm style={{ width: '45%' }}>
@@ -81,11 +89,16 @@ export default function AddCoupons() {
                         type="text"
                         name="name"
                         id="name"
-                        value={form.name}
+                        defaultValue={form.name}
                         onChange={handleChange}
                         placeholder="Name Coupons"
-                        required
+                        ref={register}
                     />
+                    <>
+                        <SpanErrosMessage>
+                            {errors.name?.message}
+                        </SpanErrosMessage>
+                    </>
                 </WrapForm>
 
                 <WrapForm style={{ width: '45%' }}>
@@ -113,11 +126,16 @@ export default function AddCoupons() {
                         type="date"
                         name="start_date"
                         id="start_date"
-                        value={form.start_date}
+                        defaultValue={form.start_date}
                         onChange={handleChange}
                         placeholder="Start Date"
-                        required
+                        ref={register}
                     />
+                    <>
+                        <SpanErrosMessage>
+                            {errors.start_date?.message}
+                        </SpanErrosMessage>
+                    </>
                 </WrapForm>
 
                 <WrapForm style={{ width: '45%' }}>
@@ -128,11 +146,16 @@ export default function AddCoupons() {
                         type="date"
                         name="end_date"
                         id="end_date"
-                        value={form.end_date}
+                        defaultValue={form.end_date}
                         onChange={handleChange}
                         placeholder="End Date"
-                        required
+                        ref={register}
                     />
+                    <>
+                        <SpanErrosMessage>
+                            {errors.end_date?.message}
+                        </SpanErrosMessage>
+                    </>
                 </WrapForm>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -158,8 +181,9 @@ export default function AddCoupons() {
                         as="select"
                         name="payment_method"
                         id="payment_method"
-                        value={form.payment_method}
+                        defaultValue={form.payment_method}
                         onChange={handleChange}
+                        ref={register}
                     >
                         <option value="" disabled hidden>
                             Choose here
@@ -176,6 +200,11 @@ export default function AddCoupons() {
                             })
                         )}
                     </Input>
+                    <>
+                        <SpanErrosMessage>
+                            {errors.payment_method?.message}
+                        </SpanErrosMessage>
+                    </>
                 </WrapForm>
             </div>
 
@@ -187,10 +216,13 @@ export default function AddCoupons() {
                     type="number"
                     name="value"
                     id="value"
-                    value={form.value}
+                    defaultValue={form.value}
                     onChange={handleChange}
-                    required
+                    ref={register}
                 />
+                <>
+                    <SpanErrosMessage>{errors.value?.message}</SpanErrosMessage>
+                </>
             </WrapForm>
             <WrapForm style={{ width: '45%' }}>
                 <label>
