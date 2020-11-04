@@ -239,7 +239,7 @@ export default function Layout(props) {
 
                         <WrapsField>
                             <Label>
-                                <Span>Media Url</Span>
+                                <Span>Header Media</Span>
                             </Label>
                             <MediaUrl
                                 id="media_url"

@@ -53,6 +53,8 @@ export default function Bump(props) {
         bump_price,
         formulir,
         setFormulir,
+        bump_sub_headline,
+        bump_text,
     } = props;
 
     // --- HandleChange upload Image --- //
@@ -156,6 +158,7 @@ export default function Bump(props) {
                                     width: '100%',
                                     border: '1px dotted gray',
                                     height: '150px',
+                                    marginBottom: '10px',
                                 }}
                             >
                                 <div style={{ width: '100px' }}>
@@ -169,6 +172,37 @@ export default function Bump(props) {
                                     )}
                                 </div>
                             </div>
+
+                            {/* Tambahan bump text dan bump sub headline */}
+                            <WrapsField>
+                                <Label>
+                                    <Span>Bump Sub Headline</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        type="text"
+                                        name="bump_sub_headline"
+                                        id="bump_sub_headline"
+                                        value={bump_sub_headline}
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </WrapsField>
+
+                            <WrapsField>
+                                <Label>
+                                    <Span>Bump Text</Span>
+                                </Label>
+                                <div>
+                                    <Input
+                                        type="text"
+                                        name="bump_text"
+                                        id="bump_text"
+                                        value={bump_text}
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </WrapsField>
                         </React.Fragment>
                     </div>
                 </div>

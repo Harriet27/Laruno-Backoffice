@@ -595,6 +595,9 @@ export default function DetailProduct(props) {
                         </div>
                         <WrapsField>
                             {/* image product */}
+                            <Label>
+                                <Span>Image Product</Span>
+                            </Label>
                             <ImageProduct
                                 arr={arr}
                                 setArr={setArr}
