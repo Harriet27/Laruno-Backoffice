@@ -47,7 +47,7 @@ const DataProduct = (props) => {
     console.log('product', product);
     // --- PAGINATION --- //
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -288,7 +288,7 @@ const DataProduct = (props) => {
                             <tfoot>
                                 <tr>
                                     <TablePagination
-                                        rowsPerPageOptions={[5, 10, 15]}
+                                        rowsPerPageOptions={[10, 15, 20]}
                                         count={
                                             product !== null &&
                                             product.data.length

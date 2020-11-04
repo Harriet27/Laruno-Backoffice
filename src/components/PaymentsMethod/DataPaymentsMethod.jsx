@@ -21,7 +21,7 @@ const DataPaymentsMethod = (props) => {
     console.log(payments, 'payment isinya apa');
     // --- PAGINATION --- //
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -241,7 +241,7 @@ const DataPaymentsMethod = (props) => {
                             <tfoot>
                                 <tr>
                                     <TablePagination
-                                        rowsPerPageOptions={[5, 10, 15]}
+                                        rowsPerPageOptions={[10, 15, 20]}
                                         count={
                                             payments !== null &&
                                             payments.data.length
