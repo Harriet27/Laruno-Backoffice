@@ -20,7 +20,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Users from './pages/Users/Users';
 
 import Roles from './pages/Roles/Roles';
-import Fullfilments from './pages/Fullfilments/Fullfilments';
+import Contents from './pages/Contents/Contents';
 import AlertDelete from './elements/Alert/AlertDelete';
 import DataReseller from './components/Reseller/DataReseller';
 import Order from './pages/Order/Order';
@@ -75,10 +75,6 @@ export default function App() {
                         <Header />
                         <Topic />
                     </PrivateRoute>
-                    <PrivateRoute exact path="/fullfilments">
-                        <Header />
-                        <Fullfilments />
-                    </PrivateRoute>
 
                     <PrivateRoute exact path="/product/show/:id">
                         <Header />
@@ -101,6 +97,10 @@ export default function App() {
                     <PrivateRoute exact path="/reseller">
                         <Header />
                         <DataReseller />
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/Contents">
+                        <Header />
+                        <Contents />
                     </PrivateRoute>
                     <PrivateRoute exact path="/coupons">
                         <Header />

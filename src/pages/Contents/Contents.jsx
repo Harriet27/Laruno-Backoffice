@@ -1,10 +1,10 @@
 import React from 'react';
 import DataContents from '../../components/Contents/DataContents';
 
-export default function Fullfilments() {
+export default function Contents() {
     return (
-        <div>
+        <section style={{ margin: '50px' }}>
             <DataContents />
-        </div>
+        </section>
     );
 }
