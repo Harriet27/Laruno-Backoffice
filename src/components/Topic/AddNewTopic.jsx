@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import Styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { fetchPostTopic, fetchPostSingleImage } from '../../store/actions';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AddTopicSchema } from '../../elements/Validation';
+import { SpanErrosMessage } from '../../elements/Styled/StyledForm';
 
 // --- Elements, Pages, Components --- //
 import Card from '../../elements/Card/Card';
@@ -45,10 +49,15 @@ export default function AddNewTopic() {
 
     form.icon = formulir.image.icon;
     // --- Fetch submit method Post --- //
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+
+    const { register, handleSubmit, errors } = useForm({
+        resolver: yupResolver(AddTopicSchema),
+    });
+
+    const onSubmit = async (event) => {
         dispatch(fetchPostTopic(form));
     };
+
     // --- Change Value when Input Active --- //
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -72,7 +81,7 @@ export default function AddNewTopic() {
         <ModalSmart
             buttonLabel="Add Topic"
             title="Add Topic"
-            onClickConfirm={handleSubmit}
+            onClickConfirm={handleSubmit(onSubmit)}
         >
             <Card>
                 <WrapForm>
@@ -80,11 +89,16 @@ export default function AddNewTopic() {
                         type="text"
                         name="name"
                         id="name"
-                        value={form.name}
+                        defaultValue={form.name}
                         onChange={handleChange}
                         placeholder="Name"
-                        required
+                        ref={register}
                     />
+                    <div>
+                        <SpanErrosMessage>
+                            {errors.name?.message}
+                        </SpanErrosMessage>
+                    </div>
                 </WrapForm>
                 <WrapForm>
                     <SingleImage
@@ -92,7 +106,12 @@ export default function AddNewTopic() {
                         onChange={handleChangeImage}
                         onSubmit={(e) => handleSubmitImage(e, 'icon')}
                     />
-                    <img src={formulir.image.icon} alt={formulir.image.icon} />
+                    {typeof formulir.image.icon === 'object' ? null : (
+                        <img
+                            src={formulir.image.icon}
+                            alt={formulir.image.icon}
+                        />
+                    )}
                 </WrapForm>
             </Card>
         </ModalSmart>

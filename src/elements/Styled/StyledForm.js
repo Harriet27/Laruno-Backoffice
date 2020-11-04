@@ -66,6 +66,11 @@ border: none;
     outline: none;
 }
 `;
+const SpanErrosMessage = Styled.span`
+color: red;
+display: flex;
+justify-content: center;
+`;
 export {
     sm,
     md,
@@ -76,4 +81,5 @@ export {
     Overflow,
     ButtonStyled,
     ButtonActions,
+    SpanErrosMessage,
 };

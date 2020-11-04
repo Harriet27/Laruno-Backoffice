@@ -5,6 +5,7 @@ import { fetchPostPaymentsMethod } from '../../store/actions';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AddPaymentMethodSchema } from '../../elements/Validation';
+import { SpanErrosMessage } from '../../elements/Styled/StyledForm';
 
 // --- Elements, Pages, Components --- //
 import Card from '../../elements/Card/Card';
@@ -73,7 +74,9 @@ export default function AddPaymentsMethod() {
                         ref={register}
                     />
                     <div>
-                        <span>{errors.name?.message}</span>
+                        <SpanErrosMessage>
+                            {errors.name?.message}
+                        </SpanErrosMessage>
                     </div>
                 </WrapForm>
                 <WrapForm>
