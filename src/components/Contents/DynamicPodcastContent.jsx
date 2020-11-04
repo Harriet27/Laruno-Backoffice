@@ -106,9 +106,6 @@ export default function DynamicPodcastContents(props) {
                     <label>
                         <Span>Podcast</Span>
                     </label>
-                    <ButtonModal type="button" onClick={() => handleAdd()}>
-                        Add Podcast section
-                    </ButtonModal>
                 </div>
                 {/* --- Testing --- */}
                 <div name="test">
@@ -153,6 +150,9 @@ export default function DynamicPodcastContents(props) {
                         );
                     })}
                 </div>
+                <ButtonModal type="button" onClick={() => handleAdd()}>
+                    Add Podcast section
+                </ButtonModal>
             </div>
         </>
     );

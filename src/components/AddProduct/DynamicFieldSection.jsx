@@ -105,13 +105,6 @@ export default function DynamicFieldSection(props) {
                             style={{ display: 'flex', flexDirection: 'column' }}
                             className="App"
                         >
-                            <ButtonModal
-                                type="button"
-                                onClick={() => handleAdd()}
-                            >
-                                Add Section
-                            </ButtonModal>
-
                             {/* --- Testing --- */}
                             <div name="test">
                                 {fields.map((field, idx) => {
@@ -169,6 +162,12 @@ export default function DynamicFieldSection(props) {
                                     );
                                 })}
                             </div>
+                            <ButtonModal
+                                type="button"
+                                onClick={() => handleAdd()}
+                            >
+                                Add Section
+                            </ButtonModal>
                         </div>
                     </div>
                 </Card>

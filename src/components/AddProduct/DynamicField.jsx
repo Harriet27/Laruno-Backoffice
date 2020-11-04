@@ -62,14 +62,6 @@ export default function DynamicField(props) {
                 <Span>Learn About</Span>
             </Label>
 
-            <ButtonModal
-                style={{ marginBottom: '10px' }}
-                type="button"
-                onClick={() => handleAdd()}
-            >
-                Add Learn About
-            </ButtonModal>
-
             {/* --- Testing --- */}
             <div name="test">
                 {fields.map((field, idx) => {
@@ -116,6 +108,13 @@ export default function DynamicField(props) {
                     );
                 })}
             </div>
+            <ButtonModal
+                style={{ marginBottom: '10px' }}
+                type="button"
+                onClick={() => handleAdd()}
+            >
+                Add Learn About
+            </ButtonModal>
         </div>
     );
 }

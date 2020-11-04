@@ -72,9 +72,6 @@ export default function DynamicFieldsModule(props) {
                     <label>
                         <Span>Module</Span>
                     </label>
-                    <ButtonModal type="button" onClick={() => handleAdd()}>
-                        Add Question
-                    </ButtonModal>
                 </div>
                 {/* --- Testing --- */}
                 <div name="modules">
@@ -104,6 +101,9 @@ export default function DynamicFieldsModule(props) {
                         );
                     })}
                 </div>
+                <ButtonModal type="button" onClick={() => handleAdd()}>
+                    Add Question
+                </ButtonModal>
             </div>
         </>
     );
