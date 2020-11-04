@@ -247,7 +247,7 @@ export default function Layout(props) {
                                 onSubmit={(e) => handleSubmit(e, 'media_url')}
                             />
 
-                            {typeof formulir.image.media_url ===
+                            {/* {typeof formulir.image.media_url ===
                             'object' ? null : (
                                 <div style={{ width: '200px' }}>
                                     <img
@@ -256,6 +256,20 @@ export default function Layout(props) {
                                         alt={formulir.image.media_url}
                                     />
                                 </div>
+                            )} */}
+                            {typeof formulir.image.media_url ===
+                            'object' ? null : (
+                                <video width="320" height="240" controls>
+                                    <source
+                                        src={formulir.image.media_url}
+                                        type="video/mp4"
+                                    />
+                                    <source
+                                        src={formulir.image.media_url}
+                                        type="video/ogg"
+                                    />
+                                    Your browser does not support the video tag.
+                                </video>
                             )}
                         </WrapsField>
                     </div>

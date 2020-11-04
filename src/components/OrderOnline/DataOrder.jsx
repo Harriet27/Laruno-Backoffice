@@ -133,10 +133,10 @@ const DataOrders = () => {
                                                 )}
                                             </Th>
                                             <Th as="td" td>
-                                                -
+                                                {item.user_info.name}
                                             </Th>
                                             <Th as="td" td>
-                                                -
+                                                {item.user_info.phone_number}
                                             </Th>
                                             <Th as="td" td>
                                                 {/* {item.cart.items.map((user) => {
@@ -154,7 +154,7 @@ const DataOrders = () => {
                                                 {FormatNumber(item.total_price)}
                                             </Th>
                                             <Th as="td" td>
-                                                {item.status}
+                                                {item.payment.status}
                                             </Th>
                                             <Th as="td" td>
                                                 -
