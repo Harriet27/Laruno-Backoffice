@@ -7,6 +7,12 @@ import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 import MultiSelect from '@khanacademy/react-multi-select';
 
+// --- Validation --- //
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AddAdministratorSchema } from '../../elements/Validation';
+import { SpanErrosMessage } from '../../elements/Styled/StyledForm';
+
 // --- Styled Components --- //
 const [md, lg] = ['18px', '20px'];
 
@@ -59,10 +65,17 @@ export default function AddAdministrator() {
     });
 
     // --- Fetch submit method Post --- //
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+
+    const { register, handleSubmit, errors } = useForm({
+        resolver: yupResolver(AddAdministratorSchema),
+    });
+
+    const onSubmit = async (event) => {
         dispatch(fetchPostAdministrator(form, history));
     };
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    // };
 
     // --- merubah value setiap kali di ketik --- //
     const handleChange = (event) => {
@@ -84,7 +97,7 @@ export default function AddAdministrator() {
     return (
         <div style={{ width: '150px' }}>
             <ModalSmart
-                onClickConfirm={handleSubmit}
+                onClickConfirm={handleSubmit(onSubmit)}
                 buttonLabel="Create Admin"
                 title="Create Admin"
             >
@@ -108,11 +121,16 @@ export default function AddAdministrator() {
                                     type="text"
                                     name="name"
                                     id="name"
-                                    value={form.name}
+                                    defaultValue={form.name}
                                     onChange={handleChange}
                                     placeholder="Name"
-                                    required
+                                    ref={register}
                                 />
+                                <>
+                                    <SpanErrosMessage>
+                                        {errors.name?.message}
+                                    </SpanErrosMessage>
+                                </>
                             </WrapForm>
 
                             <WrapForm>
@@ -120,11 +138,16 @@ export default function AddAdministrator() {
                                     type="email"
                                     name="email"
                                     id="email"
-                                    value={form.email}
+                                    defaultValue={form.email}
                                     onChange={handleChange}
                                     placeholder="Email"
-                                    required
+                                    ref={register}
                                 />
+                                <>
+                                    <SpanErrosMessage>
+                                        {errors.email?.message}
+                                    </SpanErrosMessage>
+                                </>
                             </WrapForm>
 
                             <WrapForm>
@@ -149,22 +172,32 @@ export default function AddAdministrator() {
                                     type="password"
                                     name="password"
                                     id="password"
-                                    value={form.password}
+                                    defaultValue={form.password}
                                     onChange={handleChange}
                                     placeholder="Password"
-                                    required
+                                    ref={register}
                                 />
+                                <>
+                                    <SpanErrosMessage>
+                                        {errors.password?.message}
+                                    </SpanErrosMessage>
+                                </>
                             </WrapForm>
                             <WrapForm>
                                 <Input
                                     type="number"
                                     name="phone_number"
                                     id="phone_number"
-                                    value={form.phone_number}
+                                    defaultValue={form.phone_number}
                                     onChange={handleChange}
                                     placeholder="Phone Number"
-                                    required
+                                    ref={register}
                                 />
+                                <>
+                                    <SpanErrosMessage>
+                                        {errors.phone_number?.message}
+                                    </SpanErrosMessage>
+                                </>
                             </WrapForm>
                         </form>
                     </Card>
