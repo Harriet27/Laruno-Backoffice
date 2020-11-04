@@ -1,56 +1,154 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import TablePagination from '@material-ui/core/TablePagination';
+import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 import { Table } from 'reactstrap';
-import Styled from 'styled-components';
+import Card from '../../elements/Card/Card';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetOrders } from '../../store/actions';
-import { FakeOrder } from '../FakeData/FakeOrder';
 import DehazeIcon from '@material-ui/icons/Dehaze';
-import { Link } from 'react-router-dom';
+import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
-import { Input, Th, lg, Overflow } from '../../elements/Styled/StyledForm';
-
+// --- Elements, Pages, Components --- //
+import {
+    fetchGetOrders,
+    fetchMultipleDeleteOrderss,
+} from '../../store/actions';
+import InputOrder from './InputOrder';
 import FollowUp from './FollowUp';
 import FollowUp_1 from './FollowUp_1';
 import FollowUp_2 from './FollowUp_2';
 import FollowUp_3 from './FollowUp_3';
 import FollowUp_4 from './FollowUp_4';
-import Card from '../../elements/Card/Card';
-import InputOrder from './InputOrder';
 // --- Styled Components --- //
 
-const SectionOne = Styled.div`
-    margin: ${lg} 0;
-    display: flex;
-    justify-content: space-between;
-`;
-
-// --- Batas --- //
-
-const DataOrders = () => {
+const DataOrders = (props) => {
     const dispatch = useDispatch();
     const orders = useSelector((state) => state.orders.getOrders);
 
-    // --- useEffect --- Get Data orders ---//
+    console.log('Get All Data orders', orders);
+    // --- PAGINATION --- //
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
+    // --- Dropdown --- //
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const toggle = () => setDropdownOpen((prevState) => !prevState);
+
+    const [form, setForm] = useState({
+        id: [],
+        allChecked: false,
+    });
+
+    const [searching, setSearching] = useState({
+        search: '',
+    });
+
+    // --- useEffect --- Get Data Orders ---//
     useEffect(() => {
         dispatch(fetchGetOrders());
     }, [dispatch]);
 
+    // --- handleCheckboxChange --- //
+    const handleCheckboxChange = (event) => {
+        let newArray = [...form.id, event.target.id];
+        if (form.id.includes(event.target.id)) {
+            newArray = newArray.filter((item) => item !== event.target.id);
+        }
+        setForm({
+            id: newArray,
+        });
+    };
+
+    // --- Multiple Delete --- //
+    // const handleMultipleDelete = (event) => {
+    //     event.preventDefault();
+    //     dispatch(fetchMultipleDeleteOrderss(form));
+    // };
+
+    // --- Multiple Clone --- //
+    // const handleMultipleClone = (event) => {
+    //     event.preventDefault();
+    //     dispatch(fetchMultipleCloneProduct(form));
+    // };
+
+    // --- handle Change --- //
+    const handleChange = (event) => {
+        setSearching({ ...searching, [event.target.name]: event.target.value });
+    };
+
+    // const handleSearch = (event) => {
+    //     event.preventDefault();
+    //     dispatch(fetchFindProduct(searching));
+    // };
+
     return (
         <React.Fragment>
-            {/* --- section 1 --- Add New Orders and Search Orders --- */}
-            <SectionOne>
-                {/* <AddNewOrders /> */}
+            {/* --- section 1 --- Button Action link to Add Product ---*/}
+            {form.id[0] ? (
+                <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+                    <DropdownToggle
+                        style={{ backgroundColor: '#0098DA' }}
+                        caret
+                    >
+                        Actions
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        {/* <MultipleDelete onSubmit={handleMultipleDelete} /> */}
+
+                        {/* <DropdownItem onClick={handleMultipleClone}>
+                                Clone
+                            </DropdownItem> */}
+                    </DropdownMenu>
+                </Dropdown>
+            ) : (
+                <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+                    {' '}
+                    <DropdownToggle
+                        style={{ backgroundColor: '#0098DA' }}
+                        caret
+                        disabled
+                    >
+                        Actions
+                    </DropdownToggle>
+                </Dropdown>
+            )}
+
+            <div
+                style={{
+                    margin: '20px 0',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                }}
+            >
                 <InputOrder />
 
                 <div>
-                    <label>Search</label> <Input type="search" />
+                    <label>Search</label>{' '}
+                    <Input
+                        type="search"
+                        name="search"
+                        value={searching.search}
+                        onChange={handleChange}
+                    />
                 </div>
-            </SectionOne>
+                {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
+            </div>
 
-            {/* --- section 2 --- Table Get Data Product In Table --- */}
+            {/* --- section 2 --- Get Data Product --- */}
             <Card isNormal>
+                {/* --- untuk hapus melalui button --- */}
                 <Overflow>
+                    {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
+                     di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
                     {orders === null ? (
                         <React.Fragment>
                             <Table>
@@ -60,17 +158,17 @@ const DataOrders = () => {
                                             <DehazeIcon />
                                         </Th>
                                         <Th>Invoice Number</Th>
-                                        <Th>Tag</Th>
                                         <Th>Orders Date</Th>
                                         <Th>Costumer Name</Th>
                                         <Th>Costumer Phone</Th>
                                         <Th>Product</Th>
                                         <Th>Total Price</Th>
                                         <Th>Payment Status</Th>
-                                        <Th>Paid At</Th>
+                                        {/* <Th>Paid At</Th> */}
                                         <Th style={{ width: '100px' }}>
                                             Follow Up
                                         </Th>
+
                                         <Th style={{ width: '100px' }}>
                                             Actions
                                         </Th>
@@ -86,158 +184,151 @@ const DataOrders = () => {
                                 Loading ...
                             </div>
                         </React.Fragment>
-                    ) : orders.data.length >= 0 ? (
+                    ) : orders.data.length >= 1 ? (
                         <Table>
                             <thead>
                                 <tr>
                                     <Th>
-                                        <Input checkbox type="checkbox" />
+                                        <DehazeIcon />
                                     </Th>
                                     <Th>Invoice Number</Th>
-                                    <Th>Tag</Th>
                                     <Th>Orders Date</Th>
                                     <Th>Costumer Name</Th>
                                     <Th>Costumer Phone</Th>
                                     <Th>Product</Th>
                                     <Th>Total Price</Th>
                                     <Th>Payment Status</Th>
-                                    <Th>Paid At</Th>
+                                    {/* <Th>Paid At</Th> */}
                                     <Th style={{ width: '100px' }}>
                                         Follow Up
                                     </Th>
+
                                     <Th style={{ width: '100px' }}>Actions</Th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {orders.data.map((item) => {
-                                    return (
-                                        <tr key={item._id}>
-                                            <Th>
-                                                <Input
-                                                    checkbox
-                                                    type="checkbox"
-                                                    id={item._id}
-                                                    value={item._id}
-                                                    // onChange={handleCheckboxChange}
-                                                />
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.invoice_id}
-                                            </Th>
-                                            <Th as="td" td>
-                                                -
-                                            </Th>
-                                            <Th as="td" td>
-                                                {moment(item.created_at).format(
-                                                    'MMMM Do YYYY, h:mm:ss a'
-                                                )}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.user_info.name}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.user_info.phone_number}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {/* {item.cart.items.map((user) => {
-                                                    return (
-                                                        <React.Fragment
-                                                            key={item._id}
-                                                        >
-                                                            {user.item.name}
-                                                        </React.Fragment>
-                                                    );
-                                                })} */}
-                                            </Th>
-                                            <Th as="td" td>
-                                                Rp.{' '}
-                                                {FormatNumber(item.total_price)}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.payment.status}
-                                            </Th>
-                                            <Th as="td" td>
-                                                -
-                                            </Th>
-                                            <Th as="td" td>
-                                                <div
-                                                    style={{
-                                                        display: 'flex',
-                                                        flexDirection: 'row',
-                                                    }}
-                                                >
-                                                    <FollowUp />
-                                                </div>
-                                            </Th>
-                                            <Th as="td" td>
-                                                <Link
-                                                    to={`/order/detail/${item._id}`}
-                                                >
-                                                    <button>detail</button>
-                                                </Link>
-                                            </Th>
-                                        </tr>
-                                    );
-                                })}
+                                {/* {(rowsPerPage > 0
+            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : rows
+          ).map((row)  */}
+                                {orders.data
+                                    .slice(
+                                        page * rowsPerPage,
+                                        page * rowsPerPage + rowsPerPage
+                                    )
+                                    .map((item) => {
+                                        return (
+                                            <tr key={item._id}>
+                                                <Th>
+                                                    <Input
+                                                        checkbox
+                                                        type="checkbox"
+                                                        id={item._id}
+                                                        value={item._id}
+                                                        onChange={
+                                                            handleCheckboxChange
+                                                        }
+                                                    />
+                                                </Th>
 
-                                {/* test fake data */}
-                                {/* {FakeOrder.map((item) => {
-                                    return (
-                                        <tr key={item.id}>
-                                            <Th>
-                                                <Input
-                                                    checkbox
-                                                    type="checkbox"
-                                                    id={item.id}
-                                                    value={item.id}
-                                                    // onChange={handleCheckboxChange}
-                                                />
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.invoice_number}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.tag}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.order_date}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.costumer_name}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.costumer_phone}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.product}
-                                            </Th>
-                                            <Th as="td" td>
-                                                Rp.{item.total_price}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.payment_status}
-                                            </Th>
-                                            <Th as="td" td>
-                                                {item.paid_at}
-                                            </Th>
-                                            <Th as="td" td>
-                                                <div
-                                                    style={{
-                                                        display: 'flex',
-                                                    }}
+                                                <Th as="td" td>
+                                                    {item._id}
+                                                </Th>
+                                                <Th as="td" td>
+                                                    {' '}
+                                                    {moment(
+                                                        item.created_at
+                                                    ).format(
+                                                        'MMMM Do YYYY, h:mm:ss a'
+                                                    )}
+                                                </Th>
+                                                <Th as="td" td>
+                                                    {item.user_info.name}
+                                                </Th>
+                                                <Th as="td" td>
+                                                    {
+                                                        item.user_info
+                                                            .phone_number
+                                                    }
+                                                </Th>
+                                                <Th as="td" td>
+                                                    {item.items.map(
+                                                        (product) => {
+                                                            return (
+                                                                <span
+                                                                    key={
+                                                                        product._id
+                                                                    }
+                                                                >
+                                                                    {
+                                                                        product
+                                                                            .product_info
+                                                                            .name
+                                                                    }
+                                                                    ,{' '}
+                                                                </span>
+                                                            );
+                                                        }
+                                                    )}
+                                                </Th>
+                                                <Th as="td" td>
+                                                    Rp.{' '}
+                                                    {FormatNumber(
+                                                        item.total_price
+                                                    )}
+                                                </Th>
+                                                <Th as="td" td>
+                                                    {item.payment.status}
+                                                </Th>
+                                                {/* <Th>Paid At</Th> */}
+                                                <Th
+                                                    as="td"
+                                                    td
+                                                    style={{ width: '100px' }}
                                                 >
-                                                    <FollowUp />
-                                                    <FollowUp_1 />
-                                                    <FollowUp_2 />
-                                                    <FollowUp_3 />
-                                                    <FollowUp_4 />
-                                                </div>
-                                            </Th>
-                                     
-                                        </tr>
-                                    );
-                                })} */}
+                                                    <div
+                                                        style={{
+                                                            display: 'flex',
+                                                            flexDirection:
+                                                                'row',
+                                                        }}
+                                                    >
+                                                        <FollowUp />
+                                                        <FollowUp_1 />
+                                                        <FollowUp_2 />
+                                                        <FollowUp_3 />
+                                                        <FollowUp_4 />
+                                                    </div>
+                                                </Th>
+
+                                                <Th
+                                                    as="td"
+                                                    td
+                                                    style={{ width: '100px' }}
+                                                >
+                                                    Actions
+                                                </Th>
+                                            </tr>
+                                        );
+                                    })}
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <TablePagination
+                                        rowsPerPageOptions={[10, 15, 20]}
+                                        count={
+                                            orders !== null &&
+                                            orders.data.length
+                                        }
+                                        rowsPerPage={rowsPerPage}
+                                        page={page}
+                                        onChangePage={handleChangePage}
+                                        onChangeRowsPerPage={
+                                            handleChangeRowsPerPage
+                                        }
+                                    />
+                                </tr>
+                            </tfoot>
                         </Table>
                     ) : (
                         <React.Fragment>
@@ -247,17 +338,13 @@ const DataOrders = () => {
                                         <Th>
                                             <DehazeIcon />
                                         </Th>
-                                        <Th>Invoice Number</Th>
-                                        <Th>Tag</Th>
-                                        <Th>Orders Date</Th>
-                                        <Th>Costumer Name</Th>
-                                        <Th>Costumer Phone</Th>
-                                        <Th>Product</Th>
-                                        <Th>Total Price</Th>
-                                        <Th>Payment Status</Th>
-                                        <Th>Paid At</Th>
-                                        <Th>Follow Up</Th>
-                                        <Th>Actions</Th>
+                                        <Th>Name</Th>
+                                        <Th>Slug</Th>
+                                        <Th>Created At</Th>
+                                        <Th>Update At</Th>
+                                        <Th style={{ width: '100px' }}>
+                                            Actions
+                                        </Th>
                                     </tr>
                                 </thead>
                             </Table>
