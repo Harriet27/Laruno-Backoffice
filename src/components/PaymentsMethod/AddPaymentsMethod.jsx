@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { fetchPostPaymentsMethod } from '../../store/actions';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AddPaymentMethodSchema } from '../../elements/Validation';
 
 // --- Elements, Pages, Components --- //
 import Card from '../../elements/Card/Card';
@@ -40,8 +43,11 @@ export default function AddPaymentsMethod() {
     });
 
     // --- Fetch submit method Post --- //
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const { register, handleSubmit, errors } = useForm({
+        resolver: yupResolver(AddPaymentMethodSchema),
+    });
+
+    const onSubmit = async (event) => {
         dispatch(fetchPostPaymentsMethod(form));
     };
     // --- Change Value when Input Active --- //
@@ -53,7 +59,7 @@ export default function AddPaymentsMethod() {
         <ModalSmart
             buttonLabel="Add Payments"
             title="Add Payments Method"
-            onClickConfirm={handleSubmit}
+            onClickConfirm={handleSubmit(onSubmit)}
         >
             <Card>
                 <WrapForm>
@@ -61,11 +67,14 @@ export default function AddPaymentsMethod() {
                         type="text"
                         name="name"
                         id="name"
-                        value={form.name}
+                        defaultValue={form.name}
                         onChange={handleChange}
                         placeholder="Name"
-                        required
+                        ref={register}
                     />
+                    <div>
+                        <span>{errors.name?.message}</span>
+                    </div>
                 </WrapForm>
                 <WrapForm>
                     <Input
@@ -75,7 +84,7 @@ export default function AddPaymentsMethod() {
                         value={form.info}
                         onChange={handleChange}
                         placeholder="Info"
-                        required
+                        ref={register}
                     />
                 </WrapForm>
             </Card>
