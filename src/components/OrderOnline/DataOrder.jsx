@@ -293,7 +293,10 @@ const DataOrders = (props) => {
                                                                 'row',
                                                         }}
                                                     >
-                                                        <FollowUp />
+                                                        <FollowUp
+                                                            id={item._id}
+                                                            id_Wraps={item._id}
+                                                        />
                                                         <FollowUp_1 />
                                                         <FollowUp_2 />
                                                         <FollowUp_3 />

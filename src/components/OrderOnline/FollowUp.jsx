@@ -1,53 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ModalSmart from '../../elements/Modal/ModalSmart';
 import { Tooltip } from 'reactstrap';
 import { Input } from '../../elements/Styled/StyledForm';
+import { fetchShowOrders } from '../../store/actions';
 // --- Styled Components --- //
 
 export default function FollowUp(props) {
-    const [form, setForm] = useState({
-        number: '6281212408246',
-        text:
-            '' ||
-            `Selamat datang di Toko kami Salvian Kumara ☺️
+    const dispatch = useDispatch();
+    const orders = useSelector((state) => state.orders.detailOrders);
+    console.log(orders, 'orders isinya apa');
 
-Kami sudah terima pesanan anda dengan rincian sebagai berikut,
-Produk: Panci Elektrik
-Harga: Rp197.000
-Ongkir: Rp19.000
-Total: Rp265.677
-            
-            
-Dikirim ke:
-Nama: Salvian Kumara
-No HP: +6281310620752
-Alamat: Jalan Janur Hijau 1 Blok Aa5 No 17
-Kota: Kab. Tangerang
-Kecamatan: Pagedangan
-            
-            
-Silahkan transfer senilai Rp265.677, ke salah satu rekening dibawah ini:
-BCA
-No. Rek: 8015053824
-Atas Nama: Salvian Kumara
-            
-CIMB Niaga
-No. Rek: 700815470400
-Atas Nama: Salvian Kumara
-            
-Danamon
-No. Rek: 3626078921
-Atas Nama: Salvian Kumara`,
+    useEffect(() => {
+        dispatch(fetchShowOrders(props.id));
+    }, [dispatch]);
+    const [form, setForm] = useState({
+        number: '',
+        text: '',
     });
 
+    // --- test text ---
+    const text =
+        orders !== null &&
+        `Selamat datang di Toko kami ${orders.data.user_info.name}  ${orders.data.payment.status} ☺️
+
+    Kami sudah terima pesanan anda dengan rincian sebagai berikut,
+    Produk: Panci Elektrik
+    Harga: Rp197.000
+    Ongkir: Rp19.000
+    Total: Rp265.677
+                
+                
+    Dikirim ke:
+    Nama: Salvian Kumara
+    No HP: +6281310620752
+    Alamat: Jalan Janur Hijau 1 Blok Aa5 No 17
+    Kota: Kab. Tangerang
+    Kecamatan: Pagedangan
+                
+                
+    Silahkan transfer senilai Rp265.677, ke salah satu rekening dibawah ini:
+    BCA
+    No. Rek: 8015053824
+    Atas Nama: Salvian Kumara
+                
+    CIMB Niaga
+    No. Rek: 700815470400
+    Atas Nama: Salvian Kumara
+                
+    Danamon
+    No. Rek: 3626078921
+    Atas Nama: Salvian Kumara`;
+
+    form.number = orders !== null && orders.data.user_info.phone_number;
+    form.text = text;
     // const color = localStorage.getItem('color');
     function raiseInvoiceClicked() {
         // %0A INI UNTUK ENTER
         // %20 INI UNTUK SPACE
         // form.text = form.text.replace(/\s+/g, '%20');
+        const Phone_Indonesia =
+            form.number.substring(0, 0) + '62' + form.number.substring(1);
+
         form.text = form.text.replace(/\n+/g, '%0A', /\s+/g, '%20');
-        const url = `https://wa.me/${form.number}?text=${form.text}`;
+        const url = `https://wa.me/${Phone_Indonesia}?text=${form.text}`;
         window.open(url, '_blank');
+        window.location.reload('/orders');
     }
 
     const handleChange = (e) => {
@@ -60,7 +78,7 @@ Atas Nama: Salvian Kumara`,
 
     const toggleTooltip = () => setTooltipOpen(!tooltipOpen);
     return (
-        <React.Fragment>
+        <div id={props.id_Wraps}>
             <ModalSmart
                 style={{
                     backgroundColor: 'white',
@@ -100,11 +118,11 @@ Atas Nama: Salvian Kumara`,
                 onClickConfirm={raiseInvoiceClicked}
             >
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <label>Number</label>
+                    <label>Number </label>
                     <Input
                         type="number"
                         name="number"
-                        value={form.number}
+                        defaultValue={form.number}
                         onChange={handleChange}
                     />
                     <label>Text</label>
@@ -112,11 +130,11 @@ Atas Nama: Salvian Kumara`,
                         as="textarea"
                         rows="5"
                         name="text"
-                        value={form.text}
+                        defaultValue={form.text}
                         onChange={handleChange}
                     />
                 </div>
             </ModalSmart>
-        </React.Fragment>
+        </div>
     );
 }
