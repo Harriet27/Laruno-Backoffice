@@ -31,7 +31,7 @@ export default function AddContents() {
     // --- Form --- //
     const [form, setForm] = useState({
         name: '',
-        isBlog: false,
+        isBlog: true,
         cover_img: '',
         // short_content: '',
         product: [],

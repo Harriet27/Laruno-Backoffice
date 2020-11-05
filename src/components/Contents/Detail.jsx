@@ -133,7 +133,7 @@ export default function Detail(props) {
                         </div>
 
                         {/* product dan module */}
-                        {form.isBlog === true ? (
+                        {form.isBlog === false ? (
                             <>
                                 <WrapsField fullwidth>
                                     <Label>
