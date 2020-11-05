@@ -206,16 +206,14 @@ const DataProduct = (props) => {
                                     <Th>Product Code</Th>
                                     <Th>Name</Th>
                                     <Th>Product Type</Th>
-                                    <Th>Time Period</Th>
-                                    <Th>Price</Th>
+                                    <Th style={{ width: '10%' }}>
+                                        Time Period
+                                    </Th>
+                                    <Th style={{ width: '10%' }}>Price</Th>
                                     <Th style={{ width: '10%' }}>Actions</Th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row)  */}
                                 {product.data
                                     .slice(
                                         page * rowsPerPage,
