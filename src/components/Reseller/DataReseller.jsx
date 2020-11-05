@@ -46,6 +46,7 @@ const DataTopic = (props) => {
     // --- useEffect --- Get Data topic ---//
     useEffect(() => {
         dispatch(fetchGetReseller());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     return (

@@ -50,6 +50,7 @@ const DataRoles = (props) => {
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetRoles());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- handleCheckboxChange --- //

@@ -33,6 +33,7 @@ const DataTopic = (props) => {
     // --- useEffect --- Get Data coupons ---//
     useEffect(() => {
         dispatch(fetchGetCoupons());
+        // eslint-disable-next-line
     }, [dispatch]);
     // --- PAGINATION --- //
     const [page, setPage] = React.useState(0);
@@ -63,6 +64,7 @@ const DataTopic = (props) => {
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetCoupons());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- handleCheckboxChange --- //

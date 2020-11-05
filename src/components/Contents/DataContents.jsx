@@ -60,6 +60,7 @@ const DataContents = (props) => {
     // --- useEffect --- Get Data Contents ---//
     useEffect(() => {
         dispatch(fetchGetContents());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- handleCheckboxChange --- //

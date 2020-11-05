@@ -70,6 +70,7 @@ export default function DetailProduct(props) {
 
     useEffect(() => {
         dispatch(fetchGetTopic());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- optionsTopic for value select topic --- //

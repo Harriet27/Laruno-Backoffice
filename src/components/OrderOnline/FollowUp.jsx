@@ -13,6 +13,7 @@ export default function FollowUp(props) {
 
     useEffect(() => {
         dispatch(fetchShowOrders(props.id));
+        // eslint-disable-next-line
     }, [dispatch]);
     const [form, setForm] = useState({
         number: '',
@@ -73,7 +74,6 @@ export default function FollowUp(props) {
         setForm({ ...form, [name]: e.target.value });
     };
 
-    // --- test replace to persen --- //
     const [tooltipOpen, setTooltipOpen] = useState(false);
 
     const toggleTooltip = () => setTooltipOpen(!tooltipOpen);

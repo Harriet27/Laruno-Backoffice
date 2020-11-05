@@ -49,6 +49,7 @@ const DataTopic = (props) => {
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetTopic());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- handleCheckboxChange --- //

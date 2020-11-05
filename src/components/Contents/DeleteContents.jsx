@@ -44,6 +44,7 @@ const DataContents = (props) => {
     // --- useEffect --- Get Data contents ---//
     useEffect(() => {
         dispatch(fetchGetContents());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     return (

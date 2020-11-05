@@ -78,6 +78,7 @@ export default function Layout(props) {
 
     useEffect(() => {
         dispatch(fetchGetAgents());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     let optionsAgents =

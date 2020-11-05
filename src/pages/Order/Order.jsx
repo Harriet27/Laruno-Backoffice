@@ -23,6 +23,7 @@ export default function Order() {
     console.log(order, 'order isi apa');
     useEffect(() => {
         dispatch(fetchGetOrders());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- code for total sum --- //

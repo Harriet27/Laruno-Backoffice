@@ -28,6 +28,7 @@ const DataTopic = (props) => {
     // --- useEffect --- Get Data users ---//
     useEffect(() => {
         dispatch(fetchGetUsersAdministrator());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- PAGINATION --- //

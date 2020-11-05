@@ -73,6 +73,7 @@ const DataProduct = (props) => {
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetProduct());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- handleCheckboxChange --- //

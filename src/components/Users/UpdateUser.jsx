@@ -45,6 +45,7 @@ export default function UpdateUser(props) {
     // --- useEffect --- Get Data Roles ---//
     useEffect(() => {
         dispatch(fetchGetRoles());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- Roles --- //

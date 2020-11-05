@@ -74,6 +74,7 @@ const Header = () => {
 
     useEffect(() => {
         dispatch(fetchGetUsersAuthentication());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     return (

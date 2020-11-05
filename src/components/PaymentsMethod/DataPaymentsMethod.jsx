@@ -48,6 +48,7 @@ const DataPaymentsMethod = (props) => {
     // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetPaymentsMethod());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- handleCheckboxChange --- //

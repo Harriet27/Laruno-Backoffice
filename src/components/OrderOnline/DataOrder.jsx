@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import TablePagination from '@material-ui/core/TablePagination';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 import { Table } from 'reactstrap';
@@ -19,6 +20,7 @@ import FollowUp_1 from './FollowUp_1';
 import FollowUp_2 from './FollowUp_2';
 import FollowUp_3 from './FollowUp_3';
 import FollowUp_4 from './FollowUp_4';
+import NewFollowUp from './NewFollowUp';
 // --- Styled Components --- //
 
 const DataOrders = (props) => {
@@ -55,6 +57,7 @@ const DataOrders = (props) => {
     // --- useEffect --- Get Data Orders ---//
     useEffect(() => {
         dispatch(fetchGetOrders());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- handleCheckboxChange --- //
@@ -293,14 +296,21 @@ const DataOrders = (props) => {
                                                                 'row',
                                                         }}
                                                     >
-                                                        <FollowUp
+                                                        <Link
+                                                            to={`orders/followup/${item._id}`}
+                                                        >
+                                                            <button>
+                                                                Click
+                                                            </button>
+                                                        </Link>
+                                                        {/* <FollowUp
                                                             id={item._id}
                                                             id_Wraps={item._id}
                                                         />
                                                         <FollowUp_1 />
                                                         <FollowUp_2 />
                                                         <FollowUp_3 />
-                                                        <FollowUp_4 />
+                                                        <FollowUp_4 /> */}
                                                     </div>
                                                 </Th>
 

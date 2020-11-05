@@ -56,6 +56,7 @@ export default function AddCoupons() {
     console.log(payment, 'payments');
     useEffect(() => {
         dispatch(fetchGetPaymentsMethod());
+        // eslint-disable-next-line
     }, [dispatch]);
 
     // --- Fetch submit method Post --- //
