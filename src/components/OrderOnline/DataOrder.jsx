@@ -210,129 +210,93 @@ const DataOrders = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row)  */}
-                                {orders.data
-                                    .slice(
-                                        page * rowsPerPage,
-                                        page * rowsPerPage + rowsPerPage
-                                    )
-                                    .map((item) => {
-                                        return (
-                                            <tr key={item._id}>
-                                                <Th>
-                                                    <Input
-                                                        checkbox
-                                                        type="checkbox"
-                                                        id={item._id}
-                                                        value={item._id}
-                                                        onChange={
-                                                            handleCheckboxChange
-                                                        }
-                                                    />
-                                                </Th>
-
-                                                <Th as="td" td>
-                                                    {item._id}
-                                                </Th>
-                                                <Th as="td" td>
-                                                    {' '}
-                                                    {moment(
-                                                        item.created_at
-                                                    ).format(
-                                                        'MMMM Do YYYY, h:mm:ss a'
-                                                    )}
-                                                </Th>
-                                                <Th as="td" td>
-                                                    {item.user_info.name}
-                                                </Th>
-                                                <Th as="td" td>
-                                                    {
-                                                        item.user_info
-                                                            .phone_number
-                                                    }
-                                                </Th>
-                                                <Th as="td" td>
-                                                    {item.items.map(
-                                                        (product) => {
-                                                            return (
-                                                                <span
-                                                                    key={
-                                                                        product._id
-                                                                    }
-                                                                >
-                                                                    {
+                                {orders.data.map((items) => {
+                                    return (
+                                        <React.Fragment key={items._id}>
+                                            {items.orders
+                                                .slice(
+                                                    page * rowsPerPage,
+                                                    page * rowsPerPage +
+                                                        rowsPerPage
+                                                )
+                                                .map((item) => {
+                                                    return (
+                                                        <tr key={item.order_id}>
+                                                            <Th as="td" td>
+                                                                <input type="checkbox" />
+                                                            </Th>
+                                                            <Th as="td" td>
+                                                                {item.order_id}
+                                                            </Th>
+                                                            <Th as="td" td>
+                                                                -
+                                                            </Th>
+                                                            <Th as="td" td>
+                                                                {
+                                                                    items
+                                                                        .user_info
+                                                                        .name
+                                                                }
+                                                            </Th>
+                                                            <Th as="td" td>
+                                                                {
+                                                                    items
+                                                                        .user_info
+                                                                        .phone_number
+                                                                }
+                                                            </Th>
+                                                            <Th as="td" td>
+                                                                {item.items.map(
+                                                                    (
                                                                         product
-                                                                            .product_info
-                                                                            .name
-                                                                    }
-                                                                    ,{' '}
-                                                                </span>
-                                                            );
-                                                        }
-                                                    )}
-                                                </Th>
-                                                <Th as="td" td>
-                                                    Rp.{' '}
-                                                    {FormatNumber(
-                                                        item.total_price
-                                                    )}
-                                                </Th>
-                                                <Th as="td" td>
-                                                    {item.payment.status}
-                                                </Th>
-                                                {/* <Th>Paid At</Th> */}
-                                                <Th
-                                                    as="td"
-                                                    td
-                                                    style={{ width: '100px' }}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            display: 'flex',
-                                                            flexDirection:
-                                                                'row',
-                                                        }}
-                                                    >
-                                                        <Link
-                                                            to={`orders/followup/${item._id}`}
-                                                        >
-                                                            <button>
-                                                                Click
-                                                            </button>
-                                                        </Link>
-                                                        {/* <FollowUp
-                                                            id={item._id}
-                                                            id_Wraps={item._id}
-                                                        />
-                                                        <FollowUp_1 />
-                                                        <FollowUp_2 />
-                                                        <FollowUp_3 />
-                                                        <FollowUp_4 /> */}
-                                                    </div>
-                                                </Th>
+                                                                    ) => {
+                                                                        return (
+                                                                            <React.Fragment
+                                                                                key={
+                                                                                    product._id
+                                                                                }
+                                                                            >
+                                                                                {
+                                                                                    product
+                                                                                        .product_info
+                                                                                        .name
+                                                                                }
 
-                                                <Th
-                                                    as="td"
-                                                    td
-                                                    style={{ width: '100px' }}
-                                                >
-                                                    Actions
-                                                </Th>
-                                            </tr>
-                                        );
-                                    })}
+                                                                                ,{' '}
+                                                                            </React.Fragment>
+                                                                        );
+                                                                    }
+                                                                )}
+                                                            </Th>
+                                                            <Th as="td" td>
+                                                                {
+                                                                    item.total_price
+                                                                }
+                                                            </Th>
+                                                            <Th as="td" td>
+                                                                {
+                                                                    item.payment
+                                                                        .status
+                                                                }
+                                                            </Th>
+                                                            <Th as="td" td>
+                                                                follow up
+                                                            </Th>
+                                                            <Th as="td" td>
+                                                                Actions
+                                                            </Th>
+                                                        </tr>
+                                                    );
+                                                })}
+                                        </React.Fragment>
+                                    );
+                                })}
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <TablePagination
                                         rowsPerPageOptions={[10, 15, 20]}
-                                        count={
-                                            orders !== null &&
-                                            orders.data.length
-                                        }
+                                        count={40}
                                         rowsPerPage={rowsPerPage}
                                         page={page}
                                         onChangePage={handleChangePage}
