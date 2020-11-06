@@ -27,10 +27,17 @@ export default function Order() {
     }, [dispatch]);
 
     // --- code for total sum --- //
+    // return (total += item.total_price);
     let total = 0;
     order !== null &&
         order.data.map((item, index) => {
-            return (total += item.total_price);
+            return (
+                <>
+                    {item.orders.map((items) => {
+                        return (total += items.total_price);
+                    })}
+                </>
+            );
         });
     console.log(total);
     return (
