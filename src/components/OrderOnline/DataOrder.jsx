@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import TablePagination from '@material-ui/core/TablePagination';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 import { Table } from 'reactstrap';
@@ -25,12 +25,13 @@ import NewFollowUp from './NewFollowUp';
 
 const DataOrders = (props) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const orders = useSelector((state) => state.orders.getOrders);
 
     console.log('Get All Data orders', orders);
     // --- PAGINATION --- //
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -285,7 +286,22 @@ const DataOrders = (props) => {
                                                                 }
                                                             </Th>
                                                             <Th as="td" td>
-                                                                follow up
+                                                                <Link
+                                                                // to={`/orders/followup/${item.order_id}`}
+                                                                >
+                                                                    <button
+                                                                        onClick={() => {
+                                                                            // window.location.href = `http://localhost:3000/orders/followup/${item.order_id}`;
+                                                                            const url = `http://localhost:3000/orders/followup/${item.order_id}`;
+                                                                            window.open(
+                                                                                url,
+                                                                                '_blank'
+                                                                            );
+                                                                        }}
+                                                                    >
+                                                                        Click
+                                                                    </button>
+                                                                </Link>
                                                             </Th>
                                                             <Th as="td" td>
                                                                 Actions
@@ -302,7 +318,7 @@ const DataOrders = (props) => {
                                     <TablePagination
                                         rowsPerPageOptions={[10, 15, 20]}
                                         count={total_count}
-                                        rowsPerPage={rowsPerPage}
+                                        rowsPerPage={rowsPerPage * 2}
                                         page={page}
                                         onChangePage={handleChangePage}
                                         onChangeRowsPerPage={
