@@ -29,17 +29,19 @@ export default function Order() {
     // --- code for total sum --- //
     // return (total += item.total_price);
     let total = 0;
+    let total_orders = 0;
     order !== null &&
         order.data.map((item, index) => {
             return (
                 <>
+                    {(total_orders += item.orders_count)}
                     {item.orders.map((items) => {
                         return (total += items.total_price);
                     })}
                 </>
             );
         });
-    console.log(total);
+    console.log(total_orders);
     return (
         <Section>
             {order === null ? (
@@ -72,7 +74,7 @@ export default function Order() {
                 <Wraps>
                     <CardGetData
                         icon={faShoppingCart}
-                        number={order.data.length}
+                        number={total_orders}
                         text="Total Orders"
                     ></CardGetData>
 

@@ -92,7 +92,12 @@ const DataOrders = (props) => {
     //     event.preventDefault();
     //     dispatch(fetchFindProduct(searching));
     // };
-
+    let total_count = 0;
+    orders !== null &&
+        orders.data.map((items) => {
+            return (total_count += items.orders_count);
+        });
+    console.log(total_count);
     return (
         <React.Fragment>
             {/* --- section 1 --- Button Action link to Add Product ---*/}
@@ -296,7 +301,7 @@ const DataOrders = (props) => {
                                 <tr>
                                     <TablePagination
                                         rowsPerPageOptions={[10, 15, 20]}
-                                        count={40}
+                                        count={total_count}
                                         rowsPerPage={rowsPerPage}
                                         page={page}
                                         onChangePage={handleChangePage}
