@@ -53,8 +53,8 @@ export default function Bump(props) {
         bump_price,
         formulir,
         setFormulir,
-        bump_sub_headline,
-        bump_text,
+        bump_heading,
+        bump_desc,
     } = props;
 
     // --- HandleChange upload Image --- //
@@ -176,14 +176,14 @@ export default function Bump(props) {
                             {/* Tambahan bump text dan bump sub headline */}
                             <WrapsField>
                                 <Label>
-                                    <Span>Bump Sub Headline</Span>
+                                    <Span>Bump Heading</Span>
                                 </Label>
                                 <div>
                                     <Input
                                         type="text"
-                                        name="bump_sub_headline"
-                                        id="bump_sub_headline"
-                                        value={bump_sub_headline}
+                                        name="bump_heading"
+                                        id="bump_heading"
+                                        value={bump_heading}
                                         onChange={onChange}
                                     />
                                 </div>
@@ -191,14 +191,14 @@ export default function Bump(props) {
 
                             <WrapsField>
                                 <Label>
-                                    <Span>Bump Text</Span>
+                                    <Span>Bump Description</Span>
                                 </Label>
                                 <div>
                                     <Input
                                         type="text"
-                                        name="bump_text"
-                                        id="bump_text"
-                                        value={bump_text}
+                                        name="bump_desc"
+                                        id="bump_desc"
+                                        value={bump_desc}
                                         onChange={onChange}
                                     />
                                 </div>

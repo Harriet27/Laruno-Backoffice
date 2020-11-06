@@ -72,6 +72,8 @@ export default function TestAddProduct() {
                 bump_price: 0,
                 bump_weight: '',
                 bump_image: '',
+                bump_heading: '',
+                bump_desc: '',
             },
         ],
 
@@ -115,6 +117,8 @@ export default function TestAddProduct() {
         bump_price: '',
         bump_image: '',
         bump_weight: 0,
+        bump_heading: '',
+        bump_desc: '',
     });
 
     const [objWebinar, setObjWebinar] = useState({
@@ -453,6 +457,8 @@ export default function TestAddProduct() {
                         bump_price={objBump.bump_price}
                         bump_weight={objBump.bump_weight}
                         bump_image={objBump.bump_image}
+                        bump_heading={objBump.bump_heading}
+                        bump_desc={objBump.bump_desc}
                         formulir={formulir}
                         setFormulir={setFormulir}
                     />
