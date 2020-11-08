@@ -99,6 +99,11 @@ const DataOrders = (props) => {
             return (total_count += items.orders_count);
         });
     console.log(total_count);
+
+    // --- modal --- //
+    // const [modal, setModal] = useState(false);
+
+    // const toggleFollowUp = () => setModal(!modal);
     return (
         <React.Fragment>
             {/* --- section 1 --- Button Action link to Add Product ---*/}
@@ -303,6 +308,11 @@ const DataOrders = (props) => {
                                                                 >
                                                                     Click
                                                                 </button> */}
+                                                                <FollowUp
+                                                                    id={
+                                                                        item.order_id
+                                                                    }
+                                                                />
                                                             </Th>
                                                             <Th as="td" td>
                                                                 Actions

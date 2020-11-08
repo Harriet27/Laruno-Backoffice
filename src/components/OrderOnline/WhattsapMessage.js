@@ -26,8 +26,8 @@ export default function WhattsapMessage(props) {
             .replace(/\n+/g, '%0A', /\s+/g, '%20');
         const url = `https://wa.me/${phone}?text=${messageWhattsap}`;
 
-        // window.open(url);
-        window.location.href = url;
+        window.open(url, '_blank');
+        // window.location.href = url;
     }
     return (
         <div>
@@ -52,7 +52,7 @@ export default function WhattsapMessage(props) {
             <Input
                 style={{ width: '100%' }}
                 as="textarea"
-                rows="10"
+                rows="5"
                 name="message"
                 value={form.message}
                 onChange={handleChange}
