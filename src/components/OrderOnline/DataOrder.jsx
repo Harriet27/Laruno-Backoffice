@@ -252,7 +252,8 @@ const DataOrders = (props) => {
                                                                 }
                                                             </Th>
                                                             <Th as="td" td>
-                                                                {item.items.map(
+                                                                -
+                                                                {/* {item.items.map(
                                                                     (
                                                                         product
                                                                     ) => {
@@ -272,7 +273,7 @@ const DataOrders = (props) => {
                                                                             </React.Fragment>
                                                                         );
                                                                     }
-                                                                )}
+                                                                )} */}
                                                             </Th>
                                                             <Th as="td" td>
                                                                 {
@@ -286,22 +287,18 @@ const DataOrders = (props) => {
                                                                 }
                                                             </Th>
                                                             <Th as="td" td>
-                                                                <Link
-                                                                // to={`/orders/followup/${item.order_id}`}
+                                                                <button
+                                                                    onClick={() => {
+                                                                        // window.location.href = `http://localhost:3000/orders/followup/${item.order_id}`;
+                                                                        const url = `http://localhost:3000/orders/followup/${item.order_id}`;
+                                                                        window.open(
+                                                                            url,
+                                                                            '_blank'
+                                                                        );
+                                                                    }}
                                                                 >
-                                                                    <button
-                                                                        onClick={() => {
-                                                                            // window.location.href = `http://localhost:3000/orders/followup/${item.order_id}`;
-                                                                            const url = `http://localhost:3000/orders/followup/${item.order_id}`;
-                                                                            window.open(
-                                                                                url,
-                                                                                '_blank'
-                                                                            );
-                                                                        }}
-                                                                    >
-                                                                        Click
-                                                                    </button>
-                                                                </Link>
+                                                                    Click
+                                                                </button>
                                                             </Th>
                                                             <Th as="td" td>
                                                                 Actions
