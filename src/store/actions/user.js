@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
 const GET_USERS_ADMINISTRATOR = 'GET_USERS_ADMINISTRATOR';
 const GET_USERS_AUTHENTICATION = 'GET_USER_AUTHENTICATION';
+const GET_SHOW_USERS = 'GET_SHOW_USERS';
 const LOGOUT = 'LOGOUT';
 // ----------- || --- || Authentication || --- || ------------ //
 
@@ -53,7 +54,12 @@ const getUsersAuthentication = (data) => {
         data,
     };
 };
-
+const getShowUsers = (data) => {
+    return {
+        type: GET_SHOW_USERS,
+        data,
+    };
+};
 // --- fetch Get User Authentication --- //
 const fetchGetUsersAuthentication = () => async (dispatch) => {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/auth/me`;
@@ -242,6 +248,23 @@ const fetchMultipleDeleteUsers = (form) => async () => {
     }
 };
 
+// Show User //
+const fetchGetShowUsers = (id) => async (dispatch) => {
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/${id}`;
+    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result);
+    dispatch(getShowUsers(result));
+};
+
 // --- logout --- //
 const logout = (history) => (dispatch, getState) => {
     Swal.fire({
@@ -262,8 +285,11 @@ export {
     fetchMultipleDeleteUsers,
     getUsersAdministrator,
     getUsersAuthentication,
+    getShowUsers,
+    fetchGetShowUsers,
     GET_USERS_ADMINISTRATOR,
     GET_USERS_AUTHENTICATION,
+    GET_SHOW_USERS,
     LOGOUT,
     logout,
 };
