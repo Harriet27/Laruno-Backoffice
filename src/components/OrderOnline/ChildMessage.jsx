@@ -53,33 +53,33 @@ export default function ChildMessage(props) {
                         orders.data.user_info.name
                     }  ☺️
 
-                    Kami sudah terima pesanan anda dengan rincian sebagai berikut,
-                    Produk: ${orders.data.items.map((item) => {
+Kami sudah terima pesanan anda dengan rincian sebagai berikut,
+Produk: ${orders.data.items.map((item) => {
                         return item.product_info.name;
                     })}
-                    Harga: Rp197.000
-                    Ongkir: Rp19.000
-                    Total: Rp265.677
+Harga: Rp197.000
+Ongkir: Rp19.000
+Total: Rp265.677
 
-                    Dikirim ke:
-                    Nama: Salvian Kumara
-                    No HP: +6281310620752
-                    Alamat: Jalan Janur Hijau 1 Blok Aa5 No 17
-                    Kota: Kab. Tangerang
-                    Kecamatan: Pagedangan
+Dikirim ke:
+Nama: Salvian Kumara
+No HP: +6281310620752
+Alamat: Jalan Janur Hijau 1 Blok Aa5 No 17
+Kota: Kab. Tangerang
+Kecamatan: Pagedangan
 
-                    Silahkan transfer senilai Rp265.677, ke salah satu rekening dibawah ini:
-                    BCA
-                    No. Rek: 8015053824
-                    Atas Nama: Salvian Kumara
+Silahkan transfer senilai Rp265.677, ke salah satu rekening dibawah ini:
+BCA
+No. Rek: 8015053824
+Atas Nama: Salvian Kumara
 
-                    CIMB Niaga
-                    No. Rek: 700815470400
-                    Atas Nama: Salvian Kumara
+CIMB Niaga
+No. Rek: 700815470400
+Atas Nama: Salvian Kumara
 
-                    Danamon
-                    No. Rek: 3626078921
-                    Atas Nama: Salvian Kumara`}
+Danamon
+No. Rek: 3626078921
+Atas Nama: Salvian Kumara`}
                 />
             )}
         </>
