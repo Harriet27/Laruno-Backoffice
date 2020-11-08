@@ -235,7 +235,11 @@ const DataOrders = (props) => {
                                                                 {item.order_id}
                                                             </Th>
                                                             <Th as="td" td>
-                                                                -
+                                                                {moment(
+                                                                    item.create_date
+                                                                ).format(
+                                                                    'MMMM Do YYYY, h:mm:ss a'
+                                                                )}
                                                             </Th>
                                                             <Th as="td" td>
                                                                 {
@@ -252,15 +256,15 @@ const DataOrders = (props) => {
                                                                 }
                                                             </Th>
                                                             <Th as="td" td>
-                                                                -
-                                                                {/* {item.items.map(
+                                                                {item.items.map(
                                                                     (
-                                                                        product
+                                                                        product,
+                                                                        i
                                                                     ) => {
                                                                         return (
-                                                                            <React.Fragment
+                                                                            <div
                                                                                 key={
-                                                                                    product._id
+                                                                                    i
                                                                                 }
                                                                             >
                                                                                 {
@@ -270,10 +274,10 @@ const DataOrders = (props) => {
                                                                                 }
 
                                                                                 ,{' '}
-                                                                            </React.Fragment>
+                                                                            </div>
                                                                         );
                                                                     }
-                                                                )} */}
+                                                                )}
                                                             </Th>
                                                             <Th as="td" td>
                                                                 {
@@ -287,7 +291,7 @@ const DataOrders = (props) => {
                                                                 }
                                                             </Th>
                                                             <Th as="td" td>
-                                                                <button
+                                                                {/* <button
                                                                     onClick={() => {
                                                                         // window.location.href = `http://localhost:3000/orders/followup/${item.order_id}`;
                                                                         const url = `http://localhost:3000/orders/followup/${item.order_id}`;
@@ -298,7 +302,7 @@ const DataOrders = (props) => {
                                                                     }}
                                                                 >
                                                                     Click
-                                                                </button>
+                                                                </button> */}
                                                             </Th>
                                                             <Th as="td" td>
                                                                 Actions
