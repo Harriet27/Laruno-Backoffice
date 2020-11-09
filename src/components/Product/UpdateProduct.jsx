@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
-
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
 import { ButtonStyled } from '../../elements/Styled/StyledForm';
-import DetailProduct from '../../components/AddProduct/DetailProduct';
 
+// --- React Hook Form --- //
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AddProductSchema } from '../../elements/Validation/AddProductSchema';
+
+// --- Fetch/Store/Actions/ elements --- //
+import { fetchPostProducts } from '../../store/actions';
+import DetailProduct from '../../components/AddProduct/DetailProduct';
 import TabPanel from '../../elements/TabPanel/TabPanel';
 import Layout from '../../components/AddProduct/Layout';
 import DynamicField from '../../components/AddProduct/DynamicField';
 import DynamicFieldSection from '../../components/AddProduct/DynamicFieldSection';
 import Bump from '../../components/AddProduct/Bump';
-// --- Fetch/Store/Actions --- //
-import { fetchPostProducts } from '../../store/actions';
-
 function a11yProps(index) {
     return {
         id: `full-width-tab-${index}`,
@@ -25,7 +26,7 @@ function a11yProps(index) {
     };
 }
 
-export default function TestAddProduct() {
+export default function UpdateProduct() {
     const [value, setValue] = React.useState(0);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -36,6 +37,11 @@ export default function TestAddProduct() {
     const handleChangeIndex = (index) => {
         setValue(index);
     };
+
+    // --- React Hook Form --- //
+    // const { register, handleSubmit, errors } = useForm({
+    //     resolver: yupResolver(AddProductSchema),
+    // });
 
     // --- Form All --- //
     const [form, setForm] = useState({
@@ -66,6 +72,8 @@ export default function TestAddProduct() {
                 bump_price: 0,
                 bump_weight: '',
                 bump_image: '',
+                bump_heading: '',
+                bump_desc: '',
             },
         ],
 
@@ -101,7 +109,7 @@ export default function TestAddProduct() {
             feature_onpage: '',
         },
     });
-
+    console.log('FORM ADD PRODUCT', form);
     // --- Detail Product --- //
     // --- Test Order Bump,  Webinar, ecommerce--- //
     const [objBump, setObjBump] = useState({
@@ -109,6 +117,8 @@ export default function TestAddProduct() {
         bump_price: '',
         bump_image: '',
         bump_weight: 0,
+        bump_heading: '',
+        bump_desc: '',
     });
 
     const [objWebinar, setObjWebinar] = useState({
@@ -168,6 +178,11 @@ export default function TestAddProduct() {
     form.feature = { ...objFeature };
 
     // --- handleSubmit untuk enter dan submit button --- //
+
+    // const onSubmit = async (event) => {
+    //     // event.preventDefault();
+    //     dispatch(fetchPostProducts(form, history));
+    // };
     const handleSubmit = (event) => {
         event.preventDefault();
         // history
@@ -234,6 +249,7 @@ export default function TestAddProduct() {
     const [sectionAdd, setSectionAdd] = useState([
         { title: '', content: '', image: '' },
     ]);
+    console.log(sectionAdd, 'section add isinya apa');
     const [formulir, setFormulir] = useState({
         image: {
             image_url: '',
@@ -377,6 +393,9 @@ export default function TestAddProduct() {
                         duration_minute={duration.minutes}
                         handleWebinar={handleWebinar}
                         handleDuration={handleDuration}
+                        // --- REACT HOOK FORM --- //
+                        // register={register}
+                        // errors={errors}
                     />
                 </div>
             </TabPanel>
@@ -408,6 +427,9 @@ export default function TestAddProduct() {
                         arr={arr}
                         formulir={formulir}
                         setFormulir={setFormulir}
+                        // --- REACT HOOK FORM --- //
+                        // register={register}
+                        // errors={errors}
                     >
                         {form.type === 'ecommerce' ? null : (
                             <DynamicField
@@ -435,6 +457,8 @@ export default function TestAddProduct() {
                         bump_price={objBump.bump_price}
                         bump_weight={objBump.bump_weight}
                         bump_image={objBump.bump_image}
+                        bump_heading={objBump.bump_heading}
+                        bump_desc={objBump.bump_desc}
                         formulir={formulir}
                         setFormulir={setFormulir}
                     />
@@ -472,6 +496,7 @@ export default function TestAddProduct() {
                             <i className="fa fa-undo"></i> Cancel
                         </ButtonStyled>
                         <ButtonStyled
+                            // onClick={handleSubmit}
                             onClick={handleSubmit}
                             style={{ background: '#70CA63' }}
                         >

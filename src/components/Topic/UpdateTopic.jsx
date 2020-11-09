@@ -1,86 +1,36 @@
 import React, { useState } from 'react';
-import Card from '../../elements/Card/Card';
-import ModalSmart from '../../elements/Modal/ModalSmart';
-import { fetchUpdateTopic } from '../../store/actions';
-import { useDispatch } from 'react-redux';
-import Styled from 'styled-components';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Icon, IconSpan } from '../../elements/Styled/StyledModalPopUp';
 import CreateIcon from '@material-ui/icons/Create';
-import { md } from '../../elements/Styled/StyledForm';
-// --- Styled Components --- //
-const Section = Styled.section`
-    width: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-`;
-const ButtonLink = Styled.button`
-    background-color:${(props) => (props.detail ? 'grey' : '#0098DA')};
-    padding: 5px;
-    border-radius: 3px;
-    color: white;
-    font-size: ${md};
-    border: 1px solid #ced4da;
-    font-Weight: 400;
-`;
-const Input = Styled.input`
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
-    font-weight: 400;
-    color:${(props) => (props.isButton ? 'white' : '#495057')} ;
-    border-radius: 3px;
-    background-color: ${(props) => (props.isButton ? '#0098DA' : '#FCFCFC')};
-    border: 1px solid #ced4da;
-    &:focus{
-    outline: none !important;
-    border:1px solid #66AFE9;
-    }
-`;
+import InputUpdateTopic from './InputUpdateTopic';
 
-const WrapForm = Styled.div`
-    width: 100%;
-    margin-bottom: 20px;
-`;
-// --- Styled Components --- //
-
-export default function UpdateTopic(props) {
-    const dispatch = useDispatch();
-
-    const [form, setForm] = useState({
-        name: '',
+const FollowUp = (props) => {
+    const { className } = props;
+    const [modal, setModal] = useState({
+        open: false,
+        id: null,
     });
 
-    // Fetch submit method Post
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        dispatch(fetchUpdateTopic(form, props.id));
-    };
-    // merubah value setiap kali di ketik
-    const handleChange = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.value });
-    };
-
+    console.log(modal, 'mau tahu modal di order');
+    const toggle = () =>
+        setModal({
+            ...modal,
+            open: !modal.open,
+            id: props.id,
+        });
     return (
-        <React.Fragment>
-            <ModalSmart
-                buttonLabel={<CreateIcon fontSize="small" />}
-                title="Update Topic"
-                onClickConfirm={handleSubmit}
-            >
-                <Card>
-                    <WrapForm>
-                        <Input
-                            type="text"
-                            name="name"
-                            id="name"
-                            value={form.name}
-                            onChange={handleChange}
-                            placeholder="name"
-                            required
-                        />
-                    </WrapForm>
-                </Card>
-            </ModalSmart>
-        </React.Fragment>
+        <div>
+            <Button color="primary" size="sm" onClick={toggle}>
+                <CreateIcon fontSize="small" />
+            </Button>
+            <Modal isOpen={modal.open} toggle={toggle} className={className}>
+                <ModalHeader toggle={toggle}>Update Topic</ModalHeader>
+                <ModalBody>
+                    <InputUpdateTopic id={modal.id} toggle={toggle} />
+                </ModalBody>
+            </Modal>
+        </div>
     );
-}
+};
+
+export default FollowUp;

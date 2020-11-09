@@ -70,7 +70,7 @@ export default function UpdateRoles(props) {
     return (
         <ModalSmart
             buttonLabel="Add Roles"
-            title="Add Roles"
+            title="update Roles"
             onClickConfirm={handleSubmit}
         >
             <Section>
