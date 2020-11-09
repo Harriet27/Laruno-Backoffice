@@ -199,7 +199,7 @@ const DataOrders = (props) => {
                             </div>
                         </React.Fragment>
                     ) : orders.data.length >= 1 ? (
-                        <Table>
+                        <Table striped>
                             <thead>
                                 <tr>
                                     <Th>

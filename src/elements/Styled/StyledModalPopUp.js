@@ -1,7 +1,7 @@
 import Styled from 'styled-components';
 
 const Icon = Styled.i`
-background: white;
+background: none;
 color:#d7d7da;
 `;
 const IconSpan = Styled.span`
