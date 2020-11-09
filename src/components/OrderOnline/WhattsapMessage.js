@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Input } from '../../elements/Styled/StyledForm';
 import { Span } from '../../elements/Styled/StyledTabs';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 export default function WhattsapMessage(props) {
-    const { name, number, message } = props;
+    const { name, number, message, toggle } = props;
     const InputValue = (props) => {
         const [form, setForm] = useState({
             name: props.name,
@@ -61,14 +62,30 @@ export default function WhattsapMessage(props) {
                     defaultValue={form.message}
                     onChange={handleChange}
                 />
-                <button onClick={raiseInvoiceClicked}>Follow Up</button>
+                <ModalFooter>
+                    <Button
+                        color="white"
+                        style={{ border: '1px solid gray' }}
+                        onClick={props.toggle}
+                    >
+                        Cancel
+                    </Button>{' '}
+                    <Button color="primary" onClick={raiseInvoiceClicked}>
+                        Follow Up
+                    </Button>{' '}
+                </ModalFooter>
             </>
         );
     };
 
     return (
         <div>
-            <InputValue name={name} number={number} message={message} />
+            <InputValue
+                name={name}
+                number={number}
+                message={message}
+                toggle={toggle}
+            />
         </div>
     );
 }

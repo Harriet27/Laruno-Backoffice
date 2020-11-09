@@ -1,93 +1,42 @@
 import React, { useState } from 'react';
-import ModalSmart from '../../elements/Modal/ModalSmart';
-import { Tooltip } from 'reactstrap';
-import { Input } from '../../elements/Styled/StyledForm';
-// --- Styled Components --- //
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Icon, IconSpan } from '../../elements/Styled/StyledModalPopUp';
+import ChildMessage_4 from './ChildMessage_4';
 
-export default function FollowUp_4(props) {
-    const [form, setForm] = useState({
-        number: '6281212408246',
-        text:
-            '' ||
-            `Selamat siang Salvian Kumara,
-Produk Panci Elektrik laris manis nih, stok kami sisa 5 item saja ya...
-Jangan sampe kehabisan ☺🙏🏻 `,
+const FollowUp_4 = (props) => {
+    const { className } = props;
+    const [modal, setModal] = useState({
+        open: false,
+        id: null,
     });
 
-    function raiseInvoiceClicked() {
-        // %0A INI UNTUK ENTER
-        // %20 INI UNTUK SPACE
-        // form.text = form.text.replace(/\s+/g, '%20');
-        form.text = form.text.replace(/\n+/g, '%0A', /\s+/g, '%20');
-        const url = `https://wa.me/${form.number}?text=${form.text}`;
-        window.open(url, '_blank');
-    }
-    const handleChange = (e) => {
-        let name = e.target.name;
-        setForm({ ...form, [name]: e.target.value });
-    };
-
-    // --- test replace to persen --- //
-    const [tooltipOpen, setTooltipOpen] = useState(false);
-
-    const toggleTooltip = () => setTooltipOpen(!tooltipOpen);
+    console.log(modal, 'mau tahu modal di order');
+    const toggle = () =>
+        setModal({
+            ...modal,
+            open: !modal.open,
+            id: props.id,
+        });
     return (
-        <React.Fragment>
-            <ModalSmart
-                style={{
-                    backgroundColor: 'white',
-                    border: 'none',
-                }}
-                buttonLabel={
-                    <i
-                        style={{ background: 'white', color: '#d7d7da' }}
-                        className="fa fa-comment fa-2x"
-                        id="button-label-4"
-                    >
-                        <span
-                            style={{
-                                color: 'white',
-                                position: 'relative',
-                                top: '-6px',
-                                left: '-18px',
-                                fontSize: '14px',
-                            }}
-                        >
-                            4
-                        </span>
-                    </i>
-                }
-                tooltip={
-                    <Tooltip
-                        placement="top"
-                        isOpen={tooltipOpen}
-                        target="button-label-4"
-                        toggle={toggleTooltip}
-                    >
-                        Follow-Up 4
-                    </Tooltip>
-                }
-                title="Follow Up"
-                onClickConfirm={raiseInvoiceClicked}
+        <div>
+            <Button
+                color="white"
+                style={{ padding: '0' }}
+                size="sm"
+                onClick={toggle}
             >
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <label>Number</label>
-                    <Input
-                        type="number"
-                        name="number"
-                        value={form.number}
-                        onChange={handleChange}
-                    />
-                    <label>Text</label>
-                    <Input
-                        as="textarea"
-                        rows="5"
-                        name="text"
-                        value={form.text}
-                        onChange={handleChange}
-                    />
-                </div>
-            </ModalSmart>
-        </React.Fragment>
+                <Icon className="fa fa-comment fa-2x" id="button-label-1">
+                    <IconSpan>4</IconSpan>
+                </Icon>
+            </Button>
+            <Modal isOpen={modal.open} toggle={toggle} className={className}>
+                <ModalHeader toggle={toggle}>Follow Up 4</ModalHeader>
+                <ModalBody>
+                    <ChildMessage_4 id={modal.id} toggle={toggle} />
+                </ModalBody>
+            </Modal>
+        </div>
     );
-}
+};
+
+export default FollowUp_4;

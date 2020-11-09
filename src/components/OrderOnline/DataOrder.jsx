@@ -296,23 +296,40 @@ const DataOrders = (props) => {
                                                                 }
                                                             </Th>
                                                             <Th as="td" td>
-                                                                {/* <button
-                                                                    onClick={() => {
-                                                                        // window.location.href = `http://localhost:3000/orders/followup/${item.order_id}`;
-                                                                        const url = `http://localhost:3000/orders/followup/${item.order_id}`;
-                                                                        window.open(
-                                                                            url,
-                                                                            '_blank'
-                                                                        );
+                                                                <div
+                                                                    style={{
+                                                                        display:
+                                                                            'flex',
+                                                                        flexDirection:
+                                                                            'row',
                                                                     }}
                                                                 >
-                                                                    Click
-                                                                </button> */}
-                                                                <FollowUp
-                                                                    id={
-                                                                        item.order_id
-                                                                    }
-                                                                />
+                                                                    <FollowUp
+                                                                        id={
+                                                                            item.order_id
+                                                                        }
+                                                                    />
+                                                                    <FollowUp_1
+                                                                        id={
+                                                                            item.order_id
+                                                                        }
+                                                                    />
+                                                                    <FollowUp_2
+                                                                        id={
+                                                                            item.order_id
+                                                                        }
+                                                                    />
+                                                                    <FollowUp_3
+                                                                        id={
+                                                                            item.order_id
+                                                                        }
+                                                                    />
+                                                                    <FollowUp_4
+                                                                        id={
+                                                                            item.order_id
+                                                                        }
+                                                                    />
+                                                                </div>
                                                             </Th>
                                                             <Th as="td" td>
                                                                 Actions

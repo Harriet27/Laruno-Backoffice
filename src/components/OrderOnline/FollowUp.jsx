@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Icon, IconSpan } from '../../elements/Styled/StyledModalPopUp';
 import ChildMessage from './ChildMessage';
 
 const FollowUp = (props) => {
@@ -18,24 +19,21 @@ const FollowUp = (props) => {
         });
     return (
         <div>
-            <Button color="danger" onClick={toggle}>
-                {/* {buttonLabel} */}
-                Open Me
+            <Button
+                color="white"
+                style={{ padding: '0' }}
+                size="sm"
+                onClick={toggle}
+            >
+                <Icon className="fa fa-comment fa-2x" id="button-label-1">
+                    <IconSpan>w</IconSpan>
+                </Icon>
             </Button>
             <Modal isOpen={modal.open} toggle={toggle} className={className}>
-                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                <ModalHeader toggle={toggle}>Welcome</ModalHeader>
                 <ModalBody>
-                    {/* <FetchFollowUp id={modal.id} /> */}
-                    <ChildMessage id={modal.id} />
+                    <ChildMessage id={modal.id} toggle={toggle} />
                 </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={toggle}>
-                        Do Something
-                    </Button>{' '}
-                    <Button color="secondary" onClick={toggle}>
-                        Cancel
-                    </Button>
-                </ModalFooter>
             </Modal>
         </div>
     );

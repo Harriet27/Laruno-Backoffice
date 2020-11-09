@@ -5,7 +5,7 @@ import WhattsapMessage from './WhattsapMessage';
 import { Span } from '../../elements/Styled/StyledTabs';
 import { Input } from '../../elements/Styled/StyledForm';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-export default function ChildMessage(props) {
+export default function ChildMessage_2(props) {
     const { id, toggle } = props;
     const dispatch = useDispatch();
     const orders = useSelector((state) => state.orders.detailOrders);
