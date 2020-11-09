@@ -70,11 +70,12 @@ Kami sudah terima pesanan anda dengan rincian sebagai berikut,
 Produk: ${orders.data.items.map((item) => {
                         return item.product_info.name;
                     })}
+
 Harga: Rp${orders.data.total_price}
 Ongkir: free
 Total: Rp${orders.data.total_price}
-Metode Pembayaran: Transfer Bank
 
+Metode Pembayaran: Transfer Bank
 Silahkan Transfer senilai ${
                         orders.data.total_price
                     } ke Rekening atas Nama CV. Pelatihan Indonesia Sukses : 

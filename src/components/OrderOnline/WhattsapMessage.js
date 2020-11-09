@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from '../../elements/Styled/StyledForm';
-import { Span } from '../../elements/Styled/StyledTabs';
+import { Form, Span } from '../../elements/Styled/StyledTabs';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 export default function WhattsapMessage(props) {
     const { name, number, message, toggle } = props;
@@ -24,8 +24,12 @@ export default function WhattsapMessage(props) {
                 form.number.toString().substring(0, 0) +
                 '62' +
                 form.number.toString().substring(1);
+            // const Message = form.message.replace(
+            //     /\n+/g >= 1 ? '%0A%0A' : '%0A'
+            // );
 
-            const Message = form.message.replace(/\n+/g, '%0A', /\s+/g, '%20');
+            const Message = encodeURI(form.message);
+
             const url = `https://wa.me/${Phone_number}?text=${Message}`;
 
             window.open(url, '_blank');
