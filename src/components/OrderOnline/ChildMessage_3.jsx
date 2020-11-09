@@ -62,22 +62,12 @@ export default function ChildMessage_3(props) {
                     toggle={toggle}
                     name={orders.data.user_info.name}
                     number={orders.data.user_info.phone_number}
-                    message={`Selamat datang di Laruno ${
-                        orders.data.user_info.name
-                    }  ☺️
-
-Kami sudah terima pesanan anda dengan rincian sebagai berikut,
-Produk: ${orders.data.items.map((item) => {
-                        return item.product_info.name;
-                    })}
-Harga: Rp197.000
-Ongkir: Rp19.000
-Total: Rp265.677
-Metode Pembayaran: Transfer Bank
-
-Silahkan Transfer senilai total_price ke Rekening atas Nama CV. Pelatihan Indonesia Sukses : BCA 88 3131 0006 atau BNI 88 3131 0000. 
-
-Terimakasih.
+                    message={`Selamat siang, promo untuk pembelian ${orders.data.items.map(
+                        (item) => {
+                            return item.product_info.name;
+                        }
+                    )} HARI INI
+Diskon Rp10.000 ya.. ☺🙏🏻
 `}
                 />
             )}
