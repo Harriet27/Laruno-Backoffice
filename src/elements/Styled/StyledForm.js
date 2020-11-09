@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-const [sm, md, lg] = ['1rem', '0.9em', '20px'];
+const [sm, md, lg] = ['14px', '0.9em', '20px'];
 const ButtonStyled = Styled.button`
     background-color:${(props) => (props.delete ? 'red' : '#0098DA')} ;
     color: white;

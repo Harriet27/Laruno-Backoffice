@@ -184,7 +184,7 @@ const DataOrders = (props) => {
                                     {/* <Th>Costumer Phone</Th> */}
                                     {/* <Th>Product</Th> */}
                                     <Th>Total Price</Th>
-                                    <Th>Status</Th>
+                                    <Th style={{ width: '5%' }}>Status</Th>
                                     <Th style={{ width: '5%' }}>
                                         Payment Status
                                     </Th>
@@ -254,7 +254,7 @@ const DataOrders = (props) => {
                                                                 {moment(
                                                                     item.create_date
                                                                 ).format(
-                                                                    'MMMM Do YYYY,'
+                                                                    'DD-MM-YYYY - hh:mm'
                                                                 )}
                                                             </Th>
                                                             <Th as="td" td>
@@ -264,10 +264,41 @@ const DataOrders = (props) => {
                                                                 )}
                                                             </Th>
                                                             <Th as="td" td>
-                                                                {
-                                                                    item.payment
-                                                                        .status
-                                                                }
+                                                                {item.payment
+                                                                    .status ===
+                                                                'PENDING' ? (
+                                                                    <div
+                                                                        style={
+                                                                            Styles.Pending
+                                                                        }
+                                                                    >
+                                                                        <span>
+                                                                            Pending
+                                                                        </span>
+                                                                    </div>
+                                                                ) : item.payment
+                                                                      .status ===
+                                                                  'COMPLETED' ? (
+                                                                    <div
+                                                                        style={
+                                                                            Styles.Completed
+                                                                        }
+                                                                    >
+                                                                        <span>
+                                                                            Completed
+                                                                        </span>
+                                                                    </div>
+                                                                ) : (
+                                                                    <div
+                                                                        style={
+                                                                            Styles.Active
+                                                                        }
+                                                                    >
+                                                                        <span>
+                                                                            Processing
+                                                                        </span>
+                                                                    </div>
+                                                                )}
                                                             </Th>
                                                             <Th as="td" td>
                                                                 {item.payment
@@ -289,7 +320,7 @@ const DataOrders = (props) => {
                                                                         }
                                                                     >
                                                                         <span>
-                                                                            unpaid
+                                                                            Unpaid
                                                                         </span>
                                                                     </div>
                                                                 )}
@@ -364,7 +395,7 @@ const DataOrders = (props) => {
                                         <Th>Slug</Th>
                                         <Th>Created At</Th>
                                         <Th>Update At</Th>
-                                        <Th style={{ width: '100px' }}>
+                                        <Th style={{ width: '10%' }}>
                                             Actions
                                         </Th>
                                     </tr>
@@ -390,19 +421,52 @@ const Styles = {
     Paid: {
         background: '#c6e1c6',
         color: '#5b841b',
-        padding: '0 .5em',
+        padding: '.1em .5em',
         borderRadius: '30px',
         borderBottom: '1px solid rgba(0,0,0,.05)',
         textAlign: 'center',
+        fontSize: '12px',
+        maxWidth: '100%',
     },
     Unpaid: {
         background: '#f99292',
         color: '#732222',
-        padding: '0 .5em',
+        padding: '.1em.5em',
         borderRadius: '30px',
         borderBottom: '1px solid rgba(0,0,0,.05)',
         textAlign: 'center',
         maxWidth: '100%',
+        fontSize: '12px',
+    },
+    Pending: {
+        background: '#f8dda7',
+        color: '#94660c',
+        padding: '.1em .5em',
+        borderRadius: '30px',
+        borderBottom: '1px solid rgba(0,0,0,.05)',
+        textAlign: 'center',
+        maxWidth: '100%',
+        fontSize: '12px',
+    },
+    Active: {
+        background: '#c8d7e1',
+        color: '#2e4453',
+        padding: '.1em .5em',
+        borderRadius: '30px',
+        borderBottom: '1px solid rgba(0,0,0,.05)',
+        textAlign: 'center',
+        maxWidth: '100%',
+        fontSize: '12px',
+    },
+    Completed: {
+        background: '#c6e1c6',
+        color: '#5b841b',
+        padding: '.1em .5em',
+        borderRadius: '30px',
+        borderBottom: '1px solid rgba(0,0,0,.05)',
+        textAlign: 'center',
+        maxWidth: '100%',
+        fontSize: '12px',
     },
     FlexColumn: {
         display: 'flex',
