@@ -17,21 +17,13 @@ export default function WhattsapMessage(props) {
         };
 
         function raiseInvoiceClicked() {
-            // %0A INI UNTUK ENTER
-            // %20 INI UNTUK SPACE
-            // form.text = form.text.replace(/\s+/g, '%20');
             const Phone_number =
                 form.number.toString().substring(0, 0) +
                 '62' +
                 form.number.toString().substring(1);
-            // const Message = form.message.replace(
-            //     /\n+/g >= 1 ? '%0A%0A' : '%0A'
-            // );
 
             const Message = encodeURI(form.message);
-
             const url = `https://wa.me/${Phone_number}?text=${Message}`;
-
             window.open(url, '_blank');
             // window.location.href = url;
         }

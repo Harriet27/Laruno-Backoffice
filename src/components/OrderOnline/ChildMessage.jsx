@@ -74,11 +74,10 @@ Produk: ${orders.data.items.map((item) => {
 Harga: Rp${orders.data.total_price}
 Ongkir: free
 Total: Rp${orders.data.total_price}
-
 Metode Pembayaran: Transfer Bank
-Silahkan Transfer senilai ${
-                        orders.data.total_price
-                    } ke Rekening atas Nama CV. Pelatihan Indonesia Sukses : 
+
+Silahkan Transfer senilai ${orders.data.total_price} ke Rekening atas Nama 
+CV. Pelatihan Indonesia Sukses : 
 BCA 88 3131 0006 atau BNI 88 3131 0000. 
 
 Terimakasih.
