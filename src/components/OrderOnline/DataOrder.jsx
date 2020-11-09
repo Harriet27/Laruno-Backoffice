@@ -72,27 +72,12 @@ const DataOrders = (props) => {
         });
     };
 
-    // --- Multiple Delete --- //
-    // const handleMultipleDelete = (event) => {
-    //     event.preventDefault();
-    //     dispatch(fetchMultipleDeleteOrderss(form));
-    // };
-
-    // --- Multiple Clone --- //
-    // const handleMultipleClone = (event) => {
-    //     event.preventDefault();
-    //     dispatch(fetchMultipleCloneProduct(form));
-    // };
-
     // --- handle Change --- //
     const handleChange = (event) => {
         setSearching({ ...searching, [event.target.name]: event.target.value });
     };
 
-    // const handleSearch = (event) => {
-    //     event.preventDefault();
-    //     dispatch(fetchFindProduct(searching));
-    // };
+    // --- Total Count --- //
     let total_count = 0;
     orders !== null &&
         orders.data.map((items) => {
@@ -100,10 +85,6 @@ const DataOrders = (props) => {
         });
     console.log(total_count);
 
-    // --- modal --- //
-    // const [modal, setModal] = useState(false);
-
-    // const toggleFollowUp = () => setModal(!modal);
     return (
         <React.Fragment>
             {/* --- section 1 --- Button Action link to Add Product ---*/}
@@ -115,13 +96,7 @@ const DataOrders = (props) => {
                     >
                         Actions
                     </DropdownToggle>
-                    <DropdownMenu>
-                        {/* <MultipleDelete onSubmit={handleMultipleDelete} /> */}
-
-                        {/* <DropdownItem onClick={handleMultipleClone}>
-                                Clone
-                            </DropdownItem> */}
-                    </DropdownMenu>
+                    <DropdownMenu></DropdownMenu>
                 </Dropdown>
             ) : (
                 <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
@@ -161,8 +136,6 @@ const DataOrders = (props) => {
             <Card isNormal>
                 {/* --- untuk hapus melalui button --- */}
                 <Overflow>
-                    {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
-                     di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
                     {orders === null ? (
                         <React.Fragment>
                             <Table>
@@ -245,12 +218,9 @@ const DataOrders = (props) => {
                                                             </Th>
                                                             <Th as="td" td>
                                                                 <div
-                                                                    style={{
-                                                                        display:
-                                                                            'flex',
-                                                                        flexDirection:
-                                                                            'column',
-                                                                    }}
+                                                                    style={
+                                                                        Styles.FlexColumn
+                                                                    }
                                                                 >
                                                                     <div
                                                                         style={{
@@ -287,37 +257,6 @@ const DataOrders = (props) => {
                                                                     'MMMM Do YYYY,'
                                                                 )}
                                                             </Th>
-                                                            {/* <Th as="td" td>
-                                                                {
-                                                                    items
-                                                                        .user_info
-                                                                        .phone_number
-                                                                }
-                                                            </Th> */}
-                                                            {/* <Th as="td" td>
-                                                                {item.items.map(
-                                                                    (
-                                                                        product,
-                                                                        i
-                                                                    ) => {
-                                                                        return (
-                                                                            <div
-                                                                                key={
-                                                                                    i
-                                                                                }
-                                                                            >
-                                                                                {
-                                                                                    product
-                                                                                        .product_info
-                                                                                        .name
-                                                                                }
-
-                                                                                ,{' '}
-                                                                            </div>
-                                                                        );
-                                                                    }
-                                                                )}
-                                                            </Th> */}
                                                             <Th as="td" td>
                                                                 Rp.{' '}
                                                                 {FormatNumber(
@@ -335,43 +274,19 @@ const DataOrders = (props) => {
                                                                     .status ===
                                                                 'COMPLETED' ? (
                                                                     <div
-                                                                        style={{
-                                                                            background:
-                                                                                '#c6e1c6',
-                                                                            color:
-                                                                                '#5b841b',
-                                                                            padding:
-                                                                                '0 .5em',
-                                                                            borderRadius:
-                                                                                '30px',
-                                                                            borderBottom:
-                                                                                '1px solid rgba(0,0,0,.05)',
-                                                                            textAlign:
-                                                                                'center',
-                                                                        }}
+                                                                        style={
+                                                                            Styles.Paid
+                                                                        }
                                                                     >
                                                                         <span>
-                                                                            paid
+                                                                            Paid
                                                                         </span>
                                                                     </div>
                                                                 ) : (
                                                                     <div
-                                                                        style={{
-                                                                            background:
-                                                                                '#f99292',
-                                                                            color:
-                                                                                '#732222',
-                                                                            padding:
-                                                                                '0 .5em',
-                                                                            borderRadius:
-                                                                                '30px',
-                                                                            borderBottom:
-                                                                                '1px solid rgba(0,0,0,.05)',
-                                                                            textAlign:
-                                                                                'center',
-                                                                            maxWidth:
-                                                                                '100%',
-                                                                        }}
+                                                                        style={
+                                                                            Styles.Unpaid
+                                                                        }
                                                                     >
                                                                         <span>
                                                                             unpaid
@@ -381,12 +296,9 @@ const DataOrders = (props) => {
                                                             </Th>
                                                             <Th as="td" td>
                                                                 <div
-                                                                    style={{
-                                                                        display:
-                                                                            'flex',
-                                                                        flexDirection:
-                                                                            'row',
-                                                                    }}
+                                                                    style={
+                                                                        Styles.FlexRow
+                                                                    }
                                                                 >
                                                                     <FollowUp
                                                                         id={
@@ -472,6 +384,34 @@ const DataOrders = (props) => {
             </Card>
         </React.Fragment>
     );
+};
+
+const Styles = {
+    Paid: {
+        background: '#c6e1c6',
+        color: '#5b841b',
+        padding: '0 .5em',
+        borderRadius: '30px',
+        borderBottom: '1px solid rgba(0,0,0,.05)',
+        textAlign: 'center',
+    },
+    Unpaid: {
+        background: '#f99292',
+        color: '#732222',
+        padding: '0 .5em',
+        borderRadius: '30px',
+        borderBottom: '1px solid rgba(0,0,0,.05)',
+        textAlign: 'center',
+        maxWidth: '100%',
+    },
+    FlexColumn: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    FlexRow: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
 };
 
 export default DataOrders;
