@@ -10,6 +10,7 @@ export default function WhattsapMessage(props) {
             number: props.number,
             message: props.message,
         });
+
         console.log(form, 'ini form black');
         const handleChange = (e) => {
             setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,16 +20,12 @@ export default function WhattsapMessage(props) {
             // %0A INI UNTUK ENTER
             // %20 INI UNTUK SPACE
             // form.text = form.text.replace(/\s+/g, '%20');
-
-            const phone =
+            const Phone_number =
                 form.number.toString().substring(0, 0) +
                 '62' +
                 form.number.toString().substring(1);
-
-            const messageWhattsap = form.message
-                .toString()
-                .replace(/\n+/g, '%0A', /\s+/g, '%20');
-            const url = `https://wa.me/${phone}?text=${messageWhattsap}`;
+            const Message = form.message.replace(/\n+/g, '%0A', /\s+/g, '%20');
+            const url = `https://wa.me/${Phone_number}?text=${Message}`;
 
             window.open(url, '_blank');
             // window.location.href = url;
@@ -48,7 +45,7 @@ export default function WhattsapMessage(props) {
                     style={{ width: '100%' }}
                     type="number"
                     name="number"
-                    defaultValue={form.number}
+                    value={form.number}
                     onChange={handleChange}
                 />
                 <label>
@@ -59,7 +56,7 @@ export default function WhattsapMessage(props) {
                     as="textarea"
                     rows="5"
                     name="message"
-                    defaultValue={form.message}
+                    value={form.message}
                     onChange={handleChange}
                 />
                 <ModalFooter>
