@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Icon, IconSpan } from '../../elements/Styled/StyledModalPopUp';
+import { ButtonLink } from '../../elements/Styled/StyledTabs';
 import CreateIcon from '@material-ui/icons/Create';
 import InputUpdateTopic from './InputUpdateTopic';
 
@@ -20,9 +20,9 @@ const FollowUp = (props) => {
         });
     return (
         <div>
-            <Button color="primary" size="sm" onClick={toggle}>
+            <ButtonLink onClick={toggle}>
                 <CreateIcon fontSize="small" />
-            </Button>
+            </ButtonLink>
             <Modal isOpen={modal.open} toggle={toggle} className={className}>
                 <ModalHeader toggle={toggle}>Update Topic</ModalHeader>
                 <ModalBody>

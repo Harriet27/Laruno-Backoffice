@@ -1,5 +1,6 @@
 import Styled from 'styled-components';
 
+const { md } = '0.9em';
 const Input = Styled.input`
     width: ${(props) => (props.isRadioButton ? '3%' : '100%')};
     padding: .375rem;
@@ -52,4 +53,22 @@ const Form = Styled.div`
     }
 `;
 
-export { Form, Section, SectionOne, Span, WrapsField, Label, Input };
+const ButtonLink = Styled.button`
+    background-color:${(props) => (props.detail ? 'grey' : '#0098DA')};
+    padding: 4px 5px;
+    border-radius: 3px;
+    color: white;
+    font-size: ${md};
+    border: 1px solid #ced4da;
+    font-Weight: 400;
+`;
+export {
+    Form,
+    Section,
+    SectionOne,
+    Span,
+    WrapsField,
+    Label,
+    Input,
+    ButtonLink,
+};
