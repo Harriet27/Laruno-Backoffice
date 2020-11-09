@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchShowTopic, fetchUpdateTopic } from '../../store/actions';
 import { Input } from '../../elements/Styled/StyledForm';
-
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 export default function InputUpdateTopic(props) {
     // ---Input value --- //
     const InputValue = (props) => {
@@ -40,12 +40,25 @@ export default function InputUpdateTopic(props) {
                 >
                     <img width="100%" src={form.icon} alt={form.icon} />
                 </div>
+                <ModalFooter>
+                    <Button
+                        color="white"
+                        style={{ border: '1px solid gray' }}
+                        onClick={props.toggle}
+                    >
+                        Cancel
+                    </Button>{' '}
+                    <Button color="primary" onClick={handleSubmit}>
+                        Update
+                    </Button>{' '}
+                </ModalFooter>
             </>
         );
     };
 
+    // ---- Finish ----//
     const dispatch = useDispatch();
-    const { id } = props;
+    const { id, toggle } = props;
     const topic = useSelector((state) => state.topic.showTopic);
     console.log(topic, 'update tpic by id');
 
@@ -60,6 +73,7 @@ export default function InputUpdateTopic(props) {
                 name={topic !== null && topic.data.name}
                 icon={topic !== null && topic.data.icon}
                 id={id}
+                toggle={toggle}
             />
         </section>
     );
