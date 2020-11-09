@@ -4,7 +4,7 @@ import { ButtonLink } from '../../elements/Styled/StyledTabs';
 import CreateIcon from '@material-ui/icons/Create';
 import InputUpdateTopic from './InputUpdateTopic';
 
-const FollowUp = (props) => {
+const UpdateTopic = (props) => {
     const { className } = props;
     const [modal, setModal] = useState({
         open: false,
@@ -33,4 +33,4 @@ const FollowUp = (props) => {
     );
 };
 
-export default FollowUp;
+export default UpdateTopic;

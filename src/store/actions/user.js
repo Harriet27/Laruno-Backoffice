@@ -174,7 +174,7 @@ const fetchUpdateAdministrator = (form, id) => async () => {
                 text: '',
                 icon: 'success',
             });
-            window.location.reload('/dashboard');
+            window.location.reload('/users');
         } else {
             Swal.fire({
                 title: 'update gagal',
