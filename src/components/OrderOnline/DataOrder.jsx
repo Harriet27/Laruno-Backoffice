@@ -212,7 +212,9 @@ const DataOrders = (props) => {
                                     {/* <Th>Product</Th> */}
                                     <Th>Total Price</Th>
                                     <Th>Status</Th>
-                                    <Th>Payment Status</Th>
+                                    <Th style={{ width: '5%' }}>
+                                        Payment Status
+                                    </Th>
                                     {/* <Th>Paid At</Th> */}
                                     <Th style={{ width: '100px' }}>
                                         Follow Up
@@ -329,7 +331,53 @@ const DataOrders = (props) => {
                                                                 }
                                                             </Th>
                                                             <Th as="td" td>
-                                                                paid
+                                                                {item.payment
+                                                                    .status ===
+                                                                'COMPLETED' ? (
+                                                                    <div
+                                                                        style={{
+                                                                            background:
+                                                                                '#c6e1c6',
+                                                                            color:
+                                                                                '#5b841b',
+                                                                            padding:
+                                                                                '0 .5em',
+                                                                            borderRadius:
+                                                                                '30px',
+                                                                            borderBottom:
+                                                                                '1px solid rgba(0,0,0,.05)',
+                                                                            textAlign:
+                                                                                'center',
+                                                                        }}
+                                                                    >
+                                                                        <span>
+                                                                            paid
+                                                                        </span>
+                                                                    </div>
+                                                                ) : (
+                                                                    <div
+                                                                        style={{
+                                                                            background:
+                                                                                '#f99292',
+                                                                            color:
+                                                                                '#732222',
+                                                                            padding:
+                                                                                '0 .5em',
+                                                                            borderRadius:
+                                                                                '30px',
+                                                                            borderBottom:
+                                                                                '1px solid rgba(0,0,0,.05)',
+                                                                            textAlign:
+                                                                                'center',
+                                                                            maxWidth:
+                                                                                '100%',
+                                                                        }}
+                                                                    >
+                                                                        <span>
+                                                                            unpaid
+                                                                        </span>
+                                                                    </div>
+                                                                )}
                                                             </Th>
                                                             <Th as="td" td>
                                                                 <div
