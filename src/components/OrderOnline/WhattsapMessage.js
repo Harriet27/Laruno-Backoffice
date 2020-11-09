@@ -24,6 +24,7 @@ export default function WhattsapMessage(props) {
                 form.number.toString().substring(0, 0) +
                 '62' +
                 form.number.toString().substring(1);
+
             const Message = form.message.replace(/\n+/g, '%0A', /\s+/g, '%20');
             const url = `https://wa.me/${Phone_number}?text=${Message}`;
 

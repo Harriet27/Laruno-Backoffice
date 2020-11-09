@@ -149,7 +149,7 @@ const fetchUpdateAdministrator = (form, id) => async () => {
     try {
         const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/${id}`;
 
-        // --- apabila form itu kosong maka hapus formnya --- //
+        // --- apabila value dari key di dalam form "" maka hapus keynya tidak usah di bawa kedalam body --- //
         for (let key in form) {
             if (form[key] === '') {
                 delete form[key];
