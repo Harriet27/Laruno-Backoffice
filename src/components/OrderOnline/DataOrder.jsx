@@ -172,10 +172,10 @@ const DataOrders = (props) => {
                                             <DehazeIcon />
                                         </Th>
                                         <Th>Invoice Number</Th>
-                                        <Th>Orders Date</Th>
-                                        <Th>Costumer Name</Th>
-                                        <Th>Costumer Phone</Th>
-                                        <Th>Product</Th>
+                                        <Th>Name</Th>
+                                        <Th>Date</Th>
+                                        {/* <Th>Costumer Phone</Th> */}
+                                        {/* <Th>Product</Th> */}
                                         <Th>Total Price</Th>
                                         <Th>Payment Status</Th>
                                         {/* <Th>Paid At</Th> */}
@@ -206,11 +206,12 @@ const DataOrders = (props) => {
                                         <DehazeIcon />
                                     </Th>
                                     <Th>Invoice Number</Th>
-                                    <Th>Orders Date</Th>
-                                    <Th>Costumer Name</Th>
-                                    <Th>Costumer Phone</Th>
-                                    <Th>Product</Th>
+                                    <Th>Name</Th>
+                                    <Th>Date</Th>
+                                    {/* <Th>Costumer Phone</Th> */}
+                                    {/* <Th>Product</Th> */}
                                     <Th>Total Price</Th>
+                                    <Th>Status</Th>
                                     <Th>Payment Status</Th>
                                     {/* <Th>Paid At</Th> */}
                                     <Th style={{ width: '100px' }}>
@@ -237,30 +238,61 @@ const DataOrders = (props) => {
                                                                 <input type="checkbox" />
                                                             </Th>
                                                             <Th as="td" td>
-                                                                {item.order_id}
+                                                                {/* {item.order_id} */}
+                                                                Invoice
+                                                            </Th>
+                                                            <Th as="td" td>
+                                                                <div
+                                                                    style={{
+                                                                        display:
+                                                                            'flex',
+                                                                        flexDirection:
+                                                                            'column',
+                                                                    }}
+                                                                >
+                                                                    <div
+                                                                        style={{
+                                                                            color:
+                                                                                '#0098da',
+                                                                            fontWeight:
+                                                                                '700',
+                                                                        }}
+                                                                    >
+                                                                        {
+                                                                            items
+                                                                                .user_info
+                                                                                .name
+                                                                        }
+                                                                    </div>
+                                                                    <div
+                                                                        style={{
+                                                                            fontSize:
+                                                                                '12px',
+                                                                        }}
+                                                                    >
+                                                                        {
+                                                                            items
+                                                                                .user_info
+                                                                                .phone_number
+                                                                        }
+                                                                    </div>
+                                                                </div>
                                                             </Th>
                                                             <Th as="td" td>
                                                                 {moment(
                                                                     item.create_date
                                                                 ).format(
-                                                                    'MMMM Do YYYY, h:mm:ss a'
+                                                                    'MMMM Do YYYY,'
                                                                 )}
                                                             </Th>
-                                                            <Th as="td" td>
-                                                                {
-                                                                    items
-                                                                        .user_info
-                                                                        .name
-                                                                }
-                                                            </Th>
-                                                            <Th as="td" td>
+                                                            {/* <Th as="td" td>
                                                                 {
                                                                     items
                                                                         .user_info
                                                                         .phone_number
                                                                 }
-                                                            </Th>
-                                                            <Th as="td" td>
+                                                            </Th> */}
+                                                            {/* <Th as="td" td>
                                                                 {item.items.map(
                                                                     (
                                                                         product,
@@ -283,17 +315,21 @@ const DataOrders = (props) => {
                                                                         );
                                                                     }
                                                                 )}
-                                                            </Th>
+                                                            </Th> */}
                                                             <Th as="td" td>
-                                                                {
+                                                                Rp.{' '}
+                                                                {FormatNumber(
                                                                     item.total_price
-                                                                }
+                                                                )}
                                                             </Th>
                                                             <Th as="td" td>
                                                                 {
                                                                     item.payment
                                                                         .status
                                                                 }
+                                                            </Th>
+                                                            <Th as="td" td>
+                                                                paid
                                                             </Th>
                                                             <Th as="td" td>
                                                                 <div
