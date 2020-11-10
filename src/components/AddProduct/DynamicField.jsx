@@ -54,10 +54,7 @@ export default function DynamicField(props) {
     } = props;
 
     return (
-        <div
-            style={{ display: 'flex', flexDirection: 'column' }}
-            className="App"
-        >
+        <div style={Styles.FlexColumn} className="App">
             <Label>
                 <Span>Learn About</Span>
             </Label>
@@ -67,12 +64,7 @@ export default function DynamicField(props) {
                 {fields.map((field, idx) => {
                     return (
                         <WrapsField key={`${field}-${idx}`}>
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                }}
-                            >
+                            <div style={Styles.FlexBetween}>
                                 <Input
                                     type="text"
                                     name={`one-${idx}`}
@@ -118,3 +110,8 @@ export default function DynamicField(props) {
         </div>
     );
 }
+
+const Styles = {
+    FlexColumn: { display: 'flex', flexDirection: 'column' },
+    FlexBetween: { display: 'flex', justifyContent: 'space-between' },
+};

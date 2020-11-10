@@ -23,7 +23,6 @@ import {
     Label,
     Input,
 } from '../../elements/Styled/StyledTabs';
-// --- Styled Components --- //
 
 export default function DetailProduct(props) {
     const dispatch = useDispatch();
@@ -65,7 +64,6 @@ export default function DetailProduct(props) {
         register,
         errors,
     } = props;
-
     const topic = useSelector((state) => state.topic.getTopic);
 
     useEffect(() => {
@@ -86,12 +84,7 @@ export default function DetailProduct(props) {
                 <Card isNormal style={{ width: '100%' }}>
                     <Form as="div">
                         {/* --- Field name product --- */}
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                            }}
-                        >
+                        <div style={Styles.FlexBetween}>
                             <WrapsField>
                                 <Label>
                                     <Span>Nama Produk</Span>
@@ -104,13 +97,10 @@ export default function DetailProduct(props) {
                                         defaultValue={name}
                                         onChange={onChange}
                                         placeholder="Product Name..."
-                                        // ref={register}
                                     />
                                 </div>
-                                {/* <span> {errors.name?.message}</span> */}
                             </WrapsField>
 
-                            {/* --- Product code --- */}
                             <WrapsField>
                                 <Label>
                                     <Span>Produk Code</Span>
@@ -123,13 +113,10 @@ export default function DetailProduct(props) {
                                         defaultValue={code}
                                         onChange={onChange}
                                         placeholder="Product Code..."
-                                        // ref={register}
                                     />
                                 </div>
-                                {/* <span> {errors.code?.message}</span> */}
                             </WrapsField>
 
-                            {/* --- Slug --- */}
                             <WrapsField>
                                 <Label>
                                     <Span>Slug</Span>
@@ -142,19 +129,12 @@ export default function DetailProduct(props) {
                                         defaultValue={slug}
                                         onChange={onChange}
                                         placeholder="Product Slug..."
-                                        // ref={register}
                                     />
                                 </div>
-                                {/* <span> {errors.slug?.message}</span> */}
                             </WrapsField>
                         </div>
-                        {/* --- Field Product Category --- */}
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                            }}
-                        >
+
+                        <div style={Styles.FlexBetween}>
                             <WrapsField>
                                 <Label>
                                     <Span>Product Type</Span>
@@ -166,7 +146,6 @@ export default function DetailProduct(props) {
                                         id="type"
                                         defaultValue={type}
                                         onChange={onChange}
-                                        // ref={register}
                                     >
                                         <option value="" disabled hidden>
                                             Choose here
@@ -181,7 +160,6 @@ export default function DetailProduct(props) {
                                         <option value="bonus">Bonus</option>
                                     </Input>
                                 </div>
-                                {/* <span> {errors.name?.message}</span> */}
                             </WrapsField>
                             <WrapsField>
                                 <Label>
@@ -205,13 +183,7 @@ export default function DetailProduct(props) {
                                     <Span>Periode Waktu</Span>
                                 </Label>
                                 {/*  Styled for Rp */}
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        border: '1px solid #ced4da',
-                                        borderRadius: '3px',
-                                    }}
-                                >
+                                <div style={Styles.BorderPriceMonth}>
                                     <Input
                                         isPrice
                                         type="number"
@@ -219,19 +191,9 @@ export default function DetailProduct(props) {
                                         id="time_period"
                                         value={time_period}
                                         onChange={onChange}
-                                    />{' '}
-                                    <div
-                                        style={{
-                                            backgroundColor: '#e9ecef',
-                                            width: '80px',
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                textAlign: 'center',
-                                                marginTop: '3px',
-                                            }}
-                                        >
+                                    />
+                                    <div style={Styles.PeriodMonth}>
+                                        <div style={Styles.MarginPriceMonth}>
                                             Month
                                         </div>
                                     </div>
@@ -242,12 +204,7 @@ export default function DetailProduct(props) {
                         <div>
                             {props.form === 'webinar' ? (
                                 <div>
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                        }}
-                                    >
+                                    <div style={Styles.FlexBetween}>
                                         <WrapsField>
                                             <Label>
                                                 <Span>Zoom ID</Span>
@@ -281,10 +238,7 @@ export default function DetailProduct(props) {
                                             <Label></Label>
                                             <div>
                                                 <Input
-                                                    style={{
-                                                        height: '35px',
-                                                        marginTop: '10PX',
-                                                    }}
+                                                    style={Styles.StartTime}
                                                     as="select"
                                                     name="start_time"
                                                     id="start_time"
@@ -307,17 +261,12 @@ export default function DetailProduct(props) {
                                             </div>
                                         </WrapsField>
                                     </div>
-                                    {/* --- time picker try it --- */}
+
                                     <Label>
                                         <Span>Duration</Span>
                                     </Label>
 
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                        }}
-                                    >
+                                    <div style={Styles.FlexBetween}>
                                         <WrapsField>
                                             <div>
                                                 <Input
@@ -347,9 +296,7 @@ export default function DetailProduct(props) {
                                             </div>
                                         </WrapsField>
 
-                                        <WrapsField
-                                            style={{ marginRight: '35%' }}
-                                        >
+                                        <WrapsField style={Styles.MarginRight}>
                                             <div>
                                                 <Input
                                                     as="select"
@@ -378,11 +325,9 @@ export default function DetailProduct(props) {
                                             </div>
                                         </WrapsField>
                                     </div>
-                                    {/* --- Batas Percobaan TIME PICKER --- */}
                                 </div>
                             ) : null}
 
-                            {/* ---- Ecommerce --- Testing nunggu Service dari Backend ---- */}
                             {props.form === 'ecommerce' ? (
                                 <div>
                                     <WrapsField>
@@ -447,39 +392,15 @@ export default function DetailProduct(props) {
                             ) : null}
                         </div>
 
-                        {/* Field Topic masih error */}
-
-                        {/* Field Price ---- Styled masih di inject ----*/}
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                            }}
-                        >
+                        <div style={Styles.FlexBetween}>
                             <WrapsField>
                                 <Label>
                                     <Span>Harga Normal</Span>
                                 </Label>
-                                {/*  Styled for Rp */}
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        border: '1px solid #ced4da',
-                                        borderRadius: '3px',
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            backgroundColor: '#e9ecef',
-                                            width: '50px',
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                textAlign: 'center',
-                                                marginTop: '3px',
-                                            }}
-                                        >
+
+                                <div style={Styles.BorderPriceMonth}>
+                                    <div style={Styles.Price}>
+                                        <div style={Styles.MarginPriceMonth}>
                                             Rp
                                         </div>
                                     </div>
@@ -494,31 +415,14 @@ export default function DetailProduct(props) {
                                 </div>
                             </WrapsField>
 
-                            {/* --- Harga Penjualan */}
-                            <WrapsField style={{ marginRight: '35%' }}>
+                            <WrapsField style={Styles.MarginRight}>
                                 <Label>
                                     <Span>Harga Promo</Span>
                                 </Label>
                                 {/*  Styled for Rp */}
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        border: '1px solid #ced4da',
-                                        borderRadius: '3px',
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            backgroundColor: '#e9ecef',
-                                            width: '50px',
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                textAlign: 'center',
-                                                marginTop: '3px',
-                                            }}
-                                        >
+                                <div style={Styles.BorderPriceMonth}>
+                                    <div style={Styles.Price}>
+                                        <div style={Styles.MarginPriceMonth}>
                                             Rp
                                         </div>
                                     </div>
@@ -533,15 +437,8 @@ export default function DetailProduct(props) {
                                 </div>
                             </WrapsField>
                         </div>
-                        {/* --- Field Time Period --- */}
 
-                        {/* Field Status */}
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                            }}
-                        >
+                        <div style={Styles.FlexBetween}>
                             <WrapsField>
                                 <Label>
                                     <Span>Status</Span>
@@ -553,7 +450,6 @@ export default function DetailProduct(props) {
                                         id="visibility"
                                         defaultValue={visibility}
                                         onChange={onChange}
-                                        // ref={register}
                                     >
                                         <option value="" disabled hidden>
                                             Choose here
@@ -563,11 +459,9 @@ export default function DetailProduct(props) {
                                         <option value="draft">Draft</option>
                                     </Input>
                                 </div>
-                                {/* <span> {errors.visibility?.message}</span> */}
                             </WrapsField>
 
-                            {/* Field UpSale */}
-                            <WrapsField style={{ marginRight: '35%' }}>
+                            <WrapsField style={Styles.MarginRight}>
                                 <Label>
                                     <Span>Method Sale</Span>
                                 </Label>
@@ -591,11 +485,9 @@ export default function DetailProduct(props) {
                                         </option>
                                     </Input>
                                 </div>
-                                {/* <span> {errors.sale_method?.message}</span> */}
                             </WrapsField>
                         </div>
                         <WrapsField>
-                            {/* image product */}
                             <Label>
                                 <Span>Image Product</Span>
                             </Label>
@@ -612,3 +504,34 @@ export default function DetailProduct(props) {
         </Section>
     );
 }
+
+const Styles = {
+    FlexBetween: {
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
+    BorderPriceMonth: {
+        display: 'flex',
+        border: '1px solid #ced4da',
+        borderRadius: '3px',
+    },
+    PeriodMonth: {
+        backgroundColor: '#e9ecef',
+        width: '80px',
+    },
+    MarginPriceMonth: {
+        textAlign: 'center',
+        marginTop: '3px',
+    },
+    Price: {
+        backgroundColor: '#e9ecef',
+        width: '50px',
+    },
+    StartTime: {
+        height: '35px',
+        marginTop: '10PX',
+    },
+    MarginRight: {
+        marginRight: '35px',
+    },
+};

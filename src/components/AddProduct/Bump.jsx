@@ -4,35 +4,11 @@ import { useDispatch } from 'react-redux';
 import Styled from 'styled-components';
 import SingleImage from './SingleImage';
 import { fetchPostSingleImage } from '../../store/actions';
+import { Span, Label, Input } from '../../elements/Styled/StyledTabs';
 // --- Styled Components --- //
-const Input = Styled.input`
-    width: 100%;
-    padding: .375rem;
-    font-size: 14px;
-    font-weight: 400;
-    color: #495057;
-    border-radius:${(props) => (props.isPrice ? '0' : '3px')};
-    background-color: #FCFCFC;
-    border: ${(props) => (props.isPrice ? '0' : '1px solid #ced4da')};
-    &:focus{
-    outline: none !important;
-    border:1px solid #66AFE9;
-    margin-right: ${(props) => (props.checkbox ? '10px' : null)};
-    }
-`;
-
-const Label = Styled.label`
-    
-`;
 const WrapsField = Styled.div`
     margin-bottom: 25px;
 `;
-const Span = Styled.span`
-    font-weight: bold;
-    color: #656565;
-    font-size: 16px;
-`;
-
 const Section = Styled.div`
     padding: 50px 100px;
     line-height: 1.5;
@@ -40,7 +16,9 @@ const Section = Styled.div`
       padding: 40px
     }
 `;
-
+const Container = Styled.div`
+    padding: 20px 30px;
+`;
 // --- Styled Components --- //
 
 export default function Bump(props) {
@@ -73,7 +51,7 @@ export default function Bump(props) {
     return (
         <Section>
             <Card isNormal>
-                <div style={{ padding: '20px 30px' }}>
+                <Container>
                     <div>
                         <React.Fragment>
                             <WrapsField>
@@ -96,27 +74,9 @@ export default function Bump(props) {
                                     <Span>Harga</Span>
                                 </Label>
                                 {/*  Styled for Rp */}
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        border: '1px solid #ced4da',
-                                        borderRadius: '3px',
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            backgroundColor: '#e9ecef',
-                                            width: '50px',
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                textAlign: 'center',
-                                                marginTop: '3px',
-                                            }}
-                                        >
-                                            Rp
-                                        </div>
+                                <div style={Styles.PriceBorder}>
+                                    <div style={Styles.PriceRupiah}>
+                                        <div style={Styles.PriceRp}>Rp</div>
                                     </div>
                                     <Input
                                         isPrice
@@ -153,14 +113,7 @@ export default function Bump(props) {
                                     }
                                 />
                             </WrapsField>
-                            <div
-                                style={{
-                                    width: '100%',
-                                    border: '1px dotted gray',
-                                    height: '150px',
-                                    marginBottom: '10px',
-                                }}
-                            >
+                            <div style={Styles.ImageBorder}>
                                 <div style={{ width: '100px' }}>
                                     {typeof formulir.image.bump_image ===
                                     'object' ? null : (
@@ -205,8 +158,30 @@ export default function Bump(props) {
                             </WrapsField>
                         </React.Fragment>
                     </div>
-                </div>
+                </Container>
             </Card>
         </Section>
     );
 }
+
+const Styles = {
+    PriceBorder: {
+        display: 'flex',
+        border: '1px solid #ced4da',
+        borderRadius: '3px',
+    },
+    PriceRupiah: {
+        backgroundColor: '#e9ecef',
+        width: '50px',
+    },
+    PriceRp: {
+        textAlign: 'center',
+        marginTop: '3px',
+    },
+    ImageBorder: {
+        width: '100%',
+        border: '1px dotted gray',
+        height: '150px',
+        marginBottom: '10px',
+    },
+};

@@ -1,57 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import MultiSelect from '@khanacademy/react-multi-select';
 import { useDispatch, useSelector } from 'react-redux';
-import Styled from 'styled-components';
 import Card from '../../elements/Card/Card';
 import { fetchGetAgents, fetchPostSingleImage } from '../../store/actions';
 import ReactQuillTest from './ReactQuill';
 import SingleImage from './SingleImage';
 import MediaUrl from './MediaUrl';
-
+import {
+    Section,
+    SectionOne,
+    Span,
+    WrapsField,
+    Label,
+    Input,
+} from '../../elements/Styled/StyledTabs';
 // --- Styled Components --- //
-const Input = Styled.input`
-    width: 100%;
-    padding: .375rem;
-    font-size: 14px;
-    font-weight: 400;
-    color: #495057;
-    border-radius: 3px;
-    background-color: #FCFCFC;
-    border: 1px solid #ced4da;
-    &:focus{
-    outline: none !important;
-    border:1px solid #66AFE9;
-    }
-`;
-const Section = Styled.section`
-    display: flex;
-    padding: 50px 100px;
-    width: 100%;
-    line-height: 1.5;
-    @media (max-width: 800px) {
-        padding: 20px 40px;
-          }
-`;
-const Label = Styled.label`
-    
-`;
-const WrapsField = Styled.div`
-    margin-bottom: 25px;
-    width: ${(props) => (props.normal ? '100%' : '30%')}
-`;
-const Span = Styled.span`
-    font-weight: bold;
-    color: #656565;
-    font-size: 16px;
-`;
-
-const SectionOne = Styled.div`
-// display: flex;
-width: 100%;
-@media (max-width: 800px) {
-    width: 100%
-      }
-`;
 
 export default function Layout(props) {
     const dispatch = useDispatch();
@@ -98,7 +61,7 @@ export default function Layout(props) {
     // --- handleSubmit Upload Image --- //
     const handleSubmit = async (e, id) => {
         e.preventDefault();
-        // --- upload image --- //
+
         dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
     };
 
@@ -107,12 +70,7 @@ export default function Layout(props) {
             <SectionOne>
                 <Card isNormal style={{ width: '100%' }}>
                     <div style={{ padding: '30px 40px' }}>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                            }}
-                        >
+                        <div style={Styles.FlexBetween}>
                             <WrapsField>
                                 <Label>
                                     <Span>Headline </Span>
@@ -166,7 +124,7 @@ export default function Layout(props) {
                                 </div>
                             </WrapsField>
                         </div>
-                        <WrapsField normal style={{ marginBottom: '100px' }}>
+                        <WrapsField fullwidth style={{ marginBottom: '100px' }}>
                             <Label>
                                 <Span>Description</Span>
                             </Label>
@@ -181,7 +139,7 @@ export default function Layout(props) {
                         <React.Fragment>{children}</React.Fragment>
 
                         {/* feature onpage */}
-                        <WrapsField normal>
+                        <WrapsField fullwidth>
                             <Label>
                                 <Span>Feature Onpage</Span>
                             </Label>
@@ -199,7 +157,7 @@ export default function Layout(props) {
 
                         {/* Feature On Header */}
 
-                        <WrapsField normal>
+                        <WrapsField fullwidth>
                             <Label>
                                 <Span>Feature Onheader</Span>
                             </Label>
@@ -248,16 +206,6 @@ export default function Layout(props) {
                                 onSubmit={(e) => handleSubmit(e, 'media_url')}
                             />
 
-                            {/* {typeof formulir.image.media_url ===
-                            'object' ? null : (
-                                <div style={{ width: '200px' }}>
-                                    <img
-                                        width="100%"
-                                        src={formulir.image.media_url}
-                                        alt={formulir.image.media_url}
-                                    />
-                                </div>
-                            )} */}
                             {typeof formulir.image.media_url ===
                             'object' ? null : (
                                 <video width="320" height="240" controls>
@@ -279,3 +227,7 @@ export default function Layout(props) {
         </Section>
     );
 }
+
+const Styles = {
+    FlexBetween: { display: 'flex', justifyContent: 'space-between' },
+};
