@@ -34,7 +34,7 @@ const Input = Styled.input`
     }
 `;
 const WrapForm = Styled.div`
-    width: 100%;
+    width:  ${(props) => (props.isFull ? '100%' : '45%')};
     margin-bottom: ${lg};
 `;
 
@@ -81,8 +81,8 @@ export default function AddCoupons() {
             title="Add Coupons"
             onClickConfirm={handleSubmit(onSubmit)}
         >
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <WrapForm style={{ width: '45%' }}>
+            <div style={Styles.FlexBetween}>
+                <WrapForm>
                     <label>
                         <Span>Name</Span>
                     </label>
@@ -102,7 +102,7 @@ export default function AddCoupons() {
                     </>
                 </WrapForm>
 
-                <WrapForm style={{ width: '45%' }}>
+                <WrapForm>
                     <label>
                         <Span>Coupon Code</Span>
                     </label>
@@ -118,8 +118,8 @@ export default function AddCoupons() {
                 </WrapForm>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <WrapForm style={{ width: '45%' }}>
+            <div style={Styles.FlexBetween}>
+                <WrapForm>
                     <label>
                         <Span>Start Coupons</Span>
                     </label>
@@ -139,7 +139,7 @@ export default function AddCoupons() {
                     </>
                 </WrapForm>
 
-                <WrapForm style={{ width: '45%' }}>
+                <WrapForm>
                     <label>
                         <Span>End Coupons</Span>
                     </label>
@@ -159,8 +159,8 @@ export default function AddCoupons() {
                     </>
                 </WrapForm>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <WrapForm style={{ width: '45%' }}>
+            <div style={Styles.FlexBetween}>
+                <WrapForm>
                     <label>
                         <Span>Max Discount</Span>
                     </label>
@@ -174,7 +174,7 @@ export default function AddCoupons() {
                         required
                     />
                 </WrapForm>
-                <WrapForm style={{ width: '45%' }}>
+                <WrapForm>
                     <label>
                         <Span>Payment Method</Span>
                     </label>
@@ -209,7 +209,7 @@ export default function AddCoupons() {
                 </WrapForm>
             </div>
 
-            <WrapForm>
+            <WrapForm isFull>
                 <label>
                     <Span>Nilai Coupons</Span>
                 </label>
@@ -225,7 +225,7 @@ export default function AddCoupons() {
                     <SpanErrosMessage>{errors.value?.message}</SpanErrosMessage>
                 </>
             </WrapForm>
-            <WrapForm style={{ width: '45%' }}>
+            <WrapForm>
                 <label>
                     <input
                         type="checkbox"
@@ -241,3 +241,10 @@ export default function AddCoupons() {
         </ModalSmart>
     );
 }
+
+const Styles = {
+    FlexBetween: {
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
+};

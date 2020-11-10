@@ -5,18 +5,15 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
+    Table,
 } from 'reactstrap';
-
-import { Table } from 'reactstrap';
-import Card from '../../elements/Card/Card';
-import Styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-
-import DehazeIcon from '@material-ui/icons/Dehaze';
-import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 
 // --- Elements, Pages, Components --- //
+import Card from '../../elements/Card/Card';
+import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import {
     fetchGetCoupons,
     fetchMultipleCloneCoupons,
@@ -30,25 +27,21 @@ const DataTopic = (props) => {
     const dispatch = useDispatch();
     const coupons = useSelector((state) => state.coupons.getCoupons);
 
-    // --- useEffect --- Get Data coupons ---//
     useEffect(() => {
         dispatch(fetchGetCoupons());
         // eslint-disable-next-line
     }, [dispatch]);
-    // --- PAGINATION --- //
+
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
-
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
 
-    // --- Dropdown --- //
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const toggle = () => setDropdownOpen((prevState) => !prevState);
 
@@ -56,12 +49,10 @@ const DataTopic = (props) => {
         id: [],
         allChecked: false,
     });
-
     const [searching, setSearching] = useState({
         search: '',
     });
 
-    // --- useEffect --- Get Data Topic ---//
     useEffect(() => {
         dispatch(fetchGetCoupons());
         // eslint-disable-next-line
@@ -146,15 +137,10 @@ const DataTopic = (props) => {
                         onChange={handleChange}
                     />
                 </div>
-                {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
             </div>
 
-            {/* --- section 2 --- Get Data Product --- */}
             <Card isNormal>
-                {/* --- untuk hapus melalui button --- */}
                 <Overflow>
-                    {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
-                     di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
                     {coupons === null ? (
                         <React.Fragment>
                             <Table>
@@ -169,7 +155,7 @@ const DataTopic = (props) => {
                                         <Th>Start Coupon</Th>
                                         <Th>End Coupon</Th>
                                         <Th>Payment Method</Th>
-                                        <Th style={{ width: '100px' }}>
+                                        <Th style={{ width: '10%' }}>
                                             Actions
                                         </Th>
                                     </tr>
