@@ -29,29 +29,16 @@ export default function Order() {
     // --- code for total sum --- //
     // return (total += item.total_price);
     let total = 0;
-    let total_orders = 0;
+    let total_orders = order !== null && order.data.length;
     let total_paid = 0;
     let total_unpaid = 0;
     order !== null &&
         order.data.map((item, index) => {
             return (
                 <>
-                    {(total_orders += item.orders_count)}
-                    {item.orders.map((items) => {
-                        return (
-                            <>
-                                {(total += items.total_price)}{' '}
-                                {
-                                    (total_paid +=
-                                        items.payment.status === 'COMPLETED')
-                                }
-                                {
-                                    (total_unpaid +=
-                                        items.payment.status !== 'COMPLETED')
-                                }
-                            </>
-                        );
-                    })}
+                    {(total += item.total_price)}
+                    {(total_paid += item.payment.status === 'COMPLETED')}
+                    {(total_unpaid += item.payment.status !== 'COMPLETED')}
                 </>
             );
         });

@@ -22,7 +22,7 @@ import FollowUp_2 from './FollowUp_2';
 import FollowUp_3 from './FollowUp_3';
 import FollowUp_4 from './FollowUp_4';
 import NewFollowUp from './NewFollowUp';
-import { SortByAlphaTwoTone } from '@material-ui/icons';
+
 // --- Styled Components --- //
 
 const DataOrders = (props) => {
@@ -33,7 +33,7 @@ const DataOrders = (props) => {
     console.log('Get All Data orders', orders);
     // --- PAGINATION --- //
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -85,7 +85,6 @@ const DataOrders = (props) => {
         orders.data.map((items) => {
             return (total_count += items.orders_count);
         });
-    console.log(total_count);
 
     // --- Styled Hover Table Row --- //
     const TableRow = Styled.tr`
@@ -207,182 +206,158 @@ const DataOrders = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {orders.data.map((items) => {
-                                    return (
-                                        <React.Fragment key={items._id}>
-                                            {items.orders
-                                                .slice(
-                                                    page * rowsPerPage,
-                                                    page * rowsPerPage +
-                                                        rowsPerPage
-                                                )
-                                                .map((item) => {
-                                                    return (
-                                                        <TableRow
-                                                            key={item.order_id}
+                                {orders.data
+                                    .slice(
+                                        page * rowsPerPage,
+                                        page * rowsPerPage + rowsPerPage
+                                    )
+                                    .map((item) => {
+                                        return (
+                                            <TableRow key={item.order_id}>
+                                                <Th as="td" td>
+                                                    <input type="checkbox" />
+                                                </Th>
+                                                <Th as="td" td>
+                                                    {/* {item.order_id} */}
+                                                    Invoice
+                                                </Th>
+                                                <Th as="td" td>
+                                                    <div
+                                                        style={
+                                                            Styles.FlexColumn
+                                                        }
+                                                    >
+                                                        <div
+                                                            style={Styles.Name}
                                                         >
-                                                            <Th as="td" td>
-                                                                <input type="checkbox" />
-                                                            </Th>
-                                                            <Th as="td" td>
-                                                                {/* {item.order_id} */}
-                                                                Invoice
-                                                            </Th>
-                                                            <Th as="td" td>
-                                                                <div
-                                                                    style={
-                                                                        Styles.FlexColumn
-                                                                    }
-                                                                >
-                                                                    <div
-                                                                        style={
-                                                                            Styles.Name
-                                                                        }
-                                                                    >
-                                                                        {
-                                                                            items
-                                                                                .user_info
-                                                                                .name
-                                                                        }
-                                                                    </div>
-                                                                    <div
-                                                                        style={{
-                                                                            fontSize:
-                                                                                '12px',
-                                                                        }}
-                                                                    >
-                                                                        {
-                                                                            items
-                                                                                .user_info
-                                                                                .phone_number
-                                                                        }
-                                                                    </div>
-                                                                </div>
-                                                            </Th>
-                                                            <Th as="td" td>
-                                                                {moment(
-                                                                    item.create_date
-                                                                ).format(
-                                                                    'DD-MM-YYYY - hh:mm'
-                                                                )}
-                                                            </Th>
-                                                            <Th as="td" td>
-                                                                Rp.{' '}
-                                                                {FormatNumber(
-                                                                    item.total_price
-                                                                )}
-                                                            </Th>
-                                                            <Th as="td" td>
-                                                                {item.payment
-                                                                    .status ===
-                                                                'PENDING' ? (
-                                                                    <div
-                                                                        style={
-                                                                            Styles.Pending
-                                                                        }
-                                                                    >
-                                                                        <span>
-                                                                            Pending
-                                                                        </span>
-                                                                    </div>
-                                                                ) : item.payment
-                                                                      .status ===
-                                                                  'COMPLETED' ? (
-                                                                    <div
-                                                                        style={
-                                                                            Styles.Completed
-                                                                        }
-                                                                    >
-                                                                        <span>
-                                                                            Completed
-                                                                        </span>
-                                                                    </div>
-                                                                ) : (
-                                                                    <div
-                                                                        style={
-                                                                            Styles.Active
-                                                                        }
-                                                                    >
-                                                                        <span>
-                                                                            Processing
-                                                                        </span>
-                                                                    </div>
-                                                                )}
-                                                            </Th>
-                                                            <Th as="td" td>
-                                                                {item.payment
-                                                                    .status ===
-                                                                'COMPLETED' ? (
-                                                                    <div
-                                                                        style={
-                                                                            Styles.Paid
-                                                                        }
-                                                                    >
-                                                                        <span>
-                                                                            Paid
-                                                                        </span>
-                                                                    </div>
-                                                                ) : (
-                                                                    <div
-                                                                        style={
-                                                                            Styles.Unpaid
-                                                                        }
-                                                                    >
-                                                                        <span>
-                                                                            Unpaid
-                                                                        </span>
-                                                                    </div>
-                                                                )}
-                                                            </Th>
-                                                            <Th as="td" td>
-                                                                <div
-                                                                    style={
-                                                                        Styles.FlexRow
-                                                                    }
-                                                                >
-                                                                    <FollowUp
-                                                                        id={
-                                                                            item.order_id
-                                                                        }
-                                                                    />
-                                                                    <FollowUp_1
-                                                                        id={
-                                                                            item.order_id
-                                                                        }
-                                                                    />
-                                                                    <FollowUp_2
-                                                                        id={
-                                                                            item.order_id
-                                                                        }
-                                                                    />
-                                                                    <FollowUp_3
-                                                                        id={
-                                                                            item.order_id
-                                                                        }
-                                                                    />
-                                                                    <FollowUp_4
-                                                                        id={
-                                                                            item.order_id
-                                                                        }
-                                                                    />
-                                                                </div>
-                                                            </Th>
-                                                            <Th as="td" td>
-                                                                Actions
-                                                            </Th>
-                                                        </TableRow>
-                                                    );
-                                                })}
-                                        </React.Fragment>
-                                    );
-                                })}
+                                                            {
+                                                                item.user_info
+                                                                    .name
+                                                            }
+                                                        </div>
+                                                        <div
+                                                            style={{
+                                                                fontSize:
+                                                                    '12px',
+                                                            }}
+                                                        >
+                                                            {
+                                                                item.user_info
+                                                                    .phone_number
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </Th>
+                                                <Th as="td" td>
+                                                    {moment(
+                                                        item.create_date
+                                                    ).format(
+                                                        'DD-MM-YYYY - hh:mm'
+                                                    )}
+                                                </Th>
+                                                <Th as="td" td>
+                                                    Rp.{' '}
+                                                    {FormatNumber(
+                                                        item.total_price
+                                                    )}
+                                                </Th>
+                                                <Th as="td" td>
+                                                    {item.payment.status ===
+                                                    'PENDING' ? (
+                                                        <div
+                                                            style={
+                                                                Styles.Pending
+                                                            }
+                                                        >
+                                                            <span>Pending</span>
+                                                        </div>
+                                                    ) : item.payment.status ===
+                                                      'COMPLETED' ? (
+                                                        <div
+                                                            style={
+                                                                Styles.Completed
+                                                            }
+                                                        >
+                                                            <span>
+                                                                Completed
+                                                            </span>
+                                                        </div>
+                                                    ) : item.payment.status ===
+                                                      'ACTIVE' ? (
+                                                        <div
+                                                            style={
+                                                                Styles.Active
+                                                            }
+                                                        >
+                                                            <span>
+                                                                Processing
+                                                            </span>
+                                                        </div>
+                                                    ) : (
+                                                        <div
+                                                            style={
+                                                                Styles.Canceled
+                                                            }
+                                                        >
+                                                            <span>
+                                                                Canceled
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                </Th>
+                                                <Th as="td" td>
+                                                    {item.payment.status ===
+                                                    'COMPLETED' ? (
+                                                        <div
+                                                            style={Styles.Paid}
+                                                        >
+                                                            <span>Paid</span>
+                                                        </div>
+                                                    ) : (
+                                                        <div
+                                                            style={
+                                                                Styles.Unpaid
+                                                            }
+                                                        >
+                                                            <span>Unpaid</span>
+                                                        </div>
+                                                    )}
+                                                </Th>
+                                                <Th as="td" td>
+                                                    <div style={Styles.FlexRow}>
+                                                        <FollowUp
+                                                            id={item._id}
+                                                        />
+                                                        <FollowUp_1
+                                                            id={item._id}
+                                                        />
+                                                        <FollowUp_2
+                                                            id={item._id}
+                                                        />
+                                                        <FollowUp_3
+                                                            id={item._id}
+                                                        />
+                                                        <FollowUp_4
+                                                            id={item._id}
+                                                        />
+                                                    </div>
+                                                </Th>
+                                                <Th as="td" td>
+                                                    Actions
+                                                </Th>
+                                            </TableRow>
+                                        );
+                                    })}
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <TablePagination
                                         rowsPerPageOptions={[10, 15, 20]}
-                                        count={total_count}
-                                        rowsPerPage={rowsPerPage * 2}
+                                        count={
+                                            orders !== null &&
+                                            orders.data.length
+                                        }
+                                        rowsPerPage={rowsPerPage}
                                         page={page}
                                         onChangePage={handleChangePage}
                                         onChangeRowsPerPage={
@@ -477,6 +452,17 @@ const Styles = {
         maxWidth: '100%',
         fontSize: '12px',
     },
+    Canceled: {
+        background: '#e5e5e5',
+        color: '#777',
+        padding: '.1em .5em',
+        borderRadius: '30px',
+        borderBottom: '1px solid rgba(0,0,0,.05)',
+        textAlign: 'center',
+        maxWidth: '100%',
+        fontSize: '12px',
+    },
+
     FlexColumn: {
         display: 'flex',
         flexDirection: 'column',
