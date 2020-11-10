@@ -94,7 +94,7 @@ const Header = () => {
             <Link style={Styles.Link} to="/product">
               <Span>Product</Span>
             </Link>
-            <Link style={Styles.link} to="/Order">
+            <Link style={Styles.Link} to="/Order">
               <Span>Order</Span>
             </Link>
             <Link style={Styles.Link} to="/reports">
