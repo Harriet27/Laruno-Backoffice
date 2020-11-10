@@ -88,19 +88,19 @@ const Header = () => {
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
-                        <Link style={{ padding: '8px' }} to="/dashboard">
+                        <Link style={Styles.Link} to="/dashboard">
                             <Span>Dashboard</Span>
                         </Link>
-                        <Link style={{ padding: '8px' }} to="/product">
+                        <Link style={Styles.Link} to="/product">
                             <Span>Product</Span>
                         </Link>
-                        <Link style={{ padding: '8px' }} to="/Order">
+                        <Link style={Styles.link} to="/Order">
                             <Span>Order</Span>
                         </Link>
-                        <Link style={{ padding: '8px' }} to="/reports">
+                        <Link style={Styles.Link} to="/reports">
                             <Span>Report</Span>
                         </Link>
-                        <Link style={{ padding: '8px' }} to="/tools">
+                        <Link style={Styles.Link} to="/tools">
                             <Span>Tools</Span>
                         </Link>
 
@@ -154,7 +154,7 @@ const Header = () => {
                         <Button> + Add Product</Button>
                     </Link>
                     {user === null ? (
-                        <div style={{ margin: '0 20px' }}>
+                        <div style={Styles.MarginNavbar}>
                             <Nav className="mr-auto" navbar>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
@@ -171,7 +171,7 @@ const Header = () => {
                             </Nav>
                         </div>
                     ) : (
-                        <div style={{ margin: '0 20px' }}>
+                        <div style={Styles.MarginNavbar}>
                             <Nav className="mr-auto" navbar>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
@@ -201,6 +201,13 @@ const Header = () => {
             </Navbar>
         </HeaderStyled>
     );
+};
+
+const Styles = {
+    Link: {
+        padding: '8px',
+    },
+    MarginNavbar: { margin: '0 20px' },
 };
 
 export default Header;

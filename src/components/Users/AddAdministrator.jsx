@@ -73,9 +73,6 @@ export default function AddAdministrator() {
     const onSubmit = async (event) => {
         dispatch(fetchPostAdministrator(form, history));
     };
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    // };
 
     // --- merubah value setiap kali di ketik --- //
     const handleChange = (event) => {

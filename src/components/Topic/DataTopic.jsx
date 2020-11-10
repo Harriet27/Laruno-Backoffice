@@ -80,11 +80,6 @@ const DataTopic = (props) => {
         setSearching({ ...searching, [event.target.name]: event.target.value });
     };
 
-    // const handleSearch = (event) => {
-    //     event.preventDefault();
-    //     dispatch(fetchFindProduct(searching));
-    // };
-
     return (
         <React.Fragment>
             {/* --- section 1 --- Button Action link to Add Product ---*/}
@@ -98,10 +93,6 @@ const DataTopic = (props) => {
                     </DropdownToggle>
                     <DropdownMenu>
                         <MultipleDelete onSubmit={handleMultipleDelete} />
-
-                        {/* <DropdownItem onClick={handleMultipleClone}>
-                                Clone
-                            </DropdownItem> */}
                     </DropdownMenu>
                 </Dropdown>
             ) : (
@@ -117,13 +108,7 @@ const DataTopic = (props) => {
                 </Dropdown>
             )}
 
-            <div
-                style={{
-                    margin: '20px 0',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                }}
-            >
+            <div style={Styles.FlexBetween}>
                 <AddNewTopic />
 
                 <div>
@@ -142,8 +127,6 @@ const DataTopic = (props) => {
             <Card isNormal>
                 {/* --- untuk hapus melalui button --- */}
                 <Overflow>
-                    {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
-                     di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
                     {topic === null ? (
                         <React.Fragment>
                             <Table>
@@ -162,14 +145,7 @@ const DataTopic = (props) => {
                                     </tr>
                                 </thead>
                             </Table>
-                            <div
-                                style={{
-                                    textAlign: 'center',
-                                    padding: '100px',
-                                }}
-                            >
-                                Loading ...
-                            </div>
+                            <div style={Styles.IsLoading}>Loading ...</div>
                         </React.Fragment>
                     ) : topic.data.length >= 1 ? (
                         <Table>
@@ -186,10 +162,6 @@ const DataTopic = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row)  */}
                                 {topic.data
                                     .slice(
                                         page * rowsPerPage,
@@ -232,13 +204,7 @@ const DataTopic = (props) => {
                                                 </Th>
 
                                                 <Th as="td" td>
-                                                    <div
-                                                        style={{
-                                                            display: 'flex',
-                                                            flexDirection:
-                                                                'row',
-                                                        }}
-                                                    >
+                                                    <div style={Styles.FlexRow}>
                                                         <UpdateTopic
                                                             id={item._id}
                                                         />
@@ -286,12 +252,7 @@ const DataTopic = (props) => {
                                     </tr>
                                 </thead>
                             </Table>
-                            <div
-                                style={{
-                                    textAlign: 'center',
-                                    padding: '100px',
-                                }}
-                            >
+                            <div style={Styles.IsLoading}>
                                 You have no topic in this date range.
                             </div>
                         </React.Fragment>
@@ -302,4 +263,16 @@ const DataTopic = (props) => {
     );
 };
 
+const Styles = {
+    FlexBetween: {
+        margin: '20px 0',
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
+    FlexRow: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    IsLoading: { textAlign: 'center', padding: '100px' },
+};
 export default DataTopic;

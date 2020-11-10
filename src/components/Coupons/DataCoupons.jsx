@@ -23,7 +23,7 @@ import AddCoupons from './AddCoupons';
 import DeleteCoupons from './DeleteCoupons';
 import UpdateCoupons from './UpdateCoupons';
 
-const DataTopic = (props) => {
+const DataCoupons = (props) => {
     const dispatch = useDispatch();
     const coupons = useSelector((state) => state.coupons.getCoupons);
 
@@ -91,10 +91,7 @@ const DataTopic = (props) => {
             {/* --- section 1 --- Button Action link to Add Product ---*/}
             {form.id[0] ? (
                 <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-                    <DropdownToggle
-                        style={{ backgroundColor: '#0098DA' }}
-                        caret
-                    >
+                    <DropdownToggle style={Styles.ColorActions} caret>
                         Actions
                     </DropdownToggle>
                     <DropdownMenu>
@@ -109,23 +106,13 @@ const DataTopic = (props) => {
             ) : (
                 <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
                     {' '}
-                    <DropdownToggle
-                        style={{ backgroundColor: '#0098DA' }}
-                        caret
-                        disabled
-                    >
+                    <DropdownToggle style={Styles.ColorActions} caret disabled>
                         Actions
                     </DropdownToggle>
                 </Dropdown>
             )}
 
-            <div
-                style={{
-                    margin: '20px 0',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                }}
-            >
+            <div style={Styles.FlexBetween}>
                 <AddCoupons />
 
                 <div>
@@ -161,14 +148,7 @@ const DataTopic = (props) => {
                                     </tr>
                                 </thead>
                             </Table>
-                            <div
-                                style={{
-                                    textAlign: 'center',
-                                    padding: '100px',
-                                }}
-                            >
-                                Loading ...
-                            </div>
+                            <div style={Styles.Loading}>Loading ...</div>
                         </React.Fragment>
                     ) : coupons.data.length >= 1 ? (
                         <Table>
@@ -233,13 +213,7 @@ const DataTopic = (props) => {
                                                     {item.payment_method}
                                                 </Th>
                                                 <Th as="td" td>
-                                                    <div
-                                                        style={{
-                                                            display: 'flex',
-                                                            flexDirection:
-                                                                'row',
-                                                        }}
-                                                    >
+                                                    <div style={Styles.FlexRow}>
                                                         <UpdateCoupons
                                                             id={item._id}
                                                         />
@@ -288,12 +262,7 @@ const DataTopic = (props) => {
                                     </tr>
                                 </thead>
                             </Table>
-                            <div
-                                style={{
-                                    textAlign: 'center',
-                                    padding: '100px',
-                                }}
-                            >
+                            <div style={Styles.Loading}>
                                 You have no coupons in this date range.
                             </div>
                         </React.Fragment>
@@ -304,4 +273,21 @@ const DataTopic = (props) => {
     );
 };
 
-export default DataTopic;
+const Styles = {
+    FlexBetween: {
+        margin: '20px 0',
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
+    ColorActions: { backgroundColor: '#0098DA' },
+    Loading: {
+        textAlign: 'center',
+        padding: '100px',
+    },
+    FlexRow: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+};
+
+export default DataCoupons;
