@@ -35,11 +35,11 @@ export default function Order() {
     order !== null &&
         order.data.map((item, index) => {
             return (
-                <>
+                <div key={item._id}>
                     {(total += item.total_price)}
                     {(total_paid += item.payment.status === 'COMPLETED')}
                     {(total_unpaid += item.payment.status !== 'COMPLETED')}
-                </>
+                </div>
             );
         });
     console.log(total_orders);

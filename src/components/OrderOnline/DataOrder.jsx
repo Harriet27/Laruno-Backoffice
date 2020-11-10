@@ -22,6 +22,7 @@ import FollowUp_2 from './FollowUp_2';
 import FollowUp_3 from './FollowUp_3';
 import FollowUp_4 from './FollowUp_4';
 import NewFollowUp from './NewFollowUp';
+import DetailPopUp from '../../elements/DetailPopUp/DetailPopUp';
 
 // --- Styled Components --- //
 
@@ -83,7 +84,9 @@ const DataOrders = (props) => {
     let total_count = 0;
     orders !== null &&
         orders.data.map((items) => {
-            return (total_count += items.orders_count);
+            return (
+                <div key={items._id}>{(total_count += items.orders_count)}</div>
+            );
         });
 
     // --- Styled Hover Table Row --- //
@@ -156,11 +159,10 @@ const DataOrders = (props) => {
                                         <Th>Invoice Number</Th>
                                         <Th>Name</Th>
                                         <Th>Date</Th>
-                                        {/* <Th>Costumer Phone</Th> */}
-                                        {/* <Th>Product</Th> */}
+
                                         <Th>Total Price</Th>
                                         <Th>Payment Status</Th>
-                                        {/* <Th>Paid At</Th> */}
+
                                         <Th style={{ width: '100px' }}>
                                             Follow Up
                                         </Th>
@@ -187,20 +189,19 @@ const DataOrders = (props) => {
                                     <Th>
                                         <DehazeIcon />
                                     </Th>
-                                    <Th>Invoice Number</Th>
+                                    <Th>Invoice</Th>
                                     <Th>Name</Th>
+                                    <Th style={{ width: '28%' }}>Product</Th>
                                     <Th>Date</Th>
                                     {/* <Th>Costumer Phone</Th> */}
                                     {/* <Th>Product</Th> */}
                                     <Th>Total Price</Th>
-                                    <Th style={{ width: '5%' }}>Status</Th>
+
                                     <Th style={{ width: '5%' }}>
                                         Payment Status
                                     </Th>
                                     {/* <Th>Paid At</Th> */}
-                                    <Th style={{ width: '100px' }}>
-                                        Follow Up
-                                    </Th>
+                                    <Th style={{ width: '10%' }}>Follow Up</Th>
 
                                     <Th style={{ width: '100px' }}>Actions</Th>
                                 </tr>
@@ -213,7 +214,7 @@ const DataOrders = (props) => {
                                     )
                                     .map((item) => {
                                         return (
-                                            <TableRow key={item.order_id}>
+                                            <TableRow key={item._id}>
                                                 <Th as="td" td>
                                                     <input type="checkbox" />
                                                 </Th>
@@ -249,6 +250,151 @@ const DataOrders = (props) => {
                                                     </div>
                                                 </Th>
                                                 <Th as="td" td>
+                                                    {item.items.length <= 1 ? (
+                                                        <>
+                                                            {' '}
+                                                            {item.items.map(
+                                                                (
+                                                                    data,
+                                                                    index
+                                                                ) => {
+                                                                    let Nomor =
+                                                                        index +
+                                                                        1;
+                                                                    return (
+                                                                        <div
+                                                                            key={
+                                                                                index
+                                                                            }
+                                                                        >
+                                                                            <div
+                                                                                style={{
+                                                                                    display:
+                                                                                        'flex',
+                                                                                    flexDirection:
+                                                                                        'column',
+                                                                                    marginBottom:
+                                                                                        '5px',
+                                                                                }}
+                                                                            >
+                                                                                <div
+                                                                                    style={
+                                                                                        Styles.Name
+                                                                                    }
+                                                                                >
+                                                                                    *{' '}
+                                                                                    {
+                                                                                        data
+                                                                                            .product_info
+                                                                                            .name
+                                                                                    }
+                                                                                </div>
+                                                                                <div
+                                                                                    style={{
+                                                                                        marginLeft:
+                                                                                            '.8rem',
+                                                                                        fontSize:
+                                                                                            '12px',
+                                                                                    }}
+                                                                                >
+                                                                                    {' '}
+                                                                                    Price:
+                                                                                    Rp.
+                                                                                    {FormatNumber(
+                                                                                        data.sub_price
+                                                                                    )}
+                                                                                </div>
+                                                                                <div
+                                                                                    style={{
+                                                                                        marginLeft:
+                                                                                            '.8rem',
+                                                                                        fontSize:
+                                                                                            '12px',
+                                                                                    }}
+                                                                                >
+                                                                                    {' '}
+                                                                                    Quantity:{' '}
+                                                                                    {
+                                                                                        data.quantity
+                                                                                    }{' '}
+                                                                                    item
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    );
+                                                                }
+                                                            )}
+                                                        </>
+                                                    ) : (
+                                                        //  Testing Show more
+                                                        <>
+                                                            {' '}
+                                                            <div
+                                                                style={{
+                                                                    display:
+                                                                        'flex',
+                                                                    flexDirection:
+                                                                        'column',
+                                                                    marginBottom:
+                                                                        '5px',
+                                                                }}
+                                                            >
+                                                                <div
+                                                                    style={
+                                                                        Styles.Name
+                                                                    }
+                                                                >
+                                                                    *{' '}
+                                                                    {
+                                                                        item
+                                                                            .items[0]
+                                                                            .product_info
+                                                                            .name
+                                                                    }
+                                                                </div>
+                                                                <div
+                                                                    style={{
+                                                                        marginLeft:
+                                                                            '.8rem',
+                                                                        fontSize:
+                                                                            '12px',
+                                                                    }}
+                                                                >
+                                                                    {' '}
+                                                                    Price: Rp.
+                                                                    {FormatNumber(
+                                                                        item
+                                                                            .items[0]
+                                                                            .sub_price
+                                                                    )}
+                                                                </div>
+                                                                <div
+                                                                    style={{
+                                                                        marginLeft:
+                                                                            '.8rem',
+                                                                        fontSize:
+                                                                            '12px',
+                                                                    }}
+                                                                >
+                                                                    {' '}
+                                                                    Quantity:{' '}
+                                                                    {
+                                                                        item
+                                                                            .items[0]
+                                                                            .quantity
+                                                                    }{' '}
+                                                                    item
+                                                                </div>
+                                                                <DetailPopUp
+                                                                    id={
+                                                                        item._id
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                </Th>
+                                                <Th as="td" td>
                                                     {moment(
                                                         item.create_date
                                                     ).format(
@@ -261,50 +407,7 @@ const DataOrders = (props) => {
                                                         item.total_price
                                                     )}
                                                 </Th>
-                                                <Th as="td" td>
-                                                    {item.payment.status ===
-                                                    'PENDING' ? (
-                                                        <div
-                                                            style={
-                                                                Styles.Pending
-                                                            }
-                                                        >
-                                                            <span>Pending</span>
-                                                        </div>
-                                                    ) : item.payment.status ===
-                                                      'COMPLETED' ? (
-                                                        <div
-                                                            style={
-                                                                Styles.Completed
-                                                            }
-                                                        >
-                                                            <span>
-                                                                Completed
-                                                            </span>
-                                                        </div>
-                                                    ) : item.payment.status ===
-                                                      'ACTIVE' ? (
-                                                        <div
-                                                            style={
-                                                                Styles.Active
-                                                            }
-                                                        >
-                                                            <span>
-                                                                Processing
-                                                            </span>
-                                                        </div>
-                                                    ) : (
-                                                        <div
-                                                            style={
-                                                                Styles.Canceled
-                                                            }
-                                                        >
-                                                            <span>
-                                                                Canceled
-                                                            </span>
-                                                        </div>
-                                                    )}
-                                                </Th>
+
                                                 <Th as="td" td>
                                                     {item.payment.status ===
                                                     'COMPLETED' ? (
@@ -416,46 +519,6 @@ const Styles = {
         background: '#f99292',
         color: '#732222',
         padding: '.1em.5em',
-        borderRadius: '30px',
-        borderBottom: '1px solid rgba(0,0,0,.05)',
-        textAlign: 'center',
-        maxWidth: '100%',
-        fontSize: '12px',
-    },
-    Pending: {
-        background: '#f8dda7',
-        color: '#94660c',
-        padding: '.1em .5em',
-        borderRadius: '30px',
-        borderBottom: '1px solid rgba(0,0,0,.05)',
-        textAlign: 'center',
-        maxWidth: '100%',
-        fontSize: '12px',
-    },
-    Active: {
-        background: '#c8d7e1',
-        color: '#2e4453',
-        padding: '.1em .5em',
-        borderRadius: '30px',
-        borderBottom: '1px solid rgba(0,0,0,.05)',
-        textAlign: 'center',
-        maxWidth: '100%',
-        fontSize: '12px',
-    },
-    Completed: {
-        background: '#c6e1c6',
-        color: '#5b841b',
-        padding: '.1em .5em',
-        borderRadius: '30px',
-        borderBottom: '1px solid rgba(0,0,0,.05)',
-        textAlign: 'center',
-        maxWidth: '100%',
-        fontSize: '12px',
-    },
-    Canceled: {
-        background: '#e5e5e5',
-        color: '#777',
-        padding: '.1em .5em',
         borderRadius: '30px',
         borderBottom: '1px solid rgba(0,0,0,.05)',
         textAlign: 'center',
