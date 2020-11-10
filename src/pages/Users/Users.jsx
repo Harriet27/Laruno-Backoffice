@@ -17,63 +17,63 @@ const Wraps = Styled.div`
 `;
 
 export default function Users() {
-    const User = useSelector((state) => state.user.userAdministrator);
-    return (
-        <Section>
-            {User === null ? (
-                <Wraps>
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Total Administrator"
-                    ></CardGetData>
+  const User = useSelector((state) => state.user.userAdministrator);
+  return (
+    <Section>
+      {User === null ? (
+        <Wraps>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Total Administrator"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faWallet}
-                        number="2"
-                        text="Total Paid"
-                    ></CardGetData>
+          <CardGetData
+            icon={faWallet}
+            number="2"
+            text="Total Paid"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
-                </Wraps>
-            ) : (
-                <Wraps>
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number={User.data.length}
-                        text="Total Administrator"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
+        </Wraps>
+      ) : (
+        <Wraps>
+          <CardGetData
+            icon={faShoppingCart}
+            number={User.data.length}
+            text="Total Administrator"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faWallet}
-                        number="2"
-                        text="Total Paid"
-                    ></CardGetData>
+          <CardGetData
+            icon={faWallet}
+            number="2"
+            text="Total Paid"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
-                </Wraps>
-            )}
-            <DataUsers />
-        </Section>
-    );
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
+        </Wraps>
+      )}
+      <DataUsers />
+    </Section>
+  );
 }

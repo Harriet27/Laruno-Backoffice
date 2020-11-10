@@ -40,104 +40,104 @@ import NewFollowUp from './components/OrderOnline/NewFollowUp';
 
 // import {Premium} from './pages/Testing/Premium';
 export default function App() {
-    return (
-        <Provider store={createStore(reducers, applyMiddleware(thunk))}>
-            <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <Login />
-                    </Route>
+  return (
+    <Provider store={createStore(reducers, applyMiddleware(thunk))}>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
 
-                    <PrivateRoute exact path="/dashboard">
-                        <Header />
-                        <Dashboard />
-                    </PrivateRoute>
-                    <PrivateRoute exact path="/add-product">
-                        <Header />
-                        <TestAddProduct />
-                    </PrivateRoute>
-                    <PrivateRoute exact path="/product">
-                        <Header />
-                        <Products />
-                    </PrivateRoute>
-                    <PrivateRoute exact path="/roles">
-                        <Header />
-                        <Roles />
-                    </PrivateRoute>
-                    <PrivateRoute exact path="/users">
-                        <Header />
-                        <Users />
-                    </PrivateRoute>
-                    <PrivateRoute exact path="/order">
-                        <Header />
-                        <Order />
-                    </PrivateRoute>
-                    <PrivateRoute exact path="/topic">
-                        <Header />
-                        <Topic />
-                    </PrivateRoute>
+          <PrivateRoute exact path="/dashboard">
+            <Header />
+            <Dashboard />
+          </PrivateRoute>
+          <PrivateRoute exact path="/add-product">
+            <Header />
+            <TestAddProduct />
+          </PrivateRoute>
+          <PrivateRoute exact path="/product">
+            <Header />
+            <Products />
+          </PrivateRoute>
+          <PrivateRoute exact path="/roles">
+            <Header />
+            <Roles />
+          </PrivateRoute>
+          <PrivateRoute exact path="/users">
+            <Header />
+            <Users />
+          </PrivateRoute>
+          <PrivateRoute exact path="/order">
+            <Header />
+            <Order />
+          </PrivateRoute>
+          <PrivateRoute exact path="/topic">
+            <Header />
+            <Topic />
+          </PrivateRoute>
 
-                    <PrivateRoute exact path="/product/show/:id">
-                        <Header />
-                        <ShowProduct />
-                    </PrivateRoute>
+          <PrivateRoute exact path="/product/show/:id">
+            <Header />
+            <ShowProduct />
+          </PrivateRoute>
 
-                    <PrivateRoute exact path="/product/update/:id">
-                        <Header />
-                        <UpdateProduct />
-                    </PrivateRoute>
+          <PrivateRoute exact path="/product/update/:id">
+            <Header />
+            <UpdateProduct />
+          </PrivateRoute>
 
-                    <PrivateRoute exact path="/add-contents">
-                        <Header />
-                        <AddContents />
-                    </PrivateRoute>
-                    {/* <PrivateRoute exact path="test">
+          <PrivateRoute exact path="/add-contents">
+            <Header />
+            <AddContents />
+          </PrivateRoute>
+          {/* <PrivateRoute exact path="test">
                         <Header />
                         <Premium />
                     </PrivateRoute> */}
-                    <PrivateRoute exact path="/reseller">
-                        <Header />
-                        <DataReseller />
-                    </PrivateRoute>
-                    <PrivateRoute exact path="/Contents">
-                        <Header />
-                        <Contents />
-                    </PrivateRoute>
-                    <PrivateRoute exact path="/coupons">
-                        <Header />
-                        <Coupons />
-                    </PrivateRoute>
-                    {/* test */}
-                    <PrivateRoute exact path="/orders/followup/:id">
-                        <Header />
-                        <NewFollowUp />
-                    </PrivateRoute>
+          <PrivateRoute exact path="/reseller">
+            <Header />
+            <DataReseller />
+          </PrivateRoute>
+          <PrivateRoute exact path="/Contents">
+            <Header />
+            <Contents />
+          </PrivateRoute>
+          <PrivateRoute exact path="/coupons">
+            <Header />
+            <Coupons />
+          </PrivateRoute>
+          {/* test */}
+          <PrivateRoute exact path="/orders/followup/:id">
+            <Header />
+            <NewFollowUp />
+          </PrivateRoute>
 
-                    <PrivateRoute exact path="/payments">
-                        <Header />
-                        <Payments />
-                    </PrivateRoute>
-                    <PrivateRoute exact path="/order/detail/:id">
-                        <Header />
-                        <DetailOrder />
-                    </PrivateRoute>
-                    <Route path="*">
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                flexDirection: 'column',
-                                height: '100vh',
-                            }}
-                        >
-                            <h1>This Is Not WebPage You Are Looking For</h1>
-                            <h2>404 Not Found</h2>
-                        </div>
-                    </Route>
-                    {/* --- Testing --- */}
-                </Switch>
-            </Router>
-        </Provider>
-    );
+          <PrivateRoute exact path="/payments">
+            <Header />
+            <Payments />
+          </PrivateRoute>
+          <PrivateRoute exact path="/order/detail/:id">
+            <Header />
+            <DetailOrder />
+          </PrivateRoute>
+          <Route path="*">
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+                height: '100vh',
+              }}
+            >
+              <h1>This Is Not WebPage You Are Looking For</h1>
+              <h2>404 Not Found</h2>
+            </div>
+          </Route>
+          {/* --- Testing --- */}
+        </Switch>
+      </Router>
+    </Provider>
+  );
 }

@@ -72,14 +72,14 @@ display: flex;
 justify-content: center;
 `;
 export {
-    sm,
-    md,
-    lg,
-    Input,
-    Th,
-    SectionOne,
-    Overflow,
-    ButtonStyled,
-    ButtonActions,
-    SpanErrosMessage,
+  sm,
+  md,
+  lg,
+  Input,
+  Th,
+  SectionOne,
+  Overflow,
+  ButtonStyled,
+  ButtonActions,
+  SpanErrosMessage,
 };

@@ -27,52 +27,49 @@ const WrapsField = Styled.div`
 `;
 
 export default function DynamicFieldsModule(props) {
-    const dispatch = useDispatch();
-    const { handleAdd, handleChange, fields, handleRemove } = props;
+  const dispatch = useDispatch();
+  const { handleAdd, handleChange, fields, handleRemove } = props;
 
-    return (
-        <>
-            <div
-                style={{ display: 'flex', flexDirection: 'column' }}
-                className="App"
-            >
-                <div>
-                    <label>
-                        <Span>Module</Span>
-                    </label>
-                </div>
-                {/* --- Testing --- */}
-                <div name="modules">
-                    {fields.map((field, idx) => {
-                        return (
-                            <WrapsField key={`${field}-${idx}`}>
-                                <div style={{ display: 'flex' }}>
-                                    <Input
-                                        width="35%"
-                                        type="text"
-                                        name={`module-${idx}`}
-                                        placeholder="Question..."
-                                        value={field.question}
-                                        onChange={(e) => handleChange(idx, e)}
-                                    />
+  return (
+    <>
+      <div style={{ display: 'flex', flexDirection: 'column' }} className="App">
+        <div>
+          <label>
+            <Span>Module</Span>
+          </label>
+        </div>
+        {/* --- Testing --- */}
+        <div name="modules">
+          {fields.map((field, idx) => {
+            return (
+              <WrapsField key={`${field}-${idx}`}>
+                <div style={{ display: 'flex' }}>
+                  <Input
+                    width="35%"
+                    type="text"
+                    name={`module-${idx}`}
+                    placeholder="Question..."
+                    value={field.question}
+                    onChange={(e) => handleChange(idx, e)}
+                  />
 
-                                    <ButtonModal
-                                        style={{ width: '10%' }}
-                                        delete
-                                        type="button"
-                                        onClick={() => handleRemove(idx)}
-                                    >
-                                        x
-                                    </ButtonModal>
-                                </div>
-                            </WrapsField>
-                        );
-                    })}
+                  <ButtonModal
+                    style={{ width: '10%' }}
+                    delete
+                    type="button"
+                    onClick={() => handleRemove(idx)}
+                  >
+                    x
+                  </ButtonModal>
                 </div>
-                <ButtonModal type="button" onClick={() => handleAdd()}>
-                    Add Question
-                </ButtonModal>
-            </div>
-        </>
-    );
+              </WrapsField>
+            );
+          })}
+        </div>
+        <ButtonModal type="button" onClick={() => handleAdd()}>
+          Add Question
+        </ButtonModal>
+      </div>
+    </>
+  );
 }

@@ -63,12 +63,12 @@ const ButtonLink = Styled.button`
     font-Weight: 400;
 `;
 export {
-    Form,
-    Section,
-    SectionOne,
-    Span,
-    WrapsField,
-    Label,
-    Input,
-    ButtonLink,
+  Form,
+  Section,
+  SectionOne,
+  Span,
+  WrapsField,
+  Label,
+  Input,
+  ButtonLink,
 };

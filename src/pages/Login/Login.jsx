@@ -50,85 +50,85 @@ const Image = Styled.img`
 // --- Styled Components --- //
 
 export default function Login() {
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const [form, setForm] = useState({
-        email: '',
-        password: '',
-    });
-    console.log(form, 'form login');
-    // react hook form
-    const { register, handleSubmit, errors } = useForm({
-        resolver: yupResolver(LoginSchema),
-    });
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
+  console.log(form, 'form login');
+  // react hook form
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(LoginSchema),
+  });
 
-    // --- Fetch submit method Post --- //
-    // const handleSubmit = async (event) => {};
-    const onSubmit = async (event) => {
-        // event.preventDefault();
-        dispatch(fetchPostLogin(form, history));
-    };
-    // --- Change Value when Input --- //
-    const handleChange = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.value });
-    };
+  // --- Fetch submit method Post --- //
+  // const handleSubmit = async (event) => {};
+  const onSubmit = async (event) => {
+    // event.preventDefault();
+    dispatch(fetchPostLogin(form, history));
+  };
+  // --- Change Value when Input --- //
+  const handleChange = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
 
-    return (
-        <Section>
-            <Card isLogin>
-                <Brand>
-                    <Image as="div" div>
-                        <Image image src={ImageBrand} alt="brand" />
-                    </Image>
-                </Brand>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <WrapForm>
-                        <Input
-                            type="email"
-                            name="email"
-                            id="email"
-                            defaultValue={form.email}
-                            onChange={handleChange}
-                            placeholder="Email"
-                            ref={register}
-                        />
-                        <span
-                            style={{
-                                color: 'red',
-                                display: 'flex',
-                                justifyContent: 'center',
-                            }}
-                        >
-                            {errors.email?.message}
-                        </span>
-                    </WrapForm>
+  return (
+    <Section>
+      <Card isLogin>
+        <Brand>
+          <Image as="div" div>
+            <Image image src={ImageBrand} alt="brand" />
+          </Image>
+        </Brand>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <WrapForm>
+            <Input
+              type="email"
+              name="email"
+              id="email"
+              defaultValue={form.email}
+              onChange={handleChange}
+              placeholder="Email"
+              ref={register}
+            />
+            <span
+              style={{
+                color: 'red',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              {errors.email?.message}
+            </span>
+          </WrapForm>
 
-                    <WrapForm>
-                        <Input
-                            type="password"
-                            name="password"
-                            id="password"
-                            defaultValue={form.password}
-                            onChange={handleChange}
-                            placeholder="Password"
-                            ref={register}
-                        />
-                        <span
-                            style={{
-                                color: 'red',
-                                display: 'flex',
-                                justifyContent: 'center',
-                            }}
-                        >
-                            {errors.password?.message}
-                        </span>
-                    </WrapForm>
+          <WrapForm>
+            <Input
+              type="password"
+              name="password"
+              id="password"
+              defaultValue={form.password}
+              onChange={handleChange}
+              placeholder="Password"
+              ref={register}
+            />
+            <span
+              style={{
+                color: 'red',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              {errors.password?.message}
+            </span>
+          </WrapForm>
 
-                    <Input as="button" button>
-                        Login
-                    </Input>
-                </form>
-            </Card>
-        </Section>
-    );
+          <Input as="button" button>
+            Login
+          </Input>
+        </form>
+      </Card>
+    </Section>
+  );
 }

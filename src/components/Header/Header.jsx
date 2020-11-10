@@ -7,15 +7,15 @@ import Styled from 'styled-components';
 import ImageBrand from '../../assets/images/laruno1.png';
 import PersonIcon from '@material-ui/icons/Person';
 import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from 'reactstrap';
 import { fetchGetUsersAuthentication } from '../../store/actions/';
 
@@ -63,151 +63,147 @@ const WrapsImage = Styled.div`
 `;
 
 const Header = () => {
-    const dispatch = useDispatch();
-    const history = useHistory();
-    //  --- Is Open --- //
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => setIsOpen(!isOpen);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  //  --- Is Open --- //
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
 
-    // --- Who I am --- //
-    const user = useSelector((state) => state.user.userAuthentication);
+  // --- Who I am --- //
+  const user = useSelector((state) => state.user.userAuthentication);
 
-    useEffect(() => {
-        dispatch(fetchGetUsersAuthentication());
-        // eslint-disable-next-line
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchGetUsersAuthentication());
+    // eslint-disable-next-line
+  }, [dispatch]);
 
-    return (
-        <HeaderStyled>
-            <Navbar light expand="md">
-                <NavbarBrand href="/">
-                    <WrapsImage>
-                        <Image src={ImageBrand} alt="brand" />
-                    </WrapsImage>
-                </NavbarBrand>
-                <NavbarToggler onClick={toggle} />
-                <Collapse isOpen={isOpen} navbar>
-                    <Nav className="mr-auto" navbar>
-                        <Link style={Styles.Link} to="/dashboard">
-                            <Span>Dashboard</Span>
-                        </Link>
-                        <Link style={Styles.Link} to="/product">
-                            <Span>Product</Span>
-                        </Link>
-                        <Link style={Styles.link} to="/Order">
-                            <Span>Order</Span>
-                        </Link>
-                        <Link style={Styles.Link} to="/reports">
-                            <Span>Report</Span>
-                        </Link>
-                        <Link style={Styles.Link} to="/tools">
-                            <Span>Tools</Span>
-                        </Link>
+  return (
+    <HeaderStyled>
+      <Navbar light expand="md">
+        <NavbarBrand href="/">
+          <WrapsImage>
+            <Image src={ImageBrand} alt="brand" />
+          </WrapsImage>
+        </NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <Link style={Styles.Link} to="/dashboard">
+              <Span>Dashboard</Span>
+            </Link>
+            <Link style={Styles.Link} to="/product">
+              <Span>Product</Span>
+            </Link>
+            <Link style={Styles.link} to="/Order">
+              <Span>Order</Span>
+            </Link>
+            <Link style={Styles.Link} to="/reports">
+              <Span>Report</Span>
+            </Link>
+            <Link style={Styles.Link} to="/tools">
+              <Span>Tools</Span>
+            </Link>
 
-                        {/* --- Dropdown Others --- */}
-                        <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle nav caret>
-                                <Span>Others</Span>
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                                <Link to="/topic">
-                                    <DropdownItem>
-                                        <Span>Topic</Span>
-                                    </DropdownItem>
-                                </Link>
-                                <Link to="/roles">
-                                    <DropdownItem>
-                                        <Span>roles</Span>
-                                    </DropdownItem>
-                                </Link>
-                                <Link to="/users">
-                                    <DropdownItem>
-                                        <Span>Users</Span>
-                                    </DropdownItem>
-                                </Link>
-                                <Link to="/coupons">
-                                    <DropdownItem>
-                                        <Span>coupons</Span>
-                                    </DropdownItem>
-                                </Link>
-                                <Link to="/payments">
-                                    <DropdownItem>
-                                        <Span>Payments</Span>
-                                    </DropdownItem>
-                                </Link>
-                                <Link to="/add-contents">
-                                    <DropdownItem>
-                                        <Span>Add Contents</Span>
-                                    </DropdownItem>
-                                </Link>
-                                <Link to="/contents">
-                                    <DropdownItem>
-                                        <Span>Contents</Span>
-                                    </DropdownItem>
-                                </Link>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
-                    </Nav>
+            {/* --- Dropdown Others --- */}
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                <Span>Others</Span>
+              </DropdownToggle>
+              <DropdownMenu right>
+                <Link to="/topic">
+                  <DropdownItem>
+                    <Span>Topic</Span>
+                  </DropdownItem>
+                </Link>
+                <Link to="/roles">
+                  <DropdownItem>
+                    <Span>roles</Span>
+                  </DropdownItem>
+                </Link>
+                <Link to="/users">
+                  <DropdownItem>
+                    <Span>Users</Span>
+                  </DropdownItem>
+                </Link>
+                <Link to="/coupons">
+                  <DropdownItem>
+                    <Span>coupons</Span>
+                  </DropdownItem>
+                </Link>
+                <Link to="/payments">
+                  <DropdownItem>
+                    <Span>Payments</Span>
+                  </DropdownItem>
+                </Link>
+                <Link to="/add-contents">
+                  <DropdownItem>
+                    <Span>Add Contents</Span>
+                  </DropdownItem>
+                </Link>
+                <Link to="/contents">
+                  <DropdownItem>
+                    <Span>Contents</Span>
+                  </DropdownItem>
+                </Link>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
 
-                    {/* --- Button Add Product --- */}
-                    <Link to="/add-product">
-                        <Button> + Add Product</Button>
-                    </Link>
-                    {user === null ? (
-                        <div style={Styles.MarginNavbar}>
-                            <Nav className="mr-auto" navbar>
-                                <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret>
-                                        <Span>
-                                            <PersonIcon />
-                                        </Span>
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                        <DropdownItem>
-                                            <Span>Looading...</Span>
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
-                            </Nav>
-                        </div>
-                    ) : (
-                        <div style={Styles.MarginNavbar}>
-                            <Nav className="mr-auto" navbar>
-                                <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret>
-                                        <Span>
-                                            <PersonIcon />
-                                        </Span>
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                        <DropdownItem>
-                                            <Span>{user.data.name}</Span>
-                                        </DropdownItem>
+          {/* --- Button Add Product --- */}
+          <Link to="/add-product">
+            <Button> + Add Product</Button>
+          </Link>
+          {user === null ? (
+            <div style={Styles.MarginNavbar}>
+              <Nav className="mr-auto" navbar>
+                <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret>
+                    <Span>
+                      <PersonIcon />
+                    </Span>
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem>
+                      <Span>Looading...</Span>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              </Nav>
+            </div>
+          ) : (
+            <div style={Styles.MarginNavbar}>
+              <Nav className="mr-auto" navbar>
+                <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret>
+                    <Span>
+                      <PersonIcon />
+                    </Span>
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem>
+                      <Span>{user.data.name}</Span>
+                    </DropdownItem>
 
-                                        <DropdownItem divider />
-                                        <DropdownItem
-                                            onClick={() =>
-                                                dispatch(logout(history))
-                                            }
-                                        >
-                                            <Span>Logout</Span>
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
-                            </Nav>
-                        </div>
-                    )}
-                </Collapse>
-            </Navbar>
-        </HeaderStyled>
-    );
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => dispatch(logout(history))}>
+                      <Span>Logout</Span>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              </Nav>
+            </div>
+          )}
+        </Collapse>
+      </Navbar>
+    </HeaderStyled>
+  );
 };
 
 const Styles = {
-    Link: {
-        padding: '8px',
-    },
-    MarginNavbar: { margin: '0 20px' },
+  Link: {
+    padding: '8px',
+  },
+  MarginNavbar: { margin: '0 20px' },
 };
 
 export default Header;

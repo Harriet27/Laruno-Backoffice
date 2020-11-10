@@ -37,95 +37,95 @@ const WrapForm = Styled.div`
 `;
 
 export default function InputOrder() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const [form, setForm] = useState({
-        product: '',
-        checkout_page: '',
-        phone_number: '',
-        handled_by: '',
-    });
+  const [form, setForm] = useState({
+    product: '',
+    checkout_page: '',
+    phone_number: '',
+    handled_by: '',
+  });
 
-    // --- Fetch submit method Post --- //
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        dispatch(fetchPostCoupons(form));
-    };
-    // --- Change Value when Input Active --- //
-    const handleChange = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.value });
-    };
+  // --- Fetch submit method Post --- //
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    dispatch(fetchPostCoupons(form));
+  };
+  // --- Change Value when Input Active --- //
+  const handleChange = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
 
-    return (
-        <ModalSmart
-            styleModal={{ maxWidth: '700px', width: '100%' }}
-            buttonLabel="+ Input Order"
-            title="Input Order"
-            onClickConfirm={handleSubmit}
-        >
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <WrapForm style={{ width: '45%' }}>
-                    <label>
-                        <Span>Product</Span>
-                    </label>
-                    <Input
-                        type="text"
-                        name="name"
-                        id="name"
-                        value={form.product}
-                        onChange={handleChange}
-                        placeholder="Name Coupons"
-                        required
-                    />
-                </WrapForm>
+  return (
+    <ModalSmart
+      styleModal={{ maxWidth: '700px', width: '100%' }}
+      buttonLabel="+ Input Order"
+      title="Input Order"
+      onClickConfirm={handleSubmit}
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <WrapForm style={{ width: '45%' }}>
+          <label>
+            <Span>Product</Span>
+          </label>
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            value={form.product}
+            onChange={handleChange}
+            placeholder="Name Coupons"
+            required
+          />
+        </WrapForm>
 
-                <WrapForm style={{ width: '45%' }}>
-                    <label>
-                        <Span>Checkout Page</Span>
-                    </label>
-                    <Input
-                        type="text"
-                        name="checkout_page"
-                        id="checkout_page"
-                        value={form.checkout_page}
-                        onChange={handleChange}
-                        placeholder="Checkout page"
-                        required
-                    />
-                </WrapForm>
-            </div>
+        <WrapForm style={{ width: '45%' }}>
+          <label>
+            <Span>Checkout Page</Span>
+          </label>
+          <Input
+            type="text"
+            name="checkout_page"
+            id="checkout_page"
+            value={form.checkout_page}
+            onChange={handleChange}
+            placeholder="Checkout page"
+            required
+          />
+        </WrapForm>
+      </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <WrapForm style={{ width: '45%' }}>
-                    <label>
-                        <Span>Handled By</Span>
-                    </label>
-                    <Input
-                        type="text"
-                        name="handled_by"
-                        id="handled_by"
-                        value={form.handled_by}
-                        onChange={handleChange}
-                        placeholder="Helen"
-                        required
-                    />
-                </WrapForm>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <WrapForm style={{ width: '45%' }}>
+          <label>
+            <Span>Handled By</Span>
+          </label>
+          <Input
+            type="text"
+            name="handled_by"
+            id="handled_by"
+            value={form.handled_by}
+            onChange={handleChange}
+            placeholder="Helen"
+            required
+          />
+        </WrapForm>
 
-                <WrapForm style={{ width: '45%' }}>
-                    <label>
-                        <Span>Contact</Span>
-                    </label>
-                    <Input
-                        type="number"
-                        name="phone_number"
-                        id="phone_number"
-                        value={form.phone_number}
-                        onChange={handleChange}
-                        placeholder="087875666339"
-                        required
-                    />
-                </WrapForm>
-            </div>
-        </ModalSmart>
-    );
+        <WrapForm style={{ width: '45%' }}>
+          <label>
+            <Span>Contact</Span>
+          </label>
+          <Input
+            type="number"
+            name="phone_number"
+            id="phone_number"
+            value={form.phone_number}
+            onChange={handleChange}
+            placeholder="087875666339"
+            required
+          />
+        </WrapForm>
+      </div>
+    </ModalSmart>
+  );
 }

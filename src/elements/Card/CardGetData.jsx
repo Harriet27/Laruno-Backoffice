@@ -17,25 +17,25 @@ flex-direction: row;
 
 `;
 export default function CardGetData(props) {
-    return (
-        <Card isBold>
-            <Wraps>
-                <div
-                    style={{
-                        fontSize: '36px',
-                        color: '#F98A12',
-                        fontWeight: 'Bold',
-                    }}
-                >
-                    {props.number}
-                </div>
-                <WrapRow>
-                    <div style={{ marginRight: '10px' }}>
-                        <FontAwesomeIcon icon={props.icon} />
-                    </div>
-                    <span>{props.text}</span>
-                </WrapRow>
-            </Wraps>
-        </Card>
-    );
+  return (
+    <Card isBold>
+      <Wraps>
+        <div
+          style={{
+            fontSize: '36px',
+            color: '#F98A12',
+            fontWeight: 'Bold',
+          }}
+        >
+          {props.number}
+        </div>
+        <WrapRow>
+          <div style={{ marginRight: '10px' }}>
+            <FontAwesomeIcon icon={props.icon} />
+          </div>
+          <span>{props.text}</span>
+        </WrapRow>
+      </Wraps>
+    </Card>
+  );
 }

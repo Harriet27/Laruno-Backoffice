@@ -20,50 +20,50 @@ const ButtonLink = Styled.button`
 // --- Styled Components --- //
 
 const ModalSmart = (props) => {
-    const {
-        buttonLabel,
-        className,
-        style,
-        tooltip,
-        children,
-        title,
-        onClickConfirm,
-        styleModal,
-    } = props;
+  const {
+    buttonLabel,
+    className,
+    style,
+    tooltip,
+    children,
+    title,
+    onClickConfirm,
+    styleModal,
+  } = props;
 
-    const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(false);
 
-    const toggle = () => setModal(!modal);
+  const toggle = () => setModal(!modal);
 
-    return (
-        <div>
-            <ButtonLink style={style} onClick={toggle}>
-                {buttonLabel}
-            </ButtonLink>
-            {tooltip}
-            <Modal
-                style={styleModal}
-                isOpen={modal}
-                toggle={toggle}
-                className={className}
-            >
-                <ModalHeader toggle={toggle}>{title}</ModalHeader>
-                <ModalBody>
-                    {/* modal body untuk isi content bisa dengan html */}
-                    {children}
-                </ModalBody>
-                <ModalFooter>
-                    {/* onClickConfirm bisa berfungsi untuk mengkonusmi api */}
-                    <Button color="primary" onClick={onClickConfirm}>
-                        Confirm
-                    </Button>
-                    <Button color="secondary" onClick={toggle}>
-                        Cancel
-                    </Button>
-                </ModalFooter>
-            </Modal>
-        </div>
-    );
+  return (
+    <div>
+      <ButtonLink style={style} onClick={toggle}>
+        {buttonLabel}
+      </ButtonLink>
+      {tooltip}
+      <Modal
+        style={styleModal}
+        isOpen={modal}
+        toggle={toggle}
+        className={className}
+      >
+        <ModalHeader toggle={toggle}>{title}</ModalHeader>
+        <ModalBody>
+          {/* modal body untuk isi content bisa dengan html */}
+          {children}
+        </ModalBody>
+        <ModalFooter>
+          {/* onClickConfirm bisa berfungsi untuk mengkonusmi api */}
+          <Button color="primary" onClick={onClickConfirm}>
+            Confirm
+          </Button>
+          <Button color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </div>
+  );
 };
 
 export default ModalSmart;

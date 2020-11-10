@@ -44,74 +44,74 @@ const WrapsField = Styled.div`
 `;
 
 export default function DynamicField(props) {
-    const {
-        handleAdd,
-        handleChange,
-        handleChangeContents,
-        fields,
-        handleRemove,
-        handleChangeNote,
-    } = props;
+  const {
+    handleAdd,
+    handleChange,
+    handleChangeContents,
+    fields,
+    handleRemove,
+    handleChangeNote,
+  } = props;
 
-    return (
-        <div style={Styles.FlexColumn} className="App">
-            <Label>
-                <Span>Learn About</Span>
-            </Label>
+  return (
+    <div style={Styles.FlexColumn} className="App">
+      <Label>
+        <Span>Learn About</Span>
+      </Label>
 
-            {/* --- Testing --- */}
-            <div name="test">
-                {fields.map((field, idx) => {
-                    return (
-                        <WrapsField key={`${field}-${idx}`}>
-                            <div style={Styles.FlexBetween}>
-                                <Input
-                                    type="text"
-                                    name={`one-${idx}`}
-                                    value={field.title}
-                                    placeholder="Enter title.."
-                                    onChange={(e) => handleChange(idx, e)}
-                                />
-                                <Input
-                                    style={{ width: '30%' }}
-                                    type="text"
-                                    name={`note-${idx}`}
-                                    value={field.note}
-                                    placeholder="Enter note.."
-                                    onChange={(e) => handleChangeNote(idx, e)}
-                                />
-                            </div>
-                            <Input
-                                as="textarea"
-                                rows="5"
-                                name={`number-${idx}`}
-                                placeholder="Enter Content.."
-                                value={field.content}
-                                onChange={(e) => handleChangeContents(idx, e)}
-                            />
-                            <ButtonModal
-                                delete
-                                type="button"
-                                onClick={() => handleRemove(idx)}
-                            >
-                                Delete Learn About {idx + 1}
-                            </ButtonModal>
-                        </WrapsField>
-                    );
-                })}
-            </div>
-            <ButtonModal
-                style={{ marginBottom: '10px' }}
+      {/* --- Testing --- */}
+      <div name="test">
+        {fields.map((field, idx) => {
+          return (
+            <WrapsField key={`${field}-${idx}`}>
+              <div style={Styles.FlexBetween}>
+                <Input
+                  type="text"
+                  name={`one-${idx}`}
+                  value={field.title}
+                  placeholder="Enter title.."
+                  onChange={(e) => handleChange(idx, e)}
+                />
+                <Input
+                  style={{ width: '30%' }}
+                  type="text"
+                  name={`note-${idx}`}
+                  value={field.note}
+                  placeholder="Enter note.."
+                  onChange={(e) => handleChangeNote(idx, e)}
+                />
+              </div>
+              <Input
+                as="textarea"
+                rows="5"
+                name={`number-${idx}`}
+                placeholder="Enter Content.."
+                value={field.content}
+                onChange={(e) => handleChangeContents(idx, e)}
+              />
+              <ButtonModal
+                delete
                 type="button"
-                onClick={() => handleAdd()}
-            >
-                Add Learn About
-            </ButtonModal>
-        </div>
-    );
+                onClick={() => handleRemove(idx)}
+              >
+                Delete Learn About {idx + 1}
+              </ButtonModal>
+            </WrapsField>
+          );
+        })}
+      </div>
+      <ButtonModal
+        style={{ marginBottom: '10px' }}
+        type="button"
+        onClick={() => handleAdd()}
+      >
+        Add Learn About
+      </ButtonModal>
+    </div>
+  );
 }
 
 const Styles = {
-    FlexColumn: { display: 'flex', flexDirection: 'column' },
-    FlexBetween: { display: 'flex', justifyContent: 'space-between' },
+  FlexColumn: { display: 'flex', flexDirection: 'column' },
+  FlexBetween: { display: 'flex', justifyContent: 'space-between' },
 };

@@ -36,84 +36,79 @@ const WrapForm = Styled.div`
 `;
 
 export default function AddNewTopic() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const [form, setForm] = useState({
-        name: '',
-        icon: '',
-    });
-    const [formulir, setFormulir] = useState({
-        image: {},
-    });
-    console.log(form, 'ini form');
+  const [form, setForm] = useState({
+    name: '',
+    icon: '',
+  });
+  const [formulir, setFormulir] = useState({
+    image: {},
+  });
+  console.log(form, 'ini form');
 
-    form.icon = formulir.image.icon;
-    // --- Fetch submit method Post --- //
+  form.icon = formulir.image.icon;
+  // --- Fetch submit method Post --- //
 
-    const { register, handleSubmit, errors } = useForm({
-        resolver: yupResolver(AddTopicSchema),
-    });
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(AddTopicSchema),
+  });
 
-    const onSubmit = async (event) => {
-        dispatch(fetchPostTopic(form));
-    };
+  const onSubmit = async (event) => {
+    dispatch(fetchPostTopic(form));
+  };
 
-    // --- Change Value when Input Active --- //
-    const handleChange = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.value });
-    };
+  // --- Change Value when Input Active --- //
+  const handleChange = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
 
-    // --- HandleChange upload Image --- //
-    const handleChangeImage = (e) => {
-        let image = formulir.image;
-        let field = e.target.id;
-        image[field] = e.target.files[0];
-        setFormulir({ image });
-    };
+  // --- HandleChange upload Image --- //
+  const handleChangeImage = (e) => {
+    let image = formulir.image;
+    let field = e.target.id;
+    image[field] = e.target.files[0];
+    setFormulir({ image });
+  };
 
-    // --- handleSubmit Upload Image --- //
-    const handleSubmitImage = async (e, id) => {
-        e.preventDefault();
-        // --- upload image --- //
-        dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
-    };
-    return (
-        <ModalSmart
-            buttonLabel="Add Topic"
-            title="Add Topic"
-            onClickConfirm={handleSubmit(onSubmit)}
-        >
-            <Card>
-                <WrapForm>
-                    <Input
-                        type="text"
-                        name="name"
-                        id="name"
-                        defaultValue={form.name}
-                        onChange={handleChange}
-                        placeholder="Name"
-                        ref={register}
-                    />
-                    <div>
-                        <SpanErrosMessage>
-                            {errors.name?.message}
-                        </SpanErrosMessage>
-                    </div>
-                </WrapForm>
-                <WrapForm>
-                    <SingleImage
-                        id="icon"
-                        onChange={handleChangeImage}
-                        onSubmit={(e) => handleSubmitImage(e, 'icon')}
-                    />
-                    {typeof formulir.image.icon === 'object' ? null : (
-                        <img
-                            src={formulir.image.icon}
-                            alt={formulir.image.icon}
-                        />
-                    )}
-                </WrapForm>
-            </Card>
-        </ModalSmart>
-    );
+  // --- handleSubmit Upload Image --- //
+  const handleSubmitImage = async (e, id) => {
+    e.preventDefault();
+    // --- upload image --- //
+    dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
+  };
+  return (
+    <ModalSmart
+      buttonLabel="Add Topic"
+      title="Add Topic"
+      onClickConfirm={handleSubmit(onSubmit)}
+    >
+      <Card>
+        <WrapForm>
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            defaultValue={form.name}
+            onChange={handleChange}
+            placeholder="Name"
+            ref={register}
+          />
+          <div>
+            <SpanErrosMessage>{errors.name?.message}</SpanErrosMessage>
+          </div>
+        </WrapForm>
+        <WrapForm>
+          <SingleImage
+            id="icon"
+            onChange={handleChangeImage}
+            onSubmit={(e) => handleSubmitImage(e, 'icon')}
+          />
+          {typeof formulir.image.icon === 'object' ? null : (
+            <img src={formulir.image.icon} alt={formulir.image.icon} />
+          )}
+        </WrapForm>
+      </Card>
+    </ModalSmart>
+  );
 }

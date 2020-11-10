@@ -51,133 +51,119 @@ margin-right:10px;
 //  --- Styled Components --- //
 
 export default function OrderOnline() {
-    return (
-        <section style={{ margin: '0 50px' }}>
-            {/* --- Section 1 --- */}
-            <Wraps>
-                <CardGetData
-                    icon={faShoppingCart}
-                    number="2"
-                    text="Total Orders"
-                ></CardGetData>
-                <CardGetData
-                    icon={faWallet}
-                    number="2"
-                    text="Total Paid"
-                ></CardGetData>
-                <CardGetData
-                    icon={faPercent}
-                    number="7 %"
-                    text="Paid Ratio"
-                ></CardGetData>
-                <CardGetData
-                    icon={faShoppingCart}
-                    number="0"
-                    text="Unpaid Orders"
-                ></CardGetData>
-            </Wraps>
+  return (
+    <section style={{ margin: '0 50px' }}>
+      {/* --- Section 1 --- */}
+      <Wraps>
+        <CardGetData
+          icon={faShoppingCart}
+          number="2"
+          text="Total Orders"
+        ></CardGetData>
+        <CardGetData icon={faWallet} number="2" text="Total Paid"></CardGetData>
+        <CardGetData
+          icon={faPercent}
+          number="7 %"
+          text="Paid Ratio"
+        ></CardGetData>
+        <CardGetData
+          icon={faShoppingCart}
+          number="0"
+          text="Unpaid Orders"
+        ></CardGetData>
+      </Wraps>
 
-            {/* --- Section 2 --- */}
-            <div
-                style={{
-                    display: 'flex',
-                    margin: '20PX 0',
-                    justifyContent: 'space-between',
-                }}
+      {/* --- Section 2 --- */}
+      <div
+        style={{
+          display: 'flex',
+          margin: '20PX 0',
+          justifyContent: 'space-between',
+        }}
+      >
+        <div style={{ display: 'flex' }}>
+          <WrapsTop>
+            {/* --- Actions --- */}
+            <ModalSmart
+              onClickConfirm={() => {
+                return alert('succes');
+              }}
+              buttonLabel="Actions"
             >
-                <div style={{ display: 'flex' }}>
-                    <WrapsTop>
-                        {/* --- Actions --- */}
-                        <ModalSmart
-                            onClickConfirm={() => {
-                                return alert('succes');
-                            }}
-                            buttonLabel="Actions"
-                        >
-                            <div>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        margin: '10px 0',
-                                    }}
-                                >
-                                    <WrapsTop style={{ width: '45%' }}>
-                                        <label>Product</label>
-                                        <Select name="product">
-                                            <option value="hoodie">
-                                                Hoodie Face Shield
-                                            </option>
-                                        </Select>
-                                    </WrapsTop>
+              <div>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    margin: '10px 0',
+                  }}
+                >
+                  <WrapsTop style={{ width: '45%' }}>
+                    <label>Product</label>
+                    <Select name="product">
+                      <option value="hoodie">Hoodie Face Shield</option>
+                    </Select>
+                  </WrapsTop>
 
-                                    <WrapsTop style={{ width: '45%' }}>
-                                        <label>Checkout Page</label>
-                                        <Select name="product">
-                                            <option value="hoodie">
-                                                Hoodie Face Shield
-                                            </option>
-                                        </Select>
-                                    </WrapsTop>
-                                </div>
-
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                    }}
-                                >
-                                    <WrapsTop style={{ width: '45%' }}>
-                                        <label>Handled By</label>
-                                        <Select name="product">
-                                            <option value="hoodie">
-                                                Hoodie Face Shield
-                                            </option>
-                                        </Select>
-                                    </WrapsTop>
-                                    <WrapsTop style={{ width: '45%' }}>
-                                        <label>Contact</label>
-                                        <Select name="product">
-                                            <option value="hoodie">
-                                                Hoodie Face Shield
-                                            </option>
-                                        </Select>
-                                    </WrapsTop>
-                                </div>
-                            </div>
-                        </ModalSmart>
-                    </WrapsTop>
-
-                    {/* --- payment status --- */}
-                    <WrapsTop>
-                        <Select name="Refund">
-                            <option value="hoodie">
-                                Select Pyament Status
-                            </option>
-                            <option value="hoodie">Paid</option>
-                            <option value="hoodie">Unpaid</option>
-                            <option value="hoodie">Refund</option>
-                        </Select>
-                    </WrapsTop>
-
-                    <WrapsTop>
-                        <Select name="Select_Date">
-                            <option value="hoodie">Today</option>
-                            <option value="hoodie">Yesterday</option>
-                            <option value="hoodie">Last 7 days</option>
-                            <option value="hoodie">Last 30 days</option>
-                        </Select>
-                    </WrapsTop>
+                  <WrapsTop style={{ width: '45%' }}>
+                    <label>Checkout Page</label>
+                    <Select name="product">
+                      <option value="hoodie">Hoodie Face Shield</option>
+                    </Select>
+                  </WrapsTop>
                 </div>
 
-                <div>
-                    <WrapsTop>
-                        <lable>Search</lable> <Input type="search" />
-                    </WrapsTop>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <WrapsTop style={{ width: '45%' }}>
+                    <label>Handled By</label>
+                    <Select name="product">
+                      <option value="hoodie">Hoodie Face Shield</option>
+                    </Select>
+                  </WrapsTop>
+                  <WrapsTop style={{ width: '45%' }}>
+                    <label>Contact</label>
+                    <Select name="product">
+                      <option value="hoodie">Hoodie Face Shield</option>
+                    </Select>
+                  </WrapsTop>
                 </div>
-            </div>
+              </div>
+            </ModalSmart>
+          </WrapsTop>
 
-            {/* --- section 4 --- Table Order --- */}
-        </section>
-    );
+          {/* --- payment status --- */}
+          <WrapsTop>
+            <Select name="Refund">
+              <option value="hoodie">Select Pyament Status</option>
+              <option value="hoodie">Paid</option>
+              <option value="hoodie">Unpaid</option>
+              <option value="hoodie">Refund</option>
+            </Select>
+          </WrapsTop>
+
+          <WrapsTop>
+            <Select name="Select_Date">
+              <option value="hoodie">Today</option>
+              <option value="hoodie">Yesterday</option>
+              <option value="hoodie">Last 7 days</option>
+              <option value="hoodie">Last 30 days</option>
+            </Select>
+          </WrapsTop>
+        </div>
+
+        <div>
+          <WrapsTop>
+            <lable>Search</lable> <Input type="search" />
+          </WrapsTop>
+        </div>
+      </div>
+
+      {/* --- section 4 --- Table Order --- */}
+    </section>
+  );
 }

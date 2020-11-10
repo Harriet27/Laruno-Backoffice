@@ -38,74 +38,74 @@ const SectionOne = Styled.div`
 // --- Batas --- //
 
 const DataContents = (props) => {
-    const dispatch = useDispatch();
-    const contents = useSelector((state) => state.contents.getContents);
+  const dispatch = useDispatch();
+  const contents = useSelector((state) => state.contents.getContents);
 
-    useEffect(() => {
-        dispatch(fetchGetContents());
-        // eslint-disable-next-line
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchGetContents());
+    // eslint-disable-next-line
+  }, [dispatch]);
 
-    return (
-        <React.Fragment>
-            <SectionOne>
-                <AddNewContents />
-                <div>
-                    <label>Search</label> <Input type="search" />
-                </div>
-            </SectionOne>
+  return (
+    <React.Fragment>
+      <SectionOne>
+        <AddNewContents />
+        <div>
+          <label>Search</label> <Input type="search" />
+        </div>
+      </SectionOne>
 
-            <Card isNormal>
-                <Table striped>
-                    <thead>
-                        <tr>
-                            <Th>Name</Th>
-                            <Th>Slug</Th>
-                            <Th>Created At</Th>
-                            <Th>Updated At</Th>
-                            <Th>Actions</Th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {contents !== null &&
-                            contents.data.map((item) => {
-                                return (
-                                    <tr key={item._id}>
-                                        <Th as="td" td>
-                                            {item.name}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {item.slug}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {moment(item.created_at).format(
-                                                'MMMM Do YYYY, h:mm:ss a'
-                                            )}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {moment(item.updated_at).format(
-                                                'MMMM Do YYYY, h:mm:ss a'
-                                            )}
-                                        </Th>
-                                        <Th as="td" td>
-                                            <div
-                                                style={{
-                                                    display: 'flex',
-                                                    flexDirection: 'row',
-                                                }}
-                                            >
-                                                <UpdateContents id={item._id} />
-                                                <DeleteContents id={item._id} />
-                                            </div>
-                                        </Th>
-                                    </tr>
-                                );
-                            })}
-                    </tbody>
-                </Table>
-            </Card>
-        </React.Fragment>
-    );
+      <Card isNormal>
+        <Table striped>
+          <thead>
+            <tr>
+              <Th>Name</Th>
+              <Th>Slug</Th>
+              <Th>Created At</Th>
+              <Th>Updated At</Th>
+              <Th>Actions</Th>
+            </tr>
+          </thead>
+          <tbody>
+            {contents !== null &&
+              contents.data.map((item) => {
+                return (
+                  <tr key={item._id}>
+                    <Th as="td" td>
+                      {item.name}
+                    </Th>
+                    <Th as="td" td>
+                      {item.slug}
+                    </Th>
+                    <Th as="td" td>
+                      {moment(item.created_at).format(
+                        'MMMM Do YYYY, h:mm:ss a'
+                      )}
+                    </Th>
+                    <Th as="td" td>
+                      {moment(item.updated_at).format(
+                        'MMMM Do YYYY, h:mm:ss a'
+                      )}
+                    </Th>
+                    <Th as="td" td>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                        }}
+                      >
+                        <UpdateContents id={item._id} />
+                        <DeleteContents id={item._id} />
+                      </div>
+                    </Th>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </Table>
+      </Card>
+    </React.Fragment>
+  );
 };
 
 export default DataContents;

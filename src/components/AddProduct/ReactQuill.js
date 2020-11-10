@@ -5,58 +5,58 @@ import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
 
 export default function ReactQuillTest(props) {
-    // --- in Props --- //
-    const { value, setValue } = props;
+  // --- in Props --- //
+  const { value, setValue } = props;
 
-    const modules = {
-        toolbar: [
-            [{ header: '1' }, { header: '2' }, { font: [] }],
-            [{ size: [] }],
-            [{ color: [] }, { background: [] }],
-            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-            [
-                { list: 'ordered' },
-                { list: 'bullet' },
-                { indent: '-1' },
-                { indent: '+1' },
-            ],
-            ['link', 'image', 'video'],
-            ['clean'],
-            [{ align: ['', 'right', 'center', 'justify'] }],
-        ],
+  const modules = {
+    toolbar: [
+      [{ header: '1' }, { header: '2' }, { font: [] }],
+      [{ size: [] }],
+      [{ color: [] }, { background: [] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [
+        { list: 'ordered' },
+        { list: 'bullet' },
+        { indent: '-1' },
+        { indent: '+1' },
+      ],
+      ['link', 'image', 'video'],
+      ['clean'],
+      [{ align: ['', 'right', 'center', 'justify'] }],
+    ],
 
-        clipboard: {
-            matchVisual: false,
-        },
-    };
+    clipboard: {
+      matchVisual: false,
+    },
+  };
 
-    const formats = [
-        'header',
-        'font',
-        'size',
-        'color',
-        'background',
-        'bold',
-        'italic',
-        'underline',
-        'strike',
-        'blockquote',
-        'list',
-        'bullet',
-        'indent',
-        'link',
-        'image',
-        'video',
-        'align',
-    ];
+  const formats = [
+    'header',
+    'font',
+    'size',
+    'color',
+    'background',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'indent',
+    'link',
+    'image',
+    'video',
+    'align',
+  ];
 
-    return (
-        <ReactQuill
-            style={{ height: '150px' }}
-            value={value}
-            onChange={setValue}
-            modules={modules}
-            formats={formats}
-        />
-    );
+  return (
+    <ReactQuill
+      style={{ height: '150px' }}
+      value={value}
+      onChange={setValue}
+      modules={modules}
+      formats={formats}
+    />
+  );
 }

@@ -17,74 +17,74 @@ const Wraps = Styled.div`
     margin: 20px 0;
 `;
 export default function Coupons() {
-    const coupons = useSelector((state) => state.coupons.getCoupons);
-    // function checkTransfer(item) {
-    //     return item.payment_method === 'TRANSFER';
-    // }
+  const coupons = useSelector((state) => state.coupons.getCoupons);
+  // function checkTransfer(item) {
+  //     return item.payment_method === 'TRANSFER';
+  // }
 
-    // --- Test Untuk mengetahui jumlah yang menggunakan transfer --- //
-    var newArray =
-        coupons !== null &&
-        coupons.data.filter(function (el) {
-            return el.payment_method === 'TRANSFER';
-        });
+  // --- Test Untuk mengetahui jumlah yang menggunakan transfer --- //
+  var newArray =
+    coupons !== null &&
+    coupons.data.filter(function (el) {
+      return el.payment_method === 'TRANSFER';
+    });
 
-    return (
-        <Section>
-            {coupons === null ? (
-                <Wraps>
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Total Coupons"
-                    ></CardGetData>
+  return (
+    <Section>
+      {coupons === null ? (
+        <Wraps>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Total Coupons"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faWallet}
-                        number="2"
-                        text="Total Paid"
-                    ></CardGetData>
+          <CardGetData
+            icon={faWallet}
+            number="2"
+            text="Total Paid"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
-                </Wraps>
-            ) : (
-                <Wraps>
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number={coupons.data.length}
-                        text="Total Coupons"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
+        </Wraps>
+      ) : (
+        <Wraps>
+          <CardGetData
+            icon={faShoppingCart}
+            number={coupons.data.length}
+            text="Total Coupons"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faWallet}
-                        number={newArray.length}
-                        text="Transfer"
-                    ></CardGetData>
+          <CardGetData
+            icon={faWallet}
+            number={newArray.length}
+            text="Transfer"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
-                </Wraps>
-            )}
-            <DataCoupons />
-        </Section>
-    );
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
+        </Wraps>
+      )}
+      <DataCoupons />
+    </Section>
+  );
 }

@@ -35,71 +35,71 @@ const WrapForm = Styled.div`
 `;
 
 export default function UpdateRoles(props) {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const [form, setForm] = useState({
-        adminType: '',
-        readWrite: false,
+  const [form, setForm] = useState({
+    adminType: '',
+    readWrite: false,
+  });
+
+  // --- Fetch submit method Post --- //
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    dispatch(fetchUpdateRoles(form, props.id));
+  };
+
+  // --- Change Value when Input Active --- //
+  const handleChange = (event) => {
+    setForm({
+      ...form,
+      adminType: event.target.value,
     });
+  };
 
-    // --- Fetch submit method Post --- //
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        dispatch(fetchUpdateRoles(form, props.id));
-    };
+  //handle Checkbox
+  const handleCheckbox = (event) => {
+    // worth it , harus di pelajari
+    setForm((form) => {
+      return {
+        ...form,
+        readWrite: !form.readWrite,
+      };
+    });
+  };
 
-    // --- Change Value when Input Active --- //
-    const handleChange = (event) => {
-        setForm({
-            ...form,
-            adminType: event.target.value,
-        });
-    };
-
-    //handle Checkbox
-    const handleCheckbox = (event) => {
-        // worth it , harus di pelajari
-        setForm((form) => {
-            return {
-                ...form,
-                readWrite: !form.readWrite,
-            };
-        });
-    };
-
-    return (
-        <ModalSmart
-            buttonLabel="Add Roles"
-            title="update Roles"
-            onClickConfirm={handleSubmit}
-        >
-            <Section>
-                <Card isLogin>
-                    <div>
-                        <WrapForm>
-                            <Input
-                                type="text"
-                                name="name"
-                                id="name"
-                                value={form.adminType}
-                                onChange={handleChange}
-                                placeholder="Name"
-                                required
-                            />
-                            <div>
-                                {' '}
-                                <Input
-                                    type="checkbox"
-                                    name="readWrite"
-                                    id="readWrite"
-                                    value={form.readWrite}
-                                    onChange={handleCheckbox}
-                                />
-                            </div>
-                        </WrapForm>
-                    </div>
-                </Card>
-            </Section>
-        </ModalSmart>
-    );
+  return (
+    <ModalSmart
+      buttonLabel="Add Roles"
+      title="update Roles"
+      onClickConfirm={handleSubmit}
+    >
+      <Section>
+        <Card isLogin>
+          <div>
+            <WrapForm>
+              <Input
+                type="text"
+                name="name"
+                id="name"
+                value={form.adminType}
+                onChange={handleChange}
+                placeholder="Name"
+                required
+              />
+              <div>
+                {' '}
+                <Input
+                  type="checkbox"
+                  name="readWrite"
+                  id="readWrite"
+                  value={form.readWrite}
+                  onChange={handleCheckbox}
+                />
+              </div>
+            </WrapForm>
+          </div>
+        </Card>
+      </Section>
+    </ModalSmart>
+  );
 }

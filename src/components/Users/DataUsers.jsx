@@ -13,8 +13,8 @@ import moment from 'moment';
 // --- Elements, Pages, Components --- //
 import MultipleDelete from '../../elements/Alert/MultipleDelete';
 import {
-    fetchGetUsersAdministrator,
-    fetchMultipleDeleteUsers,
+  fetchGetUsersAdministrator,
+  fetchMultipleDeleteUsers,
 } from '../../store/actions';
 
 import AddAdministrator from './AddAdministrator';
@@ -22,317 +22,280 @@ import UpdateUser from './UpdateUser';
 import DeleteUser from './DeleteUser';
 
 const DataTopic = (props) => {
-    const dispatch = useDispatch();
-    const users = useSelector((state) => state.user.userAdministrator);
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.user.userAdministrator);
 
-    // --- useEffect --- Get Data users ---//
-    useEffect(() => {
-        dispatch(fetchGetUsersAdministrator());
-        // eslint-disable-next-line
-    }, [dispatch]);
+  // --- useEffect --- Get Data users ---//
+  useEffect(() => {
+    dispatch(fetchGetUsersAdministrator());
+    // eslint-disable-next-line
+  }, [dispatch]);
 
-    // --- PAGINATION --- //
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  // --- PAGINATION --- //
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
-    // --- Dropdown --- //
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const toggle = () => setDropdownOpen((prevState) => !prevState);
+  // --- Dropdown --- //
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
 
-    const [form, setForm] = useState({
-        id: [],
+  const [form, setForm] = useState({
+    id: [],
+  });
+
+  const [searching, setSearching] = useState({
+    search: '',
+  });
+
+  // --- handleCheckboxChange --- //
+  const handleCheckboxChange = (event) => {
+    let newArray = [...form.id, event.target.id];
+    if (form.id.includes(event.target.id)) {
+      newArray = newArray.filter((item) => item !== event.target.id);
+    }
+    setForm({
+      id: newArray,
     });
+  };
 
-    const [searching, setSearching] = useState({
-        search: '',
-    });
+  // --- Multiple Delete --- //
+  const handleMultipleDelete = (event) => {
+    event.preventDefault();
+    dispatch(fetchMultipleDeleteUsers(form));
+  };
 
-    // --- handleCheckboxChange --- //
-    const handleCheckboxChange = (event) => {
-        let newArray = [...form.id, event.target.id];
-        if (form.id.includes(event.target.id)) {
-            newArray = newArray.filter((item) => item !== event.target.id);
-        }
-        setForm({
-            id: newArray,
-        });
-    };
+  // --- Multiple Clone --- //
+  // const handleMultipleClone = (event) => {
+  //     event.preventDefault();
+  //     dispatch(fetchMultipleCloneProduct(form));
+  // };
 
-    // --- Multiple Delete --- //
-    const handleMultipleDelete = (event) => {
-        event.preventDefault();
-        dispatch(fetchMultipleDeleteUsers(form));
-    };
+  // --- handle Change --- //
+  const handleChange = (event) => {
+    setSearching({ ...searching, [event.target.name]: event.target.value });
+  };
 
-    // --- Multiple Clone --- //
-    // const handleMultipleClone = (event) => {
-    //     event.preventDefault();
-    //     dispatch(fetchMultipleCloneProduct(form));
-    // };
+  // const handleSearch = (event) => {
+  //     event.preventDefault();
+  //     dispatch(fetchFindProduct(searching));
+  // };
 
-    // --- handle Change --- //
-    const handleChange = (event) => {
-        setSearching({ ...searching, [event.target.name]: event.target.value });
-    };
+  return (
+    <React.Fragment>
+      {/* --- section 1 --- Button Action link to Add Product ---*/}
+      {form.id[0] ? (
+        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+          <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
+            Actions
+          </DropdownToggle>
+          <DropdownMenu>
+            <MultipleDelete onSubmit={handleMultipleDelete} />
 
-    // const handleSearch = (event) => {
-    //     event.preventDefault();
-    //     dispatch(fetchFindProduct(searching));
-    // };
-
-    return (
-        <React.Fragment>
-            {/* --- section 1 --- Button Action link to Add Product ---*/}
-            {form.id[0] ? (
-                <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-                    <DropdownToggle
-                        style={{ backgroundColor: '#0098DA' }}
-                        caret
-                    >
-                        Actions
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <MultipleDelete onSubmit={handleMultipleDelete} />
-
-                        {/* <DropdownItem onClick={handleMultipleClone}>
+            {/* <DropdownItem onClick={handleMultipleClone}>
                                 Clone
                             </DropdownItem> */}
-                    </DropdownMenu>
-                </Dropdown>
-            ) : (
-                <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-                    {' '}
-                    <DropdownToggle
-                        style={{ backgroundColor: '#0098DA' }}
-                        caret
-                        disabled
-                    >
-                        Actions
-                    </DropdownToggle>
-                </Dropdown>
-            )}
+          </DropdownMenu>
+        </Dropdown>
+      ) : (
+        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+          {' '}
+          <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret disabled>
+            Actions
+          </DropdownToggle>
+        </Dropdown>
+      )}
 
-            <div
-                style={{
-                    margin: '20px 0',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                }}
-            >
-                <AddAdministrator />
+      <div
+        style={{
+          margin: '20px 0',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <AddAdministrator />
 
-                <div>
-                    <label>Search</label>{' '}
-                    <Input
-                        type="search"
-                        name="search"
-                        value={searching.search}
-                        onChange={handleChange}
-                    />
-                </div>
-                {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
-            </div>
+        <div>
+          <label>Search</label>{' '}
+          <Input
+            type="search"
+            name="search"
+            value={searching.search}
+            onChange={handleChange}
+          />
+        </div>
+        {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
+      </div>
 
-            {/* --- section 2 --- Get Data Product --- */}
-            <Card isNormal>
-                {/* --- untuk hapus melalui button --- */}
-                <Overflow>
-                    {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
+      {/* --- section 2 --- Get Data Product --- */}
+      <Card isNormal>
+        {/* --- untuk hapus melalui button --- */}
+        <Overflow>
+          {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
                      di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
-                    {users === null ? (
-                        <React.Fragment>
-                            <Table>
-                                <thead>
-                                    <tr>
-                                        <Th>
-                                            <DehazeIcon />
-                                        </Th>
-                                        <Th>Name</Th>
-                                        <Th>Email</Th>
-                                        <Th>Role</Th>
-                                        <Th>Phone</Th>
-                                        <Th>Created At</Th>
-                                        <Th>Updated At</Th>
-                                        <Th style={{ width: '100px' }}>
-                                            Actions
-                                        </Th>
-                                    </tr>
-                                </thead>
-                            </Table>
-                            <div
-                                style={{
-                                    textAlign: 'center',
-                                    padding: '100px',
-                                }}
-                            >
-                                Loading ...
-                            </div>
-                        </React.Fragment>
-                    ) : users.data.length >= 1 ? (
-                        <Table>
-                            <thead>
-                                <tr>
-                                    <Th>
-                                        {/* ---Belum di kasih logic --- */}
-                                        <Input checkbox type="checkbox" />
-                                    </Th>
-                                    <Th>Name</Th>
-                                    <Th>Email</Th>
-                                    <Th>Role</Th>
-                                    <Th>Phone</Th>
-                                    <Th>Created At</Th>
-                                    <Th>Updated At</Th>
-                                    <Th style={{ width: '100px' }}>Actions</Th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {/* {(rowsPerPage > 0
+          {users === null ? (
+            <React.Fragment>
+              <Table>
+                <thead>
+                  <tr>
+                    <Th>
+                      <DehazeIcon />
+                    </Th>
+                    <Th>Name</Th>
+                    <Th>Email</Th>
+                    <Th>Role</Th>
+                    <Th>Phone</Th>
+                    <Th>Created At</Th>
+                    <Th>Updated At</Th>
+                    <Th style={{ width: '100px' }}>Actions</Th>
+                  </tr>
+                </thead>
+              </Table>
+              <div
+                style={{
+                  textAlign: 'center',
+                  padding: '100px',
+                }}
+              >
+                Loading ...
+              </div>
+            </React.Fragment>
+          ) : users.data.length >= 1 ? (
+            <Table>
+              <thead>
+                <tr>
+                  <Th>
+                    {/* ---Belum di kasih logic --- */}
+                    <Input checkbox type="checkbox" />
+                  </Th>
+                  <Th>Name</Th>
+                  <Th>Email</Th>
+                  <Th>Role</Th>
+                  <Th>Phone</Th>
+                  <Th>Created At</Th>
+                  <Th>Updated At</Th>
+                  <Th style={{ width: '100px' }}>Actions</Th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row)  */}
-                                {users.data
-                                    .slice(
-                                        page * rowsPerPage,
-                                        page * rowsPerPage + rowsPerPage
-                                    )
-                                    .map((item) => {
-                                        return (
-                                            <tr key={item._id}>
-                                                <Th>
-                                                    <Input
-                                                        checkbox
-                                                        type="checkbox"
-                                                        id={item._id}
-                                                        value={item._id}
-                                                        onChange={
-                                                            handleCheckboxChange
-                                                        }
-                                                    />
-                                                </Th>
+                {users.data
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((item) => {
+                    return (
+                      <tr key={item._id}>
+                        <Th>
+                          <Input
+                            checkbox
+                            type="checkbox"
+                            id={item._id}
+                            value={item._id}
+                            onChange={handleCheckboxChange}
+                          />
+                        </Th>
 
-                                                <Th as="td" td>
-                                                    {item.name}
-                                                </Th>
-                                                <Th as="td" td>
-                                                    {item.email}
-                                                </Th>
-                                                <Th as="td" td>
-                                                    <div
-                                                        style={{
-                                                            display: 'flex',
-                                                            flexDirection:
-                                                                'row',
-                                                        }}
-                                                    >
-                                                        {item.role.map((id) => {
-                                                            return (
-                                                                <p key={id._id}>
-                                                                    {
-                                                                        id.adminType
-                                                                    }{' '}
-                                                                    &nbsp;
-                                                                </p>
-                                                            );
-                                                        })}
-                                                    </div>
-                                                </Th>
-                                                <Th as="td" td>
-                                                    {item.phone_number}
-                                                </Th>
-                                                <Th as="td" td>
-                                                    {moment(
-                                                        item.created_at
-                                                    ).format(
-                                                        'MMMM Do YYYY, h:mm:ss a'
-                                                    )}
-                                                </Th>
-                                                <Th as="td" td>
-                                                    {moment(
-                                                        item.updated_at
-                                                    ).format(
-                                                        'MMMM Do YYYY, h:mm:ss a'
-                                                    )}
-                                                </Th>
+                        <Th as="td" td>
+                          {item.name}
+                        </Th>
+                        <Th as="td" td>
+                          {item.email}
+                        </Th>
+                        <Th as="td" td>
+                          <div
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'row',
+                            }}
+                          >
+                            {item.role.map((id) => {
+                              return <p key={id._id}>{id.adminType} &nbsp;</p>;
+                            })}
+                          </div>
+                        </Th>
+                        <Th as="td" td>
+                          {item.phone_number}
+                        </Th>
+                        <Th as="td" td>
+                          {moment(item.created_at).format(
+                            'MMMM Do YYYY, h:mm:ss a'
+                          )}
+                        </Th>
+                        <Th as="td" td>
+                          {moment(item.updated_at).format(
+                            'MMMM Do YYYY, h:mm:ss a'
+                          )}
+                        </Th>
 
-                                                <Th as="td" td>
-                                                    <div
-                                                        style={{
-                                                            display: 'flex',
-                                                            flexDirection:
-                                                                'row',
-                                                        }}
-                                                    >
-                                                        <UpdateUser
-                                                            id={item._id}
-                                                        />
+                        <Th as="td" td>
+                          <div
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'row',
+                            }}
+                          >
+                            <UpdateUser id={item._id} />
 
-                                                        <DeleteUser
-                                                            id={item._id}
-                                                        />
-                                                    </div>
-                                                </Th>
-                                            </tr>
-                                        );
-                                    })}
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <TablePagination
-                                        rowsPerPageOptions={[10, 15, 20]}
-                                        count={
-                                            users !== null && users.data.length
-                                        }
-                                        rowsPerPage={rowsPerPage}
-                                        page={page}
-                                        onChangePage={handleChangePage}
-                                        onChangeRowsPerPage={
-                                            handleChangeRowsPerPage
-                                        }
-                                    />
-                                </tr>
-                            </tfoot>
-                        </Table>
-                    ) : (
-                        <React.Fragment>
-                            <Table>
-                                <thead>
-                                    <tr>
-                                        <Th>
-                                            <DehazeIcon />
-                                        </Th>
-                                        <Th>Name</Th>
-                                        <Th>Slug</Th>
-                                        <Th>Created At</Th>
-                                        <Th>Update At</Th>
-                                        <Th style={{ width: '100px' }}>
-                                            Actions
-                                        </Th>
-                                    </tr>
-                                </thead>
-                            </Table>
-                            <div
-                                style={{
-                                    textAlign: 'center',
-                                    padding: '100px',
-                                }}
-                            >
-                                You have no users in this date range.
-                            </div>
-                        </React.Fragment>
-                    )}
-                </Overflow>
-            </Card>
-        </React.Fragment>
-    );
+                            <DeleteUser id={item._id} />
+                          </div>
+                        </Th>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <TablePagination
+                    rowsPerPageOptions={[10, 15, 20]}
+                    count={users !== null && users.data.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                  />
+                </tr>
+              </tfoot>
+            </Table>
+          ) : (
+            <React.Fragment>
+              <Table>
+                <thead>
+                  <tr>
+                    <Th>
+                      <DehazeIcon />
+                    </Th>
+                    <Th>Name</Th>
+                    <Th>Slug</Th>
+                    <Th>Created At</Th>
+                    <Th>Update At</Th>
+                    <Th style={{ width: '100px' }}>Actions</Th>
+                  </tr>
+                </thead>
+              </Table>
+              <div
+                style={{
+                  textAlign: 'center',
+                  padding: '100px',
+                }}
+              >
+                You have no users in this date range.
+              </div>
+            </React.Fragment>
+          )}
+        </Overflow>
+      </Card>
+    </React.Fragment>
+  );
 };
 
 export default DataTopic;

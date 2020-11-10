@@ -19,65 +19,65 @@ const Wraps = Styled.div`
 `;
 
 export default function Products() {
-    const product = useSelector((state) => state.product.getProduct);
+  const product = useSelector((state) => state.product.getProduct);
 
-    return (
-        <section style={{ margin: '50px' }}>
-            {product === null ? (
-                <Wraps>
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Total Products"
-                    ></CardGetData>
+  return (
+    <section style={{ margin: '50px' }}>
+      {product === null ? (
+        <Wraps>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Total Products"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faWallet}
-                        number="2"
-                        text="Total Paid"
-                    ></CardGetData>
+          <CardGetData
+            icon={faWallet}
+            number="2"
+            text="Total Paid"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
-                </Wraps>
-            ) : (
-                <Wraps>
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number={product.data.length}
-                        text="Total Products"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
+        </Wraps>
+      ) : (
+        <Wraps>
+          <CardGetData
+            icon={faShoppingCart}
+            number={product.data.length}
+            text="Total Products"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faWallet}
-                        number="2"
-                        text="Total Paid"
-                    ></CardGetData>
+          <CardGetData
+            icon={faWallet}
+            number="2"
+            text="Total Paid"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
-                </Wraps>
-            )}
-            {/* --- section 2 --- */}
-            <DataProduct />
-        </section>
-    );
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
+        </Wraps>
+      )}
+      {/* --- section 2 --- */}
+      <DataProduct />
+    </section>
+  );
 }

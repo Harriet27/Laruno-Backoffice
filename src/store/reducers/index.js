@@ -12,15 +12,15 @@ import coupons from './coupons';
 import image from './image';
 import payment from './payment';
 export default combineReducers({
-    topic,
-    product,
-    user,
-    roles,
-    contents,
-    agents,
-    reseller,
-    orders,
-    coupons,
-    image,
-    payment,
+  topic,
+  product,
+  user,
+  roles,
+  contents,
+  agents,
+  reseller,
+  orders,
+  coupons,
+  image,
+  payment,
 });

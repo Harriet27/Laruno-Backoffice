@@ -20,40 +20,40 @@ border:1px solid #66AFE9;
 // --- Styled Components --- //
 
 const ModalImage = (props) => {
-    const {
-        buttonLabel,
-        className,
-        style,
-        children,
-        title,
-        onClickConfirm,
-        modal,
-        toggle,
-    } = props;
+  const {
+    buttonLabel,
+    className,
+    style,
+    children,
+    title,
+    onClickConfirm,
+    modal,
+    toggle,
+  } = props;
 
-    return (
-        <div>
-            <ButtonModal style={style} onClick={toggle}>
-                {buttonLabel}
-            </ButtonModal>
-            <Modal isOpen={modal} toggle={toggle} className={className}>
-                <ModalHeader toggle={toggle}>{title}</ModalHeader>
-                <ModalBody>
-                    {/* modal body untuk isi content bisa dengan html */}
-                    {children}
-                </ModalBody>
-                <ModalFooter>
-                    {/* onClickConfirm bisa berfungsi untuk mengkonusmi api */}
-                    <Button color="primary" onClick={onClickConfirm}>
-                        Confirm
-                    </Button>
-                    <Button color="secondary" onClick={toggle}>
-                        Cancel
-                    </Button>
-                </ModalFooter>
-            </Modal>
-        </div>
-    );
+  return (
+    <div>
+      <ButtonModal style={style} onClick={toggle}>
+        {buttonLabel}
+      </ButtonModal>
+      <Modal isOpen={modal} toggle={toggle} className={className}>
+        <ModalHeader toggle={toggle}>{title}</ModalHeader>
+        <ModalBody>
+          {/* modal body untuk isi content bisa dengan html */}
+          {children}
+        </ModalBody>
+        <ModalFooter>
+          {/* onClickConfirm bisa berfungsi untuk mengkonusmi api */}
+          <Button color="primary" onClick={onClickConfirm}>
+            Confirm
+          </Button>
+          <Button color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </div>
+  );
 };
 
 export default ModalImage;

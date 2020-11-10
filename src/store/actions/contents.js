@@ -5,195 +5,195 @@ const SHOW_CONTENTS = 'SHOW_CONTENTS';
 // --- Post Fulfillments --- //
 
 const fetchPostContents = (form, history) => async () => {
-    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents`;
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents`;
 
-    const options = {
-        body: JSON.stringify(form),
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
-    };
+  const options = {
+    body: JSON.stringify(form),
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-    const response = await fetch(url, options);
-    await response.json();
+  const response = await fetch(url, options);
+  await response.json();
 
-    if (response.status === 201) {
-        Swal.fire({
-            title: 'Add Succes!',
-            text: '',
-            icon: 'success',
-        });
+  if (response.status === 201) {
+    Swal.fire({
+      title: 'Add Succes!',
+      text: '',
+      icon: 'success',
+    });
 
-        history.push('/');
-    }
+    history.push('/');
+  }
 };
 
 // --- Get Fulfillments --- //
 const getContents = (data) => {
-    return {
-        type: GET_CONTENTS,
-        data,
-    };
+  return {
+    type: GET_CONTENTS,
+    data,
+  };
 };
 
 const fetchGetContents = () => async (dispatch) => {
-    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents`;
-        const options = {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-        };
-        const response = await fetch(url, options);
-        const result = await response.json();
-        dispatch(getContents(result));
-    } catch (error) {
-        console.log(error);
-    }
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  try {
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    dispatch(getContents(result));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // --- Find Fulfillments, Method GET, Search --- //
 
 const findContents = (data) => {
-    return {
-        type: FIND_CONTENTS,
-        data,
-    };
+  return {
+    type: FIND_CONTENTS,
+    data,
+  };
 };
 
 const fetchFindContents = () => async (dispatch) => {
-    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/find`;
-        const options = {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-        };
-        const response = await fetch(url, options);
-        const result = await response.json();
-        dispatch(findContents(result));
-    } catch (error) {
-        console.log(error);
-    }
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  try {
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/find`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    dispatch(findContents(result));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // --- DELETE contents METHOD DELETE --- //
 const fetchDeleteContents = (id) => async () => {
-    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
+  const options = {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(url, options);
+  await response.json();
+
+  if (response.status === 200) {
+    Swal.fire({
+      title: 'Delete Berhasil!',
+      text: '',
+      icon: 'success',
+    });
+    window.location.reload('/contents');
+  } else {
+    Swal.fire({
+      title: 'Delete gagal',
+      text: '',
+      icon: 'error',
+    });
+  }
+};
+
+//  ---  Show Fulfillments Method Get --- //
+const showContents = (data) => {
+  return {
+    type: SHOW_CONTENTS,
+    data,
+  };
+};
+
+const fetchShowContents = (id) => async (dispatch) => {
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(url, options);
+  const result = await response.json();
+  dispatch(showContents(result));
+};
+
+// --- Update Fulfillments - Method PUT ---- //
+const fetchUpdateContents = (form, id) => async () => {
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
+
+    // --- apabila form itu kosong maka hapus formnya --- //
+    for (let key in form) {
+      if (form[key] === '') {
+        delete form[key];
+      }
+    }
+    // --- penting nih --- //
+
     const options = {
-        method: 'DELETE',
-        headers: {
-            'Content-type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
+      method: 'PUT',
+      body: JSON.stringify(form),
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
     };
     const response = await fetch(url, options);
     await response.json();
 
     if (response.status === 200) {
-        Swal.fire({
-            title: 'Delete Berhasil!',
-            text: '',
-            icon: 'success',
-        });
-        window.location.reload('/contents');
+      Swal.fire({
+        title: 'Update Berhasil!',
+        text: '',
+        icon: 'success',
+      });
+      window.location.reload('/Fulfillments');
     } else {
-        Swal.fire({
-            title: 'Delete gagal',
-            text: '',
-            icon: 'error',
-        });
+      Swal.fire({
+        title: 'update gagal',
+        text: '',
+        icon: 'error',
+      });
     }
-};
-
-//  ---  Show Fulfillments Method Get --- //
-const showContents = (data) => {
-    return {
-        type: SHOW_CONTENTS,
-        data,
-    };
-};
-
-const fetchShowContents = (id) => async (dispatch) => {
-    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
-    const options = {
-        method: 'GET',
-        headers: {
-            'Content-type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
-    };
-    const response = await fetch(url, options);
-    const result = await response.json();
-    dispatch(showContents(result));
-};
-
-// --- Update Fulfillments - Method PUT ---- //
-const fetchUpdateContents = (form, id) => async () => {
-    const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-    try {
-        const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
-
-        // --- apabila form itu kosong maka hapus formnya --- //
-        for (let key in form) {
-            if (form[key] === '') {
-                delete form[key];
-            }
-        }
-        // --- penting nih --- //
-
-        const options = {
-            method: 'PUT',
-            body: JSON.stringify(form),
-            headers: {
-                'Content-type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-        };
-        const response = await fetch(url, options);
-        await response.json();
-
-        if (response.status === 200) {
-            Swal.fire({
-                title: 'Update Berhasil!',
-                text: '',
-                icon: 'success',
-            });
-            window.location.reload('/Fulfillments');
-        } else {
-            Swal.fire({
-                title: 'update gagal',
-                text: '',
-                icon: 'error',
-            });
-        }
-    } catch (error) {
-        console.log(error);
-    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export {
-    fetchPostContents,
-    fetchGetContents,
-    fetchFindContents,
-    getContents,
-    findContents,
-    GET_CONTENTS,
-    FIND_CONTENTS,
-    SHOW_CONTENTS,
-    fetchDeleteContents,
-    fetchShowContents,
-    showContents,
-    fetchUpdateContents,
+  fetchPostContents,
+  fetchGetContents,
+  fetchFindContents,
+  getContents,
+  findContents,
+  GET_CONTENTS,
+  FIND_CONTENTS,
+  SHOW_CONTENTS,
+  fetchDeleteContents,
+  fetchShowContents,
+  showContents,
+  fetchUpdateContents,
 };

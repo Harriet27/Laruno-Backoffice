@@ -36,61 +36,59 @@ const WrapForm = Styled.div`
 `;
 
 export default function AddPaymentsMethod() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const [form, setForm] = useState({
-        name: '',
-        info: '',
-    });
+  const [form, setForm] = useState({
+    name: '',
+    info: '',
+  });
 
-    // --- Fetch submit method Post --- //
-    const { register, handleSubmit, errors } = useForm({
-        resolver: yupResolver(AddPaymentMethodSchema),
-    });
+  // --- Fetch submit method Post --- //
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(AddPaymentMethodSchema),
+  });
 
-    const onSubmit = async (event) => {
-        dispatch(fetchPostPaymentsMethod(form));
-    };
-    // --- Change Value when Input Active --- //
-    const handleChange = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.value });
-    };
+  const onSubmit = async (event) => {
+    dispatch(fetchPostPaymentsMethod(form));
+  };
+  // --- Change Value when Input Active --- //
+  const handleChange = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
 
-    return (
-        <ModalSmart
-            buttonLabel="Add Payments"
-            title="Add Payments Method"
-            onClickConfirm={handleSubmit(onSubmit)}
-        >
-            <Card>
-                <WrapForm>
-                    <Input
-                        type="text"
-                        name="name"
-                        id="name"
-                        defaultValue={form.name}
-                        onChange={handleChange}
-                        placeholder="Name"
-                        ref={register}
-                    />
-                    <div>
-                        <SpanErrosMessage>
-                            {errors.name?.message}
-                        </SpanErrosMessage>
-                    </div>
-                </WrapForm>
-                <WrapForm>
-                    <Input
-                        type="text"
-                        name="info"
-                        id="info"
-                        value={form.info}
-                        onChange={handleChange}
-                        placeholder="Info"
-                        ref={register}
-                    />
-                </WrapForm>
-            </Card>
-        </ModalSmart>
-    );
+  return (
+    <ModalSmart
+      buttonLabel="Add Payments"
+      title="Add Payments Method"
+      onClickConfirm={handleSubmit(onSubmit)}
+    >
+      <Card>
+        <WrapForm>
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            defaultValue={form.name}
+            onChange={handleChange}
+            placeholder="Name"
+            ref={register}
+          />
+          <div>
+            <SpanErrosMessage>{errors.name?.message}</SpanErrosMessage>
+          </div>
+        </WrapForm>
+        <WrapForm>
+          <Input
+            type="text"
+            name="info"
+            id="info"
+            value={form.info}
+            onChange={handleChange}
+            placeholder="Info"
+            ref={register}
+          />
+        </WrapForm>
+      </Card>
+    </ModalSmart>
+  );
 }

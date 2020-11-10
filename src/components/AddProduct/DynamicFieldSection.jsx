@@ -58,120 +58,105 @@ const SectionOne = Styled.div`
 `;
 
 export default function DynamicFieldSection(props) {
-    const dispatch = useDispatch();
-    const {
-        handleAdd,
-        handleChange,
-        handleChangeContents,
-        fields,
-        handleRemove,
+  const dispatch = useDispatch();
+  const {
+    handleAdd,
+    handleChange,
+    handleChangeContents,
+    fields,
+    handleRemove,
+    formulir,
+    setFormulir,
+    sectionAdd,
+    setSectionAdd,
+  } = props;
+
+  const handleChangeImage = (e, idx) => {
+    let image = formulir.image;
+    let field = e.target.id;
+
+    image[field] = e.target.files[0];
+    setFormulir({ image });
+  };
+
+  const handleSubmit = async (e, id, index) => {
+    e.preventDefault();
+
+    //  upload image
+    dispatch(
+      fetchPostDynamicImage(
         formulir,
+        e,
+        id,
         setFormulir,
         sectionAdd,
         setSectionAdd,
-    } = props;
-
-    const handleChangeImage = (e, idx) => {
-        let image = formulir.image;
-        let field = e.target.id;
-
-        image[field] = e.target.files[0];
-        setFormulir({ image });
-    };
-
-    const handleSubmit = async (e, id, index) => {
-        e.preventDefault();
-
-        //  upload image
-        dispatch(
-            fetchPostDynamicImage(
-                formulir,
-                e,
-                id,
-                setFormulir,
-                sectionAdd,
-                setSectionAdd,
-                index
-            )
-        );
-    };
-
-    return (
-        <Section>
-            <SectionOne>
-                <Card isNormal style={{ width: '100%' }}>
-                    <div style={{ padding: '30px 40px' }}>
-                        <div
-                            style={{ display: 'flex', flexDirection: 'column' }}
-                            className="App"
-                        >
-                            {/* --- Testing --- */}
-                            <div name="test">
-                                {fields.map((field, idx) => {
-                                    return (
-                                        <WrapsField key={`${field}-${idx}`}>
-                                            <label>Title</label>
-                                            <Input
-                                                type="text"
-                                                name={`one-${idx}`}
-                                                placeholder="Enter title..."
-                                                value={field.title}
-                                                onChange={(e) =>
-                                                    handleChange(idx, e)
-                                                }
-                                            />
-                                            <label>Content</label>
-                                            <Input
-                                                as="textarea"
-                                                name={`number-${idx}`}
-                                                rows="5"
-                                                value={field.content}
-                                                placeholder="Enter content.."
-                                                onChange={(e) =>
-                                                    handleChangeContents(idx, e)
-                                                }
-                                            />
-
-                                            <SingleImage
-                                                id={`image_section_${idx}`}
-                                                onChange={(e) =>
-                                                    handleChangeImage(e, idx)
-                                                }
-                                                onSubmit={(e) =>
-                                                    handleSubmit(
-                                                        e,
-                                                        `image_section_${idx}`,
-                                                        idx
-                                                    )
-                                                }
-                                            />
-                                            <img
-                                                src={sectionAdd[idx].image}
-                                                alt={sectionAdd[idx].image}
-                                            />
-                                            <ButtonModal
-                                                delete
-                                                type="button"
-                                                onClick={() =>
-                                                    handleRemove(idx)
-                                                }
-                                            >
-                                                Delete Section {idx + 1}
-                                            </ButtonModal>
-                                        </WrapsField>
-                                    );
-                                })}
-                            </div>
-                            <ButtonModal
-                                type="button"
-                                onClick={() => handleAdd()}
-                            >
-                                Add Section
-                            </ButtonModal>
-                        </div>
-                    </div>
-                </Card>
-            </SectionOne>
-        </Section>
+        index
+      )
     );
+  };
+
+  return (
+    <Section>
+      <SectionOne>
+        <Card isNormal style={{ width: '100%' }}>
+          <div style={{ padding: '30px 40px' }}>
+            <div
+              style={{ display: 'flex', flexDirection: 'column' }}
+              className="App"
+            >
+              {/* --- Testing --- */}
+              <div name="test">
+                {fields.map((field, idx) => {
+                  return (
+                    <WrapsField key={`${field}-${idx}`}>
+                      <label>Title</label>
+                      <Input
+                        type="text"
+                        name={`one-${idx}`}
+                        placeholder="Enter title..."
+                        value={field.title}
+                        onChange={(e) => handleChange(idx, e)}
+                      />
+                      <label>Content</label>
+                      <Input
+                        as="textarea"
+                        name={`number-${idx}`}
+                        rows="5"
+                        value={field.content}
+                        placeholder="Enter content.."
+                        onChange={(e) => handleChangeContents(idx, e)}
+                      />
+
+                      <SingleImage
+                        id={`image_section_${idx}`}
+                        onChange={(e) => handleChangeImage(e, idx)}
+                        onSubmit={(e) =>
+                          handleSubmit(e, `image_section_${idx}`, idx)
+                        }
+                      />
+                      <img
+                        src={sectionAdd[idx].image}
+                        alt={sectionAdd[idx].image}
+                      />
+                      <ButtonModal
+                        delete
+                        type="button"
+                        onClick={() => handleRemove(idx)}
+                      >
+                        Delete Section {idx + 1}
+                      </ButtonModal>
+                    </WrapsField>
+                  );
+                })}
+              </div>
+              <ButtonModal type="button" onClick={() => handleAdd()}>
+                Add Section
+              </ButtonModal>
+            </div>
+          </div>
+        </Card>
+      </SectionOne>
+    </Section>
+  );
 }

@@ -40,49 +40,49 @@ const SectionOne = Styled.div`
 // --- Batas --- //
 
 const DataTopic = (props) => {
-    const dispatch = useDispatch();
-    const reseller = useSelector((state) => state.reseller.getReseller);
+  const dispatch = useDispatch();
+  const reseller = useSelector((state) => state.reseller.getReseller);
 
-    // --- useEffect --- Get Data topic ---//
-    useEffect(() => {
-        dispatch(fetchGetReseller());
-        // eslint-disable-next-line
-    }, [dispatch]);
+  // --- useEffect --- Get Data topic ---//
+  useEffect(() => {
+    dispatch(fetchGetReseller());
+    // eslint-disable-next-line
+  }, [dispatch]);
 
-    return (
-        <React.Fragment>
-            {/* --- section 1 --- Add New Topic and Search Topic --- */}
-            <SectionOne>
-                {/* <AddNewTopic /> */}
-                <div>
-                    <label>Search</label> <Input type="search" />
-                </div>
-            </SectionOne>
+  return (
+    <React.Fragment>
+      {/* --- section 1 --- Add New Topic and Search Topic --- */}
+      <SectionOne>
+        {/* <AddNewTopic /> */}
+        <div>
+          <label>Search</label> <Input type="search" />
+        </div>
+      </SectionOne>
 
-            {/* --- section 2 --- Table Get Data Product In Table --- */}
-            <Card isNormal>
-                <Table striped>
-                    <thead>
-                        <tr>
-                            <Th>Name</Th>
-                            <Th>Slug</Th>
-                            <Th>Created At</Th>
-                            <Th>Updated At</Th>
-                            <Th>Actions</Th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {reseller !== null &&
-                            reseller.data.map((item) => {
-                                return (
-                                    <tr key={item._id}>
-                                        <Th as="td" td>
-                                            {item.name}
-                                        </Th>
-                                        <Th as="td" td>
-                                            {/* {item.slug} */}
-                                        </Th>
-                                        {/* <Th as="td" td>
+      {/* --- section 2 --- Table Get Data Product In Table --- */}
+      <Card isNormal>
+        <Table striped>
+          <thead>
+            <tr>
+              <Th>Name</Th>
+              <Th>Slug</Th>
+              <Th>Created At</Th>
+              <Th>Updated At</Th>
+              <Th>Actions</Th>
+            </tr>
+          </thead>
+          <tbody>
+            {reseller !== null &&
+              reseller.data.map((item) => {
+                return (
+                  <tr key={item._id}>
+                    <Th as="td" td>
+                      {item.name}
+                    </Th>
+                    <Th as="td" td>
+                      {/* {item.slug} */}
+                    </Th>
+                    {/* <Th as="td" td>
                                             {moment(item.created_at).format(
                                                 'MMMM Do YYYY, h:mm:ss a'
                                             )}
@@ -103,14 +103,14 @@ const DataTopic = (props) => {
                                                 <DeleteTopic id={item._id} />
                                             </div>
                                         </Th> */}
-                                    </tr>
-                                );
-                            })}
-                    </tbody>
-                </Table>
-            </Card>
-        </React.Fragment>
-    );
+                  </tr>
+                );
+              })}
+          </tbody>
+        </Table>
+      </Card>
+    </React.Fragment>
+  );
 };
 
 export default DataTopic;

@@ -1,5 +1,5 @@
-import React from "react";
-import Styled from "styled-components";
+import React from 'react';
+import Styled from 'styled-components';
 
 // Styled components
 const FooterStyled = Styled.footer`
@@ -13,9 +13,9 @@ const Paragraph = Styled.p`
 text-align: center;
 `;
 export default function Footer() {
-    return (
-        <FooterStyled>
-            <Paragraph>Copyright 2020</Paragraph>
-        </FooterStyled>
-    );
+  return (
+    <FooterStyled>
+      <Paragraph>Copyright 2020</Paragraph>
+    </FooterStyled>
+  );
 }

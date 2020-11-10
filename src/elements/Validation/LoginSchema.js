@@ -1,11 +1,11 @@
 import * as yup from 'yup';
 
 const LoginSchema = yup.object().shape({
-    email: yup.string().required('Wajib isi').email('Email not valid'),
-    password: yup
-        .string()
-        .required('Please enter your password')
-        .min(4, 'Minimal 4 karakter'),
+  email: yup.string().required('Wajib isi').email('Email not valid'),
+  password: yup
+    .string()
+    .required('Please enter your password')
+    .min(4, 'Minimal 4 karakter'),
 });
 
 export { LoginSchema };

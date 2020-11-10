@@ -20,64 +20,64 @@ const Wraps = Styled.div`
 
 // --- styled components --- //
 export default function Topic() {
-    const topic = useSelector((state) => state.topic.getTopic);
+  const topic = useSelector((state) => state.topic.getTopic);
 
-    return (
-        <Section>
-            {topic === null ? (
-                <Wraps>
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Total Topics"
-                    ></CardGetData>
+  return (
+    <Section>
+      {topic === null ? (
+        <Wraps>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Total Topics"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faWallet}
-                        number="2"
-                        text="Total Paid"
-                    ></CardGetData>
+          <CardGetData
+            icon={faWallet}
+            number="2"
+            text="Total Paid"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
-                </Wraps>
-            ) : (
-                <Wraps>
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number={topic.data.length}
-                        text="Total Topic"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
+        </Wraps>
+      ) : (
+        <Wraps>
+          <CardGetData
+            icon={faShoppingCart}
+            number={topic.data.length}
+            text="Total Topic"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faWallet}
-                        number="2"
-                        text="Total Paid"
-                    ></CardGetData>
+          <CardGetData
+            icon={faWallet}
+            number="2"
+            text="Total Paid"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
 
-                    <CardGetData
-                        icon={faShoppingCart}
-                        number="0"
-                        text="Unpaid Orders"
-                    ></CardGetData>
-                </Wraps>
-            )}
-            <DataTopic />
-        </Section>
-    );
+          <CardGetData
+            icon={faShoppingCart}
+            number="0"
+            text="Unpaid Orders"
+          ></CardGetData>
+        </Wraps>
+      )}
+      <DataTopic />
+    </Section>
+  );
 }
