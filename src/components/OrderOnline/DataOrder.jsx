@@ -235,12 +235,9 @@ const DataOrders = (props) => {
                                                                     }
                                                                 >
                                                                     <div
-                                                                        style={{
-                                                                            color:
-                                                                                '#0098da',
-                                                                            fontWeight:
-                                                                                '700',
-                                                                        }}
+                                                                        style={
+                                                                            Styles.Name
+                                                                        }
                                                                     >
                                                                         {
                                                                             items
@@ -488,6 +485,7 @@ const Styles = {
         display: 'flex',
         flexDirection: 'row',
     },
+    Name: { color: '#0098da', fontWeight: '700' },
 };
 
 export default DataOrders;

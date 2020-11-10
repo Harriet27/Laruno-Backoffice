@@ -28,6 +28,7 @@ import {
 import DeleteProduct from './DeleteProduct';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import MultipleDelete from '../../elements/Alert/MultipleDelete';
+import { StylesProvider } from '@material-ui/core';
 // --- Styled Components --- //
 
 const ButtonLink = Styled.button`
@@ -174,9 +175,10 @@ const DataProduct = (props) => {
                                         <Th>
                                             <DehazeIcon />
                                         </Th>
+                                        <Th>Name</Th>
                                         <Th>Visibility</Th>
                                         <Th>Product Code</Th>
-                                        <Th>Name</Th>
+                                        <Th>Inventory</Th>
                                         <Th>Product Type</Th>
                                         <Th>Time Period</Th>
                                         <Th>Price</Th>
@@ -196,15 +198,16 @@ const DataProduct = (props) => {
                             </div>
                         </React.Fragment>
                     ) : product.data.length >= 1 ? (
-                        <Table>
+                        <Table striped>
                             <thead>
                                 <tr>
                                     <Th>
                                         <Input checkbox type="checkbox" />
                                     </Th>
+                                    <Th>Name</Th>
                                     <Th>Visibility</Th>
                                     <Th>Product Code</Th>
-                                    <Th>Name</Th>
+                                    <Th>Inventory</Th>
                                     <Th>Product Type</Th>
                                     <Th style={{ width: '10%' }}>
                                         Time Period
@@ -233,7 +236,11 @@ const DataProduct = (props) => {
                                                         }
                                                     />
                                                 </Th>
-
+                                                <Th as="td" td>
+                                                    <div style={Styles.Name}>
+                                                        {item.name}
+                                                    </div>
+                                                </Th>
                                                 <Th as="td" td>
                                                     {item.visibility}
                                                 </Th>
@@ -241,11 +248,19 @@ const DataProduct = (props) => {
                                                     {item.code}
                                                 </Th>
                                                 <Th as="td" td>
-                                                    {item.name}
+                                                    <div
+                                                        style={Styles.Inventory}
+                                                    >
+                                                        {item.ecommerce ===
+                                                        undefined
+                                                            ? 'Non Ecommerce'
+                                                            : `${item.ecommerce.stock} In Stock`}
+                                                    </div>
                                                 </Th>
                                                 <Th as="td" td>
                                                     {item.type}
                                                 </Th>
+
                                                 <Th as="td" td>
                                                     {item.time_period} Months
                                                 </Th>
@@ -336,6 +351,11 @@ const DataProduct = (props) => {
             </Card>
         </React.Fragment>
     );
+};
+
+const Styles = {
+    Name: { color: '#0098da', fontWeight: '700' },
+    Inventory: { color: '#28a745', fontWeight: 'bolder' },
 };
 
 export default DataProduct;
