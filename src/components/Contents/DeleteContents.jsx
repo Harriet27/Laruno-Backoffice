@@ -41,7 +41,6 @@ const DataContents = (props) => {
     const dispatch = useDispatch();
     const contents = useSelector((state) => state.contents.getContents);
 
-    // --- useEffect --- Get Data contents ---//
     useEffect(() => {
         dispatch(fetchGetContents());
         // eslint-disable-next-line
@@ -49,7 +48,6 @@ const DataContents = (props) => {
 
     return (
         <React.Fragment>
-            {/* --- section 1 --- Add New Contents and Search Contents --- */}
             <SectionOne>
                 <AddNewContents />
                 <div>
@@ -57,7 +55,6 @@ const DataContents = (props) => {
                 </div>
             </SectionOne>
 
-            {/* --- section 2 --- Table Get Data Product In Table --- */}
             <Card isNormal>
                 <Table striped>
                     <thead>

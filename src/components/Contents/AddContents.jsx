@@ -56,16 +56,14 @@ export default function AddContents() {
         tag: [],
     });
 
+    // --- Langsung Berhubungan Dengan Form --- //
     const handleSubmit = (event) => {
         event.preventDefault();
-        // history
         dispatch(fetchPostContents(form, history));
     };
-    console.log(form, 'form di dalam content berisi apa');
     const handleChangeForm = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
-
     const handleRadio = (event) => {
         if (event.target.value === 'true') {
             setForm({ ...form, isBlog: true });
@@ -80,35 +78,37 @@ export default function AddContents() {
         setForm({ ...form, product });
     };
 
+    // --- Perantara kepada Form --- //
     const [checked, setChecked] = useState(false);
-    console.log(checked);
-    // quill
     const [quill, setQuill] = useState('');
-    form.content = quill;
     const [formulir, setFormulir] = useState({
         image: {
             cover: '',
         },
         media: {},
     });
-    form.cover_img = formulir.image.cover;
-
-    // --- Video --- //
     const [sectionAdd, setSectionAdd] = useState([{ url: '' }]);
-    console.log(sectionAdd, 'video');
+    const [sectionModule, setSectionModule] = useState([{ question: '' }]);
+    const [sectionPodcast, setSectionPodcast] = useState([
+        {
+            url: '',
+        },
+    ]);
+
+    // Menghubungkan Kepada Form
+    form.cover_img = formulir.image.cover;
+    form.content = quill;
     form.video = sectionAdd;
+    form.module = sectionModule;
+    form.podcast = sectionPodcast;
+
     function handleAddSection() {
-        //  menambahkan field ke dalam value input terbaru
         const values = [...sectionAdd];
         values.push({ url: '' });
-
         setSectionAdd(values);
     }
-
-    // --- Optional "just test" ---- //
     function handleRemoveSection(i) {
         const values = [...sectionAdd];
-        // splice (i = indeks, (2) berarti delete 2 value di mulai dari indeks ke i)
         values.splice(i, 1);
         setSectionAdd(values);
     }
@@ -117,14 +117,9 @@ export default function AddContents() {
         values[i].url = event.target.value;
         setSectionAdd(values);
     }
-
-    // --- module --- //
-    const [sectionModule, setSectionModule] = useState([{ question: '' }]);
-    form.module = sectionModule;
     const handleAddSectionModule = () => {
         const values = [...sectionModule];
         values.push({ question: '' });
-
         setSectionModule(values);
     };
     function handleChangeDynamicSectionModule(i, event) {
@@ -138,17 +133,9 @@ export default function AddContents() {
         setSectionModule(values);
     }
 
-    // --- Podcast --- //
-    const [sectionPodcast, setSectionPodcast] = useState([
-        {
-            url: '',
-        },
-    ]);
-    form.podcast = sectionPodcast;
     const handleAddSectionPodcast = () => {
         const values = [...sectionPodcast];
         values.push({ url: '' });
-
         setSectionPodcast(values);
     };
     function handleChangeDynamicSectionPodcast(i, event) {
@@ -184,12 +171,7 @@ export default function AddContents() {
             </AppBar>
 
             <TabPanel value={value} index={0}>
-                <div
-                    style={{
-                        width: '100%',
-                        background: 'white',
-                    }}
-                >
+                <div style={Styles.TabPanel}>
                     <Detail
                         isBlog={form.isBlog}
                         onChange={handleChangeForm}
@@ -209,12 +191,7 @@ export default function AddContents() {
                 </div>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <div
-                    style={{
-                        width: '100%',
-                        background: 'white',
-                    }}
-                >
+                <div style={Styles.TabPanel}>
                     <Media formulir={formulir} setFormulir={setFormulir}>
                         <DynamicFieldsContent
                             handleAdd={handleAddSection}
@@ -240,12 +217,7 @@ export default function AddContents() {
                 </div>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <div
-                    style={{
-                        width: '100%',
-                        background: 'white',
-                    }}
-                >
+                <div style={Styles.TabPanel}>
                     <Contents
                         checked={checked}
                         value={quill}
@@ -258,17 +230,8 @@ export default function AddContents() {
                             handleRemove={handleRemoveSectionModule}
                         />
                     </Contents>
-                    <div
-                        style={{
-                            margin: '0 100px',
-                            paddingBottom: '20px',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                        }}
-                    >
-                        <ButtonStyled
-                            style={{ color: '#656565', background: '#F2F5F7' }}
-                        >
+                    <div style={Styles.DisplayButton}>
+                        <ButtonStyled style={Styles.ButtonCancel}>
                             <i className="fa fa-undo"></i> Cancel
                         </ButtonStyled>
                         <ButtonStyled
@@ -284,3 +247,17 @@ export default function AddContents() {
         </div>
     );
 }
+
+const Styles = {
+    DisplayButton: {
+        margin: '0 100px',
+        paddingBottom: '20px',
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
+    ButtonCancel: { color: '#656565', background: '#F2F5F7' },
+    TabPanel: {
+        width: '100%',
+        background: 'white',
+    },
+};

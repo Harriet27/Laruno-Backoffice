@@ -4,21 +4,7 @@ import { useDispatch } from 'react-redux';
 import { fetchPostDynamicVideo } from '../../store/actions';
 import Styled from 'styled-components';
 import SingleImage from '../AddProduct/SingleImage';
-import { Span } from '../../elements/Styled/StyledTabs';
-const Input = Styled.input`
-    width: 100%;
-    padding: .375rem;
-    font-size: 14px;
-    font-weight: 400;
-    color: #495057;
-    border-radius: ${(props) => (props.price ? '0' : '3px')};
-    background-color: #FCFCFC;
-    border:${(props) => (props.price ? '0' : '1px solid #ced4da')};
-    &:focus{
-    outline: none !important;
-    border:1px solid #66AFE9;
-    }
-`;
+import { Span, Input } from '../../elements/Styled/StyledTabs';
 
 const ButtonModal = Styled.button`
     background-color: ${(props) => (props.delete ? 'red' : '#0098DA')};
@@ -35,27 +21,9 @@ const ButtonModal = Styled.button`
     }
 `;
 
-const Section = Styled.section`
-    display: flex;
-    padding: 50px 100px;
-    width: 100%;
-    line-height: 1.5;
-    @media (max-width: 800px) {
-        padding: 20px 40px;
-          }
-`;
-
 const WrapsField = Styled.div`
     margin-bottom: 25px;
     width: ${(props) => (props.dividedByTwo ? '45%' : null)}
-`;
-
-const SectionOne = Styled.div`
-    // display: flex;
-    width: 100%;
-    @media (max-width: 800px) {
-        width: 100%
-    }
 `;
 
 export default function DynamicFieldsContents(props) {

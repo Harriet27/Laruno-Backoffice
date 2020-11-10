@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 import { Table } from 'reactstrap';
-import Card from '../../elements/Card/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import DehazeIcon from '@material-ui/icons/Dehaze';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
+
+// --- Elements, Pages, Components --- //
+import { fetchGetContents } from '../../store/actions';
+import Card from '../../elements/Card/Card';
 import {
     Input,
     Th,
@@ -12,39 +17,20 @@ import {
     ButtonStyled,
     ButtonActions,
 } from '../../elements/Styled/StyledForm';
-import moment from 'moment';
-import { Link } from 'react-router-dom';
-// --- Elements, Pages, Components --- //
-import {
-    fetchGetContents,
-    // fetchMultipleDeleteContents,
-} from '../../store/actions';
-import { Button } from '@material-ui/core';
-// import AddContents from './AddContents';
-// import UpdateContents from './UpdateContents';
-// import DeleteContents from './DeleteContents';
-// import MultipleDelete from '../../elements/Alert/MultipleDelete';
-// --- Styled Components --- //
 
 const DataContents = (props) => {
     const dispatch = useDispatch();
     const contents = useSelector((state) => state.contents.getContents);
-
-    console.log('Ini Get All data contents', contents);
-    // --- PAGINATION --- //
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
-
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-
-    // --- Dropdown --- //
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const toggle = () => setDropdownOpen((prevState) => !prevState);
 
@@ -52,7 +38,6 @@ const DataContents = (props) => {
         id: [],
         allChecked: false,
     });
-
     const [searching, setSearching] = useState({
         search: '',
     });
@@ -74,27 +59,10 @@ const DataContents = (props) => {
         });
     };
 
-    // --- Multiple Delete --- //
-    // const handleMultipleDelete = (event) => {
-    //     event.preventDefault();
-    //     // dispatch(fetchMultipleDeleteContents(form));
-    // };
-
-    // --- Multiple Clone --- //
-    // const handleMultipleClone = (event) => {
-    //     event.preventDefault();
-    //     dispatch(fetchMultipleCloneProduct(form));
-    // };
-
     // --- handle Change --- //
     const handleChange = (event) => {
         setSearching({ ...searching, [event.target.name]: event.target.value });
     };
-
-    // const handleSearch = (event) => {
-    //     event.preventDefault();
-    //     dispatch(fetchFindProduct(searching));
-    // };
 
     return (
         <React.Fragment>
@@ -107,13 +75,7 @@ const DataContents = (props) => {
                     >
                         Actions
                     </DropdownToggle>
-                    <DropdownMenu>
-                        {/* <MultipleDelete onSubmit={handleMultipleDelete} /> */}
-
-                        {/* <DropdownItem onClick={handleMultipleClone}>
-                                Clone
-                            </DropdownItem> */}
-                    </DropdownMenu>
+                    <DropdownMenu></DropdownMenu>
                 </Dropdown>
             ) : (
                 <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
@@ -155,8 +117,6 @@ const DataContents = (props) => {
             <Card isNormal>
                 {/* --- untuk hapus melalui button --- */}
                 <Overflow>
-                    {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
-                     di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
                     {contents === null ? (
                         <React.Fragment>
                             <Table>
@@ -199,10 +159,6 @@ const DataContents = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row)  */}
                                 {contents.data
                                     .slice(
                                         page * rowsPerPage,

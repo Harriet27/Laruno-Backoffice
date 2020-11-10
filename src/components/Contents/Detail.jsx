@@ -29,6 +29,7 @@ export default function Detail(props) {
         handleSelectProduct,
         product_select,
     } = props;
+
     const dispatch = useDispatch();
     const topic = useSelector((state) => state.topic.getTopic);
     const product = useSelector((state) => state.product.getProduct);
