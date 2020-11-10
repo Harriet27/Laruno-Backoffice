@@ -27,106 +27,94 @@ const WrapsField = Styled.div`
 `;
 
 export default function DynamicFieldsContents(props) {
-    const dispatch = useDispatch();
-    const {
-        handleAdd,
-        handleChange,
-        handleRemove,
+  const dispatch = useDispatch();
+  const {
+    handleAdd,
+    handleChange,
+    handleRemove,
+    formulir,
+    setFormulir,
+    sectionAdd,
+    setSectionAdd,
+  } = props;
+
+  const handleChangeImage = (e, idx) => {
+    let image = formulir.image;
+    let field = e.target.id;
+
+    image[field] = e.target.files[0];
+    setFormulir({ image });
+  };
+
+  const handleSubmit = async (e, id, index) => {
+    e.preventDefault();
+
+    //  upload image
+    dispatch(
+      fetchPostDynamicVideo(
         formulir,
+        e,
+        id,
         setFormulir,
         sectionAdd,
         setSectionAdd,
-    } = props;
-
-    const handleChangeImage = (e, idx) => {
-        let image = formulir.image;
-        let field = e.target.id;
-
-        image[field] = e.target.files[0];
-        setFormulir({ image });
-    };
-
-    const handleSubmit = async (e, id, index) => {
-        e.preventDefault();
-
-        //  upload image
-        dispatch(
-            fetchPostDynamicVideo(
-                formulir,
-                e,
-                id,
-                setFormulir,
-                sectionAdd,
-                setSectionAdd,
-                index
-            )
-        );
-    };
-
-    return (
-        <>
-            <div
-                style={{ display: 'flex', flexDirection: 'column' }}
-                className="App"
-            >
-                <div>
-                    <label>
-                        <Span>Video</Span>
-                    </label>
-                </div>
-                {/* --- Testing --- */}
-                <div name="test">
-                    {sectionAdd.map((field, idx) => {
-                        return (
-                            <WrapsField key={`${field}-${idx}`}>
-                                <div style={{ display: 'flex' }}>
-                                    <Input
-                                        width="35%"
-                                        type="text"
-                                        name={`one-${idx}`}
-                                        placeholder="Video Url..."
-                                        value={field.url}
-                                        onChange={(e) => handleChange(idx, e)}
-                                    />
-
-                                    <SingleImage
-                                        style={{ width: '35%' }}
-                                        id={`video_section_${idx}`}
-                                        onChange={(e) =>
-                                            handleChangeImage(e, idx)
-                                        }
-                                        onSubmit={(e) =>
-                                            handleSubmit(
-                                                e,
-                                                `video_section_${idx}`,
-                                                idx
-                                            )
-                                        }
-                                    />
-                                    <img
-                                        src={sectionAdd[idx].video}
-                                        alt={sectionAdd[idx].video}
-                                    />
-                                    <ButtonModal
-                                        style={{ width: '10%' }}
-                                        delete
-                                        type="button"
-                                        onClick={() => handleRemove(idx)}
-                                    >
-                                        x
-                                    </ButtonModal>
-                                </div>
-                                <ButtonModal
-                                    type="button"
-                                    onClick={() => handleAdd()}
-                                >
-                                    Add Video section
-                                </ButtonModal>
-                            </WrapsField>
-                        );
-                    })}
-                </div>
-            </div>
-        </>
+        index
+      )
     );
+  };
+
+  return (
+    <>
+      <div style={{ display: 'flex', flexDirection: 'column' }} className="App">
+        <div>
+          <label>
+            <Span>Video</Span>
+          </label>
+        </div>
+        {/* --- Testing --- */}
+        <div name="test">
+          {sectionAdd.map((field, idx) => {
+            return (
+              <WrapsField key={`${field}-${idx}`}>
+                <div style={{ display: 'flex' }}>
+                  <Input
+                    width="35%"
+                    type="text"
+                    name={`one-${idx}`}
+                    placeholder="Video Url..."
+                    value={field.url}
+                    onChange={(e) => handleChange(idx, e)}
+                  />
+
+                  <SingleImage
+                    style={{ width: '35%' }}
+                    id={`video_section_${idx}`}
+                    onChange={(e) => handleChangeImage(e, idx)}
+                    onSubmit={(e) =>
+                      handleSubmit(e, `video_section_${idx}`, idx)
+                    }
+                  />
+                  <img
+                    src={sectionAdd[idx].video}
+                    alt={sectionAdd[idx].video}
+                  />
+                  <ButtonModal
+                    style={{ width: '10%' }}
+                    delete
+                    type="button"
+                    onClick={() => handleRemove(idx)}
+                  >
+                    x
+                  </ButtonModal>
+                </div>
+                <ButtonModal type="button" onClick={() => handleAdd()}>
+                  Add Video section
+                </ButtonModal>
+              </WrapsField>
+            );
+          })}
+        </div>
+      </div>
+    </>
+  );
 }
