@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchShowTopic, fetchUpdateTopic } from '../../store/actions';
+import {
+    fetchShowTopic,
+    fetchUpdateTopic,
+    fetchPostSingleImage,
+} from '../../store/actions';
 import { Input } from '../../elements/Styled/StyledForm';
+import SingleImage from '../AddProduct/SingleImage';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 export default function InputUpdateTopic(props) {
     // ---Input value --- //
@@ -10,7 +15,7 @@ export default function InputUpdateTopic(props) {
         const dispatch = useDispatch();
         const [form, setForm] = useState({
             name: name || '',
-            icon: icon || '',
+            icon: '',
         });
         console.log(form, 'form');
         const handleSubmit = (event) => {
@@ -21,6 +26,25 @@ export default function InputUpdateTopic(props) {
             setForm({ ...form, [event.target.name]: event.target.value });
         };
 
+        // --- Image --- //
+        const [formulir, setFormulir] = useState({
+            image: { icon: icon },
+        });
+        form.icon = formulir.image.icon;
+        // --- HandleChange upload Image --- //
+        const handleChangeImage = (e) => {
+            let image = formulir.image;
+            let field = e.target.id;
+            image[field] = e.target.files[0];
+            setFormulir({ image });
+        };
+
+        // --- handleSubmit Upload Image --- //
+        const handleSubmitImage = async (e, id) => {
+            e.preventDefault();
+            // --- upload image --- //
+            dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
+        };
         return (
             <>
                 <Input
@@ -30,6 +54,12 @@ export default function InputUpdateTopic(props) {
                     value={form.name}
                     onChange={handleChange}
                 />
+                <SingleImage
+                    id="icon"
+                    onChange={handleChangeImage}
+                    onSubmit={(e) => handleSubmitImage(e, 'icon')}
+                />
+
                 <div
                     style={{
                         width: '100px',
@@ -38,7 +68,13 @@ export default function InputUpdateTopic(props) {
                         alignItems: 'center',
                     }}
                 >
-                    <img width="100%" src={form.icon} alt={form.icon} />
+                    {typeof formulir.image.icon === 'object' ? null : (
+                        <img
+                            width="100%"
+                            src={formulir.image.icon}
+                            alt={formulir.image.icon}
+                        />
+                    )}
                 </div>
                 <ModalFooter>
                     <Button
