@@ -30,13 +30,27 @@ export default function Order() {
     // return (total += item.total_price);
     let total = 0;
     let total_orders = 0;
+    let total_paid = 0;
+    let total_unpaid = 0;
     order !== null &&
         order.data.map((item, index) => {
             return (
                 <>
                     {(total_orders += item.orders_count)}
                     {item.orders.map((items) => {
-                        return (total += items.total_price);
+                        return (
+                            <>
+                                {(total += items.total_price)}{' '}
+                                {
+                                    (total_paid +=
+                                        items.payment.status === 'COMPLETED')
+                                }
+                                {
+                                    (total_unpaid +=
+                                        items.payment.status !== 'COMPLETED')
+                                }
+                            </>
+                        );
                     })}
                 </>
             );
@@ -80,7 +94,7 @@ export default function Order() {
 
                     <CardGetData
                         icon={faWallet}
-                        number="2"
+                        number={total_paid}
                         text="Total Paid"
                     ></CardGetData>
 
@@ -92,7 +106,7 @@ export default function Order() {
 
                     <CardGetData
                         icon={faShoppingCart}
-                        number="0"
+                        number={total_unpaid}
                         text="Unpaid Orders"
                     ></CardGetData>
                 </Wraps>

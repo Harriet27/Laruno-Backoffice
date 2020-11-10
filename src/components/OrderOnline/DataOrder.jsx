@@ -9,6 +9,7 @@ import DehazeIcon from '@material-ui/icons/Dehaze';
 import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
+import Styled from 'styled-components';
 // --- Elements, Pages, Components --- //
 import {
     fetchGetOrders,
@@ -21,6 +22,7 @@ import FollowUp_2 from './FollowUp_2';
 import FollowUp_3 from './FollowUp_3';
 import FollowUp_4 from './FollowUp_4';
 import NewFollowUp from './NewFollowUp';
+import { SortByAlphaTwoTone } from '@material-ui/icons';
 // --- Styled Components --- //
 
 const DataOrders = (props) => {
@@ -85,9 +87,17 @@ const DataOrders = (props) => {
         });
     console.log(total_count);
 
+    // --- Styled Hover Table Row --- //
+    const TableRow = Styled.tr`
+&:hover{
+    background: rgb(190,243,237)!important;
+}
+`;
+
     return (
         <React.Fragment>
             {/* --- section 1 --- Button Action link to Add Product ---*/}
+
             {form.id[0] ? (
                 <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
                     <DropdownToggle
@@ -172,7 +182,7 @@ const DataOrders = (props) => {
                             </div>
                         </React.Fragment>
                     ) : orders.data.length >= 1 ? (
-                        <Table striped>
+                        <Table striped responsive>
                             <thead>
                                 <tr>
                                     <Th>
@@ -208,7 +218,9 @@ const DataOrders = (props) => {
                                                 )
                                                 .map((item) => {
                                                     return (
-                                                        <tr key={item.order_id}>
+                                                        <TableRow
+                                                            key={item.order_id}
+                                                        >
                                                             <Th as="td" td>
                                                                 <input type="checkbox" />
                                                             </Th>
@@ -361,7 +373,7 @@ const DataOrders = (props) => {
                                                             <Th as="td" td>
                                                                 Actions
                                                             </Th>
-                                                        </tr>
+                                                        </TableRow>
                                                     );
                                                 })}
                                         </React.Fragment>
