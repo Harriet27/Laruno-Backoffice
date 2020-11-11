@@ -38,6 +38,7 @@ import Payments from './pages/Payments/Payments';
 import PrivateRoute from './Helpers/PrivateRoute';
 import NewFollowUp from './components/OrderOnline/NewFollowUp';
 import AddTemplateFollowUp from './components/TemplateFollowUP/AddTemplateFollowUp';
+import DataTemplateFollowUp from './components/TemplateFollowUP/DataTemplateFollowUp';
 
 // import {Premium} from './pages/Testing/Premium';
 export default function App() {
@@ -112,6 +113,7 @@ export default function App() {
           <PrivateRoute exact path="/test">
             <Header />
             <AddTemplateFollowUp />
+            <DataTemplateFollowUp />
           </PrivateRoute>
 
           <PrivateRoute exact path="/payments">
