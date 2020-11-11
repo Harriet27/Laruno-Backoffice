@@ -3,15 +3,21 @@ import { Input } from '../../elements/Styled/StyledForm';
 import { Form, Span } from '../../elements/Styled/StyledTabs';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 export default function WhattsapMessage(props) {
-  const { name, number, message, toggle } = props;
+  const { name, number, message, toggle, total_price, total_qty } = props;
   const InputValue = (props) => {
     const [form, setForm] = useState({
-      name: props.name,
-      number: props.number,
-      message: props.message,
+      name: name,
+      number: number,
+      message: message,
+      total_price: total_price,
+      total_qty: total_qty,
     });
 
-    console.log(form, 'ini form black');
+    form.message = form.message.replace(
+      /\{\{(.+?)\}\}/g,
+      (matching, value) => form[value.trim()]
+    );
+
     const handleChange = (e) => {
       setForm({ ...form, [e.target.name]: e.target.value });
     };
@@ -77,6 +83,8 @@ export default function WhattsapMessage(props) {
       <InputValue
         name={name}
         number={number}
+        total_price={total_price}
+        total_qty={total_qty}
         message={message}
         toggle={toggle}
       />
