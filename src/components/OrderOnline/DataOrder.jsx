@@ -148,9 +148,9 @@ const DataOrders = (props) => {
                     <Th>Total Price</Th>
                     <Th>Payment Status</Th>
 
-                    <Th style={{ width: '100px' }}>Follow Up</Th>
+                    <Th style={{ width: '10%' }}>Follow Up</Th>
 
-                    <Th style={{ width: '100px' }}>Actions</Th>
+                    <Th style={{ width: '10%' }}>Actions</Th>
                   </tr>
                 </thead>
               </Table>
@@ -165,7 +165,7 @@ const DataOrders = (props) => {
                   </Th>
                   <Th>Invoice</Th>
                   <Th>Name</Th>
-                  <Th style={{ width: '28%' }}>Product</Th>
+                  <Th style={{ width: '20%' }}>Product</Th>
                   <Th>Date</Th>
                   <Th>Total Price</Th>
 
@@ -173,7 +173,7 @@ const DataOrders = (props) => {
                   {/* <Th>Paid At</Th> */}
                   <Th style={{ width: '10%' }}>Follow Up</Th>
 
-                  <Th style={{ width: '100px' }}>Actions</Th>
+                  <Th style={{ width: '10%' }}>Actions</Th>
                 </tr>
               </thead>
               <tbody>
@@ -187,7 +187,9 @@ const DataOrders = (props) => {
                         </Th>
                         <Th as="td" td>
                           {/* {item.order_id} */}
-                          {item.invoice}
+                          {item.invoice === null
+                            ? '#101120SKU9515000'
+                            : `#${item.invoice}`}
                         </Th>
                         <Th as="td" td>
                           <div style={Styles.FlexColumn}>
@@ -244,7 +246,14 @@ const DataOrders = (props) => {
                                   {' '}
                                   Quantity: {item.items[0].quantity} item
                                 </div>
-                                <DetailPopUp id={item._id} />
+                                <DetailPopUp
+                                  id={item._id}
+                                  buttonLabel={
+                                    <div style={Styles.ShowProduct}>
+                                      Show {item.items.length} Product
+                                    </div>
+                                  }
+                                />
                               </div>
                             </>
                           )}
@@ -257,7 +266,6 @@ const DataOrders = (props) => {
                         <Th as="td" td>
                           Rp. {FormatNumber(item.total_price)}
                         </Th>
-
                         <Th as="td" td>
                           {item.payment.status === 'COMPLETED' ? (
                             <div style={Styles.Paid}>
@@ -346,7 +354,6 @@ const Styles = {
     maxWidth: '100%',
     fontSize: '12px',
   },
-
   FlexColumn: {
     display: 'flex',
     flexDirection: 'column',
@@ -373,6 +380,13 @@ const Styles = {
     margin: '20px 0',
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  ShowProduct: {
+    color: 'green',
+    cursor: 'pointer',
+    fontWeight: '600',
+    marginLeft: '.8rem',
+    fontSize: '12px',
   },
 };
 

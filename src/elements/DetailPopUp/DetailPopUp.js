@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Icon, IconSpan } from '../../elements/Styled/StyledModalPopUp';
 import FetchDetailPopUp from './FetchDetailPopUp';
 const DetailPopUp = (props) => {
-  const { className } = props;
+  const { className, buttonLabel } = props;
   const [modal, setModal] = useState({
     open: false,
     id: null,
@@ -18,9 +18,7 @@ const DetailPopUp = (props) => {
     });
   return (
     <div>
-      <Button color="white" style={{ padding: '0' }} size="sm" onClick={toggle}>
-        Show More
-      </Button>
+      <div onClick={toggle}>{buttonLabel}</div>
       <Modal
         style={{ maxWidth: '1000px' }}
         isOpen={modal.open}
