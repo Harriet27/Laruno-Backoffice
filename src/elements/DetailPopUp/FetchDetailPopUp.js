@@ -64,7 +64,7 @@ const DetailDataOrders = (props) => {
               {/* Section two */}
               <div style={Styles.SectionTwo}>
                 <div>
-                  <h4>INVOICE #26636133</h4>
+                  <h4>INVOICE #{orders.data.invoice}</h4>
                 </div>
                 <div>
                   Order Date:{' '}

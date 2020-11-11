@@ -187,7 +187,7 @@ const DataOrders = (props) => {
                         </Th>
                         <Th as="td" td>
                           {/* {item.order_id} */}
-                          Invoice
+                          {item.invoice}
                         </Th>
                         <Th as="td" td>
                           <div style={Styles.FlexColumn}>
