@@ -26,7 +26,7 @@ export default function ChildMessage_1(props) {
   const template =
     followup !== null &&
     followup.data.filter(function (item) {
-      return item.name === 'whattsap z';
+      return item.name === 'followup_1';
     });
 
   return (
