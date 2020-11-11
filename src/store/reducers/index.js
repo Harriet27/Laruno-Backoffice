@@ -11,6 +11,7 @@ import orders from './order';
 import coupons from './coupons';
 import image from './image';
 import payment from './payment';
+import followup from './followup';
 export default combineReducers({
   topic,
   product,
@@ -23,4 +24,5 @@ export default combineReducers({
   coupons,
   image,
   payment,
+  followup,
 });

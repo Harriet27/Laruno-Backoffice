@@ -9,3 +9,4 @@ export * from './agent';
 export * from './coupons';
 export * from './image';
 export * from './payment';
+export * from './followup';

@@ -66,7 +66,7 @@ export default function AddTemplateFollowUp() {
       title="Add New Follow Up"
       onClickConfirm={onSubmit}
     >
-      <Card style={{ fontWeight: '600', color: 'rgba(0,0,0,.6)' }}>
+      <Card style={Styles.Card}>
         <WrapForm>
           <label>Name</label>
           <Input
@@ -108,3 +108,7 @@ export default function AddTemplateFollowUp() {
     </ModalSmart>
   );
 }
+
+const Styles = {
+  Card: { fontWeight: '600', color: 'rgba(0,0,0,.6)' },
+};
