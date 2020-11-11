@@ -33,8 +33,20 @@ export default function FetchDetailPopUp(props) {
   );
 }
 
+// --- Modal Pop UP --- //
 const DetailDataOrders = (props) => {
   const { orders, toggle } = props;
+  const number = orders !== null && orders.data.user_info.phone_number;
+  const message = `halo ${orders !== null && orders.data.user_info.name}`;
+  function raiseInvoiceClicked() {
+    const Phone_number =
+      number.toString().substring(0, 0) + '62' + number.toString().substring(1);
+
+    const Message = encodeURI(message);
+    const url = `https://wa.me/${Phone_number}?text=${Message}`;
+    window.open(url, '_blank');
+    // window.location.href = url;
+  }
   return (
     <>
       <ModalBody>
@@ -130,8 +142,8 @@ const DetailDataOrders = (props) => {
         <Button color="white" style={Styles.ButtonFotter} onClick={toggle}>
           Cancel
         </Button>
-        <Button color="primary" onClick={toggle}>
-          Confirm
+        <Button color="primary" onClick={raiseInvoiceClicked}>
+          Follow Up
         </Button>
       </ModalFooter>
     </>
