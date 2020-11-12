@@ -36,7 +36,7 @@ export default function ChildMessage(props) {
         <div>
           <div>
             <label>
-              <Span>Nama : Loading...</Span>
+              <Span>Nama :</Span> Loading...
             </label>
           </div>
           <label>
@@ -56,7 +56,7 @@ export default function ChildMessage(props) {
             disabled
             style={{ width: '100%' }}
             as="textarea"
-            rows="10"
+            rows="5"
             name="message"
             defaultValue={'Loading...'}
           />
