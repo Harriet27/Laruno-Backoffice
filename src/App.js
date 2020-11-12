@@ -39,7 +39,7 @@ import PrivateRoute from './Helpers/PrivateRoute';
 import NewFollowUp from './components/OrderOnline/NewFollowUp';
 import AddTemplateFollowUp from './components/TemplateFollowUP/AddTemplateFollowUp';
 import DataTemplateFollowUp from './components/TemplateFollowUP/DataTemplateFollowUp';
-
+import ParentsLayoutFollowUp from './components/FollowUpOrderTemplate/ParentsLayoutFollowUp';
 // import {Premium} from './pages/Testing/Premium';
 export default function App() {
   return (
@@ -112,7 +112,8 @@ export default function App() {
           {/* test */}
           <PrivateRoute exact path="/test">
             <Header />
-            <DataTemplateFollowUp />
+            {/* <DataTemplateFollowUp /> */}
+            <ParentsLayoutFollowUp />
           </PrivateRoute>
 
           <PrivateRoute exact path="/payments">

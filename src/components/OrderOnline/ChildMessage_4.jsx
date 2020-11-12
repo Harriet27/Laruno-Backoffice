@@ -19,7 +19,7 @@ export default function ChildMessage_4(props) {
   }, [dispatch, id]);
 
   useEffect(() => {
-    dispatch(fetchGetFollowUp(id));
+    dispatch(fetchGetFollowUp());
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -30,6 +30,16 @@ export default function ChildMessage_4(props) {
       return item.name === 'FollowUp_4';
     });
 
+  // const temp =
+  //   followup !== null &&
+  //   followup.data.filter(function (item = null) {
+  //     return (
+  //       item.name === 'FollowUp_4' ||
+  //       item.name === 'FollowUp_1' ||
+  //       item.name === 'FollowUp_2'
+  //     );
+  //   });
+  // console.log(temp, 'ini temp');
   return (
     <>
       {orders === null ? (
