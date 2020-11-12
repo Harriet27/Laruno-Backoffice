@@ -21,7 +21,7 @@ import FollowUp_1 from './FollowUp_1';
 import FollowUp_2 from './FollowUp_2';
 import FollowUp_3 from './FollowUp_3';
 import FollowUp_4 from './FollowUp_4';
-import NewFollowUp from './NewFollowUp';
+
 import DetailPopUp from '../../elements/DetailPopUp/DetailPopUp';
 
 // --- Styled Components --- //

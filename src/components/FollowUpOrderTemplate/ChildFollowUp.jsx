@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUpdateFollowUp, fetchGetFollowUpByID } from '../../store/actions';
-
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 const [md, lg] = ['16px', '18px', '20px'];
 const Input = Styled.input`
     width: 100%;
@@ -23,27 +23,25 @@ const WrapForm = Styled.div`
     width: 100%;
     margin-bottom: ${lg};
 `;
+
 const Span = Styled.span`
 color: #c7254e;
 background-color: #f9f2f4;
 `;
-
 export default function ChildFollowUp(props) {
-  const dispatch = useDispatch();
-  const { id } = props;
+  const { id, toggle } = props;
 
+  console.log(id, 'ini id');
   const note = {
     name: `{{name}}`,
     phone: `{{phone_number}}`,
     total_price: `{{total_price}}`,
     total_qty: `{{total_qty}}`,
   };
-  console.log(id, 'ini id');
-
   // render disini
   const InputUpdate = (props) => {
-    const { id, dispatch } = props;
-
+    const { id, toggle } = props;
+    const dispatch = useDispatch();
     const follow = useSelector((state) => state.followup.getFollowUpById);
     console.log(follow, 'isi follow by id');
 
@@ -53,11 +51,10 @@ export default function ChildFollowUp(props) {
       // eslint-disable-next-line
     }, [dispatch]);
     const UpdateFollowUp = (props) => {
-      const { id, dispatch, template } = props;
+      const { id, template, toggle } = props;
+      const dispatch = useDispatch();
       const [form, setForm] = useState({
-        name: '',
         template: template,
-        type: '',
       });
 
       const handleChange = (event) => {
@@ -82,7 +79,36 @@ export default function ChildFollowUp(props) {
               onChange={handleChange}
             />
           </WrapForm>
-          <button onClick={handleSubmit}>klik</button>
+          <WrapForm>Note untuk membuat Template WA</WrapForm>
+          <div>{note.notes}</div>
+          <div>
+            <div>
+              <Span>{note.name}</Span> :Nama Costumer
+            </div>
+            <div>
+              <Span>{note.phone}</Span> :Nomor telephone Costumer
+            </div>
+            <div>
+              <Span>{note.total_price}</Span> :Nama Product
+            </div>
+            <div>
+              <Span>{note.total_qty}</Span> :total items yang di beli
+            </div>
+          </div>
+
+          <ModalFooter>
+            <Button
+              color="white"
+              style={{ border: '1px solid gray' }}
+              onClick={toggle}
+            >
+              Cancel
+            </Button>
+            {/* <Button color="primary" onClick={handleSubmit}>
+              Follow Up
+            </Button> */}
+            <button onClick={handleSubmit}>click</button>
+          </ModalFooter>
         </>
       );
     };
@@ -91,31 +117,15 @@ export default function ChildFollowUp(props) {
       <>
         <UpdateFollowUp
           id={id}
-          template={follow !== null && follow.data.template}
-          dispatch={dispatch}
+          template={follow === null ? 'Loading...' : follow.data.template}
+          toggle={toggle}
         />
       </>
     );
   };
   return (
-    <div>
-      <WrapForm>Note untuk membuat Template WA</WrapForm>
-      <div>{note.notes}</div>
-      <div>
-        <div>
-          <Span>{note.name}</Span> :Nama Costumer
-        </div>
-        <div>
-          <Span>{note.phone}</Span> :Nomor telephone Costumer
-        </div>
-        <div>
-          <Span>{note.total_price}</Span> :Nama Product
-        </div>
-        <div>
-          <Span>{note.total_qty}</Span> :total items yang di beli
-        </div>
-      </div>
-      <InputUpdate id={id} dispatch={dispatch} />
-    </div>
+    <>
+      <InputUpdate id={id} toggle={toggle} />
+    </>
   );
 }

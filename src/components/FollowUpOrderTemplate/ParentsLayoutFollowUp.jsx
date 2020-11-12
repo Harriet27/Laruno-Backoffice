@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostFollowUp, fetchGetFollowUp } from '../../store/actions';
-
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Icon, IconSpan } from '../../elements/Styled/StyledModalPopUp';
 // --- Elements, Pages, Components --- //
 import Card from '../../elements/Card/Card';
-import ModalSmart from '../../elements/Modal/ModalSmart';
-import SingleImage from '../AddProduct/SingleImage';
 import ChildFollowUp from './ChildFollowUp';
 
 // --- Styled Components --- //
@@ -31,80 +30,124 @@ const WrapForm = Styled.div`
     margin-bottom: ${lg};
 `;
 
-export default function ParentsLayoutFollowUp() {
+//
+
+const FollowUp = (props) => {
   const dispatch = useDispatch();
   const followup = useSelector((state) => state.followup.getFollowUp);
-
+  const { className } = props;
+  const [modal, setModal] = useState({
+    open: false,
+  });
   const [form, setForm] = useState({
     id: '',
   });
-  // --- Fetch submit method Post --- //
 
   console.log(form, 'isi form');
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    dispatch(fetchPostFollowUp(form));
-  };
-
-  const handleChange = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
-  };
 
   useEffect(() => {
     dispatch(fetchGetFollowUp());
     // eslint-disable-next-line
   }, [dispatch]);
 
-  const temp =
+  const temp1 =
     followup !== null &&
     followup.data.filter(function (item = null) {
-      return (
-        item.name === 'FollowUp' ||
-        item.name === 'FollowUp_1' ||
-        item.name === 'FollowUp_2' ||
-        item.name === 'FollowUp_3' ||
-        item.name === 'FollowUp_4'
-      );
+      return item.name === 'FollowUp';
     });
-  console.log(temp, 'ini temp');
-  return (
-    <ModalSmart
-      styleModal={{ maxWidth: '1000px' }}
-      buttonLabel="Add New"
-      title="Add New Follow Up"
-      onClickConfirm={handleSubmit}
-    >
-      <Card style={Styles.Card}>
-        <WrapForm>
-          <label>Type</label>
-          <Input
-            as="select"
-            name="id"
-            id="id"
-            defaultValue={form.id}
-            onChange={handleChange}
-          >
-            <option value="" disabled hidden>
-              Choose here
-            </option>
-            {temp !== false &&
-              temp.map((item, index) => {
-                return (
-                  <option key={item._id} value={item._id}>
-                    {item.name}
-                  </option>
-                );
-              })}
-          </Input>
-        </WrapForm>
-        <>
-          <ChildFollowUp id={form.id} />
-        </>
-      </Card>
-    </ModalSmart>
-  );
-}
+  const temp2 =
+    followup !== null &&
+    followup.data.filter(function (item = null) {
+      return item.name === 'FollowUp_1';
+    });
+  const temp3 =
+    followup !== null &&
+    followup.data.filter(function (item = null) {
+      return item.name === 'FollowUp_2';
+    });
+  const temp4 =
+    followup !== null &&
+    followup.data.filter(function (item = null) {
+      return item.name === 'FollowUp_3';
+    });
+  const temp5 =
+    followup !== null &&
+    followup.data.filter(function (item = null) {
+      return item.name === 'FollowUp_4';
+    });
+  console.log({ temp1, modal, form });
 
+  const toggle = (event) =>
+    setModal({
+      ...modal,
+      open: !modal.open,
+    });
+  const handleChange = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
+  return (
+    <div>
+      <Button color="white" style={{ padding: '0' }} size="sm" onClick={toggle}>
+        Update
+      </Button>
+      <Modal
+        isOpen={modal.open}
+        toggle={toggle}
+        style={{ maxWidth: '700px', width: '100%' }}
+        className={className}
+      >
+        <ModalHeader toggle={toggle}>Template Whattsap</ModalHeader>
+        {/* --- */}
+        <Card style={Styles.Card}>
+          <WrapForm>
+            <label>Type</label>
+            <Input
+              as="select"
+              name="id"
+              id="id"
+              defaultValue={form.id}
+              onChange={handleChange}
+            >
+              <option value="" disabled hidden>
+                Choose here
+              </option>
+              {temp1 !== false && (
+                <option key={temp1[0]._id} value={temp1[0]._id}>
+                  Follow Up 1
+                </option>
+              )}
+              {temp2 !== false && (
+                <option key={temp2[0]._id} value={temp2[0]._id}>
+                  Follow Up 2
+                </option>
+              )}
+              {temp3 !== false && (
+                <option key={temp3[0]._id} value={temp3[0]._id}>
+                  Follow Up 3
+                </option>
+              )}
+              {temp4 !== false && (
+                <option key={temp4[0]._id} value={temp4[0]._id}>
+                  Follow Up 4
+                </option>
+              )}
+              {temp5 !== false && (
+                <option key={temp5[0]._id} value={temp5[0]._id}>
+                  Follow Up 5
+                </option>
+              )}
+            </Input>
+          </WrapForm>
+          <>
+            <ChildFollowUp id={form.id} toggle={toggle} />
+          </>
+        </Card>
+      </Modal>
+    </div>
+  );
+};
+
+export default FollowUp;
 const Styles = {
-  Card: { fontWeight: '600', color: 'rgba(0,0,0,.6)' },
+  Card: { fontWeight: '600', color: 'rgba(0,0,0,.6)', padding: '50px' },
 };

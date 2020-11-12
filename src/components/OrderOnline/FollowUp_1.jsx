@@ -18,19 +18,24 @@ const FollowUp_1 = (props) => {
       id: props.id,
     });
   return (
-    <div>
+    <>
       <Button color="white" style={{ padding: '0' }} size="sm" onClick={toggle}>
         <Icon className="fa fa-comment fa-2x" id="button-label-1">
           <IconSpan>2</IconSpan>
         </Icon>
       </Button>
-      <Modal isOpen={modal.open} toggle={toggle} className={className}>
+      <Modal
+        isOpen={modal.open}
+        toggle={toggle}
+        style={{ maxWidth: '1000PX' }}
+        className={className}
+      >
         <ModalHeader toggle={toggle}>Follow Up 1</ModalHeader>
         <ModalBody>
           <ChildMessage_1 id={modal.id} toggle={toggle} />
         </ModalBody>
       </Modal>
-    </div>
+    </>
   );
 };
 

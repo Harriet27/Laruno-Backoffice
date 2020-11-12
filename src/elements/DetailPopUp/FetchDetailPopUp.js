@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchShowOrders } from '../../store/actions';
+import { fetchShowOrders, fetchGetFollowUp } from '../../store/actions';
 import moment from 'moment';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import { Span } from '../../elements/Styled/StyledTabs';
@@ -14,6 +14,7 @@ import {
   ModalFooter,
   Table,
 } from 'reactstrap';
+import DetailDataOrders from './DetailDataOrders';
 const Icon = Styled.div`
 margin-bottom: 10px;
 `;
@@ -21,174 +22,43 @@ export default function FetchDetailPopUp(props) {
   const { id, toggle } = props;
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.orders.detailOrders);
-  console.log('ORDER ID DIDALAM DETAIL', orders);
+  const followup = useSelector((state) => state.followup.getFollowUp);
+  console.log('ORDER ID DIDALAM DETAIL', { orders, followup });
   useEffect(() => {
     dispatch(fetchShowOrders(id));
     // eslint-disable-next-line
   }, [dispatch, id]);
+  useEffect(() => {
+    dispatch(fetchGetFollowUp());
+    // eslint-disable-next-line
+  }, [dispatch]);
+
+  const template =
+    followup !== null &&
+    followup.data.filter(function (item) {
+      return item.name === 'DetailOrders';
+    });
   return (
     <>
-      <DetailDataOrders orders={orders} toggle={toggle} />
+      {orders === null ? (
+        'Loading...'
+      ) : (
+        <DetailDataOrders
+          orders={orders}
+          toggle={toggle}
+          //
+          name={orders.data.user_info.name}
+          phone_number={orders.data.user_info.phone_number}
+          total_price={orders.data.total_price}
+          total_qty={orders.data.total_qty}
+          // payment_method={orders.data.payment.method.name}
+          invoice={orders.data.invoice}
+          email={orders.data.user_info.email}
+          message={template[0].template}
+        />
+      )}
     </>
   );
 }
 
 // --- Modal Pop UP --- //
-const DetailDataOrders = (props) => {
-  const { orders, toggle } = props;
-  const number = orders !== null && orders.data.user_info.phone_number;
-  const message = `halo ${orders !== null && orders.data.user_info.name}`;
-  function raiseInvoiceClicked() {
-    const Phone_number =
-      number.toString().substring(0, 0) + '62' + number.toString().substring(1);
-
-    const Message = encodeURI(message);
-    const url = `https://wa.me/${Phone_number}?text=${Message}`;
-    window.open(url, '_blank');
-    // window.location.href = url;
-  }
-  return (
-    <>
-      <ModalBody>
-        {orders === null ? (
-          'Loading...'
-        ) : (
-          <section style={Styles.Container}>
-            {/* container one */}
-            <div style={Styles.FlexRow}>
-              {/* section one */}
-              <div style={Styles.SectionOne}>
-                <div style={Styles.Name}>{orders.data.user_info.name}</div>
-                <Icon>
-                  <i style={Styles.Icon} className="fa fa-envelope"></i>
-                  {orders.data.user_info.email}
-                </Icon>
-                <Icon>
-                  <i className="fa fa-phone" style={Styles.Icon}></i>{' '}
-                  {orders.data.user_info.phone_number}
-                </Icon>
-                <Icon>
-                  <i style={Styles.Icon} className="fa fa-home"></i>
-                  Jl.paseban timur X no. 11 rt.016 rw.03 Senen, Kota Jakarta
-                  Pusat, DKI Jakarta, 10460
-                </Icon>
-              </div>
-              {/* Section two */}
-              <div style={Styles.SectionTwo}>
-                <div>
-                  <h4>
-                    INVOICE #
-                    {orders.data.invoice === null
-                      ? '101120SKU9515000'
-                      : orders.data.invoice}
-                  </h4>
-                </div>
-                <div>
-                  Order Date:{' '}
-                  {moment(orders.data.create_date).format('DD-MM-YYYY')}
-                </div>
-                <>
-                  {orders.data.payment.status === 'COMPLETED' ? (
-                    <div style={Styles.Paid}>Paid</div>
-                  ) : (
-                    <div style={Styles.Unpaid}>Unpaid</div>
-                  )}
-                </>
-              </div>
-            </div>
-
-            {/* container two */}
-            <>
-              <Table>
-                <thead>
-                  <tr>
-                    <th>Items</th>
-                    <th style={{ width: '10%' }}>Quantity</th>
-                    <th style={{ width: '10%' }}>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orders.data.items.map((item, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>
-                          {index + 1}. {item.product_info.name}
-                        </td>
-                        <td>{item.quantity} items</td>
-                        <td>
-                          Rp.
-                          {FormatNumber(item.sub_price)}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th>total</th>
-                    <th>{orders.data.total_qty} items</th>
-                    <th>
-                      Rp.
-                      {FormatNumber(orders.data.total_price)}
-                    </th>
-                  </tr>
-                </tfoot>
-              </Table>
-            </>
-          </section>
-        )}
-      </ModalBody>
-      <ModalFooter>
-        <Button color="white" style={Styles.ButtonFotter} onClick={toggle}>
-          Cancel
-        </Button>
-        <Button color="primary" onClick={raiseInvoiceClicked}>
-          Follow Up
-        </Button>
-      </ModalFooter>
-    </>
-  );
-};
-
-const Styles = {
-  Container: {
-    margin: '40px 30px',
-  },
-  ButtonFotter: {
-    border: '1px solid gray',
-  },
-  FlexRow: { display: 'flex', flexDirection: 'row', marginBottom: '30px' },
-  Name: {
-    marginBottom: '15px',
-    fontSize: '18px',
-    fontWeight: '500',
-  },
-  SectionOne: { width: '40%', marginTop: '70px' },
-  SectionTwo: {
-    width: '60%',
-    display: 'flex',
-    justifyContent: 'right',
-    alignItems: 'flex-end',
-    flexDirection: 'column',
-  },
-  Paid: {
-    color: '#5b841b',
-    border: '3px solid #c6e1c6',
-    width: '20%',
-    textAlign: 'center',
-    fontWeight: 700,
-    marginTop: '10px',
-  },
-  Unpaid: {
-    color: '#777',
-    border: '3px solid #e5e5e5',
-    width: '20%',
-    textAlign: 'center',
-    fontWeight: 700,
-    marginTop: '10px',
-    backgroundColor: '#efefef',
-  },
-  Icon: {
-    marginRight: '10px',
-  },
-};
