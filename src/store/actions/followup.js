@@ -53,4 +53,8 @@ const fetchPostFollowUp = (form) => async () => {
     window.location.reload();
   }
 };
+
+// --- Put follow Up --- //
+const fetchPutFollowUp = () => async () => {};
+
 export { getFollowUp, FOLLOW_UP, fetchGetFollowUp, fetchPostFollowUp };

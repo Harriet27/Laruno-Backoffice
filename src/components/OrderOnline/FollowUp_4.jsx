@@ -21,7 +21,7 @@ const FollowUp_4 = (props) => {
     <div>
       <Button color="white" style={{ padding: '0' }} size="sm" onClick={toggle}>
         <Icon className="fa fa-comment fa-2x" id="button-label-1">
-          <IconSpan>4</IconSpan>
+          <IconSpan>5</IconSpan>
         </Icon>
       </Button>
       <Modal isOpen={modal.open} toggle={toggle} className={className}>
