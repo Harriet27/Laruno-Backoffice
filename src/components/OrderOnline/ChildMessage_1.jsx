@@ -23,10 +23,11 @@ export default function ChildMessage_1(props) {
     // eslint-disable-next-line
   }, [dispatch]);
 
+  // --- taruh di setiap child message --- //
   const template =
     followup !== null &&
     followup.data.filter(function (item) {
-      return item.name === 'followup_1';
+      return item.name === 'FollowUp_1';
     });
 
   return (
@@ -76,9 +77,12 @@ export default function ChildMessage_1(props) {
         <WhattsapMessage
           toggle={toggle}
           name={orders.data.user_info.name}
-          number={orders.data.user_info.phone_number}
+          phone_number={orders.data.user_info.phone_number}
           total_price={orders.data.total_price}
           total_qty={orders.data.total_qty}
+          // payment_method={orders.data.payment.method.name}
+          invoice={orders.data.invoice}
+          email={orders.data.user_info.email}
           message={template[0].template}
         />
       )}

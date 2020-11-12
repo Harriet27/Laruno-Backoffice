@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchShowOrders } from '../../store/actions';
+import { fetchGetFollowUp, fetchShowOrders } from '../../store/actions';
 import WhattsapMessage from './WhattsapMessage';
 import { Span } from '../../elements/Styled/StyledTabs';
 import { Input } from '../../elements/Styled/StyledForm';
@@ -9,11 +9,27 @@ export default function ChildMessage(props) {
   const { id, toggle } = props;
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.orders.detailOrders);
-  console.log(orders, 'orders id');
+  const followup = useSelector((state) => state.followup.getFollowUp);
+  console.log(followup, 'ini follow up');
+  console.log(orders, 'ini orders by id');
+
   useEffect(() => {
     dispatch(fetchShowOrders(id));
     // eslint-disable-next-line
   }, [dispatch, id]);
+
+  useEffect(() => {
+    dispatch(fetchGetFollowUp(id));
+    // eslint-disable-next-line
+  }, [dispatch]);
+
+  // --- taruh di setiap child message --- //
+  const template =
+    followup !== null &&
+    followup.data.filter(function (item) {
+      return item.name === 'FollowUp';
+    });
+
   return (
     <>
       {orders === null ? (
@@ -40,7 +56,7 @@ export default function ChildMessage(props) {
             disabled
             style={{ width: '100%' }}
             as="textarea"
-            rows="5"
+            rows="10"
             name="message"
             defaultValue={'Loading...'}
           />
@@ -61,25 +77,13 @@ export default function ChildMessage(props) {
         <WhattsapMessage
           toggle={toggle}
           name={orders.data.user_info.name}
-          number={orders.data.user_info.phone_number}
-          message={`Selamat datang di Laruno ${orders.data.user_info.name}  ☺️
-
-Kami sudah terima pesanan anda dengan rincian sebagai berikut,
-Produk: ${orders.data.items.map((item) => {
-            return item.product_info.name;
-          })}
-
-Harga: Rp${orders.data.total_price}
-Ongkir: free
-Total: Rp${orders.data.total_price}
-Metode Pembayaran: Transfer Bank
-
-Silahkan Transfer senilai ${orders.data.total_price} ke Rekening atas Nama 
-CV. Pelatihan Indonesia Sukses : 
-BCA 88 3131 0006 atau BNI 88 3131 0000. 
-
-Terimakasih.
-`}
+          phone_number={orders.data.user_info.phone_number}
+          total_price={orders.data.total_price}
+          total_qty={orders.data.total_qty}
+          // payment_method={orders.data.payment.method.name}
+          invoice={orders.data.invoice}
+          email={orders.data.user_info.email}
+          message={template[0].template}
         />
       )}
     </>

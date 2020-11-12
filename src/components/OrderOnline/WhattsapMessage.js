@@ -3,14 +3,27 @@ import { Input } from '../../elements/Styled/StyledForm';
 import { Form, Span } from '../../elements/Styled/StyledTabs';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 export default function WhattsapMessage(props) {
-  const { name, number, message, toggle, total_price, total_qty } = props;
+  const {
+    name,
+    phone_number,
+    message,
+    toggle,
+    total_price,
+    total_qty,
+    // payment_method,
+    invoice,
+    email,
+  } = props;
   const InputValue = (props) => {
     const [form, setForm] = useState({
       name: name,
-      number: number,
+      phone_number: phone_number,
       message: message,
       total_price: total_price,
       total_qty: total_qty,
+      // payment_method: payment_method,
+      invoice: invoice,
+      email: email,
     });
 
     form.message = form.message.replace(
@@ -48,7 +61,7 @@ export default function WhattsapMessage(props) {
           style={{ width: '100%' }}
           type="number"
           name="number"
-          value={form.number}
+          value={form.phone_number}
           onChange={handleChange}
         />
         <label>
@@ -82,11 +95,14 @@ export default function WhattsapMessage(props) {
     <div>
       <InputValue
         name={name}
-        number={number}
+        phone_number={phone_number}
         total_price={total_price}
         total_qty={total_qty}
         message={message}
+        // payment_method={payment_method}
         toggle={toggle}
+        invoice={invoice}
+        email={email}
       />
     </div>
   );

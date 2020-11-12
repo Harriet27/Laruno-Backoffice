@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchShowOrders } from '../../store/actions';
+import { fetchGetFollowUp, fetchShowOrders } from '../../store/actions';
 import WhattsapMessage from './WhattsapMessage';
 import { Span } from '../../elements/Styled/StyledTabs';
 import { Input } from '../../elements/Styled/StyledForm';
@@ -9,11 +9,27 @@ export default function ChildMessage_4(props) {
   const { id, toggle } = props;
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.orders.detailOrders);
-  console.log(orders, 'orders id');
+  const followup = useSelector((state) => state.followup.getFollowUp);
+  console.log(followup, 'ini follow up');
+  console.log(orders, 'ini orders by id');
+
   useEffect(() => {
     dispatch(fetchShowOrders(id));
     // eslint-disable-next-line
   }, [dispatch, id]);
+
+  useEffect(() => {
+    dispatch(fetchGetFollowUp(id));
+    // eslint-disable-next-line
+  }, [dispatch]);
+
+  // --- taruh di setiap child message --- //
+  const template =
+    followup !== null &&
+    followup.data.filter(function (item) {
+      return item.name === 'FollowUp_4';
+    });
+
   return (
     <>
       {orders === null ? (
@@ -61,15 +77,13 @@ export default function ChildMessage_4(props) {
         <WhattsapMessage
           toggle={toggle}
           name={orders.data.user_info.name}
-          number={orders.data.user_info.phone_number}
-          message={`Selamat siang ${orders.data.user_info.name},
-Produk ${orders.data.items.map((item) => {
-            return item.product_info.name;
-          })} laris manis nih, stok kami sisa ${
-            orders.data.total_qty
-          } item saja ya...
-Jangan sampe kehabisan ☺🙏🏻
-`}
+          phone_number={orders.data.user_info.phone_number}
+          total_price={orders.data.total_price}
+          total_qty={orders.data.total_qty}
+          // payment_method={orders.data.payment.method.name}
+          invoice={orders.data.invoice}
+          email={orders.data.user_info.email}
+          message={template[0].template}
         />
       )}
     </>
