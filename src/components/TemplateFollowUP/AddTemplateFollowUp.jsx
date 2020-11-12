@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { fetchPostTopic, fetchPostSingleImage } from '../../store/actions';
+import { fetchPostFollowUp } from '../../store/actions';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AddTopicSchema } from '../../elements/Validation';
@@ -47,12 +47,18 @@ export default function AddTemplateFollowUp() {
     template: '',
     type: '',
   });
-
+  const note = {
+    name: `{{name}}`,
+    phone: `{{phone_number}}`,
+    total_price: `{{total_price}}`,
+    total_qty: `{{total_qty}}`,
+  };
+  console.log(form);
   // --- Fetch submit method Post --- //
 
-  const onSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(fetchPostTopic(form));
+    dispatch(fetchPostFollowUp(form));
   };
 
   // --- Change Value when Input Active --- //
@@ -65,7 +71,7 @@ export default function AddTemplateFollowUp() {
       styleModal={{ maxWidth: '1000px' }}
       buttonLabel="Add New"
       title="Add New Follow Up"
-      onClickConfirm={onSubmit}
+      onClickConfirm={handleSubmit}
     >
       <Card style={Styles.Card}>
         <WrapForm>
@@ -79,30 +85,48 @@ export default function AddTemplateFollowUp() {
           />
         </WrapForm>
         <WrapForm>
+          <label>Type</label>
+          <Input
+            as="select"
+            name="type"
+            id="type"
+            defaultValue={form.type}
+            onChange={handleChange}
+          >
+            <option value="" disabled hidden>
+              Choose here
+            </option>
+            <option value="WA">Whattsap</option>
+            <option value="EMAIL">Email</option>
+          </Input>
+        </WrapForm>
+
+        <WrapForm>
           <label>Template</label>
           <Input
             as="textarea"
             rows="5"
-            name="name"
-            id="name"
+            name="template"
+            id="template"
             defaultValue={form.template}
             onChange={handleChange}
           />
         </WrapForm>
-        <WrapForm>Note untuk membuat Template WA</WrapForm>
 
+        <WrapForm>Note untuk membuat Template WA</WrapForm>
+        <div>{note.notes}</div>
         <div>
           <div>
-            <Span>[nama]</Span> :Nama Costumer
+            <Span>{note.name}</Span> :Nama Costumer
           </div>
           <div>
-            <Span>[phone_number]</Span> :Nomor telephone Costumer
+            <Span>{note.phone}</Span> :Nomor telephone Costumer
           </div>
           <div>
-            <Span>[name_product]</Span> :Nama Product
+            <Span>{note.total_price}</Span> :Nama Product
           </div>
           <div>
-            <Span>[payment_method]</Span> :Nama metode pembayaran
+            <Span>{note.total_qty}</Span> :total items yang di beli
           </div>
         </div>
       </Card>
