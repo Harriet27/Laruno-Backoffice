@@ -75,6 +75,11 @@ const FollowUp = (props) => {
     followup.data.filter(function (item = null) {
       return item.name === 'FollowUp_4';
     });
+  const temp6 =
+    followup !== null &&
+    followup.data.filter(function (item = null) {
+      return item.name === 'DetailOrders';
+    });
   console.log({ temp1, modal, form });
 
   const toggle = (event) =>
@@ -134,6 +139,11 @@ const FollowUp = (props) => {
               {temp5 !== false && (
                 <option key={temp5[0]._id} value={temp5[0]._id}>
                   Follow Up 5
+                </option>
+              )}
+              {temp6 !== false && (
+                <option key={temp6[0]._id} value={temp6[0]._id}>
+                  Detail Orders
                 </option>
               )}
             </Input>
