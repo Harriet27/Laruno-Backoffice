@@ -45,6 +45,7 @@ export default function AddTemplateFollowUp() {
   const [form, setForm] = useState({
     name: '',
     template: '',
+    type: '',
   });
 
   // --- Fetch submit method Post --- //

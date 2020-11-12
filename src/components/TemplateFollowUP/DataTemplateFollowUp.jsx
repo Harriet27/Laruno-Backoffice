@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
-
+import AddTemplateFollowUp from './AddTemplateFollowUp';
 // --- Elements, Pages, Components --- //
 import { fetchGetFollowUp } from '../../store/actions';
 
@@ -76,7 +76,7 @@ export default function DataTemplateFollowUp(props) {
 
       <div style={Styles.FlexBetween}>
         {/* <AddNewFollowup /> */}
-
+        <AddTemplateFollowUp />
         <div>
           <label>Search</label> <Input type="search" name="search" />
         </div>

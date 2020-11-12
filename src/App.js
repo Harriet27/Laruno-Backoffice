@@ -112,7 +112,6 @@ export default function App() {
           {/* test */}
           <PrivateRoute exact path="/test">
             <Header />
-            <AddTemplateFollowUp />
             <DataTemplateFollowUp />
           </PrivateRoute>
 

@@ -62,13 +62,12 @@ export default function Order() {
           <CardGetData
             icon={faShoppingCart}
             number="0"
-            text="Total Income"
+            text="Unpaid Orders"
           ></CardGetData>
-
           <CardGetData
             icon={faShoppingCart}
             number="0"
-            text="Unpaid Orders"
+            text="Total Income"
           ></CardGetData>
         </Wraps>
       ) : (
@@ -87,14 +86,13 @@ export default function Order() {
 
           <CardGetData
             icon={faShoppingCart}
-            number={`Rp ${FormatNumber(total)}`}
-            text="Total Income"
-          ></CardGetData>
-
-          <CardGetData
-            icon={faShoppingCart}
             number={total_unpaid}
             text="Unpaid Orders"
+          ></CardGetData>
+          <CardGetData
+            icon={faShoppingCart}
+            number={`Rp ${FormatNumber(total)}`}
+            text="Total Income"
           ></CardGetData>
         </Wraps>
       )}
