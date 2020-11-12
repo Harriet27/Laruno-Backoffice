@@ -10,7 +10,7 @@ import {
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import DehazeIcon from '@material-ui/icons/Dehaze';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 // --- Elements, Pages, Components --- //
 import Card from '../../elements/Card/Card';
 import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
@@ -142,7 +142,9 @@ const DataCoupons = (props) => {
                   </tr>
                 </thead>
               </Table>
-              <div style={Styles.Loading}>Loading ...</div>
+              <div style={Styles.Loading}>
+                <CircularProgress />
+              </div>
             </React.Fragment>
           ) : coupons.data.length >= 1 ? (
             <Table>

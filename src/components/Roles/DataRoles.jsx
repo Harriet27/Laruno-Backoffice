@@ -15,6 +15,7 @@ import moment from 'moment';
 import { fetchGetRoles, fetchMultipleDeleteRoles } from '../../store/actions';
 import DeleteRoles from './DeleteRoles';
 import MultipleDelete from '../../elements/Alert/MultipleDelete';
+import { CircularProgress } from '@material-ui/core';
 
 // --- Styled Components --- //
 
@@ -150,7 +151,7 @@ const DataRoles = (props) => {
                   padding: '100px',
                 }}
               >
-                Loading ...
+                <CircularProgress />
               </div>
             </React.Fragment>
           ) : roles.data.length >= 1 ? (

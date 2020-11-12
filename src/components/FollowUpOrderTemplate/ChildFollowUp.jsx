@@ -104,10 +104,9 @@ export default function ChildFollowUp(props) {
             >
               Cancel
             </Button>
-            {/* <Button color="primary" onClick={handleSubmit}>
-              Follow Up
-            </Button> */}
-            <button onClick={handleSubmit}>click</button>
+            <Button color="primary" onClick={handleSubmit}>
+              Confirm
+            </Button>
           </ModalFooter>
         </>
       );
@@ -117,7 +116,15 @@ export default function ChildFollowUp(props) {
       <>
         <UpdateFollowUp
           id={id}
-          template={follow === null ? 'Loading...' : follow.data.template}
+          template={
+            follow === null
+              ? ''
+              : id === ''
+              ? ''
+              : follow.data._id !== id
+              ? 'Loading...'
+              : follow.data.template
+          }
           toggle={toggle}
         />
       </>

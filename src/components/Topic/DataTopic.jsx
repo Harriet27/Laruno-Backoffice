@@ -14,6 +14,7 @@ import AddNewTopic from './AddNewTopic';
 import UpdateTopic from './UpdateTopic';
 import DeleteTopic from './DeleteTopic';
 import MultipleDelete from '../../elements/Alert/MultipleDelete';
+import { CircularProgress } from '@material-ui/core';
 // --- Styled Components --- //
 
 const DataTopic = (props) => {
@@ -129,7 +130,9 @@ const DataTopic = (props) => {
                   </tr>
                 </thead>
               </Table>
-              <div style={Styles.IsLoading}>Loading ...</div>
+              <div style={Styles.IsLoading}>
+                <CircularProgress />
+              </div>
             </React.Fragment>
           ) : topic.data.length >= 1 ? (
             <Table>

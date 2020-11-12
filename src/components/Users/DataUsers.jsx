@@ -20,6 +20,7 @@ import {
 import AddAdministrator from './AddAdministrator';
 import UpdateUser from './UpdateUser';
 import DeleteUser from './DeleteUser';
+import { CircularProgress } from '@material-ui/core';
 
 const DataTopic = (props) => {
   const dispatch = useDispatch();
@@ -165,7 +166,7 @@ const DataTopic = (props) => {
                   padding: '100px',
                 }}
               >
-                Loading ...
+                <CircularProgress />
               </div>
             </React.Fragment>
           ) : users.data.length >= 1 ? (
@@ -186,10 +187,6 @@ const DataTopic = (props) => {
                 </tr>
               </thead>
               <tbody>
-                {/* {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row)  */}
                 {users.data
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((item) => {

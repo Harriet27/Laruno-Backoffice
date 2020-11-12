@@ -11,6 +11,7 @@ import moment from 'moment';
 // --- Elements, Pages, Components --- //
 import { fetchGetPaymentsMethod } from '../../store/actions';
 import AddPaymentsMethod from './AddPaymentsMethod';
+import { CircularProgress } from '@material-ui/core';
 
 // --- Styled Components --- //
 
@@ -143,7 +144,7 @@ const DataPaymentsMethod = (props) => {
                   padding: '100px',
                 }}
               >
-                Loading ...
+                <CircularProgress />
               </div>
             </React.Fragment>
           ) : payments.data.length >= 1 ? (

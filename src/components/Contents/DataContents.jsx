@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 // --- Elements, Pages, Components --- //
 import { fetchGetContents } from '../../store/actions';
 import Card from '../../elements/Card/Card';
@@ -132,7 +132,7 @@ const DataContents = (props) => {
                   padding: '100px',
                 }}
               >
-                Loading ...
+                <CircularProgress />
               </div>
             </React.Fragment>
           ) : contents.data.length >= 1 ? (

@@ -10,6 +10,7 @@ import moment from 'moment';
 import AddTemplateFollowUp from './AddTemplateFollowUp';
 // --- Elements, Pages, Components --- //
 import { fetchGetFollowUp } from '../../store/actions';
+import { CircularProgress } from '@material-ui/core';
 
 // --- Styled Components --- //
 
@@ -103,7 +104,9 @@ export default function DataTemplateFollowUp(props) {
                   </tr>
                 </thead>
               </Table>
-              <div style={Styles.IsLoading}>Loading ...</div>
+              <div style={Styles.IsLoading}>
+                <CircularProgress />
+              </div>
             </React.Fragment>
           ) : followup.data.length >= 1 ? (
             <Table>

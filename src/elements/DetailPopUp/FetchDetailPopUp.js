@@ -5,6 +5,7 @@ import moment from 'moment';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import { Span } from '../../elements/Styled/StyledTabs';
 import { Input } from '../../elements/Styled/StyledForm';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Styled from 'styled-components';
 import {
   Button,
@@ -40,8 +41,17 @@ export default function FetchDetailPopUp(props) {
     });
   return (
     <>
-      {orders === null ? (
-        'Loading...'
+      {orders === null || orders.data._id !== id ? (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '30em',
+          }}
+        >
+          <CircularProgress />
+        </div>
       ) : (
         <DetailDataOrders
           orders={orders}

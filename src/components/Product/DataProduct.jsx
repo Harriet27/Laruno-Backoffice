@@ -28,7 +28,7 @@ import {
 import DeleteProduct from './DeleteProduct';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import MultipleDelete from '../../elements/Alert/MultipleDelete';
-import { StylesProvider } from '@material-ui/core';
+import { CircularProgress, StylesProvider } from '@material-ui/core';
 // --- Styled Components --- //
 
 const ButtonLink = Styled.button`
@@ -187,7 +187,7 @@ const DataProduct = (props) => {
                   padding: '100px',
                 }}
               >
-                Loading ...
+                <CircularProgress />
               </div>
             </React.Fragment>
           ) : product.data.length >= 1 ? (

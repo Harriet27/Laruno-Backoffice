@@ -10,6 +10,7 @@ import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import Styled from 'styled-components';
+import CircularProgress from '@material-ui/core/CircularProgress';
 // --- Elements, Pages, Components --- //
 import {
   fetchGetOrders,
@@ -154,7 +155,9 @@ const DataOrders = (props) => {
                   </tr>
                 </thead>
               </Table>
-              <div style={Styles.isLoading}>Loading ...</div>
+              <div style={Styles.isLoading}>
+                <CircularProgress />
+              </div>
             </React.Fragment>
           ) : orders.data.length >= 1 ? (
             <Table striped responsive>
