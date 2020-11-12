@@ -32,7 +32,7 @@ export default function ChildMessage(props) {
 
   return (
     <>
-      {orders === null ? (
+      {orders === null || orders.data._id !== id ? (
         <div>
           <div>
             <label>
