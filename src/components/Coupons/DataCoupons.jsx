@@ -21,7 +21,8 @@ import {
 } from '../../store/actions';
 import AddCoupons from './AddCoupons';
 import DeleteCoupons from './DeleteCoupons';
-import UpdateCoupons from './UpdateCoupons';
+
+import UpdateModalCoupons from './UpdateModalCoupons';
 
 const DataCoupons = (props) => {
   const dispatch = useDispatch();
@@ -201,7 +202,8 @@ const DataCoupons = (props) => {
                         </Th>
                         <Th as="td" td>
                           <div style={Styles.FlexRow}>
-                            <UpdateCoupons id={item._id} />
+                            {/* <UpdateCoupons id={item._id} /> */}
+                            <UpdateModalCoupons id={item._id} />
                             <DeleteCoupons id={item._id} />
                           </div>
                         </Th>

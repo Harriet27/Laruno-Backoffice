@@ -2,7 +2,7 @@ import { GET_COUPONS, SHOW_COUPONS } from '../actions';
 
 const initialState = {
   getCoupons: null,
-  showCoupons: {},
+  showCoupons: null,
 };
 
 export default (state = initialState, actions) => {
