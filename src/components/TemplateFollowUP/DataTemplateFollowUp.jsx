@@ -142,7 +142,17 @@ export default function DataTemplateFollowUp(props) {
                         </Th>
 
                         <Th as="td" td>
-                          {item.name}
+                          {item.name === 'FollowUp'
+                            ? 'Follow Up 1'
+                            : item.name === 'FollowUp_1'
+                            ? 'Follow Up 2'
+                            : item.name === 'FollowUp_2'
+                            ? 'Follow Up 3'
+                            : item.name === 'FollowUp_3'
+                            ? 'Follow Up 4'
+                            : item.name === 'FollowUp_4'
+                            ? 'Follow Up 5'
+                            : item.name}
                         </Th>
                         <Th as="td" td>
                           {item.template}
