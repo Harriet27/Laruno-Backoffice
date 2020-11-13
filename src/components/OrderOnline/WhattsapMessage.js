@@ -13,6 +13,7 @@ export default function WhattsapMessage(props) {
     // payment_method,
     invoice,
     email,
+    id,
   } = props;
   const InputValue = (props) => {
     const [form, setForm] = useState({
@@ -37,14 +38,15 @@ export default function WhattsapMessage(props) {
 
     function raiseInvoiceClicked() {
       const Phone_number =
-        form.number.toString().substring(0, 0) +
+        form.phone_number.toString().substring(0, 0) +
         '62' +
-        form.number.toString().substring(1);
+        form.phone_number.toString().substring(1);
 
       const Message = encodeURI(form.message);
       const url = `https://wa.me/${Phone_number}?text=${Message}`;
       window.open(url, '_blank');
-      // window.location.href = url;
+      // Testing local storage
+      // localStorage.setItem(id, '#8dc63f');
     }
     return (
       <>

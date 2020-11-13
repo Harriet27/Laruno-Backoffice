@@ -98,7 +98,7 @@ const ParentsLayoutFollowUp = (props) => {
       <Modal
         isOpen={modal.open}
         toggle={toggle}
-        style={{ maxWidth: '700px', width: '100%' }}
+        style={Styles.modal}
         className={className}
       >
         <ModalHeader toggle={toggle}>Template Whattsap</ModalHeader>
@@ -160,4 +160,5 @@ const ParentsLayoutFollowUp = (props) => {
 export default ParentsLayoutFollowUp;
 const Styles = {
   Card: { fontWeight: '600', color: 'rgba(0,0,0,.6)', padding: '50px' },
+  Modal: { maxWidth: '700px', width: '100%' },
 };
