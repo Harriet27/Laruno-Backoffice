@@ -45,6 +45,7 @@ export default function InputUpdateTopic(props) {
       // --- upload image --- //
       dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
     };
+    console.log(formulir.image.icon, 'image icon');
     return (
       <>
         <Input
@@ -68,11 +69,11 @@ export default function InputUpdateTopic(props) {
             alignItems: 'center',
           }}
         >
-          {typeof formulir.image.icon === 'object' ? null : (
+          {typeof formulir.image.icon == 'object' ? null : (
             <img
               width="100%"
-              src={formulir.image.icon}
-              alt={formulir.image.icon}
+              src={formulir.image.icon.toString()}
+              alt={formulir.image.icon.toString()}
             />
           )}
         </div>
