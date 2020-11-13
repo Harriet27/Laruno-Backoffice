@@ -65,8 +65,8 @@ export default function DetailDataOrders(props) {
         '62' +
         phone_number.toString().substring(1);
 
-      DetailMessage = encodeURI(DetailMessage);
-      const url = `https://wa.me/${Phone_number}?text=${DetailMessage}`;
+      const FollowMessage = encodeURI(DetailMessage);
+      const url = `https://wa.me/${Phone_number}?text=${FollowMessage}`;
       window.open(url, '_blank');
       // window.location.href = url;
     }
