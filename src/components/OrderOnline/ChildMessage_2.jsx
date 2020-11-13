@@ -32,7 +32,7 @@ export default function ChildMessage_2(props) {
 
   return (
     <>
-      {orders === null ? (
+      {orders === null || orders.data._id !== id ? (
         <div>
           <div>
             <label>
@@ -56,7 +56,7 @@ export default function ChildMessage_2(props) {
             disabled
             style={{ width: '100%' }}
             as="textarea"
-            rows="10"
+            rows="5"
             name="message"
             defaultValue={'Loading...'}
           />

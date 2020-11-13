@@ -11,6 +11,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import CardGetData from '../../elements/Card/CardGetData';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
+import { CircularProgress } from '@material-ui/core';
 
 const Wraps = Styled.div`
     display: flex;
@@ -72,7 +73,7 @@ export default function Dashboard() {
               height: '300px',
             }}
           >
-            Loading
+            <CircularProgress />
           </div>
         </Wraps>
       ) : (
