@@ -38,9 +38,9 @@ export default function WhattsapMessage(props) {
 
     function raiseInvoiceClicked() {
       const Phone_number =
-        form.phone_number.toString().substring(0, 0) +
+        form.phone_number.substring(0, 0) +
         '62' +
-        form.phone_number.toString().substring(1);
+        form.phone_number.substring(1);
 
       const Message = encodeURI(form.message);
       const url = `https://wa.me/${Phone_number}?text=${Message}`;
