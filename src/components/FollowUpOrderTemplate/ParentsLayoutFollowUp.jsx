@@ -32,7 +32,7 @@ const WrapForm = Styled.div`
 
 //
 
-const FollowUp = (props) => {
+const ParentsLayoutFollowUp = (props) => {
   const dispatch = useDispatch();
   const followup = useSelector((state) => state.followup.getFollowUp);
   const { className } = props;
@@ -92,7 +92,7 @@ const FollowUp = (props) => {
   };
   return (
     <div>
-      <Button color="white" style={{ padding: '0' }} size="sm" onClick={toggle}>
+      <Button color="primary" size="sm" onClick={toggle}>
         Update
       </Button>
       <Modal
@@ -157,7 +157,7 @@ const FollowUp = (props) => {
   );
 };
 
-export default FollowUp;
+export default ParentsLayoutFollowUp;
 const Styles = {
   Card: { fontWeight: '600', color: 'rgba(0,0,0,.6)', padding: '50px' },
 };

@@ -113,7 +113,6 @@ export default function App() {
           <PrivateRoute exact path="/test">
             <Header />
             <DataTemplateFollowUp />
-            <ParentsLayoutFollowUp />
           </PrivateRoute>
 
           <PrivateRoute exact path="/payments">
@@ -125,15 +124,7 @@ export default function App() {
             <DetailOrder />
           </PrivateRoute>
           <Route path="*">
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                height: '100vh',
-              }}
-            >
+            <div style={Styles.NotFound}>
               <h1>This Is Not WebPage You Are Looking For</h1>
               <h2>404 Not Found</h2>
             </div>
@@ -144,3 +135,13 @@ export default function App() {
     </Provider>
   );
 }
+
+const Styles = {
+  NotFound: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    height: '100vh',
+  },
+};

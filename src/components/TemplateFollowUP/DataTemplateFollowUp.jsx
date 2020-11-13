@@ -11,6 +11,7 @@ import AddTemplateFollowUp from './AddTemplateFollowUp';
 // --- Elements, Pages, Components --- //
 import { fetchGetFollowUp } from '../../store/actions';
 import { CircularProgress } from '@material-ui/core';
+import ParentsLayoutFollowUp from '../FollowUpOrderTemplate/ParentsLayoutFollowUp';
 
 // --- Styled Components --- //
 
@@ -77,7 +78,9 @@ export default function DataTemplateFollowUp(props) {
 
       <div style={Styles.FlexBetween}>
         {/* <AddNewFollowup /> */}
-        <AddTemplateFollowUp />
+        {/* <AddTemplateFollowUp /> */}
+        <ParentsLayoutFollowUp />
+
         <div>
           <label>Search</label> <Input type="search" name="search" />
         </div>
