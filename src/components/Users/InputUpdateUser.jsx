@@ -169,9 +169,21 @@ export default function InputUpdateUser(props) {
   return (
     <section>
       <InputValue
-        name={users === null ? 'Loading...' : users.data.name}
-        email={users === null ? 'Loading...' : users.data.email}
-        phone_number={users === null ? 'Loading' : users.data.phone_number}
+        name={
+          users === null || users.data._id !== id
+            ? 'Loading...'
+            : users.data.name
+        }
+        email={
+          users === null || users.data._id !== id
+            ? 'Loading...'
+            : users.data.email
+        }
+        phone_number={
+          users === null || users.data._id !== id
+            ? 'Loading'
+            : users.data.phone_number
+        }
         id={id}
         toggle={toggle}
       />
