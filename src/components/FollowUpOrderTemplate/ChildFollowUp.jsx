@@ -37,6 +37,8 @@ export default function ChildFollowUp(props) {
     phone: `{{phone_number}}`,
     total_price: `{{total_price}}`,
     total_qty: `{{total_qty}}`,
+    invoice: `{{invoice}}`,
+    email: `{{email}}`,
   };
   // render disini
   const InputUpdate = (props) => {
@@ -80,8 +82,8 @@ export default function ChildFollowUp(props) {
             />
           </WrapForm>
           <WrapForm>Note untuk membuat Template WA</WrapForm>
-          <div>{note.notes}</div>
-          <div>
+
+          <div style={{ marginBottom: '10px' }}>
             <div>
               <Span>{note.name}</Span> :Nama Costumer
             </div>
@@ -93,6 +95,12 @@ export default function ChildFollowUp(props) {
             </div>
             <div>
               <Span>{note.total_qty}</Span> :total items yang di beli
+            </div>
+            <div>
+              <Span>{note.invoice}</Span> :invoice number
+            </div>
+            <div>
+              <Span>{note.email}</Span> : email pembeli
             </div>
           </div>
 

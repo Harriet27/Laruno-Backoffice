@@ -98,7 +98,7 @@ const ParentsLayoutFollowUp = (props) => {
       <Modal
         isOpen={modal.open}
         toggle={toggle}
-        style={Styles.modal}
+        style={Styles.Modal}
         className={className}
       >
         <ModalHeader toggle={toggle}>Template Whattsap</ModalHeader>

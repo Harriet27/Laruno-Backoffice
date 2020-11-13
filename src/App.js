@@ -110,7 +110,7 @@ export default function App() {
             <Coupons />
           </PrivateRoute>
           {/* test */}
-          <PrivateRoute exact path="/test">
+          <PrivateRoute exact path="/template">
             <Header />
             <DataTemplateFollowUp />
           </PrivateRoute>
