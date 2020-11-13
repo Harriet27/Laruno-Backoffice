@@ -40,6 +40,7 @@ import PrivateRoute from './Helpers/PrivateRoute';
 import AddTemplateFollowUp from './components/TemplateFollowUP/AddTemplateFollowUp';
 import DataTemplateFollowUp from './components/TemplateFollowUP/DataTemplateFollowUp';
 import ParentsLayoutFollowUp from './components/FollowUpOrderTemplate/ParentsLayoutFollowUp';
+import Card from './elements/Card/Card';
 // import {Premium} from './pages/Testing/Premium';
 export default function App() {
   return (
@@ -125,8 +126,20 @@ export default function App() {
           </PrivateRoute>
           <Route path="*">
             <div style={Styles.NotFound}>
-              <h1>This Is Not WebPage You Are Looking For</h1>
-              <h2>404 Not Found</h2>
+              <Card
+                isNormal
+                style={{
+                  height: '300px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <div style={{ padding: '50px' }}>
+                  <h1>This Is Not WebPage You Are Looking For</h1>
+                  <h2 style={{ textAlign: 'center' }}>404 Not Found</h2>
+                </div>
+              </Card>
             </div>
           </Route>
           {/* --- Testing --- */}
