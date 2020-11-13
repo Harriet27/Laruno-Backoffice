@@ -36,6 +36,19 @@ const fetchPostProducts = (form, history) => async () => {
     });
 
     history.push('/product');
+  } else if (response.status === 400) {
+    Swal.fire({
+      title: 'check kembali!',
+      text: '',
+      icon: 'warning',
+    });
+    window.location.reload();
+  } else {
+    Swal.fire({
+      title: 'Sedang dalam perbaikan!',
+      text: '',
+      icon: 'error',
+    });
   }
 };
 
