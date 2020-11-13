@@ -223,6 +223,12 @@ const DataProduct = (props) => {
                           />
                         </Th>
                         <Th as="td" td>
+                          {/* <div>
+                            <img
+                              src={item.image_url[0]}
+                              alt={item.image_url[0]}
+                            />
+                          </div> */}
                           <div style={Styles.Name}>{item.name}</div>
                         </Th>
                         <Th as="td" td>
@@ -234,7 +240,7 @@ const DataProduct = (props) => {
                         <Th as="td" td>
                           <div style={Styles.Inventory}>
                             {item.ecommerce === undefined
-                              ? 'Non Ecommerce'
+                              ? 'Non stock'
                               : `${item.ecommerce.stock} In Stock`}
                           </div>
                         </Th>
