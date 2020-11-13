@@ -107,13 +107,13 @@ export default function DynamicFieldsContents(props) {
                     x
                   </ButtonModal>
                 </div>
-                <ButtonModal type="button" onClick={() => handleAdd()}>
-                  Add Video section
-                </ButtonModal>
               </WrapsField>
             );
           })}
         </div>
+        <ButtonModal type="button" onClick={() => handleAdd()}>
+          Add Video section
+        </ButtonModal>
       </div>
     </>
   );
