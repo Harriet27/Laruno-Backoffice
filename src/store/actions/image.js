@@ -124,15 +124,16 @@ const fetchPostDynamicImage = ({
   });
 };
 
-const fetchPostDynamicVideo = (
+const fetchPostDynamicVideo = ({
   formulir,
   e,
   id,
   setFormulir,
   sectionAdd,
   setSectionAdd,
-  i
-) => async (dispatch) => {
+  index,
+  setState,
+}) => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
 
   let image = formulir.image;
@@ -149,14 +150,15 @@ const fetchPostDynamicVideo = (
     redirect: 'follow',
   };
   const response = await fetch(url, requestOptions);
-  console.log(response, 'response isinya apa sih');
   const result = await response.json();
   image[id] = result.result.url;
   setFormulir({ image });
-  console.log(result, 'isi result apa');
   const values = [...sectionAdd];
-  values[i].url = formulir.image[`video_section_${i}`];
+  values[index].url = image[`video_section_${index}`];
   setSectionAdd(values);
+  setState({
+    isLoading: false,
+  });
 };
 
 // --- Post Dynamic Image --- //

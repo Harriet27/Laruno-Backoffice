@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Form,
   Section,
@@ -15,18 +15,20 @@ import SingleImage from '../AddProduct/SingleImage';
 export default function Media(props) {
   const dispatch = useDispatch();
   const { formulir, setFormulir } = props;
-  const handleChange = (e) => {
+  const [state, setState] = useState({
+    isLoading: false,
+  });
+  const handleChange = (e, id) => {
     let image = formulir.image;
     let field = e.target.id;
     image[field] = e.target.files[0];
     setFormulir({ image });
+    setState({
+      isLoading: true,
+    });
+    dispatch(fetchPostSingleImage({ formulir, e, id, setFormulir, setState }));
   };
 
-  const handleSubmit = async (e, id) => {
-    e.preventDefault();
-    // --- upload image --- //
-    dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
-  };
   return (
     <>
       <Section>
@@ -40,8 +42,8 @@ export default function Media(props) {
                 <div>
                   <SingleImage
                     id="cover"
-                    onChange={handleChange}
-                    onSubmit={(e) => handleSubmit(e, 'cover')}
+                    onChange={(e) => handleChange(e, 'cover')}
+                    isLoading={state.isLoading}
                   />
                 </div>
                 {typeof formulir.image.cover === 'object' ? null : (

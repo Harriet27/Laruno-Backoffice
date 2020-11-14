@@ -24,8 +24,9 @@ export default function Test() {
   };
   return (
     <div>
+      <input type="file" />
       <button onClick={handleClick} disabled={state.click}>
-        {state.click ? 'Loading...' : 'Confirm'}
+        C
       </button>
     </div>
   );
