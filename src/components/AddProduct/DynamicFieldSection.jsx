@@ -1,5 +1,5 @@
 import Card from '../../elements/Card/Card';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchPostDynamicImage } from '../../store/actions';
 import Styled from 'styled-components';
@@ -71,28 +71,29 @@ export default function DynamicFieldSection(props) {
     setSectionAdd,
   } = props;
 
-  const handleChangeImage = (e, idx) => {
+  const [state, setState] = useState({
+    isLoading: false,
+  });
+  const handleChangeImage = (e, id, index) => {
     let image = formulir.image;
     let field = e.target.id;
 
     image[field] = e.target.files[0];
     setFormulir({ image });
-  };
-
-  const handleSubmit = async (e, id, index) => {
-    e.preventDefault();
-
-    //  upload image
+    setState({
+      isLoading: true,
+    });
     dispatch(
-      fetchPostDynamicImage(
+      fetchPostDynamicImage({
         formulir,
         e,
         id,
         setFormulir,
         sectionAdd,
         setSectionAdd,
-        index
-      )
+        index,
+        setState,
+      })
     );
   };
 
@@ -130,10 +131,10 @@ export default function DynamicFieldSection(props) {
 
                       <SingleImage
                         id={`image_section_${idx}`}
-                        onChange={(e) => handleChangeImage(e, idx)}
-                        onSubmit={(e) =>
-                          handleSubmit(e, `image_section_${idx}`, idx)
+                        onChange={(e) =>
+                          handleChangeImage(e, `image_section_${idx}`, idx)
                         }
+                        isLoading={state.isLoading}
                       />
                       <img
                         src={sectionAdd[idx].image}
