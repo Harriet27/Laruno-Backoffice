@@ -76,6 +76,8 @@ export default function AddNewTopic() {
       isLoading: true,
     });
     dispatch(fetchPostSingleImage({ formulir, e, id, setFormulir, setState }));
+    e.target.type = 'text';
+    e.target.type = 'file';
   };
 
   return (

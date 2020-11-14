@@ -95,6 +95,8 @@ export default function DynamicFieldSection(props) {
         setState,
       })
     );
+    e.target.type = 'text';
+    e.target.type = 'file';
   };
 
   return (

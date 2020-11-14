@@ -62,6 +62,8 @@ export default function DynamicFieldsContents(props) {
         setState,
       })
     );
+    e.target.type = 'text';
+    e.target.type = 'file';
   };
 
   return (

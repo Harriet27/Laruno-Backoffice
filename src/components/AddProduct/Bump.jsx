@@ -36,6 +36,7 @@ export default function Bump(props) {
   } = props;
 
   // --- HandleChange upload Image --- //
+
   const [state, setState] = useState({
     isLoading: false,
   });
@@ -48,7 +49,10 @@ export default function Bump(props) {
       isLoading: true,
     });
     dispatch(fetchPostSingleImage({ formulir, e, id, setFormulir, setState }));
+    e.target.type = 'text';
+    e.target.type = 'file';
   };
+  console.log({ formulir }, 'formulir');
 
   return (
     <Section>
@@ -115,12 +119,8 @@ export default function Bump(props) {
               </WrapsField>
               <div style={Styles.ImageBorder}>
                 <div style={{ width: '100px' }}>
-                  {typeof formulir.image.bump_image === 'object' ? null : (
-                    <img
-                      width="100%"
-                      src={formulir.image.bump_image}
-                      alt={formulir.image.bump_image}
-                    />
+                  {typeof bump_image === 'object' ? null : (
+                    <img width="100%" src={bump_image} alt={bump_image} />
                   )}
                 </div>
               </div>

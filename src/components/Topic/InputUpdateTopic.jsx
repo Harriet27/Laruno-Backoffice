@@ -47,6 +47,8 @@ export default function InputUpdateTopic(props) {
       dispatch(
         fetchPostSingleImage({ formulir, e, id, setFormulir, setState })
       );
+      e.target.type = 'text';
+      e.target.type = 'file';
     };
 
     console.log(formulir.image.icon, 'image icon');

@@ -30,6 +30,8 @@ export default function ImageProduct(props) {
         setState,
       })
     );
+    e.target.type = 'text';
+    e.target.type = 'file';
   };
   const [modal, setModal] = useState(false);
 

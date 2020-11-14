@@ -64,6 +64,9 @@ export default function DynamicPodcastContents(props) {
         setState,
       })
     );
+
+    e.target.type = 'text';
+    e.target.type = 'file';
   };
 
   return (

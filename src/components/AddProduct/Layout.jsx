@@ -70,6 +70,8 @@ export default function Layout(props) {
       isLoading: true,
     });
     dispatch(fetchPostMediaImage({ formulir, e, id, setFormulir, setMedia }));
+    e.target.type = 'text';
+    e.target.type = 'file';
   };
   const handleChange = (e, id) => {
     let image = formulir.image;
@@ -80,6 +82,8 @@ export default function Layout(props) {
       isLoading: true,
     });
     dispatch(fetchPostSingleImage({ formulir, e, id, setFormulir, setState }));
+    e.target.type = 'text';
+    e.target.type = 'file';
   };
 
   // --- handleSubmit Upload Image --- //
