@@ -31,20 +31,24 @@ export default function InputUpdateTopic(props) {
       image: { icon: icon },
     });
     form.icon = formulir.image.icon;
+    const [state, setState] = useState({
+      isLoading: false,
+    });
     // --- HandleChange upload Image --- //
-    const handleChangeImage = (e) => {
+    const handleChangeImage = (e, id) => {
       let image = formulir.image;
       let field = e.target.id;
       image[field] = e.target.files[0];
       setFormulir({ image });
+
+      setState({
+        isLoading: true,
+      });
+      dispatch(
+        fetchPostSingleImage({ formulir, e, id, setFormulir, setState })
+      );
     };
 
-    // --- handleSubmit Upload Image --- //
-    const handleSubmitImage = async (e, id) => {
-      e.preventDefault();
-      // --- upload image --- //
-      dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
-    };
     console.log(formulir.image.icon, 'image icon');
     return (
       <>
@@ -57,8 +61,8 @@ export default function InputUpdateTopic(props) {
         />
         <SingleImage
           id="icon"
-          onChange={handleChangeImage}
-          onSubmit={(e) => handleSubmitImage(e, 'icon')}
+          onChange={(e) => handleChangeImage(e, 'icon')}
+          isLoading={state.isLoading}
         />
 
         <div

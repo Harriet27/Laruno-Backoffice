@@ -63,20 +63,21 @@ export default function AddNewTopic() {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
+  const [state, setState] = useState({
+    isLoading: false,
+  });
   // --- HandleChange upload Image --- //
-  const handleChangeImage = (e) => {
+  const handleChangeImage = (e, id) => {
     let image = formulir.image;
     let field = e.target.id;
     image[field] = e.target.files[0];
     setFormulir({ image });
+    setState({
+      isLoading: true,
+    });
+    dispatch(fetchPostSingleImage({ formulir, e, id, setFormulir, setState }));
   };
 
-  // --- handleSubmit Upload Image --- //
-  const handleSubmitImage = async (e, id) => {
-    e.preventDefault();
-    // --- upload image --- //
-    dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
-  };
   return (
     <ModalSmart
       buttonLabel="Add Topic"
@@ -101,8 +102,8 @@ export default function AddNewTopic() {
         <WrapForm>
           <SingleImage
             id="icon"
-            onChange={handleChangeImage}
-            onSubmit={(e) => handleSubmitImage(e, 'icon')}
+            onChange={(e) => handleChangeImage(e, 'icon')}
+            isLoading={state.isLoading}
           />
           {typeof formulir.image.icon === 'object' ? null : (
             <img src={formulir.image.icon} alt={formulir.image.icon} />

@@ -162,15 +162,16 @@ const fetchPostDynamicVideo = ({
 };
 
 // --- Post Dynamic Image --- //
-const fetchPostDynamicPodcast = (
+const fetchPostDynamicPodcast = ({
   formulir,
   e,
   id,
   setFormulir,
   sectionAdd,
   setSectionAdd,
-  i
-) => async (dispatch) => {
+  index,
+  setState,
+}) => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
 
   let image = formulir.image;
@@ -193,8 +194,11 @@ const fetchPostDynamicPodcast = (
   setFormulir({ image });
   console.log(result, 'isi result apa');
   const values = [...sectionAdd];
-  values[i].url = formulir.image[`podcast_section_${i}`];
+  values[index].url = formulir.image[`podcast_section_${index}`];
   setSectionAdd(values);
+  setState({
+    isLoading: false,
+  });
 };
 
 // --- Post Multiple Image --- //

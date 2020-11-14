@@ -1,5 +1,5 @@
 import Card from '../../elements/Card/Card';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchPostDynamicPodcast } from '../../store/actions';
 import Styled from 'styled-components';
@@ -40,27 +40,29 @@ export default function DynamicPodcastContents(props) {
     setSectionAdd,
   } = props;
 
-  const handleChangePodcast = (e, idx) => {
+  const [state, setState] = useState({
+    isLoading: false,
+  });
+  const handleChangePodcast = (e, id, index) => {
     let image = formulir.image;
     let field = e.target.id;
     image[field] = e.target.files[0];
     setFormulir({ image });
-  };
 
-  const handleSubmit = async (e, id, index) => {
-    e.preventDefault();
-
-    //  upload image
+    setState({
+      isLoading: true,
+    });
     dispatch(
-      fetchPostDynamicPodcast(
+      fetchPostDynamicPodcast({
         formulir,
         e,
         id,
         setFormulir,
         sectionAdd,
         setSectionAdd,
-        index
-      )
+        index,
+        setState,
+      })
     );
   };
 
@@ -90,10 +92,10 @@ export default function DynamicPodcastContents(props) {
                   <SingleImage
                     style={{ width: '35%' }}
                     id={`podcast_section_${idx}`}
-                    onChange={(e) => handleChangePodcast(e, idx)}
-                    onSubmit={(e) =>
-                      handleSubmit(e, `podcast_section_${idx}`, idx)
+                    onChange={(e) =>
+                      handleChangePodcast(e, `podcast_section_${idx}`, idx)
                     }
+                    isLoading={state.isLoading}
                   />
 
                   <ButtonModal
