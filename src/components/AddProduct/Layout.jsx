@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import MultiSelect from '@khanacademy/react-multi-select';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../../elements/Card/Card';
-import { fetchGetAgents, fetchPostSingleImage } from '../../store/actions';
+import {
+  fetchGetAgents,
+  fetchPostSingleImage,
+  fetchPostMediaImage,
+} from '../../store/actions';
 import ReactQuillTest from './ReactQuill';
 import SingleImage from './SingleImage';
 import MediaUrl from './MediaUrl';
@@ -51,11 +55,31 @@ export default function Layout(props) {
     });
 
   // --- HandleChange upload Image --- //
-  const handleChange = (e) => {
+  const [state, setState] = useState({
+    isLoading: false,
+  });
+  const [media, setMedia] = useState({
+    isLoading: false,
+  });
+  const handleChangeMedia = (e, id) => {
     let image = formulir.image;
     let field = e.target.id;
     image[field] = e.target.files[0];
     setFormulir({ image });
+    setMedia({
+      isLoading: true,
+    });
+    dispatch(fetchPostMediaImage({ formulir, e, id, setFormulir, setMedia }));
+  };
+  const handleChange = (e, id) => {
+    let image = formulir.image;
+    let field = e.target.id;
+    image[field] = e.target.files[0];
+    setFormulir({ image });
+    setState({
+      isLoading: true,
+    });
+    dispatch(fetchPostSingleImage({ formulir, e, id, setFormulir, setState }));
   };
 
   // --- handleSubmit Upload Image --- //
@@ -174,12 +198,13 @@ export default function Layout(props) {
               <Label>
                 <Span>Image Bonus</Span>
               </Label>
-              <SingleImage
-                id="image_bonus"
-                onChange={handleChange}
-                onSubmit={(e) => handleSubmit(e, 'image_bonus')}
-              />
-
+              <div>
+                <SingleImage
+                  id="image_bonus"
+                  onChange={(e) => handleChange(e, 'image_bonus')}
+                  isLoading={state.isLoading}
+                />
+              </div>
               {typeof formulir.image.image_bonus === 'object' ? null : (
                 <div style={{ width: '150px' }}>
                   <img
@@ -195,13 +220,15 @@ export default function Layout(props) {
               <Label>
                 <Span>Header Media</Span>
               </Label>
-              <MediaUrl
-                id="media_url"
-                onChange={handleChange}
-                onSubmit={(e) => handleSubmit(e, 'media_url')}
-              />
-
-              {typeof formulir.image.media_url === 'object' ? null : (
+              <div>
+                <MediaUrl
+                  id="media_url"
+                  onChange={(e) => handleChangeMedia(e, 'media_url')}
+                  isLoading={media.isLoading}
+                />
+              </div>
+              {typeof formulir.image.media_url === 'object' ||
+              formulir.image.media_url === '' ? null : (
                 <video width="320" height="240" controls>
                   <source src={formulir.image.media_url} type="video/mp4" />
                   <source src={formulir.image.media_url} type="video/ogg" />

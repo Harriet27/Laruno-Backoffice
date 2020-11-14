@@ -450,12 +450,14 @@ export default function DetailProduct(props) {
               <Label>
                 <Span>Image Product</Span>
               </Label>
-              <ImageProduct
-                arr={arr}
-                setArr={setArr}
-                formulir={formulir}
-                setFormulir={setFormulir}
-              />
+              <div>
+                <ImageProduct
+                  arr={arr}
+                  setArr={setArr}
+                  formulir={formulir}
+                  setFormulir={setFormulir}
+                />
+              </div>
             </WrapsField>
           </Form>
         </Card>

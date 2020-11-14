@@ -41,6 +41,7 @@ import AddTemplateFollowUp from './components/TemplateFollowUP/AddTemplateFollow
 import DataTemplateFollowUp from './components/TemplateFollowUP/DataTemplateFollowUp';
 import ParentsLayoutFollowUp from './components/FollowUpOrderTemplate/ParentsLayoutFollowUp';
 import Card from './elements/Card/Card';
+import Test from './elements/Test/Test';
 // import {Premium} from './pages/Testing/Premium';
 export default function App() {
   return (
@@ -124,17 +125,13 @@ export default function App() {
             <Header />
             <DetailOrder />
           </PrivateRoute>
+          <PrivateRoute exact path="/test">
+            <Header />
+            <Test />
+          </PrivateRoute>
           <Route path="*">
             <div style={Styles.NotFound}>
-              <Card
-                isNormal
-                style={{
-                  height: '300px',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
+              <Card isNormal style={Styles.Card}>
                 <div style={{ padding: '50px' }}>
                   <h1>This Is Not WebPage You Are Looking For</h1>
                   <h2 style={{ textAlign: 'center' }}>404 Not Found</h2>
@@ -156,5 +153,11 @@ const Styles = {
     alignItems: 'center',
     flexDirection: 'column',
     height: '100vh',
+  },
+  Card: {
+    height: '300px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 };
