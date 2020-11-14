@@ -36,18 +36,20 @@ export default function Bump(props) {
   } = props;
 
   // --- HandleChange upload Image --- //
-  const handleChange = (e) => {
+  const [state, setState] = useState({
+    isLoading: false,
+  });
+  const handleChange = (e, id) => {
     let image = formulir.image;
     let field = e.target.id;
     image[field] = e.target.files[0];
     setFormulir({ image });
+    setState({
+      isLoading: true,
+    });
+    dispatch(fetchPostSingleImage({ formulir, e, id, setFormulir, setState }));
   };
 
-  // --- handleSubmit Upload Image --- //
-  const handleSubmit = async (e, id) => {
-    e.preventDefault();
-    dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
-  };
   return (
     <Section>
       <Card isNormal>
@@ -107,8 +109,8 @@ export default function Bump(props) {
               <WrapsField>
                 <SingleImage
                   id="bump_image"
-                  onChange={handleChange}
-                  onSubmit={(e) => handleSubmit(e, 'bump_image')}
+                  onChange={(e) => handleChange(e, 'bump_image')}
+                  isLoading={state.isLoading}
                 />
               </WrapsField>
               <div style={Styles.ImageBorder}>
