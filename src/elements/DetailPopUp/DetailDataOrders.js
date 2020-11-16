@@ -43,7 +43,7 @@ export default function DetailDataOrders(props) {
       email,
       name,
 
-      address,
+      // address,
     } = props;
     const [form, setForm] = useState({
       name: name,
@@ -54,7 +54,7 @@ export default function DetailDataOrders(props) {
       // payment_method: payment_method,
       invoice: invoice,
       email: email,
-      address: address,
+      // address: address,
     });
 
     let DetailMessage = form.message.replace(
@@ -93,7 +93,8 @@ export default function DetailDataOrders(props) {
                 </Icon>
                 <Icon>
                   <i style={Styles.Icon} className="fa fa-home"></i>
-                  {address}
+                  Komplek Scientia Square, Jalan Darwin Timur. Ruko Darwin No 2,
+                  Medang, Kec. Pagedangan, Kota Tangerang Selatan, Banten 15339
                 </Icon>
               </div>
               {/* Section two */}
@@ -179,7 +180,7 @@ export default function DetailDataOrders(props) {
         invoice={invoice}
         email={email}
         name={name}
-        address={address}
+        // address={address}
       />
     </>
   );

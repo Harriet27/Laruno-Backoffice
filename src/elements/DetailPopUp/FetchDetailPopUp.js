@@ -62,7 +62,7 @@ export default function FetchDetailPopUp(props) {
           total_price={orders.data.total_price}
           total_qty={orders.data.total_qty}
           // payment_method={orders.data.payment.method.name}
-          address={orders.data.shipment.shipment_info.to.address.address1}
+          // address={orders.data.shipment.shipment_info.to.address.address1}
           invoice={orders.data.invoice}
           email={orders.data.user_info.email}
           message={template[0].template}

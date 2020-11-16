@@ -196,7 +196,15 @@ const DataOrders = (props) => {
                         </Th>
                         <Th as="td" td>
                           <div style={Styles.FlexColumn}>
-                            <div style={Styles.Name}>{item.user_info.name}</div>
+                            <DetailPopUp
+                              id={item._id}
+                              buttonLabel={
+                                <div style={Styles.Name}>
+                                  {item.user_info.name}
+                                </div>
+                              }
+                            />
+
                             <div
                               style={{
                                 fontSize: '12px',
@@ -364,7 +372,7 @@ const Styles = {
     display: 'flex',
     flexDirection: 'row',
   },
-  Name: { color: '#0098da', fontWeight: '700' },
+  Name: { color: '#0098da', fontWeight: '700', cursor: 'pointer' },
   marginDetail: {
     fontSize: '12px',
   },
