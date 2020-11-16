@@ -5,6 +5,7 @@ import { fetchPostDynamicPodcast } from '../../store/actions';
 import Styled from 'styled-components';
 import SingleImage from '../AddProduct/SingleImage';
 import { Span, Input } from '../../elements/Styled/StyledTabs';
+import VideoAndPodcast from './VideoAndPodcast';
 
 const ButtonModal = Styled.button`
     background-color: ${(props) => (props.delete ? 'red' : '#0098DA')};
@@ -92,13 +93,14 @@ export default function DynamicPodcastContents(props) {
                     onChange={(e) => handleChange(idx, e)}
                   />
 
-                  <SingleImage
+                  <VideoAndPodcast
                     style={{ width: '35%' }}
                     id={`podcast_section_${idx}`}
                     onChange={(e) =>
                       handleChangePodcast(e, `podcast_section_${idx}`, idx)
                     }
                     isLoading={state.isLoading}
+                    accept="audio/mp3,audio/*;capture=microphone"
                   />
 
                   <ButtonModal

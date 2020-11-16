@@ -153,19 +153,24 @@ export default function InputUpdateCoupons(props) {
             <label>
               <Span>Max Discount</Span>
             </label>
-            <Input
-              type="number"
-              name="max_discount"
-              id="max_discount"
-              value={form.max_discount}
-              onChange={handleChange}
-              placeholder="Maksimal Discount"
-              required
-            />
+            <div style={Styles.PriceBorder}>
+              <div style={Styles.PriceRupiah}>
+                <div style={Styles.PriceRp}>Rp</div>
+              </div>
+              <Input
+                type="number"
+                name="max_discount"
+                id="max_discount"
+                value={form.max_discount}
+                onChange={handleChange}
+                placeholder="Maksimal Discount"
+                required
+              />
+            </div>
           </WrapForm>
           <WrapForm style={{ width: '45%' }}>
             <label>
-              <Span>Payment Method</Span>
+              <Span>Payment Method </Span>
             </label>
             <Input
               as="select"
@@ -186,7 +191,7 @@ export default function InputUpdateCoupons(props) {
 
         <WrapForm>
           <label>
-            <Span>Nilai Coupons</Span>
+            <Span>Nilai Coupons (%)</Span>
           </label>
           <Input
             type="number"
@@ -269,3 +274,23 @@ export default function InputUpdateCoupons(props) {
     </section>
   );
 }
+
+const Styles = {
+  FlexBetween: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  PriceBorder: {
+    display: 'flex',
+    border: '1px solid #ced4da',
+    borderRadius: '3px',
+  },
+  PriceRupiah: {
+    backgroundColor: '#e9ecef',
+    width: '50px',
+  },
+  PriceRp: {
+    textAlign: 'center',
+    marginTop: '10px',
+  },
+};
