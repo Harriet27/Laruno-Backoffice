@@ -20,15 +20,15 @@ const Icon = Styled.div`
 margin-bottom: 10px;
 `;
 export default function FetchDetailPopUp(props) {
-  const { id, toggle } = props;
+  const { id, toggle, orders } = props;
   const dispatch = useDispatch();
-  const orders = useSelector((state) => state.orders.detailOrders);
+  // const orders = useSelector((state) => state.orders.detailOrders);
   const followup = useSelector((state) => state.followup.getFollowUp);
-  console.log('ORDER ID DIDALAM DETAIL', { orders, followup });
-  useEffect(() => {
-    dispatch(fetchShowOrders(id));
-    // eslint-disable-next-line
-  }, [dispatch, id]);
+  // console.log('ORDER ID DIDALAM DETAIL', { orders, followup });
+  // useEffect(() => {
+  //   dispatch(fetchShowOrders(id));
+  //   // eslint-disable-next-line
+  // }, [dispatch, id]);
   useEffect(() => {
     dispatch(fetchGetFollowUp());
     // eslint-disable-next-line
@@ -39,9 +39,11 @@ export default function FetchDetailPopUp(props) {
     followup.data.filter(function (item) {
       return item.name === 'DetailOrders';
     });
+  const Message = template === false ? 'hehhe' : template[0].template;
+  console.log(Message, 'ini message');
   return (
     <>
-      {orders === null || orders.data._id !== id ? (
+      {orders === null ? (
         <div
           style={{
             display: 'flex',
@@ -57,15 +59,15 @@ export default function FetchDetailPopUp(props) {
           orders={orders}
           toggle={toggle}
           //
-          name={orders.data.user_info.name}
-          phone_number={orders.data.user_info.phone_number}
-          total_price={orders.data.total_price}
-          total_qty={orders.data.total_qty}
+          name={orders.user_info.name}
+          phone_number={orders.user_info.phone_number}
+          total_price={orders.total_price}
+          total_qty={orders.total_qty}
           // payment_method={orders.data.payment.method.name}
           // address={orders.data.shipment.shipment_info.to.address.address1}
-          invoice={orders.data.invoice}
-          email={orders.data.user_info.email}
-          message={template[0].template}
+          invoice={orders.invoice}
+          email={orders.user_info.email}
+          message={Message}
         />
       )}
     </>

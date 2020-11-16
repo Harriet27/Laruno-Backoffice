@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Icon, IconSpan } from '../../elements/Styled/StyledModalPopUp';
 import FetchDetailPopUp from './FetchDetailPopUp';
 const DetailPopUp = (props) => {
-  const { className, buttonLabel } = props;
+  const { className, buttonLabel, orders, id } = props;
   const [modal, setModal] = useState({
     open: false,
     id: null,
@@ -14,8 +14,18 @@ const DetailPopUp = (props) => {
     setModal({
       ...modal,
       open: !modal.open,
-      id: props.id,
+      id: null,
     });
+
+  // Filter Id //
+  const OrdersFilter =
+    orders !== undefined &&
+    orders.data.filter((item) => {
+      return item._id === id;
+    });
+  const Orders = OrdersFilter[0];
+
+  console.log({ OrdersFilter, Orders }, 'orders filter');
   return (
     <div>
       <div onClick={toggle}>{buttonLabel}</div>
@@ -27,7 +37,7 @@ const DetailPopUp = (props) => {
       >
         <ModalHeader toggle={toggle}>Orders Detail</ModalHeader>
 
-        <FetchDetailPopUp id={modal.id} toggle={toggle} />
+        <FetchDetailPopUp id={id} orders={Orders} toggle={toggle} />
       </Modal>
     </div>
   );

@@ -62,7 +62,7 @@ export default function DetailDataOrders(props) {
       (matching, value) => form[value.trim()]
     );
     console.log(DetailMessage, 'ini detail message');
-    // const message = `halo ${orders !== null && orders.data.user_info.name}`;
+
     function raiseInvoiceClicked() {
       const Phone_number =
         phone_number.toString().substring(0, 0) +
@@ -105,11 +105,10 @@ export default function DetailDataOrders(props) {
                   </h4>
                 </div>
                 <div>
-                  Order Date:{' '}
-                  {moment(orders.data.create_date).format('DD-MM-YYYY')}
+                  Order Date: {moment(orders.create_date).format('DD-MM-YYYY')}
                 </div>
                 <>
-                  {orders.data.payment.status === 'COMPLETED' ? (
+                  {orders.payment.status === 'COMPLETED' ? (
                     <div style={Styles.Paid}>Paid</div>
                   ) : (
                     <div style={Styles.Unpaid}>Unpaid</div>
@@ -129,7 +128,7 @@ export default function DetailDataOrders(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.data.items.map((item, index) => {
+                  {orders.items.map((item, index) => {
                     return (
                       <tr key={index}>
                         <td>{item.product_info.name}</td>

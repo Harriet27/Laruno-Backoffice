@@ -27,7 +27,7 @@ export default function WhattsapMessage(props) {
       email: email,
     });
 
-    form.message = form.message.replace(
+    form.message = message.replace(
       /\{\{(.+?)\}\}/g,
       (matching, value) => form[value.trim()]
     );

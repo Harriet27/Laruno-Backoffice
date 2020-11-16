@@ -198,6 +198,7 @@ const DataOrders = (props) => {
                           <div style={Styles.FlexColumn}>
                             <DetailPopUp
                               id={item._id}
+                              orders={orders}
                               buttonLabel={
                                 <div style={Styles.Name}>
                                   {item.user_info.name}
@@ -226,7 +227,6 @@ const DataOrders = (props) => {
                                         {data.product_info.name}
                                       </div>
                                       <div style={Styles.marginDetail}>
-                                        {' '}
                                         Price: Rp.
                                         {FormatNumber(data.sub_price)}
                                       </div>
@@ -258,6 +258,7 @@ const DataOrders = (props) => {
                                 </div> */}
                                 <DetailPopUp
                                   id={item._id}
+                                  orders={orders}
                                   buttonLabel={
                                     <div style={Styles.ShowProduct}>
                                       Show {item.items.length} Product
@@ -289,11 +290,11 @@ const DataOrders = (props) => {
                         </Th>
                         <Th as="td" td>
                           <div style={Styles.FlexRow}>
-                            <FollowUp id={item._id} />
-                            <FollowUp_1 id={item._id} />
-                            <FollowUp_2 id={item._id} />
-                            <FollowUp_3 id={item._id} />
-                            <FollowUp_4 id={item._id} />
+                            <FollowUp id={item._id} orders={orders} />
+                            <FollowUp_1 id={item._id} orders={orders} />
+                            <FollowUp_2 id={item._id} orders={orders} />
+                            <FollowUp_3 id={item._id} orders={orders} />
+                            <FollowUp_4 id={item._id} orders={orders} />
                           </div>
                         </Th>
                         <Th as="td" td>

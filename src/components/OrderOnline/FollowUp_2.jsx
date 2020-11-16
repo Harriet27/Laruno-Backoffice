@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchGetFollowUp, fetchShowOrders } from '../../store/actions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Icon, IconSpan } from '../../elements/Styled/StyledModalPopUp';
 import ChildMessage_2 from './ChildMessage_2';
 
 const FollowUp_2 = (props) => {
-  const { className } = props;
+  const dispatch = useDispatch();
+  const { className, id, orders } = props;
+  const followup = useSelector((state) => state.followup.getFollowUp);
   const [modal, setModal] = useState({
     open: false,
-    id: null,
   });
 
-  console.log(modal, 'mau tahu modal di order');
   const toggle = () =>
     setModal({
       ...modal,
       open: !modal.open,
-      id: props.id,
     });
   return (
     <div>
@@ -27,7 +28,12 @@ const FollowUp_2 = (props) => {
       <Modal isOpen={modal.open} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Follow Up 2</ModalHeader>
         <ModalBody>
-          <ChildMessage_2 id={modal.id} toggle={toggle} />
+          <ChildMessage_2
+            id={id}
+            orders={orders}
+            followup={followup !== null && followup}
+            toggle={toggle}
+          />
         </ModalBody>
       </Modal>
     </div>
