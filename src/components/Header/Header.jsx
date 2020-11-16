@@ -80,7 +80,7 @@ const Header = () => {
   return (
     <HeaderStyled>
       <Navbar light expand="md">
-        <NavbarBrand href="/">
+        <NavbarBrand href="/dashboard">
           <WrapsImage>
             <Image src={ImageBrand} alt="brand" />
           </WrapsImage>

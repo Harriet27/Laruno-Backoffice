@@ -31,10 +31,16 @@ const fetchPostLogin = (form, history) => async (dispatch) => {
       history.push('/dashboard');
     } else if (response.status === 401) {
       localStorage.clear();
-    } else {
+    } else if (response.status === 400) {
       Swal.fire({
         title: 'Wrong email!',
         text: 'Email atau kata sandi anda tidak valid',
+        icon: 'error',
+      });
+    } else {
+      Swal.fire({
+        title: 'Wrong email!',
+        text: 'Wrong email',
         icon: 'error',
       });
     }

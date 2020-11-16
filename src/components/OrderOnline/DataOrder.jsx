@@ -211,22 +211,21 @@ const DataOrders = (props) => {
                             <>
                               {' '}
                               {item.items.map((data, index) => {
-                                let Nomor = index + 1;
                                 return (
                                   <div key={index}>
                                     <div style={Styles.isColumnBottom}>
                                       <div style={Styles.Name}>
-                                        * {data.product_info.name}
+                                        {data.product_info.name}
                                       </div>
                                       <div style={Styles.marginDetail}>
                                         {' '}
                                         Price: Rp.
                                         {FormatNumber(data.sub_price)}
                                       </div>
-                                      <div style={Styles.marginDetail}>
+                                      {/* <div style={Styles.marginDetail}>
                                         {' '}
                                         Quantity: {data.quantity} item
-                                      </div>
+                                      </div> */}
                                     </div>
                                   </div>
                                 );
@@ -238,17 +237,17 @@ const DataOrders = (props) => {
                               {' '}
                               <div style={Styles.isColumnBottom}>
                                 <div style={Styles.Name}>
-                                  * {item.items[0].product_info.name}
+                                  {item.items[0].product_info.name}
                                 </div>
                                 <div style={Styles.marginDetail}>
                                   {' '}
                                   Price: Rp.
                                   {FormatNumber(item.items[0].sub_price)}
                                 </div>
-                                <div style={Styles.marginDetail}>
+                                {/* <div style={Styles.marginDetail}>
                                   {' '}
                                   Quantity: {item.items[0].quantity} item
-                                </div>
+                                </div> */}
                                 <DetailPopUp
                                   id={item._id}
                                   buttonLabel={
@@ -367,7 +366,6 @@ const Styles = {
   },
   Name: { color: '#0098da', fontWeight: '700' },
   marginDetail: {
-    marginLeft: '.8rem',
     fontSize: '12px',
   },
   isLoading: {
@@ -388,7 +386,6 @@ const Styles = {
     color: 'green',
     cursor: 'pointer',
     fontWeight: '600',
-    marginLeft: '.8rem',
     fontSize: '12px',
   },
 };

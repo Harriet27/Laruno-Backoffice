@@ -17,9 +17,7 @@ const Section = Styled.section`
     height: 100vh;
     align-items: center;
     display: flex;
-    justify-content: center;
-    
-    
+    justify-content: center; 
 `;
 const Input = Styled.input`
     width: 100%;
