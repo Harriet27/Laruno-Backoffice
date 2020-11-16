@@ -14,14 +14,11 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // --- Elements, Pages, Components --- //
 import {
   fetchGetOrders,
+  fetchGetFollowUp,
   fetchMultipleDeleteOrderss,
 } from '../../store/actions';
 import InputOrder from './InputOrder';
 import FollowUp from './FollowUp';
-import FollowUp_1 from './FollowUp_1';
-import FollowUp_2 from './FollowUp_2';
-import FollowUp_3 from './FollowUp_3';
-import FollowUp_4 from './FollowUp_4';
 
 import DetailPopUp from '../../elements/DetailPopUp/DetailPopUp';
 
@@ -31,8 +28,8 @@ const DataOrders = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const orders = useSelector((state) => state.orders.getOrders);
-
-  console.log('Get All Data orders', orders);
+  const followup = useSelector((state) => state.followup.getFollowUp);
+  console.log('Get All Data orders', { orders, followup });
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -61,7 +58,12 @@ const DataOrders = (props) => {
 
   // --- useEffect --- Get Data Orders ---//
   useEffect(() => {
+    dispatch(fetchGetFollowUp());
+    // eslint-disable-next-line
+  }, [dispatch]);
+  useEffect(() => {
     dispatch(fetchGetOrders());
+
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -196,7 +198,7 @@ const DataOrders = (props) => {
                         </Th>
                         <Th as="td" td>
                           <div style={Styles.FlexColumn}>
-                            <DetailPopUp
+                            {/* <DetailPopUp
                               id={item._id}
                               orders={orders}
                               buttonLabel={
@@ -204,7 +206,7 @@ const DataOrders = (props) => {
                                   {item.user_info.name}
                                 </div>
                               }
-                            />
+                            /> */}
 
                             <div
                               style={{
@@ -256,7 +258,7 @@ const DataOrders = (props) => {
                                   {' '}
                                   Quantity: {item.items[0].quantity} item
                                 </div> */}
-                                <DetailPopUp
+                                {/* <DetailPopUp
                                   id={item._id}
                                   orders={orders}
                                   buttonLabel={
@@ -264,7 +266,7 @@ const DataOrders = (props) => {
                                       Show {item.items.length} Product
                                     </div>
                                   }
-                                />
+                                /> */}
                               </div>
                             </>
                           )}
@@ -290,11 +292,41 @@ const DataOrders = (props) => {
                         </Th>
                         <Th as="td" td>
                           <div style={Styles.FlexRow}>
-                            <FollowUp id={item._id} orders={orders} />
-                            <FollowUp_1 id={item._id} orders={orders} />
-                            <FollowUp_2 id={item._id} orders={orders} />
-                            <FollowUp_3 id={item._id} orders={orders} />
-                            <FollowUp_4 id={item._id} orders={orders} />
+                            <FollowUp
+                              id={item._id}
+                              orders={orders}
+                              title="FollowUp 1"
+                              number="1"
+                              followup={followup}
+                            />
+                            <FollowUp
+                              id={item._id}
+                              orders={orders}
+                              title="FollowUp 2"
+                              number="2"
+                              followup={followup}
+                            />
+                            <FollowUp
+                              id={item._id}
+                              orders={orders}
+                              title="FollowUp 3"
+                              number="3"
+                              followup={followup}
+                            />
+                            <FollowUp
+                              id={item._id}
+                              orders={orders}
+                              title="FollowUp 4"
+                              number="4"
+                              followup={followup}
+                            />
+                            <FollowUp
+                              id={item._id}
+                              orders={orders}
+                              title="FollowUp 5"
+                              number="5"
+                              followup={followup}
+                            />
                           </div>
                         </Th>
                         <Th as="td" td>

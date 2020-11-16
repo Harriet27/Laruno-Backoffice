@@ -6,23 +6,31 @@ import { Span } from '../../elements/Styled/StyledTabs';
 import { Input } from '../../elements/Styled/StyledForm';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 export default function ChildMessage_1(props) {
-  const { id, toggle, orders, followup } = props;
+  const { id, toggle, orders, followup, number } = props;
   const dispatch = useDispatch();
 
-  const OrdersFilter =
-    orders !== undefined &&
-    orders.data.filter((item) => {
-      return item._id === id;
-    });
-  console.log(OrdersFilter, 'order teh eusina naon');
-  const order = OrdersFilter[0];
-  // --- taruh di setiap child message --- //
-  const template =
-    followup !== null &&
-    followup.data.filter(function (item) {
-      return item.name === 'FollowUp';
-    });
+  const OrdersFilter = orders.data.filter((item) => {
+    return item._id === id;
+  });
+  // console.log({ orders, followup }, 'child message');
 
+  // --- taruh di setiap child message --- //
+  const template = followup.data.filter((item) => {
+    return number === '1'
+      ? item.name === 'FollowUp'
+      : number === '2'
+      ? item.name === 'FollowUp_1'
+      : number === '3'
+      ? item.name === 'FollowUp_2'
+      : number === '4'
+      ? item.name === 'FollowUp_3'
+      : number === '5'
+      ? item.name === 'FollowUp_4'
+      : null;
+  });
+  const order = OrdersFilter[0];
+  const Message = template[0].template;
+  console.log({ order, Message }, 'child');
   return (
     <>
       <WhattsapMessage
@@ -34,7 +42,7 @@ export default function ChildMessage_1(props) {
         // payment_method={orders.data.payment.method.name}
         invoice={order.invoice}
         email={order.user_info.email}
-        message={template[0].template}
+        message={Message}
       />
     </>
   );

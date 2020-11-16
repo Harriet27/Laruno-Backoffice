@@ -4,12 +4,11 @@ import { fetchGetFollowUp, fetchShowOrders } from '../../store/actions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Icon, IconSpan } from '../../elements/Styled/StyledModalPopUp';
 import ChildMessage from './ChildMessage';
-import ChildMessage_1 from './ChildMessage_1';
 
 const FollowUp = (props) => {
   const dispatch = useDispatch();
-  const { className, id, orders } = props;
-  const followup = useSelector((state) => state.followup.getFollowUp);
+  const { className, id, orders, title, number, followup } = props;
+  // const followup = useSelector((state) => state.followup.getFollowUp);
   const [modal, setModal] = useState({
     open: false,
   });
@@ -19,25 +18,23 @@ const FollowUp = (props) => {
       ...modal,
       open: !modal.open,
     });
-  useEffect(() => {
-    dispatch(fetchGetFollowUp(id));
-    // eslint-disable-next-line
-  }, [dispatch, id]);
 
+  // console.log({ followup, orders }, 'di file followup');
   return (
     <div>
       <Button color="white" style={{ padding: '0' }} size="sm" onClick={toggle}>
         <Icon className="fa fa-comment fa-2x" id="button-label-1">
-          <IconSpan>1</IconSpan>
+          <IconSpan>{number}</IconSpan>
         </Icon>
       </Button>
       <Modal isOpen={modal.open} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Welcome</ModalHeader>
+        <ModalHeader toggle={toggle}>{title}</ModalHeader>
         <ModalBody>
           <ChildMessage
             id={id}
             orders={orders}
-            followup={followup !== null && followup}
+            followup={followup}
+            number={number}
             toggle={toggle}
           />
         </ModalBody>

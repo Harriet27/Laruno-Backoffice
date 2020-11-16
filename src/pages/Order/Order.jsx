@@ -18,34 +18,34 @@ const Section = Styled.section`
     margin: 50px;
 `;
 export default function Order() {
-  const dispatch = useDispatch();
-  const order = useSelector((state) => state.orders.getOrders);
-  console.log(order, 'order isi apa');
-  useEffect(() => {
-    dispatch(fetchGetOrders());
-    // eslint-disable-next-line
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // const order = useSelector((state) => state.orders.getOrders);
+  // console.log(order, 'order isi apa');
+  // useEffect(() => {
+  //   dispatch(fetchGetOrders());
+  //   // eslint-disable-next-line
+  // }, [dispatch]);
 
-  // --- code for total sum --- //
-  // return (total += item.total_price);
-  let total = 0;
-  let total_orders = order !== null && order.data.length;
-  let total_paid = 0;
-  let total_unpaid = 0;
-  order !== null &&
-    order.data.map((item, index) => {
-      return (
-        <div key={item._id}>
-          {(total += item.total_price)}
-          {(total_paid += item.payment.status === 'COMPLETED')}
-          {(total_unpaid += item.payment.status !== 'COMPLETED')}
-        </div>
-      );
-    });
-  console.log(total_orders);
+  // // --- code for total sum --- //
+  // // return (total += item.total_price);
+  // let total = 0;
+  // let total_orders = order !== null && order.data.length;
+  // let total_paid = 0;
+  // let total_unpaid = 0;
+  // order !== null &&
+  //   order.data.map((item, index) => {
+  //     return (
+  //       <div key={item._id}>
+  //         {(total += item.total_price)}
+  //         {(total_paid += item.payment.status === 'COMPLETED')}
+  //         {(total_unpaid += item.payment.status !== 'COMPLETED')}
+  //       </div>
+  //     );
+  //   });
+  // console.log(total_orders);
   return (
     <Section>
-      {order === null ? (
+      {/* {order === null ? (
         <Wraps>
           <CardGetData
             icon={faShoppingCart}
@@ -95,7 +95,7 @@ export default function Order() {
             text="Total Income"
           ></CardGetData>
         </Wraps>
-      )}
+      )} */}
       <DataOrder />
     </Section>
   );
