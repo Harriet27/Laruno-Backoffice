@@ -28,6 +28,7 @@ export default function DetailDataOrders(props) {
     invoice,
     email,
     name,
+    address,
   } = props;
 
   const DetailDataOrdersToFollowUp = (props) => {
@@ -41,6 +42,8 @@ export default function DetailDataOrders(props) {
       invoice,
       email,
       name,
+
+      address,
     } = props;
     const [form, setForm] = useState({
       name: name,
@@ -51,6 +54,7 @@ export default function DetailDataOrders(props) {
       // payment_method: payment_method,
       invoice: invoice,
       email: email,
+      address: address,
     });
 
     let DetailMessage = form.message.replace(
@@ -89,8 +93,7 @@ export default function DetailDataOrders(props) {
                 </Icon>
                 <Icon>
                   <i style={Styles.Icon} className="fa fa-home"></i>
-                  Jl.paseban timur X no. 11 rt.016 rw.03 Senen, Kota Jakarta
-                  Pusat, DKI Jakarta, 10460
+                  {address}
                 </Icon>
               </div>
               {/* Section two */}
@@ -176,6 +179,7 @@ export default function DetailDataOrders(props) {
         invoice={invoice}
         email={email}
         name={name}
+        address={address}
       />
     </>
   );
