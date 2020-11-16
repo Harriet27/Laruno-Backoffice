@@ -120,21 +120,19 @@ export default function DetailDataOrders(props) {
                 <thead>
                   <tr>
                     <th>Items</th>
-                    <th style={{ width: '10%' }}>Quantity</th>
-                    <th style={{ width: '10%' }}>Price</th>
+                    {/* <th style={{ width: '10%' }}>Quantity</th> */}
+                    <th style={{ width: '15%' }}>Price</th>
                   </tr>
                 </thead>
                 <tbody>
                   {orders.data.items.map((item, index) => {
                     return (
                       <tr key={index}>
-                        <td>
-                          {index + 1}. {item.product_info.name}
-                        </td>
-                        <td>{item.quantity} items</td>
+                        <td>{item.product_info.name}</td>
+                        {/* <td>{item.quantity} items</td> */}
                         <td>
                           Rp.
-                          {FormatNumber(item.sub_price)}
+                          {FormatNumber(item.sub_price * item.quantity)}
                         </td>
                       </tr>
                     );
@@ -143,7 +141,7 @@ export default function DetailDataOrders(props) {
                 <tfoot>
                   <tr>
                     <th>total</th>
-                    <th>{total_qty} items</th>
+                    {/* <th>{total_qty} items</th> */}
                     <th>
                       Rp.
                       {FormatNumber(total_price)}
