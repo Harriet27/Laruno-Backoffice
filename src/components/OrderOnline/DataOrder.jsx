@@ -21,6 +21,8 @@ import InputOrder from './InputOrder';
 import FollowUp from './FollowUp';
 
 import DetailPopUp from '../../elements/DetailPopUp/DetailPopUp';
+import TotalData from './TotalData';
+import Order from '../../pages/Order/Order';
 
 // --- Styled Components --- //
 
@@ -98,283 +100,292 @@ const DataOrders = (props) => {
 `;
 
   return (
-    <React.Fragment>
-      {/* --- section 1 --- Button Action link to Add Product ---*/}
+    <>
+      <>
+        <TotalData order={orders} />
+      </>
+      <>
+        {/* --- section 1 --- Button Action link to Add Product ---*/}
 
-      {form.id[0] ? (
-        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
-            Actions
-          </DropdownToggle>
-          <DropdownMenu></DropdownMenu>
-        </Dropdown>
-      ) : (
-        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          {' '}
-          <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret disabled>
-            Actions
-          </DropdownToggle>
-        </Dropdown>
-      )}
+        {form.id[0] ? (
+          <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
+              Actions
+            </DropdownToggle>
+            <DropdownMenu></DropdownMenu>
+          </Dropdown>
+        ) : (
+          <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+            {' '}
+            <DropdownToggle
+              style={{ backgroundColor: '#0098DA' }}
+              caret
+              disabled
+            >
+              Actions
+            </DropdownToggle>
+          </Dropdown>
+        )}
 
-      <div style={Styles.isFlexBetween}>
-        <InputOrder />
+        <div style={Styles.isFlexBetween}>
+          <InputOrder />
 
-        <div>
-          <label>Search</label>{' '}
-          <Input
-            type="search"
-            name="search"
-            value={searching.search}
-            onChange={handleChange}
-          />
+          <div>
+            <label>Search</label>{' '}
+            <Input
+              type="search"
+              name="search"
+              value={searching.search}
+              onChange={handleChange}
+            />
+          </div>
+          {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
         </div>
-        {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
-      </div>
 
-      {/* --- section 2 --- Get Data Product --- */}
-      <Card isNormal>
-        {/* --- untuk hapus melalui button --- */}
-        <Overflow>
-          {orders === null ? (
-            <React.Fragment>
-              <Table>
+        {/* --- section 2 --- Get Data Product --- */}
+        <Card isNormal>
+          {/* --- untuk hapus melalui button --- */}
+          <Overflow>
+            {orders === null ? (
+              <React.Fragment>
+                <Table>
+                  <thead>
+                    <tr>
+                      <Th>
+                        <DehazeIcon />
+                      </Th>
+                      <Th>Invoice Number</Th>
+                      <Th>Name</Th>
+                      <Th>Date</Th>
+
+                      <Th>Total Price</Th>
+                      <Th>Payment Status</Th>
+
+                      <Th style={{ width: '10%' }}>Follow Up</Th>
+
+                      <Th style={{ width: '10%' }}>Actions</Th>
+                    </tr>
+                  </thead>
+                </Table>
+                <div style={Styles.isLoading}>
+                  <CircularProgress />
+                </div>
+              </React.Fragment>
+            ) : orders.data.length >= 1 ? (
+              <Table striped responsive>
                 <thead>
                   <tr>
                     <Th>
                       <DehazeIcon />
                     </Th>
-                    <Th>Invoice Number</Th>
+                    <Th>Invoice</Th>
                     <Th>Name</Th>
+                    <Th style={{ width: '20%' }}>Product</Th>
                     <Th>Date</Th>
-
                     <Th>Total Price</Th>
-                    <Th>Payment Status</Th>
 
+                    <Th style={{ width: '5%' }}>Payment Status</Th>
+                    {/* <Th>Paid At</Th> */}
                     <Th style={{ width: '10%' }}>Follow Up</Th>
 
                     <Th style={{ width: '10%' }}>Actions</Th>
                   </tr>
                 </thead>
-              </Table>
-              <div style={Styles.isLoading}>
-                <CircularProgress />
-              </div>
-            </React.Fragment>
-          ) : orders.data.length >= 1 ? (
-            <Table striped responsive>
-              <thead>
-                <tr>
-                  <Th>
-                    <DehazeIcon />
-                  </Th>
-                  <Th>Invoice</Th>
-                  <Th>Name</Th>
-                  <Th style={{ width: '20%' }}>Product</Th>
-                  <Th>Date</Th>
-                  <Th>Total Price</Th>
+                <tbody>
+                  {orders.data
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((item) => {
+                      return (
+                        <TableRow key={item._id}>
+                          <Th as="td" td>
+                            <input type="checkbox" />
+                          </Th>
+                          <Th as="td" td>
+                            {/* {item.order_id} */}
+                            {item.invoice === null
+                              ? '#101120SKU9515000'
+                              : `#${item.invoice}`}
+                          </Th>
+                          <Th as="td" td>
+                            <div style={Styles.FlexColumn}>
+                              <DetailPopUp
+                                id={item._id}
+                                orders={orders}
+                                buttonLabel={
+                                  <div style={Styles.Name}>
+                                    {item.user_info.name}
+                                  </div>
+                                }
+                                followup={followup}
+                              />
 
-                  <Th style={{ width: '5%' }}>Payment Status</Th>
-                  {/* <Th>Paid At</Th> */}
-                  <Th style={{ width: '10%' }}>Follow Up</Th>
-
-                  <Th style={{ width: '10%' }}>Actions</Th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.data
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((item) => {
-                    return (
-                      <TableRow key={item._id}>
-                        <Th as="td" td>
-                          <input type="checkbox" />
-                        </Th>
-                        <Th as="td" td>
-                          {/* {item.order_id} */}
-                          {item.invoice === null
-                            ? '#101120SKU9515000'
-                            : `#${item.invoice}`}
-                        </Th>
-                        <Th as="td" td>
-                          <div style={Styles.FlexColumn}>
-                            <DetailPopUp
-                              id={item._id}
-                              orders={orders}
-                              buttonLabel={
-                                <div style={Styles.Name}>
-                                  {item.user_info.name}
-                                </div>
-                              }
-                              followup={followup}
-                            />
-
-                            <div
-                              style={{
-                                fontSize: '12px',
-                              }}
-                            >
-                              {item.user_info.phone_number}
+                              <div
+                                style={{
+                                  fontSize: '12px',
+                                }}
+                              >
+                                {item.user_info.phone_number}
+                              </div>
                             </div>
-                          </div>
-                        </Th>
-                        <Th as="td" td>
-                          {item.items.length <= 1 ? (
-                            <>
-                              {' '}
-                              {item.items.map((data, index) => {
-                                return (
-                                  <div key={index}>
-                                    <div style={Styles.isColumnBottom}>
-                                      <div style={Styles.Name}>
-                                        {data.product_info.name}
-                                      </div>
-                                      <div style={Styles.marginDetail}>
-                                        Price: Rp.
-                                        {FormatNumber(data.sub_price)}
-                                      </div>
-                                      {/* <div style={Styles.marginDetail}>
+                          </Th>
+                          <Th as="td" td>
+                            {item.items.length <= 1 ? (
+                              <>
+                                {' '}
+                                {item.items.map((data, index) => {
+                                  return (
+                                    <div key={index}>
+                                      <div style={Styles.isColumnBottom}>
+                                        <div style={Styles.Name}>
+                                          {data.product_info.name}
+                                        </div>
+                                        <div style={Styles.marginDetail}>
+                                          Price: Rp.
+                                          {FormatNumber(data.sub_price)}
+                                        </div>
+                                        {/* <div style={Styles.marginDetail}>
                                         {' '}
                                         Quantity: {data.quantity} item
                                       </div> */}
+                                      </div>
                                     </div>
+                                  );
+                                })}
+                              </>
+                            ) : (
+                              //  Testing Show more
+                              <>
+                                {' '}
+                                <div style={Styles.isColumnBottom}>
+                                  <div style={Styles.Name}>
+                                    {item.items[0].product_info.name}
                                   </div>
-                                );
-                              })}
-                            </>
-                          ) : (
-                            //  Testing Show more
-                            <>
-                              {' '}
-                              <div style={Styles.isColumnBottom}>
-                                <div style={Styles.Name}>
-                                  {item.items[0].product_info.name}
-                                </div>
-                                <div style={Styles.marginDetail}>
-                                  {' '}
-                                  Price: Rp.
-                                  {FormatNumber(item.items[0].sub_price)}
-                                </div>
-                                {/* <div style={Styles.marginDetail}>
+                                  <div style={Styles.marginDetail}>
+                                    {' '}
+                                    Price: Rp.
+                                    {FormatNumber(item.items[0].sub_price)}
+                                  </div>
+                                  {/* <div style={Styles.marginDetail}>
                                   {' '}
                                   Quantity: {item.items[0].quantity} item
                                 </div> */}
-                                <DetailPopUp
-                                  id={item._id}
-                                  orders={orders}
-                                  followup={followup}
-                                  buttonLabel={
-                                    <div style={Styles.ShowProduct}>
-                                      Show {item.items.length} Product
-                                    </div>
-                                  }
-                                />
+                                  <DetailPopUp
+                                    id={item._id}
+                                    orders={orders}
+                                    followup={followup}
+                                    buttonLabel={
+                                      <div style={Styles.ShowProduct}>
+                                        Show {item.items.length} Product
+                                      </div>
+                                    }
+                                  />
+                                </div>
+                              </>
+                            )}
+                          </Th>
+                          <Th as="td" td>
+                            {moment(item.create_date).format(
+                              'DD-MM-YYYY - hh:mm'
+                            )}
+                          </Th>
+                          <Th as="td" td>
+                            Rp. {FormatNumber(item.total_price)}
+                          </Th>
+                          <Th as="td" td>
+                            {item.payment.status === 'COMPLETED' ? (
+                              <div style={Styles.Paid}>
+                                <span>Paid</span>
                               </div>
-                            </>
-                          )}
-                        </Th>
-                        <Th as="td" td>
-                          {moment(item.create_date).format(
-                            'DD-MM-YYYY - hh:mm'
-                          )}
-                        </Th>
-                        <Th as="td" td>
-                          Rp. {FormatNumber(item.total_price)}
-                        </Th>
-                        <Th as="td" td>
-                          {item.payment.status === 'COMPLETED' ? (
-                            <div style={Styles.Paid}>
-                              <span>Paid</span>
+                            ) : (
+                              <div style={Styles.Unpaid}>
+                                <span>Unpaid</span>
+                              </div>
+                            )}
+                          </Th>
+                          <Th as="td" td>
+                            <div style={Styles.FlexRow}>
+                              <FollowUp
+                                id={item._id}
+                                orders={orders}
+                                title="FollowUp 1"
+                                number="1"
+                                followup={followup}
+                              />
+                              <FollowUp
+                                id={item._id}
+                                orders={orders}
+                                title="FollowUp 2"
+                                number="2"
+                                followup={followup}
+                              />
+                              <FollowUp
+                                id={item._id}
+                                orders={orders}
+                                title="FollowUp 3"
+                                number="3"
+                                followup={followup}
+                              />
+                              <FollowUp
+                                id={item._id}
+                                orders={orders}
+                                title="FollowUp 4"
+                                number="4"
+                                followup={followup}
+                              />
+                              <FollowUp
+                                id={item._id}
+                                orders={orders}
+                                title="FollowUp 5"
+                                number="5"
+                                followup={followup}
+                              />
                             </div>
-                          ) : (
-                            <div style={Styles.Unpaid}>
-                              <span>Unpaid</span>
-                            </div>
-                          )}
-                        </Th>
-                        <Th as="td" td>
-                          <div style={Styles.FlexRow}>
-                            <FollowUp
-                              id={item._id}
-                              orders={orders}
-                              title="FollowUp 1"
-                              number="1"
-                              followup={followup}
-                            />
-                            <FollowUp
-                              id={item._id}
-                              orders={orders}
-                              title="FollowUp 2"
-                              number="2"
-                              followup={followup}
-                            />
-                            <FollowUp
-                              id={item._id}
-                              orders={orders}
-                              title="FollowUp 3"
-                              number="3"
-                              followup={followup}
-                            />
-                            <FollowUp
-                              id={item._id}
-                              orders={orders}
-                              title="FollowUp 4"
-                              number="4"
-                              followup={followup}
-                            />
-                            <FollowUp
-                              id={item._id}
-                              orders={orders}
-                              title="FollowUp 5"
-                              number="5"
-                              followup={followup}
-                            />
-                          </div>
-                        </Th>
-                        <Th as="td" td>
-                          Actions
-                        </Th>
-                      </TableRow>
-                    );
-                  })}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <TablePagination
-                    rowsPerPageOptions={[10, 15, 20]}
-                    count={orders !== null && orders.data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                  />
-                </tr>
-              </tfoot>
-            </Table>
-          ) : (
-            <React.Fragment>
-              <Table>
-                <thead>
+                          </Th>
+                          <Th as="td" td>
+                            Actions
+                          </Th>
+                        </TableRow>
+                      );
+                    })}
+                </tbody>
+                <tfoot>
                   <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Slug</Th>
-                    <Th>Created At</Th>
-                    <Th>Update At</Th>
-                    <Th style={{ width: '10%' }}>Actions</Th>
+                    <TablePagination
+                      rowsPerPageOptions={[10, 15, 20]}
+                      count={orders !== null && orders.data.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      onChangePage={handleChangePage}
+                      onChangeRowsPerPage={handleChangeRowsPerPage}
+                    />
                   </tr>
-                </thead>
+                </tfoot>
               </Table>
-              <div style={Styles.isLoading}>
-                You have no orders in this date range.
-              </div>
-            </React.Fragment>
-          )}
-        </Overflow>
-      </Card>
-    </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Table>
+                  <thead>
+                    <tr>
+                      <Th>
+                        <DehazeIcon />
+                      </Th>
+                      <Th>Name</Th>
+                      <Th>Slug</Th>
+                      <Th>Created At</Th>
+                      <Th>Update At</Th>
+                      <Th style={{ width: '10%' }}>Actions</Th>
+                    </tr>
+                  </thead>
+                </Table>
+                <div style={Styles.isLoading}>
+                  You have no orders in this date range.
+                </div>
+              </React.Fragment>
+            )}
+          </Overflow>
+        </Card>
+      </>
+    </>
   );
 };
 
