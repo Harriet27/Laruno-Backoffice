@@ -27,7 +27,13 @@ const fetchPostContents = (form, history) => async () => {
       icon: 'success',
     });
 
-    history.push('/');
+    history.push('/contents');
+  } else if (response.status === 400) {
+    Swal.fire({
+      title: 'Field Not Found!',
+      text: 'Field Tidak Boleh ada yang kosong',
+      icon: 'error',
+    });
   }
 };
 
