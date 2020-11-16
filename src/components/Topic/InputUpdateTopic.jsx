@@ -8,6 +8,7 @@ import {
 import { Input } from '../../elements/Styled/StyledForm';
 import SingleImage from '../AddProduct/SingleImage';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { CircularProgress } from '@material-ui/core';
 export default function InputUpdateTopic(props) {
   // ---Input value --- //
   const InputValue = (props) => {
@@ -55,7 +56,7 @@ export default function InputUpdateTopic(props) {
     return (
       <>
         <Input
-          style={{ width: '100%' }}
+          style={{ width: '100%', marginBottom: '10px' }}
           type="text"
           name="name"
           value={form.name}
@@ -75,11 +76,12 @@ export default function InputUpdateTopic(props) {
             alignItems: 'center',
           }}
         >
-          {typeof formulir.image.icon == 'object' ? null : (
+          {typeof formulir.image.icon === 'object' ||
+          formulir.image.icon === false ? null : (
             <img
               width="100%"
-              src={formulir.image.icon.toString()}
-              alt={formulir.image.icon.toString()}
+              src={formulir.image.icon}
+              alt={formulir.image.icon}
             />
           )}
         </div>
@@ -112,12 +114,25 @@ export default function InputUpdateTopic(props) {
 
   return (
     <section>
-      <InputValue
-        name={topic !== null && topic.data.name}
-        icon={topic !== null && topic.data.icon}
-        id={id}
-        toggle={toggle}
-      />
+      {topic === null || topic.data._id !== id ? (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '200px',
+          }}
+        >
+          <CircularProgress />
+        </div>
+      ) : (
+        <InputValue
+          name={topic.data.name}
+          icon={topic.data.icon}
+          id={id}
+          toggle={toggle}
+        />
+      )}
     </section>
   );
 }

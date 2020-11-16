@@ -42,7 +42,6 @@ const fetchPostProducts = (form, history) => async () => {
       text: '',
       icon: 'warning',
     });
-    window.location.reload();
   } else {
     Swal.fire({
       title: 'Sedang dalam perbaikan!',
