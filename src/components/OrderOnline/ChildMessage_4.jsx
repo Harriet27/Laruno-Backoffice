@@ -6,16 +6,10 @@ import { Span } from '../../elements/Styled/StyledTabs';
 import { Input } from '../../elements/Styled/StyledForm';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 export default function ChildMessage_1(props) {
-  const { id, toggle, orders } = props;
+  const { id, toggle, orders, followup } = props;
   const dispatch = useDispatch();
-  // const orders = useSelector((state) => state.orders.detailOrders);
-  const followup = useSelector((state) => state.followup.getFollowUp);
-  console.log(followup, 'ini follow up');
 
-  // useEffect(() => {
-  //   dispatch(fetchShowOrders(id));
-  //   // eslint-disable-next-line
-  // }, [dispatch, id]);
+  console.log(followup, 'ini follow up');
 
   useEffect(() => {
     dispatch(fetchGetFollowUp(id));
