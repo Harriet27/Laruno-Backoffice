@@ -43,8 +43,6 @@ const ParentsLayoutFollowUp = (props) => {
     id: '',
   });
 
-  console.log(form, 'isi form');
-
   useEffect(() => {
     dispatch(fetchGetFollowUp());
     // eslint-disable-next-line

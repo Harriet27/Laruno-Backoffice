@@ -67,7 +67,7 @@ export default function InputUpdateCoupons(props) {
       payment_method: payment_method || '',
       is_active: is_active || false,
     });
-    console.log(start_date, 'form');
+
     const handleSubmit = (event) => {
       event.preventDefault();
       dispatch(fetchUpdateCoupons(form, id));
@@ -236,7 +236,6 @@ export default function InputUpdateCoupons(props) {
   const dispatch = useDispatch();
   const { id, toggle } = props;
   const coupons = useSelector((state) => state.coupons.showCoupons);
-  console.log(coupons, 'update coupons by id');
 
   useEffect(() => {
     dispatch(fetchShowCoupons(id));

@@ -31,7 +31,6 @@ background-color: #f9f2f4;
 export default function ChildFollowUp(props) {
   const { id, toggle } = props;
 
-  console.log(id, 'ini id');
   const note = {
     name: `{{name}}`,
     phone: `{{phone_number}}`,
@@ -45,7 +44,6 @@ export default function ChildFollowUp(props) {
     const { id, toggle } = props;
     const dispatch = useDispatch();
     const follow = useSelector((state) => state.followup.getFollowUpById);
-    console.log(follow, 'isi follow by id');
 
     useEffect(() => {
       dispatch(fetchGetFollowUpByID(id));
