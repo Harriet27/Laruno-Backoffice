@@ -198,7 +198,7 @@ const DataOrders = (props) => {
                         </Th>
                         <Th as="td" td>
                           <div style={Styles.FlexColumn}>
-                            {/* <DetailPopUp
+                            <DetailPopUp
                               id={item._id}
                               orders={orders}
                               buttonLabel={
@@ -206,7 +206,8 @@ const DataOrders = (props) => {
                                   {item.user_info.name}
                                 </div>
                               }
-                            /> */}
+                              followup={followup}
+                            />
 
                             <div
                               style={{
@@ -258,15 +259,16 @@ const DataOrders = (props) => {
                                   {' '}
                                   Quantity: {item.items[0].quantity} item
                                 </div> */}
-                                {/* <DetailPopUp
+                                <DetailPopUp
                                   id={item._id}
                                   orders={orders}
+                                  followup={followup}
                                   buttonLabel={
                                     <div style={Styles.ShowProduct}>
                                       Show {item.items.length} Product
                                     </div>
                                   }
-                                /> */}
+                                />
                               </div>
                             </>
                           )}

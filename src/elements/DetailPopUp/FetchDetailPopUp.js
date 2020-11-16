@@ -20,58 +20,39 @@ const Icon = Styled.div`
 margin-bottom: 10px;
 `;
 export default function FetchDetailPopUp(props) {
-  const { id, toggle, orders } = props;
+  const { id, toggle, orders, followup } = props;
   const dispatch = useDispatch();
-  // const orders = useSelector((state) => state.orders.detailOrders);
-  const followup = useSelector((state) => state.followup.getFollowUp);
-  // console.log('ORDER ID DIDALAM DETAIL', { orders, followup });
-  // useEffect(() => {
-  //   dispatch(fetchShowOrders(id));
-  //   // eslint-disable-next-line
-  // }, [dispatch, id]);
-  useEffect(() => {
-    dispatch(fetchGetFollowUp());
-    // eslint-disable-next-line
-  }, [dispatch]);
 
-  const template =
-    followup !== null &&
-    followup.data.filter(function (item) {
-      return item.name === 'DetailOrders';
-    });
-  const Message = template === false ? 'hehhe' : template[0].template;
-  console.log(Message, 'ini message');
+  const template = followup.data.filter(function (item) {
+    return item.name === 'DetailOrders';
+  });
+  const OrdersFilter = orders.data.filter((item) => {
+    return item._id === id;
+  });
+  //
+
+  const Orders = OrdersFilter[0];
+  const Message = template[0].template;
+  console.log(
+    { orders, followup, OrdersFilter, template, Orders, Message },
+    'orders filter'
+  );
   return (
     <>
-      {orders === null ? (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '30em',
-          }}
-        >
-          <CircularProgress />
-        </div>
-      ) : (
-        <DetailDataOrders
-          orders={orders}
-          toggle={toggle}
-          //
-          name={orders.user_info.name}
-          phone_number={orders.user_info.phone_number}
-          total_price={orders.total_price}
-          total_qty={orders.total_qty}
-          // payment_method={orders.data.payment.method.name}
-          // address={orders.data.shipment.shipment_info.to.address.address1}
-          invoice={orders.invoice}
-          email={orders.user_info.email}
-          message={Message}
-        />
-      )}
+      <DetailDataOrders
+        orders={Orders}
+        toggle={toggle}
+        //
+        name={Orders.user_info.name}
+        phone_number={Orders.user_info.phone_number}
+        total_price={Orders.total_price}
+        total_qty={Orders.total_qty}
+        // payment_method={orders.data.payment.method.name}
+        // address={orders.data.shipment.shipment_info.to.address.address1}
+        invoice={Orders.invoice}
+        email={Orders.user_info.email}
+        message={Message}
+      />
     </>
   );
 }
-
-// --- Modal Pop UP --- //
