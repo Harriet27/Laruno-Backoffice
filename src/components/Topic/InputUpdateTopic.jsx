@@ -12,7 +12,7 @@ import { CircularProgress } from '@material-ui/core';
 export default function InputUpdateTopic(props) {
   // ---Input value --- //
   const InputValue = (props) => {
-    const { name, icon, id } = props;
+    const { name, icon, id, topic } = props;
     const dispatch = useDispatch();
     const [form, setForm] = useState({
       name: name || '',
@@ -103,18 +103,18 @@ export default function InputUpdateTopic(props) {
 
   // ---- Finish ----//
   const dispatch = useDispatch();
-  const { id, toggle } = props;
-  const topic = useSelector((state) => state.topic.showTopic);
+  const { id, toggle, topic } = props;
+  // const topic = useSelector((state) => state.topic.showTopic);
   console.log(topic, 'update tpic by id');
 
-  useEffect(() => {
-    dispatch(fetchShowTopic(id));
-    // eslint-disable-next-line
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchShowTopic(id));
+  //   // eslint-disable-next-line
+  // }, [dispatch]);
 
   return (
     <section>
-      {topic === null || topic.data._id !== id ? (
+      {topic === null ? (
         <div
           style={{
             display: 'flex',
@@ -127,8 +127,8 @@ export default function InputUpdateTopic(props) {
         </div>
       ) : (
         <InputValue
-          name={topic.data.name}
-          icon={topic.data.icon}
+          name={topic.name}
+          icon={topic.icon}
           id={id}
           toggle={toggle}
         />

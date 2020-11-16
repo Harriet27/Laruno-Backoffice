@@ -5,10 +5,9 @@ import CreateIcon from '@material-ui/icons/Create';
 import InputUpdateTopic from './InputUpdateTopic';
 
 const UpdateTopic = (props) => {
-  const { className } = props;
+  const { className, id, topic } = props;
   const [modal, setModal] = useState({
     open: false,
-    id: null,
   });
 
   console.log(modal, 'mau tahu modal di order');
@@ -16,8 +15,16 @@ const UpdateTopic = (props) => {
     setModal({
       ...modal,
       open: !modal.open,
-      id: props.id,
     });
+  // --- data use Topic filter --- //
+  const TopicFilter =
+    topic !== null &&
+    topic.data.filter((item) => {
+      return item._id === id;
+    });
+  const Topic = TopicFilter[0];
+
+  console.log(Topic.name, 'INI TOPIC TEST TOPIC');
   return (
     <div>
       <ButtonLink onClick={toggle}>
@@ -26,7 +33,7 @@ const UpdateTopic = (props) => {
       <Modal isOpen={modal.open} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Update Topic</ModalHeader>
         <ModalBody>
-          <InputUpdateTopic id={modal.id} toggle={toggle} />
+          <InputUpdateTopic id={id} topic={Topic} toggle={toggle} />
         </ModalBody>
       </Modal>
     </div>

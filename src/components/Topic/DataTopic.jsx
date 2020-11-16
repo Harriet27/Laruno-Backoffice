@@ -183,7 +183,7 @@ const DataTopic = (props) => {
 
                         <Th as="td" td>
                           <div style={Styles.FlexRow}>
-                            <UpdateTopic id={item._id} />
+                            <UpdateTopic id={item._id} topic={topic} />
                             <DeleteTopic id={item._id} />
                           </div>
                         </Th>
