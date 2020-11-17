@@ -77,65 +77,91 @@ const DataRoles = (props) => {
   };
 
   return (
-    <React.Fragment>
-      {/* --- section 1 --- Button Action link to Add Product ---*/}
+    <>
+      <></>
+      <React.Fragment>
+        {/* --- section 1 --- Button Action link to Add Product ---*/}
 
-      <div
-        style={{
-          margin: '20px 0',
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
-        {form.id[0] ? (
-          <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-            <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
-              Actions
-            </DropdownToggle>
-            <DropdownMenu>
-              <MultipleDelete onSubmit={handleMultipleDelete} />
+        <div
+          style={{
+            margin: '20px 0',
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
+          {form.id[0] ? (
+            <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+              <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
+                Actions
+              </DropdownToggle>
+              <DropdownMenu>
+                <MultipleDelete onSubmit={handleMultipleDelete} />
 
-              {/* <DropdownItem onClick={handleMultipleClone}>
+                {/* <DropdownItem onClick={handleMultipleClone}>
                                 Clone
                             </DropdownItem> */}
-            </DropdownMenu>
-          </Dropdown>
-        ) : (
-          <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-            <DropdownToggle
-              style={{ backgroundColor: '#0098DA' }}
-              caret
-              disabled
-            >
-              Actions
-            </DropdownToggle>
-          </Dropdown>
-        )}
-        <div>
-          <label>Search</label>{' '}
-          <Input
-            type="search"
-            name="search"
-            value={searching.search}
-            onChange={handleChange}
-          />
+              </DropdownMenu>
+            </Dropdown>
+          ) : (
+            <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+              <DropdownToggle
+                style={{ backgroundColor: '#0098DA' }}
+                caret
+                disabled
+              >
+                Actions
+              </DropdownToggle>
+            </Dropdown>
+          )}
+          <div>
+            <label>Search</label>{' '}
+            <Input
+              type="search"
+              name="search"
+              value={searching.search}
+              onChange={handleChange}
+            />
+          </div>
+          {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
         </div>
-        {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
-      </div>
 
-      {/* --- section 2 --- Get Data Product --- */}
-      <Card isNormal>
-        {/* --- untuk hapus melalui button --- */}
-        <Overflow>
-          {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
+        {/* --- section 2 --- Get Data Product --- */}
+        <Card isNormal>
+          {/* --- untuk hapus melalui button --- */}
+          <Overflow>
+            {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
                      di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
-          {roles === null ? (
-            <React.Fragment>
+            {roles === null ? (
+              <React.Fragment>
+                <Table>
+                  <thead>
+                    <tr>
+                      <Th>
+                        <DehazeIcon />
+                      </Th>
+                      <Th>Admin Type</Th>
+                      <Th>Read Write</Th>
+                      <Th>Created At</Th>
+                      <Th>Update At</Th>
+                      <Th style={{ width: '100px' }}>Actions</Th>
+                    </tr>
+                  </thead>
+                </Table>
+                <div
+                  style={{
+                    textAlign: 'center',
+                    padding: '100px',
+                  }}
+                >
+                  <CircularProgress />
+                </div>
+              </React.Fragment>
+            ) : roles.data.length >= 1 ? (
               <Table>
                 <thead>
                   <tr>
                     <Th>
-                      <DehazeIcon />
+                      <Input checkbox type="checkbox" />
                     </Th>
                     <Th>Admin Type</Th>
                     <Th>Read Write</Th>
@@ -144,122 +170,99 @@ const DataRoles = (props) => {
                     <Th style={{ width: '100px' }}>Actions</Th>
                   </tr>
                 </thead>
-              </Table>
-              <div
-                style={{
-                  textAlign: 'center',
-                  padding: '100px',
-                }}
-              >
-                <CircularProgress />
-              </div>
-            </React.Fragment>
-          ) : roles.data.length >= 1 ? (
-            <Table>
-              <thead>
-                <tr>
-                  <Th>
-                    <Input checkbox type="checkbox" />
-                  </Th>
-                  <Th>Admin Type</Th>
-                  <Th>Read Write</Th>
-                  <Th>Created At</Th>
-                  <Th>Update At</Th>
-                  <Th style={{ width: '100px' }}>Actions</Th>
-                </tr>
-              </thead>
-              <tbody>
-                {roles.data
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((item) => {
-                    return (
-                      <tr key={item._id}>
-                        <Th>
-                          <Input
-                            checkbox
-                            type="checkbox"
-                            id={item._id}
-                            value={item._id}
-                            onChange={handleCheckboxChange}
-                          />
-                        </Th>
+                <tbody>
+                  {roles.data
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((item) => {
+                      return (
+                        <tr key={item._id}>
+                          <Th>
+                            <Input
+                              checkbox
+                              type="checkbox"
+                              id={item._id}
+                              value={item._id}
+                              onChange={handleCheckboxChange}
+                            />
+                          </Th>
 
-                        <Th as="td" td>
-                          {item.adminType}
-                        </Th>
-                        <Th as="td" td>
-                          {item.readWrite === false ? (
-                            <p>False</p>
-                          ) : (
-                            <p>True</p>
-                          )}
-                        </Th>
-                        <Th as="td" td>
-                          {moment(item.created_at).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
-                        </Th>
-                        <Th as="td" td>
-                          {moment(item.updated_at).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
-                        </Th>
-                        <Th as="td" td>
-                          <div
-                            style={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                            }}
-                          >
-                            <DeleteRoles id={item._id} />
-                          </div>
-                        </Th>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <TablePagination
-                    rowsPerPageOptions={[10, 15, 20]}
-                    count={roles !== null && roles.data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                  />
-                </tr>
-              </tfoot>
-            </Table>
-          ) : (
-            <React.Fragment>
-              <Table>
-                <thead>
+                          <Th as="td" td>
+                            {item.adminType}
+                          </Th>
+                          <Th as="td" td>
+                            {item.readWrite === false ? (
+                              <p>False</p>
+                            ) : (
+                              <p>True</p>
+                            )}
+                          </Th>
+                          <Th as="td" td>
+                            {moment(item.created_at).format(
+                              'MMMM Do YYYY, h:mm:ss a'
+                            )}
+                          </Th>
+                          <Th as="td" td>
+                            {moment(item.updated_at).format(
+                              'MMMM Do YYYY, h:mm:ss a'
+                            )}
+                          </Th>
+                          <Th as="td" td>
+                            <div
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                              }}
+                            >
+                              <DeleteRoles id={item._id} />
+                            </div>
+                          </Th>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+                <tfoot>
                   <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Slug</Th>
-                    <Th>Created At</Th>
-                    <Th>Update At</Th>
-                    <Th style={{ width: '100px' }}>Actions</Th>
+                    <TablePagination
+                      rowsPerPageOptions={[10, 15, 20]}
+                      count={roles !== null && roles.data.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      onChangePage={handleChangePage}
+                      onChangeRowsPerPage={handleChangeRowsPerPage}
+                    />
                   </tr>
-                </thead>
+                </tfoot>
               </Table>
-              <div
-                style={{
-                  textAlign: 'center',
-                  padding: '100px',
-                }}
-              >
-                You have no topic in this date range.
-              </div>
-            </React.Fragment>
-          )}
-        </Overflow>
-      </Card>
-    </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Table>
+                  <thead>
+                    <tr>
+                      <Th>
+                        <DehazeIcon />
+                      </Th>
+                      <Th>Name</Th>
+                      <Th>Slug</Th>
+                      <Th>Created At</Th>
+                      <Th>Update At</Th>
+                      <Th style={{ width: '100px' }}>Actions</Th>
+                    </tr>
+                  </thead>
+                </Table>
+                <div
+                  style={{
+                    textAlign: 'center',
+                    padding: '100px',
+                  }}
+                >
+                  You have no topic in this date range.
+                </div>
+              </React.Fragment>
+            )}
+          </Overflow>
+        </Card>
+      </React.Fragment>
+    </>
   );
 };
 

@@ -15,6 +15,7 @@ import UpdateTopic from './UpdateTopic';
 import DeleteTopic from './DeleteTopic';
 import MultipleDelete from '../../elements/Alert/MultipleDelete';
 import { CircularProgress } from '@material-ui/core';
+import TotalDataTopic from './TotalDataTopic';
 // --- Styled Components --- //
 
 const DataTopic = (props) => {
@@ -76,51 +77,78 @@ const DataTopic = (props) => {
   };
 
   return (
-    <React.Fragment>
-      {form.id[0] ? (
-        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
-            Actions
-          </DropdownToggle>
-          <DropdownMenu>
-            <MultipleDelete onSubmit={handleMultipleDelete} />
-          </DropdownMenu>
-        </Dropdown>
-      ) : (
-        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          {' '}
-          <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret disabled>
-            Actions
-          </DropdownToggle>
-        </Dropdown>
-      )}
+    <>
+      <>
+        <TotalDataTopic topic={topic} />
+      </>
+      <React.Fragment>
+        {form.id[0] ? (
+          <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
+              Actions
+            </DropdownToggle>
+            <DropdownMenu>
+              <MultipleDelete onSubmit={handleMultipleDelete} />
+            </DropdownMenu>
+          </Dropdown>
+        ) : (
+          <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+            {' '}
+            <DropdownToggle
+              style={{ backgroundColor: '#0098DA' }}
+              caret
+              disabled
+            >
+              Actions
+            </DropdownToggle>
+          </Dropdown>
+        )}
 
-      <div style={Styles.FlexBetween}>
-        <AddNewTopic />
+        <div style={Styles.FlexBetween}>
+          <AddNewTopic />
 
-        <div>
-          <label>Search</label>{' '}
-          <Input
-            type="search"
-            name="search"
-            value={searching.search}
-            onChange={handleChange}
-          />
+          <div>
+            <label>Search</label>{' '}
+            <Input
+              type="search"
+              name="search"
+              value={searching.search}
+              onChange={handleChange}
+            />
+          </div>
+          {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
         </div>
-        {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
-      </div>
 
-      {/* --- section 2 --- Get Data Product --- */}
-      <Card isNormal>
-        {/* --- untuk hapus melalui button --- */}
-        <Overflow>
-          {topic === null ? (
-            <React.Fragment>
+        {/* --- section 2 --- Get Data Product --- */}
+        <Card isNormal>
+          {/* --- untuk hapus melalui button --- */}
+          <Overflow>
+            {topic === null ? (
+              <React.Fragment>
+                <Table>
+                  <thead>
+                    <tr>
+                      <Th>
+                        <DehazeIcon />
+                      </Th>
+                      <Th>Name</Th>
+                      <Th>Slug</Th>
+                      <Th>Created At</Th>
+                      <Th>Update At</Th>
+                      <Th style={{ width: '100px' }}>Actions</Th>
+                    </tr>
+                  </thead>
+                </Table>
+                <div style={Styles.IsLoading}>
+                  <CircularProgress />
+                </div>
+              </React.Fragment>
+            ) : topic.data.length >= 1 ? (
               <Table>
                 <thead>
                   <tr>
                     <Th>
-                      <DehazeIcon />
+                      <Input checkbox type="checkbox" />
                     </Th>
                     <Th>Name</Th>
                     <Th>Slug</Th>
@@ -129,105 +157,87 @@ const DataTopic = (props) => {
                     <Th style={{ width: '100px' }}>Actions</Th>
                   </tr>
                 </thead>
-              </Table>
-              <div style={Styles.IsLoading}>
-                <CircularProgress />
-              </div>
-            </React.Fragment>
-          ) : topic.data.length >= 1 ? (
-            <Table>
-              <thead>
-                <tr>
-                  <Th>
-                    <Input checkbox type="checkbox" />
-                  </Th>
-                  <Th>Name</Th>
-                  <Th>Slug</Th>
-                  <Th>Created At</Th>
-                  <Th>Update At</Th>
-                  <Th style={{ width: '100px' }}>Actions</Th>
-                </tr>
-              </thead>
-              <tbody>
-                {topic.data
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((item) => {
-                    return (
-                      <tr key={item._id}>
-                        <Th>
-                          <Input
-                            checkbox
-                            type="checkbox"
-                            id={item._id}
-                            value={item._id}
-                            onChange={handleCheckboxChange}
-                          />
-                        </Th>
+                <tbody>
+                  {topic.data
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((item) => {
+                      return (
+                        <tr key={item._id}>
+                          <Th>
+                            <Input
+                              checkbox
+                              type="checkbox"
+                              id={item._id}
+                              value={item._id}
+                              onChange={handleCheckboxChange}
+                            />
+                          </Th>
 
-                        <Th as="td" td>
-                          {item.name}
-                        </Th>
-                        <Th as="td" td>
-                          {item.slug}
-                        </Th>
-                        <Th as="td" td>
-                          {moment(item.created_at).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
-                        </Th>
-                        <Th as="td" td>
-                          {moment(item.updated_at).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
-                        </Th>
+                          <Th as="td" td>
+                            {item.name}
+                          </Th>
+                          <Th as="td" td>
+                            {item.slug}
+                          </Th>
+                          <Th as="td" td>
+                            {moment(item.created_at).format(
+                              'MMMM Do YYYY, h:mm:ss a'
+                            )}
+                          </Th>
+                          <Th as="td" td>
+                            {moment(item.updated_at).format(
+                              'MMMM Do YYYY, h:mm:ss a'
+                            )}
+                          </Th>
 
-                        <Th as="td" td>
-                          <div style={Styles.FlexRow}>
-                            <UpdateTopic id={item._id} topic={topic} />
-                            <DeleteTopic id={item._id} />
-                          </div>
-                        </Th>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <TablePagination
-                    rowsPerPageOptions={[10, 15, 20]}
-                    count={topic !== null && topic.data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                  />
-                </tr>
-              </tfoot>
-            </Table>
-          ) : (
-            <React.Fragment>
-              <Table>
-                <thead>
+                          <Th as="td" td>
+                            <div style={Styles.FlexRow}>
+                              <UpdateTopic id={item._id} topic={topic} />
+                              <DeleteTopic id={item._id} />
+                            </div>
+                          </Th>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+                <tfoot>
                   <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Slug</Th>
-                    <Th>Created At</Th>
-                    <Th>Update At</Th>
-                    <Th style={{ width: '100px' }}>Actions</Th>
+                    <TablePagination
+                      rowsPerPageOptions={[10, 15, 20]}
+                      count={topic !== null && topic.data.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      onChangePage={handleChangePage}
+                      onChangeRowsPerPage={handleChangeRowsPerPage}
+                    />
                   </tr>
-                </thead>
+                </tfoot>
               </Table>
-              <div style={Styles.IsLoading}>
-                You have no topic in this date range.
-              </div>
-            </React.Fragment>
-          )}
-        </Overflow>
-      </Card>
-    </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Table>
+                  <thead>
+                    <tr>
+                      <Th>
+                        <DehazeIcon />
+                      </Th>
+                      <Th>Name</Th>
+                      <Th>Slug</Th>
+                      <Th>Created At</Th>
+                      <Th>Update At</Th>
+                      <Th style={{ width: '100px' }}>Actions</Th>
+                    </tr>
+                  </thead>
+                </Table>
+                <div style={Styles.IsLoading}>
+                  You have no topic in this date range.
+                </div>
+              </React.Fragment>
+            )}
+          </Overflow>
+        </Card>
+      </React.Fragment>
+    </>
   );
 };
 
