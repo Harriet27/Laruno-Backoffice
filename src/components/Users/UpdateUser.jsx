@@ -6,10 +6,9 @@ import CreateIcon from '@material-ui/icons/Create';
 import InputUpdateUser from './InputUpdateUser';
 
 const UpdateUser = (props) => {
-  const { className } = props;
+  const { className, id, users } = props;
   const [modal, setModal] = useState({
     open: false,
-    id: null,
   });
 
   console.log(modal, 'mau tahu modal di order');
@@ -17,8 +16,16 @@ const UpdateUser = (props) => {
     setModal({
       ...modal,
       open: !modal.open,
-      id: props.id,
     });
+
+  const UsersFilter =
+    users !== null &&
+    users.data.filter((item) => {
+      return item._id === id;
+    });
+  const Users = UsersFilter[0];
+
+  console.log(Users, 'INI TOPIC TEST TOPIC');
   return (
     <div>
       <ButtonLink onClick={toggle}>
@@ -27,7 +34,7 @@ const UpdateUser = (props) => {
       <Modal isOpen={modal.open} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Update User</ModalHeader>
         <ModalBody>
-          <InputUpdateUser id={modal.id} toggle={toggle} />
+          <InputUpdateUser id={id} users={Users} toggle={toggle} />
         </ModalBody>
       </Modal>
     </div>

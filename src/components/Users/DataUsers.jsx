@@ -21,6 +21,7 @@ import AddAdministrator from './AddAdministrator';
 import UpdateUser from './UpdateUser';
 import DeleteUser from './DeleteUser';
 import { CircularProgress } from '@material-ui/core';
+import TotalDataUsers from './TotalDataUsers';
 
 const DataTopic = (props) => {
   const dispatch = useDispatch();
@@ -91,64 +92,99 @@ const DataTopic = (props) => {
   // };
 
   return (
-    <React.Fragment>
-      {/* --- section 1 --- Button Action link to Add Product ---*/}
-      {form.id[0] ? (
-        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
-            Actions
-          </DropdownToggle>
-          <DropdownMenu>
-            <MultipleDelete onSubmit={handleMultipleDelete} />
+    <>
+      <>
+        <TotalDataUsers users={users} />
+      </>
+      <React.Fragment>
+        {/* --- section 1 --- Button Action link to Add Product ---*/}
+        {form.id[0] ? (
+          <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
+              Actions
+            </DropdownToggle>
+            <DropdownMenu>
+              <MultipleDelete onSubmit={handleMultipleDelete} />
 
-            {/* <DropdownItem onClick={handleMultipleClone}>
+              {/* <DropdownItem onClick={handleMultipleClone}>
                                 Clone
                             </DropdownItem> */}
-          </DropdownMenu>
-        </Dropdown>
-      ) : (
-        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          {' '}
-          <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret disabled>
-            Actions
-          </DropdownToggle>
-        </Dropdown>
-      )}
+            </DropdownMenu>
+          </Dropdown>
+        ) : (
+          <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
+            {' '}
+            <DropdownToggle
+              style={{ backgroundColor: '#0098DA' }}
+              caret
+              disabled
+            >
+              Actions
+            </DropdownToggle>
+          </Dropdown>
+        )}
 
-      <div
-        style={{
-          margin: '20px 0',
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
-        <AddAdministrator />
+        <div
+          style={{
+            margin: '20px 0',
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
+          <AddAdministrator />
 
-        <div>
-          <label>Search</label>{' '}
-          <Input
-            type="search"
-            name="search"
-            value={searching.search}
-            onChange={handleChange}
-          />
+          <div>
+            <label>Search</label>{' '}
+            <Input
+              type="search"
+              name="search"
+              value={searching.search}
+              onChange={handleChange}
+            />
+          </div>
+          {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
         </div>
-        {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
-      </div>
 
-      {/* --- section 2 --- Get Data Product --- */}
-      <Card isNormal>
-        {/* --- untuk hapus melalui button --- */}
-        <Overflow>
-          {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
+        {/* --- section 2 --- Get Data Product --- */}
+        <Card isNormal>
+          {/* --- untuk hapus melalui button --- */}
+          <Overflow>
+            {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
                      di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
-          {users === null ? (
-            <React.Fragment>
+            {users === null ? (
+              <React.Fragment>
+                <Table>
+                  <thead>
+                    <tr>
+                      <Th>
+                        <DehazeIcon />
+                      </Th>
+                      <Th>Name</Th>
+                      <Th>Email</Th>
+                      <Th>Role</Th>
+                      <Th>Phone</Th>
+                      <Th>Created At</Th>
+                      <Th>Updated At</Th>
+                      <Th style={{ width: '100px' }}>Actions</Th>
+                    </tr>
+                  </thead>
+                </Table>
+                <div
+                  style={{
+                    textAlign: 'center',
+                    padding: '100px',
+                  }}
+                >
+                  <CircularProgress />
+                </div>
+              </React.Fragment>
+            ) : users.data.length >= 1 ? (
               <Table>
                 <thead>
                   <tr>
                     <Th>
-                      <DehazeIcon />
+                      {/* ---Belum di kasih logic --- */}
+                      <Input checkbox type="checkbox" />
                     </Th>
                     <Th>Name</Th>
                     <Th>Email</Th>
@@ -159,139 +195,115 @@ const DataTopic = (props) => {
                     <Th style={{ width: '100px' }}>Actions</Th>
                   </tr>
                 </thead>
-              </Table>
-              <div
-                style={{
-                  textAlign: 'center',
-                  padding: '100px',
-                }}
-              >
-                <CircularProgress />
-              </div>
-            </React.Fragment>
-          ) : users.data.length >= 1 ? (
-            <Table>
-              <thead>
-                <tr>
-                  <Th>
-                    {/* ---Belum di kasih logic --- */}
-                    <Input checkbox type="checkbox" />
-                  </Th>
-                  <Th>Name</Th>
-                  <Th>Email</Th>
-                  <Th>Role</Th>
-                  <Th>Phone</Th>
-                  <Th>Created At</Th>
-                  <Th>Updated At</Th>
-                  <Th style={{ width: '100px' }}>Actions</Th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.data
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((item) => {
-                    return (
-                      <tr key={item._id}>
-                        <Th>
-                          <Input
-                            checkbox
-                            type="checkbox"
-                            id={item._id}
-                            value={item._id}
-                            onChange={handleCheckboxChange}
-                          />
-                        </Th>
+                <tbody>
+                  {users.data
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((item) => {
+                      return (
+                        <tr key={item._id}>
+                          <Th>
+                            <Input
+                              checkbox
+                              type="checkbox"
+                              id={item._id}
+                              value={item._id}
+                              onChange={handleCheckboxChange}
+                            />
+                          </Th>
 
-                        <Th as="td" td>
-                          {item.name}
-                        </Th>
-                        <Th as="td" td>
-                          {item.email}
-                        </Th>
-                        <Th as="td" td>
-                          <div
-                            style={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                            }}
-                          >
-                            {item.role.map((id) => {
-                              return <p key={id._id}>{id.adminType} &nbsp;</p>;
-                            })}
-                          </div>
-                        </Th>
-                        <Th as="td" td>
-                          {item.phone_number}
-                        </Th>
-                        <Th as="td" td>
-                          {moment(item.created_at).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
-                        </Th>
-                        <Th as="td" td>
-                          {moment(item.updated_at).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
-                        </Th>
+                          <Th as="td" td>
+                            {item.name}
+                          </Th>
+                          <Th as="td" td>
+                            {item.email}
+                          </Th>
+                          <Th as="td" td>
+                            <div
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                              }}
+                            >
+                              {item.role.map((id) => {
+                                return (
+                                  <p key={id._id}>{id.adminType} &nbsp;</p>
+                                );
+                              })}
+                            </div>
+                          </Th>
+                          <Th as="td" td>
+                            {item.phone_number}
+                          </Th>
+                          <Th as="td" td>
+                            {moment(item.created_at).format(
+                              'MMMM Do YYYY, h:mm:ss a'
+                            )}
+                          </Th>
+                          <Th as="td" td>
+                            {moment(item.updated_at).format(
+                              'MMMM Do YYYY, h:mm:ss a'
+                            )}
+                          </Th>
 
-                        <Th as="td" td>
-                          <div
-                            style={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                            }}
-                          >
-                            <UpdateUser id={item._id} />
+                          <Th as="td" td>
+                            <div
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                              }}
+                            >
+                              <UpdateUser id={item._id} users={users} />
 
-                            <DeleteUser id={item._id} />
-                          </div>
-                        </Th>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <TablePagination
-                    rowsPerPageOptions={[10, 15, 20]}
-                    count={users !== null && users.data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                  />
-                </tr>
-              </tfoot>
-            </Table>
-          ) : (
-            <React.Fragment>
-              <Table>
-                <thead>
+                              <DeleteUser id={item._id} />
+                            </div>
+                          </Th>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+                <tfoot>
                   <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Slug</Th>
-                    <Th>Created At</Th>
-                    <Th>Update At</Th>
-                    <Th style={{ width: '100px' }}>Actions</Th>
+                    <TablePagination
+                      rowsPerPageOptions={[10, 15, 20]}
+                      count={users !== null && users.data.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      onChangePage={handleChangePage}
+                      onChangeRowsPerPage={handleChangeRowsPerPage}
+                    />
                   </tr>
-                </thead>
+                </tfoot>
               </Table>
-              <div
-                style={{
-                  textAlign: 'center',
-                  padding: '100px',
-                }}
-              >
-                You have no users in this date range.
-              </div>
-            </React.Fragment>
-          )}
-        </Overflow>
-      </Card>
-    </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Table>
+                  <thead>
+                    <tr>
+                      <Th>
+                        <DehazeIcon />
+                      </Th>
+                      <Th>Name</Th>
+                      <Th>Slug</Th>
+                      <Th>Created At</Th>
+                      <Th>Update At</Th>
+                      <Th style={{ width: '100px' }}>Actions</Th>
+                    </tr>
+                  </thead>
+                </Table>
+                <div
+                  style={{
+                    textAlign: 'center',
+                    padding: '100px',
+                  }}
+                >
+                  You have no users in this date range.
+                </div>
+              </React.Fragment>
+            )}
+          </Overflow>
+        </Card>
+      </React.Fragment>
+    </>
   );
 };
 

@@ -39,13 +39,13 @@ const Input = Styled.input`
 export default function InputUpdateUser(props) {
   // ---Input value --- //
   const InputValue = (props) => {
-    const { name, email, phone_number, id } = props;
+    const { name, email, phone_number, id, role } = props;
     const dispatch = useDispatch();
     const [form, setForm] = useState({
       name: name || '',
       email: email || '',
       phone_number: phone_number || '',
-      role: '',
+      role: [],
       password: '',
     });
     console.log(form, 'form');
@@ -132,9 +132,9 @@ export default function InputUpdateUser(props) {
                 type="password"
                 name="password"
                 id="password"
-                value={form.password}
+                defaultValue={form.password}
                 onChange={handleChange}
-                placeholder="Password"
+                placeholder="password"
               />
             </>
           </WrapForm>
@@ -174,36 +174,18 @@ export default function InputUpdateUser(props) {
   };
 
   // ---- Finish ----//
-  const dispatch = useDispatch();
-  const { id, toggle } = props;
-  const users = useSelector((state) => state.user.showUsers);
-  console.log(users, 'update tpic by id');
 
-  useEffect(() => {
-    dispatch(fetchGetShowUsers(id));
-    // eslint-disable-next-line
-  }, [dispatch]);
+  const { id, toggle, users } = props;
 
   return (
     <section>
       <InputValue
-        name={
-          users === null || users.data._id !== id
-            ? 'Loading...'
-            : users.data.name
-        }
-        email={
-          users === null || users.data._id !== id
-            ? 'Loading...'
-            : users.data.email
-        }
-        phone_number={
-          users === null || users.data._id !== id
-            ? 'Loading'
-            : users.data.phone_number
-        }
+        name={users.name}
+        email={users.email}
+        phone_number={users.phone_number}
         id={id}
         toggle={toggle}
+        role={users.roles}
       />
     </section>
   );

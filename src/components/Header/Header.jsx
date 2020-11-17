@@ -120,11 +120,11 @@ const Header = () => {
                     <Span>roles</Span>
                   </DropdownItem>
                 </Link>
-                {/* <Link to="/users">
+                <Link to="/users">
                   <DropdownItem>
                     <Span>Users</Span>
                   </DropdownItem>
-                </Link> */}
+                </Link>
                 <Link to="/coupons">
                   <DropdownItem>
                     <Span>coupons</Span>
