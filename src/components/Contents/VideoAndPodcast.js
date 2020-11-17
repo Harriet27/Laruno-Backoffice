@@ -1,5 +1,6 @@
 import React from 'react';
 import Styled from 'styled-components';
+import { Spinner } from 'reactstrap';
 
 const LabelImage = Styled.label`
 border: 1px solid #ccc;
@@ -28,7 +29,9 @@ export default function VideoAndPodcast(props) {
           onChange={onChange}
           accept={accept}
         />
-        {isLoading ? 'Loading...' : 'Upload'}
+        <div style={{ width: '100px', textAlign: 'center' }}>
+          {isLoading ? <Spinner /> : 'Upload'}
+        </div>
       </LabelImage>
       {/* <button onClick={onSubmit}>Upload</button> */}
     </React.Fragment>

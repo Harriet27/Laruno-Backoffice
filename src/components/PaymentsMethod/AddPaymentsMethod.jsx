@@ -43,13 +43,19 @@ export default function AddPaymentsMethod() {
     info: '',
   });
 
+  const [state, setState] = useState({
+    isLoading: false,
+  });
   // --- Fetch submit method Post --- //
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(AddPaymentMethodSchema),
   });
 
   const onSubmit = async (event) => {
-    dispatch(fetchPostPaymentsMethod(form));
+    setState({
+      isLoading: true,
+    });
+    dispatch(fetchPostPaymentsMethod(form, setState));
   };
   // --- Change Value when Input Active --- //
   const handleChange = (event) => {
@@ -58,6 +64,7 @@ export default function AddPaymentsMethod() {
 
   return (
     <ModalSmart
+      isLoading={state.isLoading}
       buttonLabel="Add Payments"
       title="Add Payments Method"
       onClickConfirm={handleSubmit(onSubmit)}

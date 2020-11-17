@@ -4,7 +4,7 @@ const GET_COUPONS = 'GET_COUPONS';
 const SHOW_COUPONS = 'SHOW_COUPONS';
 // --- Post Coupons --- //
 
-const fetchPostCoupons = (form, history) => async () => {
+const fetchPostCoupons = (form, setState) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   const url = `${process.env.REACT_APP_API_LIVE}/api/v1/coupons`;
 
@@ -27,7 +27,9 @@ const fetchPostCoupons = (form, history) => async () => {
 
   const response = await fetch(url, options);
   await response.json();
-
+  setState({
+    isLoading: false,
+  });
   if (response.status === 201) {
     Swal.fire({
       title: 'Add Succes!',
@@ -148,7 +150,7 @@ const fetchShowCoupons = (id) => async (dispatch) => {
 };
 
 // --- Update Coupons - Method PUT ---- //
-const fetchUpdateCoupons = (form, id) => async () => {
+const fetchUpdateCoupons = ({ form, id, setState }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/coupons/${id}`;
@@ -171,7 +173,9 @@ const fetchUpdateCoupons = (form, id) => async () => {
     };
     const response = await fetch(url, options);
     await response.json();
-
+    setState({
+      isLoading: false,
+    });
     if (response.status === 200) {
       Swal.fire({
         title: 'Update Berhasil!',

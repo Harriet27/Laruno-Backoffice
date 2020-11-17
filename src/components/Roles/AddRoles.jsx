@@ -44,10 +44,15 @@ export default function AddRoles() {
     readWrite: false,
   });
 
+  const [state, setState] = useState({
+    isLoading: false,
+  });
   // --- Fetch submit method Post --- //
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    dispatch(fetchPostRoles(form));
+  const handleSubmit = (event) => {
+    setState({
+      isLoading: true,
+    });
+    dispatch(fetchPostRoles(form, setState));
   };
 
   // --- Change Value when Input Active --- //
@@ -71,6 +76,7 @@ export default function AddRoles() {
 
   return (
     <ModalSmart
+      isLoading={state.isLoading}
       buttonLabel="Add Roles"
       title="Add Roles"
       onClickConfirm={handleSubmit}

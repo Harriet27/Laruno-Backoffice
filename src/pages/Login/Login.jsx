@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { fetchPostLogin } from '../../store/actions';
 import Card from '../../elements/Card/Card';
 import ImageBrand from '../../assets/images/laruno1.png';
+import { Spinner } from 'reactstrap';
 
 // --- React hook form test --- //
 import { useForm } from 'react-hook-form';
@@ -55,6 +56,9 @@ export default function Login() {
     password: '',
   });
   console.log(form, 'form login');
+  const [state, setState] = useState({
+    isLogin: false,
+  });
   // react hook form
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(LoginSchema),
@@ -62,9 +66,12 @@ export default function Login() {
 
   // --- Fetch submit method Post --- //
   // const handleSubmit = async (event) => {};
-  const onSubmit = async (event) => {
+  const onSubmit = (event) => {
     // event.preventDefault();
-    dispatch(fetchPostLogin(form, history));
+    setState({
+      isLogin: true,
+    });
+    dispatch(fetchPostLogin({ form, history, setState }));
   };
   // --- Change Value when Input --- //
   const handleChange = (event) => {
@@ -123,7 +130,11 @@ export default function Login() {
           </WrapForm>
 
           <Input as="button" button>
-            Login
+            {state.isLogin ? (
+              <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
+            ) : (
+              'Login'
+            )}
           </Input>
         </form>
       </Card>

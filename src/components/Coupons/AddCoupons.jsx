@@ -52,6 +52,9 @@ export default function AddCoupons() {
     is_active: false,
   });
 
+  const [state, setState] = useState({
+    isLoading: false,
+  });
   const payment = useSelector((state) => state.payment.getPaymentsMethod);
   console.log(payment, 'payments');
   useEffect(() => {
@@ -64,7 +67,10 @@ export default function AddCoupons() {
     resolver: yupResolver(AddCouponsSchema),
   });
   const onSubmit = async (event) => {
-    dispatch(fetchPostCoupons(form));
+    setState({
+      isLoading: true,
+    });
+    dispatch(fetchPostCoupons(form, setState));
   };
   // --- Change Value when Input Active --- //
   const handleChange = (event) => {
@@ -76,6 +82,7 @@ export default function AddCoupons() {
   };
   return (
     <ModalSmart
+      isLoading={state.isLoading}
       styleModal={{ maxWidth: '700px', width: '100%' }}
       buttonLabel="Add Coupons"
       title="Add Coupons"

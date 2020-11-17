@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Spinner,
+} from 'reactstrap';
 import Styled from 'styled-components';
 import { md } from '../../elements/Styled/StyledForm';
 // --- Styled Components --- //
@@ -29,6 +36,7 @@ const ModalSmart = (props) => {
     title,
     onClickConfirm,
     styleModal,
+    isLoading,
   } = props;
 
   const [modal, setModal] = useState(false);
@@ -54,8 +62,16 @@ const ModalSmart = (props) => {
         </ModalBody>
         <ModalFooter>
           {/* onClickConfirm bisa berfungsi untuk mengkonusmi api */}
-          <Button color="primary" onClick={onClickConfirm}>
-            Confirm
+          <Button
+            color="primary"
+            onClick={onClickConfirm}
+            style={{ width: '100px', textAlign: 'center' }}
+          >
+            {isLoading ? (
+              <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
+            ) : (
+              'Confirm'
+            )}
           </Button>
           <Button color="secondary" onClick={toggle}>
             Cancel

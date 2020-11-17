@@ -11,7 +11,14 @@ import {
 } from '../../store/actions';
 import Styled from 'styled-components';
 import SingleImage from '../AddProduct/SingleImage';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Spinner,
+} from 'reactstrap';
 
 const [md, lg] = ['16px', '18px', '20px'];
 
@@ -67,10 +74,14 @@ export default function InputUpdateCoupons(props) {
       payment_method: payment_method || '',
       is_active: is_active || false,
     });
-
+    const [state, setState] = useState({
+      isLoading: false,
+    });
     const handleSubmit = (event) => {
-      event.preventDefault();
-      dispatch(fetchUpdateCoupons(form, id));
+      setState({
+        isLoading: true,
+      });
+      dispatch(fetchUpdateCoupons({ form, id, setState }));
     };
     const handleChange = (event) => {
       setForm({ ...form, [event.target.name]: event.target.value });
@@ -225,7 +236,13 @@ export default function InputUpdateCoupons(props) {
             Cancel
           </Button>{' '}
           <Button color="primary" onClick={handleSubmit}>
-            Update
+            <div style={{ width: '100px', textAlign: 'center' }}>
+              {state.isLoading ? (
+                <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
+              ) : (
+                'Update'
+              )}
+            </div>
           </Button>{' '}
         </ModalFooter>
       </>

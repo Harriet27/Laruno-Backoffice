@@ -5,7 +5,7 @@ const GET_ROLES = 'GET_ROLES';
 
 // --- Post Product --- //
 
-const fetchPostRoles = (form, history) => async () => {
+const fetchPostRoles = (form, setState) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   const url = `${process.env.REACT_APP_API_LIVE}/api/v1/roles`;
 
@@ -20,7 +20,9 @@ const fetchPostRoles = (form, history) => async () => {
 
   const response = await fetch(url, options);
   await response.json();
-
+  setState({
+    isLoading: false,
+  });
   if (response.status === 201) {
     Swal.fire({
       title: 'Add Succes!',
@@ -28,7 +30,7 @@ const fetchPostRoles = (form, history) => async () => {
       icon: 'success',
     });
 
-    history.push('/');
+    window.location.reload();
   }
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Spinner } from 'reactstrap';
 import Styled from 'styled-components';
 
 const LabelImage = Styled.label`
@@ -29,7 +29,9 @@ export default function MediaUrl(props) {
           disabled={isLoading}
           accept="video/mp4,video/x-m4v,video/*,image/x-png,image/gif,image/jpeg"
         />
-        {isLoading ? 'Loading...' : 'Upload Media'}
+        <div style={{ width: '100px', textAlign: 'center' }}>
+          {isLoading ? <Spinner /> : 'Upload Media'}
+        </div>
       </LabelImage>
     </React.Fragment>
   );

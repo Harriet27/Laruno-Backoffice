@@ -28,7 +28,7 @@ const fetchGetPaymentsMethod = () => async (dispatch) => {
 };
 
 // --- Post Payments --- //
-const fetchPostPaymentsMethod = (form) => async () => {
+const fetchPostPaymentsMethod = (form, setState) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/payments/method`;
@@ -42,6 +42,9 @@ const fetchPostPaymentsMethod = (form) => async () => {
     };
     const response = await fetch(url, options);
     await response.json();
+    setState({
+      isLoading: false,
+    });
     if (response.status === 201) {
       Swal.fire({
         title: 'Tambah Payments Berhasil!',

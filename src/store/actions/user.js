@@ -6,7 +6,7 @@ const LOGOUT = 'LOGOUT';
 // ----------- || --- || Authentication || --- || ------------ //
 
 // --- login In BackOffice --- //
-const fetchPostLogin = (form, history) => async (dispatch) => {
+const fetchPostLogin = ({ form, history, setState }) => async (dispatch) => {
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/auth/login`;
     const options = {
@@ -19,7 +19,9 @@ const fetchPostLogin = (form, history) => async (dispatch) => {
 
     const response = await fetch(url, options);
     const result = await response.json();
-
+    setState({
+      isLogin: false,
+    });
     if (response.status === 201) {
       Swal.fire({
         title: 'Berhasil Login!',
