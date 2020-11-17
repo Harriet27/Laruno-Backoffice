@@ -3,8 +3,12 @@ const GET_CONTENTS = 'GET_CONTENTS';
 const FIND_CONTENTS = 'FIND_CONTENTS';
 const SHOW_CONTENTS = 'SHOW_CONTENTS';
 // --- Post Fulfillments --- //
-
-const fetchPostContents = (form, history) => async () => {
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: true,
+});
+const fetchPostContents = ({ form, history, setState }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents`;
 
@@ -18,8 +22,10 @@ const fetchPostContents = (form, history) => async () => {
   };
 
   const response = await fetch(url, options);
-  await response.json();
-
+  setState({
+    isLoading: false,
+  });
+  const result = await response.json();
   if (response.status === 201) {
     Swal.fire({
       title: 'Add Succes!',
@@ -29,11 +35,15 @@ const fetchPostContents = (form, history) => async () => {
 
     history.push('/contents');
   } else if (response.status === 400) {
-    Swal.fire({
-      title: 'Field Not Found!',
-      text: 'Field Tidak Boleh ada yang kosong',
-      icon: 'error',
-    });
+    const Errors = result.message;
+    if (Errors) {
+      Errors.map((err) => {
+        return Toast.fire({
+          icon: 'error',
+          title: err,
+        });
+      });
+    }
   }
 };
 

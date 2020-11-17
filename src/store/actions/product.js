@@ -3,53 +3,61 @@ const GET_PRODUCT = 'GET_PRODUCT';
 const FIND_PRODUCT = 'FIND_PRODUCT';
 const SHOW_PRODUCT = 'SHOW_PRODUCT';
 // --- Post Product --- //
-
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: true,
+});
 const fetchPostProducts = ({ form, history, setState }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products`;
 
-  // --- apabila form itu kosong maka hapus formnya --- //
-  for (let key in form) {
-    if (form[key] === '') {
-      delete form[key];
+  try {
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products`;
+
+    // --- apabila form itu kosong maka hapus formnya --- //
+    for (let key in form) {
+      if (form[key] === '') {
+        delete form[key];
+      }
     }
-  }
-  // --- penting nih --- //
 
-  const options = {
-    body: JSON.stringify(form),
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  };
+    // --- penting nih --- //
 
-  const response = await fetch(url, options);
-  await response.json();
-  setState({
-    isLoading: false,
-  });
-  if (response.status === 201) {
-    Swal.fire({
-      title: 'Add Succes!',
-      text: '',
-      icon: 'success',
-    });
+    const options = {
+      body: JSON.stringify(form),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-    history.push('/product');
-  } else if (response.status === 400) {
-    Swal.fire({
-      title: 'check kembali!',
-      text: '',
-      icon: 'warning',
+    const response = await fetch(url, options);
+    const result = await response.json();
+    setState({
+      isLoading: false,
     });
-  } else {
-    Swal.fire({
-      title: 'Sedang dalam perbaikan!',
-      text: '',
-      icon: 'error',
-    });
+    if (response.status === 201) {
+      Swal.fire({
+        title: 'Add Succes!',
+        text: '',
+        icon: 'success',
+      });
+
+      history.push('/product');
+    } else if (response.status === 400) {
+      const Errors = result.message;
+      if (Errors) {
+        Errors.map((err) => {
+          return Toast.fire({
+            icon: 'error',
+            title: err,
+          });
+        });
+      }
+    }
+  } catch (error) {
+    console.log(error.message);
   }
 };
 

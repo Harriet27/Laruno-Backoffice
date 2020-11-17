@@ -51,44 +51,20 @@ export default function TestAddProduct() {
     code: '',
     slug: '',
     type: '',
-    webinar: {
-      date: '',
-      duration: '',
-      start_time: '',
-      client_url: '',
-    },
-    ecommerce: {
-      weight: 0,
-      shipping_charges: true,
-      stock: 0,
-    },
+    webinar: '',
+    ecommerce: '',
     topic: [],
     price: 0,
     time_period: '',
     visibility: '',
     sale_method: '',
-    bump: [
-      {
-        bump_name: '',
-        bump_price: 0,
-        bump_weight: '',
-        bump_image: '',
-        bump_heading: '',
-        bump_desc: '',
-      },
-    ],
+    bump: '',
 
     // --- Section 2 --- //
     headline: '',
     subheadline: '',
     description: '',
-    learn_about: [
-      {
-        title: '',
-        content: '',
-        note: '',
-      },
-    ],
+    learn_about: '',
     sale_price: 0,
     image_url: [],
     // video_url: '',
@@ -98,17 +74,8 @@ export default function TestAddProduct() {
     // image_product_url: [],
     // --- media url --- //
     media_url: '',
-    section: [
-      {
-        title: '',
-        content: '',
-        image: '',
-      },
-    ],
-    feature: {
-      feature_onheader: '',
-      feature_onpage: '',
-    },
+    section: '',
+    feature: '',
   });
   console.log('FORM ADD PRODUCT', form);
   const [state, setState] = useState({
@@ -175,7 +142,7 @@ export default function TestAddProduct() {
       setObjEcommerce({ ...objEcommerce, shipping_charges: false });
     }
   };
-
+  console.log(form.bump, 'form_bump');
   form.bump = [{ ...objBump }];
   form.webinar = { ...objWebinar };
   form.ecommerce = { ...objEcommerce };

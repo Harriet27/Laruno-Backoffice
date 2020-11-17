@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const handleChange = (e) => {
-  let a = e.target.id;
-  // let b = (e.target.type = 'text');
-  e.target.type = 'text';
-  e.target.type = 'file';
-
-  // console.log({ a, b, c });
-};
 export default function Test() {
+  const [fields, setFields] = useState([{ product_id: '' }]);
+  const handleChange = (event, index) => {
+    const values = [...fields];
+
+    values[index].product_id = event.target.value;
+
+    setFields(values);
+  };
+
+  function handleAdd() {
+    //  menambahkan field ke dalam value input terbaru
+    const values = [...fields];
+    values.push({ product_id: '' });
+
+    setFields(values);
+  }
+  console.log(fields, 'fields');
   return (
     <div>
-      <input type="file" onChange={handleChange} />
+      {fields.map((item, index) => {
+        return (
+          <input
+            type="text"
+            onChange={(event) => {
+              handleChange(event, index);
+            }}
+            value={item.product_id}
+          />
+        );
+      })}
+      <button onClick={handleAdd}>add</button>
     </div>
   );
 }

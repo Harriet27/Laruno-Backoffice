@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchPostContents } from '../../store/actions';
 import AppBar from '@material-ui/core/AppBar';
+import { Spinner } from 'reactstrap';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from '../../elements/TabPanel/TabPanel';
@@ -56,10 +57,15 @@ export default function AddContents() {
     tag: [],
   });
 
+  const [state, setState] = useState({
+    isLoading: false,
+  });
   // --- Langsung Berhubungan Dengan Form --- //
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(fetchPostContents(form, history));
+  const handleSubmit = () => {
+    setState({
+      isLoading: true,
+    });
+    dispatch(fetchPostContents({ form, history, setState }));
   };
   const handleChangeForm = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -231,7 +237,20 @@ export default function AddContents() {
               onClick={handleSubmit}
               style={{ background: '#70CA63' }}
             >
-              <i className="fa fa-save"></i> Save
+              <div style={{ width: '100px', textAlign: 'center' }}>
+                {state.isLoading ? (
+                  <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
+                ) : (
+                  <>
+                    {' '}
+                    <i
+                      style={{ marginRight: '5px' }}
+                      className="fa fa-save"
+                    ></i>
+                    Save
+                  </>
+                )}
+              </div>
             </ButtonStyled>
           </div>
         </div>
