@@ -63,7 +63,7 @@ export default function AddAdministrator() {
     password: '',
     phone_number: '',
   });
-
+  console.log(form, 'form');
   const [state, setState] = useState({
     isLoading: false,
   });
@@ -73,7 +73,7 @@ export default function AddAdministrator() {
     resolver: yupResolver(AddAdministratorSchema),
   });
 
-  const onSubmit = async (event) => {
+  const onSubmit = () => {
     setState({
       isLoading: true,
     });

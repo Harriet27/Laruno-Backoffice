@@ -88,7 +88,7 @@ const fetchGetUsersAuthentication = () => async (dispatch) => {
 // ----------- || --- || Users Administrator || --- || ------------ //
 
 // --- Add Administrator for SuperAdmin --- //
-const fetchPostAdministrator = (form, history, setState) => async () => {
+const fetchPostAdministrator = ({ form, history, setState }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users`;
@@ -112,7 +112,7 @@ const fetchPostAdministrator = (form, history, setState) => async () => {
         icon: 'success',
       });
       window.location.reload('/users');
-    } else {
+    } else if (response.status === 400) {
       Swal.fire({
         title: 'Email Yang di buat tidak sesuai atau sudah terdaftar',
         text: '',
@@ -121,7 +121,7 @@ const fetchPostAdministrator = (form, history, setState) => async () => {
     }
   } catch (error) {
     Swal.fire({
-      title: 'Email ini sudah terdaftar',
+      title: 'Email Not Valid',
       text: '',
       icon: 'error',
     });
