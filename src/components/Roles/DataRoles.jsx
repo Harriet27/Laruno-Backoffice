@@ -157,7 +157,7 @@ const DataRoles = (props) => {
                 </div>
               </React.Fragment>
             ) : roles.data.length >= 1 ? (
-              <Table>
+              <Table striped>
                 <thead>
                   <tr>
                     <Th>

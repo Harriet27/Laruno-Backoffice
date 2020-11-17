@@ -112,7 +112,7 @@ export default function DataTemplateFollowUp(props) {
               </div>
             </React.Fragment>
           ) : followup.data.length >= 1 ? (
-            <Table>
+            <Table striped>
               <thead>
                 <tr>
                   <Th>

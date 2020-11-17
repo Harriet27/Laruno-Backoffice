@@ -144,7 +144,7 @@ const DataTopic = (props) => {
                 </div>
               </React.Fragment>
             ) : topic.data.length >= 1 ? (
-              <Table>
+              <Table striped>
                 <thead>
                   <tr>
                     <Th>

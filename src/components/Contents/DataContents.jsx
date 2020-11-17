@@ -136,7 +136,7 @@ const DataContents = (props) => {
               </div>
             </React.Fragment>
           ) : contents.data.length >= 1 ? (
-            <Table>
+            <Table striped>
               <thead>
                 <tr>
                   <Th>

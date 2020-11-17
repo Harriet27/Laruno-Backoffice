@@ -148,7 +148,7 @@ const DataCoupons = (props) => {
               </div>
             </React.Fragment>
           ) : coupons.data.length >= 1 ? (
-            <Table>
+            <Table striped>
               <thead>
                 <tr>
                   <Th>
