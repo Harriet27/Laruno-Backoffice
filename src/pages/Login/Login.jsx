@@ -128,14 +128,20 @@ export default function Login() {
               {errors.password?.message}
             </span>
           </WrapForm>
-
-          <Input as="button" button>
-            {state.isLogin ? (
+          {state.isLogin ? (
+            <Input
+              disabled
+              style={{ cursor: 'not-allowed' }}
+              as="button"
+              button
+            >
               <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
-            ) : (
-              'Login'
-            )}
-          </Input>
+            </Input>
+          ) : (
+            <Input as="button" button>
+              Login
+            </Input>
+          )}
         </form>
       </Card>
     </Section>
