@@ -4,7 +4,7 @@ const FIND_PRODUCT = 'FIND_PRODUCT';
 const SHOW_PRODUCT = 'SHOW_PRODUCT';
 // --- Post Product --- //
 
-const fetchPostProducts = (form, history) => async () => {
+const fetchPostProducts = ({ form, history, setState }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products`;
 
@@ -27,7 +27,9 @@ const fetchPostProducts = (form, history) => async () => {
 
   const response = await fetch(url, options);
   await response.json();
-
+  setState({
+    isLoading: false,
+  });
   if (response.status === 201) {
     Swal.fire({
       title: 'Add Succes!',

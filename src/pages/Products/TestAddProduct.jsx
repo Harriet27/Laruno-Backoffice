@@ -19,6 +19,7 @@ import Layout from '../../components/AddProduct/Layout';
 import DynamicField from '../../components/AddProduct/DynamicField';
 import DynamicFieldSection from '../../components/AddProduct/DynamicFieldSection';
 import Bump from '../../components/AddProduct/Bump';
+import { Spinner } from 'reactstrap';
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
@@ -110,6 +111,9 @@ export default function TestAddProduct() {
     },
   });
   console.log('FORM ADD PRODUCT', form);
+  const [state, setState] = useState({
+    isLoading: false,
+  });
   // --- Detail Product --- //
   // --- Test Order Bump,  Webinar, ecommerce--- //
   const [objBump, setObjBump] = useState({
@@ -184,9 +188,11 @@ export default function TestAddProduct() {
   //     dispatch(fetchPostProducts(form, history));
   // };
   const handleSubmit = (event) => {
-    event.preventDefault();
+    setState({
+      isLoading: true,
+    });
     // history
-    dispatch(fetchPostProducts(form, history));
+    dispatch(fetchPostProducts({ form, history, setState }));
   };
 
   // handle change untuk onChange
@@ -488,7 +494,20 @@ export default function TestAddProduct() {
               onClick={handleSubmit}
               style={{ background: '#70CA63' }}
             >
-              <i className="fa fa-save"></i> Save
+              <div style={{ width: '100px', textAlign: 'center' }}>
+                {state.isLoading ? (
+                  <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
+                ) : (
+                  <>
+                    {' '}
+                    <i
+                      style={{ marginRight: '5px' }}
+                      className="fa fa-save"
+                    ></i>
+                    Save
+                  </>
+                )}
+              </div>
             </ButtonStyled>
           </div>
         </div>
