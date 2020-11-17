@@ -25,8 +25,9 @@ const fetchPostLogin = ({ form, history, setState }) => async (dispatch) => {
     if (response.status === 201) {
       Swal.fire({
         title: 'Berhasil Login!',
-        text: '',
+        timer: 1000,
         icon: 'success',
+        showConfirmButton: false,
       });
       localStorage.setItem('user', JSON.stringify(result));
 
@@ -36,8 +37,10 @@ const fetchPostLogin = ({ form, history, setState }) => async (dispatch) => {
     } else if (response.status === 400) {
       Swal.fire({
         title: 'Wrong email!',
-        text: 'Email atau kata sandi anda tidak valid',
+        text: result.message,
+        timer: 1000,
         icon: 'error',
+        showConfirmButton: false,
       });
     } else {
       Swal.fire({
@@ -110,6 +113,7 @@ const fetchPostAdministrator = ({ form, history, setState }) => async () => {
         title: 'Succes Add Administrator!',
         text: '',
         icon: 'success',
+        showConfirmButton: false,
       });
       window.location.reload('/users');
     } else if (response.status === 400) {
@@ -117,6 +121,8 @@ const fetchPostAdministrator = ({ form, history, setState }) => async () => {
         title: 'Email Yang di buat tidak sesuai atau sudah terdaftar',
         text: '',
         icon: 'error',
+        showConfirmButton: false,
+        timer: 2000,
       });
     }
   } catch (error) {
@@ -185,6 +191,7 @@ const fetchUpdateAdministrator = ({ form, id, setState }) => async () => {
         title: 'Update Berhasil!',
         text: '',
         icon: 'success',
+        showConfirmButton: false,
       });
       window.location.reload('/users');
     } else {
@@ -192,6 +199,8 @@ const fetchUpdateAdministrator = ({ form, id, setState }) => async () => {
         title: 'update gagal',
         text: '',
         icon: 'error',
+        showConfirmButton: false,
+        timer: 2000,
       });
     }
   } catch (error) {
@@ -211,20 +220,24 @@ const fetchDeleteAdministrator = (id) => async () => {
     },
   };
   const response = await fetch(url, options);
-  await response.json();
+  const result = await response.json();
 
   if (response.status === 200) {
     Swal.fire({
       title: 'Delete Berhasil!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 2000,
     });
     window.location.reload('/dashboard');
   } else {
     Swal.fire({
       title: 'Delete gagal',
-      text: '',
+      text: result.message,
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };
@@ -242,19 +255,21 @@ const fetchMultipleDeleteUsers = (form) => async () => {
     },
   };
   const response = await fetch(url, options);
-  await response.json();
+  const result = await response.json();
 
   if (response.status === 200) {
     Swal.fire({
       title: 'Delete Berhasil!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
     window.location.reload('/topic');
   } else {
     Swal.fire({
       title: 'Delete gagal',
-      text: '',
+      text: result.message,
       icon: 'error',
     });
   }
@@ -282,6 +297,8 @@ const logout = (history) => (dispatch, getState) => {
   Swal.fire({
     icon: 'success',
     title: 'Terima Kasih',
+    showConfirmButton: false,
+    timer: 1000,
   });
   localStorage.clear();
   history.push('/');
