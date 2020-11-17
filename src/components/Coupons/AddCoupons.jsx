@@ -84,7 +84,9 @@ export default function AddCoupons() {
     <ModalSmart
       isLoading={state.isLoading}
       styleModal={{ maxWidth: '700px', width: '100%' }}
-      buttonLabel="Add Coupons"
+      buttonLabel={
+        <div style={{ width: '65px', textAlign: 'center' }}>+Coupons</div>
+      }
       title="Add Coupons"
       onClickConfirm={handleSubmit(onSubmit)}
     >

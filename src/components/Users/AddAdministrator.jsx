@@ -101,7 +101,9 @@ export default function AddAdministrator() {
     <div style={{ width: '150px' }}>
       <ModalSmart
         onClickConfirm={handleSubmit(onSubmit)}
-        buttonLabel="Create Admin"
+        buttonLabel={
+          <div style={{ width: '65px', textAlign: 'center' }}>+ Admin</div>
+        }
         title="Add Administrator"
         isLoading={state.isLoading}
       >

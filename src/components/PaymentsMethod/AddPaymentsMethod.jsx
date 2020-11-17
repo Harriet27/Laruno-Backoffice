@@ -65,7 +65,9 @@ export default function AddPaymentsMethod() {
   return (
     <ModalSmart
       isLoading={state.isLoading}
-      buttonLabel="Add Payments"
+      buttonLabel={
+        <div style={{ width: '70px', textAlign: 'center' }}>+Payments</div>
+      }
       title="Add Payments Method"
       onClickConfirm={handleSubmit(onSubmit)}
     >

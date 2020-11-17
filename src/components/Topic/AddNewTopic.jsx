@@ -85,7 +85,9 @@ export default function AddNewTopic() {
 
   return (
     <ModalSmart
-      buttonLabel="Add Topic"
+      buttonLabel={
+        <div style={{ width: '65px', textAlign: 'center' }}>+ Topic</div>
+      }
       title="Add Topic"
       onClickConfirm={handleSubmit(onSubmit)}
       isLoading={state.isPost}
