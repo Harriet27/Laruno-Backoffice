@@ -64,6 +64,9 @@ export default function AddAdministrator() {
     phone_number: '',
   });
 
+  const [state, setState] = useState({
+    isLoading: false,
+  });
   // --- Fetch submit method Post --- //
 
   const { register, handleSubmit, errors } = useForm({
@@ -71,7 +74,10 @@ export default function AddAdministrator() {
   });
 
   const onSubmit = async (event) => {
-    dispatch(fetchPostAdministrator(form, history));
+    setState({
+      isLoading: true,
+    });
+    dispatch(fetchPostAdministrator({ form, history, setState }));
   };
 
   // --- merubah value setiap kali di ketik --- //
@@ -97,6 +103,7 @@ export default function AddAdministrator() {
         onClickConfirm={handleSubmit(onSubmit)}
         buttonLabel="Create Admin"
         title="Add Administrator"
+        isLoading={state.isLoading}
       >
         {/* <Section> */}
         {/* <Card

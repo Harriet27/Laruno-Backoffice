@@ -88,7 +88,7 @@ const fetchGetUsersAuthentication = () => async (dispatch) => {
 // ----------- || --- || Users Administrator || --- || ------------ //
 
 // --- Add Administrator for SuperAdmin --- //
-const fetchPostAdministrator = (form, history) => async () => {
+const fetchPostAdministrator = (form, history, setState) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users`;
@@ -102,7 +102,9 @@ const fetchPostAdministrator = (form, history) => async () => {
     };
     const response = await fetch(url, options);
     await response.json();
-
+    setState({
+      isLoading: false,
+    });
     if (response.status === 201) {
       Swal.fire({
         title: 'Succes Add Administrator!',
@@ -152,7 +154,7 @@ const fetchGetUsersAdministrator = () => async (dispatch) => {
 };
 
 // --- Update Administrator - Method PUT ---- //
-const fetchUpdateAdministrator = (form, id) => async () => {
+const fetchUpdateAdministrator = ({ form, id, setState }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/${id}`;
@@ -175,7 +177,9 @@ const fetchUpdateAdministrator = (form, id) => async () => {
     };
     const response = await fetch(url, options);
     await response.json();
-
+    setState({
+      isLoading: false,
+    });
     if (response.status === 200) {
       Swal.fire({
         title: 'Update Berhasil!',

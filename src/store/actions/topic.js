@@ -60,7 +60,7 @@ const fetchPostTopic = (form) => async () => {
 };
 
 // --- Update Topic --- Method PATCH --- //
-const fetchUpdateTopic = (form, id) => async () => {
+const fetchUpdateTopic = ({ form, id, setState }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/${id}`;
@@ -79,7 +79,9 @@ const fetchUpdateTopic = (form, id) => async () => {
     };
     const response = await fetch(url, options);
     await response.json();
-
+    setState({
+      isUpdate: false,
+    });
     if (response.status === 200) {
       Swal.fire({
         title: 'Update Berhasil!',

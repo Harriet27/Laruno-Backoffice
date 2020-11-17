@@ -6,7 +6,14 @@ import {
   fetchGetRoles,
 } from '../../store/actions';
 
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Spinner,
+} from 'reactstrap';
 import MultiSelect from '@khanacademy/react-multi-select';
 import Styled from 'styled-components';
 
@@ -42,6 +49,9 @@ export default function InputUpdateUser(props) {
       password: '',
     });
     console.log(form, 'form');
+    const [state, setState] = useState({
+      isLoading: false,
+    });
 
     const roles = useSelector((state) => state.roles.getRoles);
     let optionsRoles =
@@ -59,8 +69,10 @@ export default function InputUpdateUser(props) {
     }, [dispatch]);
 
     const handleSubmit = (event) => {
-      event.preventDefault();
-      dispatch(fetchUpdateAdministrator(form, id));
+      setState({
+        isLoading: true,
+      });
+      dispatch(fetchUpdateAdministrator({ form, id, setState }));
     };
     const handleSelect = (role) => {
       setForm({ ...form, role });
@@ -148,7 +160,13 @@ export default function InputUpdateUser(props) {
             Cancel
           </Button>{' '}
           <Button color="primary" onClick={handleSubmit}>
-            Update
+            <div style={{ width: '100px', textAlign: 'center' }}>
+              {state.isLoading ? (
+                <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
+              ) : (
+                '   Update'
+              )}
+            </div>
           </Button>{' '}
         </ModalFooter>
       </>

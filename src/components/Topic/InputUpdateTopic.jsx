@@ -7,7 +7,14 @@ import {
 } from '../../store/actions';
 import { Input } from '../../elements/Styled/StyledForm';
 import SingleImage from '../AddProduct/SingleImage';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Spinner,
+} from 'reactstrap';
 import { CircularProgress } from '@material-ui/core';
 export default function InputUpdateTopic(props) {
   // ---Input value --- //
@@ -18,10 +25,16 @@ export default function InputUpdateTopic(props) {
       name: name || '',
       icon: '',
     });
+    const [state, setState] = useState({
+      isLoading: false,
+      isUpdate: false,
+    });
     console.log(form, 'form');
     const handleSubmit = (event) => {
-      event.preventDefault();
-      dispatch(fetchUpdateTopic(form, id));
+      setState({
+        isUpdate: true,
+      });
+      dispatch(fetchUpdateTopic({ form, id, setState }));
     };
     const handleChange = (event) => {
       setForm({ ...form, [event.target.name]: event.target.value });
@@ -32,9 +45,7 @@ export default function InputUpdateTopic(props) {
       image: { icon: icon },
     });
     form.icon = formulir.image.icon;
-    const [state, setState] = useState({
-      isLoading: false,
-    });
+
     // --- HandleChange upload Image --- //
     const handleChangeImage = (e, id) => {
       let image = formulir.image;
@@ -94,7 +105,13 @@ export default function InputUpdateTopic(props) {
             Cancel
           </Button>{' '}
           <Button color="primary" onClick={handleSubmit}>
-            Update
+            <div style={{ width: '100px', textAlign: 'center' }}>
+              {state.isUpdate ? (
+                <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
+              ) : (
+                'Update'
+              )}
+            </div>
           </Button>{' '}
         </ModalFooter>
       </>
