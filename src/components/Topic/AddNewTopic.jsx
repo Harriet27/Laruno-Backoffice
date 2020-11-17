@@ -45,8 +45,11 @@ export default function AddNewTopic() {
   const [formulir, setFormulir] = useState({
     image: {},
   });
-  console.log(form, 'ini form');
 
+  const [state, setState] = useState({
+    isLoading: false,
+    isPost: false,
+  });
   form.icon = formulir.image.icon;
   // --- Fetch submit method Post --- //
 
@@ -55,7 +58,10 @@ export default function AddNewTopic() {
   });
 
   const onSubmit = async (event) => {
-    dispatch(fetchPostTopic(form));
+    setState({
+      isPost: true,
+    });
+    dispatch(fetchPostTopic(form, setState));
   };
 
   // --- Change Value when Input Active --- //
@@ -63,9 +69,6 @@ export default function AddNewTopic() {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  const [state, setState] = useState({
-    isLoading: false,
-  });
   // --- HandleChange upload Image --- //
   const handleChangeImage = (e, id) => {
     let image = formulir.image;
@@ -85,6 +88,7 @@ export default function AddNewTopic() {
       buttonLabel="Add Topic"
       title="Add Topic"
       onClickConfirm={handleSubmit(onSubmit)}
+      isLoading={state.isPost}
     >
       <Card>
         <WrapForm>

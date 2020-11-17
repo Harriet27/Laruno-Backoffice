@@ -42,17 +42,29 @@ const fetchPostProducts = ({ form, history, setState }) => async () => {
         title: 'Add Succes!',
         text: '',
         icon: 'success',
+        showConfirmButton: false,
+        timer: 1000,
       });
 
       history.push('/product');
     } else if (response.status === 400) {
       const Errors = result.message;
-      if (Errors) {
+      console.log(Errors.length, 'check length');
+      if (Errors.length >= 2) {
         Errors.map((err) => {
           return Toast.fire({
             icon: 'error',
             title: err,
+            timer: 2500,
+            showConfirmButton: false,
           });
+        });
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: result.message,
+          timer: 2500,
+          showConfirmButton: false,
         });
       }
     }
@@ -134,20 +146,24 @@ const fetchDeleteProduct = (id) => async () => {
     },
   };
   const response = await fetch(url, options);
-  await response.json();
+  const result = await response.json();
 
   if (response.status === 200) {
     Swal.fire({
       title: 'Delete Berhasil!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
-    window.location.reload('/topic');
+    window.location.reload('/product');
   } else {
     Swal.fire({
       title: 'Delete gagal',
-      text: '',
+      text: result.message,
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };
@@ -198,20 +214,24 @@ const fetchUpdateProduct = (form, id, history) => async () => {
       },
     };
     const response = await fetch(url, options);
-    await response.json();
+    const result = await response.json();
 
     if (response.status === 200) {
       Swal.fire({
         title: 'Update Berhasil!',
         text: '',
         icon: 'success',
+        showConfirmButton: false,
+        timer: 1000,
       });
       history.push('/product');
     } else {
       Swal.fire({
         title: 'update gagal',
-        text: '',
+        text: result.message,
         icon: 'error',
+        showConfirmButton: false,
+        timer: 2000,
       });
     }
   } catch (error) {
@@ -232,20 +252,24 @@ const fetchMultipleDeleteProduct = (form) => async () => {
     },
   };
   const response = await fetch(url, options);
-  await response.json();
+  const result = await response.json();
 
   if (response.status === 200) {
     Swal.fire({
       title: 'Delete Berhasil!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
     window.location.reload('/product');
   } else {
     Swal.fire({
       title: 'Delete gagal',
-      text: '',
+      text: result.message,
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };
@@ -263,20 +287,24 @@ const fetchMultipleCloneProduct = (form) => async () => {
     },
   };
   const response = await fetch(url, options);
-  await response.json();
+  const result = await response.json();
 
   if (response.status === 201) {
     Swal.fire({
       title: 'Clone Berhasil!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
     window.location.reload('/product');
   } else {
     Swal.fire({
       title: 'Clone gagal',
-      text: '',
+      text: result.message,
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };

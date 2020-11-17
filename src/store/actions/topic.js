@@ -26,7 +26,7 @@ const fetchGetTopic = () => async (dispatch) => {
 };
 
 // --- Create New Topic, Method Post, component AddNewTopic --- //
-const fetchPostTopic = (form) => async () => {
+const fetchPostTopic = (form, setState) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics`;
@@ -39,19 +39,26 @@ const fetchPostTopic = (form) => async () => {
       },
     };
     const response = await fetch(url, options);
-    await response.json();
+    const result = await response.json();
+    setState({
+      isPost: false,
+    });
     if (response.status === 201) {
       Swal.fire({
         title: 'Add Topic Berhasil!',
         text: '',
         icon: 'success',
+        showConfirmButton: false,
+        timer: 1000,
       });
       window.location.reload('/topic');
     } else {
       Swal.fire({
         title: 'Gagal!',
-        text: 'topic yang anda buat sudah tersedia',
+        text: result.message,
         icon: 'error',
+        showConfirmButton: false,
+        timer: 2000,
       });
     }
   } catch (error) {
@@ -78,7 +85,7 @@ const fetchUpdateTopic = ({ form, id, setState }) => async () => {
       },
     };
     const response = await fetch(url, options);
-    await response.json();
+    const result = await response.json();
     setState({
       isUpdate: false,
     });
@@ -87,13 +94,17 @@ const fetchUpdateTopic = ({ form, id, setState }) => async () => {
         title: 'Update Berhasil!',
         text: '',
         icon: 'success',
+        showConfirmButton: false,
+        timer: 1000,
       });
       window.location.reload('/topic');
     } else {
       Swal.fire({
         title: 'update gagal',
-        text: '',
+        text: result.message,
         icon: 'error',
+        showConfirmButton: false,
+        timer: 2000,
       });
     }
   } catch (error) {
@@ -113,20 +124,24 @@ const fetchDeleteTopic = (id) => async () => {
     },
   };
   const response = await fetch(url, options);
-  await response.json();
+  const result = await response.json();
 
   if (response.status === 200) {
     Swal.fire({
       title: 'Delete Berhasil!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
     window.location.reload('/topic');
   } else {
     Swal.fire({
       title: 'Delete gagal',
-      text: '',
+      text: result.message,
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };
@@ -168,20 +183,24 @@ const fetchMultipleDeleteTopics = (form) => async () => {
     },
   };
   const response = await fetch(url, options);
-  await response.json();
+  const result = await response.json();
 
   if (response.status === 200) {
     Swal.fire({
       title: 'Delete Berhasil!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
     window.location.reload('/topic');
   } else {
     Swal.fire({
       title: 'Delete gagal',
-      text: '',
+      text: result.message,
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };
