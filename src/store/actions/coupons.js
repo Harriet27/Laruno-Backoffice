@@ -26,7 +26,7 @@ const fetchPostCoupons = (form, setState) => async () => {
   };
 
   const response = await fetch(url, options);
-  await response.json();
+  const result = await response.json();
   setState({
     isLoading: false,
   });
@@ -35,6 +35,8 @@ const fetchPostCoupons = (form, setState) => async () => {
       title: 'Add Succes!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
 
     window.location.reload('/coupons');
@@ -107,20 +109,24 @@ const fetchDeleteCoupons = (id) => async () => {
     },
   };
   const response = await fetch(url, options);
-  await response.json();
+  const result = await response.json();
 
   if (response.status === 200) {
     Swal.fire({
       title: 'Delete Berhasil!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
     window.location.reload('/coupons');
   } else {
     Swal.fire({
       title: 'Delete gagal',
-      text: '',
+      text: result.message,
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };
@@ -172,7 +178,7 @@ const fetchUpdateCoupons = ({ form, id, setState }) => async () => {
       },
     };
     const response = await fetch(url, options);
-    await response.json();
+    const result = await response.json();
     setState({
       isLoading: false,
     });
@@ -181,13 +187,17 @@ const fetchUpdateCoupons = ({ form, id, setState }) => async () => {
         title: 'Update Berhasil!',
         text: '',
         icon: 'success',
+        showConfirmButton: false,
+        timer: 1000,
       });
       window.location.reload('coupons');
     } else {
       Swal.fire({
         title: 'update gagal',
-        text: '',
+        text: result.message,
         icon: 'error',
+        showConfirmButton: false,
+        timer: 2000,
       });
     }
   } catch (error) {
@@ -208,13 +218,15 @@ const fetchMultipleDeleteCoupons = (form) => async () => {
     },
   };
   const response = await fetch(url, options);
-  await response.json();
+  const result = await response.json();
 
   if (response.status === 200) {
     Swal.fire({
       title: 'Delete Berhasil!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
     window.location.reload('/coupons');
   } else {
@@ -222,6 +234,8 @@ const fetchMultipleDeleteCoupons = (form) => async () => {
       title: 'Delete gagal',
       text: '',
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };
@@ -246,6 +260,8 @@ const fetchMultipleCloneCoupons = (form) => async () => {
       title: 'Clone Berhasil!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
     window.location.reload('/coupons');
   } else {
@@ -253,6 +269,8 @@ const fetchMultipleCloneCoupons = (form) => async () => {
       title: 'Clone gagal',
       text: '',
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };

@@ -31,6 +31,8 @@ const fetchPostContents = ({ form, history, setState }) => async () => {
       title: 'Add Succes!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
 
     history.push('/contents');
@@ -121,6 +123,8 @@ const fetchDeleteContents = (id) => async () => {
       title: 'Delete Berhasil!',
       text: '',
       icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
     });
     window.location.reload('/contents');
   } else {
@@ -128,6 +132,8 @@ const fetchDeleteContents = (id) => async () => {
       title: 'Delete gagal',
       text: '',
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };
@@ -178,20 +184,24 @@ const fetchUpdateContents = (form, id) => async () => {
       },
     };
     const response = await fetch(url, options);
-    await response.json();
+    const result = await response.json();
 
     if (response.status === 200) {
       Swal.fire({
         title: 'Update Berhasil!',
         text: '',
         icon: 'success',
+        showConfirmButton: false,
+        timer: 1000,
       });
       window.location.reload('/Fulfillments');
     } else {
       Swal.fire({
         title: 'update gagal',
-        text: '',
+        text: result.message,
         icon: 'error',
+        showConfirmButton: false,
+        timer: 2000,
       });
     }
   } catch (error) {

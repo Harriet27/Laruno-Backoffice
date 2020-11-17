@@ -71,6 +71,8 @@ const fetchPostFollowUp = (form) => async () => {
       title: 'Add Succes!',
       text: '',
       icon: 'success',
+      showCofirmButton: false,
+      timer: 1000,
     });
 
     window.location.reload();
@@ -96,13 +98,15 @@ const fetchUpdateFollowUp = (form, id) => async () => {
       },
     };
     const response = await fetch(url, options);
-    await response.json();
+    const result = await response.json();
 
     if (response.status === 200) {
       Swal.fire({
         title: 'Update Berhasil!',
         text: '',
         icon: 'success',
+        showCofirmButton: false,
+        timer: 1000,
       });
       window.location.reload('/topic');
     } else {
@@ -110,6 +114,8 @@ const fetchUpdateFollowUp = (form, id) => async () => {
         title: 'update gagal',
         text: '',
         icon: 'error',
+        showCofirmButton: false,
+        timer: 2000,
       });
     }
   } catch (error) {

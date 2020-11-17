@@ -41,7 +41,7 @@ const fetchPostPaymentsMethod = (form, setState) => async () => {
       },
     };
     const response = await fetch(url, options);
-    await response.json();
+    const result = await response.json();
     setState({
       isLoading: false,
     });
@@ -50,13 +50,17 @@ const fetchPostPaymentsMethod = (form, setState) => async () => {
         title: 'Tambah Payments Berhasil!',
         text: '',
         icon: 'success',
+        showConfirmButton: false,
+        timer: 1000,
       });
       window.location.reload('/topic');
     } else {
       Swal.fire({
         title: 'Gagal!',
-        text: 'topic yang anda buat sudah tersedia',
+        text: result.message,
         icon: 'error',
+        showConfirmButton: false,
+        timer: 2000,
       });
     }
   } catch (error) {
