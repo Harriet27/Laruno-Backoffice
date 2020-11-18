@@ -107,7 +107,7 @@ const DataOrders = (props) => {
       <>
         {/* --- section 1 --- Button Action link to Add Product ---*/}
 
-        {form.id[0] ? (
+        {/* {form.id[0] ? (
           <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
             <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
               Actions
@@ -125,7 +125,7 @@ const DataOrders = (props) => {
               Actions
             </DropdownToggle>
           </Dropdown>
-        )}
+        )} */}
 
         <div style={Styles.isFlexBetween}>
           <InputOrder />

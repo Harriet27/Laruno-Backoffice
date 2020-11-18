@@ -3,7 +3,7 @@ import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostFollowUp, fetchGetFollowUp } from '../../store/actions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Icon, IconSpan } from '../../elements/Styled/StyledModalPopUp';
+import { ButtonLink } from '../../elements/Styled/StyledTabs';
 // --- Elements, Pages, Components --- //
 import Card from '../../elements/Card/Card';
 import ChildFollowUp from './ChildFollowUp';
@@ -90,9 +90,9 @@ const ParentsLayoutFollowUp = (props) => {
   };
   return (
     <div>
-      <Button color="primary" size="sm" onClick={toggle}>
-        Update
-      </Button>
+      <ButtonLink color="primary" size="sm" onClick={toggle}>
+        <div style={{ width: '65px', textAlign: 'center' }}> Update</div>
+      </ButtonLink>
       <Modal
         isOpen={modal.open}
         toggle={toggle}

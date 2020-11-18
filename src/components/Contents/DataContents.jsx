@@ -17,7 +17,7 @@ import {
   ButtonStyled,
   ButtonActions,
 } from '../../elements/Styled/StyledForm';
-
+import { ButtonLink } from '../../elements/Styled/StyledTabs';
 const DataContents = (props) => {
   const dispatch = useDispatch();
   const contents = useSelector((state) => state.contents.getContents);
@@ -91,7 +91,10 @@ const DataContents = (props) => {
         }}
       >
         <Link to="add-contents">
-          <ButtonStyled>Add Contents</ButtonStyled>
+          <ButtonLink>
+            {' '}
+            <div style={{ width: '80px', textAlign: 'center' }}>+ Contents</div>
+          </ButtonLink>
         </Link>
 
         <div>
