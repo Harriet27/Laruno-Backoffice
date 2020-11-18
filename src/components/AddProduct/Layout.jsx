@@ -98,63 +98,54 @@ export default function Layout(props) {
       <SectionOne>
         <Card isNormal style={{ width: '100%' }}>
           <div style={{ padding: '30px 40px' }}>
-            <div style={Styles.FlexBetween}>
-              <WrapsField>
-                <Label>
-                  <Span>Headline </Span>
-                </Label>
-                <div>
-                  <Input
-                    type="text"
-                    name="headline"
-                    id="headline"
-                    value={headline}
-                    onChange={onChange}
-                    placeholder="Headline..."
-                  />
-                </div>
-              </WrapsField>
+            <WrapsField fullwidth>
+              <Label></Label>
+              <div>
+                <Input
+                  type="text"
+                  name="headline"
+                  id="headline"
+                  value={headline}
+                  onChange={onChange}
+                  placeholder="Headline..."
+                />
+              </div>
+            </WrapsField>
 
-              {/* subheadline */}
-              <WrapsField>
-                <Label>
-                  <Span>Subheadline </Span>
-                </Label>
-                <div>
-                  <Input
-                    type="text"
-                    name="subheadline"
-                    id="subheadline"
-                    value={subheadline}
-                    onChange={onChange}
-                    placeholder="Short Description..."
-                  />
-                </div>
-              </WrapsField>
+            {/* subheadline */}
+            <WrapsField fullwidth>
+              <Label></Label>
+              <div>
+                <Input
+                  type="text"
+                  name="subheadline"
+                  id="subheadline"
+                  value={subheadline}
+                  onChange={onChange}
+                  placeholder="Short Description..."
+                />
+              </div>
+            </WrapsField>
 
-              <WrapsField>
-                <Label>
-                  <Span>Agent</Span>
-                </Label>
-                <div>
-                  <MultiSelect
-                    overrideStrings={{
-                      selectSomeItems: 'select role...',
-                      allItemsAreSelected: 'Semua role dipilih',
-                      selectAll: 'Select All',
-                      search: 'Search',
-                    }}
-                    options={optionsAgents}
-                    selected={agent}
-                    onSelectedChanged={handleSelectAgent}
-                  />
-                </div>
-              </WrapsField>
-            </div>
+            <WrapsField fullwidth>
+              <Label></Label>
+              <div>
+                <MultiSelect
+                  overrideStrings={{
+                    selectSomeItems: 'select role...',
+                    allItemsAreSelected: 'Semua role dipilih',
+                    selectAll: 'Select All',
+                    search: 'Search',
+                  }}
+                  options={optionsAgents}
+                  selected={agent}
+                  onSelectedChanged={handleSelectAgent}
+                />
+              </div>
+            </WrapsField>
+
             <WrapsField fullwidth style={{ marginBottom: '100px' }}>
-              <Label>
-                <Span>Description</Span>
-              </Label>
+              <Label></Label>
 
               <ReactQuillTest value={props.value} setValue={props.setValue} />
             </WrapsField>
@@ -164,9 +155,7 @@ export default function Layout(props) {
 
             {/* feature onpage */}
             <WrapsField fullwidth>
-              <Label>
-                <Span>Feature Onpage</Span>
-              </Label>
+              <Label></Label>
               <div>
                 <Input
                   as="textarea"
@@ -182,9 +171,7 @@ export default function Layout(props) {
             {/* Feature On Header */}
 
             <WrapsField fullwidth>
-              <Label>
-                <Span>Feature Onheader</Span>
-              </Label>
+              <Label></Label>
               <div>
                 <Input
                   as="textarea"

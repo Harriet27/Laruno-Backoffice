@@ -3,13 +3,13 @@ import Styled from 'styled-components';
 const { md } = '0.9em';
 const Input = Styled.input`
     width: ${(props) => (props.isRadioButton ? '3%' : '100%')};
-    padding: .375rem;
+    padding: .575rem;
     font-size: 14px;
     font-weight: 400;
     color: #495057;
-    border-radius: ${(props) => (props.price ? '0' : '3px')};
+    border-radius: ${(props) => (props.isPrice ? '0' : '3px')};
     background-color: #FCFCFC;
-    border:${(props) => (props.price ? '0' : '1px solid #ced4da')};
+    border:${(props) => (props.isPrice ? '0' : '1px solid #ced4da')};
     &:focus{
     outline: none !important;
     border:1px solid #66AFE9;
@@ -29,7 +29,7 @@ const Label = Styled.label`
     
 `;
 const WrapsField = Styled.div`
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     width: ${(props) => (props.fullwidth ? '100%' : '30%')}
 `;
 const Span = Styled.span`

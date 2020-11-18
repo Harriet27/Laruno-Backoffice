@@ -127,7 +127,8 @@ export default function Bump(props) {
                 <Label>{/* <Span>Bump Description</Span> */}</Label>
                 <div>
                   <Input
-                    type="text"
+                    as="textarea"
+                    rows="5"
                     name="bump_desc"
                     id="bump_desc"
                     value={bump_desc}
