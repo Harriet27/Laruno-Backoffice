@@ -67,9 +67,10 @@ border: none;
 }
 `;
 const SpanErrosMessage = Styled.span`
-color: red;
+color:#f56a79;
 display: flex;
-justify-content: center;
+font-weight: 500;
+
 `;
 export {
   sm,

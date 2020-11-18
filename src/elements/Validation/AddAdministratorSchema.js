@@ -1,12 +1,18 @@
 import * as yup from 'yup';
 
 const AddAdministratorSchema = yup.object().shape({
-  name: yup.string().required('Wajib isi').min(4, 'Minimal 4 Karakter'),
-  email: yup.string().email('Email Tidak Sesuai').required('Wajib isi'),
+  name: yup
+    .string()
+    .required('This field is required')
+    .min(4, 'Minimal 4 Karakter'),
+  email: yup
+    .string()
+    .email('Email Tidak Sesuai')
+    .required('This field is required'),
   phone_number: yup
     .number()
     // .required('Wajib isi')
-    .typeError('Wajib di isi hanya dengan nomer')
+    .typeError('Silahkan mmasukkan nomor telephone anda')
     .positive('Tidak boleh negatif')
     .test(
       'len',

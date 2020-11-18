@@ -82,7 +82,7 @@ export default function DynamicFieldsContents(props) {
               <WrapsField key={`${field}-${idx}`}>
                 <div>
                   <Input
-                    width="35%"
+                    // width="35%"
                     type="text"
                     name={`one-${idx}`}
                     placeholder="Video Url..."
@@ -91,7 +91,7 @@ export default function DynamicFieldsContents(props) {
                   />
 
                   <VideoAndPodcast
-                    style={{ width: '10%' }}
+                    // style={{ width: '10%' }}
                     id={`video_section_${idx}`}
                     onChange={(e) =>
                       handleChangeImage(e, `video_section_${idx}`, idx)
