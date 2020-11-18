@@ -29,8 +29,8 @@ export default function VideoAndPodcast(props) {
           onChange={onChange}
           accept={accept}
         />
-        <div style={{ width: '100px', textAlign: 'center' }}>
-          {isLoading ? <Spinner /> : 'Upload'}
+        <div style={{ width: '100px', textAlign: 'center', margin: '1px' }}>
+          {isLoading ? <Spinner size="sm" /> : 'Upload'}
         </div>
       </LabelImage>
       {/* <button onClick={onSubmit}>Upload</button> */}

@@ -49,7 +49,7 @@ export default function Media(props) {
                   />
                 </div>
                 {typeof formulir.image.cover === 'object' ? null : (
-                  <div style={{ width: '150px' }}>
+                  <div style={{ width: '125px' }}>
                     <img
                       width="100%"
                       src={formulir.image.cover}

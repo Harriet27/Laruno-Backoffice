@@ -80,7 +80,7 @@ export default function DynamicFieldsContents(props) {
           {sectionAdd.map((field, idx) => {
             return (
               <WrapsField key={`${field}-${idx}`}>
-                <div style={{ display: 'flex' }}>
+                <div>
                   <Input
                     width="35%"
                     type="text"
@@ -91,7 +91,7 @@ export default function DynamicFieldsContents(props) {
                   />
 
                   <VideoAndPodcast
-                    style={{ width: '35%' }}
+                    style={{ width: '10%' }}
                     id={`video_section_${idx}`}
                     onChange={(e) =>
                       handleChangeImage(e, `video_section_${idx}`, idx)
@@ -99,10 +99,10 @@ export default function DynamicFieldsContents(props) {
                     isLoading={state.isLoading}
                     accept="video/mp4,video/x-m4v,video/*"
                   />
-                  <img
+                  {/* <img
                     src={sectionAdd[idx].video}
                     alt={sectionAdd[idx].video}
-                  />
+                  /> */}
                   <ButtonModal
                     style={{ width: '10%' }}
                     delete

@@ -49,10 +49,12 @@ export default function DynamicPodcastContents(props) {
     let field = e.target.id;
     image[field] = e.target.files[0];
     setFormulir({ image });
+    console.log({ field, index }, 'contents');
 
     setState({
       isLoading: true,
     });
+
     dispatch(
       fetchPostDynamicPodcast({
         formulir,
@@ -83,7 +85,7 @@ export default function DynamicPodcastContents(props) {
           {fields.map((field, idx) => {
             return (
               <WrapsField key={`${field}-${idx}`}>
-                <div style={{ display: 'flex' }}>
+                <div>
                   <Input
                     width="35%"
                     type="text"
@@ -94,7 +96,6 @@ export default function DynamicPodcastContents(props) {
                   />
 
                   <VideoAndPodcast
-                    style={{ width: '35%' }}
                     id={`podcast_section_${idx}`}
                     onChange={(e) =>
                       handleChangePodcast(e, `podcast_section_${idx}`, idx)
