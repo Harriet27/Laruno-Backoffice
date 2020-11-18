@@ -204,8 +204,8 @@ const DataOrders = (props) => {
                           <Th as="td" td>
                             {/* {item.order_id} */}
                             {item.invoice === null
-                              ? '#101120SKU9515000'
-                              : `#${item.invoice}`}
+                              ? '101120SKU9515000'
+                              : `${item.invoice}`}
                           </Th>
                           <Th as="td" td>
                             <div style={Styles.FlexColumn}>

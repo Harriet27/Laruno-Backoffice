@@ -7,8 +7,9 @@ import { fetchPostSingleImage } from '../../store/actions';
 import { Span, Label, Input } from '../../elements/Styled/StyledTabs';
 // --- Styled Components --- //
 const WrapsField = Styled.div`
-    margin-bottom: 25px;
+    margin-bottom: 5px;
 `;
+
 const Section = Styled.div`
     padding: 50px 100px;
     line-height: 1.5;
@@ -61,9 +62,7 @@ export default function Bump(props) {
           <div>
             <React.Fragment>
               <WrapsField>
-                <Label>
-                  <Span>Bump Name</Span>
-                </Label>
+                <Label>{/* <Span>Bump Name</Span> */}</Label>
                 <div>
                   <Input
                     type="text"
@@ -71,14 +70,13 @@ export default function Bump(props) {
                     id="bump_name"
                     value={bump_name}
                     onChange={onChange}
+                    placeholder="Bump Name"
                   />
                 </div>
               </WrapsField>
 
               <WrapsField>
-                <Label>
-                  <Span>Harga</Span>
-                </Label>
+                <Label>{/* <Span>Harga</Span> */}</Label>
                 {/*  Styled for Rp */}
                 <div style={Styles.PriceBorder}>
                   <div style={Styles.PriceRupiah}>
@@ -86,35 +84,33 @@ export default function Bump(props) {
                   </div>
                   <Input
                     isPrice
-                    type="number"
+                    type="text"
                     name="bump_price"
                     id="bump_price"
                     value={bump_price}
                     onChange={onChange}
+                    placeholder="1000.XXX.XXX"
                   />
                 </div>
               </WrapsField>
 
               <WrapsField>
-                <Label>
-                  <Span>Bump Weight</Span> (gr)
-                </Label>
+                <Label>{/* <Span>Bump Weight</Span> (gr) */}</Label>
                 <div>
                   <Input
-                    type="number"
+                    type="text"
                     name="bump_weight"
                     id="bump_weight"
                     value={bump_weight}
                     onChange={onChange}
+                    placeholder="bump weight"
                   />
                 </div>
               </WrapsField>
 
               {/* Tambahan bump text dan bump sub headline */}
               <WrapsField>
-                <Label>
-                  <Span>Bump Heading</Span>
-                </Label>
+                <Label>{/* <Span>Bump Heading</Span> */}</Label>
                 <div>
                   <Input
                     type="text"
@@ -122,14 +118,13 @@ export default function Bump(props) {
                     id="bump_heading"
                     value={bump_heading}
                     onChange={onChange}
+                    placeholder="Bump Heading"
                   />
                 </div>
               </WrapsField>
 
               <WrapsField>
-                <Label>
-                  <Span>Bump Description</Span>
-                </Label>
+                <Label>{/* <Span>Bump Description</Span> */}</Label>
                 <div>
                   <Input
                     type="text"
@@ -137,14 +132,13 @@ export default function Bump(props) {
                     id="bump_desc"
                     value={bump_desc}
                     onChange={onChange}
+                    placeholder="Bump Description"
                   />
                 </div>
               </WrapsField>
 
               <WrapsField>
-                <Label>
-                  <Span>Bump Image</Span>
-                </Label>
+                <Label>{/* <Span>Bump Image</Span> */}</Label>
                 <div>
                   <SingleImage
                     id="bump_image"

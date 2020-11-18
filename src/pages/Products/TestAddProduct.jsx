@@ -87,7 +87,7 @@ export default function TestAddProduct() {
     bump_name: '',
     bump_price: '',
     bump_image: '',
-    bump_weight: 0,
+    bump_weight: '',
     bump_heading: '',
     bump_desc: '',
   });

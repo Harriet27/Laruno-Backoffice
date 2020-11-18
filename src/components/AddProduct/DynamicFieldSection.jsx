@@ -16,6 +16,7 @@ const Input = Styled.input`
     &:focus{
     outline: none !important;
     border:1px solid #66AFE9;
+   
     }
 `;
 
@@ -113,15 +114,15 @@ export default function DynamicFieldSection(props) {
                 {fields.map((field, idx) => {
                   return (
                     <WrapsField key={`${field}-${idx}`}>
-                      <label>Title</label>
                       <Input
+                        style={{ marginBottom: '5px' }}
                         type="text"
                         name={`one-${idx}`}
                         placeholder="Enter title..."
                         value={field.title}
                         onChange={(e) => handleChange(idx, e)}
                       />
-                      <label>Content</label>
+
                       <Input
                         as="textarea"
                         name={`number-${idx}`}
