@@ -56,8 +56,8 @@ export default function App() {
 
           <PrivateRoute exact path="/dashboard">
             <Header />
-            {/* <Dashboard /> */}
-            <div>Dashboard</div>
+            <Dashboard />
+            {/* <div>Dashboard</div> */}
           </PrivateRoute>
           <PrivateRoute exact path="/add-product">
             <Header />

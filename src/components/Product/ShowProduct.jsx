@@ -5,9 +5,10 @@ import { fetchShowProduct } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { Table } from 'reactstrap';
+import { Table, Spinner } from 'reactstrap';
+import { CircularProgress } from '@material-ui/core';
 
-export default function ShowTopic(props) {
+export default function ShowProduct(props) {
   const dispatch = useDispatch();
   let { id } = useParams();
   // const product = useSelector((state) => state.detail.data);
@@ -24,7 +25,23 @@ export default function ShowTopic(props) {
     <React.Fragment>
       <section style={{ margin: '100px 50px' }}>
         <Card>
-          {product !== null && (
+          {product === null || product.data._id !== id ? (
+            <Card
+              isNormal
+              style={{
+                width: '100%',
+                height: '50vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <div>
+                {/* <Spinner color="primary" /> */}
+                <CircularProgress />
+              </div>
+            </Card>
+          ) : (
             <div key={product.data._id}>
               <React.Fragment></React.Fragment>
               <Card isNormal style={{ padding: '10px' }}>
@@ -64,7 +81,7 @@ export default function ShowTopic(props) {
                           }}
                         />
                         <br />
-                        <div
+                        {/* <div
                           style={{
                             display: 'flex',
                             justifyContent: 'space-between',
@@ -84,7 +101,7 @@ export default function ShowTopic(props) {
                                 </div>
                               );
                             })}
-                        </div>
+                        </div> */}
                       </td>
                     </tr>
                     <tr>
