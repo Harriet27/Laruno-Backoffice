@@ -110,21 +110,6 @@ export default function Bump(props) {
                 </div>
               </WrapsField>
 
-              <WrapsField>
-                <SingleImage
-                  id="bump_image"
-                  onChange={(e) => handleChange(e, 'bump_image')}
-                  isLoading={state.isLoading}
-                />
-              </WrapsField>
-              <div style={Styles.ImageBorder}>
-                <div style={{ width: '100px' }}>
-                  {typeof bump_image === 'object' ? null : (
-                    <img width="100%" src={bump_image} alt={bump_image} />
-                  )}
-                </div>
-              </div>
-
               {/* Tambahan bump text dan bump sub headline */}
               <WrapsField>
                 <Label>
@@ -155,6 +140,25 @@ export default function Bump(props) {
                   />
                 </div>
               </WrapsField>
+
+              <WrapsField>
+                <Label>
+                  <Span>Bump Image</Span>
+                </Label>
+                <div>
+                  <SingleImage
+                    id="bump_image"
+                    onChange={(e) => handleChange(e, 'bump_image')}
+                    isLoading={state.isLoading}
+                  />
+                </div>
+              </WrapsField>
+
+              <div style={{ width: '100px' }}>
+                {typeof bump_image === 'object' ? null : (
+                  <img width="100%" src={bump_image} alt={bump_image} />
+                )}
+              </div>
             </React.Fragment>
           </div>
         </Container>

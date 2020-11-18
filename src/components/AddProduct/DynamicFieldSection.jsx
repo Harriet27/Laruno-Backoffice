@@ -138,10 +138,13 @@ export default function DynamicFieldSection(props) {
                         }
                         isLoading={state.isLoading}
                       />
-                      <img
-                        src={sectionAdd[idx].image}
-                        alt={sectionAdd[idx].image}
-                      />
+                      <div style={{ width: '150px' }}>
+                        <img
+                          width="100%"
+                          src={sectionAdd[idx].image}
+                          alt={sectionAdd[idx].image}
+                        />
+                      </div>
                       <ButtonModal
                         delete
                         type="button"

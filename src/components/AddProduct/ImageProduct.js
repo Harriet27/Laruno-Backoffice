@@ -45,7 +45,7 @@ export default function ImageProduct(props) {
         isLoading={state.isLoading}
         // onSubmit={(e) => handleSubmit(e, 'image_url')}
       />
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      {/* <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         {arr.image_url.map((item, index) => {
           return (
             <div key={index} style={{ width: '100px' }}>
@@ -53,7 +53,7 @@ export default function ImageProduct(props) {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </React.Fragment>
   );
 }

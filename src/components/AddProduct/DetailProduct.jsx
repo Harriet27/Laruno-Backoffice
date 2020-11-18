@@ -459,6 +459,20 @@ export default function DetailProduct(props) {
                 />
               </div>
             </WrapsField>
+            <>
+              <div style={{ display: 'flex' }}>
+                {arr.image_url.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      style={{ width: '100px', marginRight: '10px' }}
+                    >
+                      <img width="100%" src={item} alt={item} />
+                    </div>
+                  );
+                })}
+              </div>
+            </>
           </Form>
         </Card>
       </SectionOne>

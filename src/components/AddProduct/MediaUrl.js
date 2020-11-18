@@ -30,7 +30,7 @@ export default function MediaUrl(props) {
           accept="video/mp4,video/x-m4v,video/*,image/x-png,image/gif,image/jpeg"
         />
         <div style={{ width: '100px', textAlign: 'center' }}>
-          {isLoading ? <Spinner /> : 'Upload Media'}
+          {isLoading ? <Spinner size="sm" /> : 'Upload '}
         </div>
       </LabelImage>
     </React.Fragment>
