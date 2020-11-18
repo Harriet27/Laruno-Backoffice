@@ -207,7 +207,7 @@ const DataProduct = (props) => {
                     <Th>Name</Th>
                     <Th>Visibility</Th>
                     <Th>Product Code</Th>
-                    <Th>Inventory</Th>
+                    <Th style={{ width: '10%' }}>Inventory</Th>
                     <Th>Product Type</Th>
                     <Th style={{ width: '10%' }}>Time Period</Th>
                     <Th style={{ width: '10%' }}>Price</Th>
@@ -246,9 +246,13 @@ const DataProduct = (props) => {
                           </Th>
                           <Th as="td" td>
                             <div style={Styles.Inventory}>
-                              {item.ecommerce === undefined
-                                ? 'Non stock'
-                                : `${item.ecommerce.stock} In Stock`}
+                              {item.type !== 'ecommerce' ? (
+                                <div style={{ textAlign: 'center' }}>-</div>
+                              ) : item.ecommerce === undefined ? (
+                                '0 in stock'
+                              ) : (
+                                `${item.ecommerce.stock} in Stock`
+                              )}
                             </div>
                           </Th>
                           <Th as="td" td>
