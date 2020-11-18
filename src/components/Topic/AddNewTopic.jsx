@@ -114,7 +114,13 @@ export default function AddNewTopic() {
             isLoading={state.isLoading}
           />
           {typeof formulir.image.icon === 'object' ? null : (
-            <img src={formulir.image.icon} alt={formulir.image.icon} />
+            <div style={{ width: '125px' }}>
+              <img
+                width="100%"
+                src={formulir.image.icon}
+                alt={formulir.image.icon}
+              />
+            </div>
           )}
         </WrapForm>
       </Card>

@@ -210,7 +210,7 @@ export default function Layout(props) {
                 />
               </div>
               {typeof formulir.image.image_bonus === 'object' ? null : (
-                <div style={{ width: '150px' }}>
+                <div style={{ width: '125px' }}>
                   <img
                     width="100%"
                     src={formulir.image.image_bonus}

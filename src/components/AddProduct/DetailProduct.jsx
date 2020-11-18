@@ -465,7 +465,7 @@ export default function DetailProduct(props) {
                   return (
                     <div
                       key={index}
-                      style={{ width: '100px', marginRight: '10px' }}
+                      style={{ width: '125px', marginRight: '10px' }}
                     >
                       <img width="100%" src={item} alt={item} />
                     </div>

@@ -154,7 +154,7 @@ export default function Bump(props) {
                 </div>
               </WrapsField>
 
-              <div style={{ width: '100px' }}>
+              <div style={{ width: '125px' }}>
                 {typeof bump_image === 'object' ? null : (
                   <img width="100%" src={bump_image} alt={bump_image} />
                 )}

@@ -79,23 +79,17 @@ export default function InputUpdateTopic(props) {
           isLoading={state.isLoading}
         />
 
-        <div
-          style={{
-            width: '100px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {typeof formulir.image.icon === 'object' ||
-          formulir.image.icon === false ? null : (
+        {typeof formulir.image.icon === 'object' ||
+        formulir.image.icon === false ? null : (
+          <div style={{ width: '125px' }}>
             <img
               width="100%"
               src={formulir.image.icon}
               alt={formulir.image.icon}
             />
-          )}
-        </div>
+          </div>
+        )}
+
         <ModalFooter>
           <Button
             color="white"

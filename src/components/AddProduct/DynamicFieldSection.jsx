@@ -138,7 +138,7 @@ export default function DynamicFieldSection(props) {
                         }
                         isLoading={state.isLoading}
                       />
-                      <div style={{ width: '150px' }}>
+                      <div style={{ width: '125px' }}>
                         <img
                           width="100%"
                           src={sectionAdd[idx].image}
