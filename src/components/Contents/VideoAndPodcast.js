@@ -29,9 +29,20 @@ export default function VideoAndPodcast(props) {
           onChange={onChange}
           accept={accept}
         />
-        <div style={{ width: '100px', textAlign: 'center', margin: '1px' }}>
-          {isLoading ? <Spinner size="sm" /> : 'Upload'}
-        </div>
+        {isLoading ? (
+          <div
+            disabled
+            style={{
+              width: '100px',
+              textAlign: 'center',
+              cursor: 'not-allowed',
+            }}
+          >
+            <Spinner size="sm" />
+          </div>
+        ) : (
+          <div style={{ width: '100px', textAlign: 'center' }}>Upload</div>
+        )}
       </LabelImage>
       {/* <button onClick={onSubmit}>Upload</button> */}
     </React.Fragment>

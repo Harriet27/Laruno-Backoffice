@@ -29,9 +29,20 @@ export default function MediaUrl(props) {
           disabled={isLoading}
           accept="video/mp4,video/x-m4v,video/*,image/x-png,image/gif,image/jpeg"
         />
-        <div style={{ width: '100px', textAlign: 'center' }}>
-          {isLoading ? <Spinner size="sm" /> : 'Upload '}
-        </div>
+        {isLoading ? (
+          <div
+            disabled
+            style={{
+              width: '100px',
+              textAlign: 'center',
+              cursor: 'not-allowed',
+            }}
+          >
+            <Spinner size="sm" />
+          </div>
+        ) : (
+          <div style={{ width: '100px', textAlign: 'center' }}>Upload</div>
+        )}
       </LabelImage>
     </React.Fragment>
   );

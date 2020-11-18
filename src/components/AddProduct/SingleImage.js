@@ -29,9 +29,20 @@ export default function SingleImage(props) {
           onChange={onChange}
           accept="image/x-png,image/gif,image/jpeg"
         />
-        <div style={{ width: '100px', textAlign: 'center' }}>
-          {isLoading ? <Spinner size="sm" /> : 'Upload'}
-        </div>
+        {isLoading ? (
+          <div
+            disabled
+            style={{
+              width: '100px',
+              textAlign: 'center',
+              cursor: 'not-allowed',
+            }}
+          >
+            <Spinner size="sm" />
+          </div>
+        ) : (
+          <div style={{ width: '100px', textAlign: 'center' }}>Upload</div>
+        )}
       </LabelImage>
       {/* <button onClick={onSubmit}>Upload</button> */}
     </React.Fragment>
