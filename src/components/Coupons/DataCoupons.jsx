@@ -203,7 +203,10 @@ const DataCoupons = (props) => {
                         <Th as="td" td>
                           <div style={Styles.FlexRow}>
                             {/* <UpdateCoupons id={item._id} /> */}
-                            <UpdateModalCoupons id={item._id} />
+                            <UpdateModalCoupons
+                              id={item._id}
+                              coupons={coupons}
+                            />
                             <DeleteCoupons id={item._id} />
                           </div>
                         </Th>

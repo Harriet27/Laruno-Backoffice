@@ -250,43 +250,23 @@ export default function InputUpdateCoupons(props) {
   };
 
   // ---- Finish ----//
-  const dispatch = useDispatch();
-  const { id, toggle } = props;
-  const coupons = useSelector((state) => state.coupons.showCoupons);
 
-  useEffect(() => {
-    dispatch(fetchShowCoupons(id));
-
-    // eslint-disable-next-line
-  }, [dispatch]);
+  const { id, toggle, coupons } = props;
 
   return (
     <section>
-      {coupons === null || coupons._id !== id ? (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '300px',
-          }}
-        >
-          <CircularProgress />
-        </div>
-      ) : (
-        <InputValue
-          name={coupons.name}
-          code={coupons.code}
-          value={coupons.value}
-          max_discount={coupons.max_discount}
-          is_active={coupons.is_active}
-          start_date={coupons.start_date}
-          end_date={coupons.end_date}
-          payment_method={coupons.payment_method}
-          id={id}
-          toggle={toggle}
-        />
-      )}
+      <InputValue
+        name={coupons.name}
+        code={coupons.code}
+        value={coupons.value}
+        max_discount={coupons.max_discount}
+        is_active={coupons.is_active}
+        start_date={coupons.start_date}
+        end_date={coupons.end_date}
+        payment_method={coupons.payment_method}
+        id={id}
+        toggle={toggle}
+      />
     </section>
   );
 }
