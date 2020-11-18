@@ -23,6 +23,7 @@ import FollowUp from './FollowUp';
 import DetailPopUp from '../../elements/DetailPopUp/DetailPopUp';
 import TotalData from './TotalData';
 import Order from '../../pages/Order/Order';
+import Actions from './Actions';
 
 // --- Styled Components --- //
 
@@ -342,7 +343,7 @@ const DataOrders = (props) => {
                             </div>
                           </Th>
                           <Th as="td" td>
-                            Actions
+                            <Actions />
                           </Th>
                         </TableRow>
                       );
