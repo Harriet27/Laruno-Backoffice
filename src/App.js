@@ -43,6 +43,7 @@ import ParentsLayoutFollowUp from './components/FollowUpOrderTemplate/ParentsLay
 import Card from './elements/Card/Card';
 import Test from './elements/Test/Test';
 import UpdateProductPages from './pages/Products/UpdateProductPages';
+import UpdateContents from './components/Contents/UpdateContents';
 // import {Premium} from './pages/Testing/Premium';
 export default function App() {
   return (
@@ -97,6 +98,10 @@ export default function App() {
           <PrivateRoute exact path="/add-contents">
             <Header />
             <AddContents />
+          </PrivateRoute>
+          <PrivateRoute exact path="/update-contents/:id">
+            <Header />
+            <UpdateContents />
           </PrivateRoute>
           {/* <PrivateRoute exact path="test">
                         <Header />

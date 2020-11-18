@@ -203,12 +203,15 @@ const DataContents = (props) => {
                               flexDirection: 'row',
                             }}
                           >
-                            {/* <UpdateContents
-                                                            id={item._id}
-                                                        />
-                                                        <DeleteContents
-                                                            id={item._id}
-                                                        /> */}
+                            {/* <Link to={`update-contents/${item._id}`}>
+                              <ButtonLink>
+                                <div
+                                  style={{ width: '80px', textAlign: 'center' }}
+                                >
+                                  update
+                                </div>
+                              </ButtonLink>
+                            </Link> */}
                           </div>
                         </Th>
                       </tr>

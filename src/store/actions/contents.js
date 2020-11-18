@@ -162,7 +162,7 @@ const fetchShowContents = (id) => async (dispatch) => {
 };
 
 // --- Update Fulfillments - Method PUT ---- //
-const fetchUpdateContents = (form, id) => async () => {
+const fetchUpdateContents = ({ form, history, setState, id }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/contents/${id}`;
@@ -185,7 +185,9 @@ const fetchUpdateContents = (form, id) => async () => {
     };
     const response = await fetch(url, options);
     const result = await response.json();
-
+    setState({
+      isLoading: false,
+    });
     if (response.status === 200) {
       Swal.fire({
         title: 'Update Berhasil!',
@@ -194,14 +196,21 @@ const fetchUpdateContents = (form, id) => async () => {
         showConfirmButton: false,
         timer: 1000,
       });
-      window.location.reload('/Fulfillments');
+      window.location.reload('/contents');
+    } else if (response.status === 400) {
+      const Errors = result.message;
+      if (Errors) {
+        Errors.map((err) => {
+          return Toast.fire({
+            icon: 'error',
+            title: err,
+          });
+        });
+      }
     } else {
-      Swal.fire({
-        title: 'update gagal',
-        text: result.message,
+      Toast.fire({
         icon: 'error',
-        showConfirmButton: false,
-        timer: 2000,
+        title: result.message,
       });
     }
   } catch (error) {
