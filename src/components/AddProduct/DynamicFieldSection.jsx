@@ -121,7 +121,7 @@ export default function DynamicFieldSection(props) {
                         style={{ marginBottom: '5px' }}
                         type="text"
                         name={`one-${idx}`}
-                        placeholder="Enter title..."
+                        placeholder="Title..."
                         value={field.title}
                         onChange={(e) => handleChange(idx, e)}
                       />
@@ -131,7 +131,7 @@ export default function DynamicFieldSection(props) {
                         name={`number-${idx}`}
                         rows="5"
                         value={field.content}
-                        placeholder="Enter content.."
+                        placeholder="Content.."
                         onChange={(e) => handleChangeContents(idx, e)}
                       />
 

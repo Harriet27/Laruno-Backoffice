@@ -16,8 +16,6 @@ import {
 
 import ImageProduct from './ImageProduct';
 import {
-  Form,
-  Section,
   SectionOne,
   Span,
   // WrapsField,
@@ -157,11 +155,12 @@ export default function DetailProduct(props) {
               <div style={Styles.BorderPriceMonth}>
                 <Input
                   isPrice
-                  type="number"
+                  type="text"
                   name="time_period"
                   id="time_period"
                   value={time_period}
                   onChange={onChange}
+                  placeholder="Time period.."
                 />
                 <div style={Styles.PeriodMonth}>
                   <div style={Styles.MarginPriceMonth}>Month</div>
@@ -359,7 +358,7 @@ export default function DetailProduct(props) {
                 </div>
                 <Input
                   isPrice
-                  type="text"
+                  type="text="
                   name="price"
                   id="price"
                   value={price}

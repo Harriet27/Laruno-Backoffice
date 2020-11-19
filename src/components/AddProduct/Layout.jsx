@@ -11,6 +11,7 @@ import {
 import ReactQuillTest from './ReactQuill';
 import SingleImage from './SingleImage';
 import MediaUrl from './MediaUrl';
+import Styled from 'styled-components';
 import {
   Section,
   SectionOne,
@@ -20,6 +21,13 @@ import {
   Input,
 } from '../../elements/Styled/StyledTabs';
 // --- Styled Components --- //
+
+const DescriptionStyle = Styled.div`
+margin-top: 10px;
+@media (max-width: 9000px){
+  margin-top: 150px; 
+}
+`;
 
 export default function Layout(props) {
   const dispatch = useDispatch();
@@ -151,7 +159,9 @@ export default function Layout(props) {
             </WrapsField>
 
             {/* Children untuk learn about  */}
-            <React.Fragment>{children}</React.Fragment>
+            <DescriptionStyle>
+              <React.Fragment>{children}</React.Fragment>
+            </DescriptionStyle>
 
             {/* feature onpage */}
             <WrapsField fullwidth>
