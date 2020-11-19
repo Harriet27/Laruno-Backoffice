@@ -17,32 +17,35 @@ export default function WhattsapMessage(props) {
   } = props;
   const InputValue = (props) => {
     const [form, setForm] = useState({
-      name: name,
-      phone_number: phone_number,
-      message: message,
-      total_price: total_price,
-      total_qty: total_qty,
+      name: name || '',
+      phone_number: phone_number || '',
+      message: message || '',
+      total_price: total_price || '',
+      total_qty: total_qty || '',
       // payment_method: payment_method,
-      invoice: invoice,
-      email: email,
+      invoice: invoice || '',
+      email: email || '',
     });
 
-    form.message = message.replace(
+    const whattsap = message.replace(
       /\{\{(.+?)\}\}/g,
       (matching, value) => form[value.trim()]
     );
-
+    const [state, setState] = useState({
+      phone_number: phone_number || '',
+      message: whattsap || '',
+    });
     const handleChange = (e) => {
-      setForm({ ...form, [e.target.name]: e.target.value });
+      setState({ ...state, [e.target.name]: e.target.value });
     };
-
+    console.log({ form, message }, 'LIHAT');
     function raiseInvoiceClicked() {
       const Phone_number =
-        form.phone_number.substring(0, 0) +
+        state.phone_number.substring(0, 0) +
         '62' +
-        form.phone_number.substring(1);
+        state.phone_number.substring(1);
 
-      const Message = encodeURI(form.message);
+      const Message = encodeURI(state.message);
       const url = `https://wa.me/${Phone_number}?text=${Message}`;
       window.open(url, '_blank');
       // Testing local storage
@@ -62,8 +65,8 @@ export default function WhattsapMessage(props) {
         <Input
           style={{ width: '100%' }}
           type="number"
-          name="number"
-          value={form.phone_number}
+          name="phone_number"
+          value={state.phone_number}
           onChange={handleChange}
         />
         <label>
@@ -74,7 +77,7 @@ export default function WhattsapMessage(props) {
           as="textarea"
           rows="5"
           name="message"
-          value={form.message}
+          value={state.message}
           onChange={handleChange}
         />
         <ModalFooter>
