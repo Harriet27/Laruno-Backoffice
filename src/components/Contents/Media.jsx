@@ -36,7 +36,7 @@ export default function Media(props) {
     <>
       <div>
         <SectionOne>
-          <Card isNormal style={{ width: '100%' }}>
+          <Card>
             <Form>
               <WrapsField>
                 <Label>

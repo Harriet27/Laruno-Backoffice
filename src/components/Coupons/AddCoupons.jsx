@@ -43,13 +43,11 @@ export default function AddCoupons() {
 
   const [form, setForm] = useState({
     name: '',
-    code: '',
     value: '',
     start_date: '',
     end_date: '',
     max_discount: 0,
     payment_method: '',
-    is_active: false,
   });
 
   const [state, setState] = useState({
@@ -77,9 +75,6 @@ export default function AddCoupons() {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  const handleCheckbox = () => {
-    setForm({ ...form, is_active: !form.is_active });
-  };
   return (
     <ModalSmart
       isLoading={state.isLoading}
@@ -111,17 +106,19 @@ export default function AddCoupons() {
 
         <WrapForm>
           <label>
-            <Span>Coupon Code</Span>
+            <Span>Value Coupons (%)</Span>
           </label>
           <Input
-            type="text"
-            name="code"
-            id="code"
-            value={form.code}
+            type="number"
+            name="value"
+            id="value"
+            defaultValue={form.value}
             onChange={handleChange}
-            placeholder="Code Coupons"
-            required
+            ref={register}
           />
+          <>
+            <SpanErrosMessage>{errors.value?.message}</SpanErrosMessage>
+          </>
         </WrapForm>
       </div>
 
@@ -216,36 +213,6 @@ export default function AddCoupons() {
           </>
         </WrapForm>
       </div>
-
-      <WrapForm isFull>
-        <label>
-          <Span>Nilai Coupons (%)</Span>
-        </label>
-        <Input
-          type="number"
-          name="value"
-          id="value"
-          defaultValue={form.value}
-          onChange={handleChange}
-          ref={register}
-        />
-        <>
-          <SpanErrosMessage>{errors.value?.message}</SpanErrosMessage>
-        </>
-      </WrapForm>
-      <WrapForm>
-        <label>
-          <input
-            type="checkbox"
-            name="is_active"
-            id="is_active"
-            value={form.is_active}
-            onChange={handleCheckbox}
-            required
-          />
-          Click to active this coupons
-        </label>
-      </WrapForm>
     </ModalSmart>
   );
 }

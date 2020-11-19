@@ -66,13 +66,11 @@ export default function InputUpdateCoupons(props) {
 
     const [form, setForm] = useState({
       name: name || '',
-      code: code || '',
       value: value || '',
       start_date: '',
       end_date: '',
       max_discount: max_discount || 0,
       payment_method: payment_method || '',
-      is_active: is_active || false,
     });
     const [state, setState] = useState({
       isLoading: false,
@@ -86,15 +84,6 @@ export default function InputUpdateCoupons(props) {
     const handleChange = (event) => {
       setForm({ ...form, [event.target.name]: event.target.value });
     };
-
-    // --- Image --- //
-
-    // --- HandleChange upload Image --- //
-    const handleCheckbox = () => {
-      setForm({ ...form, is_active: !form.is_active });
-    };
-
-    // --- handleSubmit Upload Image --- //
 
     return (
       <>
@@ -115,15 +104,14 @@ export default function InputUpdateCoupons(props) {
 
           <WrapForm style={{ width: '45%' }}>
             <label>
-              <Span>Coupon Code</Span>
+              <Span>Value Coupons (%)</Span>
             </label>
             <Input
-              type="text"
-              name="code"
-              id="code"
-              value={form.code}
+              type="number"
+              name="value"
+              id="value"
+              value={form.value}
               onChange={handleChange}
-              placeholder="Code Coupons"
               required
             />
           </WrapForm>
@@ -200,33 +188,6 @@ export default function InputUpdateCoupons(props) {
           </WrapForm>
         </div>
 
-        <WrapForm>
-          <label>
-            <Span>Nilai Coupons (%)</Span>
-          </label>
-          <Input
-            type="number"
-            name="value"
-            id="value"
-            value={form.value}
-            onChange={handleChange}
-            required
-          />
-        </WrapForm>
-        <WrapForm style={{ width: '45%' }}>
-          <label>
-            <input
-              type="checkbox"
-              name="is_active"
-              id="is_active"
-              value={form.is_active}
-              onChange={handleCheckbox}
-              checked={form.is_active}
-              required
-            />
-            Click to active this coupons
-          </label>
-        </WrapForm>
         <ModalFooter>
           <Button
             color="white"
