@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import MultiSelect from '@khanacademy/react-multi-select';
+import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 
 // --- Elements, Pages, Components --- //
@@ -39,7 +39,7 @@ export default function DetailProduct(props) {
     zoom_id,
     date,
     start_time,
-    topic_select,
+    isTopic,
     handleSelect,
     // duration,
     weight,
@@ -72,12 +72,21 @@ export default function DetailProduct(props) {
   }, [dispatch]);
 
   // --- optionsTopic for value select topic --- //
-  let optionsTopic =
-    topic !== null &&
-    topic.data.map((item) => {
-      return { key: item._id, value: item._id, label: item.name };
-    });
-  let topicNull = [{ key: '1', value: '1', label: 'Loading...' }];
+  const data = [{ key: 1, value: 'Loading', label: 'Loading...' }];
+  let options =
+    topic === null
+      ? data.map((item) => {
+          return {
+            item: item.key,
+            value: item.value,
+            label: item.label,
+            isDisabled: true,
+          };
+        })
+      : topic.data.map((item) => {
+          return { key: item._id, value: item._id, label: item.name };
+        });
+
   return (
     <Section>
       <SectionOne>
@@ -162,10 +171,14 @@ export default function DetailProduct(props) {
                   <Span>Topic</Span>
                 </Label>
                 <div>
-                  <MultiSelect
-                    options={topic === null ? topicNull : optionsTopic}
-                    selected={topic_select}
-                    onSelectedChanged={handleSelect}
+                  <Select
+                    isMulti
+                    name="colors"
+                    value={isTopic || ''}
+                    options={options}
+                    className="basic-multi-select"
+                    classNamePrefix="select"
+                    onChange={handleSelect}
                   />
                 </div>
               </WrapsField>
