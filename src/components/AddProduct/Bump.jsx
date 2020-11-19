@@ -19,7 +19,7 @@ const Section = Styled.div`
     }
 `;
 const Container = Styled.div`
-    padding: 20px 30px;
+    padding: 30px 40px;
 `;
 // --- Styled Components --- //
 
@@ -59,9 +59,6 @@ export default function Bump(props) {
   return (
     <div>
       <Card>
-        <div style={{ textAlign: 'center', marginTop: '10px' }}>
-          <Span>Bump Product</Span>
-        </div>
         <Container>
           <div>
             <React.Fragment>

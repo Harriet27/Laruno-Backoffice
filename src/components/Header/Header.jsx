@@ -122,7 +122,7 @@ const Header = () => {
                 </Link>
                 <Link to="/users">
                   <DropdownItem>
-                    <Span>Users</Span>
+                    <Span>Administartor</Span>
                   </DropdownItem>
                 </Link>
                 <Link to="/coupons">
@@ -133,11 +133,6 @@ const Header = () => {
                 <Link to="/payments">
                   <DropdownItem>
                     <Span>Payments</Span>
-                  </DropdownItem>
-                </Link>
-                <Link to="/add-contents">
-                  <DropdownItem>
-                    <Span>Add Contents</Span>
                   </DropdownItem>
                 </Link>
                 <Link to="/contents">
