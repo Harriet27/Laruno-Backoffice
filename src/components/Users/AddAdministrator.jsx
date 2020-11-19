@@ -134,6 +134,7 @@ export default function AddAdministrator() {
                 className="basic-multi-select"
                 classNamePrefix="select"
                 onChange={handleChangeSelect}
+                placeholder="Select roles..."
               />
             </div>
           </WrapForm>

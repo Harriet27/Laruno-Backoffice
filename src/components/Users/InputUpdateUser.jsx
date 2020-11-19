@@ -126,6 +126,7 @@ export default function InputUpdateUser(props) {
                 className="basic-multi-select"
                 classNamePrefix="select"
                 onChange={handleChangeSelect}
+                placeholder="Select roles..."
               />
             </div>
           </WrapForm>

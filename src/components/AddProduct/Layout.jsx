@@ -140,6 +140,7 @@ export default function Layout(props) {
                   className="basic-multi-select"
                   classNamePrefix="select"
                   onChange={handleSelect}
+                  placeholder="Select agent.."
                 />
               </div>
             </WrapsField>
