@@ -204,7 +204,7 @@ export default function TestAddProduct() {
       ...selecting,
       topic,
     });
-    form.agent = isTopic || '';
+    form.topic = isTopic || '';
   };
 
   // ======>>> lOGIC DETAIL PRODUCT SECTION 2 "layout" <<<====== //
