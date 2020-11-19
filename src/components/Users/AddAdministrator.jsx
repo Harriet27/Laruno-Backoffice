@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostAdministrator, fetchGetRoles } from '../../store/actions';
 import Card from '../../elements/Card/Card';
 import ModalSmart from '../../elements/Modal/ModalSmart';
-import MultiSelect from '@khanacademy/react-multi-select';
-
+import Select from 'react-select';
 // --- Validation --- //
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -91,11 +90,25 @@ export default function AddAdministrator() {
   };
 
   // --- optionsTopic for value select topic --- //
-  let optionsRoles =
-    roles !== null &&
-    roles.data.map((item) => {
-      return { key: item._id, value: item._id, label: item.adminType };
-    });
+  const options =
+    roles === null
+      ? { key: '123', value: 'chocolate', label: 'Chocolate' }
+      : roles.data.map((item) => {
+          return { key: item._id, value: item._id, label: item.adminType };
+        });
+  const [value, setValue] = useState({
+    roleId: [],
+  });
+  console.log({ value, form }, 'TEST');
+  const handleChangeSelect = (roleId) => {
+    const isRoleId =
+      roleId !== null &&
+      roleId.map((item) => {
+        return item.key;
+      });
+    setValue({ ...value, roleId });
+    form.role = isRoleId || '';
+  };
 
   return (
     <div style={{ width: '150px' }}>
@@ -107,33 +120,17 @@ export default function AddAdministrator() {
         title="Add Administrator"
         isLoading={state.isLoading}
       >
-        {/* <Section> */}
-        {/* <Card
-                        isNormal
-                        style={{
-                            padding: '50px',
-                            width: '500px',
-                            borderRadius: '5px',
-                        }}
-                    >
-                        <Brand>
-                            <div style={{ width: '100%' }}>
-                                Add Administrator
-                            </div>
-                        </Brand> */}
         <form>
           <WrapForm>
             <div>
-              <MultiSelect
-                overrideStrings={{
-                  selectSomeItems: 'select role...',
-                  allItemsAreSelected: 'Semua role dipilih',
-                  selectAll: 'Select All',
-                  search: 'Search',
-                }}
-                options={optionsRoles}
-                selected={form.role}
-                onSelectedChanged={handleSelect}
+              <Select
+                isMulti
+                name="colors"
+                value={value.roleId || ''}
+                options={options}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                onChange={handleChangeSelect}
               />
             </div>
           </WrapForm>

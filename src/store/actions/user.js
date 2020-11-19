@@ -164,13 +164,13 @@ const fetchUpdateAdministrator = ({ form, id, setState }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/${id}`;
-
     // --- apabila value dari key di dalam form "" maka hapus keynya tidak usah di bawa kedalam body --- //
     for (let key in form) {
-      if (form[key] === '') {
+      if (form[key] === '' || form[key].length === 0) {
         delete form[key];
       }
     }
+
     // --- penting nih --- //
 
     const options = {

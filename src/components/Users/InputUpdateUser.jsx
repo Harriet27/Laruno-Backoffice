@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Select from 'react-select';
+
 import {
   fetchGetShowUsers,
   fetchUpdateAdministrator,
@@ -48,21 +50,20 @@ export default function InputUpdateUser(props) {
       role: [],
       password: '',
     });
-    console.log(form, 'form');
+    console.log(form, 'form update');
     const [state, setState] = useState({
       isLoading: false,
     });
 
     const roles = useSelector((state) => state.roles.getRoles);
-    let optionsRoles =
-      roles !== null &&
-      roles.data.map((item) => {
-        return {
-          key: item._id,
-          value: item._id,
-          label: item.adminType,
-        };
-      });
+
+    const options =
+      roles === null
+        ? { key: '123', value: 'chocolate', label: 'Chocolate' }
+        : roles.data.map((item) => {
+            return { key: item._id, value: item._id, label: item.adminType };
+          });
+
     // --- useEffect --- Get Data Roles ---//
     useEffect(() => {
       dispatch(fetchGetRoles());
@@ -74,11 +75,24 @@ export default function InputUpdateUser(props) {
       });
       dispatch(fetchUpdateAdministrator({ form, id, setState }));
     };
-    const handleSelect = (role) => {
-      setForm({ ...form, role });
-    };
+    // const handleSelect = (role) => {
+    //   setForm({ ...form, role });
+    // };
     const handleChange = (event) => {
       setForm({ ...form, [event.target.name]: event.target.value });
+    };
+    const [value, setValue] = useState({
+      roleId: [],
+    });
+    console.log({ value, form }, 'TEST');
+    const handleChangeSelect = (roleId) => {
+      const isRoleId =
+        roleId !== null &&
+        roleId.map((item) => {
+          return item.key;
+        });
+      setValue({ ...value, roleId });
+      form.role = isRoleId || '';
     };
 
     return (
@@ -86,7 +100,7 @@ export default function InputUpdateUser(props) {
         <div>
           <WrapForm>
             <div>
-              <MultiSelect
+              {/* <MultiSelect
                 overrideStrings={{
                   selectSomeItems: 'select role...',
                   allItemsAreSelected: 'Semua role dipilih',
@@ -96,6 +110,15 @@ export default function InputUpdateUser(props) {
                 options={optionsRoles}
                 selected={form.role}
                 onSelectedChanged={handleSelect}
+              /> */}
+              <Select
+                isMulti
+                name="colors"
+                value={value.roleId || ''}
+                options={options}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                onChange={handleChangeSelect}
               />
             </div>
           </WrapForm>
