@@ -7,7 +7,7 @@ import { fetchPostSingleImage } from '../../store/actions';
 import { Span, Label, Input } from '../../elements/Styled/StyledTabs';
 // --- Styled Components --- //
 const WrapsField = Styled.div`
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 `;
 
 const Section = Styled.div`
@@ -58,11 +58,13 @@ export default function Bump(props) {
   return (
     <Section>
       <Card isNormal>
+        <div style={{ textAlign: 'center', marginTop: '10px' }}>
+          <Span>Bump Product</Span>
+        </div>
         <Container>
           <div>
             <React.Fragment>
               <WrapsField>
-                <Label>{/* <Span>Bump Name</Span> */}</Label>
                 <div>
                   <Input
                     type="text"
@@ -76,7 +78,6 @@ export default function Bump(props) {
               </WrapsField>
 
               <WrapsField>
-                <Label>{/* <Span>Harga</Span> */}</Label>
                 {/*  Styled for Rp */}
                 <div style={Styles.PriceBorder}>
                   <div style={Styles.PriceRupiah}>
@@ -95,7 +96,6 @@ export default function Bump(props) {
               </WrapsField>
 
               <WrapsField>
-                <Label>{/* <Span>Bump Weight</Span> (gr) */}</Label>
                 <div>
                   <Input
                     type="text"
@@ -103,14 +103,13 @@ export default function Bump(props) {
                     id="bump_weight"
                     value={bump_weight}
                     onChange={onChange}
-                    placeholder="bump weight"
+                    placeholder="Bump weight"
                   />
                 </div>
               </WrapsField>
 
               {/* Tambahan bump text dan bump sub headline */}
               <WrapsField>
-                <Label>{/* <Span>Bump Heading</Span> */}</Label>
                 <div>
                   <Input
                     type="text"
@@ -124,7 +123,6 @@ export default function Bump(props) {
               </WrapsField>
 
               <WrapsField>
-                <Label>{/* <Span>Bump Description</Span> */}</Label>
                 <div>
                   <Input
                     as="textarea"
@@ -139,7 +137,6 @@ export default function Bump(props) {
               </WrapsField>
 
               <WrapsField>
-                <Label>{/* <Span>Bump Image</Span> */}</Label>
                 <div>
                   <SingleImage
                     id="bump_image"

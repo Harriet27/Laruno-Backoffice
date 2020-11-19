@@ -101,7 +101,6 @@ export default function Layout(props) {
         <Card isNormal style={{ width: '100%' }}>
           <div style={{ padding: '30px 40px' }}>
             <WrapsField fullwidth>
-              <Label></Label>
               <div>
                 <Input
                   type="text"
@@ -116,7 +115,6 @@ export default function Layout(props) {
 
             {/* subheadline */}
             <WrapsField fullwidth>
-              <Label></Label>
               <div>
                 <Input
                   type="text"
@@ -130,7 +128,6 @@ export default function Layout(props) {
             </WrapsField>
 
             <WrapsField fullwidth>
-              <Label></Label>
               <div>
                 <Select
                   isMulti
@@ -145,9 +142,10 @@ export default function Layout(props) {
               </div>
             </WrapsField>
 
-            <WrapsField fullwidth style={{ marginBottom: '100px' }}>
-              <Label></Label>
-
+            <WrapsField fullwidth style={{ marginBottom: '50px' }}>
+              <div style={{ textAlign: 'center', marginTop: '10px' }}>
+                <Span>Description</Span>
+              </div>
               <ReactQuillTest value={props.value} setValue={props.setValue} />
             </WrapsField>
 
@@ -156,15 +154,15 @@ export default function Layout(props) {
 
             {/* feature onpage */}
             <WrapsField fullwidth>
-              <Label></Label>
               <div>
                 <Input
                   as="textarea"
+                  rows="5"
                   name="feature_onpage"
                   id="feature_onpage"
                   value={feature_onpage}
                   onChange={handleFeature}
-                  placeholder="fetaure Onpage.."
+                  placeholder="Feature onpage.."
                 />
               </div>
             </WrapsField>
@@ -172,15 +170,15 @@ export default function Layout(props) {
             {/* Feature On Header */}
 
             <WrapsField fullwidth>
-              <Label></Label>
               <div>
                 <Input
+                  rows="5"
                   as="textarea"
                   name="feature_onheader"
                   id="feature_onheader"
                   value={feature_onheader}
                   onChange={handleFeature}
-                  placeholder="feature onheader..."
+                  placeholder="Feature onheader..."
                 />
               </div>
             </WrapsField>

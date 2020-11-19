@@ -29,7 +29,7 @@ const Label = Styled.label`
     
 `;
 const WrapsField = Styled.div`
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     width: ${(props) => (props.fullwidth ? '100%' : '30%')}
 `;
 const Span = Styled.span`

@@ -55,9 +55,9 @@ export default function DynamicField(props) {
 
   return (
     <div style={Styles.FlexColumn} className="App">
-      <Label>
+      <div style={{ textAlign: 'center', marginTop: '10px' }}>
         <Span>Learn About</Span>
-      </Label>
+      </div>
 
       {/* --- Testing --- */}
       <div name="test">
