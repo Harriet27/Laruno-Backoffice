@@ -33,11 +33,7 @@ export default function DynamicFieldsModule(props) {
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column' }} className="App">
-        <div>
-          <label>
-            <Span>Module</Span>
-          </label>
-        </div>
+        <div></div>
         {/* --- Testing --- */}
         <div name="modules">
           {fields.map((field, idx) => {

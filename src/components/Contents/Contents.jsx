@@ -14,25 +14,10 @@ export default function Contents(props) {
   const { checked } = props;
   return (
     <>
-      <Section>
+      <div>
         <SectionOne>
-          <Card isNormal style={{ width: '100%' }}>
+          <div isNormal style={{ width: '100%' }}>
             <Form>
-              <WrapsField fullwidth>
-                <Label>
-                  <Span>Tags</Span>
-                </Label>
-                <div>
-                  <Input
-                    type="text"
-                    name="title"
-                    id="title"
-                    // value={name}
-                    // onChange={onChange}
-                    placeholder="Tags..."
-                  />
-                </div>
-              </WrapsField>
               {checked === true ? (
                 <>{props.children}</>
               ) : (
@@ -46,10 +31,27 @@ export default function Contents(props) {
                   />
                 </>
               )}
+              <div style={{ marginTop: '50px' }}>
+                <WrapsField fullwidth>
+                  <Label>
+                    <Span>Tags</Span>
+                  </Label>
+                  <div>
+                    <Input
+                      type="text"
+                      name="title"
+                      id="title"
+                      // value={name}
+                      // onChange={onChange}
+                      placeholder="Tags..."
+                    />
+                  </div>
+                </WrapsField>
+              </div>
             </Form>
-          </Card>
+          </div>
         </SectionOne>
-      </Section>
+      </div>
     </>
   );
 }

@@ -9,7 +9,8 @@ import {
   Input,
 } from '../../elements/Styled/StyledTabs';
 import { fetchPostSingleImage } from '../../store/actions';
-import Card from '../../elements/Card/Card';
+// import Card from '../../elements/Card/Card';
+import Card from '@material-ui/core/Card';
 import { useDispatch } from 'react-redux';
 import SingleImage from '../AddProduct/SingleImage';
 export default function Media(props) {
@@ -33,7 +34,7 @@ export default function Media(props) {
 
   return (
     <>
-      <Section>
+      <div>
         <SectionOne>
           <Card isNormal style={{ width: '100%' }}>
             <Form>
@@ -62,7 +63,7 @@ export default function Media(props) {
             </Form>
           </Card>
         </SectionOne>
-      </Section>
+      </div>
     </>
   );
 }

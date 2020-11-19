@@ -75,11 +75,7 @@ export default function DynamicPodcastContents(props) {
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column' }} className="App">
-        <div>
-          <label>
-            <Span>Podcast</Span>
-          </label>
-        </div>
+        <div></div>
         {/* --- Testing --- */}
         <div name="test">
           {fields.map((field, idx) => {

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
+import Card from '@material-ui/core/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Form,
@@ -11,7 +13,7 @@ import {
 } from '../../elements/Styled/StyledTabs';
 import { fetchGetTopic, fetchGetProduct } from '../../store/actions';
 import MultiSelect from '@khanacademy/react-multi-select';
-import Card from '../../elements/Card/Card';
+// import Card from '../../elements/Card/Card';
 export default function Detail(props) {
   const {
     onChange,
@@ -24,10 +26,10 @@ export default function Detail(props) {
     form,
     checked,
     setChecked,
-    handleSelectTopic,
-    topic_select,
+    isTopic,
+    isProduct,
     handleSelectProduct,
-    product_select,
+    handleSelectTopic,
   } = props;
 
   const dispatch = useDispatch();
@@ -43,29 +45,42 @@ export default function Detail(props) {
     dispatch(fetchGetProduct());
     // eslint-disable-next-line
   }, [dispatch]);
-  let optionsTopic =
-    topic !== null &&
-    topic.data.map((item) => {
-      return { key: item._id, value: item._id, label: item.name };
-    });
-  let optionsProduct =
-    product !== null &&
-    product.data.map((item) => {
-      return { key: item._id, value: item._id, label: item.name };
-    });
-  let SelectNull = [{ key: '1', value: '1', label: 'Loading...' }];
+  const data = [{ key: 1, value: 'Loading', label: 'Loading...' }];
+  const optionsTopic =
+    topic === null
+      ? data.map((item) => {
+          return {
+            item: item.key,
+            value: item.value,
+            label: item.label,
+            isDisabled: true,
+          };
+        })
+      : topic.data.map((item) => {
+          return { key: item._id, value: item._id, label: item.name };
+        });
+  const optionsProduct =
+    product === null
+      ? data.map((item) => {
+          return {
+            item: item.key,
+            value: item.value,
+            label: item.label,
+            isDisabled: true,
+          };
+        })
+      : product.data.map((item) => {
+          return { key: item._id, value: item._id, label: item.name };
+        });
 
   return (
-    <Section>
+    <Card>
       <SectionOne>
-        <Card isNormal style={{ width: '100%' }}>
+        <div>
           <Form>
             {/* --- Field name product --- */}
 
             <WrapsField fullwidth>
-              <Label>
-                <Span>Tittle Content</Span>
-              </Label>
               <div>
                 <Input
                   type="text"
@@ -79,9 +94,6 @@ export default function Detail(props) {
             </WrapsField>
 
             <WrapsField fullwidth>
-              <Label>
-                <Span>Status</Span>
-              </Label>
               <div>
                 <Input
                   as="select"
@@ -91,7 +103,7 @@ export default function Detail(props) {
                   onChange={onChange}
                 >
                   <option value="" disabled hidden>
-                    Choose here
+                    Status
                   </option>
                   <option value="publish">Public</option>
                   <option value="private">Private</option>
@@ -101,6 +113,20 @@ export default function Detail(props) {
             </WrapsField>
             {/* test */}
 
+            <WrapsField fullwidth>
+              <div>
+                <Select
+                  isMulti
+                  name="colors"
+                  value={isTopic}
+                  options={optionsTopic}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                  onChange={handleSelectTopic}
+                  placeholder="Select topic..."
+                />
+              </div>
+            </WrapsField>
             <Label>
               <Span>Content Type</Span>
             </Label>
@@ -139,14 +165,16 @@ export default function Detail(props) {
             {form.isBlog === false ? (
               <>
                 <WrapsField fullwidth>
-                  <Label>
-                    <Span>Product</Span>
-                  </Label>
                   <div>
-                    <MultiSelect
-                      options={product === null ? SelectNull : optionsProduct}
-                      selected={product_select}
-                      onSelectedChanged={handleSelectProduct}
+                    <Select
+                      isMulti
+                      name="colors"
+                      value={isProduct}
+                      options={optionsProduct}
+                      className="basic-multi-select"
+                      classNamePrefix="select"
+                      onChange={handleSelectProduct}
+                      placeholder="Select topic..."
                     />
                   </div>
                 </WrapsField>
@@ -165,22 +193,9 @@ export default function Detail(props) {
                 </WrapsField>
               </>
             ) : null}
-
-            <WrapsField fullwidth>
-              <Label>
-                <Span>Topic</Span>
-              </Label>
-              <div>
-                <MultiSelect
-                  options={topic === null ? SelectNull : optionsTopic}
-                  selected={topic_select}
-                  onSelectedChanged={handleSelectTopic}
-                />
-              </div>
-            </WrapsField>
           </Form>
-        </Card>
+        </div>
       </SectionOne>
-    </Section>
+    </Card>
   );
 }

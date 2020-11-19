@@ -70,11 +70,7 @@ export default function DynamicFieldsContents(props) {
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column' }} className="App">
-        <div>
-          <label>
-            <Span>Video</Span>
-          </label>
-        </div>
+        <div></div>
         {/* --- Testing --- */}
         <div name="test">
           {sectionAdd.map((field, idx) => {
