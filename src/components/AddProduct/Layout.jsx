@@ -24,8 +24,8 @@ import {
 
 const DescriptionStyle = Styled.div`
 margin-top: 10px;
-@media (max-width: 9000px){
-  margin-top: 150px; 
+@media (max-width: 700px){
+  margin-top: 140px; 
 }
 `;
 
