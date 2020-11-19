@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
-import Card from '../../elements/Card/Card';
+// import Card from '../../elements/Card/Card';
+import Card from '@material-ui/core/Card';
 import {
   fetchGetAgents,
   fetchPostSingleImage,
@@ -96,9 +97,9 @@ export default function Layout(props) {
   };
 
   return (
-    <Section>
+    <div>
       <SectionOne>
-        <Card isNormal style={{ width: '100%' }}>
+        <Card>
           <div style={{ padding: '30px 40px' }}>
             <WrapsField fullwidth>
               <div>
@@ -229,7 +230,7 @@ export default function Layout(props) {
           </div>
         </Card>
       </SectionOne>
-    </Section>
+    </div>
   );
 }
 

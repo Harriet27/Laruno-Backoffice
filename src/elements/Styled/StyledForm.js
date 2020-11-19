@@ -72,10 +72,21 @@ display: flex;
 font-weight: 500;
 
 `;
+
+const ResponsiveTabs = Styled.div`
+margin: 50px;
+@media (max-width: 1000px){
+  margin:10px;
+}
+`;
+const ResponsivePanel = Styled.div`
+
+s`;
 export {
   sm,
   md,
   lg,
+  ResponsiveTabs,
   Input,
   Th,
   SectionOne,

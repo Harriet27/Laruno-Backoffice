@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Card from '../../elements/Card/Card';
+// import Card from '../../elements/Card/Card';
+import Card from '@material-ui/core/Card';
 import { useDispatch } from 'react-redux';
 import Styled from 'styled-components';
 import SingleImage from './SingleImage';
@@ -56,8 +57,8 @@ export default function Bump(props) {
   console.log({ formulir }, 'formulir');
 
   return (
-    <Section>
-      <Card isNormal>
+    <div>
+      <Card>
         <div style={{ textAlign: 'center', marginTop: '10px' }}>
           <Span>Bump Product</Span>
         </div>
@@ -155,7 +156,7 @@ export default function Bump(props) {
           </div>
         </Container>
       </Card>
-    </Section>
+    </div>
   );
 }
 

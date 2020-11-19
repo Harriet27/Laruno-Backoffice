@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetTopic, fetchPostSingleImage } from '../../store/actions';
 import Styled from 'styled-components';
 
-import Card from '../../elements/Card/Card';
+// import Card from '../../elements/Card/Card';
+import Card from '@material-ui/core/Card';
 import {
   optionsTime,
   DurationHour,
@@ -19,10 +20,15 @@ import {
   Section,
   SectionOne,
   Span,
-  WrapsField,
+  // WrapsField,
   Label,
   Input,
 } from '../../elements/Styled/StyledTabs';
+
+const WrapsField = Styled.div`
+    margin-bottom: 10px;
+    width: 100%;
+`;
 
 export default function DetailProduct(props) {
   const dispatch = useDispatch();
@@ -88,146 +94,122 @@ export default function DetailProduct(props) {
         });
 
   return (
-    <Section>
+    <div>
       <SectionOne>
-        <Card isNormal style={{ width: '100%' }}>
-          <Form as="div">
+        <Card>
+          <div style={{ padding: '30px 40px' }}>
             {/* --- Field name product --- */}
-            <div style={Styles.FlexBetween}>
-              <WrapsField>
-                <Label>
-                  <Span>Nama Produk</Span>
-                </Label>
-                <div>
-                  <Input
-                    type="text"
-                    name="name"
-                    id="name"
-                    defaultValue={name}
-                    onChange={onChange}
-                    placeholder="Product Name..."
-                  />
-                </div>
-              </WrapsField>
 
-              <WrapsField>
-                <Label>
-                  <Span>Produk Code</Span>
-                </Label>
-                <div>
-                  <Input
-                    type="text"
-                    name="code"
-                    id="code"
-                    defaultValue={code}
-                    onChange={onChange}
-                    placeholder="Product Code..."
-                  />
-                </div>
-              </WrapsField>
+            <WrapsField>
+              <div>
+                <Input
+                  type="text"
+                  name="name"
+                  id="name"
+                  defaultValue={name}
+                  onChange={onChange}
+                  placeholder="Product Name..."
+                />
+              </div>
+            </WrapsField>
 
-              <WrapsField>
-                <Label>
-                  <Span>Slug</Span>
-                </Label>
-                <div>
-                  <Input
-                    type="text"
-                    name="slug"
-                    id="slug"
-                    defaultValue={slug}
-                    onChange={onChange}
-                    placeholder="Product Slug..."
-                  />
-                </div>
-              </WrapsField>
-            </div>
+            <WrapsField>
+              <div>
+                <Input
+                  type="text"
+                  name="code"
+                  id="code"
+                  defaultValue={code}
+                  onChange={onChange}
+                  placeholder="Product Code..."
+                />
+              </div>
+            </WrapsField>
 
-            <div style={Styles.FlexBetween}>
-              <WrapsField>
-                <Label>
-                  <Span>Product Type</Span>
-                </Label>
-                <div>
-                  <Input
-                    as="select"
-                    name="type"
-                    id="type"
-                    defaultValue={type}
-                    onChange={onChange}
-                  >
-                    <option value="" disabled hidden>
-                      Choose here
-                    </option>
-                    <option value="digital">Product Digital</option>
-                    <option value="webinar">Webinar</option>
-                    <option value="ecommerce">Ecommerce</option>
-                    <option value="bonus">Bonus</option>
-                  </Input>
+            <WrapsField>
+              <div>
+                <Input
+                  type="text"
+                  name="slug"
+                  id="slug"
+                  defaultValue={slug}
+                  onChange={onChange}
+                  placeholder="Product Slug..."
+                />
+              </div>
+            </WrapsField>
+            <WrapsField>
+              <div>
+                <Select
+                  isMulti
+                  name="colors"
+                  value={isTopic || ''}
+                  options={options}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                  onChange={handleSelect}
+                  placeholder="Select topic.."
+                />
+              </div>
+            </WrapsField>
+            <WrapsField>
+              {/*  Styled for Rp */}
+              <div style={Styles.BorderPriceMonth}>
+                <Input
+                  isPrice
+                  type="number"
+                  name="time_period"
+                  id="time_period"
+                  value={time_period}
+                  onChange={onChange}
+                />
+                <div style={Styles.PeriodMonth}>
+                  <div style={Styles.MarginPriceMonth}>Month</div>
                 </div>
-              </WrapsField>
-              <WrapsField>
-                <Label>
-                  <Span>Topic</Span>
-                </Label>
-                <div>
-                  <Select
-                    isMulti
-                    name="colors"
-                    value={isTopic || ''}
-                    options={options}
-                    className="basic-multi-select"
-                    classNamePrefix="select"
-                    onChange={handleSelect}
-                    placeholder="Select topic.."
-                  />
-                </div>
-              </WrapsField>
+              </div>
+            </WrapsField>
+            <WrapsField>
+              <div>
+                <Input
+                  style={{ padding: '11.5px 5px' }}
+                  as="select"
+                  name="type"
+                  id="type"
+                  defaultValue={type}
+                  onChange={onChange}
+                >
+                  <option value="" disabled hidden>
+                    Product Type..
+                  </option>
+                  <option value="digital">Product Digital</option>
+                  <option value="webinar">Webinar</option>
+                  <option value="ecommerce">Ecommerce</option>
+                  <option value="bonus">Bonus</option>
+                </Input>
+              </div>
+            </WrapsField>
 
-              <WrapsField>
-                <Label>
-                  <Span>Periode Waktu</Span>
-                </Label>
-                {/*  Styled for Rp */}
-                <div style={Styles.BorderPriceMonth}>
-                  <Input
-                    isPrice
-                    type="number"
-                    name="time_period"
-                    id="time_period"
-                    value={time_period}
-                    onChange={onChange}
-                  />
-                  <div style={Styles.PeriodMonth}>
-                    <div style={Styles.MarginPriceMonth}>Month</div>
-                  </div>
-                </div>
-              </WrapsField>
-            </div>
             {/* --- Field logic in field product category ---  */}
-            <div>
+            <>
               {props.form === 'webinar' ? (
                 <div>
+                  <WrapsField>
+                    <Label>
+                      <Span>Zoom ID</Span>
+                    </Label>
+                    <div>
+                      <Input
+                        type="text"
+                        name="client_url"
+                        id="client_url"
+                        value={zoom_id}
+                        onChange={handleWebinar}
+                      />
+                    </div>
+                  </WrapsField>
+                  <Span>Start Zoom</Span>
                   <div style={Styles.FlexBetween}>
-                    <WrapsField>
-                      <Label>
-                        <Span>Zoom ID</Span>
-                      </Label>
-                      <div>
-                        <Input
-                          type="text"
-                          name="client_url"
-                          id="client_url"
-                          value={zoom_id}
-                          onChange={handleWebinar}
-                        />
-                      </div>
-                    </WrapsField>
-
-                    <WrapsField>
-                      <Label>
-                        <Span>Start</Span>
-                      </Label>
+                    <WrapsField style={{ width: '49%' }}>
                       <div>
                         <Input
                           type="date"
@@ -238,11 +220,10 @@ export default function DetailProduct(props) {
                         />
                       </div>
                     </WrapsField>
-                    <WrapsField>
-                      <Label></Label>
+                    <WrapsField style={{ width: '49%' }}>
                       <div>
                         <Input
-                          style={Styles.StartTime}
+                          style={{ padding: '11.5px 5px' }}
                           as="select"
                           name="start_time"
                           id="start_time"
@@ -261,14 +242,13 @@ export default function DetailProduct(props) {
                     </WrapsField>
                   </div>
 
-                  <Label>
-                    <Span>Duration</Span>
-                  </Label>
+                  <Span>Duration</Span>
 
                   <div style={Styles.FlexBetween}>
-                    <WrapsField>
+                    <WrapsField style={{ width: '49%' }}>
                       <div>
                         <Input
+                          style={{ padding: '11.5px 5px' }}
                           as="select"
                           name="hours"
                           id="duration"
@@ -286,9 +266,10 @@ export default function DetailProduct(props) {
                       </div>
                     </WrapsField>
 
-                    <WrapsField style={Styles.MarginRight}>
+                    <WrapsField style={{ width: '49%' }}>
                       <div>
                         <Input
+                          style={{ padding: '11.5px 5px' }}
                           as="select"
                           name="minutes"
                           id="minutes"
@@ -369,57 +350,48 @@ export default function DetailProduct(props) {
                   </WrapsField>
                 </div>
               ) : null}
-            </div>
+            </>
+
+            <WrapsField>
+              <div style={Styles.BorderPriceMonth}>
+                <div style={Styles.Price}>
+                  <div style={Styles.MarginPriceMonth}>Rp</div>
+                </div>
+                <Input
+                  isPrice
+                  type="text"
+                  name="price"
+                  id="price"
+                  value={price}
+                  onChange={onChange}
+                  placeholder="Harga Normal.."
+                />
+              </div>
+            </WrapsField>
+
+            <WrapsField style={Styles.MarginRight}>
+              {/*  Styled for Rp */}
+              <div style={Styles.BorderPriceMonth}>
+                <div style={Styles.Price}>
+                  <div style={Styles.MarginPriceMonth}>Rp</div>
+                </div>
+                <Input
+                  isPrice
+                  type="text"
+                  name="sale_price"
+                  id="sale_price"
+                  value={sale_price}
+                  onChange={onChange}
+                  placeholder="Harga Promo.."
+                />
+              </div>
+            </WrapsField>
 
             <div style={Styles.FlexBetween}>
-              <WrapsField>
-                <Label>
-                  <Span>Harga Normal</Span>
-                </Label>
-
-                <div style={Styles.BorderPriceMonth}>
-                  <div style={Styles.Price}>
-                    <div style={Styles.MarginPriceMonth}>Rp</div>
-                  </div>
-                  <Input
-                    isPrice
-                    type="number"
-                    name="price"
-                    id="price"
-                    value={price}
-                    onChange={onChange}
-                  />
-                </div>
-              </WrapsField>
-
-              <WrapsField style={Styles.MarginRight}>
-                <Label>
-                  <Span>Harga Promo</Span>
-                </Label>
-                {/*  Styled for Rp */}
-                <div style={Styles.BorderPriceMonth}>
-                  <div style={Styles.Price}>
-                    <div style={Styles.MarginPriceMonth}>Rp</div>
-                  </div>
-                  <Input
-                    isPrice
-                    type="number"
-                    name="sale_price"
-                    id="sale_price"
-                    value={sale_price}
-                    onChange={onChange}
-                  />
-                </div>
-              </WrapsField>
-            </div>
-
-            <div style={Styles.FlexBetween}>
-              <WrapsField>
-                <Label>
-                  <Span>Status</Span>
-                </Label>
+              <WrapsField style={{ width: '49%' }}>
                 <div>
                   <Input
+                    style={{ padding: '11.5px 5px' }}
                     as="select"
                     name="visibility"
                     id="visibility"
@@ -427,7 +399,7 @@ export default function DetailProduct(props) {
                     onChange={onChange}
                   >
                     <option value="" disabled hidden>
-                      Choose here
+                      Status
                     </option>
                     <option value="publish">Public</option>
                     <option value="private">Private</option>
@@ -436,12 +408,10 @@ export default function DetailProduct(props) {
                 </div>
               </WrapsField>
 
-              <WrapsField style={Styles.MarginRight}>
-                <Label>
-                  <Span>Method Sale</Span>
-                </Label>
+              <WrapsField style={{ width: '49%' }}>
                 <div>
                   <Input
+                    style={{ padding: '11.5px 5px' }}
                     as="select"
                     name="sale_method"
                     id="sale_method"
@@ -450,7 +420,7 @@ export default function DetailProduct(props) {
                     // ref={register}
                   >
                     <option value="" disabled hidden>
-                      Choose here
+                      Method Sale
                     </option>
                     <option value="normal">Normal</option>
                     <option value="upsale">Upsale</option>
@@ -487,10 +457,10 @@ export default function DetailProduct(props) {
                 })}
               </div>
             </>
-          </Form>
+          </div>
         </Card>
       </SectionOne>
-    </Section>
+    </div>
   );
 }
 

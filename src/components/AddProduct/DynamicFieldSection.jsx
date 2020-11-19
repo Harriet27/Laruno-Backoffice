@@ -1,9 +1,12 @@
-import Card from '../../elements/Card/Card';
+// import Card from '../../elements/Card/Card';
+
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchPostDynamicImage } from '../../store/actions';
 import Styled from 'styled-components';
 import SingleImage from './SingleImage';
+// import Card from '../../elements/Card/Card';
+import Card from '@material-ui/core/Card';
 const Input = Styled.input`
     width: 100%;
     padding: .375rem;
@@ -101,9 +104,9 @@ export default function DynamicFieldSection(props) {
   };
 
   return (
-    <Section>
+    <div>
       <SectionOne>
-        <Card isNormal style={{ width: '100%' }}>
+        <div>
           <div style={{ padding: '30px 40px' }}>
             <div
               style={{ display: 'flex', flexDirection: 'column' }}
@@ -162,8 +165,8 @@ export default function DynamicFieldSection(props) {
               </ButtonModal>
             </div>
           </div>
-        </Card>
+        </div>
       </SectionOne>
-    </Section>
+    </div>
   );
 }

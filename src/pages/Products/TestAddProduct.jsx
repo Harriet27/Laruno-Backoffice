@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { ButtonStyled } from '../../elements/Styled/StyledForm';
-
+import { ButtonStyled, ResponsiveTabs } from '../../elements/Styled/StyledForm';
+import Card from '@material-ui/core/Card';
 // --- React Hook Form --- //
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -20,6 +20,7 @@ import DynamicField from '../../components/AddProduct/DynamicField';
 import DynamicFieldSection from '../../components/AddProduct/DynamicFieldSection';
 import Bump from '../../components/AddProduct/Bump';
 import { Spinner } from 'reactstrap';
+
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
@@ -54,7 +55,7 @@ export default function TestAddProduct() {
     webinar: '',
     ecommerce: '',
     topic: [],
-    price: 0,
+    price: '',
     time_period: '',
     visibility: '',
     sale_method: '',
@@ -65,7 +66,7 @@ export default function TestAddProduct() {
     subheadline: '',
     description: '',
     learn_about: '',
-    sale_price: 0,
+    sale_price: '',
     image_url: [],
     // video_url: '',
     agent: [],
@@ -327,7 +328,7 @@ export default function TestAddProduct() {
   // form.image_text_url = arr.image_text;
   form.media_url = formulir.image.media_url;
   return (
-    <div style={{ margin: '50px' }}>
+    <ResponsiveTabs>
       <AppBar position="static" style={{ background: 'white' }}>
         <Tabs
           value={value}
@@ -467,51 +468,54 @@ export default function TestAddProduct() {
             background: 'white',
           }}
         >
-          <DynamicFieldSection
-            fields={sectionAdd}
-            handleAdd={handleAddSection}
-            handleChange={handleChangeDynamicSection}
-            handleChangeContents={handleChangeContentsSection}
-            handleRemove={handleRemoveSection}
-            formulir={formulir}
-            setFormulir={setFormulir}
-            sectionAdd={sectionAdd}
-            setSectionAdd={setSectionAdd}
-          />
-          <div
-            style={{
-              margin: '0 100px',
-              paddingBottom: '20px',
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <ButtonStyled style={{ color: '#656565', background: '#F2F5F7' }}>
-              <i className="fa fa-undo"></i> Cancel
-            </ButtonStyled>
-            <ButtonStyled
-              // onClick={handleSubmit}
-              onClick={handleSubmit}
-              style={{ background: '#70CA63' }}
+          <Card>
+            <DynamicFieldSection
+              fields={sectionAdd}
+              handleAdd={handleAddSection}
+              handleChange={handleChangeDynamicSection}
+              handleChangeContents={handleChangeContentsSection}
+              handleRemove={handleRemoveSection}
+              formulir={formulir}
+              setFormulir={setFormulir}
+              sectionAdd={sectionAdd}
+              setSectionAdd={setSectionAdd}
+            />
+
+            <div
+              style={{
+                margin: '30px 40px',
+                paddingBottom: '20px',
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
             >
-              <div style={{ width: '100px', textAlign: 'center' }}>
-                {state.isLoading ? (
-                  <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
-                ) : (
-                  <>
-                    {' '}
-                    <i
-                      style={{ marginRight: '5px' }}
-                      className="fa fa-save"
-                    ></i>
-                    Save
-                  </>
-                )}
-              </div>
-            </ButtonStyled>
-          </div>
+              <ButtonStyled style={{ color: '#656565', background: '#F2F5F7' }}>
+                <i className="fa fa-undo"></i> Cancel
+              </ButtonStyled>
+              <ButtonStyled
+                // onClick={handleSubmit}
+                onClick={handleSubmit}
+                style={{ background: '#70CA63' }}
+              >
+                <div style={{ width: '100px', textAlign: 'center' }}>
+                  {state.isLoading ? (
+                    <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
+                  ) : (
+                    <>
+                      {' '}
+                      <i
+                        style={{ marginRight: '5px' }}
+                        className="fa fa-save"
+                      ></i>
+                      Save
+                    </>
+                  )}
+                </div>
+              </ButtonStyled>
+            </div>
+          </Card>
         </div>
       </TabPanel>
-    </div>
+    </ResponsiveTabs>
   );
 }
