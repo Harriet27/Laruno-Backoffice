@@ -30,7 +30,7 @@ const UpdateModalCoupons = (props) => {
       </ButtonLink>
       <Modal
         isOpen={modal.open}
-        style={{ maxWidth: '1000PX' }}
+        style={{ maxWidth: '700PX', width: '100%' }}
         toggle={toggle}
         className={className}
       >
