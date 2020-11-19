@@ -168,12 +168,43 @@ export default function TestAddProduct() {
   };
 
   // --- try handle select multiple --- //
-  const handleSelect = (topic) => {
-    setForm({ ...form, topic });
-  };
+  // const handleSelect = (topic) => {
+  //   setForm({ ...form, topic });
+  // };
 
+  // const handleSelectAgent = (agent) => {
+  //   setForm({ ...form, agent });
+  // };
+  const [selecting, setSelecting] = useState({
+    agent: '',
+    topic: '',
+  });
+  console.log(selecting, 'selecting');
   const handleSelectAgent = (agent) => {
-    setForm({ ...form, agent });
+    const isAgent =
+      agent !== null &&
+      agent.map((item) => {
+        return item.key;
+      });
+
+    setSelecting({
+      ...selecting,
+      agent,
+    });
+    form.agent = isAgent || '';
+  };
+  const handleSelectTopic = (topic) => {
+    const isTopic =
+      topic !== null &&
+      topic.map((item) => {
+        return item.key;
+      });
+
+    setSelecting({
+      ...selecting,
+      topic,
+    });
+    form.agent = isTopic || '';
   };
 
   // ======>>> lOGIC DETAIL PRODUCT SECTION 2 "layout" <<<====== //
@@ -322,7 +353,7 @@ export default function TestAddProduct() {
         >
           <DetailProduct
             handleRadio={handleRadio}
-            handleSelect={handleSelect}
+            handleSelect={handleSelectTopic}
             onChange={handleChangeForm}
             form={form.type}
             name={form.name}
@@ -356,6 +387,7 @@ export default function TestAddProduct() {
             duration_minute={duration.minutes}
             handleWebinar={handleWebinar}
             handleDuration={handleDuration}
+            isTopic={selecting.topic}
             // --- REACT HOOK FORM --- //
             // register={register}
             // errors={errors}
@@ -370,9 +402,10 @@ export default function TestAddProduct() {
           }}
         >
           <Layout
-            handleSelectAgent={handleSelectAgent}
+            handleSelect={handleSelectAgent}
             onChange={handleChangeForm}
             handleFeature={handleFeature}
+            isAgent={selecting.agent}
             headline={form.headline}
             image_bonus_url={form.image_bonus_url}
             // image_text_url={form.image_text_url}

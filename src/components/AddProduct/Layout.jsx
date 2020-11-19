@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import MultiSelect from '@khanacademy/react-multi-select';
+import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../../elements/Card/Card';
 import {
@@ -29,9 +29,10 @@ export default function Layout(props) {
     feature_onheader,
     feature_onpage,
     agent,
-    handleSelectAgent,
+    handleSelect,
     handleFeature,
     children,
+    isAgent,
     // --- upload image --- //
     formulir,
     setFormulir,
@@ -42,17 +43,25 @@ export default function Layout(props) {
 
   // --- Agents --- //
   const agents = useSelector((state) => state.agents.getAgents);
-
+  console.log(agents, 'agent');
   useEffect(() => {
     dispatch(fetchGetAgents());
     // eslint-disable-next-line
   }, [dispatch]);
-
-  let optionsAgents =
-    agents !== null &&
-    agents.data.map((item) => {
-      return { key: item._id, value: item._id, label: item.name };
-    });
+  const data = [{ key: 1, value: 'Loading', label: 'Loading...' }];
+  const options =
+    agents === null
+      ? data.map((item) => {
+          return {
+            item: item.key,
+            value: item.value,
+            label: item.label,
+            isDisabled: true,
+          };
+        })
+      : agents.data.map((item) => {
+          return { key: item._id, value: item._id, label: item.name };
+        });
 
   // --- HandleChange upload Image --- //
   const [state, setState] = useState({
@@ -84,13 +93,6 @@ export default function Layout(props) {
     dispatch(fetchPostSingleImage({ formulir, e, id, setFormulir, setState }));
     e.target.type = 'text';
     e.target.type = 'file';
-  };
-
-  // --- handleSubmit Upload Image --- //
-  const handleSubmit = async (e, id) => {
-    e.preventDefault();
-
-    dispatch(fetchPostSingleImage(formulir, e, id, setFormulir));
   };
 
   return (
@@ -130,16 +132,14 @@ export default function Layout(props) {
             <WrapsField fullwidth>
               <Label></Label>
               <div>
-                <MultiSelect
-                  overrideStrings={{
-                    selectSomeItems: 'select role...',
-                    allItemsAreSelected: 'Semua role dipilih',
-                    selectAll: 'Select All',
-                    search: 'Search',
-                  }}
-                  options={optionsAgents}
-                  selected={agent}
-                  onSelectedChanged={handleSelectAgent}
+                <Select
+                  isMulti
+                  name="colors"
+                  value={isAgent || ''}
+                  options={options}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                  onChange={handleSelect}
                 />
               </div>
             </WrapsField>

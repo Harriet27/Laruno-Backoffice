@@ -56,10 +56,17 @@ export default function InputUpdateUser(props) {
     });
 
     const roles = useSelector((state) => state.roles.getRoles);
-
+    const data = [{ key: 1, value: 'Loading', label: 'Loading...' }];
     const options =
       roles === null
-        ? { key: '123', value: 'chocolate', label: 'Chocolate' }
+        ? data.map((item) => {
+            return {
+              item: item.key,
+              value: item.value,
+              label: item.label,
+              isDisabled: true,
+            };
+          })
         : roles.data.map((item) => {
             return { key: item._id, value: item._id, label: item.adminType };
           });
