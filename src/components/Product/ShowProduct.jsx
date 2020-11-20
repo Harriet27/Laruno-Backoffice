@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
-import Card from '../../elements/Card/Card';
+// import Card from '../../elements/Card/Card';
 
 import { fetchShowProduct } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { Table, Spinner } from 'reactstrap';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Card } from '@material-ui/core';
 
 export default function ShowProduct(props) {
   const dispatch = useDispatch();
   let { id } = useParams();
   // const product = useSelector((state) => state.detail.data);
   const product = useSelector((state) => state.product.showProduct);
-
+  console.log({ product }, 'product');
   // --- useEffect --- get data topic ---//
   useEffect(() => {
     dispatch(fetchShowProduct(id));
@@ -27,7 +27,6 @@ export default function ShowProduct(props) {
         <Card>
           {product === null || product.data._id !== id ? (
             <Card
-              isNormal
               style={{
                 width: '100%',
                 height: '50vh',
@@ -43,8 +42,7 @@ export default function ShowProduct(props) {
             </Card>
           ) : (
             <div key={product.data._id}>
-              <React.Fragment></React.Fragment>
-              <Card isNormal style={{ padding: '10px' }}>
+              <Card style={{ padding: '20px' }}>
                 <Table borderless size="sm">
                   <thead>
                     <tr>
@@ -73,35 +71,14 @@ export default function ShowProduct(props) {
                     <tr>
                       <td>Description</td>
                       <td>
-                        :
-                        <div
+                        :{' '}
+                        <span
                           key={product.data._id}
                           dangerouslySetInnerHTML={{
                             __html: `${product.data.description}`,
                           }}
                         />
                         <br />
-                        {/* <div
-                          style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            margin: '10px 0',
-                          }}
-                        >
-                          {product.data.image_url &&
-                            product.data.image_url.map((item, index) => {
-                              return (
-                                <div
-                                  key={index}
-                                  style={{
-                                    width: '49%',
-                                  }}
-                                >
-                                  <img width="100%" src={item} alt={item} />
-                                </div>
-                              );
-                            })}
-                        </div> */}
                       </td>
                     </tr>
                     <tr>
@@ -115,37 +92,19 @@ export default function ShowProduct(props) {
                     <tr>
                       <td>Image</td>
                       <td>
-                        <img
-                          src={product.data.image_bonus}
-                          alt={product.data.image_bonus}
-                        />
+                        {product.data.image_url === null ||
+                        product.data.image_url === undefined ||
+                        product.data.image_url.length === 0
+                          ? 'Not Image'
+                          : product.data.image_url.map((item) => {
+                              return (
+                                <>
+                                  <img src={item} alt={item} />
+                                </>
+                              );
+                            })}
                       </td>
                     </tr>
-                    {/* <tr>
-                                            <td>Video</td>
-                                            <td>
-                                                <video
-                                                    width="320"
-                                                    height="240"
-                                                    controls
-                                                >
-                                                    <source
-                                                        src={
-                                                            product.data
-                                                                .video_url
-                                                        }
-                                                        type="video/mp4"
-                                                    />{' '}
-                                                    <source
-                                                        src={
-                                                            product.data
-                                                                .video_url
-                                                        }
-                                                        type="video/ogg"
-                                                    />
-                                                </video>
-                                            </td>
-                                        </tr> */}
                   </tbody>
                 </Table>
               </Card>
