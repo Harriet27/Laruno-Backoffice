@@ -21,7 +21,7 @@ import TotalDataTopic from './TotalDataTopic';
 const DataTopic = (props) => {
   const dispatch = useDispatch();
   const topic = useSelector((state) => state.topic.getTopic);
-
+  console.log({ topic });
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -75,6 +75,9 @@ const DataTopic = (props) => {
   const handleChange = (event) => {
     setSearching({ ...searching, [event.target.name]: event.target.value });
   };
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * 125);
+  }
 
   return (
     <>
@@ -116,12 +119,9 @@ const DataTopic = (props) => {
               onChange={handleChange}
             />
           </div>
-          {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
         </div>
 
-        {/* --- section 2 --- Get Data Product --- */}
         <Card isNormal>
-          {/* --- untuk hapus melalui button --- */}
           <Overflow>
             {topic === null ? (
               <React.Fragment>
@@ -131,10 +131,10 @@ const DataTopic = (props) => {
                       <Th>
                         <DehazeIcon />
                       </Th>
-                      <Th>Name</Th>
-                      <Th>Slug</Th>
-                      <Th>Created At</Th>
-                      <Th>Update At</Th>
+                      <Th>Icon</Th>
+                      <Th>Detail</Th>
+                      <Th>useFor</Th>
+                      <Th>Visit</Th>
                       <Th style={{ width: '100px' }}>Actions</Th>
                     </tr>
                   </thead>
@@ -143,24 +143,24 @@ const DataTopic = (props) => {
                   <CircularProgress />
                 </div>
               </React.Fragment>
-            ) : topic.data.length >= 1 ? (
+            ) : topic.data.length > 0 ? (
               <Table striped>
                 <thead>
                   <tr>
                     <Th>
                       <Input checkbox type="checkbox" />
                     </Th>
-                    <Th>Name</Th>
-                    <Th>Slug</Th>
-                    <Th>Created At</Th>
-                    <Th>Update At</Th>
+                    <Th>Icon</Th>
+                    <Th>Detail</Th>
+                    <Th>UseFor</Th>
+                    <Th>Visit</Th>
                     <Th style={{ width: '100px' }}>Actions</Th>
                   </tr>
                 </thead>
                 <tbody>
                   {topic.data
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((item) => {
+                    .map((item, index) => {
                       return (
                         <tr key={item._id}>
                           <Th>
@@ -174,20 +174,52 @@ const DataTopic = (props) => {
                           </Th>
 
                           <Th as="td" td>
-                            {item.name}
+                            <>
+                              <div style={{ width: '75px' }}>
+                                <img
+                                  width="100%"
+                                  src={item.icon}
+                                  alt={item.name}
+                                />
+                              </div>
+                            </>
                           </Th>
                           <Th as="td" td>
-                            {item.slug}
+                            <div
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                              }}
+                            >
+                              <div> {item.name}</div>
+                              {/* <div> {item.slug}</div> */}
+                              <div>
+                                {moment(item.created_at).format('MM-DD-YYYY, ')}
+                              </div>
+                            </div>
                           </Th>
                           <Th as="td" td>
-                            {moment(item.created_at).format(
-                              'MMMM Do YYYY, h:mm:ss a'
-                            )}
+                            <div
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                              }}
+                            >
+                              <div>Blog: {getRandomInt(index)} kali</div>
+                              <div>Fulfillment: {getRandomInt(index)} kali</div>
+                            </div>
                           </Th>
                           <Th as="td" td>
-                            {moment(item.updated_at).format(
-                              'MMMM Do YYYY, h:mm:ss a'
-                            )}
+                            <div
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                              }}
+                            >
+                              <div>Today: {getRandomInt(index)} orang</div>
+                              <div>Yesterday: {getRandomInt(index)} orang</div>
+                              <div>last 7 day: {getRandomInt(index)} orang</div>
+                            </div>
                           </Th>
 
                           <Th as="td" td>
