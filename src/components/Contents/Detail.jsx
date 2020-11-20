@@ -174,7 +174,7 @@ export default function Detail(props) {
                       className="basic-multi-select"
                       classNamePrefix="select"
                       onChange={handleSelectProduct}
-                      placeholder="Select topic..."
+                      placeholder="Select Product..."
                     />
                   </div>
                 </WrapsField>

@@ -75,6 +75,7 @@ const DataTopic = (props) => {
   const handleChange = (event) => {
     setSearching({ ...searching, [event.target.name]: event.target.value });
   };
+  // Random Data
   function getRandomInt(max) {
     return Math.floor(Math.random() * 125);
   }
@@ -185,13 +186,8 @@ const DataTopic = (props) => {
                             </>
                           </Th>
                           <Th as="td" td>
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                              }}
-                            >
-                              <div> {item.name}</div>
+                            <div style={Styles.FlexColumn}>
+                              <div style={Styles.Name}> {item.name}</div>
                               {/* <div> {item.slug}</div> */}
                               <div>
                                 {moment(item.created_at).format('MM-DD-YYYY, ')}
@@ -199,26 +195,22 @@ const DataTopic = (props) => {
                             </div>
                           </Th>
                           <Th as="td" td>
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                              }}
-                            >
+                            <div style={Styles.FlexColumn}>
                               <div>Blog: {getRandomInt(index)} kali</div>
                               <div>Fulfillment: {getRandomInt(index)} kali</div>
                             </div>
                           </Th>
                           <Th as="td" td>
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                              }}
-                            >
-                              <div>Today: {getRandomInt(index)} orang</div>
-                              <div>Yesterday: {getRandomInt(index)} orang</div>
-                              <div>last 7 day: {getRandomInt(index)} orang</div>
+                            <div style={Styles.FlexColumn}>
+                              <div>
+                                Today : {getRandomInt(index)} Pengunjung
+                              </div>
+                              <div>
+                                Yesterday: {getRandomInt(index)} Pengunjung
+                              </div>
+                              <div>
+                                last 7 day: {getRandomInt(index)} Pengunjung
+                              </div>
                             </div>
                           </Th>
 
@@ -253,10 +245,10 @@ const DataTopic = (props) => {
                       <Th>
                         <DehazeIcon />
                       </Th>
-                      <Th>Name</Th>
-                      <Th>Slug</Th>
-                      <Th>Created At</Th>
-                      <Th>Update At</Th>
+                      <Th>Icon</Th>
+                      <Th>Detail</Th>
+                      <Th>UseFor</Th>
+                      <Th>Visit</Th>
                       <Th style={{ width: '100px' }}>Actions</Th>
                     </tr>
                   </thead>
@@ -283,6 +275,12 @@ const Styles = {
     display: 'flex',
     flexDirection: 'row',
   },
+  FlexColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  VisitStyles: {},
+  Name: { color: '#0098da', fontWeight: '700' },
   IsLoading: { textAlign: 'center', padding: '100px' },
 };
 export default DataTopic;
