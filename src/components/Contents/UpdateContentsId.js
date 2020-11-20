@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import Card from '@material-ui/core/Card';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { fetchUpdateContents } from '../../store/actions';
+import { fetchPostContents, fetchUpdateContents } from '../../store/actions';
 import AppBar from '@material-ui/core/AppBar';
 import { Spinner } from 'reactstrap';
 import Tabs from '@material-ui/core/Tabs';
@@ -34,13 +35,13 @@ export default function UpdateContentsId(props) {
   // --- Form --- //
   const [form, setForm] = useState({
     name: name || '',
-    isBlog: isBlog || '',
+    isBlog: isBlog || true,
     cover_img: '',
     // short_content: '',
-    product: '',
-    topic: '',
+    product: [],
+    topic: [],
     content: '',
-    images: '',
+    images: [],
     module: [
       {
         question: '',
@@ -56,9 +57,9 @@ export default function UpdateContentsId(props) {
         url: '',
       },
     ],
-    tag: '',
+    tag: [],
   });
-  console.log(form.cover_img);
+  console.log(form, 'form');
   const [state, setState] = useState({
     isLoading: false,
   });
@@ -78,12 +79,6 @@ export default function UpdateContentsId(props) {
     } else if (event.target.value === 'false') {
       setForm({ ...form, isBlog: false });
     }
-  };
-  const handleSelectTopic = (topic) => {
-    setForm({ ...form, topic });
-  };
-  const handleSelectProduct = (product) => {
-    setForm({ ...form, product });
   };
 
   // --- Perantara kepada Form --- //
@@ -157,6 +152,37 @@ export default function UpdateContentsId(props) {
     setSectionPodcast(values);
   }
 
+  const [selecting, setSelecting] = useState({
+    topic: '',
+    product: '',
+  });
+  const handleSelectTopic = (topic) => {
+    const isTopic =
+      topic !== null &&
+      topic.map((item) => {
+        return item.key;
+      });
+
+    setSelecting({
+      ...selecting,
+      topic,
+    });
+    form.topic = isTopic || '';
+  };
+  const handleSelectProduct = (product) => {
+    const isProduct =
+      product !== null &&
+      product.map((item) => {
+        return item.key;
+      });
+
+    setSelecting({
+      ...selecting,
+      product,
+    });
+    form.product = isProduct || '';
+  };
+
   return (
     <div style={{ margin: '50px' }}>
       <AppBar position="static" style={{ background: 'white' }}>
@@ -187,10 +213,12 @@ export default function UpdateContentsId(props) {
             form={form}
             checked={checked}
             setChecked={setChecked}
-            topic_select={form.topic}
+            // topic_select={form.topic}
+            isTopic={selecting.topic}
             handleSelectTopic={handleSelectTopic}
             handleSelectProduct={handleSelectProduct}
-            product_select={form.product}
+            // product_select={form.product}
+            isProduct={selecting.product}
           />
         </div>
       </TabPanel>
@@ -222,39 +250,40 @@ export default function UpdateContentsId(props) {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <div style={Styles.TabPanel}>
-          <Contents checked={checked} value={quill} setValue={setQuill}>
-            <DynamicFieldsModule
-              fields={sectionModule}
-              handleAdd={handleAddSectionModule}
-              handleChange={handleChangeDynamicSectionModule}
-              handleRemove={handleRemoveSectionModule}
-            />
-          </Contents>
-          <div style={Styles.DisplayButton}>
-            <ButtonStyled style={Styles.ButtonCancel}>
-              <i className="fa fa-undo"></i> Cancel
-            </ButtonStyled>
-            <ButtonStyled
-              // onClick={handleSubmit}
-              onClick={handleSubmit}
-              style={{ background: '#70CA63' }}
-            >
-              <div style={{ width: '100px', textAlign: 'center' }}>
-                {state.isLoading ? (
-                  <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
-                ) : (
-                  <>
-                    {' '}
-                    <i
-                      style={{ marginRight: '5px' }}
-                      className="fa fa-save"
-                    ></i>
-                    Save
-                  </>
-                )}
-              </div>
-            </ButtonStyled>
-          </div>
+          <Card>
+            <Contents checked={checked} value={quill} setValue={setQuill}>
+              <DynamicFieldsModule
+                fields={sectionModule}
+                handleAdd={handleAddSectionModule}
+                handleChange={handleChangeDynamicSectionModule}
+                handleRemove={handleRemoveSectionModule}
+              />
+            </Contents>
+            <div style={Styles.DisplayButton}>
+              <ButtonStyled style={Styles.ButtonCancel}>
+                <i className="fa fa-undo"></i> Cancel
+              </ButtonStyled>
+              <ButtonStyled
+                // onClick={handleSubmit}
+                onClick={handleSubmit}
+                style={{ background: '#70CA63' }}
+              >
+                <div style={{ width: '100px', textAlign: 'center' }}>
+                  {state.isLoading ? (
+                    <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
+                  ) : (
+                    <>
+                      <i
+                        style={{ marginRight: '5px' }}
+                        className="fa fa-save"
+                      ></i>
+                      Save
+                    </>
+                  )}
+                </div>
+              </ButtonStyled>
+            </div>
+          </Card>
         </div>
       </TabPanel>
     </div>
@@ -263,7 +292,7 @@ export default function UpdateContentsId(props) {
 
 const Styles = {
   DisplayButton: {
-    margin: '0 100px',
+    margin: '30px 40px',
     paddingBottom: '20px',
     display: 'flex',
     justifyContent: 'space-between',

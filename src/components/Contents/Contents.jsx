@@ -16,7 +16,7 @@ export default function Contents(props) {
     <>
       <div>
         <SectionOne>
-          <div isNormal style={{ width: '100%' }}>
+          <div>
             <Form>
               {checked === true ? (
                 <>{props.children}</>

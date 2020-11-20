@@ -169,7 +169,7 @@ const fetchUpdateContents = ({ form, history, setState, id }) => async () => {
 
     // --- apabila form itu kosong maka hapus formnya --- //
     for (let key in form) {
-      if (form[key] === '') {
+      if (form[key] === '' || form[key].length === 0) {
         delete form[key];
       }
     }
@@ -196,7 +196,7 @@ const fetchUpdateContents = ({ form, history, setState, id }) => async () => {
         showConfirmButton: false,
         timer: 1000,
       });
-      window.location.reload('/contents');
+      history.push('/contents');
     } else if (response.status === 400) {
       const Errors = result.message;
       if (Errors) {

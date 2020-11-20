@@ -203,7 +203,7 @@ const DataContents = (props) => {
                               flexDirection: 'row',
                             }}
                           >
-                            {/* <Link to={`update-contents/${item._id}`}>
+                            <Link to={`update-contents/${item._id}`}>
                               <ButtonLink>
                                 <div
                                   style={{ width: '80px', textAlign: 'center' }}
@@ -211,7 +211,7 @@ const DataContents = (props) => {
                                   update
                                 </div>
                               </ButtonLink>
-                            </Link> */}
+                            </Link>
                           </div>
                         </Th>
                       </tr>
