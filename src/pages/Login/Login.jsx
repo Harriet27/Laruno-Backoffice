@@ -11,6 +11,7 @@ import { Spinner } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoginSchema } from '../../elements/Validation';
+import { SpanErrosMessage } from '../../elements/Styled/StyledForm';
 
 // --- Styled Components --- //
 const Section = Styled.section`
@@ -97,15 +98,7 @@ export default function Login() {
               placeholder="Email"
               ref={register}
             />
-            <span
-              style={{
-                color: 'red',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              {errors.email?.message}
-            </span>
+            <SpanErrosMessage>{errors.email?.message}</SpanErrosMessage>
           </WrapForm>
 
           <WrapForm>
@@ -118,15 +111,7 @@ export default function Login() {
               placeholder="Password"
               ref={register}
             />
-            <span
-              style={{
-                color: 'red',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              {errors.password?.message}
-            </span>
+            <SpanErrosMessage>{errors.password?.message}</SpanErrosMessage>
           </WrapForm>
           {state.isLogin ? (
             <Input
