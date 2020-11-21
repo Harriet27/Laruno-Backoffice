@@ -45,32 +45,33 @@ const ButtonLink = Styled.button`
 const DataProduct = (props) => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.getProduct);
-
-  console.log('product', product);
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
   // --- Dropdown --- //
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-
   const [form, setForm] = useState({
     id: [],
   });
 
-  const [searching, setSearching] = useState({
-    search: '',
-  });
+  // Searchbar
+  const [input, setInput] = useState('');
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
+  const productFilter =
+    product !== null &&
+    product.data.filter((item) => {
+      return item.name.toLowerCase().includes(input.toLowerCase());
+    });
 
   // --- useEffect --- Get Data Topic ---//
   useEffect(() => {
@@ -101,14 +102,121 @@ const DataProduct = (props) => {
     dispatch(fetchMultipleCloneProduct(form));
   };
 
-  // --- handle Change --- //
-  const handleChange = (event) => {
-    setSearching({ ...searching, [event.target.name]: event.target.value });
+  const TableHeading = () => {
+    return (
+      <thead>
+        <tr>
+          <Th>
+            <DehazeIcon />
+          </Th>
+          <Th>Name</Th>
+          <Th>Visibility</Th>
+          <Th>Product Code</Th>
+          <Th>Inventory</Th>
+          <Th>Product Type</Th>
+          <Th>Time Period</Th>
+          <Th>Price</Th>
+          <Th style={{ width: '100px' }}>Actions</Th>
+        </tr>
+      </thead>
+    );
   };
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    dispatch(fetchFindProduct(searching));
+  const TableBody = (item, index) => {
+    return (
+      <tr key={item._id}>
+        <Th>
+          <Input
+            checkbox
+            type="checkbox"
+            id={item._id}
+            value={item._id}
+            onChange={handleCheckboxChange}
+          />
+        </Th>
+        <Th as="td" td>
+          <div style={Styles.Name}>{item.name}</div>
+        </Th>
+        <Th as="td" td>
+          {item.visibility}
+        </Th>
+        <Th as="td" td>
+          {item.code}
+        </Th>
+        <Th as="td" td>
+          <div style={Styles.Inventory}>
+            {item.type !== 'ecommerce' ? (
+              <div style={{ textAlign: 'center' }}>-</div>
+            ) : item.ecommerce === undefined ? (
+              '0 in stock'
+            ) : (
+              `${item.ecommerce.stock} in Stock`
+            )}
+          </div>
+        </Th>
+        <Th as="td" td>
+          {item.type}
+        </Th>
+
+        <Th as="td" td>
+          {item.time_period} Months
+        </Th>
+        <Th as="td" td>
+          Rp. {FormatNumber(item.price)}
+        </Th>
+        <Th as="td" td>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+            }}
+          >
+            <Link to={`/product/show/${item._id}`}>
+              <ButtonLink detail>
+                <DescriptionIcon fontSize="small" />
+              </ButtonLink>
+            </Link>
+            <Link to={`/product/update/${item._id}`}>
+              <ButtonLink>
+                <CreateIcon fontSize="small" />
+              </ButtonLink>
+            </Link>
+            <DeleteProduct id={item._id} />
+          </div>
+        </Th>
+      </tr>
+    );
+  };
+
+  const TableFooter = (length) => {
+    return (
+      <tr>
+        <TablePagination
+          rowsPerPageOptions={[10, 15, 20]}
+          count={length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </tr>
+    );
+  };
+
+  const SearchBar = () => {
+    return (
+      <Table striped>
+        {TableHeading()}
+        <tbody>
+          {productFilter
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((item, index) => {
+              return TableBody(item, index);
+            })}
+        </tbody>
+        <tfoot>{TableFooter(productFilter.length)}</tfoot>
+      </Table>
+    );
   };
 
   return (
@@ -152,42 +260,21 @@ const DataProduct = (props) => {
           )}
 
           <div>
-            <label>Search</label>{' '}
+            <label>Search</label>
             <Input
               type="search"
               name="search"
-              value={searching.search}
-              onChange={handleChange}
+              value={input}
+              onChange={handleInput}
             />
           </div>
-          {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
         </div>
 
-        {/* --- section 2 --- Get Data Product --- */}
         <Card isNormal>
-          {/* --- untuk hapus melalui button --- */}
           <Overflow>
-            {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
-                     di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
             {product === null ? (
               <React.Fragment>
-                <Table>
-                  <thead>
-                    <tr>
-                      <Th>
-                        <DehazeIcon />
-                      </Th>
-                      <Th>Name</Th>
-                      <Th>Visibility</Th>
-                      <Th>Product Code</Th>
-                      <Th>Inventory</Th>
-                      <Th>Product Type</Th>
-                      <Th>Time Period</Th>
-                      <Th>Price</Th>
-                      <Th style={{ width: '100px' }}>Actions</Th>
-                    </tr>
-                  </thead>
-                </Table>
+                <Table>{TableHeading()}</Table>
                 <div
                   style={{
                     textAlign: 'center',
@@ -197,129 +284,25 @@ const DataProduct = (props) => {
                   <CircularProgress />
                 </div>
               </React.Fragment>
-            ) : product.data.length >= 1 ? (
+            ) : productFilter.length === 0 && product.data.length > 0 ? (
               <Table striped>
-                <thead>
-                  <tr>
-                    <Th>
-                      <Input checkbox type="checkbox" />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Visibility</Th>
-                    <Th>Product Code</Th>
-                    <Th style={{ width: '10%' }}>Inventory</Th>
-                    <Th>Product Type</Th>
-                    <Th style={{ width: '10%' }}>Time Period</Th>
-                    <Th style={{ width: '10%' }}>Price</Th>
-                    <Th style={{ width: '10%' }}>Actions</Th>
-                  </tr>
-                </thead>
+                {TableHeading()}
                 <tbody>
                   {product.data
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((item) => {
-                      return (
-                        <tr key={item._id}>
-                          <Th>
-                            <Input
-                              checkbox
-                              type="checkbox"
-                              id={item._id}
-                              value={item._id}
-                              onChange={handleCheckboxChange}
-                            />
-                          </Th>
-                          <Th as="td" td>
-                            {/* <div>
-                            <img
-                              src={item.image_url[0]}
-                              alt={item.image_url[0]}
-                            />
-                          </div> */}
-                            <div style={Styles.Name}>{item.name}</div>
-                          </Th>
-                          <Th as="td" td>
-                            {item.visibility}
-                          </Th>
-                          <Th as="td" td>
-                            {item.code}
-                          </Th>
-                          <Th as="td" td>
-                            <div style={Styles.Inventory}>
-                              {item.type !== 'ecommerce' ? (
-                                <div style={{ textAlign: 'center' }}>-</div>
-                              ) : item.ecommerce === undefined ? (
-                                '0 in stock'
-                              ) : (
-                                `${item.ecommerce.stock} in Stock`
-                              )}
-                            </div>
-                          </Th>
-                          <Th as="td" td>
-                            {item.type}
-                          </Th>
-
-                          <Th as="td" td>
-                            {item.time_period} Months
-                          </Th>
-                          <Th as="td" td>
-                            Rp. {FormatNumber(item.price)}
-                          </Th>
-                          <Th as="td" td>
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                              }}
-                            >
-                              <Link to={`/product/show/${item._id}`}>
-                                <ButtonLink detail>
-                                  <DescriptionIcon fontSize="small" />
-                                </ButtonLink>
-                              </Link>
-                              <Link to={`/product/update/${item._id}`}>
-                                <ButtonLink>
-                                  <CreateIcon fontSize="small" />
-                                </ButtonLink>
-                              </Link>
-                              <DeleteProduct id={item._id} />
-                            </div>
-                          </Th>
-                        </tr>
-                      );
+                    .map((item, index) => {
+                      return TableBody(item, index);
                     })}
                 </tbody>
                 <tfoot>
-                  <tr>
-                    <TablePagination
-                      rowsPerPageOptions={[10, 15, 20]}
-                      count={product !== null && product.data.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      onChangePage={handleChangePage}
-                      onChangeRowsPerPage={handleChangeRowsPerPage}
-                    />
-                  </tr>
+                  {TableFooter(product !== null && product.data.length)}
                 </tfoot>
               </Table>
+            ) : productFilter.length > 0 ? (
+              SearchBar()
             ) : (
               <React.Fragment>
-                <Table>
-                  <thead>
-                    <tr>
-                      <Th>
-                        <DehazeIcon />
-                      </Th>
-                      <Th>Visibility</Th>
-                      <Th>Product Code</Th>
-                      <Th>Name</Th>
-                      <Th>Product Type</Th>
-                      <Th>Time Period</Th>
-                      <Th>Price</Th>
-                      <Th style={{ width: '100px' }}>Actions</Th>
-                    </tr>
-                  </thead>
-                </Table>
+                <Table>{TableHeading()}</Table>
                 <div
                   style={{
                     textAlign: 'center',
