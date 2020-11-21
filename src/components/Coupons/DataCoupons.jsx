@@ -45,13 +45,13 @@ const DataCoupons = (props) => {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-
+  const [input, setInput] = useState('');
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
   const [form, setForm] = useState({
     id: [],
     allChecked: false,
-  });
-  const [searching, setSearching] = useState({
-    search: '',
   });
 
   useEffect(() => {
@@ -82,9 +82,100 @@ const DataCoupons = (props) => {
     dispatch(fetchMultipleCloneCoupons(form));
   };
 
-  // --- handle Change --- //
-  const handleChange = (event) => {
-    setSearching({ ...searching, [event.target.name]: event.target.value });
+  const couponsFilter =
+    coupons !== null &&
+    coupons.data.filter((item) => {
+      return item.name.toLowerCase().includes(input.toLowerCase());
+    });
+
+  const TableHeading = () => {
+    return (
+      <thead>
+        <tr>
+          <Th>
+            <DehazeIcon />
+          </Th>
+          <Th>Name</Th>
+          <Th>Code</Th>
+          <Th>Max Discount</Th>
+          <Th>Start Coupon</Th>
+          <Th>End Coupon</Th>
+          <Th>Payment Method</Th>
+          <Th style={{ width: '10%' }}>Actions</Th>
+        </tr>
+      </thead>
+    );
+  };
+
+  const TableBody = (item, index) => {
+    return (
+      <tr key={item._id}>
+        <Th as="td">
+          <Input
+            checkbox
+            type="checkbox"
+            id={item._id}
+            value={item._id}
+            onChange={handleCheckboxChange}
+          />
+        </Th>
+        <Th as="td" td>
+          {item.name}
+        </Th>
+        <Th as="td" td>
+          {item.code}
+        </Th>
+        <Th as="td" td>
+          {item.max_discount}
+        </Th>
+        <Th as="td" td>
+          {moment(item.created_at).format('MMMM Do YYYY, h:mm:ss a')}
+        </Th>
+        <Th as="td" td>
+          {moment(item.updated_at).format('MMMM Do YYYY, h:mm:ss a')}
+        </Th>
+        <Th as="td" td>
+          {item.payment_method}
+        </Th>
+        <Th as="td" td>
+          <div style={Styles.FlexRow}>
+            <UpdateModalCoupons id={item._id} coupons={coupons} />
+            <DeleteCoupons id={item._id} />
+          </div>
+        </Th>
+      </tr>
+    );
+  };
+
+  const TableFooter = (length) => {
+    return (
+      <tr>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 15]}
+          count={length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </tr>
+    );
+  };
+
+  const SearchBar = () => {
+    return (
+      <Table striped>
+        {TableHeading()}
+        <tbody>
+          {couponsFilter
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((item, index) => {
+              return TableBody(item, index);
+            })}
+        </tbody>
+        <tfoot>{TableFooter(couponsFilter.length)}</tfoot>
+      </Table>
+    );
   };
 
   return (
@@ -113,12 +204,12 @@ const DataCoupons = (props) => {
         <AddCoupons />
 
         <div>
-          <label>Search</label>{' '}
+          <label>Search</label>
           <Input
             type="search"
             name="search"
-            value={searching.search}
-            onChange={handleChange}
+            value={input}
+            onChange={handleInput}
           />
         </div>
       </div>
@@ -127,122 +218,30 @@ const DataCoupons = (props) => {
         <Overflow>
           {coupons === null ? (
             <React.Fragment>
-              <Table>
-                <thead>
-                  <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Code</Th>
-                    <Th>Max Discount</Th>
-                    <Th>Start Coupon</Th>
-                    <Th>End Coupon</Th>
-                    <Th>Payment Method</Th>
-                    <Th style={{ width: '10%' }}>Actions</Th>
-                  </tr>
-                </thead>
-              </Table>
+              <Table>{TableHeading()}</Table>
               <div style={Styles.Loading}>
                 <CircularProgress />
               </div>
             </React.Fragment>
-          ) : coupons.data.length >= 1 ? (
+          ) : couponsFilter.length === 0 && coupons.data.length > 0 ? (
             <Table striped>
-              <thead>
-                <tr>
-                  <Th>
-                    <Input checkbox type="checkbox" />
-                  </Th>
-                  <Th>Name</Th>
-                  <Th>Code</Th>
-                  <Th>Max Discount</Th>
-                  <Th>Start Coupon</Th>
-                  <Th>End Coupon</Th>
-                  <Th>Payment Method</Th>
-                  <Th style={{ width: '100px' }}>Actions</Th>
-                </tr>
-              </thead>
+              {TableHeading()}
               <tbody>
                 {coupons.data
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((item) => {
-                    return (
-                      <tr key={item._id}>
-                        <Th as="td">
-                          <Input
-                            checkbox
-                            type="checkbox"
-                            id={item._id}
-                            value={item._id}
-                            onChange={handleCheckboxChange}
-                          />
-                        </Th>
-                        <Th as="td" td>
-                          {item.name}
-                        </Th>
-                        <Th as="td" td>
-                          {item.code}
-                        </Th>
-                        <Th as="td" td>
-                          {item.max_discount}
-                        </Th>
-                        <Th as="td" td>
-                          {moment(item.created_at).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
-                        </Th>
-                        <Th as="td" td>
-                          {moment(item.updated_at).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
-                        </Th>
-                        <Th as="td" td>
-                          {item.payment_method}
-                        </Th>
-                        <Th as="td" td>
-                          <div style={Styles.FlexRow}>
-                            {/* <UpdateCoupons id={item._id} /> */}
-                            <UpdateModalCoupons
-                              id={item._id}
-                              coupons={coupons}
-                            />
-                            <DeleteCoupons id={item._id} />
-                          </div>
-                        </Th>
-                      </tr>
-                    );
+                  .map((item, index) => {
+                    return TableBody(item, index);
                   })}
               </tbody>
               <tfoot>
-                <tr>
-                  <TablePagination
-                    rowsPerPageOptions={[5, 10, 15]}
-                    count={coupons !== null && coupons.data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                  />
-                </tr>
+                {TableFooter(coupons !== null && coupons.data.length)}
               </tfoot>
             </Table>
+          ) : couponsFilter.length > 0 ? (
+            SearchBar()
           ) : (
             <React.Fragment>
-              <Table>
-                <thead>
-                  <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Slug</Th>
-                    <Th>Created At</Th>
-                    <Th>Update At</Th>
-                    <Th style={{ width: '100px' }}>Actions</Th>
-                  </tr>
-                </thead>
-              </Table>
+              <Table>{TableHeading()}</Table>
               <div style={Styles.Loading}>
                 You have no coupons in this date range.
               </div>
