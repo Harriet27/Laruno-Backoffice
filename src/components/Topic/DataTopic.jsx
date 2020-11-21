@@ -240,7 +240,12 @@ const DataTopic = (props) => {
             ) : topicFilter.length > 0 ? (
               SearchBar()
             ) : (
-              'No Data'
+              <>
+                <Table>{TableHeading()}</Table>
+                <div style={Styles.NoData}>
+                  You have no Topic in this date range.
+                </div>
+              </>
             )}
           </Overflow>
         </Card>
@@ -266,5 +271,9 @@ const Styles = {
   VisitStyles: {},
   Name: { color: '#0098da', fontWeight: '700' },
   IsLoading: { textAlign: 'center', padding: '100px' },
+  NoData: {
+    textAlign: 'center',
+    padding: '100px',
+  },
 };
 export default DataTopic;
