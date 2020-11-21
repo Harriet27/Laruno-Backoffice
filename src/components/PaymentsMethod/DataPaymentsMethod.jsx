@@ -19,11 +19,18 @@ const DataPaymentsMethod = (props) => {
   const dispatch = useDispatch();
   const payments = useSelector((state) => state.payment.getPaymentsMethod);
 
-  console.log(payments, 'payment isinya apa');
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+  const [input, setInput] = useState('');
+  const paymentsFilter =
+    payments !== null &&
+    payments.data.filter((item) => {
+      return item.name.toLowerCase().includes(input.toLowerCase());
+    });
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -32,21 +39,14 @@ const DataPaymentsMethod = (props) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
   // --- Dropdown --- //
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-
   const [form, setForm] = useState({
     id: [],
     allChecked: false,
   });
 
-  const [searching, setSearching] = useState({
-    search: '',
-  });
-
-  // --- useEffect --- Get Data Topic ---//
   useEffect(() => {
     dispatch(fetchGetPaymentsMethod());
     // eslint-disable-next-line
@@ -69,11 +69,95 @@ const DataPaymentsMethod = (props) => {
     // dispatch(fetchMultipleDeleteTopics(form));
   };
 
-  // --- handle Change --- //
-  const handleChange = (event) => {
-    setSearching({ ...searching, [event.target.name]: event.target.value });
+  const TableHeading = () => {
+    return (
+      <thead>
+        <tr>
+          <Th>
+            <DehazeIcon />
+          </Th>
+          <Th>ID</Th>
+          <Th>Name</Th>
+          <Th>Slug</Th>
+          <Th>Created At</Th>
+          <Th>Update At</Th>
+          <Th style={{ width: '100px' }}>Actions</Th>
+        </tr>
+      </thead>
+    );
   };
 
+  const TableBody = (item, index) => {
+    return (
+      <tr key={item._id}>
+        <Th>
+          <Input
+            checkbox
+            type="checkbox"
+            id={item._id}
+            value={item._id}
+            onChange={handleCheckboxChange}
+          />
+        </Th>
+
+        <Th as="td" td>
+          {item._id}
+        </Th>
+        <Th as="td" td>
+          {item.name}
+        </Th>
+        <Th as="td" td>
+          {item.info}
+        </Th>
+        <Th as="td" td>
+          {moment(item.created_at).format('MMMM Do YYYY, h:mm:ss a')}
+        </Th>
+        <Th as="td" td>
+          {moment(item.updated_at).format('MMMM Do YYYY, h:mm:ss a')}
+        </Th>
+
+        <Th as="td" td>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+            }}
+          ></div>
+        </Th>
+      </tr>
+    );
+  };
+
+  const TableFooter = (length) => {
+    return (
+      <tr>
+        <TablePagination
+          rowsPerPageOptions={[10, 15, 20]}
+          count={length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </tr>
+    );
+  };
+
+  const SearchBar = () => {
+    return (
+      <Table striped>
+        {TableHeading()}
+        <tbody>
+          {paymentsFilter
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((item, index) => {
+              return TableBody(item, index);
+            })}
+        </tbody>
+        <tfoot>{TableFooter(paymentsFilter.length)}</tfoot>
+      </Table>
+    );
+  };
   return (
     <React.Fragment>
       {/* --- section 1 --- Button Action link to Add Product ---*/}
@@ -88,7 +172,6 @@ const DataPaymentsMethod = (props) => {
         </Dropdown>
       ) : (
         <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          {' '}
           <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret disabled>
             Actions
           </DropdownToggle>
@@ -105,39 +188,21 @@ const DataPaymentsMethod = (props) => {
         <AddPaymentsMethod />
 
         <div>
-          <label>Search</label>{' '}
+          <label>Search</label>
           <Input
             type="search"
             name="search"
-            value={searching.search}
-            onChange={handleChange}
+            value={input}
+            onChange={handleInput}
           />
         </div>
-        {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
       </div>
 
-      {/* --- section 2 --- Get Data Product --- */}
       <Card isNormal>
-        {/* --- untuk hapus melalui button --- */}
         <Overflow>
-          {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
-                     di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
           {payments === null ? (
             <React.Fragment>
-              <Table>
-                <thead>
-                  <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Slug</Th>
-                    <Th>Created At</Th>
-                    <Th>Update At</Th>
-                    <Th style={{ width: '100px' }}>Actions</Th>
-                  </tr>
-                </thead>
-              </Table>
+              <Table>{TableHeading()}</Table>
               <div
                 style={{
                   textAlign: 'center',
@@ -147,109 +212,25 @@ const DataPaymentsMethod = (props) => {
                 <CircularProgress />
               </div>
             </React.Fragment>
-          ) : payments.data.length >= 1 ? (
+          ) : paymentsFilter.length === 0 && payments.data.length >= 1 ? (
             <Table>
-              <thead>
-                <tr>
-                  <Th>
-                    <Input checkbox type="checkbox" />
-                  </Th>
-                  <Th>Nomor ID</Th>
-                  <Th>Name</Th>
-                  <Th>Info</Th>
-                  <Th>Created At</Th>
-                  <Th>Update At</Th>
-                  <Th style={{ width: '100px' }}>Actions</Th>
-                </tr>
-              </thead>
+              {TableHeading()}
               <tbody>
-                {/* {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row)  */}
                 {payments.data
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((item) => {
-                    return (
-                      <tr key={item._id}>
-                        <Th>
-                          <Input
-                            checkbox
-                            type="checkbox"
-                            id={item._id}
-                            value={item._id}
-                            onChange={handleCheckboxChange}
-                          />
-                        </Th>
-
-                        <Th as="td" td>
-                          {item._id}
-                        </Th>
-                        <Th as="td" td>
-                          {item.name}
-                        </Th>
-                        <Th as="td" td>
-                          {item.info}
-                        </Th>
-                        <Th as="td" td>
-                          {moment(item.created_at).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
-                        </Th>
-                        <Th as="td" td>
-                          {moment(item.updated_at).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
-                        </Th>
-
-                        <Th as="td" td>
-                          <div
-                            style={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                            }}
-                          >
-                            {/* <UpdateTopic
-                                                            id={item._id}
-                                                        />
-                                                        <DeleteTopic
-                                                            id={item._id}
-                                                        /> */}
-                          </div>
-                        </Th>
-                      </tr>
-                    );
+                  .map((item, index) => {
+                    return TableBody(item, index);
                   })}
               </tbody>
               <tfoot>
-                <tr>
-                  <TablePagination
-                    rowsPerPageOptions={[10, 15, 20]}
-                    count={payments !== null && payments.data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                  />
-                </tr>
+                {TableFooter(payments !== null && payments.data.length)}
               </tfoot>
             </Table>
+          ) : paymentsFilter.length > 0 ? (
+            SearchBar()
           ) : (
             <React.Fragment>
-              <Table>
-                <thead>
-                  <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Slug</Th>
-                    <Th>Created At</Th>
-                    <Th>Update At</Th>
-                    <Th style={{ width: '100px' }}>Actions</Th>
-                  </tr>
-                </thead>
-              </Table>
+              <Table>{TableHeading()}</Table>
               <div
                 style={{
                   textAlign: 'center',
