@@ -192,12 +192,12 @@ const DataRoles = (props) => {
             </Dropdown>
           )}
           <div>
-            <label>Search</label>
             <Input
               type="search"
               name="search"
               value={input}
               onChange={handleInput}
+              placeholder="Search.."
             />
           </div>
         </div>

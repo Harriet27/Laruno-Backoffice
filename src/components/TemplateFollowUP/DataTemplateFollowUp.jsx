@@ -174,12 +174,12 @@ export default function DataTemplateFollowUp(props) {
         <ParentsLayoutFollowUp />
 
         <div>
-          <label>Search</label>
           <Input
             type="search"
             name="search"
             value={input}
             onChange={handleInput}
+            placeholder="Search.."
           />
         </div>
       </div>

@@ -204,12 +204,12 @@ const DataTopic = (props) => {
         <div style={Styles.FlexBetween}>
           <AddNewTopic />
           <div>
-            <label>Search</label>
             <Input
               value={input}
               type="search"
               name="search"
               onChange={handleInput}
+              placeholder="Search.."
             />
           </div>
         </div>
