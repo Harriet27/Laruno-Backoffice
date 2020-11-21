@@ -36,26 +36,22 @@ const DataTopic = (props) => {
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+  const [input, setInput] = useState('');
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
   // --- Dropdown --- //
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-
   const [form, setForm] = useState({
     id: [],
-  });
-
-  const [searching, setSearching] = useState({
-    search: '',
   });
 
   // --- handleCheckboxChange --- //
@@ -75,21 +71,115 @@ const DataTopic = (props) => {
     dispatch(fetchMultipleDeleteUsers(form));
   };
 
-  // --- Multiple Clone --- //
-  // const handleMultipleClone = (event) => {
-  //     event.preventDefault();
-  //     dispatch(fetchMultipleCloneProduct(form));
-  // };
+  const usersFilter =
+    users !== null &&
+    users.data.filter((item) => {
+      return item.name.toLowerCase().includes(input.toLowerCase());
+    });
 
-  // --- handle Change --- //
-  const handleChange = (event) => {
-    setSearching({ ...searching, [event.target.name]: event.target.value });
+  const TableHeading = () => {
+    return (
+      <thead>
+        <tr>
+          <Th>
+            <DehazeIcon />
+          </Th>
+          <Th>Name</Th>
+          <Th>Email</Th>
+          <Th>Role</Th>
+          <Th>Phone</Th>
+          <Th>Created At</Th>
+          <Th>Updated At</Th>
+          <Th style={{ width: '100px' }}>Actions</Th>
+        </tr>
+      </thead>
+    );
   };
 
-  // const handleSearch = (event) => {
-  //     event.preventDefault();
-  //     dispatch(fetchFindProduct(searching));
-  // };
+  const TableBody = (item, index) => {
+    return (
+      <tr key={item._id}>
+        <Th>
+          <Input
+            checkbox
+            type="checkbox"
+            id={item._id}
+            value={item._id}
+            onChange={handleCheckboxChange}
+          />
+        </Th>
+        <Th as="td" td>
+          {item.name}
+        </Th>
+        <Th as="td" td>
+          {item.email}
+        </Th>
+        <Th as="td" td>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+            }}
+          >
+            {item.role.map((id) => {
+              return <p key={id._id}>{id.adminType} &nbsp;</p>;
+            })}
+          </div>
+        </Th>
+        <Th as="td" td>
+          {item.phone_number}
+        </Th>
+        <Th as="td" td>
+          {moment(item.created_at).format('MMMM Do YYYY, h:mm:ss a')}
+        </Th>
+        <Th as="td" td>
+          {moment(item.updated_at).format('MMMM Do YYYY, h:mm:ss a')}
+        </Th>
+        <Th as="td" td>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+            }}
+          >
+            <UpdateUser id={item._id} users={users} />
+            <DeleteUser id={item._id} />
+          </div>
+        </Th>
+      </tr>
+    );
+  };
+
+  const TableFooter = (length) => {
+    return (
+      <tr>
+        <TablePagination
+          rowsPerPageOptions={[10, 15, 20]}
+          count={length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </tr>
+    );
+  };
+
+  const SearchBar = () => {
+    return (
+      <Table striped>
+        {TableHeading()}
+        <tbody>
+          {usersFilter
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((item, index) => {
+              return TableBody(item, index);
+            })}
+        </tbody>
+        <tfoot>{TableFooter(usersFilter.length)}</tfoot>
+      </Table>
+    );
+  };
 
   return (
     <>
@@ -105,10 +195,6 @@ const DataTopic = (props) => {
             </DropdownToggle>
             <DropdownMenu>
               <MultipleDelete onSubmit={handleMultipleDelete} />
-
-              {/* <DropdownItem onClick={handleMultipleClone}>
-                                Clone
-                            </DropdownItem> */}
             </DropdownMenu>
           </Dropdown>
         ) : (
@@ -138,37 +224,17 @@ const DataTopic = (props) => {
             <Input
               type="search"
               name="search"
-              value={searching.search}
-              onChange={handleChange}
+              value={input}
+              onChange={handleInput}
             />
           </div>
-          {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
         </div>
 
-        {/* --- section 2 --- Get Data Product --- */}
         <Card isNormal>
-          {/* --- untuk hapus melalui button --- */}
           <Overflow>
-            {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
-                     di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
             {users === null ? (
               <React.Fragment>
-                <Table>
-                  <thead>
-                    <tr>
-                      <Th>
-                        <DehazeIcon />
-                      </Th>
-                      <Th>Name</Th>
-                      <Th>Email</Th>
-                      <Th>Role</Th>
-                      <Th>Phone</Th>
-                      <Th>Created At</Th>
-                      <Th>Updated At</Th>
-                      <Th style={{ width: '100px' }}>Actions</Th>
-                    </tr>
-                  </thead>
-                </Table>
+                <Table>{TableHeading()}</Table>
                 <div
                   style={{
                     textAlign: 'center',
@@ -178,118 +244,25 @@ const DataTopic = (props) => {
                   <CircularProgress />
                 </div>
               </React.Fragment>
-            ) : users.data.length >= 1 ? (
+            ) : usersFilter.length === 0 && users.data.length > 0 ? (
               <Table striped>
-                <thead>
-                  <tr>
-                    <Th>
-                      {/* ---Belum di kasih logic --- */}
-                      <Input checkbox type="checkbox" />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Email</Th>
-                    <Th>Role</Th>
-                    <Th>Phone</Th>
-                    <Th>Created At</Th>
-                    <Th>Updated At</Th>
-                    <Th style={{ width: '100px' }}>Actions</Th>
-                  </tr>
-                </thead>
+                {TableHeading()}
                 <tbody>
                   {users.data
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((item) => {
-                      return (
-                        <tr key={item._id}>
-                          <Th>
-                            <Input
-                              checkbox
-                              type="checkbox"
-                              id={item._id}
-                              value={item._id}
-                              onChange={handleCheckboxChange}
-                            />
-                          </Th>
-
-                          <Th as="td" td>
-                            {item.name}
-                          </Th>
-                          <Th as="td" td>
-                            {item.email}
-                          </Th>
-                          <Th as="td" td>
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                              }}
-                            >
-                              {item.role.map((id) => {
-                                return (
-                                  <p key={id._id}>{id.adminType} &nbsp;</p>
-                                );
-                              })}
-                            </div>
-                          </Th>
-                          <Th as="td" td>
-                            {item.phone_number}
-                          </Th>
-                          <Th as="td" td>
-                            {moment(item.created_at).format(
-                              'MMMM Do YYYY, h:mm:ss a'
-                            )}
-                          </Th>
-                          <Th as="td" td>
-                            {moment(item.updated_at).format(
-                              'MMMM Do YYYY, h:mm:ss a'
-                            )}
-                          </Th>
-
-                          <Th as="td" td>
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                              }}
-                            >
-                              <UpdateUser id={item._id} users={users} />
-
-                              <DeleteUser id={item._id} />
-                            </div>
-                          </Th>
-                        </tr>
-                      );
+                    .map((item, index) => {
+                      return TableBody(item, index);
                     })}
                 </tbody>
                 <tfoot>
-                  <tr>
-                    <TablePagination
-                      rowsPerPageOptions={[10, 15, 20]}
-                      count={users !== null && users.data.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      onChangePage={handleChangePage}
-                      onChangeRowsPerPage={handleChangeRowsPerPage}
-                    />
-                  </tr>
+                  {TableFooter(users !== null && users.data.length)}
                 </tfoot>
               </Table>
+            ) : usersFilter.length > 0 ? (
+              SearchBar()
             ) : (
               <React.Fragment>
-                <Table>
-                  <thead>
-                    <tr>
-                      <Th>
-                        <DehazeIcon />
-                      </Th>
-                      <Th>Name</Th>
-                      <Th>Slug</Th>
-                      <Th>Created At</Th>
-                      <Th>Update At</Th>
-                      <Th style={{ width: '100px' }}>Actions</Th>
-                    </tr>
-                  </thead>
-                </Table>
+                <Table>{TableHeading()}</Table>
                 <div
                   style={{
                     textAlign: 'center',
