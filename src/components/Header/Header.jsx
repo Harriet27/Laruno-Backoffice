@@ -38,6 +38,7 @@ const Span = Styled.span`
     font-weight: 600;
     color: rgba(0,0,0,.6);
     font-size: 18px;
+  
 `;
 
 const HeaderStyled = Styled.header`
@@ -55,11 +56,18 @@ const HeaderStyled = Styled.header`
 `;
 const Image = Styled.img`
     width:100%;
-    height: 100%;
+   
 `;
 const WrapsImage = Styled.div`
-    height: 40px;
-    margin-right: 40px;
+    width: 150px;
+    margin-right: 100px;
+`;
+
+const NavLink = Styled(Link)`
+  padding: 8px;
+  color: black;
+
+
 `;
 
 const Header = () => {
@@ -88,26 +96,16 @@ const Header = () => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <Link style={Styles.Link} to="/dashboard">
-              <Span>Dashboard</Span>
-            </Link>
-            <Link style={Styles.Link} to="/product">
-              <Span>Product</Span>
-            </Link>
-            <Link style={Styles.Link} to="/Order">
-              <Span>Order</Span>
-            </Link>
-            <Link style={Styles.Link} to="/reports">
-              <Span>Report</Span>
-            </Link>
-            <Link style={Styles.Link} to="/tools">
-              <Span>Tools</Span>
-            </Link>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/product">Product</NavLink>
+            <NavLink to="/Order">Order</NavLink>
+            <NavLink to="/reports">Report</NavLink>
+            <NavLink to="/tools">Tools</NavLink>
 
             {/* --- Dropdown Others --- */}
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                <Span>Others</Span>
+              <DropdownToggle style={{ color: 'black' }} nav caret>
+                Others
               </DropdownToggle>
               <DropdownMenu right>
                 <Link to="/topic">
@@ -200,9 +198,6 @@ const Header = () => {
 };
 
 const Styles = {
-  Link: {
-    padding: '8px',
-  },
   MarginNavbar: { margin: '0 20px' },
 };
 
