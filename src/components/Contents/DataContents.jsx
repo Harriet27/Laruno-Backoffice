@@ -5,8 +5,10 @@ import { Table } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import moment from 'moment';
+import DeleteContents from './DeleteContents';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CreateIcon from '@material-ui/icons/Create';
 // --- Elements, Pages, Components --- //
 import { fetchGetContents } from '../../store/actions';
 import Card from '../../elements/Card/Card';
@@ -21,9 +23,10 @@ import { ButtonLink } from '../../elements/Styled/StyledTabs';
 const DataContents = (props) => {
   const dispatch = useDispatch();
   const contents = useSelector((state) => state.contents.getContents);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  console.log(contents, 'CONTENTS');
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -121,10 +124,10 @@ const DataContents = (props) => {
                     <Th>
                       <DehazeIcon />
                     </Th>
-                    <Th>Name</Th>
-                    <Th>Slug</Th>
-                    <Th>Created At</Th>
-                    <Th>Update At</Th>
+                    <Th>Cover</Th>
+                    <Th>Detail</Th>
+                    <Th>Product</Th>
+                    <Th>Topic</Th>
                     <Th style={{ width: '100px' }}>Actions</Th>
                   </tr>
                 </thead>
@@ -138,17 +141,17 @@ const DataContents = (props) => {
                 <CircularProgress />
               </div>
             </React.Fragment>
-          ) : contents.data.length >= 1 ? (
+          ) : contents.data.length > 0 ? (
             <Table striped>
               <thead>
                 <tr>
                   <Th>
                     <Input checkbox type="checkbox" />
                   </Th>
-                  <Th>Name</Th>
+                  <Th>Cover</Th>
+                  <Th>Detail</Th>
                   <Th>Product</Th>
                   <Th>Topic</Th>
-                  <Th>Created At</Th>
                   <Th style={{ width: '100px' }}>Actions</Th>
                 </tr>
               </thead>
@@ -169,31 +172,41 @@ const DataContents = (props) => {
                         </Th>
 
                         <Th as="td" td>
-                          {item.name}
+                          <div style={{ width: '75px' }}>
+                            <img
+                              width="100%"
+                              src={item.cover_img}
+                              alt={item.name}
+                            />
+                          </div>
                         </Th>
                         <Th as="td" td>
-                          {item.product.map((items) => {
-                            return <span key={items._id}>{items.name}</span>;
-                          })}
+                          <div
+                            style={{ display: 'flex', flexDirection: 'column' }}
+                          >
+                            <span>{item.name}</span>
+                            <span>
+                              {moment(item.created_at).format('MM-DD-YYYY, ')}
+                            </span>
+                          </div>
                         </Th>
                         <Th as="td" td>
-                          {item.topic.map((items) => {
-                            return (
-                              <span
-                                key={items._id}
-                                style={{
-                                  marginRight: '5px',
-                                }}
-                              >
-                                {items.name}
-                              </span>
-                            );
-                          })}
+                          <div
+                            style={{ display: 'flex', flexDirection: 'column' }}
+                          >
+                            {item.product.map((items) => {
+                              return <span key={items._id}>{items.name}</span>;
+                            })}
+                          </div>
                         </Th>
                         <Th as="td" td>
-                          {moment(item.created_at).format(
-                            'MMMM Do YYYY, h:mm:ss a'
-                          )}
+                          <div
+                            style={{ display: 'flex', flexDirection: 'column' }}
+                          >
+                            {item.topic.map((items) => {
+                              return <span key={items._id}>{items.name}</span>;
+                            })}
+                          </div>
                         </Th>
 
                         <Th as="td" td>
@@ -205,13 +218,13 @@ const DataContents = (props) => {
                           >
                             <Link to={`update-contents/${item._id}`}>
                               <ButtonLink>
-                                <div
-                                  style={{ width: '80px', textAlign: 'center' }}
-                                >
-                                  update
+                                <div>
+                                  <CreateIcon fontSize="small" />
                                 </div>
                               </ButtonLink>
                             </Link>
+
+                            <DeleteContents id={item._id} />
                           </div>
                         </Th>
                       </tr>
@@ -221,7 +234,7 @@ const DataContents = (props) => {
               <tfoot>
                 <tr>
                   <TablePagination
-                    rowsPerPageOptions={[5, 10, 15]}
+                    rowsPerPageOptions={[10, 15, 100]}
                     count={contents !== null && contents.data.length}
                     rowsPerPage={rowsPerPage}
                     page={page}

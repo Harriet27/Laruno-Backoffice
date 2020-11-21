@@ -1,111 +1,83 @@
-import React, { useEffect } from 'react';
-import { Table } from 'reactstrap';
+import React, { useState } from 'react';
 import Styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetContents } from '../../store/actions';
-import moment from 'moment';
+import { md } from '../../elements/Styled/StyledForm';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  FormControl,
+} from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+// import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import { makeStyles } from '@material-ui/core/styles';
+import { fetchDeleteContents } from '../../store/actions';
+import { useDispatch } from 'react-redux';
 
-// --- Elements, Pages, Components --- //
-import AddNewContents from './AddNewContents';
-import UpdateContents from './UpdateContents';
-import DeleteContents from './DeleteContents';
-import Card from '../../elements/Card/Card';
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
-// --- Styled Components --- //
-const Th = Styled.th`
-    font-size:  ${(props) => (props.td ? '16px' : '20px')};
-    font-weight: ${(props) => (props.td ? 'normal' : '600')};
-    text-align: left;
-`;
-const Input = Styled.input`
-    padding: .375rem;
-    font-size: 14px;
-    font-weight: 400;
-    color: #495057;
+const ButtonLink = Styled.button`
+    background-color:${(props) => (props.detail ? 'grey' : '#0098DA')};
+    padding: 5px;
     border-radius: 3px;
-    background-color: #FCFCFC;
+    color: white;
+    font-size: ${md};
     border: 1px solid #ced4da;
-    &:focus{
-    outline: none !important;
-    border:1px solid #66AFE9;
-    }
+    font-Weight: 400;
 `;
-const SectionOne = Styled.div`
-    margin: 20px 0;
-    display: flex;
-    justify-content: space-between;
-`;
-// --- Batas --- //
 
-const DataContents = (props) => {
+export default function DeleteContents(props) {
   const dispatch = useDispatch();
-  const contents = useSelector((state) => state.contents.getContents);
+  const [open, setOpen] = useState(false);
+  const classes = useStyles();
 
-  useEffect(() => {
-    dispatch(fetchGetContents());
-    // eslint-disable-next-line
-  }, [dispatch]);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(fetchDeleteContents(props.id));
+  };
 
   return (
-    <React.Fragment>
-      <SectionOne>
-        <AddNewContents />
-        <div>
-          <label>Search</label> <Input type="search" />
-        </div>
-      </SectionOne>
-
-      <Card isNormal>
-        <Table striped>
-          <thead>
-            <tr>
-              <Th>Name</Th>
-              <Th>Slug</Th>
-              <Th>Created At</Th>
-              <Th>Updated At</Th>
-              <Th>Actions</Th>
-            </tr>
-          </thead>
-          <tbody>
-            {contents !== null &&
-              contents.data.map((item) => {
-                return (
-                  <tr key={item._id}>
-                    <Th as="td" td>
-                      {item.name}
-                    </Th>
-                    <Th as="td" td>
-                      {item.slug}
-                    </Th>
-                    <Th as="td" td>
-                      {moment(item.created_at).format(
-                        'MMMM Do YYYY, h:mm:ss a'
-                      )}
-                    </Th>
-                    <Th as="td" td>
-                      {moment(item.updated_at).format(
-                        'MMMM Do YYYY, h:mm:ss a'
-                      )}
-                    </Th>
-                    <Th as="td" td>
-                      <div
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                        }}
-                      >
-                        <UpdateContents id={item._id} />
-                        <DeleteContents id={item._id} />
-                      </div>
-                    </Th>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </Table>
-      </Card>
-    </React.Fragment>
+    <div>
+      <ButtonLink style={{ backgroundColor: 'red' }} onClick={handleClickOpen}>
+        <DeleteIcon fontSize="small" />
+      </ButtonLink>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {'Are You Sure Want to Delete ?'}
+        </DialogTitle>
+        <form onSubmit={handleSubmit}>
+          <FormControl className={classes.formControl}>
+            <DialogActions>
+              <Button onClick={handleClose} color="primary">
+                Cancel
+              </Button>
+              <Button type="submit" onClick={handleClose} color="primary">
+                Delete
+              </Button>
+            </DialogActions>
+          </FormControl>
+        </form>
+      </Dialog>
+    </div>
   );
-};
-
-export default DataContents;
+}

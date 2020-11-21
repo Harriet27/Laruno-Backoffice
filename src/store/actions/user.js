@@ -45,7 +45,7 @@ const fetchPostLogin = ({ form, history, setState }) => async (dispatch) => {
     } else {
       Swal.fire({
         title: 'Wrong email!',
-        text: 'Wrong email',
+        text: result.message,
         icon: 'error',
       });
     }
