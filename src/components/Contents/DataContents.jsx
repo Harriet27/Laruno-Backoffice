@@ -26,7 +26,10 @@ const DataContents = (props) => {
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  console.log(contents, 'CONTENTS');
+  const [input, setInput] = useState('');
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -36,16 +39,11 @@ const DataContents = (props) => {
   };
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-
   const [form, setForm] = useState({
     id: [],
     allChecked: false,
   });
-  const [searching, setSearching] = useState({
-    search: '',
-  });
 
-  // --- useEffect --- Get Data Contents ---//
   useEffect(() => {
     dispatch(fetchGetContents());
     // eslint-disable-next-line
@@ -62,14 +60,122 @@ const DataContents = (props) => {
     });
   };
 
-  // --- handle Change --- //
-  const handleChange = (event) => {
-    setSearching({ ...searching, [event.target.name]: event.target.value });
+  const contentsFilter =
+    contents !== null &&
+    contents.data.filter((item) => {
+      return item.name.toLowerCase().includes(input.toLowerCase());
+    });
+
+  const TableHeading = () => {
+    return (
+      <thead>
+        <tr>
+          <Th>
+            <DehazeIcon />
+          </Th>
+          <Th>Cover</Th>
+          <Th>Detail</Th>
+          <Th>Product</Th>
+          <Th>Topic</Th>
+          <Th style={{ width: '100px' }}>Actions</Th>
+        </tr>
+      </thead>
+    );
   };
 
+  const TableBody = (item, index) => {
+    return (
+      <tr key={item._id}>
+        <Th>
+          <Input
+            checkbox
+            type="checkbox"
+            id={item._id}
+            value={item._id}
+            onChange={handleCheckboxChange}
+          />
+        </Th>
+
+        <Th as="td" td>
+          <div style={{ width: '75px' }}>
+            <img width="100%" src={item.cover_img} alt={item.name} />
+          </div>
+        </Th>
+        <Th as="td" td>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span>{item.name}</span>
+            <span>{moment(item.created_at).format('MM-DD-YYYY, ')}</span>
+          </div>
+        </Th>
+        <Th as="td" td>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {item.product.map((items) => {
+              return <span key={items._id}>{items.name}</span>;
+            })}
+          </div>
+        </Th>
+        <Th as="td" td>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {item.topic.map((items) => {
+              return <span key={items._id}>{items.name}</span>;
+            })}
+          </div>
+        </Th>
+
+        <Th as="td" td>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+            }}
+          >
+            <Link to={`update-contents/${item._id}`}>
+              <ButtonLink>
+                <div>
+                  <CreateIcon fontSize="small" />
+                </div>
+              </ButtonLink>
+            </Link>
+
+            <DeleteContents id={item._id} />
+          </div>
+        </Th>
+      </tr>
+    );
+  };
+
+  const TableFooter = (length) => {
+    return (
+      <tr>
+        <TablePagination
+          rowsPerPageOptions={[10, 15, 100]}
+          count={length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </tr>
+    );
+  };
+
+  const SearchBar = () => {
+    return (
+      <Table striped>
+        {TableHeading()}
+        <tbody>
+          {contentsFilter
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((item, index) => {
+              return TableBody(item, index);
+            })}
+        </tbody>
+        <tfoot>{TableFooter(contentsFilter.length)}</tfoot>
+      </Table>
+    );
+  };
   return (
     <React.Fragment>
-      {/* --- section 1 --- Button Action link to Add Product ---*/}
       {form.id[0] ? (
         <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
@@ -79,7 +185,6 @@ const DataContents = (props) => {
         </Dropdown>
       ) : (
         <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          {' '}
           <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret disabled>
             Actions
           </DropdownToggle>
@@ -95,43 +200,26 @@ const DataContents = (props) => {
       >
         <Link to="add-contents">
           <ButtonLink>
-            {' '}
             <div style={{ width: '80px', textAlign: 'center' }}>+ Contents</div>
           </ButtonLink>
         </Link>
 
         <div>
-          <label>Search</label>{' '}
+          <label>Search</label>
           <Input
             type="search"
             name="search"
-            value={searching.search}
-            onChange={handleChange}
+            value={input}
+            onChange={handleInput}
           />
         </div>
-        {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
       </div>
 
-      {/* --- section 2 --- Get Data Product --- */}
       <Card isNormal>
-        {/* --- untuk hapus melalui button --- */}
         <Overflow>
           {contents === null ? (
             <React.Fragment>
-              <Table>
-                <thead>
-                  <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Cover</Th>
-                    <Th>Detail</Th>
-                    <Th>Product</Th>
-                    <Th>Topic</Th>
-                    <Th style={{ width: '100px' }}>Actions</Th>
-                  </tr>
-                </thead>
-              </Table>
+              <Table>{TableHeading()}</Table>
               <div
                 style={{
                   textAlign: 'center',
@@ -141,126 +229,25 @@ const DataContents = (props) => {
                 <CircularProgress />
               </div>
             </React.Fragment>
-          ) : contents.data.length > 0 ? (
+          ) : contentsFilter.length === 0 && contents.data.length > 0 ? (
             <Table striped>
-              <thead>
-                <tr>
-                  <Th>
-                    <Input checkbox type="checkbox" />
-                  </Th>
-                  <Th>Cover</Th>
-                  <Th>Detail</Th>
-                  <Th>Product</Th>
-                  <Th>Topic</Th>
-                  <Th style={{ width: '100px' }}>Actions</Th>
-                </tr>
-              </thead>
+              {TableHeading()}
               <tbody>
                 {contents.data
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((item) => {
-                    return (
-                      <tr key={item._id}>
-                        <Th>
-                          <Input
-                            checkbox
-                            type="checkbox"
-                            id={item._id}
-                            value={item._id}
-                            onChange={handleCheckboxChange}
-                          />
-                        </Th>
-
-                        <Th as="td" td>
-                          <div style={{ width: '75px' }}>
-                            <img
-                              width="100%"
-                              src={item.cover_img}
-                              alt={item.name}
-                            />
-                          </div>
-                        </Th>
-                        <Th as="td" td>
-                          <div
-                            style={{ display: 'flex', flexDirection: 'column' }}
-                          >
-                            <span>{item.name}</span>
-                            <span>
-                              {moment(item.created_at).format('MM-DD-YYYY, ')}
-                            </span>
-                          </div>
-                        </Th>
-                        <Th as="td" td>
-                          <div
-                            style={{ display: 'flex', flexDirection: 'column' }}
-                          >
-                            {item.product.map((items) => {
-                              return <span key={items._id}>{items.name}</span>;
-                            })}
-                          </div>
-                        </Th>
-                        <Th as="td" td>
-                          <div
-                            style={{ display: 'flex', flexDirection: 'column' }}
-                          >
-                            {item.topic.map((items) => {
-                              return <span key={items._id}>{items.name}</span>;
-                            })}
-                          </div>
-                        </Th>
-
-                        <Th as="td" td>
-                          <div
-                            style={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                            }}
-                          >
-                            <Link to={`update-contents/${item._id}`}>
-                              <ButtonLink>
-                                <div>
-                                  <CreateIcon fontSize="small" />
-                                </div>
-                              </ButtonLink>
-                            </Link>
-
-                            <DeleteContents id={item._id} />
-                          </div>
-                        </Th>
-                      </tr>
-                    );
+                  .map((item, index) => {
+                    return TableBody(item, index);
                   })}
               </tbody>
               <tfoot>
-                <tr>
-                  <TablePagination
-                    rowsPerPageOptions={[10, 15, 100]}
-                    count={contents !== null && contents.data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                  />
-                </tr>
+                {TableFooter(contents !== null && contents.data.length)}
               </tfoot>
             </Table>
+          ) : contentsFilter.length > 0 ? (
+            SearchBar()
           ) : (
             <React.Fragment>
-              <Table>
-                <thead>
-                  <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Product</Th>
-                    <Th>Topic</Th>
-                    <Th>Created At</Th>
-
-                    <Th style={{ width: '100px' }}>Actions</Th>
-                  </tr>
-                </thead>
-              </Table>
+              <Table>{TableHeading()}</Table>
               <div
                 style={{
                   textAlign: 'center',
