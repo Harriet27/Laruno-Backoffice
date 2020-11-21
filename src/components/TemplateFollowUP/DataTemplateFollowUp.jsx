@@ -10,7 +10,7 @@ import moment from 'moment';
 import AddTemplateFollowUp from './AddTemplateFollowUp';
 // --- Elements, Pages, Components --- //
 import { fetchGetFollowUp } from '../../store/actions';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, TableFooter } from '@material-ui/core';
 import ParentsLayoutFollowUp from '../FollowUpOrderTemplate/ParentsLayoutFollowUp';
 
 // --- Styled Components --- //
@@ -22,16 +22,17 @@ export default function DataTemplateFollowUp(props) {
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+  const [input, setInput] = useState('');
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
   // --- Dropdown --- //
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
@@ -41,7 +42,6 @@ export default function DataTemplateFollowUp(props) {
     allChecked: false,
   });
 
-  // --- useEffect --- Get Data Followup ---//
   useEffect(() => {
     dispatch(fetchGetFollowUp());
     // eslint-disable-next-line
@@ -58,6 +58,101 @@ export default function DataTemplateFollowUp(props) {
     });
   };
 
+  const followupFilter =
+    followup !== null &&
+    followup.data.filter((item) => {
+      return item.name.toLowerCase().includes(input.toLowerCase());
+    });
+
+  const TableHeading = () => {
+    return (
+      <thead>
+        <tr>
+          <Th>
+            <DehazeIcon />
+          </Th>
+          <Th>Name</Th>
+          <Th>Template</Th>
+          <Th>Type</Th>
+          <Th>Admin By</Th>
+          <Th style={{ width: '100px' }}>Actions</Th>
+        </tr>
+      </thead>
+    );
+  };
+
+  const TableBody = (item, index) => {
+    return (
+      <tr key={item._id}>
+        <Th>
+          <Input
+            checkbox
+            type="checkbox"
+            id={item._id}
+            value={item._id}
+            onChange={handleCheckboxChange}
+          />
+        </Th>
+
+        <Th as="td" td>
+          {item.name === 'FollowUp'
+            ? 'Follow Up 1'
+            : item.name === 'FollowUp_1'
+            ? 'Follow Up 2'
+            : item.name === 'FollowUp_2'
+            ? 'Follow Up 3'
+            : item.name === 'FollowUp_3'
+            ? 'Follow Up 4'
+            : item.name === 'FollowUp_4'
+            ? 'Follow Up 5'
+            : item.name}
+        </Th>
+        <Th as="td" td>
+          {item.template}
+        </Th>
+        <Th as="td" td>
+          {item.type}
+        </Th>
+        <Th as="td" td>
+          {/* {item.by.name} */} -
+        </Th>
+        <Th as="td" td>
+          <div style={Styles.FlexRow}></div>
+        </Th>
+      </tr>
+    );
+  };
+
+  const TableFooter = (length) => {
+    return (
+      <tr>
+        <TablePagination
+          rowsPerPageOptions={[10, 15, 20]}
+          count={length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </tr>
+    );
+  };
+
+  const SearchBar = () => {
+    return (
+      <Table striped>
+        {TableHeading()}
+        <tbody>
+          {followupFilter
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((item, index) => {
+              return TableBody(item, index);
+            })}
+        </tbody>
+        <tfoot>{TableFooter(followupFilter.length)}</tfoot>
+      </Table>
+    );
+  };
   return (
     <section style={{ margin: '50px' }}>
       {form.id[0] ? (
@@ -69,7 +164,6 @@ export default function DataTemplateFollowUp(props) {
         </Dropdown>
       ) : (
         <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          {' '}
           <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret disabled>
             Actions
           </DropdownToggle>
@@ -77,129 +171,47 @@ export default function DataTemplateFollowUp(props) {
       )}
 
       <div style={Styles.FlexBetween}>
-        {/* <AddNewFollowup /> */}
-        {/* <AddTemplateFollowUp /> */}
         <ParentsLayoutFollowUp />
 
         <div>
-          <label>Search</label> <Input type="search" name="search" />
+          <label>Search</label>
+          <Input
+            type="search"
+            name="search"
+            value={input}
+            onChange={handleInput}
+          />
         </div>
-        {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
       </div>
 
-      {/* --- section 2 --- Get Data Product --- */}
       <Card isNormal>
-        {/* --- untuk hapus melalui button --- */}
         <Overflow>
           {followup === null ? (
             <React.Fragment>
-              <Table>
-                <thead>
-                  <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Template</Th>
-                    <Th>Type</Th>
-                    <Th>Admin By</Th>
-                    <Th style={{ width: '100px' }}>Actions</Th>
-                  </tr>
-                </thead>
-              </Table>
+              <Table>{TableHeading()}</Table>
               <div style={Styles.IsLoading}>
                 <CircularProgress />
               </div>
             </React.Fragment>
-          ) : followup.data.length >= 1 ? (
+          ) : followupFilter.length === 0 && followup.data.length > 0 ? (
             <Table striped>
-              <thead>
-                <tr>
-                  <Th>
-                    <Input checkbox type="checkbox" />
-                  </Th>
-                  <Th>Name</Th>
-                  <Th>Template</Th>
-                  <Th>Type</Th>
-                  <Th>Admin By</Th>
-                  <Th style={{ width: '100px' }}>Actions</Th>
-                </tr>
-              </thead>
+              {TableHeading()}
               <tbody>
                 {followup.data
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((item) => {
-                    return (
-                      <tr key={item._id}>
-                        <Th>
-                          <Input
-                            checkbox
-                            type="checkbox"
-                            id={item._id}
-                            value={item._id}
-                            onChange={handleCheckboxChange}
-                          />
-                        </Th>
-
-                        <Th as="td" td>
-                          {item.name === 'FollowUp'
-                            ? 'Follow Up 1'
-                            : item.name === 'FollowUp_1'
-                            ? 'Follow Up 2'
-                            : item.name === 'FollowUp_2'
-                            ? 'Follow Up 3'
-                            : item.name === 'FollowUp_3'
-                            ? 'Follow Up 4'
-                            : item.name === 'FollowUp_4'
-                            ? 'Follow Up 5'
-                            : item.name}
-                        </Th>
-                        <Th as="td" td>
-                          {item.template}
-                        </Th>
-                        <Th as="td" td>
-                          {item.type}
-                        </Th>
-                        <Th as="td" td>
-                          {item.by.name}
-                        </Th>
-
-                        <Th as="td" td>
-                          <div style={Styles.FlexRow}></div>
-                        </Th>
-                      </tr>
-                    );
+                  .map((item, index) => {
+                    return TableBody(item, index);
                   })}
               </tbody>
               <tfoot>
-                <tr>
-                  <TablePagination
-                    rowsPerPageOptions={[10, 15, 20]}
-                    count={followup !== null && followup.data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                  />
-                </tr>
+                {TableFooter(followup !== null && followup.data.length)}
               </tfoot>
             </Table>
+          ) : followupFilter.length > 0 ? (
+            SearchBar()
           ) : (
             <React.Fragment>
-              <Table>
-                <thead>
-                  <tr>
-                    <Th>
-                      <DehazeIcon />
-                    </Th>
-                    <Th>Name</Th>
-                    <Th>Slug</Th>
-                    <Th>Created At</Th>
-                    <Th>Update At</Th>
-                    <Th style={{ width: '100px' }}>Actions</Th>
-                  </tr>
-                </thead>
-              </Table>
+              <Table>{TableHeading()}</Table>
               <div style={Styles.IsLoading}>
                 You have no followup in this date range.
               </div>
