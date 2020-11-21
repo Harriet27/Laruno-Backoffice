@@ -15,7 +15,7 @@ import moment from 'moment';
 import { fetchGetRoles, fetchMultipleDeleteRoles } from '../../store/actions';
 import DeleteRoles from './DeleteRoles';
 import MultipleDelete from '../../elements/Alert/MultipleDelete';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, TableFooter } from '@material-ui/core';
 
 // --- Styled Components --- //
 
@@ -26,26 +26,23 @@ const DataRoles = (props) => {
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
+  const [input, setInput] = useState('');
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
   // --- Dropdown --- //
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   const [form, setForm] = useState({
     id: [],
-  });
-
-  const [searching, setSearching] = useState({
-    search: '',
   });
 
   // --- useEffect --- Get Data Topic ---//
@@ -71,17 +68,102 @@ const DataRoles = (props) => {
     dispatch(fetchMultipleDeleteRoles(form));
   };
 
-  // --- handle Change --- //
-  const handleChange = (event) => {
-    setSearching({ ...searching, [event.target.name]: event.target.value });
+  const rolesFilter =
+    roles !== null &&
+    roles.data.filter((item) => {
+      return item.adminType.toLowerCase().includes(input.toLowerCase());
+    });
+
+  const TableHeading = () => {
+    return (
+      <thead>
+        <tr>
+          <Th>
+            <DehazeIcon />
+          </Th>
+          <Th>Admin Type</Th>
+          <Th>Read Write</Th>
+          <Th>Created At</Th>
+          <Th>Update At</Th>
+          <Th style={{ width: '100px' }}>Actions</Th>
+        </tr>
+      </thead>
+    );
   };
 
+  const TableBody = (item, index) => {
+    return (
+      <tr key={item._id}>
+        <Th>
+          <Input
+            checkbox
+            type="checkbox"
+            id={item._id}
+            value={item._id}
+            onChange={handleCheckboxChange}
+          />
+        </Th>
+
+        <Th as="td" td>
+          {item.adminType}
+        </Th>
+        <Th as="td" td>
+          {item.readWrite === false ? <p>False</p> : <p>True</p>}
+        </Th>
+        <Th as="td" td>
+          {moment(item.created_at).format('MMMM Do YYYY, h:mm:ss a')}
+        </Th>
+        <Th as="td" td>
+          {moment(item.updated_at).format('MMMM Do YYYY, h:mm:ss a')}
+        </Th>
+        <Th as="td" td>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+            }}
+          >
+            <DeleteRoles id={item._id} />
+          </div>
+        </Th>
+      </tr>
+    );
+  };
+
+  const TableFooter = (length) => {
+    return (
+      <tr>
+        <TablePagination
+          rowsPerPageOptions={[10, 15, 20]}
+          count={length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </tr>
+    );
+  };
+
+  const SearchBar = () => {
+    return (
+      <Table striped>
+        {TableHeading()}
+        <tbody>
+          {rolesFilter
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((item, index) => {
+              return TableBody(item, index);
+            })}
+        </tbody>
+        <tfoot>{TableFooter(rolesFilter.length)}</tfoot>
+      </Table>
+    );
+  };
   return (
     <>
       <></>
       <React.Fragment>
-        {/* --- section 1 --- Button Action link to Add Product ---*/}
-
         <div
           style={{
             margin: '20px 0',
@@ -96,10 +178,6 @@ const DataRoles = (props) => {
               </DropdownToggle>
               <DropdownMenu>
                 <MultipleDelete onSubmit={handleMultipleDelete} />
-
-                {/* <DropdownItem onClick={handleMultipleClone}>
-                                Clone
-                            </DropdownItem> */}
               </DropdownMenu>
             </Dropdown>
           ) : (
@@ -114,39 +192,20 @@ const DataRoles = (props) => {
             </Dropdown>
           )}
           <div>
-            <label>Search</label>{' '}
+            <label>Search</label>
             <Input
               type="search"
               name="search"
-              value={searching.search}
-              onChange={handleChange}
+              value={input}
+              onChange={handleInput}
             />
           </div>
-          {/* <input type="button" onClick={handleSearch} value="KLIK" /> */}
         </div>
-
-        {/* --- section 2 --- Get Data Product --- */}
         <Card isNormal>
-          {/* --- untuk hapus melalui button --- */}
           <Overflow>
-            {/* ------ jika product !== null return hasil get product jika masih nulltampilkan loading,
-                     di dalam product apabila ternyata data.lentgh < 0 maka tampilkan table kosong -------*/}
             {roles === null ? (
               <React.Fragment>
-                <Table>
-                  <thead>
-                    <tr>
-                      <Th>
-                        <DehazeIcon />
-                      </Th>
-                      <Th>Admin Type</Th>
-                      <Th>Read Write</Th>
-                      <Th>Created At</Th>
-                      <Th>Update At</Th>
-                      <Th style={{ width: '100px' }}>Actions</Th>
-                    </tr>
-                  </thead>
-                </Table>
+                <Table>{TableHeading()}</Table>
                 <div
                   style={{
                     textAlign: 'center',
@@ -156,99 +215,25 @@ const DataRoles = (props) => {
                   <CircularProgress />
                 </div>
               </React.Fragment>
-            ) : roles.data.length >= 1 ? (
+            ) : rolesFilter.length === 0 && roles.data.length > 0 ? (
               <Table striped>
-                <thead>
-                  <tr>
-                    <Th>
-                      <Input checkbox type="checkbox" />
-                    </Th>
-                    <Th>Admin Type</Th>
-                    <Th>Read Write</Th>
-                    <Th>Created At</Th>
-                    <Th>Update At</Th>
-                    <Th style={{ width: '100px' }}>Actions</Th>
-                  </tr>
-                </thead>
+                {TableHeading()}
                 <tbody>
                   {roles.data
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((item) => {
-                      return (
-                        <tr key={item._id}>
-                          <Th>
-                            <Input
-                              checkbox
-                              type="checkbox"
-                              id={item._id}
-                              value={item._id}
-                              onChange={handleCheckboxChange}
-                            />
-                          </Th>
-
-                          <Th as="td" td>
-                            {item.adminType}
-                          </Th>
-                          <Th as="td" td>
-                            {item.readWrite === false ? (
-                              <p>False</p>
-                            ) : (
-                              <p>True</p>
-                            )}
-                          </Th>
-                          <Th as="td" td>
-                            {moment(item.created_at).format(
-                              'MMMM Do YYYY, h:mm:ss a'
-                            )}
-                          </Th>
-                          <Th as="td" td>
-                            {moment(item.updated_at).format(
-                              'MMMM Do YYYY, h:mm:ss a'
-                            )}
-                          </Th>
-                          <Th as="td" td>
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                              }}
-                            >
-                              <DeleteRoles id={item._id} />
-                            </div>
-                          </Th>
-                        </tr>
-                      );
+                    .map((item, index) => {
+                      return TableBody(item, index);
                     })}
                 </tbody>
                 <tfoot>
-                  <tr>
-                    <TablePagination
-                      rowsPerPageOptions={[10, 15, 20]}
-                      count={roles !== null && roles.data.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      onChangePage={handleChangePage}
-                      onChangeRowsPerPage={handleChangeRowsPerPage}
-                    />
-                  </tr>
+                  {TableFooter(roles !== null && roles.data.length)}
                 </tfoot>
               </Table>
+            ) : rolesFilter.length > 0 ? (
+              SearchBar()
             ) : (
               <React.Fragment>
-                <Table>
-                  <thead>
-                    <tr>
-                      <Th>
-                        <DehazeIcon />
-                      </Th>
-                      <Th>Name</Th>
-                      <Th>Slug</Th>
-                      <Th>Created At</Th>
-                      <Th>Update At</Th>
-                      <Th style={{ width: '100px' }}>Actions</Th>
-                    </tr>
-                  </thead>
-                </Table>
+                <Table>{TableHeading()}</Table>
                 <div
                   style={{
                     textAlign: 'center',
