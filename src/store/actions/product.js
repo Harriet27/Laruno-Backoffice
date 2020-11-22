@@ -18,7 +18,7 @@ const fetchPostProducts = ({ form, history, setState }) => async () => {
     for (let key in form) {
       if (
         form[key] === '' ||
-        (typeof form[key] === 'array' && form[key].length === 0)
+        (form[key] instanceof Array && form[key].length === 0)
       ) {
         delete form[key];
       }
@@ -59,7 +59,7 @@ const fetchPostProducts = ({ form, history, setState }) => async () => {
       const errors = result.message;
       console.log(errors.length);
 
-      if (typeof errors === 'array') {
+      if (errors instanceof Array) {
         return Toast.fire({
           icon: 'error',
           title: errors[0],
@@ -216,7 +216,7 @@ const fetchUpdateProduct = ({ form, id, history, setState }) => async () => {
     for (let key in form) {
       if (
         form[key] === '' ||
-        (typeof form[key] === 'array' && form[key].length === 0)
+        (form[key] instanceof Array && form[key].length === 0)
       ) {
         delete form[key];
       }
@@ -256,7 +256,7 @@ const fetchUpdateProduct = ({ form, id, history, setState }) => async () => {
       const errors = result.message;
       console.log(errors.length);
 
-      if (typeof errors === 'array') {
+      if (errors instanceof Array) {
         return Toast.fire({
           icon: 'error',
           title: errors[0],
