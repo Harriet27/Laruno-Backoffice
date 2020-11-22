@@ -131,10 +131,10 @@ const DataCoupons = (props) => {
           {item.max_discount}
         </Th>
         <Th as="td" td>
-          {moment(item.created_at).format('MMMM Do YYYY, h:mm:ss a')}
+          {moment(item.start_date).format('MMMM-DD-YYYY')}
         </Th>
         <Th as="td" td>
-          {moment(item.updated_at).format('MMMM Do YYYY, h:mm:ss a')}
+          {moment(item.end_date).format('MMMM-DD-YYYY')}
         </Th>
         <Th as="td" td>
           {item.payment_method}

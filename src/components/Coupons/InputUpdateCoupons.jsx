@@ -67,8 +67,8 @@ export default function InputUpdateCoupons(props) {
     const [form, setForm] = useState({
       name: name || '',
       value: value || '',
-      start_date: '',
-      end_date: '',
+      start_date: moment(start_date).format('YYYY-MM-DD') || '',
+      end_date: moment(end_date).format('YYYY-MM-DD') || '',
       max_discount: max_discount || 0,
       payment_method: payment_method || '',
     });
