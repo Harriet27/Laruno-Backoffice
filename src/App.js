@@ -91,9 +91,9 @@ export default function App() {
 
           <PrivateRoute exact path="/product/update/:id">
             <Header />
+
             {/* <UpdateProduct /> */}
-            <UpdateProduct />
-            {/* <UpdateProductPages /> */}
+            <UpdateProductPages />
           </PrivateRoute>
 
           <PrivateRoute exact path="/add-contents">

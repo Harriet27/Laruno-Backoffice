@@ -4,21 +4,23 @@ import { useDispatch } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { ButtonStyled } from '../../elements/Styled/StyledForm';
-
+import { ButtonStyled, ResponsiveTabs } from '../../elements/Styled/StyledForm';
+import Card from '@material-ui/core/Card';
 // --- React Hook Form --- //
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AddProductSchema } from '../../elements/Validation/AddProductSchema';
-
+import moment from 'moment';
 // --- Fetch/Store/Actions/ elements --- //
-import { fetchPostProducts } from '../../store/actions';
+import { fetchPostProducts, fetchUpdateProduct } from '../../store/actions';
 import DetailProduct from '../../components/AddProduct/DetailProduct';
 import TabPanel from '../../elements/TabPanel/TabPanel';
 import Layout from '../../components/AddProduct/Layout';
 import DynamicField from '../../components/AddProduct/DynamicField';
 import DynamicFieldSection from '../../components/AddProduct/DynamicFieldSection';
 import Bump from '../../components/AddProduct/Bump';
+import { Spinner } from 'reactstrap';
+
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
@@ -26,7 +28,37 @@ function a11yProps(index) {
   };
 }
 
-export default function UpdateProduct() {
+export default function UpdateProduct(props) {
+  const {
+    id,
+    name,
+    price,
+    sale_price,
+    slug,
+    subheadline,
+    time_period,
+    type,
+    visibility,
+    webinar_date,
+    webinar_start,
+    webinar_url,
+    webinar_duration,
+    media_url,
+    code,
+    sale_method,
+    description,
+    headline,
+    feature_onpage,
+    feature_onheader,
+    image_bonus,
+    image_url,
+    bump_desc,
+    bump_heading,
+    bump_image,
+    bump_name,
+    bump_weight,
+    bump_price,
+  } = props;
   const [value, setValue] = React.useState(0);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -38,57 +70,28 @@ export default function UpdateProduct() {
     setValue(index);
   };
 
-  // --- React Hook Form --- //
-  // const { register, handleSubmit, errors } = useForm({
-  //     resolver: yupResolver(AddProductSchema),
-  // });
-
   // --- Form All --- //
   const [form, setForm] = useState({
     // --- section one --- //
-    name: '',
-    code: '',
-    slug: '',
-    type: '',
-    webinar: {
-      date: '',
-      duration: '',
-      start_time: '',
-      client_url: '',
-    },
-    ecommerce: {
-      weight: 0,
-      shipping_charges: true,
-      stock: 0,
-    },
+    name: name || '',
+    code: code || '',
+    slug: slug || '',
+    type: type || '',
+    webinar: '',
+    ecommerce: '',
     topic: [],
-    price: 0,
-    time_period: '',
-    visibility: '',
-    sale_method: '',
-    bump: [
-      {
-        bump_name: '',
-        bump_price: 0,
-        bump_weight: '',
-        bump_image: '',
-        bump_heading: '',
-        bump_desc: '',
-      },
-    ],
+    price: price || '',
+    time_period: time_period || '',
+    visibility: visibility || '',
+    sale_method: sale_method || '',
+    bump: '',
 
     // --- Section 2 --- //
-    headline: '',
-    subheadline: '',
+    headline: headline || '',
+    subheadline: subheadline || '',
     description: '',
-    learn_about: [
-      {
-        title: '',
-        content: '',
-        note: '',
-      },
-    ],
-    sale_price: 0,
+    learn_about: '',
+    sale_price: sale_price || '',
     image_url: [],
     // video_url: '',
     agent: [],
@@ -97,35 +100,30 @@ export default function UpdateProduct() {
     // image_product_url: [],
     // --- media url --- //
     media_url: '',
-    section: [
-      {
-        title: '',
-        content: '',
-        image: '',
-      },
-    ],
-    feature: {
-      feature_onheader: '',
-      feature_onpage: '',
-    },
+    section: '',
+    feature: '',
   });
   console.log('FORM ADD PRODUCT', form);
+  const [state, setState] = useState({
+    isLoading: false,
+  });
   // --- Detail Product --- //
   // --- Test Order Bump,  Webinar, ecommerce--- //
   const [objBump, setObjBump] = useState({
-    bump_name: '',
-    bump_price: '',
+    bump_name: bump_name || '',
+    bump_price: bump_price || '',
     bump_image: '',
-    bump_weight: 0,
-    bump_heading: '',
-    bump_desc: '',
+    bump_weight: bump_weight || '',
+    bump_heading: bump_heading || '',
+    bump_desc: bump_desc || '',
   });
-
+  const datePick = moment(webinar_date).format('YYYY-MM-DD');
+  console.log(datePick, 'datepick');
   const [objWebinar, setObjWebinar] = useState({
-    date: '',
-    duration: '',
-    start_time: '',
-    client_url: '',
+    date: moment(webinar_date).format('YYYY-MM-DD') || '',
+    duration: webinar_duration || '',
+    start_time: webinar_start || '',
+    client_url: webinar_url || '',
   });
 
   const [objEcommerce, setObjEcommerce] = useState({
@@ -135,8 +133,8 @@ export default function UpdateProduct() {
   });
 
   const [objFeature, setObjFeature] = useState({
-    feature_onheader: '',
-    feature_onpage: '',
+    feature_onheader: feature_onheader || '',
+    feature_onpage: feature_onpage || '',
   });
 
   const handleBump = (event) => {
@@ -171,22 +169,18 @@ export default function UpdateProduct() {
       setObjEcommerce({ ...objEcommerce, shipping_charges: false });
     }
   };
-
+  console.log(form.bump, 'form_bump');
   form.bump = [{ ...objBump }];
   form.webinar = { ...objWebinar };
   form.ecommerce = { ...objEcommerce };
   form.feature = { ...objFeature };
 
-  // --- handleSubmit untuk enter dan submit button --- //
-
-  // const onSubmit = async (event) => {
-  //     // event.preventDefault();
-  //     dispatch(fetchPostProducts(form, history));
-  // };
   const handleSubmit = (event) => {
-    event.preventDefault();
+    setState({
+      isLoading: true,
+    });
     // history
-    dispatch(fetchPostProducts(form, history));
+    dispatch(fetchUpdateProduct({ form, id, history, setState }));
   };
 
   // handle change untuk onChange
@@ -195,12 +189,43 @@ export default function UpdateProduct() {
   };
 
   // --- try handle select multiple --- //
-  const handleSelect = (topic) => {
-    setForm({ ...form, topic });
-  };
+  // const handleSelect = (topic) => {
+  //   setForm({ ...form, topic });
+  // };
 
+  // const handleSelectAgent = (agent) => {
+  //   setForm({ ...form, agent });
+  // };
+  const [selecting, setSelecting] = useState({
+    agent: '',
+    topic: '',
+  });
+  console.log(selecting, 'selecting');
   const handleSelectAgent = (agent) => {
-    setForm({ ...form, agent });
+    const isAgent =
+      agent !== null &&
+      agent.map((item) => {
+        return item.key;
+      });
+
+    setSelecting({
+      ...selecting,
+      agent,
+    });
+    form.agent = isAgent || '';
+  };
+  const handleSelectTopic = (topic) => {
+    const isTopic =
+      topic !== null &&
+      topic.map((item) => {
+        return item.key;
+      });
+
+    setSelecting({
+      ...selecting,
+      topic,
+    });
+    form.topic = isTopic || '';
   };
 
   // ======>>> lOGIC DETAIL PRODUCT SECTION 2 "layout" <<<====== //
@@ -251,9 +276,9 @@ export default function UpdateProduct() {
   const [formulir, setFormulir] = useState({
     image: {
       image_url: '',
-      bump_image: '',
-      media_url: '',
-      image_bonus: '',
+      bump_image: bump_image || '',
+      media_url: media_url || '',
+      image_bonus: image_bonus || '',
     },
   });
 
@@ -291,10 +316,12 @@ export default function UpdateProduct() {
   form.section = [...sectionAdd];
   // ---- BATAS BAWAH !!!! ---- //
 
+  let durationUpdate = webinar_duration.split(':');
+
   // --- DURATION --- ///
   const [duration, setDuration] = useState({
-    hours: '',
-    minutes: '',
+    hours: durationUpdate[0] || '',
+    minutes: durationUpdate[1] || '',
   });
 
   const handleDuration = (e) => {
@@ -303,7 +330,7 @@ export default function UpdateProduct() {
   objWebinar.duration = duration.hours + ':' + duration.minutes;
 
   // --- react quill --- //
-  const [quill, setQuill] = useState('');
+  const [quill, setQuill] = useState(description);
 
   form.description = quill;
 
@@ -313,7 +340,7 @@ export default function UpdateProduct() {
   objBump.bump_image = formulir.image.bump_image;
 
   const [arr, setArr] = useState({
-    image_url: [],
+    image_url: image_url || [],
   });
 
   // const [arrImageProduct, setArrImageProduct] = useState([]);
@@ -323,7 +350,7 @@ export default function UpdateProduct() {
   // form.image_text_url = arr.image_text;
   form.media_url = formulir.image.media_url;
   return (
-    <div style={{ margin: '50px' }}>
+    <ResponsiveTabs>
       <AppBar position="static" style={{ background: 'white' }}>
         <Tabs
           value={value}
@@ -349,7 +376,7 @@ export default function UpdateProduct() {
         >
           <DetailProduct
             handleRadio={handleRadio}
-            handleSelect={handleSelect}
+            handleSelect={handleSelectTopic}
             onChange={handleChangeForm}
             form={form.type}
             name={form.name}
@@ -383,6 +410,7 @@ export default function UpdateProduct() {
             duration_minute={duration.minutes}
             handleWebinar={handleWebinar}
             handleDuration={handleDuration}
+            isTopic={selecting.topic}
             // --- REACT HOOK FORM --- //
             // register={register}
             // errors={errors}
@@ -397,9 +425,10 @@ export default function UpdateProduct() {
           }}
         >
           <Layout
-            handleSelectAgent={handleSelectAgent}
+            handleSelect={handleSelectAgent}
             onChange={handleChangeForm}
             handleFeature={handleFeature}
+            isAgent={selecting.agent}
             headline={form.headline}
             image_bonus_url={form.image_bonus_url}
             // image_text_url={form.image_text_url}
@@ -461,38 +490,54 @@ export default function UpdateProduct() {
             background: 'white',
           }}
         >
-          <DynamicFieldSection
-            fields={sectionAdd}
-            handleAdd={handleAddSection}
-            handleChange={handleChangeDynamicSection}
-            handleChangeContents={handleChangeContentsSection}
-            handleRemove={handleRemoveSection}
-            formulir={formulir}
-            setFormulir={setFormulir}
-            sectionAdd={sectionAdd}
-            setSectionAdd={setSectionAdd}
-          />
-          <div
-            style={{
-              margin: '0 100px',
-              paddingBottom: '20px',
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <ButtonStyled style={{ color: '#656565', background: '#F2F5F7' }}>
-              <i className="fa fa-undo"></i> Cancel
-            </ButtonStyled>
-            <ButtonStyled
-              // onClick={handleSubmit}
-              onClick={handleSubmit}
-              style={{ background: '#70CA63' }}
+          <Card>
+            <DynamicFieldSection
+              fields={sectionAdd}
+              handleAdd={handleAddSection}
+              handleChange={handleChangeDynamicSection}
+              handleChangeContents={handleChangeContentsSection}
+              handleRemove={handleRemoveSection}
+              formulir={formulir}
+              setFormulir={setFormulir}
+              sectionAdd={sectionAdd}
+              setSectionAdd={setSectionAdd}
+            />
+
+            <div
+              style={{
+                margin: '30px 40px',
+                paddingBottom: '20px',
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
             >
-              <i className="fa fa-save"></i> Save
-            </ButtonStyled>
-          </div>
+              <ButtonStyled style={{ color: '#656565', background: '#F2F5F7' }}>
+                <i className="fa fa-undo"></i> Cancel
+              </ButtonStyled>
+              <ButtonStyled
+                // onClick={handleSubmit}
+                onClick={handleSubmit}
+                style={{ background: '#70CA63' }}
+              >
+                <div style={{ width: '100px', textAlign: 'center' }}>
+                  {state.isLoading ? (
+                    <Spinner style={{ width: '1.5rem', height: '1.5rem' }} />
+                  ) : (
+                    <>
+                      {' '}
+                      <i
+                        style={{ marginRight: '5px' }}
+                        className="fa fa-save"
+                      ></i>
+                      Save
+                    </>
+                  )}
+                </div>
+              </ButtonStyled>
+            </div>
+          </Card>
         </div>
       </TabPanel>
-    </div>
+    </ResponsiveTabs>
   );
 }

@@ -16,11 +16,19 @@ const fetchPostProducts = ({ form, history, setState }) => async () => {
 
     // --- apabila form itu kosong maka hapus formnya --- //
     for (let key in form) {
-      if (form[key] === '') {
+      if (
+        form[key] === '' ||
+        (typeof form[key] === 'array' && form[key].length === 0)
+      ) {
         delete form[key];
       }
     }
 
+    if (form.type === 'webinar') {
+      delete form.eccomerce;
+    } else {
+      delete form.eccomerce;
+    }
     // --- penting nih --- //
 
     const options = {
@@ -48,28 +56,35 @@ const fetchPostProducts = ({ form, history, setState }) => async () => {
 
       history.push('/product');
     } else if (response.status === 400) {
-      const Errors = result.message;
-      console.log(Errors.length, 'check length');
-      if (Errors.length >= 2) {
-        Errors.map((err) => {
-          return Toast.fire({
-            icon: 'error',
-            title: err,
-            timer: 2500,
-            showConfirmButton: false,
-          });
+      const errors = result.message;
+      console.log(errors.length);
+
+      if (typeof errors === 'array') {
+        return Toast.fire({
+          icon: 'error',
+          title: errors[0],
+          timer: 2500,
+          showConfirmButton: false,
         });
       } else {
-        Toast.fire({
+        return Toast.fire({
           icon: 'error',
-          title: result.message,
+          title: errors,
           timer: 2500,
           showConfirmButton: false,
         });
       }
     }
   } catch (error) {
-    console.log(error.message);
+    setState({
+      isLoading: false,
+    });
+    Toast.fire({
+      icon: 'error',
+      title: error.message,
+      timer: 2500,
+      showConfirmButton: false,
+    });
   }
 };
 
@@ -192,16 +207,25 @@ const fetchShowProduct = (id) => async (dispatch) => {
 };
 
 // --- Update Product - Method PUT ---- //
-const fetchUpdateProduct = (form, id, history) => async () => {
+const fetchUpdateProduct = ({ form, id, history, setState }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/${id}`;
 
     // --- apabila form itu kosong maka hapus formnya --- //
     for (let key in form) {
-      if (form[key] === '') {
+      if (
+        form[key] === '' ||
+        (typeof form[key] === 'array' && form[key].length === 0)
+      ) {
         delete form[key];
       }
+    }
+
+    if (form.type === 'webinar') {
+      delete form.eccomerce;
+    } else {
+      delete form.eccomerce;
     }
     // --- penting nih --- //
 
@@ -216,6 +240,9 @@ const fetchUpdateProduct = (form, id, history) => async () => {
     const response = await fetch(url, options);
     const result = await response.json();
 
+    setState({
+      isLoading: false,
+    });
     if (response.status === 200) {
       Swal.fire({
         title: 'Update Berhasil!',
@@ -225,17 +252,36 @@ const fetchUpdateProduct = (form, id, history) => async () => {
         timer: 1000,
       });
       history.push('/product');
-    } else {
-      Swal.fire({
-        title: 'update gagal',
-        text: result.message,
-        icon: 'error',
-        showConfirmButton: false,
-        timer: 2000,
-      });
+    } else if (response.status === 400) {
+      const errors = result.message;
+      console.log(errors.length);
+
+      if (typeof errors === 'array') {
+        return Toast.fire({
+          icon: 'error',
+          title: errors[0],
+          timer: 2500,
+          showConfirmButton: false,
+        });
+      } else {
+        return Toast.fire({
+          icon: 'error',
+          title: errors,
+          timer: 2500,
+          showConfirmButton: false,
+        });
+      }
     }
   } catch (error) {
-    console.log(error);
+    setState({
+      isLoading: false,
+    });
+    return Toast.fire({
+      icon: 'error',
+      title: error.message,
+      timer: 2500,
+      showConfirmButton: false,
+    });
   }
 };
 
