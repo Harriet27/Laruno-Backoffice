@@ -149,12 +149,6 @@ export default function TestAddProduct() {
   form.ecommerce = { ...objEcommerce };
   form.feature = { ...objFeature };
 
-  // --- handleSubmit untuk enter dan submit button --- //
-
-  // const onSubmit = async (event) => {
-  //     // event.preventDefault();
-  //     dispatch(fetchPostProducts(form, history));
-  // };
   const handleSubmit = (event) => {
     setState({
       isLoading: true,
