@@ -6,6 +6,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Table,
+  Form,
 } from 'reactstrap';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,6 +24,7 @@ import AddCoupons from './AddCoupons';
 import DeleteCoupons from './DeleteCoupons';
 
 import UpdateModalCoupons from './UpdateModalCoupons';
+import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 
 const DataCoupons = (props) => {
   const dispatch = useDispatch();
@@ -93,7 +95,7 @@ const DataCoupons = (props) => {
       <thead>
         <tr>
           <Th>
-            <DehazeIcon />
+            <Input isCheckbox type="checkbox" />
           </Th>
           <Th>Name</Th>
           <Th>Code</Th>
@@ -112,7 +114,7 @@ const DataCoupons = (props) => {
       <tr key={item._id}>
         <Th as="td">
           <Input
-            checkbox
+            isCheckbox
             type="checkbox"
             id={item._id}
             value={item._id}
@@ -181,24 +183,11 @@ const DataCoupons = (props) => {
   return (
     <React.Fragment>
       {/* --- section 1 --- Button Action link to Add Product ---*/}
-      {form.id[0] ? (
-        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle style={Styles.ColorActions} caret>
-            Actions
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem onClick={handleMultipleDelete}>Delete</DropdownItem>
-            <DropdownItem onClick={handleMultipleClone}>Clone</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      ) : (
-        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          {' '}
-          <DropdownToggle style={Styles.ColorActions} caret disabled>
-            Actions
-          </DropdownToggle>
-        </Dropdown>
-      )}
+      <MultipleActions
+        isLogic={form.id[0]}
+        handleClone={handleMultipleClone}
+        handleDelete={handleMultipleDelete}
+      />
 
       <div style={Styles.FlexBetween}>
         <AddCoupons />

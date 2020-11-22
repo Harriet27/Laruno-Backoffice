@@ -99,7 +99,7 @@ const DataOrders = (props) => {
       <thead>
         <tr>
           <Th>
-            <DehazeIcon />
+            <Input isCheckbox type="checkbox" />
           </Th>
           <Th>Invoice</Th>
           <Th>Name</Th>
@@ -160,7 +160,7 @@ const DataOrders = (props) => {
     return (
       <TableRow key={item._id}>
         <Th as="td" td>
-          <input type="checkbox" />
+          <Input isCheckbox type="checkbox" />
         </Th>
         <Th as="td" td>
           {item.invoice === null ? '101120SKU9515000' : `${item.invoice}`}

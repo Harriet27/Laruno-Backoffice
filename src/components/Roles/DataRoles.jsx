@@ -16,6 +16,7 @@ import { fetchGetRoles, fetchMultipleDeleteRoles } from '../../store/actions';
 import DeleteRoles from './DeleteRoles';
 import MultipleDelete from '../../elements/Alert/MultipleDelete';
 import { CircularProgress, TableFooter } from '@material-ui/core';
+import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 
 // --- Styled Components --- //
 
@@ -79,7 +80,7 @@ const DataRoles = (props) => {
       <thead>
         <tr>
           <Th>
-            <DehazeIcon />
+            <Input isCheckbox type="checkbox" />
           </Th>
           <Th>Admin Type</Th>
           <Th>Read Write</Th>
@@ -96,7 +97,7 @@ const DataRoles = (props) => {
       <tr key={item._id}>
         <Th>
           <Input
-            checkbox
+            isCheckbox
             type="checkbox"
             id={item._id}
             value={item._id}
@@ -171,26 +172,12 @@ const DataRoles = (props) => {
             justifyContent: 'space-between',
           }}
         >
-          {form.id[0] ? (
-            <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-              <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
-                Actions
-              </DropdownToggle>
-              <DropdownMenu>
-                <MultipleDelete onSubmit={handleMultipleDelete} />
-              </DropdownMenu>
-            </Dropdown>
-          ) : (
-            <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-              <DropdownToggle
-                style={{ backgroundColor: '#0098DA' }}
-                caret
-                disabled
-              >
-                Actions
-              </DropdownToggle>
-            </Dropdown>
-          )}
+          <MultipleActions
+            isLogic={form.id[0]}
+            // handleClone={handleMultipleClone}
+            handleDelete={handleMultipleDelete}
+          />
+
           <div>
             <Input
               type="search"

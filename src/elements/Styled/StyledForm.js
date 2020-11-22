@@ -29,14 +29,14 @@ const Input = Styled.input`
     border-radius: 3px;
     background-color: #FCFCFC;
     border: 1px solid #ced4da;
-    margin-left: ${(props) => (props.checkbox ? '9px' : null)};
-    transform: ${(props) => (props.checkbox ? 'scale(1.2)' : null)};
+    margin-left: ${(props) => (props.isCheckbox ? '9px' : null)};
+    transform: ${(props) => (props.isCheckbox ? 'scale(1.2)' : null)};
     &:focus{
     outline: none !important;
     border:1px solid #66AFE9;
     }
     &:hover{
-        cursor: ${(props) => (props.checkbox ? 'pointer' : 'default')}
+        cursor: ${(props) => (props.isCheckbox ? 'pointer' : 'default')}
     }
 `;
 const SectionOne = Styled.div`

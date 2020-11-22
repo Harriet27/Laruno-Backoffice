@@ -20,6 +20,7 @@ import {
   ButtonActions,
 } from '../../elements/Styled/StyledForm';
 import { ButtonLink } from '../../elements/Styled/StyledTabs';
+import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 const DataContents = (props) => {
   const dispatch = useDispatch();
   const contents = useSelector((state) => state.contents.getContents);
@@ -71,7 +72,7 @@ const DataContents = (props) => {
       <thead>
         <tr>
           <Th>
-            <DehazeIcon />
+            <Input isCheckbox type="checkbox" />
           </Th>
           <Th>Cover</Th>
           <Th>Detail</Th>
@@ -88,7 +89,7 @@ const DataContents = (props) => {
       <tr key={item._id}>
         <Th>
           <Input
-            checkbox
+            isCheckbox
             type="checkbox"
             id={item._id}
             value={item._id}
@@ -176,20 +177,11 @@ const DataContents = (props) => {
   };
   return (
     <React.Fragment>
-      {form.id[0] ? (
-        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret>
-            Actions
-          </DropdownToggle>
-          <DropdownMenu></DropdownMenu>
-        </Dropdown>
-      ) : (
-        <Dropdown size="sm" isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle style={{ backgroundColor: '#0098DA' }} caret disabled>
-            Actions
-          </DropdownToggle>
-        </Dropdown>
-      )}
+      <MultipleActions
+        isLogic={form.id[0]}
+        // handleClone={handleMultipleClone}
+        // handleDelete={handleMultipleDelete}
+      />
 
       <div
         style={{
