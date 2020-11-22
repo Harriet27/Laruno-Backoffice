@@ -7,6 +7,8 @@ import {
   fetchUpdateTopic,
   fetchPostSingleImage,
   fetchShowCoupons,
+  fetchGetProduct,
+  fetchGetPaymentsMethod,
   fetchUpdateCoupons,
 } from '../../store/actions';
 import Styled from 'styled-components';
@@ -42,9 +44,8 @@ const Input = Styled.input`
     border:1px solid #66AFE9;
     }
 `;
-
 const WrapForm = Styled.div`
-    width: 100%;
+    width:  ${(props) => (props.isFull ? '100%' : '45%')};
     margin-bottom: ${lg};
 `;
 
@@ -61,11 +62,24 @@ export default function InputUpdateCoupons(props) {
       is_active,
       start_date,
       end_date,
+      product_id,
+      type,
     } = props;
     const dispatch = useDispatch();
 
+    const payment = useSelector((state) => state.payment.getPaymentsMethod);
+    const product = useSelector((state) => state.product.getProduct);
+    console.log({ payment, product }, 'PPPPayments');
+    useEffect(() => {
+      dispatch(fetchGetPaymentsMethod());
+      dispatch(fetchGetProduct());
+      // eslint-disable-next-line
+    }, [dispatch]);
+
     const [form, setForm] = useState({
       name: name || '',
+      type: type || '',
+      product_id: product_id || '',
       value: value || '',
       start_date: moment(start_date).format('YYYY-MM-DD') || '',
       end_date: moment(end_date).format('YYYY-MM-DD') || '',
@@ -167,26 +181,91 @@ export default function InputUpdateCoupons(props) {
               />
             </div>
           </WrapForm>
-          <WrapForm style={{ width: '45%' }}>
+          <WrapForm>
             <label>
-              <Span>Payment Method </Span>
+              <Span>Type</Span>
             </label>
             <Input
               as="select"
-              name="payment_method"
-              id="payment_method"
-              value={form.payment_method}
+              name="type"
+              id="type"
+              value={form.type}
               onChange={handleChange}
+              // ref={register}
             >
               <option value="" disabled hidden>
                 Choose here
               </option>
-              <option value="OVO">OVO</option>
-              <option value="TRANSFER">Transfer</option>
-              <option value="E-WALLET">E-wallet</option>
+              <option value="Product">Product</option>
+              <option value="Payment">Payment</option>
+              <option value="User">User</option>
+              <option value="Event">Event</option>
             </Input>
           </WrapForm>
         </div>
+        <>
+          {form.type === 'Payment' ? (
+            <WrapForm isFull>
+              <label>
+                <Span>Payment Method</Span>
+              </label>
+              <Input
+                as="select"
+                name="payment_method"
+                id="payment_method"
+                value={form.payment_method}
+                onChange={handleChange}
+                // ref={register}
+              >
+                <option value="" disabled hidden>
+                  Choose here
+                </option>
+                {payment === null ? (
+                  <option value="OVO">Loading...</option>
+                ) : (
+                  payment.data.map((item) => {
+                    return (
+                      <option key={item._id} value={item.name}>
+                        {item.name}
+                      </option>
+                    );
+                  })
+                )}
+              </Input>
+            </WrapForm>
+          ) : form.type === 'Product' ? (
+            <WrapForm isFull>
+              <label>
+                <Span>Product</Span>
+              </label>
+              <Input
+                as="select"
+                name="product_id"
+                id="payment_method"
+                value={form.product_id}
+                onChange={handleChange}
+                // ref={register}
+              >
+                <option value="" disabled hidden>
+                  Choose here
+                </option>
+                {product === null ? (
+                  <option disabled value="null">
+                    Loading...
+                  </option>
+                ) : (
+                  product.data.map((item) => {
+                    return (
+                      <option key={item._id} value={item._id}>
+                        {item.name}
+                      </option>
+                    );
+                  })
+                )}
+              </Input>
+            </WrapForm>
+          ) : null}
+        </>
 
         <ModalFooter>
           <Button
@@ -204,7 +283,7 @@ export default function InputUpdateCoupons(props) {
                 'Update'
               )}
             </div>
-          </Button>{' '}
+          </Button>
         </ModalFooter>
       </>
     );
@@ -221,10 +300,14 @@ export default function InputUpdateCoupons(props) {
         code={coupons.code}
         value={coupons.value}
         max_discount={coupons.max_discount}
-        is_active={coupons.is_active}
+        // is_active={coupons.is_active}
+        type={coupons.type}
         start_date={coupons.start_date}
         end_date={coupons.end_date}
-        payment_method={coupons.payment_method}
+        payment_method={
+          coupons.payment_method !== null && coupons.payment_method
+        }
+        product_id={coupons.product_id !== null && coupons.product_id}
         id={id}
         toggle={toggle}
       />

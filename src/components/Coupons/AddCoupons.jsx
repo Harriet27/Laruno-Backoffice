@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPostCoupons, fetchGetPaymentsMethod } from '../../store/actions';
+import {
+  fetchPostCoupons,
+  fetchGetPaymentsMethod,
+  fetchGetProduct,
+} from '../../store/actions';
 
 // --- Elements, Pages, Components --- //
 import ModalSmart from '../../elements/Modal/ModalSmart';
@@ -43,6 +47,8 @@ export default function AddCoupons() {
 
   const [form, setForm] = useState({
     name: '',
+    type: '',
+    product_id: '',
     value: '',
     start_date: '',
     end_date: '',
@@ -54,9 +60,11 @@ export default function AddCoupons() {
     isLoading: false,
   });
   const payment = useSelector((state) => state.payment.getPaymentsMethod);
-  console.log(payment, 'payments');
+  const product = useSelector((state) => state.product.getProduct);
+  console.log({ payment, product }, 'PPPPayments');
   useEffect(() => {
     dispatch(fetchGetPaymentsMethod());
+    dispatch(fetchGetProduct());
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -179,40 +187,95 @@ export default function AddCoupons() {
             />
           </div>
         </WrapForm>
+
         <WrapForm>
           <label>
-            <Span>Payment Method</Span>
+            <Span>Type</Span>
           </label>
           <Input
             as="select"
-            name="payment_method"
-            id="payment_method"
-            defaultValue={form.payment_method}
+            name="type"
+            id="type"
+            defaultValue={form.type}
             onChange={handleChange}
             ref={register}
           >
             <option value="" disabled hidden>
               Choose here
             </option>
-            {payment == null ? (
-              <option value="OVO">Loading...</option>
-            ) : (
-              payment.data.map((item) => {
-                return (
-                  <option key={item._id} value={item.name}>
-                    {item.name}
-                  </option>
-                );
-              })
-            )}
+            <option value="Product">Product</option>
+            <option value="Payment">Payment</option>
+            <option value="User">User</option>
+            <option value="Event">Event</option>
           </Input>
           <>
-            <SpanErrosMessage>
-              {errors.payment_method?.message}
-            </SpanErrosMessage>
+            <SpanErrosMessage>{errors.type?.message}</SpanErrosMessage>
           </>
         </WrapForm>
       </div>
+      <>
+        {form.type === 'Payment' ? (
+          <WrapForm isFull>
+            <label>
+              <Span>Payment Method</Span>
+            </label>
+            <Input
+              as="select"
+              name="payment_method"
+              id="payment_method"
+              defaultValue={form.payment_method}
+              onChange={handleChange}
+              // ref={register}
+            >
+              <option value="" disabled hidden>
+                Choose here
+              </option>
+              {payment === null ? (
+                <option value="OVO">Loading...</option>
+              ) : (
+                payment.data.map((item) => {
+                  return (
+                    <option key={item._id} value={item.name}>
+                      {item.name}
+                    </option>
+                  );
+                })
+              )}
+            </Input>
+          </WrapForm>
+        ) : form.type === 'Product' ? (
+          <WrapForm isFull>
+            <label>
+              <Span>Product</Span>
+            </label>
+            <Input
+              as="select"
+              name="product_id"
+              id="payment_method"
+              defaultValue={form.product}
+              onChange={handleChange}
+              // ref={register}
+            >
+              <option value="" disabled hidden>
+                Choose here
+              </option>
+              {product === null ? (
+                <option disabled value="null">
+                  Loading...
+                </option>
+              ) : (
+                product.data.map((item) => {
+                  return (
+                    <option key={item._id} value={item._id}>
+                      {item.name}
+                    </option>
+                  );
+                })
+              )}
+            </Input>
+          </WrapForm>
+        ) : null}
+      </>
     </ModalSmart>
   );
 }

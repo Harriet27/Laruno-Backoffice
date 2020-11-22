@@ -90,29 +90,69 @@ export default function UpdateProductPages() {
           price={product.data.price}
           sale_price={product.data.sale_price}
           slug={product.data.slug}
-          subheadline={product.data.subheadline}
+          subheadline={
+            product.data.subheadline !== null && product.data.subheadline
+          }
           time_period={product.data.time_period}
           type={product.data.type}
           visibility={product.data.visibility}
-          webinar_date={product.data.webinar.date}
-          webinar_start={product.data.webinar.start_time}
-          webinar_url={product.data.webinar.client_url}
-          webinar_duration={product.data.webinar.duration}
-          media_url={product.data.media_url}
+          webinar_date={
+            product.data.webinar.date !== null && product.data.webinar.date
+          }
+          webinar_start={
+            product.data.webinar.start_time !== null &&
+            product.data.webinar.start_time
+          }
+          webinar_url={
+            product.data.webinar.client_url !== null &&
+            product.data.webinar.client_url
+          }
+          webinar_duration={
+            product.data.webinar.duration !== null &&
+            product.data.webinar.duration
+          }
+          media_url={product.data.media_url !== null && product.data.media_url}
           code={product.data.code}
           description={product.data.description}
           sale_method={product.data.sale_method}
-          headline={product.data.headline}
-          feature_onheader={product.data.feature.feature_onheader}
-          feature_onpage={product.data.feature.feature_onpage}
-          image_bonus={product.data.image_bonus_url}
-          image_url={product.data.image_url}
-          bump_name={product.data.bump[0].bump_name}
-          bump_image={product.data.bump[0].bump_image}
-          bump_heading={product.data.bump[0].bump_heading}
-          bump_price={product.data.bump[0].bump_price}
-          bump_weight={product.data.bump[0].bump_weight}
-          bump_desc={product.data.bump[0].bump_desc}
+          headline={product.data.headline !== null && product.data.headline}
+          feature_onheader={
+            product.data.feature.feature_onheader !== null &&
+            product.data.feature.feature_onheader
+          }
+          feature_onpage={
+            product.data.feature.feature_onpage !== null &&
+            product.data.feature.feature_onpage
+          }
+          image_bonus={
+            product.data.image_bonus_url !== null &&
+            product.data.image_bonus_url
+          }
+          image_url={product.data.image_url !== null && product.data.image_url}
+          bump_name={
+            product.data.bump[0].bump_name !== null &&
+            product.data.bump[0].bump_name
+          }
+          bump_image={
+            product.data.bump[0].bump_image !== null &&
+            product.data.bump[0].bump_image
+          }
+          bump_heading={
+            product.data.bump[0].bump_heading !== null &&
+            product.data.bump[0].bump_heading
+          }
+          bump_price={
+            product.data.bump[0].bump_price !== null &&
+            product.data.bump[0].bump_price
+          }
+          bump_weight={
+            product.data.bump[0].bump_weight !== null &&
+            product.data.bump[0].bump_weight
+          }
+          bump_desc={
+            product.data.bump[0].bump_desc !== null &&
+            product.data.bump[0].bump_desc
+          }
         />
       )}
     </div>
