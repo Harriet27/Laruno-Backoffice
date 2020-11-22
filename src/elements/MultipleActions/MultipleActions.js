@@ -32,7 +32,7 @@ export default function MultipleActions(props) {
 }
 
 MultipleActions.propTypes = {
-  isLogic: PropTypes.any.isRequired,
+  isLogic: PropTypes.any,
   handleDelete: PropTypes.any,
   handleClone: PropTypes.any,
 };
