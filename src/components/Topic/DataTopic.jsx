@@ -136,7 +136,7 @@ const DataTopic = (props) => {
         <Th as="td" td>
           <div style={Styles.FlexColumn}>
             <div style={Styles.Name}> {item.name}</div>
-            <div>{moment(item.created_at).format('MM-DD-YYYY, ')}</div>
+            <div>{moment(item.created_at).format('DD-MM-YYYY, ')}</div>
           </div>
         </Th>
         <Th as="td" td>

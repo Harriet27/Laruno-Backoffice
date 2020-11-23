@@ -112,10 +112,10 @@ const DataRoles = (props) => {
           {item.readWrite === false ? <p>False</p> : <p>True</p>}
         </Th>
         <Th as="td" td>
-          {moment(item.created_at).format('MMMM Do YYYY, h:mm:ss a')}
+          {moment(item.created_at).format('DD-MM-YYYY')}
         </Th>
         <Th as="td" td>
-          {moment(item.updated_at).format('MMMM Do YYYY, h:mm:ss a')}
+          {moment(item.updated_at).format('DD-MM-YYYY')}
         </Th>
         <Th as="td" td>
           <div

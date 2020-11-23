@@ -106,7 +106,7 @@ const DataContents = (props) => {
         <Th as="td" td>
           <div style={Styles.FlexColumn}>
             <span style={Styles.Name}>{item.name}</span>
-            <span>{moment(item.created_at).format('MM-DD-YYYY, ')}</span>
+            <span>{moment(item.created_at).format('DD-MM-YYYY, ')}</span>
           </div>
         </Th>
         <Th as="td" td>
