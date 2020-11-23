@@ -8,7 +8,11 @@ import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
-import { fetchGetTopic, fetchMultipleDeleteTopics } from '../../store/actions';
+import {
+  fetchGetTopic,
+  fetchMultipleDeleteTopics,
+  fetchGetContents,
+} from '../../store/actions';
 import AddNewTopic from './AddNewTopic';
 import UpdateTopic from './UpdateTopic';
 import DeleteTopic from './DeleteTopic';
@@ -21,6 +25,7 @@ import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 const DataTopic = (props) => {
   const dispatch = useDispatch();
   const topic = useSelector((state) => state.topic.getTopic);
+  const contents = useSelector((state) => state.contents.getContents);
   console.log({ topic });
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
@@ -48,6 +53,7 @@ const DataTopic = (props) => {
 
   useEffect(() => {
     dispatch(fetchGetTopic());
+    dispatch(fetchGetContents());
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -73,6 +79,22 @@ const DataTopic = (props) => {
     topic.data.filter((item) => {
       return item.name.toLowerCase().includes(input.toLowerCase());
     });
+
+  const filterContentsByid = (id, isLogic) => {
+    const filterCouponsByID =
+      contents !== null &&
+      contents.data.filter((item) => {
+        return (
+          item.topic !== null &&
+          item.isBlog === isLogic &&
+          item.topic.some((items) => {
+            return items._id == id;
+          })
+        );
+      });
+
+    return filterCouponsByID.length;
+  };
 
   const TableHeading = () => {
     return (
@@ -119,8 +141,8 @@ const DataTopic = (props) => {
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexColumn}>
-            <div>Blog:{index} kali</div>
-            <div>Fulfillment{index} kali</div>
+            <div>Blog:{filterContentsByid(item._id, true)} kali</div>
+            <div>Fulfillment{filterContentsByid(item._id, false)} kali</div>
           </div>
         </Th>
         <Th as="td" td>
