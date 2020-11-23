@@ -91,8 +91,8 @@ const DataPaymentsMethod = (props) => {
           <Th>Name</Th>
           <Th>Vendor</Th>
           <Th>Slug</Th>
-          <Th style={{ width: '5%' }}>For Coupons</Th>
-          {/* <Th style={{ width: '100px' }}>Actions</Th> */}
+          <Th style={{ width: '10%' }}>use For</Th>
+          <Th style={{ width: '10%' }}>Actions</Th>
         </tr>
       </thead>
     );
@@ -122,8 +122,10 @@ const DataPaymentsMethod = (props) => {
           {item.info}
         </Th>
         <Th as="td" td>
-          {FilterDataPaymentInCoupons(item._id)}
+          <div> Coupons: {FilterDataPaymentInCoupons(item._id)}</div>
+          <div>Order: 1</div>
         </Th>
+        <Th as="td" td></Th>
       </tr>
     );
   };
