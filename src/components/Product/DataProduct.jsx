@@ -112,7 +112,7 @@ const DataProduct = (props) => {
           </Th>
           <Th>Name</Th>
           <Th>Visibility</Th>
-          <Th>Product Code</Th>
+          <Th style={{ width: '10%' }}>Product Code</Th>
           <Th>Inventory</Th>
           <Th>Product Type</Th>
           <Th>Time Period</Th>
@@ -142,7 +142,7 @@ const DataProduct = (props) => {
           {item.visibility}
         </Th>
         <Th as="td" td>
-          {item.code}
+          <div>{item.code}</div>
         </Th>
         <Th as="td" td>
           <div style={Styles.Inventory}>
@@ -303,6 +303,17 @@ const DataProduct = (props) => {
 const Styles = {
   Name: { color: '#0098da', fontWeight: '700' },
   Inventory: { color: '#28a745', fontWeight: 'bolder' },
+  isCode: {
+    background: '#cfd3ce',
+    color: 'gray',
+    padding: '.5em .5em',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    fontWeight: 'bold',
+    maxWidth: '100%',
+    marginBottom: '5px',
+  },
 };
 
 export default DataProduct;

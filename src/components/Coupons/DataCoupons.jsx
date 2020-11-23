@@ -122,7 +122,7 @@ const DataCoupons = (props) => {
           </Th>
           <Th>Name</Th>
           <Th>Type</Th>
-          <Th>Code</Th>
+          <Th style={{ width: '10%' }}>Coupons Code</Th>
           <Th>Max Discount</Th>
           <Th style={{ width: '5%' }}>Value coupons</Th>
           <Th style={{ width: '10%' }}>Coupons Status</Th>
@@ -147,13 +147,14 @@ const DataCoupons = (props) => {
           />
         </Th>
         <Th as="td" td>
-          <span style={Styles.Name}>{item.name}</span>
+          <div style={Styles.Name}>{item.name}</div>
+          {moment(item.start_date).format('MM-DD-YYYY')}
         </Th>
         <Th as="td" td>
           {item.type}
         </Th>
         <Th as="td" td>
-          {item.code}
+          <div style={Styles.isCode}>{item.code}</div>
         </Th>
         <Th as="td" td>
           Rp.{FormatNumber(item.max_discount)}
@@ -322,6 +323,18 @@ const Styles = {
     textAlign: 'center',
     maxWidth: '100%',
     fontSize: '12px',
+  },
+  isCode: {
+    background: '#cfd3ce',
+    color: 'gray',
+    padding: '.5em .5em',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    border: '3px dotted #bbb',
+    textAlign: 'center',
+    fontSize: '12px',
+    fontWeight: 'bold',
+    maxWidth: '100%',
+    marginBottom: '5px',
   },
   Name: { color: '#0098da', fontWeight: '700', cursor: 'pointer' },
 };
