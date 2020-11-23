@@ -12,7 +12,11 @@ import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
-import { fetchGetRoles, fetchMultipleDeleteRoles } from '../../store/actions';
+import {
+  fetchGetRoles,
+  fetchMultipleDeleteRoles,
+  fetchGetUsersAdministrator,
+} from '../../store/actions';
 import DeleteRoles from './DeleteRoles';
 import MultipleDelete from '../../elements/Alert/MultipleDelete';
 import { CircularProgress, TableFooter } from '@material-ui/core';
@@ -23,7 +27,7 @@ import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 const DataRoles = (props) => {
   const dispatch = useDispatch();
   const roles = useSelector((state) => state.roles.getRoles);
-
+  const users = useSelector((state) => state.user.userAdministrator);
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -46,9 +50,11 @@ const DataRoles = (props) => {
     id: [],
   });
 
+  console.log({ roles, users });
   // --- useEffect --- Get Data Topic ---//
   useEffect(() => {
     dispatch(fetchGetRoles());
+    dispatch(fetchGetUsersAdministrator());
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -69,6 +75,21 @@ const DataRoles = (props) => {
     dispatch(fetchMultipleDeleteRoles(form));
   };
 
+  const filterUsersByid = (id) => {
+    const filterUserByID =
+      users !== null &&
+      users.data.filter((item) => {
+        return (
+          item.role !== null &&
+          item.role.some((items) => {
+            return items._id == id;
+          })
+        );
+      });
+
+    return filterUserByID.length;
+  };
+
   const rolesFilter =
     roles !== null &&
     roles.data.filter((item) => {
@@ -84,9 +105,8 @@ const DataRoles = (props) => {
           </Th>
           <Th>Admin Type</Th>
           <Th>Read Write</Th>
-          <Th>Created At</Th>
-          <Th>Update At</Th>
-          <Th style={{ width: '100px' }}>Actions</Th>
+          <Th style={{ width: '10%' }}>Administrator</Th>
+          <Th style={{ width: '10%' }}>Actions</Th>
         </tr>
       </thead>
     );
@@ -106,17 +126,18 @@ const DataRoles = (props) => {
         </Th>
 
         <Th as="td" td>
-          {item.adminType}
+          <div style={Styles.isName}>{item.adminType}</div>
+          {moment(item.created_at).format('DD-MM-YYYY')}
         </Th>
         <Th as="td" td>
           {item.readWrite === false ? <p>False</p> : <p>True</p>}
         </Th>
         <Th as="td" td>
-          {moment(item.created_at).format('DD-MM-YYYY')}
+          <div style={Styles.isAdmin}>
+            {filterUsersByid(item._id)} <i class="fa fa-user"></i>
+          </div>
         </Th>
-        <Th as="td" td>
-          {moment(item.updated_at).format('DD-MM-YYYY')}
-        </Th>
+
         <Th as="td" td>
           <div
             style={{
@@ -239,3 +260,18 @@ const DataRoles = (props) => {
 };
 
 export default DataRoles;
+
+const Styles = {
+  isAdmin: {
+    background: '#9ddfd3',
+    color: '#31326f',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    maxWidth: '100%',
+    marginBottom: '5px',
+  },
+  isName: { color: '#0098da', fontWeight: '700' },
+};
