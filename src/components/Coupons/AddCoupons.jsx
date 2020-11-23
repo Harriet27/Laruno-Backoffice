@@ -237,7 +237,7 @@ export default function AddCoupons() {
               ) : (
                 payment.data.map((item) => {
                   return (
-                    <option key={item._id} value={item.name}>
+                    <option key={item._id} value={item._id}>
                       {item.name}
                     </option>
                   );

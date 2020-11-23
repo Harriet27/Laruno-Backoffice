@@ -98,11 +98,12 @@ const DataCoupons = (props) => {
             <Input isCheckbox type="checkbox" />
           </Th>
           <Th>Name</Th>
+          <Th>Type</Th>
           <Th>Code</Th>
           <Th>Max Discount</Th>
-          <Th>Start Coupon</Th>
-          <Th>End Coupon</Th>
-          <Th>Payment Method</Th>
+          <Th style={{ width: '10%' }}>Coupons Status</Th>
+          {/* <Th>End Coupon</Th> */}
+          <Th>Coupons For</Th>
           <Th style={{ width: '10%' }}>Actions</Th>
         </tr>
       </thead>
@@ -125,19 +126,36 @@ const DataCoupons = (props) => {
           {item.name}
         </Th>
         <Th as="td" td>
+          {item.type}
+        </Th>
+        <Th as="td" td>
           {item.code}
         </Th>
         <Th as="td" td>
           {item.max_discount}
         </Th>
         <Th as="td" td>
-          {moment(item.start_date).format('MMMM-DD-YYYY')}
+          {/* <div>
+            {moment(item.start_date).format('MM/DD/YYYY')} -
+            {moment(item.end_date).format('MM/DD/YYYY')}
+          </div> */}
+          <div>
+            {item.is_active === true ? (
+              <div style={Styles.Active}>Active</div>
+            ) : (
+              <div style={Styles.NonActive}>Non-Active</div>
+            )}
+          </div>
         </Th>
+
         <Th as="td" td>
-          {moment(item.end_date).format('MMMM-DD-YYYY')}
-        </Th>
-        <Th as="td" td>
-          {item.payment_method}
+          {item.type === 'Payment'
+            ? item.payment_method
+            : item.type === 'Product'
+            ? item.product_id
+            : item.type === 'User'
+            ? 'User'
+            : 'Event'}
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexRow}>
@@ -256,6 +274,26 @@ const Styles = {
   FlexRow: {
     display: 'flex',
     flexDirection: 'row',
+  },
+  Active: {
+    background: '#c6e1c6',
+    color: '#5b841b',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    maxWidth: '100%',
+  },
+  NonActive: {
+    background: '#f99292',
+    color: '#732222',
+    padding: '.1em.5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    maxWidth: '100%',
+    fontSize: '12px',
   },
 };
 
