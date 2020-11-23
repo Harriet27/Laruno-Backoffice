@@ -76,6 +76,7 @@ const DataContents = (props) => {
           </Th>
           <Th>Cover</Th>
           <Th>Detail</Th>
+          <Th>Type</Th>
           <Th>Product</Th>
           <Th>Topic</Th>
           <Th style={{ width: '100px' }}>Actions</Th>
@@ -103,13 +104,16 @@ const DataContents = (props) => {
           </div>
         </Th>
         <Th as="td" td>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span>{item.name}</span>
+          <div style={Styles.FlexColumn}>
+            <span style={Styles.Name}>{item.name}</span>
             <span>{moment(item.created_at).format('MM-DD-YYYY, ')}</span>
           </div>
         </Th>
         <Th as="td" td>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {item.isBlog === false ? 'Fulfillment' : 'Blog'}
+        </Th>
+        <Th as="td" td>
+          <div style={Styles.FlexColumn}>
             {item.isBlog === false
               ? item.product.map((items) => {
                   return <span key={items._id}>{items.name}</span>;
@@ -118,7 +122,7 @@ const DataContents = (props) => {
           </div>
         </Th>
         <Th as="td" td>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={Styles.FlexColumn}>
             {item.topic.map((items) => {
               return <span key={items._id}>{items.name}</span>;
             })}
@@ -126,12 +130,7 @@ const DataContents = (props) => {
         </Th>
 
         <Th as="td" td>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-            }}
-          >
+          <div style={Styles.FlexRow}>
             <Link to={`update-contents/${item._id}`}>
               <ButtonLink>
                 <div>
@@ -185,13 +184,7 @@ const DataContents = (props) => {
         // handleDelete={handleMultipleDelete}
       />
 
-      <div
-        style={{
-          margin: '20px 0',
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
+      <div style={Styles.flexBetween}>
         <Link to="add-contents">
           <ButtonLink>
             <div style={{ width: '80px', textAlign: 'center' }}>+ Contents</div>
@@ -214,12 +207,7 @@ const DataContents = (props) => {
           {contents === null ? (
             <React.Fragment>
               <Table>{TableHeading()}</Table>
-              <div
-                style={{
-                  textAlign: 'center',
-                  padding: '100px',
-                }}
-              >
+              <div style={Styles.isLoading}>
                 <CircularProgress />
               </div>
             </React.Fragment>
@@ -242,12 +230,7 @@ const DataContents = (props) => {
           ) : (
             <React.Fragment>
               <Table>{TableHeading()}</Table>
-              <div
-                style={{
-                  textAlign: 'center',
-                  padding: '100px',
-                }}
-              >
+              <div style={Styles.isLoading}>
                 You have no contents in this date range.
               </div>
             </React.Fragment>
@@ -259,3 +242,18 @@ const DataContents = (props) => {
 };
 
 export default DataContents;
+
+const Styles = {
+  Name: { color: '#0098da', fontWeight: '700', cursor: 'pointer' },
+  FlexColumn: { display: 'flex', flexDirection: 'column' },
+  FlexRow: { display: 'flex', flexDirection: 'row' },
+  flexBetween: {
+    margin: '20px 0',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  isLoading: {
+    textAlign: 'center',
+    padding: '100px',
+  },
+};
