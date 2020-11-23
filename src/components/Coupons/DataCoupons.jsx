@@ -147,7 +147,7 @@ const DataCoupons = (props) => {
           />
         </Th>
         <Th as="td" td>
-          <div>{item.name}</div>
+          <span style={Styles.Name}>{item.name}</span>
         </Th>
         <Th as="td" td>
           {item.type}
@@ -323,6 +323,7 @@ const Styles = {
     maxWidth: '100%',
     fontSize: '12px',
   },
+  Name: { color: '#0098da', fontWeight: '700', cursor: 'pointer' },
 };
 
 export default DataCoupons;
