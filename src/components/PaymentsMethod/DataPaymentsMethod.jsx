@@ -9,7 +9,7 @@ import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
-import { fetchGetPaymentsMethod } from '../../store/actions';
+import { fetchGetPaymentsMethod, fetchGetCoupons } from '../../store/actions';
 import AddPaymentsMethod from './AddPaymentsMethod';
 import { CircularProgress } from '@material-ui/core';
 import MultipleActions from '../../elements/MultipleActions/MultipleActions';
@@ -19,7 +19,7 @@ import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 const DataPaymentsMethod = (props) => {
   const dispatch = useDispatch();
   const payments = useSelector((state) => state.payment.getPaymentsMethod);
-
+  const coupons = useSelector((state) => state.coupons.getCoupons);
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -50,6 +50,7 @@ const DataPaymentsMethod = (props) => {
 
   useEffect(() => {
     dispatch(fetchGetPaymentsMethod());
+    dispatch(fetchGetCoupons());
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -70,6 +71,16 @@ const DataPaymentsMethod = (props) => {
     // dispatch(fetchMultipleDeleteTopics(form));
   };
 
+  const FilterDataPaymentInCoupons = (id) => {
+    const filterCouponsByID =
+      coupons !== null &&
+      coupons.data.filter((item) => {
+        return item.payment_method !== null && item.payment_method === id;
+      });
+    console.log(filterCouponsByID[0], 'o');
+    return filterCouponsByID !== undefined && filterCouponsByID.length;
+  };
+
   const TableHeading = () => {
     return (
       <thead>
@@ -77,12 +88,11 @@ const DataPaymentsMethod = (props) => {
           <Th>
             <Input isCheckbox type="checkbox" />
           </Th>
-          <Th>ID</Th>
           <Th>Name</Th>
+          <Th>Vendor</Th>
           <Th>Slug</Th>
-          <Th>Created At</Th>
-          <Th>Update At</Th>
-          <Th style={{ width: '100px' }}>Actions</Th>
+          <Th style={{ width: '5%' }}>For Coupons</Th>
+          {/* <Th style={{ width: '100px' }}>Actions</Th> */}
         </tr>
       </thead>
     );
@@ -102,28 +112,17 @@ const DataPaymentsMethod = (props) => {
         </Th>
 
         <Th as="td" td>
-          {item._id}
+          <div style={Styles.Name}>{item.name}</div>
+          {/* {moment(item.created_at).format('MM-DD-YYYY')} */}
         </Th>
         <Th as="td" td>
-          {item.name}
+          {item.vendor}
         </Th>
         <Th as="td" td>
           {item.info}
         </Th>
         <Th as="td" td>
-          {moment(item.created_at).format('MMMM Do YYYY, h:mm:ss a')}
-        </Th>
-        <Th as="td" td>
-          {moment(item.updated_at).format('MMMM Do YYYY, h:mm:ss a')}
-        </Th>
-
-        <Th as="td" td>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-            }}
-          ></div>
+          {FilterDataPaymentInCoupons(item._id)}
         </Th>
       </tr>
     );
@@ -168,13 +167,7 @@ const DataPaymentsMethod = (props) => {
         handleDelete={handleMultipleDelete}
       />
 
-      <div
-        style={{
-          margin: '20px 0',
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
+      <div style={Styles.FlexBetween}>
         <AddPaymentsMethod />
 
         <div>
@@ -193,12 +186,7 @@ const DataPaymentsMethod = (props) => {
           {payments === null ? (
             <React.Fragment>
               <Table>{TableHeading()}</Table>
-              <div
-                style={{
-                  textAlign: 'center',
-                  padding: '100px',
-                }}
-              >
+              <div style={Styles.isLoading}>
                 <CircularProgress />
               </div>
             </React.Fragment>
@@ -221,12 +209,7 @@ const DataPaymentsMethod = (props) => {
           ) : (
             <React.Fragment>
               <Table>{TableHeading()}</Table>
-              <div
-                style={{
-                  textAlign: 'center',
-                  padding: '100px',
-                }}
-              >
+              <div style={Styles.isLoading}>
                 You have no payments in this date range.
               </div>
             </React.Fragment>
@@ -238,3 +221,16 @@ const DataPaymentsMethod = (props) => {
 };
 
 export default DataPaymentsMethod;
+
+const Styles = {
+  Name: { color: '#0098da', fontWeight: '700', cursor: 'pointer' },
+  FlexBetween: {
+    margin: '20px 0',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  isLoading: {
+    textAlign: 'center',
+    padding: '100px',
+  },
+};
