@@ -38,13 +38,10 @@ export default function Detail(props) {
   console.log(product, 'product di dalam blogg');
   useEffect(() => {
     dispatch(fetchGetTopic());
-    // eslint-disable-next-line
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(fetchGetProduct());
     // eslint-disable-next-line
   }, [dispatch]);
+
   const data = [{ key: 1, value: 'Loading', label: 'Loading...' }];
   const optionsTopic =
     topic === null
