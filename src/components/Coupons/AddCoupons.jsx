@@ -253,26 +253,28 @@ export default function AddCoupons() {
             <Input
               as="select"
               name="product_id"
-              id="payment_method"
-              defaultValue={form.product}
+              id="product_id"
+              value={form.product_id}
               onChange={handleChange}
               // ref={register}
             >
-              <option value="" disabled hidden>
-                Choose here
-              </option>
               {product === null ? (
                 <option disabled value="null">
                   Loading...
                 </option>
               ) : (
-                product.data.map((item) => {
-                  return (
-                    <option key={item._id} value={item._id}>
-                      {item.name}
-                    </option>
-                  );
-                })
+                <>
+                  <option value="" disabled hidden>
+                    Choose here
+                  </option>
+                  {product.data.map((item) => {
+                    return (
+                      <option key={item._id} value={item._id}>
+                        {item.name}
+                      </option>
+                    );
+                  })}
+                </>
               )}
             </Input>
           </WrapForm>

@@ -5,7 +5,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import InputUpdateCoupons from './InputUpdateCoupons';
 
 const UpdateModalCoupons = (props) => {
-  const { className, coupons, id } = props;
+  const { className, coupons, id, payment, product } = props;
   const [modal, setModal] = useState({
     open: false,
   });
@@ -36,7 +36,13 @@ const UpdateModalCoupons = (props) => {
       >
         <ModalHeader toggle={toggle}>Update Coupons</ModalHeader>
         <ModalBody>
-          <InputUpdateCoupons id={id} coupons={Coupons} toggle={toggle} />
+          <InputUpdateCoupons
+            id={id}
+            coupons={Coupons}
+            toggle={toggle}
+            payment={payment}
+            product={product}
+          />
         </ModalBody>
       </Modal>
     </div>

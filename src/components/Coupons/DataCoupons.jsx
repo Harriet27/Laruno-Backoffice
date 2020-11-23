@@ -8,6 +8,7 @@ import {
   Table,
   Form,
 } from 'reactstrap';
+import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import DehazeIcon from '@material-ui/icons/Dehaze';
@@ -19,6 +20,8 @@ import {
   fetchGetCoupons,
   fetchMultipleCloneCoupons,
   fetchMultipleDeleteCoupons,
+  fetchGetPaymentsMethod,
+  fetchGetProduct,
 } from '../../store/actions';
 import AddCoupons from './AddCoupons';
 import DeleteCoupons from './DeleteCoupons';
@@ -30,8 +33,14 @@ const DataCoupons = (props) => {
   const dispatch = useDispatch();
   const coupons = useSelector((state) => state.coupons.getCoupons);
 
+  const payment = useSelector((state) => state.payment.getPaymentsMethod);
+  const product = useSelector((state) => state.product.getProduct);
+  console.log({ payment, product }, 'PPPPayments');
+
   useEffect(() => {
     dispatch(fetchGetCoupons());
+    dispatch(fetchGetPaymentsMethod());
+    dispatch(fetchGetProduct());
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -55,11 +64,6 @@ const DataCoupons = (props) => {
     id: [],
     allChecked: false,
   });
-
-  useEffect(() => {
-    dispatch(fetchGetCoupons());
-    // eslint-disable-next-line
-  }, [dispatch]);
 
   // --- handleCheckboxChange --- //
   const handleCheckboxChange = (event) => {
@@ -90,6 +94,25 @@ const DataCoupons = (props) => {
       return item.name.toLowerCase().includes(input.toLowerCase());
     });
 
+  const FilterPayment = (id) => {
+    const filterPaymentByID =
+      payment !== null &&
+      payment.data.filter((item) => {
+        return item._id === id;
+      });
+    return filterPaymentByID[0] !== undefined && filterPaymentByID[0].name;
+  };
+
+  const FilterProduct = (id) => {
+    const FilterProductByID =
+      product !== null &&
+      product.data.filter((item) => {
+        return item._id === id;
+      });
+    console.log(FilterProductByID);
+    return FilterProductByID[0] !== undefined && FilterProductByID[0].name;
+  };
+
   const TableHeading = () => {
     return (
       <thead>
@@ -101,6 +124,7 @@ const DataCoupons = (props) => {
           <Th>Type</Th>
           <Th>Code</Th>
           <Th>Max Discount</Th>
+          <Th style={{ width: '5%' }}>Value coupons</Th>
           <Th style={{ width: '10%' }}>Coupons Status</Th>
           {/* <Th>End Coupon</Th> */}
           <Th>Coupons For</Th>
@@ -123,7 +147,7 @@ const DataCoupons = (props) => {
           />
         </Th>
         <Th as="td" td>
-          {item.name}
+          <div>{item.name}</div>
         </Th>
         <Th as="td" td>
           {item.type}
@@ -132,13 +156,12 @@ const DataCoupons = (props) => {
           {item.code}
         </Th>
         <Th as="td" td>
-          {item.max_discount}
+          Rp.{FormatNumber(item.max_discount)}
         </Th>
         <Th as="td" td>
-          {/* <div>
-            {moment(item.start_date).format('MM/DD/YYYY')} -
-            {moment(item.end_date).format('MM/DD/YYYY')}
-          </div> */}
+          {item.value}%
+        </Th>
+        <Th as="td" td>
           <div>
             {item.is_active === true ? (
               <div style={Styles.Active}>Active</div>
@@ -150,16 +173,21 @@ const DataCoupons = (props) => {
 
         <Th as="td" td>
           {item.type === 'Payment'
-            ? item.payment_method
+            ? FilterPayment(item.payment_method)
             : item.type === 'Product'
-            ? item.product_id
+            ? FilterProduct(item.product_id)
             : item.type === 'User'
             ? 'User'
             : 'Event'}
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexRow}>
-            <UpdateModalCoupons id={item._id} coupons={coupons} />
+            <UpdateModalCoupons
+              id={item._id}
+              coupons={coupons}
+              product={product}
+              payment={payment}
+            />
             <DeleteCoupons id={item._id} />
           </div>
         </Th>

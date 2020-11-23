@@ -64,17 +64,19 @@ export default function InputUpdateCoupons(props) {
       end_date,
       product_id,
       type,
+      product,
+      payment,
     } = props;
     const dispatch = useDispatch();
 
-    const payment = useSelector((state) => state.payment.getPaymentsMethod);
-    const product = useSelector((state) => state.product.getProduct);
-    console.log({ payment, product }, 'PPPPayments');
-    useEffect(() => {
-      dispatch(fetchGetPaymentsMethod());
-      dispatch(fetchGetProduct());
-      // eslint-disable-next-line
-    }, [dispatch]);
+    // const payment = useSelector((state) => state.payment.getPaymentsMethod);
+    // const product = useSelector((state) => state.product.getProduct);
+    // console.log({ payment, product }, 'PPPPayments');
+    // useEffect(() => {
+    //   dispatch(fetchGetPaymentsMethod());
+    //   dispatch(fetchGetProduct());
+    //   // eslint-disable-next-line
+    // }, [dispatch]);
 
     const [form, setForm] = useState({
       name: name || '',
@@ -291,7 +293,7 @@ export default function InputUpdateCoupons(props) {
 
   // ---- Finish ----//
 
-  const { id, toggle, coupons } = props;
+  const { id, toggle, coupons, product, payment } = props;
 
   return (
     <section>
@@ -310,6 +312,8 @@ export default function InputUpdateCoupons(props) {
         product_id={coupons.product_id !== null && coupons.product_id}
         id={id}
         toggle={toggle}
+        product={product}
+        payment={payment}
       />
     </section>
   );
