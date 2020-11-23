@@ -20,7 +20,38 @@ const Wraps = Styled.div`
 
 // --- styled components --- //
 export default function TotalDataTopic(props) {
-  const { topic } = props;
+  const { topic, contents } = props;
+
+  const filterContentsByid = (id, isLogic) => {
+    const filterCouponsByID =
+      contents !== null &&
+      contents.data.filter((item) => {
+        return (
+          item.topic !== null &&
+          item.isBlog === isLogic &&
+          item.topic.some((items) => {
+            return items._id == id;
+          })
+        );
+      });
+
+    return filterCouponsByID.length;
+  };
+  let total_Fulfillment = 0;
+  let total_blog = 0;
+  const callBackFilterContents =
+    topic !== null &&
+    topic.data.map((item) => {
+      return (
+        <>
+          {(total_Fulfillment += filterContentsByid(item._id, false))}
+          {(total_blog += filterContentsByid(item._id, true))}
+        </>
+      );
+    });
+
+  console.log({ callBackFilterContents, total_Fulfillment });
+
   return (
     <>
       <Wraps>
@@ -30,12 +61,16 @@ export default function TotalDataTopic(props) {
           text="Total Topic"
         ></CardGetData>
 
-        <CardGetData icon={faWallet} number="2" text="Total Paid"></CardGetData>
+        <CardGetData
+          icon={faWallet}
+          number={total_blog || 0}
+          text="Use Blog"
+        ></CardGetData>
 
         <CardGetData
           icon={faShoppingCart}
-          number="0"
-          text="Unpaid Orders"
+          number={total_Fulfillment || 0}
+          text="Use Fulfillment"
         ></CardGetData>
 
         <CardGetData

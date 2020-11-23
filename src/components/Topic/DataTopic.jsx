@@ -105,9 +105,9 @@ const DataTopic = (props) => {
           </Th>
           <Th>Icon</Th>
           <Th>Detail</Th>
-          <Th>UseFor</Th>
+          <Th style={{ width: '10%' }}>UseFor</Th>
           <Th>Visit</Th>
-          <Th style={{ width: '100px' }}>Actions</Th>
+          <Th style={{ width: '10%' }}>Actions</Th>
         </tr>
       </thead>
     );
@@ -141,8 +141,12 @@ const DataTopic = (props) => {
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexColumn}>
-            <div>Blog:{filterContentsByid(item._id, true)} kali</div>
-            <div>Fulfillment{filterContentsByid(item._id, false)} kali</div>
+            <div style={Styles.isBlog}>
+              Blog: {filterContentsByid(item._id, true)}
+            </div>
+            <div style={Styles.isFulfillment}>
+              Fulfillment: {filterContentsByid(item._id, false)}
+            </div>
           </div>
         </Th>
         <Th as="td" td>
@@ -200,7 +204,7 @@ const DataTopic = (props) => {
   return (
     <>
       <>
-        <TotalDataTopic topic={topic} />
+        <TotalDataTopic topic={topic} contents={contents} />
       </>
       <React.Fragment>
         <MultipleActions
@@ -282,6 +286,27 @@ const Styles = {
   NoData: {
     textAlign: 'center',
     padding: '100px',
+  },
+  isBlog: {
+    background: '#cfd3ce',
+    color: '#92817a',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    maxWidth: '100%',
+    marginBottom: '5px',
+  },
+  isFulfillment: {
+    background: '#bce6eb',
+    color: '#92817a',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    maxWidth: '100%',
   },
 };
 export default DataTopic;
