@@ -24,7 +24,7 @@ import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 const DataContents = (props) => {
   const dispatch = useDispatch();
   const contents = useSelector((state) => state.contents.getContents);
-
+  console.log({ contents });
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [input, setInput] = useState('');
@@ -110,9 +110,11 @@ const DataContents = (props) => {
         </Th>
         <Th as="td" td>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {item.product.map((items) => {
-              return <span key={items._id}>{items.name}</span>;
-            })}
+            {item.isBlog === false
+              ? item.product.map((items) => {
+                  return <span key={items._id}>{items.name}</span>;
+                })
+              : 'Non-Product'}
           </div>
         </Th>
         <Th as="td" td>

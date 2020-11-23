@@ -231,7 +231,9 @@ export default function AddCoupons() {
                 Choose here
               </option>
               {payment === null ? (
-                <option value="OVO">Loading...</option>
+                <option disabled value="OVO">
+                  Loading...
+                </option>
               ) : (
                 payment.data.map((item) => {
                   return (
