@@ -35,7 +35,7 @@ export default function UpdateContentsId(props) {
   // --- Form --- //
   const [form, setForm] = useState({
     name: name || '',
-    isBlog: isBlog || true,
+    isBlog: isBlog,
     cover_img: '',
     // short_content: '',
     product: [],
