@@ -127,10 +127,12 @@ const DataProduct = (props) => {
           <Th>
             <Input isCheckbox type="checkbox" />
           </Th>
+          {/* <Th>Cover</Th> */}
           <Th>Name</Th>
           <Th>Visibility</Th>
           <Th style={{ width: '10%' }}>Product Code</Th>
           <Th>Inventory</Th>
+          <Th>Info</Th>
           <Th>Product Type</Th>
           <Th>Time Period</Th>
           <Th>Price</Th>
@@ -152,6 +154,11 @@ const DataProduct = (props) => {
             onChange={handleCheckboxChange}
           />
         </Th>
+        {/* <Th as="td" td>
+          <div style={{ width: '100px', cursor: 'pointer' }}>
+            <img width="100%" src={item.image_url[0]} alt={item.image_url[0]} />
+          </div>
+        </Th> */}
         <Th as="td" td>
           <div style={Styles.Name}>{item.name}</div>
         </Th>
@@ -162,15 +169,19 @@ const DataProduct = (props) => {
           <div>{item.code}</div>
         </Th>
         <Th as="td" td>
-          <div style={Styles.isOrders}>
-            {/* {item.type !== 'ecommerce' ? (
+          <div style={Styles.Inventory}>
+            {item.type !== 'ecommerce' ? (
               <div style={{ textAlign: 'center' }}>-</div>
             ) : item.ecommerce === undefined ? (
               '0 in stock'
             ) : (
               `${item.ecommerce.stock} in Stock`
-            )} */}
-            Orders: {filterOrderByid(item._id)}
+            )}
+          </div>
+        </Th>
+        <Th as="td" td>
+          <div style={Styles.isOrders}>
+            Orders: {filterOrderByid(item._id) || 0}
           </div>
         </Th>
         <Th as="td" td>
@@ -321,7 +332,7 @@ const DataProduct = (props) => {
 
 const Styles = {
   Name: { color: '#0098da', fontWeight: '700' },
-  // Inventory: { color: '#28a745', fontWeight: 'bolder' },
+  Inventory: { color: '#28a745', fontWeight: 'bolder' },
   isCode: {
     background: '#cfd3ce',
     color: 'gray',

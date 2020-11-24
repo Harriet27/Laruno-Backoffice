@@ -129,7 +129,7 @@ const DataTopic = (props) => {
           </Th>
           <Th>Icon</Th>
           <Th style={{ width: '15%' }}>Detail</Th>
-          <Th style={{ width: '15%' }}>Orders</Th>
+          <Th style={{ width: '15%' }}>Use For</Th>
           <Th>Visit</Th>
           <Th style={{ width: '10%' }}>Actions</Th>
         </tr>
