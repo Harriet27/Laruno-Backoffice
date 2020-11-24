@@ -30,7 +30,7 @@ export default function TotalDataTopic(props) {
           item.topic !== null &&
           item.isBlog === isLogic &&
           item.topic.some((items) => {
-            return items._id == id;
+            return items._id === id;
           })
         );
       });
@@ -49,8 +49,6 @@ export default function TotalDataTopic(props) {
         </>
       );
     });
-
-  console.log({ callBackFilterContents, total_Fulfillment });
 
   return (
     <>
