@@ -113,7 +113,7 @@ const DataPaymentsMethod = (props) => {
 
         <Th as="td" td>
           <div style={Styles.Name}>{item.name}</div>
-          {/* {moment(item.created_at).format('MM-DD-YYYY')} */}
+          {moment(item.created_at).format('MM-DD-YYYY')}
         </Th>
         <Th as="td" td>
           {item.vendor}
@@ -122,8 +122,10 @@ const DataPaymentsMethod = (props) => {
           {item.info}
         </Th>
         <Th as="td" td>
-          <div> Coupons: {FilterDataPaymentInCoupons(item._id)}</div>
-          <div>Order: 1</div>
+          <div style={Styles.isCoupons}>
+            Coupons: {FilterDataPaymentInCoupons(item._id)}
+          </div>
+          <div style={Styles.isOrders}>Order: 1</div>
         </Th>
         <Th as="td" td></Th>
       </tr>
@@ -234,5 +236,27 @@ const Styles = {
   isLoading: {
     textAlign: 'center',
     padding: '100px',
+  },
+  isOrders: {
+    background: '#bce6eb',
+    marginBottom: '5px',
+    color: '#92817a',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    maxWidth: '100%',
+  },
+  isCoupons: {
+    background: '#cfd3ce',
+    marginBottom: '5px',
+    color: '#92817a',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    maxWidth: '100%',
   },
 };
