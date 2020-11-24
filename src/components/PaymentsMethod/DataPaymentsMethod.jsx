@@ -9,7 +9,11 @@ import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
-import { fetchGetPaymentsMethod, fetchGetCoupons } from '../../store/actions';
+import {
+  fetchGetPaymentsMethod,
+  fetchGetCoupons,
+  fetchGetOrders,
+} from '../../store/actions';
 import AddPaymentsMethod from './AddPaymentsMethod';
 import { CircularProgress } from '@material-ui/core';
 import MultipleActions from '../../elements/MultipleActions/MultipleActions';
@@ -20,6 +24,7 @@ const DataPaymentsMethod = (props) => {
   const dispatch = useDispatch();
   const payments = useSelector((state) => state.payment.getPaymentsMethod);
   const coupons = useSelector((state) => state.coupons.getCoupons);
+  const orders = useSelector((state) => state.orders.getOrders);
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -51,6 +56,7 @@ const DataPaymentsMethod = (props) => {
   useEffect(() => {
     dispatch(fetchGetPaymentsMethod());
     dispatch(fetchGetCoupons());
+    dispatch(fetchGetOrders());
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -70,17 +76,33 @@ const DataPaymentsMethod = (props) => {
     event.preventDefault();
     // dispatch(fetchMultipleDeleteTopics(form));
   };
-
-  const FilterDataPaymentInCoupons = (id) => {
-    const filterCouponsByID =
+  const FilterDataPaymentsSomeTopic = (id) => {
+    return (
       coupons !== null &&
       coupons.data.filter((item) => {
         return item.payment_method !== null && item.payment_method === id;
-      });
-    console.log(filterCouponsByID[0], 'o');
-    return filterCouponsByID !== undefined && filterCouponsByID.length;
+      })
+    );
   };
 
+  const FilterDataPaymentsSomeOrder = (id) => {
+    return (
+      orders !== null &&
+      orders.data.filter((item) => {
+        return (
+          item.payment.method._id !== null && item.payment.method._id === id
+        );
+      })
+    );
+  };
+
+  const FilterDataPaymentsInCoupons = (id) => {
+    return FilterDataPaymentsSomeTopic(id).length;
+  };
+
+  const FilterDataPaymentsInroder = (id) => {
+    return FilterDataPaymentsSomeOrder(id).length;
+  };
   const TableHeading = () => {
     return (
       <thead>
@@ -91,7 +113,7 @@ const DataPaymentsMethod = (props) => {
           <Th>Name</Th>
           <Th>Vendor</Th>
           <Th>Slug</Th>
-          <Th style={{ width: '10%' }}>use For</Th>
+          <Th style={{ width: '15%' }}>use For</Th>
           <Th style={{ width: '10%' }}>Actions</Th>
         </tr>
       </thead>
@@ -123,9 +145,11 @@ const DataPaymentsMethod = (props) => {
         </Th>
         <Th as="td" td>
           <div style={Styles.isCoupons}>
-            Coupons: {FilterDataPaymentInCoupons(item._id)}
+            Coupons: {FilterDataPaymentsInCoupons(item._id) || 0}
           </div>
-          <div style={Styles.isOrders}>Order: 1</div>
+          <div style={Styles.isOrders}>
+            Order: {FilterDataPaymentsInroder(item._id) || 0}
+          </div>
         </Th>
         <Th as="td" td></Th>
       </tr>
@@ -162,6 +186,8 @@ const DataPaymentsMethod = (props) => {
       </Table>
     );
   };
+
+  console.log({ orders, coupons, payments }, 'ALL console');
   return (
     <React.Fragment>
       {/* --- section 1 --- Button Action link to Add Product ---*/}
