@@ -12,6 +12,7 @@ import {
   fetchGetTopic,
   fetchMultipleDeleteTopics,
   fetchGetContents,
+  fetchGetProduct,
 } from '../../store/actions';
 import AddNewTopic from './AddNewTopic';
 import UpdateTopic from './UpdateTopic';
@@ -26,7 +27,8 @@ const DataTopic = (props) => {
   const dispatch = useDispatch();
   const topic = useSelector((state) => state.topic.getTopic);
   const contents = useSelector((state) => state.contents.getContents);
-  console.log({ topic });
+  const product = useSelector((state) => state.product.getProduct);
+  console.log({ topic, contents, product });
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -54,6 +56,8 @@ const DataTopic = (props) => {
   useEffect(() => {
     dispatch(fetchGetTopic());
     dispatch(fetchGetContents());
+    dispatch(fetchGetProduct());
+
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -80,20 +84,40 @@ const DataTopic = (props) => {
       return item.name.toLowerCase().includes(input.toLowerCase());
     });
 
-  const filterContentsByid = (id, isLogic) => {
-    const filterCouponsByID =
+  const filterContentSomeTopic = (id, isLogic) => {
+    return (
       contents !== null &&
       contents.data.filter((item) => {
         return (
           item.topic !== null &&
           item.isBlog === isLogic &&
           item.topic.some((items) => {
+            return items._id === id;
+          })
+        );
+      })
+    );
+  };
+
+  const filterProductSomeTopic = (id) => {
+    return (
+      product !== null &&
+      product.data.filter((item) => {
+        return (
+          item.topic !== null &&
+          item.topic.some((items) => {
             return items._id == id;
           })
         );
-      });
+      })
+    );
+  };
 
-    return filterCouponsByID.length;
+  const filterContentsByid = (id, isLogic) => {
+    return filterContentSomeTopic(id, isLogic).length;
+  };
+  const filterProductByid = (id) => {
+    return filterProductSomeTopic(id).length;
   };
 
   const TableHeading = () => {
@@ -147,6 +171,9 @@ const DataTopic = (props) => {
             <div style={Styles.isFulfillment}>
               Fulfillment: {filterContentsByid(item._id, false)}
             </div>
+            <div style={Styles.isProduct}>
+              product: {filterProductByid(item._id)}
+            </div>
           </div>
         </Th>
         <Th as="td" td>
@@ -198,13 +225,16 @@ const DataTopic = (props) => {
     );
   };
 
-  console.log({ input, topicFilter }, 'Input, TopicFilter');
-
   // # --- # Return Function # --- # //
+  const data = {
+    topic,
+    product,
+    contents,
+  };
   return (
     <>
       <>
-        <TotalDataTopic topic={topic} contents={contents} />
+        <TotalDataTopic data={data} />
       </>
       <React.Fragment>
         <MultipleActions
@@ -300,6 +330,17 @@ const Styles = {
   },
   isFulfillment: {
     background: '#bce6eb',
+    marginBottom: '5px',
+    color: '#92817a',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    maxWidth: '100%',
+  },
+  isProduct: {
+    background: '#e8e8e8',
     color: '#92817a',
     padding: '.1em .5em',
     borderRadius: '30px',

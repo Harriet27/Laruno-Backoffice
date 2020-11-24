@@ -20,12 +20,16 @@ const Wraps = Styled.div`
 
 // --- styled components --- //
 export default function TotalDataTopic(props) {
-  const { topic, contents } = props;
+  const { data } = props;
 
-  const filterContentsByid = (id, isLogic) => {
-    const filterCouponsByID =
-      contents !== null &&
-      contents.data.filter((item) => {
+  let total_Fulfillment = 0;
+  let total_blog = 0;
+  let total_product = 0;
+
+  const FilterContentsSomeTopic = (id, isLogic) => {
+    return (
+      data.contents !== null &&
+      data.contents.data.filter((item) => {
         return (
           item.topic !== null &&
           item.isBlog === isLogic &&
@@ -33,29 +37,49 @@ export default function TotalDataTopic(props) {
             return items._id === id;
           })
         );
-      });
-
-    return filterCouponsByID.length;
+      })
+    );
   };
-  let total_Fulfillment = 0;
-  let total_blog = 0;
+
+  const filterProductSomeTopic = (id) => {
+    return (
+      data.product !== null &&
+      data.product.data.filter((item) => {
+        return (
+          item.topic !== null &&
+          item.topic.some((items) => {
+            return items._id == id;
+          })
+        );
+      })
+    );
+  };
+
+  const filterContentsByid = (id, isLogic) => {
+    return FilterContentsSomeTopic(id, isLogic).length;
+  };
+  const filterProductByid = (id) => {
+    return filterProductSomeTopic(id).length;
+  };
   const callBackFilterContents =
-    topic !== null &&
-    topic.data.map((item) => {
+    data.topic !== null &&
+    data.topic.data.map((item) => {
       return (
         <>
           {(total_Fulfillment += filterContentsByid(item._id, false))}
           {(total_blog += filterContentsByid(item._id, true))}
+          {(total_product += filterProductByid(item._id))}
         </>
       );
     });
 
+  // const filterProduct
   return (
     <>
       <Wraps>
         <CardGetData
           icon={faShoppingCart}
-          number={topic === null ? '0' : topic.data.length}
+          number={data.topic === null ? '0' : data.topic.data.length}
           text="Total Topic"
         ></CardGetData>
 
@@ -73,7 +97,7 @@ export default function TotalDataTopic(props) {
 
         <CardGetData
           icon={faShoppingCart}
-          number="0"
+          number={total_product || 0}
           text="Use Product"
         ></CardGetData>
       </Wraps>
