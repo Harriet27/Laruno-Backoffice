@@ -42,24 +42,23 @@ export default function MultipleDelete(props) {
       <ButtonActions onClick={handleClickOpen}>Delete</ButtonActions>
       <Dialog
         open={open}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="alert-dialog-title">
           {'Are You Sure Want to Delete ?'}
         </DialogTitle>
-        <form onSubmit={props.onSubmit}>
-          <FormControl className={classes.formControl}>
-            <DialogActions>
-              <Button onClick={handleClose} color="primary">
-                Cancel
-              </Button>
-              <Button type="submit" onClick={handleClose} color="primary">
-                Delete
-              </Button>
-            </DialogActions>
-          </FormControl>
-        </form>
+
+        <FormControl className={classes.formControl}>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button type="submit" onClick={props.onSubmit} color="primary">
+              Delete
+            </Button>
+          </DialogActions>
+        </FormControl>
       </Dialog>
     </div>
   );

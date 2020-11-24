@@ -4,7 +4,7 @@ import MultipleDelete from '../../elements/Alert/MultipleDelete';
 import { ButtonActions } from '../Styled/StyledForm';
 import PropTypes from 'prop-types';
 export default function MultipleActions(props) {
-  const { isLogic, handleDelete, handleClone } = props;
+  const { isLogic, handleDelete, handleClone, isClone } = props;
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   return (
@@ -15,9 +15,11 @@ export default function MultipleActions(props) {
             Actions
           </DropdownToggle>
           <DropdownMenu>
-            <MultipleDelete onSubmit={handleDelete} />
-
-            <ButtonActions onClick={handleClone}>Clone</ButtonActions>
+            {/* <MultipleDelete onSubmit={handleDelete} /> */}
+            <ButtonActions onClick={handleDelete}>Delete</ButtonActions>
+            {isClone ? (
+              <ButtonActions onClick={handleClone}>Clone</ButtonActions>
+            ) : null}
           </DropdownMenu>
         </Dropdown>
       ) : (
@@ -35,4 +37,5 @@ MultipleActions.propTypes = {
   isLogic: PropTypes.any,
   handleDelete: PropTypes.any,
   handleClone: PropTypes.any,
+  isClone: PropTypes.bool,
 };
