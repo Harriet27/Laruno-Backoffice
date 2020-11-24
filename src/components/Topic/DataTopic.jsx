@@ -128,8 +128,8 @@ const DataTopic = (props) => {
             <Input isCheckbox type="checkbox" />
           </Th>
           <Th>Icon</Th>
-          <Th>Detail</Th>
-          <Th style={{ width: '10%' }}>UseFor</Th>
+          <Th style={{ width: '15%' }}>Detail</Th>
+          <Th style={{ width: '15%' }}>UseFor</Th>
           <Th>Visit</Th>
           <Th style={{ width: '10%' }}>Actions</Th>
         </tr>
