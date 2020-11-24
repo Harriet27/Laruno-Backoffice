@@ -94,6 +94,12 @@ const DataOrders = (props) => {
 }
 `;
 
+  const ordersFilter =
+    orders !== null &&
+    orders.data.filter((item) => {
+      return item.user_info.name.toLowerCase().includes(input.toLowerCase());
+    });
+
   const TableHeading = () => {
     return (
       <thead>
@@ -163,7 +169,7 @@ const DataOrders = (props) => {
           <Input isCheckbox type="checkbox" />
         </Th>
         <Th as="td" td>
-          {item.invoice === null ? '101120SKU9515000' : `${item.invoice}`}
+          {item.invoice === null ? 'Not have invoice' : `${item.invoice}`}
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexColumn}>
@@ -265,6 +271,23 @@ const DataOrders = (props) => {
       </tr>
     );
   };
+
+  const SearchBar = () => {
+    return (
+      <Table striped>
+        {TableHeading()}
+        <tbody>
+          {ordersFilter
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((item, index) => {
+              return TableBody(item, index);
+            })}
+        </tbody>
+        <tfoot>{TableFooter(ordersFilter.length)}</tfoot>
+      </Table>
+    );
+  };
+
   return (
     <>
       <>
@@ -294,7 +317,7 @@ const DataOrders = (props) => {
                   <CircularProgress />
                 </div>
               </React.Fragment>
-            ) : orders.data.length > 0 ? (
+            ) : ordersFilter.length === 0 && orders.data.length > 0 ? (
               <Table striped responsive>
                 {TableHeading()}
                 <tbody>
@@ -308,6 +331,8 @@ const DataOrders = (props) => {
                   {TableFooter(orders !== null && orders.data.length)}
                 </tfoot>
               </Table>
+            ) : ordersFilter.length > 0 ? (
+              SearchBar()
             ) : (
               <React.Fragment>
                 <Table>{TableHeading()}</Table>
