@@ -68,7 +68,7 @@ const DataUsers = (props) => {
 
   // --- Multiple Delete --- //
   const handleMultipleDelete = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     dispatch(fetchMultipleDeleteUsers(form));
   };
 
@@ -191,7 +191,6 @@ const DataUsers = (props) => {
         {/* --- section 1 --- Button Action link to Add Product ---*/}
         <MultipleActions
           isLogic={form.id[0]}
-          // handleClone={handleMultipleClone}
           handleDelete={handleMultipleDelete}
         />
 

@@ -8,7 +8,7 @@ const LOGOUT = 'LOGOUT';
 // --- login In BackOffice --- //
 const fetchPostLogin = ({ form, history, setState }) => async (dispatch) => {
   try {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/auth/login`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/admins/login`;
     const options = {
       method: 'POST',
       body: JSON.stringify(form),
@@ -73,7 +73,7 @@ const getShowUsers = (data) => {
 };
 // --- fetch Get User Authentication --- //
 const fetchGetUsersAuthentication = () => async (dispatch) => {
-  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/auth/me`;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/admins/me`;
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   const options = {
     method: 'GET',
@@ -94,7 +94,7 @@ const fetchGetUsersAuthentication = () => async (dispatch) => {
 const fetchPostAdministrator = ({ form, history, setState }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/admins`;
     const options = {
       method: 'POST',
       body: JSON.stringify(form),
@@ -104,7 +104,7 @@ const fetchPostAdministrator = ({ form, history, setState }) => async () => {
       },
     };
     const response = await fetch(url, options);
-    await response.json();
+    const result = await response.json();
     setState({
       isLoading: false,
     });
@@ -116,10 +116,10 @@ const fetchPostAdministrator = ({ form, history, setState }) => async () => {
         showConfirmButton: false,
       });
       window.location.reload('/users');
-    } else if (response.status === 400) {
+    } else {
       Swal.fire({
-        title: 'Email Yang di buat tidak sesuai atau sudah terdaftar',
-        text: '',
+        title: 'failed',
+        text: result.message,
         icon: 'error',
         showConfirmButton: false,
         timer: 2000,
@@ -144,7 +144,7 @@ const getUsersAdministrator = (data) => {
 
 // --- fetch Get User Administrator --- //
 const fetchGetUsersAdministrator = () => async (dispatch) => {
-  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users`;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/admins`;
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   const options = {
     method: 'GET',
@@ -163,7 +163,7 @@ const fetchGetUsersAdministrator = () => async (dispatch) => {
 const fetchUpdateAdministrator = ({ form, id, setState }) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/${id}`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/admins/${id}/update`;
     // --- apabila value dari key di dalam form "" maka hapus keynya tidak usah di bawa kedalam body --- //
     for (let key in form) {
       if (form[key] === '' || form[key].length === 0) {
@@ -182,7 +182,7 @@ const fetchUpdateAdministrator = ({ form, id, setState }) => async () => {
       },
     };
     const response = await fetch(url, options);
-    await response.json();
+    const result = await response.json();
     setState({
       isLoading: false,
     });
@@ -196,8 +196,8 @@ const fetchUpdateAdministrator = ({ form, id, setState }) => async () => {
       window.location.reload('/users');
     } else {
       Swal.fire({
-        title: 'update gagal',
-        text: '',
+        title: 'Failed',
+        text: result.message,
         icon: 'error',
         showConfirmButton: false,
         timer: 2000,
@@ -211,7 +211,7 @@ const fetchUpdateAdministrator = ({ form, id, setState }) => async () => {
 // --- DELETE ADMINISTRATOR METHOD DELETE --- //
 const fetchDeleteAdministrator = (id) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/${id}`;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/admins/${id}/delete`;
   const options = {
     method: 'DELETE',
     headers: {
@@ -233,7 +233,7 @@ const fetchDeleteAdministrator = (id) => async () => {
     window.location.reload('/dashboard');
   } else {
     Swal.fire({
-      title: 'Delete gagal',
+      title: 'Failed',
       text: result.message,
       icon: 'error',
       showConfirmButton: false,
@@ -245,7 +245,7 @@ const fetchDeleteAdministrator = (id) => async () => {
 // --- Multiple Delete --- //
 const fetchMultipleDeleteUsers = (form) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/users/delete/multiple`;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/admins/delete/multiple`;
   const options = {
     method: 'DELETE',
     body: JSON.stringify(form),
@@ -265,12 +265,14 @@ const fetchMultipleDeleteUsers = (form) => async () => {
       showConfirmButton: false,
       timer: 1000,
     });
-    window.location.reload('/topic');
+    window.location.reload('/user');
   } else {
     Swal.fire({
       title: 'Delete gagal',
       text: result.message,
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };
