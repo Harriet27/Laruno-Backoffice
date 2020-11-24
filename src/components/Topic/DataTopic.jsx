@@ -106,7 +106,7 @@ const DataTopic = (props) => {
         return (
           item.topic !== null &&
           item.topic.some((items) => {
-            return items._id == id;
+            return items._id === id;
           })
         );
       })
@@ -129,7 +129,7 @@ const DataTopic = (props) => {
           </Th>
           <Th>Icon</Th>
           <Th style={{ width: '15%' }}>Detail</Th>
-          <Th style={{ width: '15%' }}>UseFor</Th>
+          <Th style={{ width: '15%' }}>Orders</Th>
           <Th>Visit</Th>
           <Th style={{ width: '10%' }}>Actions</Th>
         </tr>
@@ -160,7 +160,7 @@ const DataTopic = (props) => {
         <Th as="td" td>
           <div style={Styles.FlexColumn}>
             <div style={Styles.Name}> {item.name}</div>
-            <div>{moment(item.created_at).format('DD-MM-YYYY, ')}</div>
+            <div>{moment(item.created_at).format('DD-MM-YYYY')}</div>
           </div>
         </Th>
         <Th as="td" td>
@@ -327,6 +327,7 @@ const Styles = {
     fontSize: '12px',
     maxWidth: '100%',
     marginBottom: '5px',
+    fontWeight: 'bold',
   },
   isFulfillment: {
     background: '#bce6eb',
@@ -338,6 +339,7 @@ const Styles = {
     textAlign: 'center',
     fontSize: '12px',
     maxWidth: '100%',
+    fontWeight: 'bold',
   },
   isProduct: {
     background: '#e8e8e8',
@@ -348,6 +350,7 @@ const Styles = {
     textAlign: 'center',
     fontSize: '12px',
     maxWidth: '100%',
+    fontWeight: 'bold',
   },
 };
 export default DataTopic;

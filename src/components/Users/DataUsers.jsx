@@ -131,10 +131,10 @@ const DataTopic = (props) => {
           {item.phone_number}
         </Th>
         <Th as="td" td>
-          {moment(item.created_at).format('MMMM Do YYYY, h:mm:ss a')}
+          {moment(item.created_at).format('DD MMMM YYYY')}
         </Th>
         <Th as="td" td>
-          {moment(item.updated_at).format('MMMM Do YYYY, h:mm:ss a')}
+          {moment(item.updated_at).format('DD MMMM YYYY')}
         </Th>
         <Th as="td" td>
           <div

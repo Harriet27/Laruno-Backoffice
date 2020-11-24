@@ -273,6 +273,7 @@ const Styles = {
     textAlign: 'center',
     fontSize: '12px',
     maxWidth: '100%',
+    fontWeight: 'bold',
   },
   isCoupons: {
     background: '#cfd3ce',
@@ -284,5 +285,6 @@ const Styles = {
     textAlign: 'center',
     fontSize: '12px',
     maxWidth: '100%',
+    fontWeight: 'bold',
   },
 };

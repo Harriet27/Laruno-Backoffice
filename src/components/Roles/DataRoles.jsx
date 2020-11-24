@@ -134,7 +134,7 @@ const DataRoles = (props) => {
         </Th>
         <Th as="td" td>
           <div style={Styles.isAdmin}>
-            {filterUsersByid(item._id)} <i class="fa fa-user"></i>
+            {filterUsersByid(item._id)} <i className="fa fa-user"></i>
           </div>
         </Th>
 
@@ -272,6 +272,7 @@ const Styles = {
     fontSize: '12px',
     maxWidth: '100%',
     marginBottom: '5px',
+    fontWeight: 'bold',
   },
   isName: { color: '#0098da', fontWeight: '700' },
 };

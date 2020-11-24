@@ -24,6 +24,7 @@ import {
   fetchMultipleCloneProduct,
   fetchFindProduct,
   fetchPostProducts,
+  fetchGetOrders,
 } from '../../store/actions';
 import DeleteProduct from './DeleteProduct';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
@@ -46,6 +47,7 @@ const ButtonLink = Styled.button`
 const DataProduct = (props) => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.getProduct);
+  const orders = useSelector((state) => state.orders.getOrders);
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -56,9 +58,7 @@ const DataProduct = (props) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  // --- Dropdown --- //
-  // const [dropdownOpen, setDropdownOpen] = useState(false);
-  // const toggle = () => setDropdownOpen((prevState) => !prevState);
+
   const [form, setForm] = useState({
     id: [],
   });
@@ -77,6 +77,8 @@ const DataProduct = (props) => {
   // --- useEffect --- Get Data Topic ---//
   useEffect(() => {
     dispatch(fetchGetProduct());
+    dispatch(fetchGetOrders());
+
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -103,6 +105,21 @@ const DataProduct = (props) => {
     dispatch(fetchMultipleCloneProduct(form));
   };
 
+  const filterOrdersSomeProduct = (id) => {
+    return (
+      orders !== null &&
+      orders.data.filter((item) => {
+        return item.items.some((x) => {
+          return x.product_info._id === id;
+        });
+      })
+    );
+  };
+
+  const filterOrderByid = (id) => {
+    return filterOrdersSomeProduct(id).length;
+  };
+
   const TableHeading = () => {
     return (
       <thead>
@@ -117,7 +134,7 @@ const DataProduct = (props) => {
           <Th>Product Type</Th>
           <Th>Time Period</Th>
           <Th>Price</Th>
-          <Th style={{ width: '100px' }}>Actions</Th>
+          <Th style={{ width: '10%' }}>Actions</Th>
         </tr>
       </thead>
     );
@@ -145,14 +162,15 @@ const DataProduct = (props) => {
           <div>{item.code}</div>
         </Th>
         <Th as="td" td>
-          <div style={Styles.Inventory}>
-            {item.type !== 'ecommerce' ? (
+          <div style={Styles.isOrders}>
+            {/* {item.type !== 'ecommerce' ? (
               <div style={{ textAlign: 'center' }}>-</div>
             ) : item.ecommerce === undefined ? (
               '0 in stock'
             ) : (
               `${item.ecommerce.stock} in Stock`
-            )}
+            )} */}
+            Orders: {filterOrderByid(item._id)}
           </div>
         </Th>
         <Th as="td" td>
@@ -220,6 +238,7 @@ const DataProduct = (props) => {
     );
   };
 
+  console.log({ product, orders });
   return (
     <>
       <>
@@ -302,7 +321,7 @@ const DataProduct = (props) => {
 
 const Styles = {
   Name: { color: '#0098da', fontWeight: '700' },
-  Inventory: { color: '#28a745', fontWeight: 'bolder' },
+  // Inventory: { color: '#28a745', fontWeight: 'bolder' },
   isCode: {
     background: '#cfd3ce',
     color: 'gray',
@@ -313,6 +332,18 @@ const Styles = {
     fontWeight: 'bold',
     maxWidth: '100%',
     marginBottom: '5px',
+  },
+  isOrders: {
+    background: '#bce6eb',
+    marginBottom: '5px',
+    color: '#92817a',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    maxWidth: '100%',
+    fontWeight: 'bold',
   },
 };
 
