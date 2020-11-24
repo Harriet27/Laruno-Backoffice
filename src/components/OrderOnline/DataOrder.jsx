@@ -197,7 +197,9 @@ const DataOrders = (props) => {
                 return (
                   <div key={index}>
                     <div style={Styles.isColumnBottom}>
-                      <div style={Styles.Name}>{data.product_info.name}</div>
+                      <div style={Styles.Name}>
+                        {data.product_info.name || 'No name'}
+                      </div>
                       <div style={Styles.marginDetail}>
                         Price: Rp.
                         {FormatNumber(data.sub_price)}

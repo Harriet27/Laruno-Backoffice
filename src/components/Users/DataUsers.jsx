@@ -24,7 +24,7 @@ import { CircularProgress } from '@material-ui/core';
 import TotalDataUsers from './TotalDataUsers';
 import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 
-const DataTopic = (props) => {
+const DataUsers = (props) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.userAdministrator);
 
@@ -110,7 +110,7 @@ const DataTopic = (props) => {
           />
         </Th>
         <Th as="td" td>
-          {item.name}
+          <div style={Styles.Name}>{item.name}</div>
         </Th>
         <Th as="td" td>
           {item.email}
@@ -265,4 +265,8 @@ const DataTopic = (props) => {
   );
 };
 
-export default DataTopic;
+export default DataUsers;
+
+const Styles = {
+  Name: { color: '#0098da', fontWeight: '700' },
+};
