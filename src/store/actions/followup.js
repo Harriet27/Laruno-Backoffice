@@ -18,7 +18,7 @@ const getFollowUpById = (data) => {
 const fetchGetFollowUp = () => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/followup`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/followups`;
     const options = {
       method: 'GET',
       headers: {
@@ -36,7 +36,7 @@ const fetchGetFollowUp = () => async (dispatch) => {
 
 const fetchGetFollowUpByID = (id) => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/followup/${id}`;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/followups/${id}`;
   const options = {
     method: 'GET',
     headers: {
@@ -53,7 +53,7 @@ const fetchGetFollowUpByID = (id) => async (dispatch) => {
 // --- Post Follow Up --- //
 const fetchPostFollowUp = (form) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
-  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/followup`;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/followups`;
   const options = {
     body: JSON.stringify(form),
     method: 'POST',
@@ -83,7 +83,7 @@ const fetchPostFollowUp = (form) => async () => {
 const fetchUpdateFollowUp = (form, id) => async () => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/followup/${id}`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/followups/${id}`;
     for (let key in form) {
       if (form[key] === '') {
         delete form[key];

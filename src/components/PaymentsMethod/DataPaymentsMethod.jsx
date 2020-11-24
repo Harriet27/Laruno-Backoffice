@@ -112,7 +112,8 @@ const DataPaymentsMethod = (props) => {
           </Th>
           <Th>Name</Th>
           <Th>Vendor</Th>
-          <Th>Slug</Th>
+          <Th>Status</Th>
+          <Th>info</Th>
           <Th style={{ width: '15%' }}>use For</Th>
           <Th style={{ width: '10%' }}>Actions</Th>
         </tr>
@@ -139,6 +140,13 @@ const DataPaymentsMethod = (props) => {
         </Th>
         <Th as="td" td>
           {item.vendor}
+        </Th>
+        <Th as="td" td>
+          {item.isActive === true ? (
+            <div style={Styles.isActive}>Active</div>
+          ) : (
+            <div style={Styles.isNonActive}>Non-active</div>
+          )}
         </Th>
         <Th as="td" td>
           {item.info}
@@ -279,6 +287,30 @@ const Styles = {
     background: '#cfd3ce',
     marginBottom: '5px',
     color: '#92817a',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    maxWidth: '100%',
+    fontWeight: 'bold',
+  },
+  isActive: {
+    background: '#c6e1c6',
+    marginBottom: '5px',
+    color: '#92817a',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    maxWidth: '100%',
+    fontWeight: 'bold',
+  },
+  isNonActive: {
+    background: '#f99292',
+    marginBottom: '5px',
+    color: '#732222',
     padding: '.1em .5em',
     borderRadius: '30px',
     borderBottom: '1px solid rgba(0,0,0,.05)',

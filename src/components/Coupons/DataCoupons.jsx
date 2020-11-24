@@ -94,11 +94,11 @@ const DataCoupons = (props) => {
       return item.name.toLowerCase().includes(input.toLowerCase());
     });
 
-  const FilterPayment = (id) => {
+  const FilterPayment = (name) => {
     const filterPaymentByID =
       payment !== null &&
       payment.data.filter((item) => {
-        return item._id === id;
+        return item.name === name;
       });
     return filterPaymentByID[0] !== undefined && filterPaymentByID[0].name;
   };

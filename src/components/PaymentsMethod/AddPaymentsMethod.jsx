@@ -41,6 +41,8 @@ export default function AddPaymentsMethod() {
   const [form, setForm] = useState({
     name: '',
     info: '',
+    vendor: '',
+    isActive: false,
   });
 
   const [state, setState] = useState({
@@ -60,6 +62,10 @@ export default function AddPaymentsMethod() {
   // --- Change Value when Input Active --- //
   const handleChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
+  };
+
+  const handleCheckbox = () => {
+    setForm({ ...form, isActive: !form.isActive });
   };
 
   return (
@@ -88,14 +94,53 @@ export default function AddPaymentsMethod() {
         </WrapForm>
         <WrapForm>
           <Input
-            type="text"
+            as="select"
             name="info"
             id="info"
-            value={form.info}
+            defaultValue={form.info}
             onChange={handleChange}
-            placeholder="Info"
+            ref={register}
+          >
+            <option value="" disabled hidden>
+              Type
+            </option>
+            <option value="Virtual-Account">Virtual-Account</option>
+            <option value="EWallet">EWallet</option>
+            <option value="Retail-Outlet">Retail-Outlet</option>
+            <option value="Bank-Transfer">Bank-Transfer</option>
+            <option value="Credit-Card">Credit-Card</option>
+          </Input>
+          <>
+            <SpanErrosMessage>{errors.info?.message}</SpanErrosMessage>
+          </>
+        </WrapForm>
+        <WrapForm>
+          <Input
+            type="text"
+            name="vendor"
+            id="vendor"
+            defaultValue={form.vendor}
+            onChange={handleChange}
+            placeholder="vendor"
             ref={register}
           />
+          <div>
+            <SpanErrosMessage>{errors.vendor?.message}</SpanErrosMessage>
+          </div>
+        </WrapForm>
+        <WrapForm style={{ width: '45%' }}>
+          <label>
+            <input
+              type="checkbox"
+              name="is_active"
+              id="is_active"
+              value={form.isActive}
+              onChange={handleCheckbox}
+              checked={form.isActive}
+              required
+            />
+            Click to active this coupons
+          </label>
         </WrapForm>
       </Card>
     </ModalSmart>

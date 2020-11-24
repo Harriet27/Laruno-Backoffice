@@ -28,7 +28,7 @@ const fetchPostSingleImage = ({
   let image = formulir.image;
   var myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
-  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products`;
+  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads/products`;
   var formdata = new FormData();
   formdata.append('file', image[id], image.name);
 
@@ -61,7 +61,7 @@ const fetchPostMediaImage = ({
   let image = formulir.image;
   var myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
-  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products`;
+  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads/products`;
   var formdata = new FormData();
   formdata.append('file', image[id], image.name);
 
@@ -98,7 +98,7 @@ const fetchPostDynamicImage = ({
   let image = formulir.image;
   var myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
-  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products`;
+  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads/products`;
   var formdata = new FormData();
   formdata.append('file', image[id], image.name);
 
@@ -139,7 +139,7 @@ const fetchPostDynamicVideo = ({
   let image = formulir.image;
   var myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
-  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products`;
+  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads/products`;
   var formdata = new FormData();
   formdata.append('file', image[id], image.name);
 
@@ -177,7 +177,7 @@ const fetchPostDynamicPodcast = ({
   let image = formulir.image;
   var myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
-  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products`;
+  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads/products`;
   var formdata = new FormData();
   formdata.append('file', image[id], image.name);
 
@@ -216,7 +216,7 @@ const fetchPostMultipleImage = ({
   let image = formulir.image;
   var myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
-  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/upload/products`;
+  let url = `${process.env.REACT_APP_API_LIVE}/api/v1/uploads/products`;
   var formdata = new FormData();
   formdata.append('file', image[id], image.name);
 
