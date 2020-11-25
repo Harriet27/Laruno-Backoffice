@@ -42,6 +42,7 @@ export default function InputUpdateUser(props) {
   // ---Input value --- //
   const InputValue = (props) => {
     const { name, email, phone_number, id, role } = props;
+    console.log(role, 'ISI ROLES');
     const dispatch = useDispatch();
     const [form, setForm] = useState({
       name: name || '',
@@ -82,42 +83,41 @@ export default function InputUpdateUser(props) {
       });
       dispatch(fetchUpdateAdministrator({ form, id, setState }));
     };
-    // const handleSelect = (role) => {
-    //   setForm({ ...form, role });
-    // };
+
     const handleChange = (event) => {
       setForm({ ...form, [event.target.name]: event.target.value });
     };
+
+    const FilterReactSelect = (value) => {
+      return (
+        value !== null &&
+        value.map((item) => {
+          return { key: item._id, value: item._id, label: item.adminType };
+        })
+      );
+    };
+
+    const AddKeyValueToArray = (value) => {
+      return value === undefined
+        ? null
+        : value.map((item) => {
+            return item.key;
+          });
+    };
+
     const [value, setValue] = useState({
-      roleId: [],
+      roleId: FilterReactSelect(role) || [],
     });
     console.log({ value, form }, 'TEST');
     const handleChangeSelect = (roleId) => {
-      const isRoleId =
-        roleId !== null &&
-        roleId.map((item) => {
-          return item.key;
-        });
       setValue({ ...value, roleId });
-      form.role = isRoleId || '';
     };
-
+    form.role = AddKeyValueToArray(value.roleId) || [];
     return (
       <>
         <div>
           <WrapForm>
             <div>
-              {/* <MultiSelect
-                overrideStrings={{
-                  selectSomeItems: 'select role...',
-                  allItemsAreSelected: 'Semua role dipilih',
-                  selectAll: 'Select All',
-                  search: 'Search',
-                }}
-                options={optionsRoles}
-                selected={form.role}
-                onSelectedChanged={handleSelect}
-              /> */}
               <Select
                 isMulti
                 name="colors"
@@ -216,7 +216,7 @@ export default function InputUpdateUser(props) {
         phone_number={users.phone_number}
         id={id}
         toggle={toggle}
-        role={users.roles}
+        role={users.role}
       />
     </section>
   );
