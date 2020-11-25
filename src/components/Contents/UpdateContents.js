@@ -1,3 +1,4 @@
+import { CircularProgress } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -27,7 +28,18 @@ export default function UpdateContents() {
 
   return (
     <div>
-      {contents !== null && (
+      {contents === null || contents.data._id !== id ? (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50vh',
+          }}
+        >
+          <CircularProgress />
+        </div>
+      ) : (
         <UpdateContentsRender
           name={contents.data.name}
           cover_img={contents.data.cover_img}
