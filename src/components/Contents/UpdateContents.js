@@ -13,7 +13,7 @@ export default function UpdateContents() {
   }, [dispatch]);
   console.log({ id, contents }, 'id');
   const UpdateContentsRender = (props) => {
-    const { name, cover_img, isBlog, id } = props;
+    const { name, cover_img, isBlog, id, topic, product } = props;
     return (
       <>
         <UpdateContentsId
@@ -21,6 +21,8 @@ export default function UpdateContents() {
           cover_img={cover_img}
           isBlog={isBlog}
           id={id}
+          topic={topic}
+          product={product}
         />
       </>
     );
@@ -45,6 +47,8 @@ export default function UpdateContents() {
           cover_img={contents.data.cover_img}
           isBlog={contents.data.isBlog}
           id={id}
+          topic={contents.data.topic}
+          product={contents.data.product}
         />
       )}
     </div>

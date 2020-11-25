@@ -23,7 +23,7 @@ function a11yProps(index) {
   };
 }
 export default function UpdateContentsId(props) {
-  const { name, cover_img, isBlog, id } = props;
+  const { name, cover_img, isBlog, id, topic, product } = props;
 
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
@@ -151,38 +151,40 @@ export default function UpdateContentsId(props) {
     values.splice(i, 1);
     setSectionPodcast(values);
   }
-
+  const FilterReactSelect = (value) => {
+    return (
+      value !== null &&
+      value.map((item) => {
+        return { key: item._id, value: item._id, label: item.name };
+      })
+    );
+  };
+  const AddKeyValueToArray = (value) => {
+    return value === undefined
+      ? null
+      : value.map((item) => {
+          return item.key;
+        });
+  };
   const [selecting, setSelecting] = useState({
-    topic: '',
-    product: '',
+    topic: FilterReactSelect(topic) || [],
+    product: FilterReactSelect(product) || [],
   });
   const handleSelectTopic = (topic) => {
-    const isTopic =
-      topic !== null &&
-      topic.map((item) => {
-        return item.key;
-      });
-
     setSelecting({
       ...selecting,
       topic,
     });
-    form.topic = isTopic || '';
   };
-  const handleSelectProduct = (product) => {
-    const isProduct =
-      product !== null &&
-      product.map((item) => {
-        return item.key;
-      });
 
+  const handleSelectProduct = (product) => {
     setSelecting({
       ...selecting,
       product,
     });
-    form.product = isProduct || '';
   };
-
+  form.product = AddKeyValueToArray(selecting.product) || [];
+  form.topic = AddKeyValueToArray(selecting.topic) || [];
   return (
     <div style={{ margin: '50px' }}>
       <AppBar position="static" style={{ background: 'white' }}>
