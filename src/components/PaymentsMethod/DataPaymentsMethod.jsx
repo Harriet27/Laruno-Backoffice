@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
-import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
 import { useDispatch, useSelector } from 'react-redux';
