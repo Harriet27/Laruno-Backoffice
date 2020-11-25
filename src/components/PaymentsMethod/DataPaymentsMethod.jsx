@@ -4,16 +4,11 @@ import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
 import { useDispatch, useSelector } from 'react-redux';
-import DehazeIcon from '@material-ui/icons/Dehaze';
 import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
-import {
-  fetchGetPaymentsMethod,
-  fetchGetCoupons,
-  fetchGetOrders,
-} from '../../store/actions';
+import { fetchGetPaymentsMethod } from '../../store/actions';
 import AddPaymentsMethod from './AddPaymentsMethod';
 import { CircularProgress } from '@material-ui/core';
 import MultipleActions from '../../elements/MultipleActions/MultipleActions';
@@ -55,8 +50,7 @@ const DataPaymentsMethod = (props) => {
 
   useEffect(() => {
     dispatch(fetchGetPaymentsMethod());
-    dispatch(fetchGetCoupons());
-    dispatch(fetchGetOrders());
+
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -76,33 +70,7 @@ const DataPaymentsMethod = (props) => {
     event.preventDefault();
     // dispatch(fetchMultipleDeleteTopics(form));
   };
-  const FilterDataPaymentsSomeTopic = (id) => {
-    return (
-      coupons !== null &&
-      coupons.data.filter((item) => {
-        return item.payment_method !== null && item.payment_method === id;
-      })
-    );
-  };
 
-  const FilterDataPaymentsSomeOrder = (id) => {
-    return (
-      orders !== null &&
-      orders.data.filter((item) => {
-        return (
-          item.payment.method._id !== null && item.payment.method._id === id
-        );
-      })
-    );
-  };
-
-  const FilterDataPaymentsInCoupons = (id) => {
-    return FilterDataPaymentsSomeTopic(id).length;
-  };
-
-  const FilterDataPaymentsInroder = (id) => {
-    return FilterDataPaymentsSomeOrder(id).length;
-  };
   const TableHeading = () => {
     return (
       <thead>
@@ -152,12 +120,8 @@ const DataPaymentsMethod = (props) => {
           {item.info}
         </Th>
         <Th as="td" td>
-          <div style={Styles.isCoupons}>
-            Coupons: {FilterDataPaymentsInCoupons(item._id) || 0}
-          </div>
-          <div style={Styles.isOrders}>
-            Order: {FilterDataPaymentsInroder(item._id) || 0}
-          </div>
+          <div style={Styles.isCoupons}>Coupons: 0</div>
+          <div style={Styles.isOrders}>Order: 0</div>
         </Th>
         <Th as="td" td></Th>
       </tr>
