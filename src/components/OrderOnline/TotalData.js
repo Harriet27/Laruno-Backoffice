@@ -26,8 +26,8 @@ export default function TotalData(props) {
       return (
         <div key={item._id}>
           {(total += item.total_price)}
-          {(total_paid += item.payment.status === 'COMPLETED')}
-          {(total_unpaid += item.payment.status !== 'COMPLETED')}
+          {(total_paid += item.status === 'PAID')}
+          {(total_unpaid += item.status !== 'PAID')}
         </div>
       );
     });

@@ -239,7 +239,7 @@ const DataOrders = (props) => {
           Rp. {FormatNumber(item.total_price)}
         </Th>
         <Th as="td" td>
-          {item.payment.status === 'COMPLETED' ? (
+          {item.status === 'PAID' ? (
             <div style={Styles.Paid}>
               <span>Paid</span>
             </div>
