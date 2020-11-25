@@ -39,10 +39,6 @@ export default function UpdateProduct(props) {
     time_period,
     type,
     visibility,
-    webinar_date,
-    webinar_start,
-    webinar_url,
-    webinar_duration,
     media_url,
     code,
     sale_method,
@@ -52,13 +48,12 @@ export default function UpdateProduct(props) {
     feature_onheader,
     image_bonus,
     image_url,
-    bump_desc,
-    bump_heading,
-    bump_image,
-    bump_name,
-    bump_weight,
-    bump_price,
+    webinar,
+    bump,
+    ecommerce,
+    topic,
   } = props;
+  console.log({ webinar, bump, ecommerce, topic }, 'Webinar,bump ,data');
   const [value, setValue] = React.useState(0);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -93,11 +88,8 @@ export default function UpdateProduct(props) {
     learn_about: '',
     sale_price: sale_price || '',
     image_url: [],
-    // video_url: '',
     agent: [],
     image_bonus_url: '',
-    // image_text_url: [],
-    // image_product_url: [],
     // --- media url --- //
     media_url: '',
     section: '',
@@ -110,26 +102,25 @@ export default function UpdateProduct(props) {
   // --- Detail Product --- //
   // --- Test Order Bump,  Webinar, ecommerce--- //
   const [objBump, setObjBump] = useState({
-    bump_name: bump_name || '',
-    bump_price: bump_price || '',
+    bump_name: bump.bump_name || '',
+    bump_price: bump.bump_price || '',
     bump_image: '',
-    bump_weight: bump_weight || '',
-    bump_heading: bump_heading || '',
-    bump_desc: bump_desc || '',
+    bump_weight: bump.bump_weight || '',
+    bump_heading: bump.bump_heading || '',
+    bump_desc: bump.bump_desc || '',
   });
-  const datePick = moment(webinar_date).format('YYYY-MM-DD');
-  console.log(datePick, 'datepick');
+
   const [objWebinar, setObjWebinar] = useState({
-    date: moment(webinar_date).format('YYYY-MM-DD') || '',
-    duration: webinar_duration || '',
-    start_time: webinar_start || '',
-    client_url: webinar_url || '',
+    date: moment(webinar.date).format('YYYY-MM-DD') || '',
+    duration: '',
+    start_time: webinar.start_time || '',
+    client_url: webinar.client_url || '',
   });
 
   const [objEcommerce, setObjEcommerce] = useState({
-    weight: 0,
-    shipping_charges: true,
-    stock: 0,
+    weight: ecommerce.weight || 0,
+    shipping_charges: ecommerce.shipping_charges || true,
+    stock: ecommerce.stock || 0,
   });
 
   const [objFeature, setObjFeature] = useState({
@@ -169,7 +160,7 @@ export default function UpdateProduct(props) {
       setObjEcommerce({ ...objEcommerce, shipping_charges: false });
     }
   };
-  console.log(form.bump, 'form_bump');
+
   form.bump = [{ ...objBump }];
   form.webinar = { ...objWebinar };
   form.ecommerce = { ...objEcommerce };
@@ -187,20 +178,17 @@ export default function UpdateProduct(props) {
   const handleChangeForm = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
-
-  // --- try handle select multiple --- //
-  // const handleSelect = (topic) => {
-  //   setForm({ ...form, topic });
-  // };
-
-  // const handleSelectAgent = (agent) => {
-  //   setForm({ ...form, agent });
-  // };
+  // test for topic
+  const TopicValue =
+    topic !== null &&
+    topic.map((item) => {
+      return { key: item._id, value: item._id, label: item.name };
+    });
   const [selecting, setSelecting] = useState({
     agent: '',
-    topic: '',
+    topic: TopicValue || '',
   });
-  console.log(selecting, 'selecting');
+
   const handleSelectAgent = (agent) => {
     const isAgent =
       agent !== null &&
@@ -276,7 +264,7 @@ export default function UpdateProduct(props) {
   const [formulir, setFormulir] = useState({
     image: {
       image_url: '',
-      bump_image: bump_image || '',
+      bump_image: bump.bump_image || '',
       media_url: media_url || '',
       image_bonus: image_bonus || '',
     },
@@ -316,7 +304,7 @@ export default function UpdateProduct(props) {
   form.section = [...sectionAdd];
   // ---- BATAS BAWAH !!!! ---- //
 
-  let durationUpdate = webinar_duration.split(':');
+  let durationUpdate = webinar.duration.split(':');
 
   // --- DURATION --- ///
   const [duration, setDuration] = useState({

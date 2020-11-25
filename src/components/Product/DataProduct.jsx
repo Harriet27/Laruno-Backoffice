@@ -194,7 +194,7 @@ const DataProduct = (props) => {
         </Th>
         <Th as="td" td>
           <div style={Styles.isOrders}>
-            Orders: {filterOrderByid(item._id) || 0}
+            {/* Orders: {filterOrderByid(item._id) || 0} */}
           </div>
           <div style={Styles.isContents}>
             Contents: {filterContentByid(item._id) || 0}

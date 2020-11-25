@@ -20,10 +20,6 @@ export default function UpdateProductPages() {
       time_period,
       type,
       visibility,
-      webinar_date,
-      webinar_start,
-      webinar_url,
-      webinar_duration,
       media_url,
       code,
       id,
@@ -34,12 +30,10 @@ export default function UpdateProductPages() {
       feature_onheader,
       image_bonus,
       image_url,
-      bump_desc,
-      bump_heading,
-      bump_image,
-      bump_name,
-      bump_weight,
-      bump_price,
+      ecommerce,
+      webinar,
+      bump,
+      topic,
     } = props;
     return (
       <>
@@ -52,10 +46,6 @@ export default function UpdateProductPages() {
           time_period={time_period}
           type={type}
           visibility={visibility}
-          webinar_date={webinar_date}
-          webinar_start={webinar_start}
-          webinar_url={webinar_url}
-          webinar_duration={webinar_duration}
           media_url={media_url}
           code={code}
           id={id}
@@ -66,12 +56,10 @@ export default function UpdateProductPages() {
           feature_onheader={feature_onheader}
           image_bonus={image_bonus}
           image_url={image_url}
-          bump_desc={bump_desc}
-          bump_heading={bump_heading}
-          bump_image={bump_image}
-          bump_name={bump_name}
-          bump_weight={bump_weight}
-          bump_price={bump_price}
+          webinar={webinar}
+          bump={bump}
+          ecommerce={ecommerce}
+          topic={topic}
         />
       </>
     );
@@ -96,21 +84,7 @@ export default function UpdateProductPages() {
           time_period={product.data.time_period}
           type={product.data.type}
           visibility={product.data.visibility}
-          webinar_date={
-            product.data.webinar.date !== null && product.data.webinar.date
-          }
-          webinar_start={
-            product.data.webinar.start_time !== null &&
-            product.data.webinar.start_time
-          }
-          webinar_url={
-            product.data.webinar.client_url !== null &&
-            product.data.webinar.client_url
-          }
-          webinar_duration={
-            product.data.webinar.duration !== null &&
-            product.data.webinar.duration
-          }
+          webinar={product.data.webinar !== null && product.data.webinar}
           media_url={product.data.media_url !== null && product.data.media_url}
           code={product.data.code}
           description={product.data.description}
@@ -129,30 +103,9 @@ export default function UpdateProductPages() {
             product.data.image_bonus_url
           }
           image_url={product.data.image_url !== null && product.data.image_url}
-          bump_name={
-            product.data.bump[0].bump_name !== null &&
-            product.data.bump[0].bump_name
-          }
-          bump_image={
-            product.data.bump[0].bump_image !== null &&
-            product.data.bump[0].bump_image
-          }
-          bump_heading={
-            product.data.bump[0].bump_heading !== null &&
-            product.data.bump[0].bump_heading
-          }
-          bump_price={
-            product.data.bump[0].bump_price !== null &&
-            product.data.bump[0].bump_price
-          }
-          bump_weight={
-            product.data.bump[0].bump_weight !== null &&
-            product.data.bump[0].bump_weight
-          }
-          bump_desc={
-            product.data.bump[0].bump_desc !== null &&
-            product.data.bump[0].bump_desc
-          }
+          bump={product.data.bump[0] !== null && product.data.bump[0]}
+          ecommerce={product.data.ecommerce !== null && product.data.ecommerce}
+          topic={product.data.topic !== null && product.data.topic}
         />
       )}
     </div>
