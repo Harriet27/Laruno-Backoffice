@@ -7,6 +7,8 @@ import reducers from './store/reducers';
 import Header from './components/Header/Header';
 import './assets/scss/style.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 // --- Pages, Component, Element --- //
 import Login from './pages/Login/Login';
