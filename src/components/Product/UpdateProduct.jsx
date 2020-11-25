@@ -226,11 +226,8 @@ export default function UpdateProduct(props) {
     setFields(values);
   }
   function handleChangeContents(i, event) {
-    // semua object di dalam fields
     const values = [...fields];
-    // untuk semua object yang berisi key 'content' di dalam fields yg kita klik maka valuenya merupakan hasil inputan kita
     values[i].content = event.target.value;
-
     setFields(values);
   }
   function handleChangeNote(i, event) {
@@ -242,12 +239,6 @@ export default function UpdateProduct(props) {
     //  menambahkan field ke dalam value input terbaru
     const values = [...fields];
     values.push({ title: '', content: '', note: '' });
-    setFields(values);
-  }
-
-  function handleRemove(i) {
-    const values = [...fields];
-    values.splice(i, 1);
     setFields(values);
   }
 
@@ -281,6 +272,12 @@ export default function UpdateProduct(props) {
     const values = [...sectionAdd];
     values.splice(i, 1);
     setSectionAdd(values);
+  }
+
+  function handleRemove(i) {
+    const values = [...fields];
+    values.splice(i, 1);
+    setFields(values);
   }
   let durationUpdate = webinar.duration.split(':');
   const [duration, setDuration] = useState({
