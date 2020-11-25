@@ -22,57 +22,6 @@ const Wraps = Styled.div`
 export default function TotalDataTopic(props) {
   const { data } = props;
 
-  let total_Fulfillment = 0;
-  let total_blog = 0;
-  let total_product = 0;
-
-  const FilterContentsSomeTopic = (id, isLogic) => {
-    return (
-      data.contents !== null &&
-      data.contents.data.filter((item) => {
-        return (
-          item.topic !== null &&
-          item.isBlog === isLogic &&
-          item.topic.some((items) => {
-            return items._id === id;
-          })
-        );
-      })
-    );
-  };
-
-  const filterProductSomeTopic = (id) => {
-    return (
-      data.product !== null &&
-      data.product.data.filter((item) => {
-        return (
-          item.topic !== null &&
-          item.topic.some((items) => {
-            return items._id == id;
-          })
-        );
-      })
-    );
-  };
-
-  const filterContentsByid = (id, isLogic) => {
-    return FilterContentsSomeTopic(id, isLogic).length;
-  };
-  const filterProductByid = (id) => {
-    return filterProductSomeTopic(id).length;
-  };
-  const callBackFilterContents =
-    data.topic !== null &&
-    data.topic.data.map((item) => {
-      return (
-        <>
-          {(total_Fulfillment += filterContentsByid(item._id, false))}
-          {(total_blog += filterContentsByid(item._id, true))}
-          {(total_product += filterProductByid(item._id))}
-        </>
-      );
-    });
-
   // const filterProduct
   return (
     <>
@@ -83,21 +32,17 @@ export default function TotalDataTopic(props) {
           text="Total Topic"
         ></CardGetData>
 
-        <CardGetData
-          icon={faWallet}
-          number={total_blog || 0}
-          text="Use Blog"
-        ></CardGetData>
+        <CardGetData icon={faWallet} number={0} text="Use Blog"></CardGetData>
 
         <CardGetData
           icon={faShoppingCart}
-          number={total_Fulfillment || 0}
+          number={0}
           text="Use Fulfillment"
         ></CardGetData>
 
         <CardGetData
           icon={faShoppingCart}
-          number={total_product || 0}
+          number={0}
           text="Use Product"
         ></CardGetData>
       </Wraps>

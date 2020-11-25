@@ -26,9 +26,7 @@ import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 const DataTopic = (props) => {
   const dispatch = useDispatch();
   const topic = useSelector((state) => state.topic.getTopic);
-  const contents = useSelector((state) => state.contents.getContents);
-  const product = useSelector((state) => state.product.getProduct);
-  console.log({ topic, contents, product });
+
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -55,8 +53,6 @@ const DataTopic = (props) => {
 
   useEffect(() => {
     dispatch(fetchGetTopic());
-    dispatch(fetchGetContents());
-    dispatch(fetchGetProduct());
 
     // eslint-disable-next-line
   }, [dispatch]);
@@ -83,42 +79,6 @@ const DataTopic = (props) => {
     topic.data.filter((item) => {
       return item.name.toLowerCase().includes(input.toLowerCase());
     });
-
-  const filterContentSomeTopic = (id, isLogic) => {
-    return (
-      contents !== null &&
-      contents.data.filter((item) => {
-        return (
-          item.topic !== null &&
-          item.isBlog === isLogic &&
-          item.topic.some((items) => {
-            return items._id === id;
-          })
-        );
-      })
-    );
-  };
-
-  const filterProductSomeTopic = (id) => {
-    return (
-      product !== null &&
-      product.data.filter((item) => {
-        return (
-          item.topic !== null &&
-          item.topic.some((items) => {
-            return items._id === id;
-          })
-        );
-      })
-    );
-  };
-
-  const filterContentsByid = (id, isLogic) => {
-    return filterContentSomeTopic(id, isLogic).length;
-  };
-  const filterProductByid = (id) => {
-    return filterProductSomeTopic(id).length;
-  };
 
   const TableHeading = () => {
     return (
@@ -165,15 +125,9 @@ const DataTopic = (props) => {
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexColumn}>
-            <div style={Styles.isBlog}>
-              Blog: {filterContentsByid(item._id, true)}
-            </div>
-            <div style={Styles.isFulfillment}>
-              Fulfillment: {filterContentsByid(item._id, false)}
-            </div>
-            <div style={Styles.isProduct}>
-              product: {filterProductByid(item._id)}
-            </div>
+            <div style={Styles.isBlog}>Blog: 0</div>
+            <div style={Styles.isFulfillment}>Fulfillment:0</div>
+            <div style={Styles.isProduct}>product: 0</div>
           </div>
         </Th>
         <Th as="td" td>
@@ -228,8 +182,6 @@ const DataTopic = (props) => {
   // # --- # Return Function # --- # //
   const data = {
     topic,
-    product,
-    contents,
   };
   return (
     <>

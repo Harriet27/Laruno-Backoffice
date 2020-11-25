@@ -94,25 +94,6 @@ const DataCoupons = (props) => {
       return item.name.toLowerCase().includes(input.toLowerCase());
     });
 
-  const FilterPayment = (name) => {
-    const filterPaymentByID =
-      payment !== null &&
-      payment.data.filter((item) => {
-        return item.name === name;
-      });
-    return filterPaymentByID[0] !== undefined && filterPaymentByID[0].name;
-  };
-
-  const FilterProduct = (id) => {
-    const FilterProductByID =
-      product !== null &&
-      product.data.filter((item) => {
-        return item._id === id;
-      });
-    console.log(FilterProductByID);
-    return FilterProductByID[0] !== undefined && FilterProductByID[0].name;
-  };
-
   const TableHeading = () => {
     return (
       <thead>
@@ -126,7 +107,6 @@ const DataCoupons = (props) => {
           <Th>Max Discount</Th>
           <Th style={{ width: '5%' }}>Value coupons</Th>
           <Th style={{ width: '10%' }}>Coupons Status</Th>
-          {/* <Th>End Coupon</Th> */}
           <Th>Coupons For</Th>
           <Th style={{ width: '10%' }}>Actions</Th>
         </tr>
@@ -174,9 +154,9 @@ const DataCoupons = (props) => {
 
         <Th as="td" td>
           {item.type === 'Payment'
-            ? FilterPayment(item.payment_method)
+            ? 'BRI'
             : item.type === 'Product'
-            ? FilterProduct(item.product_id)
+            ? 'Bisni abad ke-21'
             : item.type === 'User'
             ? 'User'
             : 'Event'}

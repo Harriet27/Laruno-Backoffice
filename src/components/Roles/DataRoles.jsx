@@ -75,21 +75,6 @@ const DataRoles = (props) => {
     dispatch(fetchMultipleDeleteRoles(form));
   };
 
-  const filterUsersByid = (id) => {
-    const filterUserByID =
-      users !== null &&
-      users.data.filter((item) => {
-        return (
-          item.role !== null &&
-          item.role.some((items) => {
-            return items._id == id;
-          })
-        );
-      });
-
-    return filterUserByID.length;
-  };
-
   const rolesFilter =
     roles !== null &&
     roles.data.filter((item) => {
@@ -130,11 +115,11 @@ const DataRoles = (props) => {
           {moment(item.created_at).format('DD-MM-YYYY')}
         </Th>
         <Th as="td" td>
-          {item.readWrite === false ? <p>False</p> : <p>True</p>}
+          {item.readWrite === false ? <p>Non-Active</p> : <p>Active</p>}
         </Th>
         <Th as="td" td>
           <div style={Styles.isAdmin}>
-            {filterUsersByid(item._id)} <i className="fa fa-user"></i>
+            0 <i className="fa fa-user"></i>
           </div>
         </Th>
 

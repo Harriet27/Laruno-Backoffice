@@ -28,7 +28,6 @@ const DataUsers = (props) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.userAdministrator);
 
-  // --- useEffect --- Get Data users ---//
   useEffect(() => {
     dispatch(fetchGetUsersAdministrator());
     // eslint-disable-next-line

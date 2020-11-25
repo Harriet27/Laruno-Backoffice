@@ -46,8 +46,7 @@ const ButtonLink = Styled.button`
 const DataProduct = (props) => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.getProduct);
-  const orders = useSelector((state) => state.orders.getOrders);
-  const contents = useSelector((state) => state.contents.getContents);
+
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -74,11 +73,8 @@ const DataProduct = (props) => {
       return item.name.toLowerCase().includes(input.toLowerCase());
     });
 
-  // --- useEffect --- Get Data Topic ---//
   useEffect(() => {
     dispatch(fetchGetProduct());
-    dispatch(fetchGetOrders());
-    dispatch(fetchGetContents());
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -105,34 +101,6 @@ const DataProduct = (props) => {
     dispatch(fetchMultipleCloneProduct(form));
   };
 
-  const filterOrdersSomeProduct = (id) => {
-    return (
-      orders !== null &&
-      orders.data.filter((item) => {
-        return item.items.some((someItems) => {
-          return someItems.product_info._id === id;
-        });
-      })
-    );
-  };
-  const filterContentSomeProduct = (id) => {
-    return (
-      contents !== null &&
-      contents.data.filter((item) => {
-        return item.product.some((items) => {
-          return items._id === id;
-        });
-      })
-    );
-  };
-
-  const filterOrderByid = (id) => {
-    return filterOrdersSomeProduct(id).length;
-  };
-  const filterContentByid = (id) => {
-    return filterContentSomeProduct(id).length;
-  };
-
   const TableHeading = () => {
     return (
       <thead>
@@ -140,7 +108,6 @@ const DataProduct = (props) => {
           <Th>
             <Input isCheckbox type="checkbox" />
           </Th>
-          {/* <Th>Cover</Th> */}
           <Th>Name</Th>
           <Th>Visibility</Th>
           <Th style={{ width: '10%' }}>Product Code</Th>
@@ -167,11 +134,6 @@ const DataProduct = (props) => {
             onChange={handleCheckboxChange}
           />
         </Th>
-        {/* <Th as="td" td>
-          <div style={{ width: '100px', cursor: 'pointer' }}>
-            <img width="100%" src={item.image_url[0]} alt={item.image_url[0]} />
-          </div>
-        </Th> */}
         <Th as="td" td>
           <div style={Styles.Name}>{item.name}</div>
         </Th>
@@ -193,12 +155,8 @@ const DataProduct = (props) => {
           </div>
         </Th>
         <Th as="td" td>
-          <div style={Styles.isOrders}>
-            {/* Orders: {filterOrderByid(item._id) || 0} */}
-          </div>
-          <div style={Styles.isContents}>
-            Contents: {filterContentByid(item._id) || 0}
-          </div>
+          <div style={Styles.isOrders}>Orders: 0</div>
+          <div style={Styles.isContents}>Contents: 0</div>
         </Th>
         <Th as="td" td>
           {item.type}
@@ -265,14 +223,12 @@ const DataProduct = (props) => {
     );
   };
 
-  console.log({ product, orders, contents }, 'All log');
   return (
     <>
       <>
         <TotalDataProduct product={product} />
       </>
       <React.Fragment>
-        {/* --- section 1 --- Button Action link to Add Product ---*/}
         <div
           style={{
             margin: '20px 0',
