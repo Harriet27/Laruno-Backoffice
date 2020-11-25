@@ -23,7 +23,18 @@ function a11yProps(index) {
   };
 }
 export default function UpdateContentsId(props) {
-  const { name, cover_img, isBlog, id, topic, product } = props;
+  const {
+    name,
+    cover_img,
+    isBlog,
+    id,
+    topic,
+    product,
+    video,
+    podcast,
+    module,
+    content,
+  } = props;
 
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
@@ -83,20 +94,24 @@ export default function UpdateContentsId(props) {
 
   // --- Perantara kepada Form --- //
   const [checked, setChecked] = useState(false);
-  const [quill, setQuill] = useState('');
+  const [quill, setQuill] = useState(content || '');
   const [formulir, setFormulir] = useState({
     image: {
       cover: cover_img || '',
     },
     media: {},
   });
-  const [sectionAdd, setSectionAdd] = useState([{ url: '' }]);
-  const [sectionModule, setSectionModule] = useState([{ question: '' }]);
-  const [sectionPodcast, setSectionPodcast] = useState([
-    {
-      url: '',
-    },
-  ]);
+  const [sectionAdd, setSectionAdd] = useState(video || [{ url: '' }]);
+  const [sectionModule, setSectionModule] = useState(
+    module || [{ question: '' }]
+  );
+  const [sectionPodcast, setSectionPodcast] = useState(
+    podcast || [
+      {
+        url: '',
+      },
+    ]
+  );
 
   // Menghubungkan Kepada Form
   form.cover_img = formulir.image.cover;
