@@ -53,6 +53,8 @@ export default function UpdateProduct(props) {
     ecommerce,
     topic,
     agent,
+    learn_about,
+    section,
   } = props;
   console.log({ webinar, bump, ecommerce, topic }, 'Webinar,bump ,data');
   const [value, setValue] = React.useState(0);
@@ -215,11 +217,11 @@ export default function UpdateProduct(props) {
   };
   form.agent = AddKeyValueToArray(selecting.agent) || [];
   form.topic = AddKeyValueToArray(selecting.topic) || [];
-  // ======>>> lOGIC DETAIL PRODUCT SECTION 2 "layout" <<<====== //
 
-  // ------> Logic untuk Dynamic Form Learn About <------ //
-  const [fields, setFields] = useState([{ title: '', content: '', note: '' }]);
-  // ===>> Handle Change <<===  //
+  const [fields, setFields] = useState(
+    learn_about || [{ title: '', content: '', note: '' }]
+  );
+
   function handleChangeDynamic(i, event) {
     const values = [...fields];
     values[i].title = event.target.value;
@@ -242,9 +244,9 @@ export default function UpdateProduct(props) {
     setFields(values);
   }
 
-  const [sectionAdd, setSectionAdd] = useState([
-    { title: '', content: '', image: '' },
-  ]);
+  const [sectionAdd, setSectionAdd] = useState(
+    section || [{ title: '', content: '', image: '' }]
+  );
   const [formulir, setFormulir] = useState({
     image: {
       image_url: '',

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import UpdateProduct from '../../components/Product/UpdateProduct';
 import { fetchShowProduct } from '../../store/actions';
+import { CircularProgress } from '@material-ui/core';
 
 export default function UpdateProductPages() {
   const dispatch = useDispatch();
@@ -35,6 +36,8 @@ export default function UpdateProductPages() {
       bump,
       topic,
       agent,
+      section,
+      learn_about,
     } = props;
     return (
       <>
@@ -62,6 +65,8 @@ export default function UpdateProductPages() {
           ecommerce={ecommerce}
           topic={topic}
           agent={agent}
+          learn_about={learn_about}
+          section={section}
         />
       </>
     );
@@ -73,7 +78,18 @@ export default function UpdateProductPages() {
 
   return (
     <div>
-      {product !== null && (
+      {product === null || product.data._id !== id ? (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50vh',
+          }}
+        >
+          <CircularProgress />
+        </div>
+      ) : (
         <ProductRenderToUpdate
           id={id}
           name={product.data.name}
@@ -109,6 +125,10 @@ export default function UpdateProductPages() {
           ecommerce={product.data.ecommerce !== null && product.data.ecommerce}
           topic={product.data.topic !== null && product.data.topic}
           agent={product.data.agent !== null && product.data.agent}
+          learn_about={
+            product.data.learn_about !== null && product.data.learn_about
+          }
+          section={product.data.section !== null && product.data.section}
         />
       )}
     </div>
