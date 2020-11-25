@@ -73,7 +73,7 @@ export default function DynamicField(props) {
                   onChange={(e) => handleChange(idx, e)}
                 />
                 <Input
-                  style={{ width: '30%' }}
+                  style={{ width: '30%', marginLeft: '5px' }}
                   type="text"
                   name={`note-${idx}`}
                   value={field.note}
@@ -82,6 +82,7 @@ export default function DynamicField(props) {
                 />
               </div>
               <Input
+                style={{ marginTop: '5px' }}
                 as="textarea"
                 rows="5"
                 name={`number-${idx}`}
