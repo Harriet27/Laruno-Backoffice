@@ -34,6 +34,7 @@ export default function UpdateProductPages() {
       webinar,
       bump,
       topic,
+      agent,
     } = props;
     return (
       <>
@@ -60,6 +61,7 @@ export default function UpdateProductPages() {
           bump={bump}
           ecommerce={ecommerce}
           topic={topic}
+          agent={agent}
         />
       </>
     );
@@ -106,6 +108,7 @@ export default function UpdateProductPages() {
           bump={product.data.bump[0] !== null && product.data.bump[0]}
           ecommerce={product.data.ecommerce !== null && product.data.ecommerce}
           topic={product.data.topic !== null && product.data.topic}
+          agent={product.data.agent !== null && product.data.agent}
         />
       )}
     </div>

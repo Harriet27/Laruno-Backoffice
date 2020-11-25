@@ -52,6 +52,7 @@ export default function UpdateProduct(props) {
     bump,
     ecommerce,
     topic,
+    agent,
   } = props;
   console.log({ webinar, bump, ecommerce, topic }, 'Webinar,bump ,data');
   const [value, setValue] = React.useState(0);
@@ -178,44 +179,42 @@ export default function UpdateProduct(props) {
   const handleChangeForm = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
-  // test for topic
-  const TopicValue =
-    topic !== null &&
-    topic.map((item) => {
-      return { key: item._id, value: item._id, label: item.name };
-    });
+
+  const FilterReactSelect = (value) => {
+    return (
+      value !== null &&
+      value.map((item) => {
+        return { key: item._id, value: item._id, label: item.name };
+      })
+    );
+  };
+
   const [selecting, setSelecting] = useState({
-    agent: '',
-    topic: TopicValue || '',
+    agent: FilterReactSelect(agent) || [],
+    topic: FilterReactSelect(topic) || [],
   });
 
   const handleSelectAgent = (agent) => {
-    const isAgent =
-      agent !== null &&
-      agent.map((item) => {
-        return item.key;
-      });
-
     setSelecting({
       ...selecting,
       agent,
     });
-    form.agent = isAgent || '';
   };
   const handleSelectTopic = (topic) => {
-    const isTopic =
-      topic !== null &&
-      topic.map((item) => {
-        return item.key;
-      });
-
     setSelecting({
       ...selecting,
       topic,
     });
-    form.topic = isTopic || '';
   };
-
+  const AddKeyValueToArray = (value) => {
+    return value === undefined
+      ? null
+      : value.map((item) => {
+          return item.key;
+        });
+  };
+  form.agent = AddKeyValueToArray(selecting.agent) || [];
+  form.topic = AddKeyValueToArray(selecting.topic) || [];
   // ======>>> lOGIC DETAIL PRODUCT SECTION 2 "layout" <<<====== //
 
   // ------> Logic untuk Dynamic Form Learn About <------ //
@@ -246,21 +245,15 @@ export default function UpdateProduct(props) {
     setFields(values);
   }
 
-  // --- Optional "just test" ---- //
   function handleRemove(i) {
     const values = [...fields];
-    // splice (i = indeks, (2) berarti delete 2 value di mulai dari indeks ke i)
     values.splice(i, 1);
     setFields(values);
   }
-  form.learn_about = [...fields];
-  // ---- BATAS BAWAH !!!! ---- //
 
-  // ------> Logic untuk Dynamic Form Section <------ //
   const [sectionAdd, setSectionAdd] = useState([
     { title: '', content: '', image: '' },
   ]);
-  console.log(sectionAdd, 'section add isinya apa');
   const [formulir, setFormulir] = useState({
     image: {
       image_url: '',
@@ -269,73 +262,48 @@ export default function UpdateProduct(props) {
       image_bonus: image_bonus || '',
     },
   });
-
-  // ===>> Handle Change <<===  //
   function handleChangeDynamicSection(i, event) {
     const values = [...sectionAdd];
     values[i].title = event.target.value;
     setSectionAdd(values);
   }
   function handleChangeContentsSection(i, event) {
-    // semua object di dalam fields
     const values = [...sectionAdd];
-    // untuk semua object yang berisi key 'content' di dalam fields yg kita klik maka valuenya merupakan hasil inputan kita
     values[i].content = event.target.value;
-    // values[i].image = formulir.image[`image_section_${i}`];
-
     setSectionAdd(values);
   }
-
   function handleAddSection() {
-    //  menambahkan field ke dalam value input terbaru
     const values = [...sectionAdd];
     values.push({ title: '', content: '', image: '' });
-
     setSectionAdd(values);
   }
-
-  // --- Optional "just test" ---- //
   function handleRemoveSection(i) {
     const values = [...sectionAdd];
-    // splice (i = indeks, (2) berarti delete 2 value di mulai dari indeks ke i)
     values.splice(i, 1);
     setSectionAdd(values);
   }
-  form.section = [...sectionAdd];
-  // ---- BATAS BAWAH !!!! ---- //
-
   let durationUpdate = webinar.duration.split(':');
-
-  // --- DURATION --- ///
   const [duration, setDuration] = useState({
     hours: durationUpdate[0] || '',
     minutes: durationUpdate[1] || '',
   });
-
   const handleDuration = (e) => {
     setDuration({ ...duration, [e.target.name]: e.target.value });
   };
-  objWebinar.duration = duration.hours + ':' + duration.minutes;
-
-  // --- react quill --- //
   const [quill, setQuill] = useState(description);
-
-  form.description = quill;
-
-  // --- Upload Image --- //
-
-  form.image_url = formulir.image.image_url;
-  objBump.bump_image = formulir.image.bump_image;
-
   const [arr, setArr] = useState({
     image_url: image_url || [],
   });
 
   // const [arrImageProduct, setArrImageProduct] = useState([]);
-
+  form.learn_about = [...fields];
+  form.section = [...sectionAdd];
+  objWebinar.duration = duration.hours + ':' + duration.minutes;
+  form.description = quill;
+  form.image_url = formulir.image.image_url;
+  objBump.bump_image = formulir.image.bump_image;
   form.image_url = arr.image_url;
   form.image_bonus_url = formulir.image.image_bonus;
-  // form.image_text_url = arr.image_text;
   form.media_url = formulir.image.media_url;
   return (
     <ResponsiveTabs>
