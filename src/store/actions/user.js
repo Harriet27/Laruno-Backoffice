@@ -50,10 +50,15 @@ const fetchPostLogin = ({ form, history, setState }) => async (dispatch) => {
       });
     }
   } catch (error) {
+    setState({
+      isLogin: false,
+    });
     Swal.fire({
       title: 'Email atau Password Salah!',
-      text: '',
+      text: result.message,
       icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 };
@@ -126,6 +131,9 @@ const fetchPostAdministrator = ({ form, history, setState }) => async () => {
       });
     }
   } catch (error) {
+    setState({
+      isLoading: false,
+    });
     Swal.fire({
       title: 'Email Not Valid',
       text: '',
