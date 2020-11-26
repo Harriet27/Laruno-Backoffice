@@ -3,6 +3,8 @@ import Styled from 'styled-components';
 import { DataImage } from './Data';
 import Pagination from '@material-ui/lab/Pagination';
 import { ButtonLink } from '../../../elements/Styled/StyledTabs';
+import ModalFbAds from './ModalFbAds';
+import DetailFbAds from './DetailFbAds';
 const MainImage = Styled.div`
 width: 20%;
 padding: 10px;
@@ -40,10 +42,10 @@ export default function Marketing() {
         >
           Facebook
         </h2>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={Styles.FlexColumn}>
+          <div style={Styles.FlexRow}>
             <input
-              style={{ width: '100%', padding: '5px', fontSize: '16px' }}
+              style={Styles.FacebookPixel}
               type="text"
               placeholder="FB Pixel.."
             />
@@ -56,45 +58,40 @@ export default function Marketing() {
           }}
         >
           <h4 style={{ textAlign: 'center', margin: '5px 0' }}>
-            <ButtonLink style={{ background: 'rgb(112,202,99)' }}>
-              Save
-            </ButtonLink>
-            <ButtonLink>+ Ads</ButtonLink>
+            <div style={Styles.ButtonAds}>
+              <ButtonLink style={{ background: 'rgb(112,202,99)' }}>
+                Save
+              </ButtonLink>
+              <ModalFbAds buttonLabel={<ButtonLink>+ Ads</ButtonLink>} />
+            </div>
           </h4>
           <div>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                height: '100%',
-                flexWrap: 'wrap',
-              }}
-            >
+            <div style={Styles.DataImage}>
               {DataImage.slice(
                 (page - 1) * itemsPerPage,
                 page * itemsPerPage
               ).map((item, index) => {
                 return (
                   <MainImage key={index}>
-                    <img
-                      width="100%"
-                      src={item.url}
-                      alt={`forseasonCategory${index}`}
+                    <DetailFbAds
+                      buttonLabel={
+                        <>
+                          <img
+                            width="100%"
+                            src={item.url}
+                            alt={`forseasonCategory${index}`}
+                          />
+                          <div style={{ marginTop: '10px' }}>
+                            <p style={{ fontWeight: '600' }}>{item.name}</p>
+                          </div>
+                        </>
+                      }
                     />
-                    <div style={{ marginTop: '10px' }}>
-                      <p style={{ fontWeight: '600' }}>{item.name}</p>
-                    </div>
                   </MainImage>
                 );
               })}
             </div>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                marginTop: '20px',
-              }}
-            >
+            <div style={Styles.Pagination}>
               <Pagination
                 count={noOfPages}
                 defaultPage={1}
@@ -105,17 +102,36 @@ export default function Marketing() {
           </div>
         </div>
       </div>
-      <div
-        style={{
-          marginLeft: '10px',
-          width: '20%',
-          border: '5px double gray',
-          textAlign: 'center',
-          padding: '20px',
-        }}
-      >
-        GUIDE
-      </div>
+      <div style={Styles.Guide}>GUIDE</div>
     </section>
   );
 }
+
+const Styles = {
+  Guide: {
+    marginLeft: '10px',
+    width: '20%',
+    border: '5px double gray',
+    textAlign: 'center',
+    padding: '20px',
+  },
+  Pagination: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '20px',
+  },
+  DataImage: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    height: '100%',
+    flexWrap: 'wrap',
+  },
+  ButtonAds: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  FacebookPixel: { width: '100%', padding: '5px', fontSize: '16px' },
+  FlexColumn: { display: 'flex', flexDirection: 'column' },
+  FlexRow: { display: 'flex', flexDirection: 'row' },
+};
