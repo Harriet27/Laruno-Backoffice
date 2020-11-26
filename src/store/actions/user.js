@@ -55,7 +55,7 @@ const fetchPostLogin = ({ form, history, setState }) => async (dispatch) => {
     });
     Swal.fire({
       title: 'Email atau Password Salah!',
-      text: result.message,
+      text: 'failed to fetch',
       icon: 'error',
       showConfirmButton: false,
       timer: 2000,
@@ -306,7 +306,7 @@ const fetchGetShowUsers = (id) => async (dispatch) => {
 const logout = (history) => (dispatch, getState) => {
   Swal.fire({
     icon: 'success',
-    title: 'Terima Kasih',
+    title: 'Terima Kasih Sudah Berkunjung',
     showConfirmButton: false,
     timer: 1000,
   });
