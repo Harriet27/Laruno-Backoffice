@@ -1,37 +1,58 @@
-import React, { useState } from 'react';
+import { DateRangePicker } from 'react-date-range';
+import React, { Component } from 'react';
+import { useState } from 'react';
+// export default class MyComponent extends Component {
+//   handleSelect(ranges) {
+//     console.log(ranges);
+//     // {
+//     //   selection: {
+//     //     startDate: [native Date Object],
+//     //     endDate: [native Date Object],
+//     //   }
+//     // }
+//   }
+//   render() {
+//     const selectionRange = {
+//       startDate: new Date(),
+//       endDate: new Date(),
+//       key: 'selection',
+//     };
+//     return (
+//       <DateRangePicker ranges={[selectionRange]} onChange={this.handleSelect} />
+//     );
+//   }
+//
 
-export default function Test() {
-  const [fields, setFields] = useState([{ product_id: '' }]);
-  const handleChange = (event, index) => {
-    const values = [...fields];
-
-    values[index].product_id = event.target.value;
-
-    setFields(values);
+const CalenderRange = () => {
+  const [state, setState] = useState({
+    ranges: null,
+  });
+  console.log(state);
+  const handleSelect = (ranges) => {
+    console.log(ranges);
+    setState({
+      ranges,
+    });
   };
-
-  function handleAdd() {
-    //  menambahkan field ke dalam value input terbaru
-    const values = [...fields];
-    values.push({ product_id: '' });
-
-    setFields(values);
-  }
-  console.log(fields, 'fields');
+  const handleClick = () => {
+    console.log(state.ranges);
+  };
+  const selectionRange = {
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  };
   return (
-    <div>
-      {fields.map((item, index) => {
-        return (
-          <input
-            type="text"
-            onChange={(event) => {
-              handleChange(event, index);
-            }}
-            value={item.product_id}
-          />
-        );
-      })}
-      <button onClick={handleAdd}>add</button>
-    </div>
+    <>
+      <DateRangePicker
+        onInit={handleSelect}
+        onChange={handleSelect}
+        ranges={[selectionRange]}
+        // moveRangeOnFirstSelection
+      />
+      <button onClick={handleClick}>Apply Dates</button>
+    </>
   );
-}
+};
+
+export default CalenderRange;
