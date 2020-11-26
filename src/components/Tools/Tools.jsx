@@ -1,0 +1,58 @@
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import { LinkTab, a11yProps, TabPanel } from './Tabs';
+import Marketing from './Marketing/Marketing';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+export default function Tools() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <div className={classes.root} style={{ margin: '50px' }}>
+      <AppBar
+        style={{
+          background: 'none',
+          // boxShadow: 'none',
+          color: 'black',
+        }}
+        position="static"
+      >
+        <Tabs
+          variant="fullWidth"
+          value={value}
+          onChange={handleChange}
+          aria-label="nav tabs example"
+        >
+          <LinkTab label="Marketing" href="/marketing" {...a11yProps(0)} />
+          <LinkTab label="Sales & Followup" href="/sales" {...a11yProps(1)} />
+          <LinkTab label="Resseler" href="/resseler" {...a11yProps(2)} />
+          <LinkTab label="Automation" href="/automation" {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <TabPanel value={value} index={0}>
+        <Marketing />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Page Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Page Three
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Page Three
+      </TabPanel>
+    </div>
+  );
+}

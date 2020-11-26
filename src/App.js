@@ -47,6 +47,7 @@ import Test from './elements/Test/Test';
 import UpdateProductPages from './pages/Products/UpdateProductPages';
 import UpdateContents from './components/Contents/UpdateContents';
 import FilterProduct from './elements/Modal/FilterProduct';
+import Tools from './components/Tools/Tools';
 // import {Premium} from './pages/Testing/Premium';
 export default function App() {
   return (
@@ -138,6 +139,10 @@ export default function App() {
             <Header />
             {/* <Test /> */}
             <FilterProduct />
+          </PrivateRoute>
+          <PrivateRoute exact path="/tools">
+            <Header />
+            <Tools />
           </PrivateRoute>
           <Route path="*">
             <div style={Styles.NotFound}>
