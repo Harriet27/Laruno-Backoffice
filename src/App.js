@@ -46,6 +46,7 @@ import Card from './elements/Card/Card';
 import Test from './elements/Test/Test';
 import UpdateProductPages from './pages/Products/UpdateProductPages';
 import UpdateContents from './components/Contents/UpdateContents';
+import FilterProduct from './elements/Modal/FilterProduct';
 // import {Premium} from './pages/Testing/Premium';
 export default function App() {
   return (
@@ -106,10 +107,7 @@ export default function App() {
             <Header />
             <UpdateContents />
           </PrivateRoute>
-          {/* <PrivateRoute exact path="test">
-                        <Header />
-                        <Premium />
-                    </PrivateRoute> */}
+
           <PrivateRoute exact path="/reseller">
             <Header />
             <DataReseller />
@@ -138,7 +136,8 @@ export default function App() {
           </PrivateRoute>
           <PrivateRoute exact path="/test">
             <Header />
-            <Test />
+            {/* <Test /> */}
+            <FilterProduct />
           </PrivateRoute>
           <Route path="*">
             <div style={Styles.NotFound}>
