@@ -35,59 +35,83 @@ export default function Marketing() {
     setPage(value);
   };
   return (
-    <section style={{ display: 'flex', justifyContent: 'row' }}>
-      <div style={{ width: '80%', border: '5px double gray', padding: '5px' }}>
-        <h2
-          style={{ textAlign: 'center', fontWeight: '500', color: '#393e46' }}
-        >
-          Facebook
-        </h2>
-        <div style={Styles.FlexColumn}>
-          <div style={Styles.FlexRow}>
-            <input
-              style={Styles.FacebookPixel}
-              type="text"
-              placeholder="FB Pixel.."
-            />
-          </div>
-        </div>
-
+    <section>
+      <div>
         <div
           style={{
             marginTop: '20px',
           }}
         >
-          <h4 style={{ textAlign: 'center', margin: '5px 0' }}>
-            <div style={Styles.ButtonAds}>
-              <ButtonLink style={{ background: 'rgb(112,202,99)' }}>
-                Save
-              </ButtonLink>
-              <ModalFbAds buttonLabel={<ButtonLink>+ Ads</ButtonLink>} />
-            </div>
-          </h4>
           <div>
-            <div style={Styles.DataImage}>
+            <div>
               {DataImage.slice(
                 (page - 1) * itemsPerPage,
                 page * itemsPerPage
               ).map((item, index) => {
                 return (
-                  <MainImage key={index}>
-                    <DetailFbAds
-                      buttonLabel={
-                        <>
-                          <img
-                            width="100%"
-                            src={item.url}
-                            alt={`forseasonCategory${index}`}
-                          />
-                          <div style={{ marginTop: '10px' }}>
-                            <p style={{ fontWeight: '600' }}>{item.name}</p>
+                  <div
+                    key={index}
+                    style={{
+                      marginBottom: '20px',
+                      background: '#F2F5F7',
+                      fontSize: '14px',
+                      borderRadius: '5px',
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: '100px',
+                          height: '100px',
+                          backgroundImage: `url(${item.url})`,
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: '50%',
+                          backgroundSize: 'cover',
+                          margin: '10px',
+                          borderRadius: '10%',
+                        }}
+                      ></div>
+                      <div style={{ padding: 20 }}>
+                        <div style={Styles.isName}>
+                          Omset meningkat dikala Pandemi
+                        </div>
+                        {/* <div style={Styles.Link}>
+                          https://app.orderonline.id/contacts/
+                        </div> */}
+                      </div>
+                      <div style={{ padding: 20 }}>
+                        <div style={{ display: 'flex' }}>
+                          <div style={Styles.isUnCheck}>
+                            Blog <i className="fa fa-times"></i>
                           </div>
-                        </>
-                      }
-                    />
-                  </MainImage>
+                          <div style={Styles.isCheck}>
+                            Fulfillment <i className="fa fa-check"></i>
+                          </div>
+                        </div>
+                        <p>Topic: Bisnis, Kesehatan, Parenting</p>
+                      </div>
+                      <div style={{ padding: 20 }}>
+                        <p>Click: 100</p>
+                        <p>view: 100</p>
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        padding: '10px',
+                      }}
+                    >
+                      <button style={Styles.isButtonNew}>Add New</button>
+                      <button style={Styles.isButtonEdit}>Edit</button>
+                      <button style={Styles.isButtonDelete}>Delete</button>
+                      {/* <button style={Styles.isButton}>ON/OFF</button> */}
+                    </div>
+                  </div>
                 );
               })}
             </div>
@@ -102,7 +126,7 @@ export default function Marketing() {
           </div>
         </div>
       </div>
-      <div style={Styles.Guide}>GUIDE</div>
+      {/* <div style={Styles.Guide}>GUIDE</div> */}
     </section>
   );
 }
@@ -111,21 +135,16 @@ const Styles = {
   Guide: {
     marginLeft: '10px',
     width: '20%',
-    border: '5px double gray',
     textAlign: 'center',
     padding: '20px',
+    height: '600px',
   },
   Pagination: {
     display: 'flex',
     justifyContent: 'center',
     marginTop: '20px',
   },
-  DataImage: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    height: '100%',
-    flexWrap: 'wrap',
-  },
+  DataImage: {},
   ButtonAds: {
     display: 'flex',
     flexDirection: 'row',
@@ -134,4 +153,82 @@ const Styles = {
   FacebookPixel: { width: '100%', padding: '5px', fontSize: '16px' },
   FlexColumn: { display: 'flex', flexDirection: 'column' },
   FlexRow: { display: 'flex', flexDirection: 'row' },
+  isButtonNew: {
+    background: '#9088d4',
+    border: 'none',
+    borderRadius: '5%',
+    padding: '5px 10px',
+    fontWeight: '500',
+    color: 'white',
+    width: '100px',
+    marginRight: '10px',
+  },
+  isButtonEdit: {
+    background: '#0098DA',
+    border: 'none',
+    borderRadius: '5%',
+    padding: '5px 10px',
+    fontWeight: '500',
+    color: 'white',
+    width: '100px',
+    marginRight: '10px',
+  },
+  isButtonDelete: {
+    background: '#d11a2a',
+    border: 'none',
+    borderRadius: '5%',
+    padding: '5px 10px',
+    fontWeight: '500',
+    color: 'white',
+    width: '100px',
+  },
+  isName: {
+    // background: '#e8e8e8',
+    // marginBottom: '20px',
+    color: '#03c4a1',
+    // padding: '.1em .5em',
+    // borderRadius: '30px',
+    // borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '14px',
+    maxWidth: '100%',
+    fontWeight: 'bold',
+  },
+  Link: {
+    // background: '#e8e8e8',
+
+    color: '#9ab3f5',
+    // padding: '.1em .5em',
+    // borderRadius: '30px',
+    // borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '12px',
+    maxWidth: '100%',
+    fontWeight: 'bold',
+  },
+  isCheck: {
+    background: '#e8e8e8',
+    marginBottom: '20px',
+    color: '#05dfd7',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '14px',
+    maxWidth: '100%',
+    fontWeight: 'bold',
+  },
+
+  isUnCheck: {
+    background: '#e8e8e8',
+    marginBottom: '20px',
+    color: '#a37eba',
+    padding: '.1em .5em',
+    borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '14px',
+    maxWidth: '100%',
+    fontWeight: 'bold',
+  },
 };
