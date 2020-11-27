@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Icon, IconSpan } from '../../../elements/Styled/StyledModalPopUp';
+import PopUpFbAds from './PopUpFbAds';
 // import FetchDetailPopUp from './FetchDetailPopUp';
 const ModalFbAds = (props) => {
   const { className, buttonLabel, orders, id, followup } = props;
@@ -20,13 +21,7 @@ const ModalFbAds = (props) => {
       <div onClick={toggle}>{buttonLabel}</div>
       <Modal isOpen={modal.open} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Orders Detail</ModalHeader>
-        {/* <FetchDetailPopUp
-          id={id}
-          orders={orders}
-          followup={followup}
-          toggle={toggle}
-        /> */}
-        add
+        <PopUpFbAds />
       </Modal>
     </div>
   );
