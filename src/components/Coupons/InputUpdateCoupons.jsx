@@ -258,8 +258,8 @@ export default function InputUpdateCoupons(props) {
                 ) : (
                   product.data.map((item) => {
                     return (
-                      <option key={item._id} value={item._id}>
-                        {item.name}
+                      <option key={item.product._id} value={item.product._id}>
+                        {item.product.name}
                       </option>
                     );
                   })

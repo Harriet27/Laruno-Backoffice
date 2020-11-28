@@ -39,8 +39,6 @@ const DataCoupons = (props) => {
 
   useEffect(() => {
     dispatch(fetchGetCoupons());
-    dispatch(fetchGetPaymentsMethod());
-    dispatch(fetchGetProduct());
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -154,9 +152,9 @@ const DataCoupons = (props) => {
 
         <Th as="td" td>
           {item.type === 'Payment'
-            ? 'BRI'
+            ? item.payment_method_info.name
             : item.type === 'Product'
-            ? 'Bisni abad ke-21'
+            ? item.product_info.name
             : item.type === 'User'
             ? 'User'
             : 'Event'}
