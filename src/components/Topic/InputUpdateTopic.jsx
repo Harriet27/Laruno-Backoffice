@@ -138,8 +138,8 @@ export default function InputUpdateTopic(props) {
         </div>
       ) : (
         <InputValue
-          name={topic.name}
-          icon={topic.icon}
+          name={topic.topic.name}
+          icon={topic.topic.icon}
           id={id}
           toggle={toggle}
         />

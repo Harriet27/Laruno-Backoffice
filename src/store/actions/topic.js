@@ -10,7 +10,7 @@ const getTopic = (data) => {
 };
 
 const fetchGetTopic = () => async (dispatch) => {
-  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics`;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/list/count`;
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   const options = {
     method: 'GET',

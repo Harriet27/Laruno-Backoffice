@@ -26,7 +26,7 @@ import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 const DataTopic = (props) => {
   const dispatch = useDispatch();
   const topic = useSelector((state) => state.topic.getTopic);
-
+  console.log({ topic }, 'topic');
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -77,7 +77,7 @@ const DataTopic = (props) => {
   const topicFilter =
     topic !== null &&
     topic.data.filter((item) => {
-      return item.name.toLowerCase().includes(input.toLowerCase());
+      return item.topic.name.toLowerCase().includes(input.toLowerCase());
     });
 
   const TableHeading = () => {
@@ -99,13 +99,13 @@ const DataTopic = (props) => {
 
   const TableBody = (item, index) => {
     return (
-      <tr key={item._id}>
+      <tr key={item.topic._id}>
         <Th>
           <Input
             isCheckbox
             type="checkbox"
-            id={item._id}
-            value={item._id}
+            id={item.topic._id}
+            value={item.topic._id}
             onChange={handleCheckboxChange}
           />
         </Th>
@@ -113,21 +113,23 @@ const DataTopic = (props) => {
         <Th as="td" td>
           <>
             <div style={{ width: '75px' }}>
-              <img width="100%" src={item.icon} alt={item.name} />
+              <img width="100%" src={item.topic.icon} alt={item.topic.name} />
             </div>
           </>
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexColumn}>
-            <div style={Styles.Name}> {item.name}</div>
-            <div>{moment(item.created_at).format('DD-MM-YYYY')}</div>
+            <div style={Styles.Name}> {item.topic.name}</div>
+            <div>{moment(item.topic.created_at).format('DD-MM-YYYY')}</div>
           </div>
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexColumn}>
-            <div style={Styles.isBlog}>Blog: 0</div>
-            <div style={Styles.isFulfillment}>Fulfillment:0</div>
-            <div style={Styles.isProduct}>product: 0</div>
+            <div style={Styles.isBlog}>Blog: {item.count.blog}</div>
+            <div style={Styles.isFulfillment}>
+              Fulfillment:{item.count.fulfillment}
+            </div>
+            <div style={Styles.isProduct}>product: {item.count.product}</div>
           </div>
         </Th>
         <Th as="td" td>
@@ -140,8 +142,8 @@ const DataTopic = (props) => {
 
         <Th as="td" td>
           <div style={Styles.FlexRow}>
-            <UpdateTopic id={item._id} topic={topic} />
-            <DeleteTopic id={item._id} />
+            <UpdateTopic id={item.topic._id} topic={topic} />
+            <DeleteTopic id={item.topic._id} />
           </div>
         </Th>
       </tr>

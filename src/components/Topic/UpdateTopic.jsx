@@ -20,11 +20,11 @@ const UpdateTopic = (props) => {
   const TopicFilter =
     topic !== null &&
     topic.data.filter((item) => {
-      return item._id === id;
+      return item.topic._id === id;
     });
   const Topic = TopicFilter[0];
 
-  console.log(Topic.name, 'INI TOPIC TEST TOPIC');
+  console.log(Topic.topic.name, 'INI TOPIC TEST TOPIC');
   return (
     <div>
       <ButtonLink onClick={toggle}>
