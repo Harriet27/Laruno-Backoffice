@@ -108,11 +108,12 @@ export default function DetailDataOrders(props) {
                   Order Date: {moment(orders.create_date).format('DD-MM-YYYY')}
                 </div>
                 <>
-                  {orders.payment.status === 'COMPLETED' ? (
+                  {/* {orders.payment.status === 'COMPLETED' ? (
                     <div style={Styles.Paid}>Paid</div>
                   ) : (
                     <div style={Styles.Unpaid}>Unpaid</div>
-                  )}
+                  )} */}
+                  -
                 </>
               </div>
             </div>
@@ -131,7 +132,11 @@ export default function DetailDataOrders(props) {
                   {orders.items.map((item, index) => {
                     return (
                       <tr key={index}>
-                        <td>{item.product_info.name}</td>
+                        <td>
+                          {item.product_info === null
+                            ? 'no product'
+                            : item.product_info.name}
+                        </td>
                         {/* <td>{item.quantity} items</td> */}
                         <td>
                           Rp.

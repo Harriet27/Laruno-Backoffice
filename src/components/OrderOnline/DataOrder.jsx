@@ -192,13 +192,14 @@ const DataOrders = (props) => {
         <Th as="td" td>
           {item.items.length <= 1 ? (
             <>
-              {' '}
               {item.items.map((data, index) => {
                 return (
                   <div key={index}>
                     <div style={Styles.isColumnBottom}>
                       <div style={Styles.Name}>
-                        {data.product_info.name || 'No name'}
+                        {data.product_info === null
+                          ? 'no product'
+                          : data.product_info.name}
                       </div>
                       <div style={Styles.marginDetail}>
                         Price: Rp.
@@ -239,7 +240,7 @@ const DataOrders = (props) => {
           Rp. {FormatNumber(item.total_price)}
         </Th>
         <Th as="td" td>
-          {item.status === 'PAID' ? (
+          {/* {item.status === 'PAID' ? (
             <div style={Styles.Paid}>
               <span>Paid</span>
             </div>
@@ -247,7 +248,8 @@ const DataOrders = (props) => {
             <div style={Styles.Unpaid}>
               <span>Unpaid</span>
             </div>
-          )}
+          )} */}
+          -
         </Th>
         <Th as="td" td>
           {TableFollowUP(item)}
