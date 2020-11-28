@@ -46,7 +46,7 @@ const ButtonLink = Styled.button`
 const DataProduct = (props) => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.getProduct);
-
+  console.log({ product });
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -70,7 +70,7 @@ const DataProduct = (props) => {
   const productFilter =
     product !== null &&
     product.data.filter((item) => {
-      return item.name.toLowerCase().includes(input.toLowerCase());
+      return item.product.name.toLowerCase().includes(input.toLowerCase());
     });
 
   useEffect(() => {
@@ -124,49 +124,49 @@ const DataProduct = (props) => {
 
   const TableBody = (item, index) => {
     return (
-      <tr key={item._id}>
+      <tr key={item.product._id}>
         <Th>
           <Input
             isCheckbox
             type="checkbox"
-            id={item._id}
-            value={item._id}
+            id={item.product._id}
+            value={item.product._id}
             onChange={handleCheckboxChange}
           />
         </Th>
         <Th as="td" td>
-          <div style={Styles.Name}>{item.name}</div>
+          <div style={Styles.Name}>{item.product.name}</div>
         </Th>
         <Th as="td" td>
-          {item.visibility}
+          {item.product.visibility}
         </Th>
         <Th as="td" td>
-          <div>{item.code}</div>
+          <div>{item.product.code}</div>
         </Th>
         <Th as="td" td>
           <div style={Styles.Inventory}>
-            {item.type !== 'ecommerce' ? (
+            {item.product.type !== 'ecommerce' ? (
               <div style={{ textAlign: 'center' }}>-</div>
-            ) : item.ecommerce === undefined ? (
+            ) : item.product.ecommerce === undefined ? (
               '0 in stock'
             ) : (
-              `${item.ecommerce.stock} in Stock`
+              `${item.product.ecommerce.stock} in Stock`
             )}
           </div>
         </Th>
         <Th as="td" td>
-          <div style={Styles.isOrders}>Orders: 0</div>
-          <div style={Styles.isContents}>Contents: 0</div>
+          <div style={Styles.isOrders}>Orders: {item.count.order}</div>
+          <div style={Styles.isContents}>Coupon: {item.count.coupon}</div>
         </Th>
         <Th as="td" td>
-          {item.type}
+          {item.product.type}
         </Th>
 
         <Th as="td" td>
-          {item.time_period} Months
+          {item.product.time_period} Months
         </Th>
         <Th as="td" td>
-          Rp. {FormatNumber(item.price)}
+          Rp. {FormatNumber(item.product.price)}
         </Th>
         <Th as="td" td>
           <div
@@ -175,17 +175,17 @@ const DataProduct = (props) => {
               flexDirection: 'row',
             }}
           >
-            <Link to={`/product/show/${item._id}`}>
+            <Link to={`/product/show/${item.product._id}`}>
               <ButtonLink detail>
                 <DescriptionIcon fontSize="small" />
               </ButtonLink>
             </Link>
-            <Link to={`/product/update/${item._id}`}>
+            <Link to={`/product/update/${item.product._id}`}>
               <ButtonLink>
                 <CreateIcon fontSize="small" />
               </ButtonLink>
             </Link>
-            <DeleteProduct id={item._id} />
+            <DeleteProduct id={item.product._id} />
           </div>
         </Th>
       </tr>

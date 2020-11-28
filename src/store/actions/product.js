@@ -99,7 +99,7 @@ const getProduct = (data) => {
 const fetchGetProduct = () => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/list/count`;
     const options = {
       method: 'GET',
       headers: {
