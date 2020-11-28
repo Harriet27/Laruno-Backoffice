@@ -27,7 +27,9 @@ const DataPaymentsMethod = (props) => {
   const paymentsFilter =
     payments !== null &&
     payments.data.filter((item) => {
-      return item.name.toLowerCase().includes(input.toLowerCase());
+      return item.payment_method.name
+        .toLowerCase()
+        .includes(input.toLowerCase());
     });
   const handleInput = (event) => {
     setInput(event.target.value);
@@ -89,7 +91,8 @@ const DataPaymentsMethod = (props) => {
     );
   };
 
-  const TableBody = (item, index) => {
+  const TableBody = (items, index) => {
+    const item = items.payment_method;
     return (
       <tr key={item._id}>
         <Th>
@@ -120,8 +123,8 @@ const DataPaymentsMethod = (props) => {
           {item.info}
         </Th>
         <Th as="td" td>
-          <div style={Styles.isCoupons}>Coupons: 0</div>
-          <div style={Styles.isOrders}>Order: 0</div>
+          <div style={Styles.isCoupons}>Coupons: {items.count.coupon}</div>
+          <div style={Styles.isOrders}>Order: {items.count.order}</div>
         </Th>
         <Th as="td" td></Th>
       </tr>

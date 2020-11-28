@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { fetchPostPaymentsMethod } from '../../store/actions';
+import {
+  fetchPostPaymentsMethod,
+  fetchPostSingleImage,
+} from '../../store/actions';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AddPaymentMethodSchema } from '../../elements/Validation';
@@ -43,20 +46,23 @@ export default function AddPaymentsMethod() {
     info: '',
     vendor: '',
     isActive: false,
+    icon: '',
+  });
+  const [formulir, setFormulir] = useState({
+    image: {},
   });
 
   const [state, setState] = useState({
     isLoading: false,
+    isPost: false,
   });
   // --- Fetch submit method Post --- //
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(AddPaymentMethodSchema),
   });
-
+  form.icon = formulir.image.icon;
   const onSubmit = async (event) => {
-    setState({
-      isLoading: true,
-    });
+    setState({ isPost: true });
     dispatch(fetchPostPaymentsMethod(form, setState));
   };
   // --- Change Value when Input Active --- //
@@ -64,13 +70,23 @@ export default function AddPaymentsMethod() {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
+  const handleChangeImage = (e, id) => {
+    let image = formulir.image;
+    let field = e.target.id;
+    image[field] = e.target.files[0];
+    setFormulir({ image });
+    setState({ isLoading: true });
+    dispatch(fetchPostSingleImage({ formulir, e, id, setFormulir, setState }));
+    e.target.type = 'text';
+    e.target.type = 'file';
+  };
   const handleCheckbox = () => {
     setForm({ ...form, isActive: !form.isActive });
   };
 
   return (
     <ModalSmart
-      isLoading={state.isLoading}
+      isLoading={state.isPost}
       buttonLabel={
         <div style={{ width: '70px', textAlign: 'center' }}>+Payments</div>
       }
@@ -141,6 +157,22 @@ export default function AddPaymentsMethod() {
             />
             Click to active this coupons
           </label>
+        </WrapForm>
+        <WrapForm>
+          <SingleImage
+            id="icon"
+            onChange={(e) => handleChangeImage(e, 'icon')}
+            isLoading={state.isLoading}
+          />
+          {typeof formulir.image.icon === 'object' ? null : (
+            <div style={{ width: '125px' }}>
+              <img
+                width="100%"
+                src={formulir.image.icon}
+                alt={formulir.image.icon}
+              />
+            </div>
+          )}
         </WrapForm>
       </Card>
     </ModalSmart>

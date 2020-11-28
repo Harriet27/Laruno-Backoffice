@@ -11,7 +11,7 @@ const getPaymentsMethod = (data) => {
 const fetchGetPaymentsMethod = () => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/payments/method`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/payments/method/list/count`;
     const options = {
       method: 'GET',
       headers: {
@@ -43,7 +43,7 @@ const fetchPostPaymentsMethod = (form, setState) => async () => {
     const response = await fetch(url, options);
     const result = await response.json();
     setState({
-      isLoading: false,
+      isPost: false,
     });
     if (response.status === 201) {
       Swal.fire({
