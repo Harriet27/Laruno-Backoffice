@@ -54,7 +54,7 @@ const DataRoles = (props) => {
   // --- useEffect --- Get Data Topic ---//
   useEffect(() => {
     dispatch(fetchGetRoles());
-    dispatch(fetchGetUsersAdministrator());
+
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -78,7 +78,7 @@ const DataRoles = (props) => {
   const rolesFilter =
     roles !== null &&
     roles.data.filter((item) => {
-      return item.adminType.toLowerCase().includes(input.toLowerCase());
+      return item.role.adminType.toLowerCase().includes(input.toLowerCase());
     });
 
   const TableHeading = () => {
@@ -97,7 +97,8 @@ const DataRoles = (props) => {
     );
   };
 
-  const TableBody = (item, index) => {
+  const TableBody = (items, index) => {
+    const item = items.role;
     return (
       <tr key={item._id}>
         <Th>
@@ -119,7 +120,7 @@ const DataRoles = (props) => {
         </Th>
         <Th as="td" td>
           <div style={Styles.isAdmin}>
-            0 <i className="fa fa-user"></i>
+            {items.count.administrators} <i className="fa fa-user"></i>
           </div>
         </Th>
 
