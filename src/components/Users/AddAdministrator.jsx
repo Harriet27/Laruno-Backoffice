@@ -97,7 +97,11 @@ export default function AddAdministrator() {
           };
         })
       : roles.data.map((item) => {
-          return { key: item._id, value: item._id, label: item.adminType };
+          return {
+            key: item.role._id,
+            value: item.role._id,
+            label: item.role.adminType,
+          };
         });
   const [value, setValue] = useState({
     roleId: [],
