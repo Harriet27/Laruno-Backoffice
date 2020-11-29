@@ -13,7 +13,7 @@ deploy_production:
     stage: deploy
     environment: production
     script:
-    	- ls
+        - ls
         - npm install
         - npm run build
         - cd build/
