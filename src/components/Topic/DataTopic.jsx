@@ -9,7 +9,7 @@ import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
 import {
-  fetchGetTopic,
+  fetchGetListTopic,
   fetchMultipleDeleteTopics,
   fetchGetContents,
   fetchGetProduct,
@@ -25,7 +25,7 @@ import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 
 const DataTopic = (props) => {
   const dispatch = useDispatch();
-  const topic = useSelector((state) => state.topic.getTopic);
+  const topic = useSelector((state) => state.topic.getListTopic);
   console.log({ topic }, 'topic');
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
@@ -52,8 +52,7 @@ const DataTopic = (props) => {
   });
 
   useEffect(() => {
-    dispatch(fetchGetTopic());
-
+    dispatch(fetchGetListTopic());
     // eslint-disable-next-line
   }, [dispatch]);
 

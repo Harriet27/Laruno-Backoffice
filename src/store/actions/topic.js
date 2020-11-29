@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
 const GET_TOPIC = 'GET_TOPIC';
 const SHOW_TOPIC = 'SHOW_TOPIC';
+const GET_LIST_TOPIC = 'GET_LIST_TOPIC';
 // --- Get Topic --- //
 const getTopic = (data) => {
   return {
@@ -8,9 +9,15 @@ const getTopic = (data) => {
     data,
   };
 };
+const getListTopic = (data) => {
+  return {
+    type: GET_LIST_TOPIC,
+    data,
+  };
+};
 
 const fetchGetTopic = () => async (dispatch) => {
-  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/list/count`;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics`;
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   const options = {
     method: 'GET',
@@ -23,6 +30,21 @@ const fetchGetTopic = () => async (dispatch) => {
   const result = await response.json();
 
   dispatch(getTopic(result));
+};
+const fetchGetListTopic = () => async (dispatch) => {
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/topics/list/count`;
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(url, options);
+  const result = await response.json();
+
+  dispatch(getListTopic(result));
 };
 
 // --- Create New Topic, Method Post, component AddNewTopic --- //
@@ -214,5 +236,7 @@ export {
   fetchMultipleDeleteTopics,
   showTopic,
   SHOW_TOPIC,
+  GET_LIST_TOPIC,
+  fetchGetListTopic,
   fetchShowTopic,
 };
