@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 const GET_PAYMENTS_METHOD = 'GET_PAYMENTS_METHOD';
+const GET_LIST_PAYMENTS_METHOD = 'GET_LIST_PAYMENT_METHOD';
 
 const getPaymentsMethod = (data) => {
   return {
@@ -8,7 +9,33 @@ const getPaymentsMethod = (data) => {
   };
 };
 
+const getListPaymentsMethod = (data) => {
+  return {
+    type: GET_LIST_PAYMENTS_METHOD,
+    data,
+  };
+};
+
 const fetchGetPaymentsMethod = () => async (dispatch) => {
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  try {
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/payments/method`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    dispatch(getPaymentsMethod(result));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const fetchGetListPaymentsMethod = () => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/payments/method/list/count`;
@@ -21,7 +48,7 @@ const fetchGetPaymentsMethod = () => async (dispatch) => {
     };
     const response = await fetch(url, options);
     const result = await response.json();
-    dispatch(getPaymentsMethod(result));
+    dispatch(getListPaymentsMethod(result));
   } catch (error) {
     console.log(error);
   }
@@ -72,5 +99,8 @@ export {
   getPaymentsMethod,
   fetchGetPaymentsMethod,
   GET_PAYMENTS_METHOD,
+  GET_LIST_PAYMENTS_METHOD,
+  getListPaymentsMethod,
+  fetchGetListPaymentsMethod,
   fetchPostPaymentsMethod,
 };

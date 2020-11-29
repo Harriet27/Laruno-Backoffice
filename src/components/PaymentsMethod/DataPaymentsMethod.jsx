@@ -8,7 +8,7 @@ import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 
 // --- Elements, Pages, Components --- //
-import { fetchGetPaymentsMethod } from '../../store/actions';
+import { fetchGetListPaymentsMethod } from '../../store/actions';
 import AddPaymentsMethod from './AddPaymentsMethod';
 import { CircularProgress } from '@material-ui/core';
 import MultipleActions from '../../elements/MultipleActions/MultipleActions';
@@ -17,7 +17,7 @@ import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 
 const DataPaymentsMethod = (props) => {
   const dispatch = useDispatch();
-  const payments = useSelector((state) => state.payment.getPaymentsMethod);
+  const payments = useSelector((state) => state.payment.getListPaymentsMethod);
   const coupons = useSelector((state) => state.coupons.getCoupons);
   const orders = useSelector((state) => state.orders.getOrders);
   // --- PAGINATION --- //
@@ -51,7 +51,7 @@ const DataPaymentsMethod = (props) => {
   });
 
   useEffect(() => {
-    dispatch(fetchGetPaymentsMethod());
+    dispatch(fetchGetListPaymentsMethod());
 
     // eslint-disable-next-line
   }, [dispatch]);
