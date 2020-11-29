@@ -1,4 +1,4 @@
-image: node:14.14.0
+image: node:10.19
 cache:
     paths:
         - node_modules/
@@ -13,8 +13,8 @@ deploy_production:
     stage: deploy
     environment: production
     script:
-        - npm install
-        - npm run build
+        - yarn install
+        - yarn build
         - cd build/
         - ls
         - sshpass -V
