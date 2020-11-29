@@ -1,0 +1,35 @@
+stages:
+    - build
+    - deploy
+
+build:
+    stage: build
+    tags: 
+        - <tag you provided while registering the token>
+        - <second tag>
+    script:
+    	- cp .env.example .env 
+        - echo "Building deploy package"
+        - yarn install
+        - yarn build
+        - echo "Build successful"
+    artifacts:
+        expire_in: 1 hour
+        paths:
+            - build
+         
+deploy_production:
+    stage: deploy
+    tags: 
+      - <tag you provided while registering the token>
+      - <second tag>
+    script:
+        - echo "Deploying to server"
+        - cp -rv build/* /var/www/backoffice.laruno.id/
+        - echo "Deployed"
+    environment:
+        name: production
+        url: https://backoffice.laruno.id
+    only:
+        - master
+
