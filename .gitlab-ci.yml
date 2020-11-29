@@ -5,10 +5,10 @@ stages:
 build:
     stage: build
     tags: 
-        - <tag you provided while registering the token>
-        - <second tag>
+        - publish
+        - development
     script:
-    	- cp .env.example .env 
+        - cp .env.example .env
         - echo "Building deploy package"
         - yarn install
         - yarn build
@@ -21,8 +21,8 @@ build:
 deploy_production:
     stage: deploy
     tags: 
-      - <tag you provided while registering the token>
-      - <second tag>
+      - deploy
+      - production
     script:
         - echo "Deploying to server"
         - cp -rv build/* /var/www/backoffice.laruno.id/
