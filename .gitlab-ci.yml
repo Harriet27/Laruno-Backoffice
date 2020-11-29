@@ -13,7 +13,7 @@ deploy_production:
     stage: deploy
     environment: production
     script:
-        - cd ~/backoffice
+        - cd $HOME/backoffice
         - npm install
         - npm run build
         - cd build/
