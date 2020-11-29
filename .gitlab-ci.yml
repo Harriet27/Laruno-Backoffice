@@ -1,17 +1,44 @@
-image: node:10.19
 cache:
     paths:
         - node_modules/
-            
-before_script:
-    - apt-get update -qq && apt-get install -y -qq sshpass rsync
+        - .yarn
+        
+stages:
+    - build
+    - test
+    - deploy
     
-deploy_production:
+build:
+    image: node:10
+    stage: build
+    script:
+        - yarn config set cache-folder .yarn
+        - yarn install --pure-lockfile --cache-folder .yarn
+        - yarn build
+    artifacts:
+        paths:
+            - ./build
+    only:
+        - master
+        
+test:
+    image: node:10
+    stage: test
+    script:
+        - echo "Running react test suite......"
+        - yarn test
+    only:
+        - master
+        
+deploy:
+    image: node:10
     only:
         refs:
             - master
     stage: deploy
     environment: production
+    before_script:
+        - apt-get update -qq && apt-get install -y -qq sshpass rsync
     script:
         - yarn install
         - yarn build
