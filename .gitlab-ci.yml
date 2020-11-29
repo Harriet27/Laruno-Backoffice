@@ -15,8 +15,6 @@ deploy_production:
     script:
         - yarn install
         - yarn build
-        - cd build/
-        - ls
-        - sshpass -V
+        - cd build
         - export SSHPASS=$USER_PASS
-        - sshpass -e rsync -r --omit-dir-times -e "ssh -o StrictHostKeyChecking=no" . $USER_NAME@$SERVER_IP:/var/www/backoffice.laruno.id
+        - rsync -r --omit-dir-times -e "ssh -o StrictHostKeyChecking=no" . $USER_NAME@$SERVER_IP:/var/www/backoffice.laruno.id
