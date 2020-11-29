@@ -20,6 +20,7 @@ import DescriptionIcon from '@material-ui/icons/Description';
 // --- Elements, Pages, Components --- //
 import {
   fetchGetProduct,
+  fetchGetListProduct,
   fetchMultipleDeleteProduct,
   fetchMultipleCloneProduct,
   fetchGetOrders,
@@ -45,7 +46,7 @@ const ButtonLink = Styled.button`
 
 const DataProduct = (props) => {
   const dispatch = useDispatch();
-  const product = useSelector((state) => state.product.getProduct);
+  const product = useSelector((state) => state.product.getListProduct);
   console.log({ product });
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
@@ -74,7 +75,8 @@ const DataProduct = (props) => {
     });
 
   useEffect(() => {
-    dispatch(fetchGetProduct());
+    // dispatch(fetchGetProduct());
+    dispatch(fetchGetListProduct());
     // eslint-disable-next-line
   }, [dispatch]);
 

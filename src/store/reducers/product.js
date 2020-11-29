@@ -1,8 +1,9 @@
-import { GET_PRODUCT, SHOW_PRODUCT } from '../actions';
+import { GET_PRODUCT, SHOW_PRODUCT, GET_LIST_PRODUCT } from '../actions';
 
 const initialState = {
   getProduct: null,
   showProduct: null,
+  getListProduct: null,
 };
 
 export default (state = initialState, actions) => {
@@ -16,6 +17,11 @@ export default (state = initialState, actions) => {
       return {
         ...state,
         showProduct: actions.data,
+      };
+    case GET_LIST_PRODUCT:
+      return {
+        ...state,
+        getListProduct: actions.data,
       };
     default:
       return state;

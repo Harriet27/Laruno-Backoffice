@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 const GET_PRODUCT = 'GET_PRODUCT';
 const FIND_PRODUCT = 'FIND_PRODUCT';
 const SHOW_PRODUCT = 'SHOW_PRODUCT';
+const GET_LIST_PRODUCT = 'GET_LIST_PRODUCT';
 // --- Post Product --- //
 const Toast = Swal.mixin({
   toast: true,
@@ -96,7 +97,32 @@ const getProduct = (data) => {
   };
 };
 
+const getListProduct = (data) => {
+  return {
+    type: GET_LIST_PRODUCT,
+    data,
+  };
+};
+
 const fetchGetProduct = () => async (dispatch) => {
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  try {
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    dispatch(getProduct(result));
+  } catch (error) {
+    console.log(error);
+  }
+};
+const fetchGetListProduct = () => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
     const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/list/count`;
@@ -109,7 +135,7 @@ const fetchGetProduct = () => async (dispatch) => {
     };
     const response = await fetch(url, options);
     const result = await response.json();
-    dispatch(getProduct(result));
+    dispatch(getListProduct(result));
   } catch (error) {
     console.log(error);
   }
@@ -362,6 +388,9 @@ export {
   GET_PRODUCT,
   SHOW_PRODUCT,
   FIND_PRODUCT,
+  getListProduct,
+  GET_LIST_PRODUCT,
+  fetchGetListProduct,
   fetchDeleteProduct,
   fetchShowProduct,
   showProduct,
