@@ -13,8 +13,8 @@ deploy_production:
     stage: deploy
     environment: production
     script:
-        - yarn install
-        - yarn build
+        - npm install
+        - npm run build
         - cd build
         - export SSHPASS=$USER_PASS
         - rsync -r --omit-dir-times -e "ssh -o StrictHostKeyChecking=no" . $USER_NAME@$SERVER_IP:/var/www/backoffice.laruno.id
