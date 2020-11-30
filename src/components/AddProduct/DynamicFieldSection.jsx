@@ -7,6 +7,7 @@ import Styled from 'styled-components';
 import SingleImage from './SingleImage';
 // import Card from '../../elements/Card/Card';
 import Card from '@material-ui/core/Card';
+import MediaUrl from './MediaUrl';
 const Input = Styled.input`
     width: 100%;
     padding: .375rem;
@@ -135,7 +136,7 @@ export default function DynamicFieldSection(props) {
                         onChange={(e) => handleChangeContents(idx, e)}
                       />
 
-                      <SingleImage
+                      <MediaUrl
                         id={`image_section_${idx}`}
                         onChange={(e) =>
                           handleChangeImage(e, `image_section_${idx}`, idx)

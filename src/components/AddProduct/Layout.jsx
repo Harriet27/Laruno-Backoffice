@@ -76,21 +76,7 @@ export default function Layout(props) {
   const [state, setState] = useState({
     isLoading: false,
   });
-  const [media, setMedia] = useState({
-    isLoading: false,
-  });
-  const handleChangeMedia = (e, id) => {
-    let image = formulir.image;
-    let field = e.target.id;
-    image[field] = e.target.files[0];
-    setFormulir({ image });
-    setMedia({
-      isLoading: true,
-    });
-    dispatch(fetchPostMediaImage({ formulir, e, id, setFormulir, setMedia }));
-    e.target.type = 'text';
-    e.target.type = 'file';
-  };
+
   const handleChange = (e, id) => {
     let image = formulir.image;
     let field = e.target.id;
@@ -214,27 +200,6 @@ export default function Layout(props) {
                     alt={formulir.image.image_bonus}
                   />
                 </div>
-              )}
-            </WrapsField>
-
-            <WrapsField>
-              <Label>
-                <Span>Header Media</Span>
-              </Label>
-              <div>
-                <MediaUrl
-                  id="media_url"
-                  onChange={(e) => handleChangeMedia(e, 'media_url')}
-                  isLoading={media.isLoading}
-                />
-              </div>
-              {typeof formulir.image.media_url === 'object' ||
-              formulir.image.media_url === '' ? null : (
-                <video width="320" height="240" controls>
-                  <source src={formulir.image.media_url} type="video/mp4" />
-                  <source src={formulir.image.media_url} type="video/ogg" />
-                  Your browser does not support the video tag.
-                </video>
               )}
             </WrapsField>
           </div>

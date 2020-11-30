@@ -56,7 +56,7 @@ export default function DynamicField(props) {
   return (
     <div style={Styles.FlexColumn} className="App">
       <div style={{ textAlign: 'center', marginTop: '10px' }}>
-        <Span>Learn About</Span>
+        <Span>Apa yang anda pelajari</Span>
       </div>
 
       {/* --- Testing --- */}
@@ -95,7 +95,7 @@ export default function DynamicField(props) {
                 type="button"
                 onClick={() => handleRemove(idx)}
               >
-                Delete Learn About {idx + 1}
+                Delete
               </ButtonModal>
             </WrapsField>
           );
@@ -106,7 +106,7 @@ export default function DynamicField(props) {
         type="button"
         onClick={() => handleAdd()}
       >
-        Add Learn About
+        + Apa yang anda pelajari
       </ButtonModal>
     </div>
   );

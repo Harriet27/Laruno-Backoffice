@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
-
+import MediaUrl from './MediaUrl';
 // --- Elements, Pages, Components --- //
-import { fetchGetTopic, fetchPostSingleImage } from '../../store/actions';
+import {
+  fetchGetTopic,
+  fetchPostSingleImage,
+  fetchPostMediaImage,
+} from '../../store/actions';
 import Styled from 'styled-components';
 
 // import Card from '../../elements/Card/Card';
@@ -90,7 +94,21 @@ export default function DetailProduct(props) {
       : topic.data.map((item) => {
           return { key: item._id, value: item._id, label: item.name };
         });
-
+  const [media, setMedia] = useState({
+    isLoading: false,
+  });
+  const handleChangeMedia = (e, id) => {
+    let image = formulir.image;
+    let field = e.target.id;
+    image[field] = e.target.files[0];
+    setFormulir({ image });
+    setMedia({
+      isLoading: true,
+    });
+    dispatch(fetchPostMediaImage({ formulir, e, id, setFormulir, setMedia }));
+    e.target.type = 'text';
+    e.target.type = 'file';
+  };
   return (
     <div>
       <SectionOne>
@@ -456,6 +474,26 @@ export default function DetailProduct(props) {
                 })}
               </div>
             </>
+            <WrapsField>
+              <Label>
+                <Span>Header Media</Span>
+              </Label>
+              <div>
+                <MediaUrl
+                  id="media_url"
+                  onChange={(e) => handleChangeMedia(e, 'media_url')}
+                  isLoading={media.isLoading}
+                />
+              </div>
+              {typeof formulir.image.media_url === 'object' ||
+              formulir.image.media_url === '' ? null : (
+                <video width="320" height="240" controls>
+                  <source src={formulir.image.media_url} type="video/mp4" />
+                  <source src={formulir.image.media_url} type="video/ogg" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
+            </WrapsField>
           </div>
         </Card>
       </SectionOne>
