@@ -57,7 +57,7 @@ export default function CustomizedAccordions(props) {
   };
 
   return (
-    <div style={{ marginBottom: '20px' }}>
+    <div style={{ marginBottom: '5px' }}>
       <Accordion
         square
         expanded={expanded === 'panel1'}
