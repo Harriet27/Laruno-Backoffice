@@ -85,11 +85,11 @@ export default function DetailDataOrders(props) {
                 <div style={Styles.Name}>{name}</div>
                 <Icon>
                   <i style={Styles.Icon} className="fa fa-envelope"></i>
-                  {email}
+                  {email || 'example.email.com'}
                 </Icon>
                 <Icon>
                   <i className="fa fa-phone" style={Styles.Icon}></i>{' '}
-                  {phone_number}
+                  {phone_number || 'nomor telephone tidak di isi'}
                 </Icon>
                 <Icon>
                   <i style={Styles.Icon} className="fa fa-home"></i>
@@ -108,12 +108,12 @@ export default function DetailDataOrders(props) {
                   Order Date: {moment(orders.create_date).format('DD-MM-YYYY')}
                 </div>
                 <>
-                  {/* {orders.payment.status === 'COMPLETED' ? (
+                  {orders.payment.status === 'COMPLETED' ? (
                     <div style={Styles.Paid}>Paid</div>
                   ) : (
                     <div style={Styles.Unpaid}>Unpaid</div>
-                  )} */}
-                  -
+                  )}
+                  {/* - */}
                 </>
               </div>
             </div>
