@@ -36,6 +36,9 @@ export default function Marketing() {
   };
   return (
     <section>
+      <ModalFbAds
+        buttonLabel={<button style={Styles.isButtonNew}>Add New</button>}
+      />
       <div>
         <div
           style={{
@@ -87,49 +90,20 @@ export default function Marketing() {
                             marginTop: '10px',
                           }}
                         >
-                          <div
-                            style={{ display: 'flex', flexDirection: 'row' }}
-                          >
-                            <div style={{ width: '25px' }}>
-                              <img
-                                style={{ width: '100%' }}
-                                src="https://www.flaticon.com/svg/static/icons/svg/889/889844.svg"
-                                alt="click"
-                              />
+                          <div style={{ display: 'flex' }}>
+                            <div style={Styles.isUnCheck}>
+                              Blog <i className="fa fa-check"></i>
                             </div>
-                            120 Click
+                            <div style={Styles.isCheck}>
+                              Fulfillment <i className="fa fa-check"></i>
+                            </div>
                           </div>
-                          <div
-                            style={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                              marginTop: '5px',
-                            }}
-                          >
-                            <div style={{ width: '25px' }}>
-                              <img
-                                style={{ width: '100%' }}
-                                src="https://www.flaticon.com/svg/static/icons/svg/3208/3208786.svg"
-                                alt="views"
-                              />
-                            </div>
-                            100 Views
+                          <div style={Styles.Link}>
+                            https://app.orderonline.id/contacts/
                           </div>
                         </div>
-
-                        {/* <div style={Styles.Link}>
-                          https://app.orderonline.id/contacts/
-                        </div> */}
                       </div>
                       <div style={{ padding: 20 }}>
-                        <div style={{ display: 'flex' }}>
-                          <div style={Styles.isUnCheck}>
-                            Blog <i className="fa fa-times"></i>
-                          </div>
-                          <div style={Styles.isCheck}>
-                            Fulfillment <i className="fa fa-check"></i>
-                          </div>
-                        </div>
                         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                           <span style={Styles.isTopic}>Bisnis</span>
                           <span style={Styles.isTopic}>Financial</span>
@@ -137,24 +111,29 @@ export default function Marketing() {
                             Personal Development
                           </span>
                         </div>
+                        <div style={{ display: 'flex', flexDirection: 'row' }}>
+                          <div style={Styles.isTop}>Posistion Top</div>
+                          <div style={Styles.isTop}>Visibility Hide</div>
+                        </div>
                       </div>
-                      {/* <div style={{ padding: 20 }}>
-                        <p>Click: 100</p>
-                        <p>view: 100</p>
-                      </div> */}
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          marginTop: '20px',
+                        }}
+                      >
+                        <div>120 Click</div>
+                        <div>100 views</div>
+                      </div>
                     </div>
                     <div
                       style={{
                         display: 'flex',
+
                         padding: '10px',
                       }}
                     >
-                      <ModalFbAds
-                        buttonLabel={
-                          <button style={Styles.isButtonNew}>Add New</button>
-                        }
-                      />
-
                       <button style={Styles.isButtonEdit}>Edit</button>
                       <button style={Styles.isButtonDelete}>Delete</button>
                       {/* <button style={Styles.isButton}>ON/OFF</button> */}
@@ -237,7 +216,7 @@ const Styles = {
     // padding: '.1em .5em',
     // borderRadius: '30px',
     // borderBottom: '1px solid rgba(0,0,0,.05)',
-    textAlign: 'center',
+
     fontSize: '14px',
     maxWidth: '100%',
     fontWeight: 'bold',
@@ -249,7 +228,7 @@ const Styles = {
     // padding: '.1em .5em',
     // borderRadius: '30px',
     // borderBottom: '1px solid rgba(0,0,0,.05)',
-    textAlign: 'center',
+    // textAlign: 'center',
     fontSize: '12px',
     maxWidth: '100%',
     fontWeight: 'bold',
@@ -292,5 +271,19 @@ const Styles = {
     fontWeight: '500',
     maxWidth: '100%',
     marginBottom: '5px',
+  },
+  isTop: {
+    background: '#e8e8e8',
+    marginBottom: '20px',
+    color: '#a37eba',
+    padding: '.1em .5em',
+    margin: '.5em',
+    // borderRadius: '30px',
+    borderBottom: '1px solid rgba(0,0,0,.05)',
+    textAlign: 'center',
+    fontSize: '14px',
+    maxWidth: '100%',
+    fontWeight: 'bold',
+    marginRight: '5px',
   },
 };
