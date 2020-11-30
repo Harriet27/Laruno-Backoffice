@@ -113,24 +113,20 @@ const DataContents = (props) => {
           {item.isBlog === false ? 'Fulfillment' : 'Blog'}
         </Th>
         <Th as="td" td>
-          {/* <div style={Styles.FlexColumn}>
+          <div style={Styles.FlexColumn}>
             {item.isBlog === false
               ? item.product.map((items) => {
-                  return (
-                    <span key={items.products._id}>{items.products.name}</span>
-                  );
+                  return <span key={items._id}>{items.name}</span>;
                 })
               : 'Non-Product'}
-          </div> */}
-          -
+          </div>
         </Th>
         <Th as="td" td>
-          {/* <div style={Styles.FlexColumn}>
+          <div style={Styles.FlexColumn}>
             {item.topic.map((items) => {
               return <span key={items._id}>{items.name}</span>;
             })}
-          </div> */}
-          -
+          </div>
         </Th>
 
         <Th as="td" td>
