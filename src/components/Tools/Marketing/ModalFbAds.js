@@ -20,7 +20,7 @@ const ModalFbAds = (props) => {
     <div>
       <div onClick={toggle}>{buttonLabel}</div>
       <Modal isOpen={modal.open} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Orders Detail</ModalHeader>
+        <ModalHeader toggle={toggle}>Add New Ads</ModalHeader>
         <PopUpFbAds />
       </Modal>
     </div>

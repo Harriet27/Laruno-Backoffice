@@ -149,7 +149,12 @@ export default function Marketing() {
                         padding: '10px',
                       }}
                     >
-                      <button style={Styles.isButtonNew}>Add New</button>
+                      <ModalFbAds
+                        buttonLabel={
+                          <button style={Styles.isButtonNew}>Add New</button>
+                        }
+                      />
+
                       <button style={Styles.isButtonEdit}>Edit</button>
                       <button style={Styles.isButtonDelete}>Delete</button>
                       {/* <button style={Styles.isButton}>ON/OFF</button> */}
