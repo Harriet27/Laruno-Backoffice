@@ -80,6 +80,7 @@ const DataPaymentsMethod = (props) => {
           <Th>
             <Input isCheckbox type="checkbox" />
           </Th>
+          <Th>Icon</Th>
           <Th>Name</Th>
           <Th>Vendor</Th>
           <Th>Status</Th>
@@ -104,7 +105,11 @@ const DataPaymentsMethod = (props) => {
             onChange={handleCheckboxChange}
           />
         </Th>
-
+        <Th style={{ width: '100px' }} as="td" td>
+          <div>
+            <img style={{ width: '100%' }} src={item.icon} alt={item.name} />
+          </div>
+        </Th>
         <Th as="td" td>
           <div style={Styles.Name}>{item.name}</div>
           {moment(item.created_at).format('MM-DD-YYYY')}
