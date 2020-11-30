@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ModalFooter, Button } from 'reactstrap';
 import Select from 'react-select';
 import Styled from 'styled-components';
 import Switch from '@material-ui/core/Switch';
@@ -62,9 +63,9 @@ export default function PopUpFbAds(props) {
   return (
     <div style={{ margin: '50px' }}>
       <WrapForm>
-        <label>
+        {/* <label>
           <Span>Name Ads</Span>
-        </label>
+        </label> */}
         <Input
           type="text"
           name="name"
@@ -77,9 +78,9 @@ export default function PopUpFbAds(props) {
       </WrapForm>
 
       <WrapForm>
-        <label>
+        {/* <label>
           <Span>Type</Span>
-        </label>
+        </label> */}
         <Input
           as="select"
           name="type"
@@ -99,9 +100,9 @@ export default function PopUpFbAds(props) {
       </WrapForm>
 
       <WrapForm>
-        <label>
+        {/* <label>
           <Span>Topic</Span>
-        </label>
+        </label> */}
         <Select
           isMulti
           name="colors"
@@ -134,6 +135,11 @@ export default function PopUpFbAds(props) {
           // isLoading={state.isLoading}
         />
       </div>
+
+      <ModalFooter>
+        <Button color="secondary">Cancel</Button>
+        <Button color="primary">Confirm</Button>{' '}
+      </ModalFooter>
     </div>
   );
 }

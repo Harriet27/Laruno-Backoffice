@@ -6,6 +6,7 @@ import { LinkTab, a11yProps, TabPanel } from './Tabs';
 import Marketing from './Marketing/Marketing';
 import ElementAccordion from '../../elements/Accordion/Accordion';
 import Pixel from './Marketing/Pixel';
+import Guide from './Marketing/Guide';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -49,7 +50,9 @@ export default function Tools() {
             <ElementAccordion title="PIXEL" components={<Pixel />} />
             <ElementAccordion title="ADS" components={<Marketing />} />
           </div>
-          <div style={{ width: '30%', height: '500px' }}>Guide</div>
+          <div style={{ width: '30%', height: '500px' }}>
+            <Guide />
+          </div>
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
