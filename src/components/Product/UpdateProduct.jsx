@@ -122,9 +122,10 @@ export default function UpdateProduct(props) {
   });
 
   const [objEcommerce, setObjEcommerce] = useState({
-    weight: ecommerce.weight || 0,
-    shipping_charges: ecommerce.shipping_charges || true,
-    stock: ecommerce.stock || 0,
+    weight: ecommerce === null ? null : ecommerce.weight || 0,
+    shipping_charges:
+      ecommerce === null ? null : ecommerce.shipping_charges || true,
+    stock: ecommerce === null ? null : ecommerce.stock || 0,
   });
 
   const [objFeature, setObjFeature] = useState({
