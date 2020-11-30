@@ -75,7 +75,6 @@ const DataProduct = (props) => {
     });
 
   useEffect(() => {
-    // dispatch(fetchGetProduct());
     dispatch(fetchGetListProduct());
     // eslint-disable-next-line
   }, [dispatch]);

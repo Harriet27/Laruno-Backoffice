@@ -102,7 +102,11 @@ export default function UpdateProductPages() {
           time_period={product.data.time_period}
           type={product.data.type}
           visibility={product.data.visibility}
-          webinar={product.data.webinar !== null && product.data.webinar}
+          webinar={
+            product.data.webinar === null || product.data.webinar === undefined
+              ? null
+              : product.data.webinar
+          }
           media_url={product.data.media_url !== null && product.data.media_url}
           code={product.data.code}
           description={product.data.description}
@@ -122,7 +126,12 @@ export default function UpdateProductPages() {
           }
           image_url={product.data.image_url !== null && product.data.image_url}
           bump={product.data.bump[0] !== null && product.data.bump[0]}
-          ecommerce={product.data.ecommerce !== null && product.data.ecommerce}
+          ecommerce={
+            product.data.ecommerce === null ||
+            product.data.ecommerce === undefined
+              ? null
+              : product.data.ecommerce
+          }
           topic={product.data.topic !== null && product.data.topic}
           agent={product.data.agent !== null && product.data.agent}
           learn_about={

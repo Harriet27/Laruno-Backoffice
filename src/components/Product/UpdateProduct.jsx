@@ -114,10 +114,11 @@ export default function UpdateProduct(props) {
   });
 
   const [objWebinar, setObjWebinar] = useState({
-    date: moment(webinar.date).format('YYYY-MM-DD') || '',
+    date:
+      moment(webinar === null ? null : webinar.date).format('YYYY-MM-DD') || '',
     duration: '',
-    start_time: webinar.start_time || '',
-    client_url: webinar.client_url || '',
+    start_time: webinar === null ? null : webinar.start_time || '',
+    client_url: webinar === null ? null : webinar.client_url || '',
   });
 
   const [objEcommerce, setObjEcommerce] = useState({
@@ -281,10 +282,10 @@ export default function UpdateProduct(props) {
     values.splice(i, 1);
     setFields(values);
   }
-  let durationUpdate = webinar.duration.split(':');
+  let durationUpdate = webinar === null ? null : webinar.duration.split(':');
   const [duration, setDuration] = useState({
-    hours: durationUpdate[0] || '',
-    minutes: durationUpdate[1] || '',
+    hours: durationUpdate === null ? null : durationUpdate[0] || '',
+    minutes: durationUpdate === null ? null : durationUpdate[1] || '',
   });
   const handleDuration = (e) => {
     setDuration({ ...duration, [e.target.name]: e.target.value });
