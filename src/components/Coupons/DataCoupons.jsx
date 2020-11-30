@@ -154,7 +154,7 @@ const DataCoupons = (props) => {
           {item.type === 'Payment'
             ? item.payment_method_info.name
             : item.type === 'Product'
-            ? item.name
+            ? item.product_info.name
             : item.type === 'User'
             ? 'User'
             : 'Event'}
