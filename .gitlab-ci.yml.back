@@ -16,7 +16,6 @@ build:
         - yarn install --pure-lockfile --cache-folder .yarn
         - yarn build
     artifacts:
-        expire_in: 1 hour
         paths:
             - ./build
     only:
@@ -38,7 +37,13 @@ deploy:
             - master
     stage: deploy
     environment: production
-
+    before_script:
+        - apt-get update -qq && apt-get install -y -qq sshpass rsync
     script:
-        - echo "Deploying to server"
-        - cp -rv build/* /var/www/backoffice.laruno.id
+        - yarn install
+        - yarn build
+        - cd build/
+        - ls
+        - sshpass -V
+        - export SSHPASS=$USER_PASS
+        - rsync -r --omit-dir-times -e "ssh -o StrictHostKeyChecking=no" . $USER_NAME@$SERVER_IP:/var/www/backoffice.laruno.id
