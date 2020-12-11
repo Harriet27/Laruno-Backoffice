@@ -11,7 +11,15 @@ build:
     image: node:10
     stage: build
     script:
+        - rm ./package-lock.json
+        - npm install
         - npm run build
+        - cd build
+        - ls
+        - sshpass -V
+        - export SSHPASS=$USER_PASS
+        - sshpass -e scp -o stricthostkeychecking=no -r . USER_NAME@SERVER_IP:/var/www/backoffice.laruno.id
+        
     artifacts:
         expire_in: 1 hour
         paths:
