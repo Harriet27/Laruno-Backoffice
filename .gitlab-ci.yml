@@ -1,7 +1,6 @@
 cache:
     paths:
         - node_modules/
-        - .yarn
         
 stages:
     - build
@@ -12,9 +11,7 @@ build:
     image: node:10
     stage: build
     script:
-        - yarn config set cache-folder .yarn
-        - yarn install --pure-lockfile --cache-folder .yarn
-        - yarn build
+        - npm run build
     artifacts:
         expire_in: 1 hour
         paths:
@@ -27,7 +24,7 @@ test:
     stage: test
     script:
         - echo "Running react test suite......"
-        - yarn test
+        - npm run test
     only:
         - master
         
