@@ -1,10 +1,10 @@
 deploy:
   image: alpine
   before_script:
-    - apk add openssh-client
+    - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
   script:
-    - ssh -o StrictHostKeyChecking=no USER_NAME@SERVER_IP "cd ~; touch test.txt"
+    - ssh -o StrictHostKeyChecking=no dev-apis@139.162.59.84 "cd ~; touch test.txt"
