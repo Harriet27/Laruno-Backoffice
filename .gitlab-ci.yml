@@ -1,49 +1,10 @@
-cache:
-    paths:
-        - node_modules/
-        
-stages:
-    - build
-    - test
-    - deploy
-    
-build:
-    image: node:10
-    stage: build
-    script:
-        - rm ./package-lock.json
-        - npm install
-        - npm run build
-        - cd build
-        - ls
-        - sshpass -V
-        - export SSHPASS=$USER_PASS
-        - sshpass -e scp -o stricthostkeychecking=no -r . USER_NAME@SERVER_IP:/var/www/backoffice.laruno.id
-        
-    artifacts:
-        expire_in: 1 hour
-        paths:
-            - ./build
-    only:
-        - master
-        
-test:
-    image: node:10
-    stage: test
-    script:
-        - echo "Running react test suite......"
-        - npm run test
-    only:
-        - master
-        
 deploy:
-    image: node:10
-    only:
-        refs:
-            - master
-    stage: deploy
-    environment: production
-
-    script:
-        - echo "Deploying to server"
-        - cp -rv build/* /var/www/backoffice.laruno.id
+  image: alpine
+  before_script:
+    - apk add openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+  script:
+    - ssh -o StrictHostKeyChecking=no USER_NAME@SERVER_IP "cd ~; touch test.txt"
