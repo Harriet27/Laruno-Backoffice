@@ -4,7 +4,7 @@ deploy:
     - apk add openssh-client
     - eval $(ssh-agent -s)
     - echo "USER_NAME@SERVER_IP"
-    - echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - echo "$SSH_KEY" | tr -d '\r' > dev-apis/home/.ssh/id_rsa
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
   script:
