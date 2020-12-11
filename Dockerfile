@@ -16,6 +16,6 @@ RUN yarn build
 
 # PRODUCTION
 
-FROM node:latest AS production
+FROM node:alpine AS production
 
 COPY --from=dev /app/build /var/www/backoffice/laruno.id
