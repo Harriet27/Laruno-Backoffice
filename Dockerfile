@@ -15,7 +15,7 @@ COPY . .
 
 CMD ["yarn", "build"]
 
-RUN npm run build
+RUN yarn build
 
 # Production Environment
 FROM httpd:2.4

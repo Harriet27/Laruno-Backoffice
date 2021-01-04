@@ -29,7 +29,7 @@ deploy:
         - deploying
     script:
         - docker stop laruno/backoffice || true && docker rm laruno/backoffice || true
-        - docker run -dit -p 5000:5000 laruno/backoffice:latest
+        - docker run -dit -p 8000:8000 laruno/backoffice:latest
         - docker image prune -f
         - docker container prune -f
     only:
