@@ -1,36 +1,47 @@
-stages:
-  - publish
-  - deploy
+image: laruno/backoffice:latest
 
-variables:
-  TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:latest
-  TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
-
-publish:
-  image: docker:latest
-  stage: publish
-  services:
+services:
     - docker:dind
-  script:
-    - docker build -t $TAG_COMMIT -t $TAG_LATEST .
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - docker push $TAG_COMMIT
-    - docker push $TAG_LATEST
+
+stages:
+    - build
+    - deploy
+    - publish
+
+before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
+build:
+    stage: build
+    tags:
+        - building
+    script:
+        - echo "Building image.."
+        - docker build -t laruno/backoffice:latest --no-cache .
+        - echo "Tagging image.."
+        - docker tag laruno/backoffice:latest laruno/backoffice:latest
+    only:
+        - master
 
 deploy:
-  image: alpine:latest
-  stage: deploy
-  tags:
-    - deployment
-  script:
-    - chmod og+-= $ID_RSA
-    - apk update && apk add openssh-client
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $TAG_COMMIT"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f frontend-backoffice || true"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 80:80 --name frontend-backoffice $TAG_COMMIT"
-  environment:
-    name: production
-    url: http://139.162.59.84
-  only:
-    - master
+    stage: deploy
+    tags:
+        - deploying
+    script:
+        - docker stop laruno/backoffice || true && docker rm laruno/backoffice || true
+        - docker run -dit -p 5000:5000 laruno/backoffice:latest
+        - docker image prune -f
+        - docker container prune -f
+    only:
+        - master
+
+publish:
+    stage: publish
+    tags:
+        - publishing
+    script:
+        - echo "Publishing image.."
+        - ls
+        - cp -r build/* /var/www/backoffice.laruno.id
+    only:
+        - master

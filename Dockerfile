@@ -1,21 +1,25 @@
-# DEVELOPMENT
-
-FROM node:alpine AS dev
-
-ENV NODE_ENV=development
+# Build Environtment
+FROM node:14-alpine AS build
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package*.json ./
+
+COPY .env.example ./
+
+ADD .env.example .env
 
 RUN yarn install
 
 COPY . .
 
-RUN yarn build
+CMD ["yarn", "build"]
 
-# PRODUCTION
+RUN npm run build
 
-FROM node:alpine AS production
+# Production Environment
+FROM httpd:2.4
 
-COPY --from=dev /app/build /var/www/backoffice/laruno.id
+COPY --from=build /app/build /var/www/backoffice.laruno.id
+
+EXPOSE 8000
