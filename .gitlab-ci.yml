@@ -1,4 +1,4 @@
-image: laruno/backoffice:latest
+Iimage: laruno/backoffice:latest
 
 services:
     - docker:dind
@@ -27,7 +27,7 @@ deploy:
     tags:
         - deploying
     script:
-            - docker stop laruno/backoffice:latest || true && docker rm laruno/backoffice:latest || true
+        - docker stop laruno/backoffice:latest || true && docker rm laruno/backoffice:latest || true
         - docker run -dt -p 8000:8000 laruno/backoffice:latest
         - docker image prune -f
         - docker container prune -f
