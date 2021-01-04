@@ -16,7 +16,7 @@ COPY . .
 RUN yarn build
 
 # Production Environment
-FROM httpd:2.4
+FROM httpd:2.4 
 
 COPY --from=build /app/build /var/www/backoffice.laruno.id
 

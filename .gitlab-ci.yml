@@ -16,7 +16,7 @@ build:
         - building
     script:
         - echo "Building image.."
-        - docker build -t laruno/backoffice:latest .
+        - docker build -t laruno/backoffice:latest --no-cache .
         - echo "Tagging image.."
         - docker tag laruno/backoffice:latest laruno/backoffice:latest
     only:
@@ -27,7 +27,7 @@ deploy:
     tags:
         - deploying
     script:
-        - docker stop laruno/backoffice || true && docker rm laruno/backoffice || true
+            - docker stop laruno/backoffice:latest || true && docker rm laruno/backoffice:latest || true
         - docker run -dt -p 8000:8000 laruno/backoffice:latest
         - docker image prune -f
         - docker container prune -f
