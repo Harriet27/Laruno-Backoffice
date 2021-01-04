@@ -126,10 +126,10 @@ export default function Login() {
             <Input as="button" button>
               Login
             </Input>
-
-	    <h2>Please login</h2>
           )}
         </form>
+
+	  <p>* please login</p>
       </Card>
     </Section>
   );
