@@ -1,4 +1,4 @@
-Iimage: laruno/backoffice:latest
+image: laruno/backoffice:latest
 
 services:
     - docker:dind
