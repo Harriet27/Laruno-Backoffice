@@ -15,10 +15,6 @@ build:
     tags:
         - building
     script:
-            #- docker stop $(docker ps | grep ":8000" | awk '{print $1}')
-            #- docker rm $(docker ps | grep ":8000" | awk '{print $1}')
-        - docker container prune -f
-        - docker image prune -f
         - echo "Building image.."
         - docker build -t laruno/backoffice:latest --no-cache .
         - echo "Tagging image.."
@@ -32,9 +28,8 @@ deploy:
         - deploying
     script:
         - docker stop laruno/backoffice:latest || true && docker rm laruno/backoffice:latest || true
-        - docker run -dt -p 8000:8000 laruno/backoffice:latest
+        - docker run -dt -p 8000:80 laruno/backoffice:latest
         - docker image prune -f
         - docker container prune -f
-        - docker cp backoffice:/app/backoffice /var/www/backoffice.laruno.id
     only:
         - master
