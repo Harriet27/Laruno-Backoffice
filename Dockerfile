@@ -19,6 +19,5 @@ RUN yarn build
 #COPY . . 
 
 #COPY --from=build /app/build/* /var/www/backoffice.laruno.id
-COPY build /var/www/backoffice.laruno.id
 
 EXPOSE 8000
