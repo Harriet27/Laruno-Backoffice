@@ -15,8 +15,8 @@ COPY . .
 
 RUN yarn build
 
-# Production Environment
-#COPY . . 
+# Product env
+COPY . . 
 
 #COPY --from=build /app/build/* /var/www/backoffice.laruno.id
 

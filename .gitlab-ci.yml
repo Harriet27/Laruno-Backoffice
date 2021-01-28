@@ -27,9 +27,9 @@ deploy:
     tags:
         - deploying
     script:
-        - docker stop laruno/backoffice:latest || true && docker rm laruno/backoffice:latest || true
-        - docker run -dt -p 8000:80 laruno/backoffice:latest
-        - docker image prune -f
+        - docker container stop -f backoffice || true && docker container rm -f backoffice || true
+        - docker run -dt -p 8000:8000 --name=backoffice laruno/backoffice:latest
+        - docker images prune -f
         - docker container prune -f
     only:
         - master
