@@ -15,8 +15,8 @@ build:
     tags:
         - building
     script:
-        - docker stop $(docker ps | grep ":8000" | awk '{print $1}')
-        - docker rm $(docker ps | grep ":8000" | awk '{print $1}')
+            #- docker stop $(docker ps | grep ":8000" | awk '{print $1}')
+            #- docker rm $(docker ps | grep ":8000" | awk '{print $1}')
         - docker container prune -f
         - docker image prune -f
         - echo "Building image.."
