@@ -28,8 +28,10 @@ deploy:
         - deploying
     script:
         - docker container stop -f backoffice || true && docker container rm -f backoffice || true
-        - docker run -dt -p 8000:8000 --name=backoffice laruno/backoffice:latest
-        - docker images prune -f
+        - docker run -dt -p 8000:80 --name=backoffice laruno/backoffice:latest
+        - docker image prune -f
         - docker container prune -f
+        - ls
+        - docker cp backoffice:/backoffice/build /var/www/backoffice.laruno.id
     only:
         - master
