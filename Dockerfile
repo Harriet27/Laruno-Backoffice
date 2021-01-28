@@ -1,5 +1,5 @@
 # Build Environtment
-FROM node:14-alpine AS build
+FROM node:14-alpine
 
 WORKDIR /app
 
@@ -16,8 +16,9 @@ COPY . .
 RUN yarn build
 
 # Production Environment
-COPY . . 
+#COPY . . 
 
-COPY --from=build /app/build/* /var/www/backoffice.laruno.id
+#COPY --from=build /app/build/* /var/www/backoffice.laruno.id
+COPY ./build/* /var/www/backoffice.laruno.id
 
 EXPOSE 8000
