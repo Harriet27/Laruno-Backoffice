@@ -17,8 +17,8 @@ deploy:
     script:
         - echo "Building image.."
         #- docker build -t backoffice:latest .
-        - docker build -t laruno/backoffice .
-        # - docker-compose up -d
+        # - docker build -t laruno/backoffice .
+        - docker-compose up -d
         # - docker-compose up --build
         - echo "Tagging image.."
         - docker tag laruno/backoffice:latest laruno/backoffice:latest

@@ -1,17 +1,10 @@
-version: "3.8"
+version: '3.7'
 
 services:
-    nginx:
-        image: nginx:mainline-alpine
-        container_name: "nginx"
-        build: "./nginx"
-        ports: 
-           - "80:80"
-           - "443:443"
-        restart: always
-        
-    backoffice:
-        container_name: "backoffice"
-        build: ./
-        ports: 
-            - "8000:8000"
+  backoffice:
+    image: laruno/backoffice
+    container_name: backoffice
+    build:
+      context: .
+    ports:
+      - '8000:80'
