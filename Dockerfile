@@ -13,11 +13,10 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+# RUN npm run build
 
-# Product env
-COPY . . 
-
-#COPY ./build/* /var/www/backoffice.laruno.id
+# COPY . . 
 
 EXPOSE 8000
+
+CMD ["npm", "start"]
