@@ -18,10 +18,11 @@ deploy:
         - echo "Building image.."
         #- docker build -t backoffice:latest .
         # - docker build -t laruno/backoffice .
+        - echo "create network"
+        - docker network create net
         - docker-compose up -d
         # - docker-compose up --build
-        - echo "Tagging image.."
-        - docker tag laruno/backoffice:latest laruno/backoffice:latest
+        - docker run --rm --name nginx-dummy -e VIRTUAL_HOST=backoffice.laruno.id -e LETSENCRYPT_HOST=backoffice.laruno.id -e VIRTUAL_PORT=80 --network net -d nginx:latest
     only:
         - master
 
@@ -30,7 +31,10 @@ clean:
     tags:
         - cleaning
     script:
-        - docker container stop -f  laruno/backoffice || true && docker container rm -f  laruno/backoffice || true
+        - docker stop nginx-dummy
+        - docker-compose down
+        - docker run --name nextcloud --network net -e VIRTUAL_HOST="backoffice.laruno.id" -e LETSENCRYPT_HOST="backoffice.laruno.id" -d nextcloud:19.0.2
+        # - docker container stop -f  laruno/backoffice || true && docker container rm -f  laruno/backoffice || true
         - docker run -d -it -p 80:80/tcp --name backoffice laruno/backoffice:latest
         # - docker run -dt -p 8000:80 --name=backoffice laruno/backoffice:latest
         #- docker run -d -p 8000:8000 --name backoffice -d backoffice
