@@ -4,29 +4,30 @@ services:
     - docker:dind
 
 stages:
-    - build
-    - deploy
+    - deploying
+    - cleaning
 
 before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
 
-build:
+deploy:
     stage: build
     tags:
-        - building
+        - deploying
     script:
         - echo "Building image.."
         #- docker build -t backoffice:latest .
-        - docker-compose up -d
+        # - docker-compose up -d
+        - docker-compose up --build
         - echo "Tagging image.."
         - docker tag backoffice:latest backoffice:latest
     only:
         - master
 
-deploy:
+clean:
     stage: deploy
     tags:
-        - deploying
+        - cleaning
     script:
         #- docker container stop -f  backoffice || true && docker container rm -f  backoffice || true
         # - docker run -dt -p 8000:80 --name=backoffice laruno/backoffice:latest
