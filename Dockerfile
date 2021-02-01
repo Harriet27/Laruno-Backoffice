@@ -1,5 +1,5 @@
 # Build Environtment
-FROM node:14-alpine
+FROM node:14-alpine as build
 
 WORKDIR /app
 
@@ -9,14 +9,10 @@ COPY .env.example ./
 
 ADD .env.example .env
 
-RUN npm install
+RUN npm install --production
 
 COPY . .
 
-# RUN npm run build
+RUN npm run build
 
-# COPY . . 
-
-EXPOSE 8000
-
-CMD ["npm", "start"]
+# EXPOSE 8000

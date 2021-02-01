@@ -11,7 +11,6 @@ services:
         restart: always
         
     backoffice:
-        image: backoffice
         container_name: "backoffice"
         build: ./
         ports: 
