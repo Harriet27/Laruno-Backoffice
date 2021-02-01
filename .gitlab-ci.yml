@@ -35,7 +35,7 @@ clean:
         - docker-compose down
         - docker run --name nextcloud --network net -e VIRTUAL_HOST="backoffice.laruno.id" -e LETSENCRYPT_HOST="backoffice.laruno.id" -d nextcloud:19.0.2
         # - docker container stop -f  laruno/backoffice || true && docker container rm -f  laruno/backoffice || true
-        - docker run -d -it -p 80:80/tcp --name backoffice laruno/backoffice:latest
+        #- docker run -d -it -p 80:80/tcp --name backoffice laruno/backoffice:latest
         # - docker run -dt -p 8000:80 --name=backoffice laruno/backoffice:latest
         #- docker run -d -p 8000:8000 --name backoffice -d backoffice
         - docker image prune -f
