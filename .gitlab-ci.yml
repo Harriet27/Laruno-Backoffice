@@ -4,14 +4,14 @@ services:
     - docker:dind
 
 stages:
-    - deploying
-    - cleaning
+    - deploy
+    - clean
 
 before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
 
 deploy:
-    stage: build
+    stage: deploy
     tags:
         - deploying
     script:
@@ -25,7 +25,7 @@ deploy:
         - master
 
 clean:
-    stage: deploy
+    stage: clean
     tags:
         - cleaning
     script:
