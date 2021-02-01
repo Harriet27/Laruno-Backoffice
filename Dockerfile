@@ -18,6 +18,6 @@ RUN npm run build
 # Product env
 COPY . . 
 
-COPY ./build/* /var/www/backoffice.laruno.id
+#COPY ./build/* /var/www/backoffice.laruno.id
 
 EXPOSE 8000
