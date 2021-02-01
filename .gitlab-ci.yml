@@ -19,7 +19,7 @@ deploy:
         #- docker build -t backoffice:latest .
         # - docker build -t laruno/backoffice .
         - echo "create network"
-        - docker network create net
+        #- docker network create net
         - docker-compose up -d
         # - docker-compose up --build
         - docker run --rm --name nginx-dummy -e VIRTUAL_HOST=backoffice.laruno.id -e LETSENCRYPT_HOST=backoffice.laruno.id -e VIRTUAL_PORT=80 --network net -d nginx:latest
