@@ -2,14 +2,17 @@ version: "3.8"
 
 services:
     nginx:
-        build: "./nginx"
+        image: nginx:mainline-alpine
         container_name: "nginx"
+        build: "./nginx"
         ports: 
            - "80:80"
            - "443:443"
         restart: always
         
     backoffice:
+        image: backoffice
+        container_name: "backoffice"
         build: ./
         ports: 
             - "8000:8000"
