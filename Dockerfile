@@ -9,15 +9,15 @@ COPY .env.example ./
 
 ADD .env.example .env
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
-RUN yarn build
+RUN npm run build
 
 # Product env
 COPY . . 
 
-#COPY --from=build /app/build/* /var/www/backoffice.laruno.id
+COPY ./build/* /var/www/backoffice.laruno.id
 
 EXPOSE 8000
