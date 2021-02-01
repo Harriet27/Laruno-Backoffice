@@ -1,7 +1,9 @@
-node_modules
+/node_modules
 npm-debug.log
-build
+/build
 .dockerignore
+.git
+.gitignore
 dist
 *.md
 *.yml

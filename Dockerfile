@@ -1,18 +1,14 @@
-# Build Environtment
-FROM node:14-alpine as build
-
+# Step 1
+FROM node:10-alpine as build-step
+RUN mkdir /app
 WORKDIR /app
-
-COPY package*.json ./
-
+COPY package*.json /app
+RUN npm install
 COPY .env.example ./
-
 ADD .env.example .env
-
-RUN npm install --production
-
-COPY . .
-
+COPY . /app
 RUN npm run build
 
-# EXPOSE 8000
+# Stage 2
+FROM nginx:1.17.1-alpine
+COPY --from=build-step /app/build /usr/share/nginx/html

@@ -17,10 +17,11 @@ deploy:
     script:
         - echo "Building image.."
         #- docker build -t backoffice:latest .
+        - docker build -t laruno/backoffice .
         # - docker-compose up -d
-        - docker-compose up --build
+        # - docker-compose up --build
         - echo "Tagging image.."
-        - docker tag backoffice:latest backoffice:latest
+        - docker tag laruno/backoffice:latest laruno/backoffice:latest
     only:
         - master
 
@@ -29,7 +30,8 @@ clean:
     tags:
         - cleaning
     script:
-        #- docker container stop -f  backoffice || true && docker container rm -f  backoffice || true
+        - docker container stop -f  laruno/backoffice || true && docker container rm -f  laruno/backoffice || true
+        - docker run -d -it -p 80:80/tcp --name backoffice laruno/backoffice:latest
         # - docker run -dt -p 8000:80 --name=backoffice laruno/backoffice:latest
         #- docker run -d -p 8000:8000 --name backoffice -d backoffice
         - docker image prune -f
