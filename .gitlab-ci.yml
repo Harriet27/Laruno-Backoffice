@@ -16,7 +16,8 @@ build:
         - building
     script:
         - echo "Building image.."
-        - docker build -t backoffice:latest .
+        #- docker build -t backoffice:latest .
+        - docker-compose up -d
         - echo "Tagging image.."
         - docker tag backoffice:latest backoffice:latest
     only:
@@ -27,12 +28,10 @@ deploy:
     tags:
         - deploying
     script:
-        - docker container stop -f  backoffice || true && docker container rm -f  backoffice || true
+        #- docker container stop -f  backoffice || true && docker container rm -f  backoffice || true
         # - docker run -dt -p 8000:80 --name=backoffice laruno/backoffice:latest
-        - docker run -d -p 8000:8000 --name backoffice -d backoffice
+        #- docker run -d -p 8000:8000 --name backoffice -d backoffice
         - docker image prune -f
         - docker container prune -f
-        - ls
-        #- docker cp backoffice:/backoffice/build /var/www/backoffice.laruno.id
     only:
         - master
