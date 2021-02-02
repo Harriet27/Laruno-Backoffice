@@ -120,6 +120,7 @@ export default function TestAddProduct() {
       [event.target.name]: event.target.value,
     });
   };
+
   const handleEcommerce = (event) => {
     setObjEcommerce({
       ...objEcommerce,
@@ -145,7 +146,8 @@ export default function TestAddProduct() {
   };
   console.log(form.bump, 'form_bump');
   form.bump = [{ ...objBump }];
-  form.webinar = { ...objWebinar };
+  // form.webinar = { ...objWebinar };
+  form.boe = { ...objWebinar };
   form.ecommerce = { ...objEcommerce };
   form.feature = { ...objFeature };
 

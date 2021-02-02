@@ -142,6 +142,8 @@ export default function UpdateProduct(props) {
       [event.target.name]: event.target.value,
     });
   };
+  console.log('update product', objWebinar);
+
   const handleEcommerce = (event) => {
     setObjEcommerce({
       ...objEcommerce,

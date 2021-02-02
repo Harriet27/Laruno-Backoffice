@@ -198,8 +198,8 @@ export default function DetailProduct(props) {
                   <option value="" disabled hidden>
                     Product Type..
                   </option>
-                  <option value="digital">Product Digital</option>
-                  <option value="webinar">Webinar</option>
+                  <option value="boe">BOE</option>
+                  <option value="ecourse">ECourse</option>
                   <option value="ecommerce">Ecommerce</option>
                   <option value="bonus">Bonus</option>
                 </Input>
@@ -208,11 +208,11 @@ export default function DetailProduct(props) {
 
             {/* --- Field logic in field product category ---  */}
             <>
-              {props.form === 'webinar' ? (
+              {props.form === 'boe' ? (
                 <div>
                   <WrapsField>
                     <Label>
-                      <Span>Zoom ID</Span>
+                      <Span>Zoom Invitation Link</Span>
                     </Label>
                     <div>
                       <Input
