@@ -240,22 +240,13 @@ const DataOrders = (props) => {
           Rp. {FormatNumber(item.total_price)}
         </Th>
         <Th as="td" td>
-          {/* {item.status === 'PAID' ? (
-            <div style={Styles.Paid}>
-              <span>Paid</span>
-            </div>
-          ) : (
-            <div style={Styles.Unpaid}>
-              <span>Unpaid</span>
-            </div>
-          )} */}
-          -
+          {item.status}
         </Th>
         <Th as="td" td>
           {TableFollowUP(item)}
         </Th>
         <Th as="td" td>
-          <Actions />
+          <Actions id={item._id} />
         </Th>
       </TableRow>
     );

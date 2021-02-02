@@ -53,11 +53,27 @@ const fetchShowOrders = (id) => async (dispatch) => {
   dispatch(detailOrders(result));
 };
 
+const actionOrder = async (id, status) => {
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/orders/${id}?status=${status}`;
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const res = await fetch(url, options);
+  const result = await res.json();
+  console.log(result);
+}
+
 export {
   getOrder,
   GET_ORDERS,
   fetchGetOrders,
   detailOrders,
   fetchShowOrders,
+  actionOrder,
   DETAIL_ORDERS,
 };
