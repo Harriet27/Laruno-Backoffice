@@ -48,7 +48,7 @@ export default function UpdateProduct(props) {
     feature_onheader,
     image_bonus,
     image_url,
-    webinar,
+    boe,
     bump,
     ecommerce,
     topic,
@@ -56,7 +56,7 @@ export default function UpdateProduct(props) {
     learn_about,
     section,
   } = props;
-  console.log({ webinar, bump, ecommerce, topic }, 'Webinar,bump ,data');
+  console.log({ boe, bump, ecommerce, topic }, 'boe,bump ,data');
   const [value, setValue] = React.useState(0);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -75,7 +75,7 @@ export default function UpdateProduct(props) {
     code: code || '',
     slug: slug || '',
     type: type || '',
-    webinar: '',
+    boe: '',
     ecommerce: '',
     topic: [],
     price: price || '',
@@ -103,7 +103,7 @@ export default function UpdateProduct(props) {
     isLoading: false,
   });
   // --- Detail Product --- //
-  // --- Test Order Bump,  Webinar, ecommerce--- //
+  // --- Test Order Bump,  Boe, ecommerce--- //
   const [objBump, setObjBump] = useState({
     bump_name: bump.bump_name || '',
     bump_price: bump.bump_price || '',
@@ -113,12 +113,12 @@ export default function UpdateProduct(props) {
     bump_desc: bump.bump_desc || '',
   });
 
-  const [objWebinar, setObjWebinar] = useState({
+  const [objBoe, setobjBoe] = useState({
     date:
-      moment(webinar === null ? null : webinar.date).format('YYYY-MM-DD') || '',
+      moment(boe === null ? null : boe.date).format('YYYY-MM-DD') || '',
     duration: '',
-    start_time: webinar === null ? null : webinar.start_time || '',
-    client_url: webinar === null ? null : webinar.client_url || '',
+    start_time: boe === null ? null : boe.start_time || '',
+    client_url: boe === null ? null : boe.client_url || '',
   });
 
   const [objEcommerce, setObjEcommerce] = useState({
@@ -136,13 +136,13 @@ export default function UpdateProduct(props) {
   const handleBump = (event) => {
     setObjBump({ ...objBump, [event.target.name]: event.target.value });
   };
-  const handleWebinar = (event) => {
-    setObjWebinar({
-      ...objWebinar,
+  const handleBoe = (event) => {
+    setobjBoe({
+      ...objBoe,
       [event.target.name]: event.target.value,
     });
   };
-  console.log('update product', objWebinar);
+  console.log('update product', objBoe);
 
   const handleEcommerce = (event) => {
     setObjEcommerce({
@@ -169,7 +169,7 @@ export default function UpdateProduct(props) {
   };
 
   form.bump = [{ ...objBump }];
-  form.webinar = { ...objWebinar };
+  form.boe = { ...objBoe };
   form.ecommerce = { ...objEcommerce };
   form.feature = { ...objFeature };
 
@@ -285,7 +285,7 @@ export default function UpdateProduct(props) {
     values.splice(i, 1);
     setFields(values);
   }
-  let durationUpdate = webinar === null ? null : webinar.duration.split(':');
+  let durationUpdate = boe === null ? null : boe.duration.split(':');
   const [duration, setDuration] = useState({
     hours: durationUpdate === null ? null : durationUpdate[0] || '',
     minutes: durationUpdate === null ? null : durationUpdate[1] || '',
@@ -301,7 +301,7 @@ export default function UpdateProduct(props) {
   // const [arrImageProduct, setArrImageProduct] = useState([]);
   form.learn_about = [...fields];
   form.section = [...sectionAdd];
-  objWebinar.duration = duration.hours + ':' + duration.minutes;
+  objBoe.duration = duration.hours + ':' + duration.minutes;
   form.description = quill;
   form.image_url = formulir.image.image_url;
   objBump.bump_image = formulir.image.bump_image;
@@ -361,13 +361,13 @@ export default function UpdateProduct(props) {
             checked_gratis={objEcommerce.shipping_charges === false}
             bayar_ongkir={bayar_ongkir}
             gratis_ongkir={gratis_ongkir}
-            // --- Webinar --- //
-            zoom_id={objWebinar.client_url}
-            date={objWebinar.date}
-            start_time={objWebinar.start_time}
+            // --- Boe --- //
+            zoom_id={objBoe.client_url}
+            date={objBoe.date}
+            start_time={objBoe.start_time}
             duration_hours={duration.hours}
             duration_minute={duration.minutes}
-            handleWebinar={handleWebinar}
+            handleBoe={handleBoe}
             handleDuration={handleDuration}
             isTopic={selecting.topic}
             // --- REACT HOOK FORM --- //

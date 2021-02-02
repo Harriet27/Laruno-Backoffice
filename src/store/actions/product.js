@@ -25,7 +25,7 @@ const fetchPostProducts = ({ form, history, setState }) => async () => {
       }
     }
 
-    if (form.type === 'webinar') {
+    if (form.type === 'boe') {
       delete form.eccomerce;
     } else {
       delete form.eccomerce;
@@ -248,7 +248,7 @@ const fetchUpdateProduct = ({ form, id, history, setState }) => async () => {
       }
     }
 
-    if (form.type === 'webinar') {
+    if (form.type === 'boe') {
       delete form.eccomerce;
     } else {
       delete form.eccomerce;
