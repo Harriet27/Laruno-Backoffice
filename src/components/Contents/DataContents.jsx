@@ -114,7 +114,7 @@ const DataContents = (props) => {
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexColumn}>
-            {item.isBlog === false
+            {item.isBlog === undefined
               ? item.product.map((items) => {
                   return <span key={items._id}>{items.name}</span>;
                 })
