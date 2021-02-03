@@ -25,11 +25,11 @@ const fetchPostProducts = ({ form, history, setState }) => async () => {
       }
     }
 
-    if (form.type === 'boe') {
-      delete form.ecommerce;
-    } else {
-      delete form.ecommerce;
-    }
+    // if (form.type === 'boe') {
+    //   delete form.ecommerce;
+    // } else {
+    //   delete form.ecommerce;
+    // }
     // --- penting nih --- //
 
     const options = {
@@ -248,11 +248,11 @@ const fetchUpdateProduct = ({ form, id, history, setState }) => async () => {
       }
     }
 
-    if (form.type === 'boe') {
-      delete form.ecommerce;
-    } else {
-      delete form.ecommerce;
-    }
+    // if (form.type === 'boe') {
+    //   delete form.ecommerce;
+    // } else {
+    //   delete form.ecommerce;
+    // }
     // --- penting nih --- //
 
     const options = {
