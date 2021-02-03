@@ -39,7 +39,7 @@ export default function FetchDetailPopUp(props) {
   );
 
   useEffect(() => {
-    dispatch(fetchOrderPaymentDetail(Orders.payment && Orders.payment.method._id));
+    dispatch(fetchOrderPaymentDetail(Object.keys(Orders.payment).length === 0 ? 0 : Orders.payment.method._id));
     // eslint-disable-next-line
   },[]);
   
