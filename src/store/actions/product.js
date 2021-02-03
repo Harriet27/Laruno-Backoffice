@@ -263,7 +263,7 @@ const fetchUpdateProduct = ({ form, id, history, setState }) => async () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    console.log(form);
+    console.log('api call form', form);
     const response = await fetch(url, options);
     const result = await response.json();
 

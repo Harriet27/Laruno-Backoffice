@@ -75,7 +75,7 @@ export default function UpdateProduct(props) {
     code: code || '',
     slug: slug || '',
     type: type || '',
-    webinar: '',
+    boe: '',
     ecommerce: '',
     topic: [],
     price: price || '',
@@ -169,7 +169,7 @@ export default function UpdateProduct(props) {
   };
 
   form.bump = [{ ...objBump }];
-  form.webinar = { ...objWebinar };
+  form.boe = { ...objWebinar };
   form.ecommerce = { ...objEcommerce };
   form.feature = { ...objFeature };
 
