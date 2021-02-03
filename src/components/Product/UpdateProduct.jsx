@@ -48,7 +48,7 @@ export default function UpdateProduct(props) {
     feature_onheader,
     image_bonus,
     image_url,
-    webinar,
+    boe,
     bump,
     ecommerce,
     topic,
@@ -56,7 +56,7 @@ export default function UpdateProduct(props) {
     learn_about,
     section,
   } = props;
-  console.log({ webinar, bump, ecommerce, topic }, 'Webinar,bump ,data');
+  console.log({ boe, bump, ecommerce, topic }, 'boe,bump ,data');
   const [value, setValue] = React.useState(0);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -103,7 +103,7 @@ export default function UpdateProduct(props) {
     isLoading: false,
   });
   // --- Detail Product --- //
-  // --- Test Order Bump,  Webinar, ecommerce--- //
+  // --- Test Order Bump,  Boe, ecommerce--- //
   const [objBump, setObjBump] = useState({
     bump_name: bump.bump_name || '',
     bump_price: bump.bump_price || '',
@@ -113,12 +113,14 @@ export default function UpdateProduct(props) {
     bump_desc: bump.bump_desc || '',
   });
 
-  const [objBoe, setObjWebinar] = useState({
-    date: moment(webinar === null ? null : webinar.date).format('YYYY-MM-DD') || '',
-    duration: '',
-    start_time: webinar === null ? null : webinar.start_time || '',
-    client_url: webinar === null ? null : webinar.client_url || '',
+  const [objBoe, setobjBoe] = useState({
+    date:
+      moment(boe && boe.date).format('YYYY-MM-DD'),
+    duration: boe && boe.duration,
+    start_time: boe && boe.start_time,
+    client_url: boe && boe.client_url,
   });
+  console.log(objBoe);
 
   const [objEcommerce, setObjEcommerce] = useState({
     weight: ecommerce === null ? null : ecommerce.weight || 0,
@@ -135,8 +137,8 @@ export default function UpdateProduct(props) {
   const handleBump = (event) => {
     setObjBump({ ...objBump, [event.target.name]: event.target.value });
   };
-  const handleWebinar = (event) => {
-    setObjWebinar({
+  const handleBoe = (event) => {
+    setobjBoe({
       ...objBoe,
       [event.target.name]: event.target.value,
     });
@@ -284,10 +286,10 @@ export default function UpdateProduct(props) {
     values.splice(i, 1);
     setFields(values);
   }
-  let durationUpdate = webinar === null ? null : webinar.duration.split(':');
+  let durationUpdate = boe && boe.duration ? boe.duration.split(':') : null;
   const [duration, setDuration] = useState({
-    hours: durationUpdate === null ? null : durationUpdate[0] || '',
-    minutes: durationUpdate === null ? null : durationUpdate[1] || '',
+    hours: durationUpdate ? durationUpdate[0] : '',
+    minutes: durationUpdate ? durationUpdate[1] : '',
   });
   const handleDuration = (e) => {
     setDuration({ ...duration, [e.target.name]: e.target.value });
@@ -360,13 +362,13 @@ export default function UpdateProduct(props) {
             checked_gratis={objEcommerce.shipping_charges === false}
             bayar_ongkir={bayar_ongkir}
             gratis_ongkir={gratis_ongkir}
-            // --- Webinar --- //
+            // --- Boe --- //
             zoom_id={objBoe.client_url}
             date={objBoe.date}
             start_time={objBoe.start_time}
             duration_hours={duration.hours}
             duration_minute={duration.minutes}
-            handleWebinar={handleWebinar}
+            handleBoe={handleBoe}
             handleDuration={handleDuration}
             isTopic={selecting.topic}
             // --- REACT HOOK FORM --- //

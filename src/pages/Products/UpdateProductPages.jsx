@@ -32,7 +32,7 @@ export default function UpdateProductPages() {
       image_bonus,
       image_url,
       ecommerce,
-      webinar,
+      boe,
       bump,
       topic,
       agent,
@@ -60,7 +60,7 @@ export default function UpdateProductPages() {
           feature_onheader={feature_onheader}
           image_bonus={image_bonus}
           image_url={image_url}
-          webinar={webinar}
+          boe={boe}
           bump={bump}
           ecommerce={ecommerce}
           topic={topic}
@@ -102,10 +102,10 @@ export default function UpdateProductPages() {
           time_period={product.data.time_period}
           type={product.data.type}
           visibility={product.data.visibility}
-          webinar={
-            product.data.webinar === null || product.data.webinar === undefined
+          boe={
+            product.data.boe === null || product.data.boe === undefined
               ? null
-              : product.data.webinar
+              : product.data.boe
           }
           media_url={product.data.media_url !== null && product.data.media_url}
           code={product.data.code}

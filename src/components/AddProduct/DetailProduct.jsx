@@ -52,7 +52,7 @@ export default function DetailProduct(props) {
     // duration,
     weight,
     stock,
-    handleWebinar,
+    handleBoe,
     // --- radio button --- //
     checked_bayar,
     checked_gratis,
@@ -220,7 +220,7 @@ export default function DetailProduct(props) {
                         name="client_url"
                         id="client_url"
                         value={zoom_id}
-                        onChange={handleWebinar}
+                        onChange={handleBoe}
                       />
                     </div>
                   </WrapsField>
@@ -233,7 +233,7 @@ export default function DetailProduct(props) {
                           name="date"
                           id="date"
                           value={date}
-                          onChange={handleWebinar}
+                          onChange={handleBoe}
                         />
                       </div>
                     </WrapsField>
@@ -245,7 +245,7 @@ export default function DetailProduct(props) {
                           name="start_time"
                           id="start_time"
                           value={start_time}
-                          onChange={handleWebinar}
+                          onChange={handleBoe}
                         >
                           {optionsTime.map((item) => {
                             return (

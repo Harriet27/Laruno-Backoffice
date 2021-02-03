@@ -25,10 +25,10 @@ const fetchPostProducts = ({ form, history, setState }) => async () => {
       }
     }
 
-    if (form.type === 'webinar') {
-      delete form.eccomerce;
+    if (form.type === 'boe') {
+      delete form.ecommerce;
     } else {
-      delete form.eccomerce;
+      delete form.ecommerce;
     }
     // --- penting nih --- //
 
@@ -248,10 +248,10 @@ const fetchUpdateProduct = ({ form, id, history, setState }) => async () => {
       }
     }
 
-    if (form.type === 'webinar') {
-      delete form.eccomerce;
+    if (form.type === 'boe') {
+      delete form.ecommerce;
     } else {
-      delete form.eccomerce;
+      delete form.ecommerce;
     }
     // --- penting nih --- //
 
