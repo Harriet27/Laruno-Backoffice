@@ -29,6 +29,7 @@ export default function DetailDataOrders(props) {
     email,
     name,
     address,
+    payment
   } = props;
 
   const DetailDataOrdersToFollowUp = (props) => {
@@ -62,6 +63,7 @@ export default function DetailDataOrders(props) {
       (matching, value) => form[value.trim()]
     );
     console.log(DetailMessage, 'ini detail message');
+    console.log(payment && payment.data);
 
     function raiseInvoiceClicked() {
       const Phone_number =
@@ -156,6 +158,24 @@ export default function DetailDataOrders(props) {
                     </th>
                   </tr>
                 </tfoot>
+              </Table>
+              <br/>
+              <h5>Pembayaran</h5>
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Tipe</th>
+                    <th>Nama</th>
+                    <th>Vendor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{payment && payment.data.info}</td>
+                    <td>{payment && payment.data.name} <img src={payment && payment.data.icon} width="40px" height="20px" /></td>
+                    <td>{payment && payment.data.vendor}</td>
+                  </tr>
+                </tbody>
               </Table>
             </>
           </section>

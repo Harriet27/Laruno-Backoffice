@@ -1,8 +1,9 @@
-import { GET_ORDERS, DETAIL_ORDERS } from '../actions/';
+import { GET_ORDERS, DETAIL_ORDERS, DETAIL_PAYMENT } from '../actions/';
 
 const initialState = {
   getOrders: null,
   detailOrders: null,
+  detailPayment: null,
   success: false,
 };
 
@@ -20,6 +21,12 @@ export default (state = initialState, actions) => {
         detailOrders: actions.data,
         success: true,
       };
+    case DETAIL_PAYMENT:
+      return {
+        ...state,
+        detailPayment: actions.data,
+        success: true
+      }
     default:
       return state;
   }

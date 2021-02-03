@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchShowOrders, fetchGetFollowUp } from '../../store/actions';
+import { fetchOrderPaymentDetail } from '../../store/actions';
 import moment from 'moment';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import { Span } from '../../elements/Styled/StyledTabs';
@@ -37,6 +37,14 @@ export default function FetchDetailPopUp(props) {
     { orders, followup, OrdersFilter, template, Orders, Message },
     'orders filter'
   );
+
+  useEffect(() => {
+    dispatch(fetchOrderPaymentDetail(Orders.payment && Orders.payment.method._id));
+    // eslint-disable-next-line
+  },[]);
+  
+  const paymentDetail = useSelector((state) => state.orders.detailPayment);
+
   return (
     <>
       <DetailDataOrders
@@ -52,6 +60,7 @@ export default function FetchDetailPopUp(props) {
         invoice={Orders.invoice}
         email={Orders.user_info.email}
         message={Message}
+        payment={paymentDetail}
       />
     </>
   );
