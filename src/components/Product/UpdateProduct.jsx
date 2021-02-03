@@ -114,8 +114,7 @@ export default function UpdateProduct(props) {
   });
 
   const [objWebinar, setObjWebinar] = useState({
-    date:
-      moment(webinar === null ? null : webinar.date).format('YYYY-MM-DD') || '',
+    date: moment(webinar === null ? null : webinar.date).format('YYYY-MM-DD') || '',
     duration: '',
     start_time: webinar === null ? null : webinar.start_time || '',
     client_url: webinar === null ? null : webinar.client_url || '',

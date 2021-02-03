@@ -32,7 +32,7 @@ const Actions = ({ id }) => {
           Actions
         </DropdownToggle>
         <DropdownMenu>
-          <DropdownItem header>Actions</DropdownItem>
+          {/* <DropdownItem header>Actions</DropdownItem> */}
           {menuActions.map(item => {
             return <DropdownItem key={item.key} onClick={() => onActionChange(item.name)}>{item.name}</DropdownItem>
           })}
