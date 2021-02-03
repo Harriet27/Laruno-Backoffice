@@ -115,11 +115,12 @@ export default function UpdateProduct(props) {
 
   const [objBoe, setobjBoe] = useState({
     date:
-      moment(boe === null ? null : boe.date).format('YYYY-MM-DD') || '',
-    duration: '',
-    start_time: boe === null ? null : boe.start_time || '',
-    client_url: boe === null ? null : boe.client_url || '',
+      moment(boe && boe.date).format('YYYY-MM-DD'),
+    duration: boe && boe.duration,
+    start_time: boe && boe.start_time,
+    client_url: boe && boe.client_url,
   });
+  console.log(objBoe);
 
   const [objEcommerce, setObjEcommerce] = useState({
     weight: ecommerce === null ? null : ecommerce.weight || 0,
@@ -285,10 +286,10 @@ export default function UpdateProduct(props) {
     values.splice(i, 1);
     setFields(values);
   }
-  let durationUpdate = boe === null ? null : boe.duration.split(':');
+  let durationUpdate = boe && boe.duration ? boe.duration.split(':') : null;
   const [duration, setDuration] = useState({
-    hours: durationUpdate === null ? null : durationUpdate[0] || '',
-    minutes: durationUpdate === null ? null : durationUpdate[1] || '',
+    hours: durationUpdate ? durationUpdate[0] : '',
+    minutes: durationUpdate ? durationUpdate[1] : '',
   });
   const handleDuration = (e) => {
     setDuration({ ...duration, [e.target.name]: e.target.value });
