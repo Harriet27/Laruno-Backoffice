@@ -171,9 +171,9 @@ export default function DetailDataOrders(props) {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{payment && payment.data.info}</td>
-                    <td>{payment && payment.data.name} <img src={payment && payment.data.icon} width="40px" height="20px" /></td>
-                    <td>{payment && payment.data.vendor}</td>
+                    <td>{payment && payment.data ? payment.data.info : 'N/A'}</td>
+                    <td>{payment && payment.data ? payment.data.name : 'N/A'} <img src={payment && payment.data ? payment.data.icon : ''} width="40px" height="20px" /></td>
+                    <td>{payment && payment.data ? payment.data.vendor : 'N/A'}</td>
                   </tr>
                 </tbody>
               </Table>
