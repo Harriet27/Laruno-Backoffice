@@ -52,7 +52,7 @@ export default function TestAddProduct() {
     code: '',
     slug: '',
     type: '',
-    webinar: '',
+    boe: '',
     ecommerce: '',
     topic: [],
     price: '',
@@ -93,7 +93,7 @@ export default function TestAddProduct() {
     bump_desc: '',
   });
 
-  const [objWebinar, setObjWebinar] = useState({
+  const [objBoe, setobjBoe] = useState({
     date: '',
     duration: '',
     start_time: '',
@@ -114,9 +114,9 @@ export default function TestAddProduct() {
   const handleBump = (event) => {
     setObjBump({ ...objBump, [event.target.name]: event.target.value });
   };
-  const handleWebinar = (event) => {
-    setObjWebinar({
-      ...objWebinar,
+  const handleBoe = (event) => {
+    setobjBoe({
+      ...objBoe,
       [event.target.name]: event.target.value,
     });
   };
@@ -146,8 +146,8 @@ export default function TestAddProduct() {
   };
   console.log(form.bump, 'form_bump');
   form.bump = [{ ...objBump }];
-  // form.webinar = { ...objWebinar };
-  form.boe = { ...objWebinar };
+  // form.webinar = { ...objBoe };
+  form.boe = { ...objBoe };
   form.ecommerce = { ...objEcommerce };
   form.feature = { ...objFeature };
 
@@ -301,7 +301,7 @@ export default function TestAddProduct() {
   const handleDuration = (e) => {
     setDuration({ ...duration, [e.target.name]: e.target.value });
   };
-  objWebinar.duration = duration.hours + ':' + duration.minutes;
+  objBoe.duration = duration.hours + ':' + duration.minutes;
 
   // --- react quill --- //
   const [quill, setQuill] = useState('');
@@ -377,12 +377,12 @@ export default function TestAddProduct() {
             bayar_ongkir={bayar_ongkir}
             gratis_ongkir={gratis_ongkir}
             // --- Webinar --- //
-            zoom_id={objWebinar.client_url}
-            date={objWebinar.date}
-            start_time={objWebinar.start_time}
+            zoom_id={objBoe.client_url}
+            date={objBoe.date}
+            start_time={objBoe.start_time}
             duration_hours={duration.hours}
             duration_minute={duration.minutes}
-            handleWebinar={handleWebinar}
+            handleBoe={handleBoe}
             handleDuration={handleDuration}
             isTopic={selecting.topic}
             // --- REACT HOOK FORM --- //
