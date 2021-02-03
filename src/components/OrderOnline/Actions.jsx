@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -6,7 +7,7 @@ import {
   DropdownItem
 } from 'reactstrap';
 
-import { actionOrder } from '../../store/actions';
+import { actionOrder, fetchShowOrders } from '../../store/actions';
 
 const Actions = ({ id }) => {
   const menuActions = [
@@ -16,25 +17,43 @@ const Actions = ({ id }) => {
     { key: 4, name: 'EXPIRED' }
   ];
 
+  const dispatch = useDispatch();
+
+  const [update, setUpdate] = React.useState(false);
+  
+  React.useEffect(() => {
+    if (update) {
+      setUpdate(false);
+    }
+    dispatch(fetchShowOrders(id));
+  }, [dispatch, update, id]);
+
   const onActionChange = status => {
     actionOrder(id, status);
-  }
+    setUpdate(true);
+  };
 
   return (
     <>
       <UncontrolledDropdown>
         <DropdownToggle
+          caret
           size="sm"
           color="none"
-          style={{ border: '1px solid #d9dee2', background: 'white' }}
-          caret
+          style={{
+            border: '1px solid #d9dee2',
+            background: 'white'
+          }}
         >
           Actions
         </DropdownToggle>
         <DropdownMenu>
-          {/* <DropdownItem header>Actions</DropdownItem> */}
           {menuActions.map(item => {
-            return <DropdownItem key={item.key} onClick={() => onActionChange(item.name)}>{item.name}</DropdownItem>
+            return (
+              <DropdownItem key={item.key} onClick={() => onActionChange(item.name)}>
+                {item.name}
+              </DropdownItem>
+            );
           })}
         </DropdownMenu>
       </UncontrolledDropdown>
