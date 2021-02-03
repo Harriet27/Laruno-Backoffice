@@ -113,7 +113,7 @@ export default function UpdateProduct(props) {
     bump_desc: bump.bump_desc || '',
   });
 
-  const [objWebinar, setObjWebinar] = useState({
+  const [objBoe, setObjWebinar] = useState({
     date: moment(webinar === null ? null : webinar.date).format('YYYY-MM-DD') || '',
     duration: '',
     start_time: webinar === null ? null : webinar.start_time || '',
@@ -137,11 +137,11 @@ export default function UpdateProduct(props) {
   };
   const handleWebinar = (event) => {
     setObjWebinar({
-      ...objWebinar,
+      ...objBoe,
       [event.target.name]: event.target.value,
     });
   };
-  console.log('update product', objWebinar);
+  console.log('update product', objBoe);
 
   const handleEcommerce = (event) => {
     setObjEcommerce({
@@ -168,7 +168,7 @@ export default function UpdateProduct(props) {
   };
 
   form.bump = [{ ...objBump }];
-  form.boe = { ...objWebinar };
+  form.boe = { ...objBoe };
   form.ecommerce = { ...objEcommerce };
   form.feature = { ...objFeature };
 
@@ -300,7 +300,7 @@ export default function UpdateProduct(props) {
   // const [arrImageProduct, setArrImageProduct] = useState([]);
   form.learn_about = [...fields];
   form.section = [...sectionAdd];
-  objWebinar.duration = duration.hours + ':' + duration.minutes;
+  objBoe.duration = duration.hours + ':' + duration.minutes;
   form.description = quill;
   form.image_url = formulir.image.image_url;
   objBump.bump_image = formulir.image.bump_image;
@@ -361,9 +361,9 @@ export default function UpdateProduct(props) {
             bayar_ongkir={bayar_ongkir}
             gratis_ongkir={gratis_ongkir}
             // --- Webinar --- //
-            zoom_id={objWebinar.client_url}
-            date={objWebinar.date}
-            start_time={objWebinar.start_time}
+            zoom_id={objBoe.client_url}
+            date={objBoe.date}
+            start_time={objBoe.start_time}
             duration_hours={duration.hours}
             duration_minute={duration.minutes}
             handleWebinar={handleWebinar}
