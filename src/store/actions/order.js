@@ -2,6 +2,7 @@
 
 const GET_ORDERS = 'GET_ORDERS';
 const DETAIL_ORDERS = 'DETAIL_ORDERS';
+const DETAIL_PAYMENT = 'DETAIL_PAYMENT';
 
 // --- Get Orders --- //
 const getOrder = (data) => {
@@ -53,6 +54,26 @@ const fetchShowOrders = (id) => async (dispatch) => {
   dispatch(detailOrders(result));
 };
 
+const detailPayment = data => {
+  return {
+    type: DETAIL_PAYMENT,
+    data
+  }
+}
+
+const fetchOrderPaymentDetail = id => async dispatch => {
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/payments/method/${id}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json'
+    }
+  }
+  const response = await fetch(url, options);
+  const result = await response.json();
+  dispatch(detailPayment(result));
+}
+
 const actionOrder = async (id, status) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   const url = `${process.env.REACT_APP_API_LIVE}/api/v1/orders/${id}?status=${status}`;
@@ -74,6 +95,9 @@ export {
   fetchGetOrders,
   detailOrders,
   fetchShowOrders,
+  detailPayment,
+  fetchOrderPaymentDetail,
   actionOrder,
   DETAIL_ORDERS,
+  DETAIL_PAYMENT
 };
