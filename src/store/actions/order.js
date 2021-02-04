@@ -5,6 +5,7 @@ import Axios from 'axios';
 const GET_ORDERS = 'GET_ORDERS';
 const DETAIL_ORDERS = 'DETAIL_ORDERS';
 const DETAIL_PAYMENT = 'DETAIL_PAYMENT';
+const DETAIL_TRANSFER_CONFIRM = 'DETAIL_TRANSFER_CONFIRM';
 
 // --- Get Orders --- //
 const getOrder = (data) => {
@@ -77,6 +78,26 @@ const fetchOrderPaymentDetail = id => async dispatch => {
   dispatch(detailPayment(result));
 }
 
+const detailTransferConfirm = data => {
+  return {
+    type: DETAIL_TRANSFER_CONFIRM,
+    data
+  }
+}
+
+const fetchOrderTransferConfirm = invoice => async dispatch => {
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/transfer_confirms?fields=invoice_number&value=${invoice}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json'
+    }
+  }
+  const response = await fetch(url, options);
+  const result = await response.json();
+  dispatch(detailTransferConfirm(result));
+}
+
 const actionOrder = async (id, status) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   const url = `${process.env.REACT_APP_API_LIVE}/api/v1/orders/${id}?status=${status}`;
@@ -95,13 +116,16 @@ const actionOrder = async (id, status) => {
 
 export {
   getOrder,
-  GET_ORDERS,
   fetchGetOrders,
   detailOrders,
   fetchShowOrders,
   detailPayment,
   fetchOrderPaymentDetail,
+  detailTransferConfirm,
+  fetchOrderTransferConfirm,
   actionOrder,
+  GET_ORDERS,
   DETAIL_ORDERS,
-  DETAIL_PAYMENT
+  DETAIL_PAYMENT,
+  DETAIL_TRANSFER_CONFIRM
 };

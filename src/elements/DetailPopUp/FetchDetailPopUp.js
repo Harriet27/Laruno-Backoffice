@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOrderPaymentDetail } from '../../store/actions';
+import { fetchOrderPaymentDetail, fetchOrderTransferConfirm } from '../../store/actions';
 import moment from 'moment';
 import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import { Span } from '../../elements/Styled/StyledTabs';
@@ -40,10 +40,12 @@ export default function FetchDetailPopUp(props) {
 
   useEffect(() => {
     dispatch(fetchOrderPaymentDetail(Object.keys(Orders.payment).length === 0 ? 0 : Orders.payment.method._id));
+    dispatch(fetchOrderTransferConfirm(Orders.invoice));
     // eslint-disable-next-line
   },[]);
   
   const paymentDetail = useSelector((state) => state.orders.detailPayment);
+  const transferConfirmDetail = useSelector((state) => state.orders.detailTransferConfirm);
 
   return (
     <>
@@ -61,6 +63,7 @@ export default function FetchDetailPopUp(props) {
         email={Orders.user_info.email}
         message={Message}
         payment={paymentDetail}
+        transfer={transferConfirmDetail}
       />
     </>
   );

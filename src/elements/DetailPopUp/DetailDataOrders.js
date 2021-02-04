@@ -29,7 +29,8 @@ export default function DetailDataOrders(props) {
     email,
     name,
     address,
-    payment
+    payment,
+    transfer
   } = props;
 
   const DetailDataOrdersToFollowUp = (props) => {
@@ -159,24 +160,68 @@ export default function DetailDataOrders(props) {
                   </tr>
                 </tfoot>
               </Table>
-              <br/>
-              <h5>Pembayaran</h5>
-              <Table>
-                <thead>
-                  <tr>
-                    <th>Tipe</th>
-                    <th>Nama</th>
-                    <th>Vendor</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{payment && payment.data ? payment.data.info : 'N/A'}</td>
-                    <td>{payment && payment.data ? payment.data.name : 'N/A'} <img src={payment && payment.data ? payment.data.icon : ''} width="40px" height="20px" /></td>
-                    <td>{payment && payment.data ? payment.data.vendor : 'N/A'}</td>
-                  </tr>
-                </tbody>
-              </Table>
+              {payment && payment.data && (
+                <>
+                  <br/>
+                  <h5>Metode Pembayaran</h5>
+                  <Table>
+                    <thead>
+                      <tr>
+                        <th>Tipe</th>
+                        <th>Nama</th>
+                        <th>Vendor</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{payment && payment.data.info}</td>
+                        <td>{payment && payment.data.name} <img src={payment && payment.data.icon} width="40px" height="20px" /></td>
+                        <td>{payment && payment.data.vendor}</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </>
+              )}
+              {transfer && transfer.length > 0 && (
+                <>
+                  <br/>
+                  <h5>Detail Pembayaran</h5>
+                  <Table>
+                    <thead>
+                      <tr>
+                        <th>Destinasi Bank</th>
+                        <th>Konfirmasi</th>
+                        <th>Tanggal Transfer</th>
+                        <th>Nama Bank</th>
+                        <th>Nama Pemilik</th>
+                        <th>No Rekening</th>
+                        <th>Nomor Invoice</th>
+                        <th>Created at</th>
+                        <th>Updated at</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        {transfer.data.map(item => {
+                          return (
+                            <>
+                              <td>{item.destination_bank}</td>
+                              <td>{item.is_confirmed ? 'Sudah terkonfirmasi' : 'Belum terkonfirmasi'}</td>
+                              <td>{moment(item.date).format('DD-MM-YYYY - hh:mm')}</td>
+                              <td>{item.bank_name}</td>
+                              <td>{item.account_owner_name}</td>
+                              <td>{item.account_number}</td>
+                              <td>{item.invoice_number}</td>
+                              <td>{moment(item.created_at).format('DD-MM-YYYY - hh:mm')}</td>
+                              <td>{moment(item.updated_at).format('DD-MM-YYYY - hh:mm')}</td>
+                            </>
+                          )
+                        })}
+                      </tr>
+                    </tbody>
+                  </Table>
+                </>
+              )}
             </>
           </section>
         </ModalBody>
