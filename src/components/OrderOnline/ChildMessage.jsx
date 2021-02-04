@@ -29,6 +29,7 @@ export default function ChildMessage_1(props) {
       : null;
   });
   const order = OrdersFilter[0];
+  console.log('ChildMessage Modal form:', order);
   const Message = template[0].template;
   console.log({ order, Message }, 'child');
   return (
