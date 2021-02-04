@@ -4,7 +4,8 @@ const initialState = {
   getOrders: null,
   detailOrders: null,
   detailPayment: null,
-  success: false,
+  successDetailPayment: false,
+  successGetOrder: false,
 };
 
 export default (state = initialState, actions) => {
@@ -13,7 +14,7 @@ export default (state = initialState, actions) => {
       return {
         ...state,
         getOrders: actions.data,
-        success: true,
+        successGetOrder: true,
       };
     case DETAIL_ORDERS:
       return {
@@ -25,7 +26,7 @@ export default (state = initialState, actions) => {
       return {
         ...state,
         detailPayment: actions.data,
-        success: true
+        successDetailPayment: true
       }
     default:
       return state;

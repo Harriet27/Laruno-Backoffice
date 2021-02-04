@@ -1,13 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { actionOrder } from '../../store/actions';
 import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
-
-import { actionOrder, fetchShowOrders } from '../../store/actions';
+import { useSelector } from 'react-redux';
 
 const Actions = ({ id }) => {
   const menuActions = [
@@ -17,20 +16,21 @@ const Actions = ({ id }) => {
     { key: 4, name: 'EXPIRED' }
   ];
 
-  const dispatch = useDispatch();
-
   const [update, setUpdate] = React.useState(false);
-  
+
+  const successDetailPayment = useSelector(({ orders }) => orders.successDetailPayment);
+
   React.useEffect(() => {
     if (update) {
       setUpdate(false);
     }
-    dispatch(fetchShowOrders(id));
-  }, [dispatch, update, id]);
+  }, [update]);
 
   const onActionChange = status => {
     actionOrder(id, status);
-    setUpdate(true);
+    if (successDetailPayment) {
+      setUpdate(true);
+    }
   };
 
   return (
