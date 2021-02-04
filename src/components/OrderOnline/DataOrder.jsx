@@ -114,7 +114,7 @@ const DataOrders = (props) => {
           <Th>Total Price</Th>
           <Th style={{ width: '5%' }}>Payment Status</Th>
           <Th style={{ width: '10%' }}>Follow Up</Th>
-          <Th style={{ width: '10%' }}>Actions</Th>
+          {/* <Th style={{ width: '10%' }}>Actions</Th> */}
         </tr>
       </thead>
     );
@@ -245,9 +245,9 @@ const DataOrders = (props) => {
         <Th as="td" td>
           {TableFollowUP(item)}
         </Th>
-        <Th as="td" td>
+        {/* <Th as="td" td>
           <Actions id={item._id} />
-        </Th>
+        </Th> */}
       </TableRow>
     );
   };

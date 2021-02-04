@@ -14,6 +14,9 @@ import {
   ModalFooter,
   Table,
 } from 'reactstrap';
+
+import Actions from '../../components/OrderOnline/Actions';
+
 const Icon = Styled.div`
 margin-bottom: 10px;
 `;
@@ -29,6 +32,7 @@ export default function DetailDataOrders(props) {
     email,
     name,
     address,
+    orderId,
     payment,
     transfer
   } = props;
@@ -118,6 +122,8 @@ export default function DetailDataOrders(props) {
                   )}
                   {/* - */}
                 </>
+                <br/>
+                <Actions id={orderId} />
               </div>
             </div>
 

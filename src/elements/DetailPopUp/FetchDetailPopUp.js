@@ -64,6 +64,7 @@ export default function FetchDetailPopUp(props) {
         message={Message}
         payment={paymentDetail}
         transfer={transferConfirmDetail}
+        orderId={id}
       />
     </>
   );
