@@ -8,7 +8,7 @@ const DetailPopUp = (props) => {
     open: false,
   });
 
-  console.log(modal, 'mau tahu modal di order');
+  // console.log(modal, 'mau tahu modal di order');
   const toggle = () =>
     setModal({
       ...modal,

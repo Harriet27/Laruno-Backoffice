@@ -38,7 +38,7 @@ export default function WhattsapMessage(props) {
     const handleChange = (e) => {
       setState({ ...state, [e.target.name]: e.target.value });
     };
-    console.log({ form, message }, 'LIHAT');
+    // console.log({ form, message }, 'LIHAT');
     function raiseInvoiceClicked() {
       const Phone_number =
         state.phone_number.substring(0, 0) +
@@ -64,9 +64,10 @@ export default function WhattsapMessage(props) {
         </label>
         <Input
           style={{ width: '100%' }}
-          type="number"
+          type="text"
           name="phone_number"
           value={state.phone_number}
+          defaultValue={state.phone_number}
           onChange={handleChange}
         />
         <label>
