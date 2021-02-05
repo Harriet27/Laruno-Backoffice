@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
-import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, UncontrolledDropdown, DropdownItem } from 'reactstrap';
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,10 +9,11 @@ import { Input, Th, Overflow } from '../../elements/Styled/StyledForm';
 import moment from 'moment';
 import AddTemplateFollowUp from './AddTemplateFollowUp';
 // --- Elements, Pages, Components --- //
-import { fetchGetFollowUp } from '../../store/actions';
+import { fetchGetFollowUp, deleteFollowUp } from '../../store/actions';
 import { CircularProgress, TableFooter } from '@material-ui/core';
 import ParentsLayoutFollowUp from '../FollowUpOrderTemplate/ParentsLayoutFollowUp';
 import MultipleActions from '../../elements/MultipleActions/MultipleActions';
+import Swal from 'sweetalert2';
 
 // --- Styled Components --- //
 
@@ -75,11 +76,32 @@ export default function DataTemplateFollowUp(props) {
           <Th>Name</Th>
           <Th>Template</Th>
           <Th>Type</Th>
-          <Th>Admin By</Th>
+          <Th>Admin</Th>
           <Th style={{ width: '100px' }}>Actions</Th>
         </tr>
       </thead>
     );
+  };
+
+  const handleDeleteTemplate = (id) => {
+    Swal.fire({
+      title: `Are you sure you want to delete template id ${id}?`,
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteFollowUp(id));
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        );
+      }
+    })
   };
 
   const TableBody = (item, index) => {
@@ -115,7 +137,30 @@ export default function DataTemplateFollowUp(props) {
           {item.type}
         </Th>
         <Th as="td" td>
-          {/* {item.by.name} */} -
+          -
+        </Th>
+        <Th as="td" td>
+          <UncontrolledDropdown>
+            <DropdownToggle
+              caret
+              size="sm"
+              color="none"
+              style={{
+                border: '1px solid #d9dee2',
+                background: 'white'
+              }}
+            >
+              Actions
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem>
+                Edit
+              </DropdownItem>
+              <DropdownItem onClick={() => handleDeleteTemplate(item._id)}>
+                Delete
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexRow}></div>
@@ -154,6 +199,7 @@ export default function DataTemplateFollowUp(props) {
       </Table>
     );
   };
+
   return (
     <section style={{ margin: '50px' }}>
       <MultipleActions
@@ -186,19 +232,21 @@ export default function DataTemplateFollowUp(props) {
               </div>
             </React.Fragment>
           ) : followupFilter.length === 0 && followup.data.length > 0 ? (
-            <Table striped>
-              {TableHeading()}
-              <tbody>
-                {followup.data
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((item, index) => {
-                    return TableBody(item, index);
-                  })}
-              </tbody>
-              <tfoot>
-                {TableFooter(followup !== null && followup.data.length)}
-              </tfoot>
-            </Table>
+            <>
+              <Table striped>
+                {TableHeading()}
+                <tbody>
+                  {followup.data
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((item, index) => {
+                      return TableBody(item, index);
+                    })}
+                </tbody>
+                <tfoot>
+                  {TableFooter(followup !== null && followup.data.length)}
+                </tfoot>
+              </Table>
+            </>
           ) : followupFilter.length > 0 ? (
             SearchBar()
           ) : (

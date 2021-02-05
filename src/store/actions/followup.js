@@ -123,6 +123,26 @@ const fetchUpdateFollowUp = (form, id) => async () => {
   }
 };
 
+const deleteFollowUp = (id) => async () => {
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  try {
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/followups/${id}`;
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await fetch(url, options);
+    if (response.status === 200) {
+      window.location.reload();
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export {
   getFollowUp,
   FOLLOW_UP,
@@ -132,4 +152,5 @@ export {
   fetchGetFollowUp,
   fetchPostFollowUp,
   fetchUpdateFollowUp,
+  deleteFollowUp,
 };
