@@ -12,6 +12,7 @@ import AddTemplateFollowUp from './AddTemplateFollowUp';
 import { fetchGetFollowUp, deleteFollowUp } from '../../store/actions';
 import { CircularProgress, TableFooter } from '@material-ui/core';
 import ParentsLayoutFollowUp from '../FollowUpOrderTemplate/ParentsLayoutFollowUp';
+import EditFollowUp from '../FollowUpOrderTemplate/EditFollowUp';
 import MultipleActions from '../../elements/MultipleActions/MultipleActions';
 import Swal from 'sweetalert2';
 
@@ -77,7 +78,8 @@ export default function DataTemplateFollowUp(props) {
           <Th>Template</Th>
           <Th>Type</Th>
           <Th>Admin</Th>
-          <Th style={{ width: '100px' }}>Actions</Th>
+          <Th>Actions</Th>
+          <Th>ID</Th>
         </tr>
       </thead>
     );
@@ -103,6 +105,21 @@ export default function DataTemplateFollowUp(props) {
       }
     })
   };
+
+  const [editModal, setEditModal] = useState({
+    open: false,
+  });
+
+  const toggleEditModal = (event, id) => {
+    setEditModal({
+      ...editModal,
+      open: !editModal.open,
+    });
+    setSelectedIdModal(id);
+    console.log('toggleEditModal',id);
+  };
+
+  const [selectedIdModal, setSelectedIdModal] = useState(0);
 
   const TableBody = (item, index) => {
     return (
@@ -153,7 +170,7 @@ export default function DataTemplateFollowUp(props) {
               Actions
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem>
+              <DropdownItem onClick={e => toggleEditModal(e,item._id)}>
                 Edit
               </DropdownItem>
               <DropdownItem onClick={() => handleDeleteTemplate(item._id)}>
@@ -161,6 +178,9 @@ export default function DataTemplateFollowUp(props) {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
+        </Th>
+        <Th as="td" td>
+          {item._id}
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexRow}></div>
@@ -202,14 +222,15 @@ export default function DataTemplateFollowUp(props) {
 
   return (
     <section style={{ margin: '50px' }}>
-      <MultipleActions
-        isLogic={form.id[0]}
-        // handleClone={handleMultipleClone}
-        // handleDelete={handleMultipleDelete}
-      />
+      <MultipleActions isLogic={form.id[0]} />
 
       <div style={Styles.FlexBetween}>
         <ParentsLayoutFollowUp />
+        <EditFollowUp 
+          isOpen={editModal.open}
+          toggle={toggleEditModal}
+          id={selectedIdModal}
+        />
 
         <div>
           <Input
