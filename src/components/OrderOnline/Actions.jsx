@@ -45,7 +45,7 @@ const Actions = ({ id }) => {
             background: 'white'
           }}
         >
-          Actions
+          Update Status
         </DropdownToggle>
         <DropdownMenu>
           {menuActions.map(item => {
