@@ -6,6 +6,7 @@ import FormatNumber from '../../elements/FormatNumber/FormatNumber';
 import { Span } from '../../elements/Styled/StyledTabs';
 import { Input } from '../../elements/Styled/StyledForm';
 import Styled from 'styled-components';
+import FollowUp from '../../components/OrderOnline/FollowUp';
 import {
   Button,
   Modal,
@@ -20,9 +21,11 @@ import Actions from '../../components/OrderOnline/Actions';
 const Icon = Styled.div`
 margin-bottom: 10px;
 `;
+
 export default function DetailDataOrders(props) {
   const {
     orders,
+    orderFollowUp,
     toggle,
     message,
     phone_number,
@@ -34,7 +37,8 @@ export default function DetailDataOrders(props) {
     address,
     orderId,
     payment,
-    transfer
+    transfer,
+    followup
   } = props;
 
   const DetailDataOrdersToFollowUp = (props) => {
@@ -124,6 +128,45 @@ export default function DetailDataOrders(props) {
                 </>
                 <br/>
                 <Actions id={orderId} />
+                <hr/>
+                <h6>Follow Up</h6>
+                <div style={Styles.FlexRow}>
+                  <FollowUp
+                    id={orderId}
+                    orders={orderFollowUp}
+                    title="FollowUp 1"
+                    number="1"
+                    followup={followup}
+                  />
+                  <FollowUp
+                    id={orderId}
+                    orders={orderFollowUp}
+                    title="FollowUp 2"
+                    number="2"
+                    followup={followup}
+                  />
+                  <FollowUp
+                    id={orderId}
+                    orders={orderFollowUp}
+                    title="FollowUp 3"
+                    number="3"
+                    followup={followup}
+                  />
+                  <FollowUp
+                    id={orderId}
+                    orders={orderFollowUp}
+                    title="FollowUp 4"
+                    number="4"
+                    followup={followup}
+                  />
+                  <FollowUp
+                    id={orderId}
+                    orders={orderFollowUp}
+                    title="FollowUp 5"
+                    number="5"
+                    followup={followup}
+                  />
+                </div>
               </div>
             </div>
 
@@ -233,11 +276,11 @@ export default function DetailDataOrders(props) {
         </ModalBody>
         <ModalFooter>
           <Button color="white" style={Styles.ButtonFotter} onClick={toggle}>
-            Cancel
+            Close
           </Button>
-          <Button color="primary" onClick={raiseInvoiceClicked}>
+          {/* <Button color="primary" onClick={raiseInvoiceClicked}>
             Follow Up
-          </Button>
+          </Button> */}
         </ModalFooter>
       </>
     );

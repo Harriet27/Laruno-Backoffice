@@ -114,6 +114,22 @@ const actionOrder = async (id, status) => {
   window.location.reload();
 }
 
+const deleteOrder = async id => {
+  const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
+  const url = `${process.env.REACT_APP_API_LIVE}/api/v1/orders/${id}/delete`;
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const res = await fetch(url, options);
+  const result = await res.json();
+  console.log(result);
+  window.location.reload();
+}
+
 export {
   getOrder,
   fetchGetOrders,
@@ -124,6 +140,7 @@ export {
   detailTransferConfirm,
   fetchOrderTransferConfirm,
   actionOrder,
+  deleteOrder,
   GET_ORDERS,
   DETAIL_ORDERS,
   DETAIL_PAYMENT,
