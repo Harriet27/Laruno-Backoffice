@@ -176,12 +176,13 @@ export default function DetailDataOrders(props) {
                 <thead>
                   <tr>
                     <th>Items</th>
-                    {/* <th style={{ width: '10%' }}>Quantity</th> */}
-                    <th style={{ width: '15%' }}>Price</th>
+                    <th>Quantity</th>
+                    <th>Coupon</th>
+                    <th>Price</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.items.map((item, index) => {
+                  {/* {orders.items.map((item, index) => {
                     return (
                       <tr key={index}>
                         <td>
@@ -189,10 +190,40 @@ export default function DetailDataOrders(props) {
                             ? 'no product'
                             : item.product_info.name}
                         </td>
-                        {/* <td>{item.quantity} items</td> */}
+                        <td>{item.quantity} items</td>
                         <td>
                           Rp.
                           {FormatNumber(item.sub_price * item.quantity)}
+                        </td>
+                      </tr>
+                    );
+                  })} */}
+                  {orders.items.map((val, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>
+                          {
+                            val.product_info === null
+                            ?
+                            'no product'
+                            :
+                            val.product_info.name
+                          }
+                        </td>
+                        <td>
+                          {val.quantity} items
+                        </td>
+                        <td>
+                          {
+                            orders.coupon === null
+                            ?
+                            "-"
+                            :
+                            orders.coupon.code
+                          }
+                        </td>
+                        <td>
+                          Rp. {FormatNumber(val.sub_price * val.quantity)}
                         </td>
                       </tr>
                     );
@@ -200,11 +231,19 @@ export default function DetailDataOrders(props) {
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>total</th>
-                    {/* <th>{total_qty} items</th> */}
+                    <th>Total</th>
+                    <th>{total_qty} items</th>
                     <th>
-                      Rp.
-                      {FormatNumber(total_price)}
+                      {
+                        orders.coupon === null
+                        ?
+                        "-"
+                        :
+                        orders.coupon.max_discount
+                      }
+                    </th>
+                    <th>
+                      Rp. {FormatNumber(total_price)}
                     </th>
                   </tr>
                 </tfoot>

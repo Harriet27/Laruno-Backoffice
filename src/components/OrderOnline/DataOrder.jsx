@@ -320,9 +320,14 @@ const DataOrders = (props) => {
                 <tbody>
                   {orders.data
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    // .map((item, index) => {
+                    //   return TableBody(item, index);
+                    // })}
                     .map((item, index) => {
                       return TableBody(item, index);
-                    })}
+                    })
+                    // .sort((a,b) => a.date - b.date)
+                  }
                 </tbody>
                 <tfoot>
                   {TableFooter(orders !== null && orders.data.length)}
