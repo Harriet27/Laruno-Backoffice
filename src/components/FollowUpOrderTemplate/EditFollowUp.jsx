@@ -44,6 +44,7 @@ const EditFollowUp = (props) => {
 
   const [form, setForm] = useState({
     id: '',
+    message: '',
   });
 
   useEffect(() => {
@@ -84,6 +85,7 @@ const EditFollowUp = (props) => {
   const handleChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
+  console.log('EditFollowUp onChange', form);
 
   const note = {
     name: `{{name}}`,
@@ -94,111 +96,11 @@ const EditFollowUp = (props) => {
     email: `{{email}}`,
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // dispatch(fetchUpdateFollowUp(form, id));
 
-  // return (
-  //   <div>
-  //     <Modal
-  //       isOpen={isOpen}
-  //       toggle={toggle}
-  //       style={Styles.Modal}
-  //     >
-  //       <ModalHeader toggle={toggle}>Edit Template for id {id}</ModalHeader>
-  //       <Card style={Styles.Card}>
-  //         <WrapForm>
-  //           <label>Type</label>
-  //           <Input
-  //             as="select"
-  //             name="id"
-  //             id="id"
-  //             defaultValue={form.id}
-  //           >
-  //             <option value="" disabled hidden>
-  //               Choose here
-  //             </option>
-  //             {temp1 !== false && (
-  //               <option key={temp1[0]._id} value={temp1[0]._id}>
-  //                 Follow Up 1
-  //               </option>
-  //             )}
-  //             {temp2 !== false && (
-  //               <option key={temp2[0]._id} value={temp2[0]._id}>
-  //                 Follow Up 2
-  //               </option>
-  //             )}
-  //             {temp3 !== false && (
-  //               <option key={temp3[0]._id} value={temp3[0]._id}>
-  //                 Follow Up 3
-  //               </option>
-  //             )}
-  //             {temp4 !== false && (
-  //               <option key={temp4[0]._id} value={temp4[0]._id}>
-  //                 Follow Up 4
-  //               </option>
-  //             )}
-  //             {temp5 !== false && (
-  //               <option key={temp5[0]._id} value={temp5[0]._id}>
-  //                 Follow Up 5
-  //               </option>
-  //             )}
-  //             {temp6 !== false && (
-  //               <option key={temp6[0]._id} value={temp6[0]._id}>
-  //                 Detail Orders
-  //               </option>
-  //             )}
-  //           </Input>
-  //         </WrapForm>
-  //         <>
-  //           <WrapForm>
-  //             <label>Template</label>
-  //             <Input
-  //               as="textarea"
-  //               rows="5"
-  //               name="template"
-  //               id="template"
-  //               defaultValue={form.template}
-  //               onChange={handleChange}
-  //             />
-  //           </WrapForm>
-  //           <WrapForm>Note untuk membuat Template WA</WrapForm>
-
-  //           <div style={{ marginBottom: '10px' }}>
-  //             <div>
-  //               <Span>{note.name}</Span> :Nama Costumer
-  //             </div>
-  //             <div>
-  //               <Span>{note.phone}</Span> :Nomor telephone Costumer
-  //             </div>
-  //             <div>
-  //               <Span>{note.total_price}</Span> :Nama Product
-  //             </div>
-  //             <div>
-  //               <Span>{note.total_qty}</Span> :total items yang di beli
-  //             </div>
-  //             <div>
-  //               <Span>{note.invoice}</Span> :invoice number
-  //             </div>
-  //             <div>
-  //               <Span>{note.email}</Span> : email pembeli
-  //             </div>
-  //           </div>
-  //           <ModalFooter>
-  //             <Button
-  //               color="white"
-  //               style={{ border: '1px solid gray' }}
-  //               onClick={toggle}
-  //             >
-  //               Cancel
-  //             </Button>
-  //             <Button color="primary" onClick={handleSubmit}>
-  //               Confirm
-  //             </Button>
-  //           </ModalFooter>
-  //         </>
-  //       </Card>
-  //     </Modal>
-  //   </div>
-  // );
+  };
 
   return (
     <div>
@@ -207,16 +109,52 @@ const EditFollowUp = (props) => {
         toggle={toggle}
         style={Styles.Modal}
       >
-        <ModalHeader toggle={toggle}>Edit Template for id {id}</ModalHeader>
+        <ModalHeader toggle={toggle}>
+          Edit Template for id {id}
+        </ModalHeader>
         <Card style={Styles.Card}>
           <WrapForm>
             <label>Type</label>
-            <input
-              type="text"
+            <Input
+              as="select"
               name="id"
               id="id"
               defaultValue={form.id}
-            ></input>
+            >
+              <option value="" disabled hidden>
+                Choose here
+              </option>
+              {temp1 !== false && (
+                <option key={temp1[0]._id} value={temp1[0]._id}>
+                  Follow Up 1
+                </option>
+              )}
+              {temp2 !== false && (
+                <option key={temp2[0]._id} value={temp2[0]._id}>
+                  Follow Up 2
+                </option>
+              )}
+              {temp3 !== false && (
+                <option key={temp3[0]._id} value={temp3[0]._id}>
+                  Follow Up 3
+                </option>
+              )}
+              {temp4 !== false && (
+                <option key={temp4[0]._id} value={temp4[0]._id}>
+                  Follow Up 4
+                </option>
+              )}
+              {temp5 !== false && (
+                <option key={temp5[0]._id} value={temp5[0]._id}>
+                  Follow Up 5
+                </option>
+              )}
+              {temp6 !== false && (
+                <option key={temp6[0]._id} value={temp6[0]._id}>
+                  Detail Orders
+                </option>
+              )}
+            </Input>
           </WrapForm>
           <>
             <WrapForm>
@@ -226,12 +164,14 @@ const EditFollowUp = (props) => {
                 rows="5"
                 name="template"
                 id="template"
-                defaultValue={form.template}
+                // defaultValue={form.template}
+                defaultValue={form.message}
                 onChange={handleChange}
               />
             </WrapForm>
-            <WrapForm>Note untuk membuat Template WA</WrapForm>
-
+            <WrapForm>
+              Note untuk membuat Template WA
+            </WrapForm>
             <div style={{ marginBottom: '10px' }}>
               <div>
                 <Span>{note.name}</Span> :Nama Costumer

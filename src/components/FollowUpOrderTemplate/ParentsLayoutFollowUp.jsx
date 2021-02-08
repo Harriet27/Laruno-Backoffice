@@ -91,8 +91,8 @@ const ParentsLayoutFollowUp = (props) => {
   return (
     <div>
       <ButtonLink color="primary" size="sm" onClick={toggle}>
-        <div style={{ width: '85px', textAlign: 'center' }}>
-          Add New
+        <div style={{ width: '100px', textAlign: 'center' }}>
+          Edit Template
         </div>
       </ButtonLink>
       <Modal

@@ -170,9 +170,9 @@ export default function DataTemplateFollowUp(props) {
               Actions
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem onClick={e => toggleEditModal(e,item._id)}>
+              {/* <DropdownItem onClick={e => toggleEditModal(e,item._id)}>
                 Edit
-              </DropdownItem>
+              </DropdownItem> */}
               <DropdownItem onClick={() => handleDeleteTemplate(item._id)}>
                 Delete
               </DropdownItem>
