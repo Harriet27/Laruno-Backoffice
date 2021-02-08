@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 import { deleteOrder } from '../../store/actions';
 import {
   UncontrolledDropdown,
@@ -6,14 +7,36 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
-// import { useSelector } from 'react-redux';
 
-const Action = ({ id }) => {
-  const onActionChange = (id, status) => {
-    if (status === 'delete') {
-      deleteOrder(id);
-    }
-  }
+const Action = ({ id }, props) => {
+  const onActionDelete = (id, status) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        if (status === 'delete') {
+          deleteOrder(id);
+        }
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        );
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  };
+
+  const onActionEdit = () => {};
 
   return (
     <>
@@ -30,10 +53,10 @@ const Action = ({ id }) => {
           Actions
         </DropdownToggle>
         <DropdownMenu>
-          <DropdownItem onClick={() => onActionChange(id, 'edit')}>
+          <DropdownItem onClick={() => onActionEdit(id, 'edit')}>
             Edit
           </DropdownItem>
-          <DropdownItem style={{ color: 'red' }} onClick={() => onActionChange(id, 'delete')}>
+          <DropdownItem style={{ color: 'red' }} onClick={() => onActionDelete(id, 'delete')}>
             Delete
           </DropdownItem>
         </DropdownMenu>

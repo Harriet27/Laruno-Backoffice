@@ -178,8 +178,12 @@ const DataOrders = (props) => {
             <DetailPopUp
               id={item._id}
               orders={orders}
-              buttonLabel={<div style={Styles.Name}>{item.user_info.name}</div>}
               followup={followup}
+              buttonLabel={
+                <div style={Styles.Name}>
+                  {item.user_info.name}
+                </div>
+              }
             />
 
             <div
@@ -248,7 +252,12 @@ const DataOrders = (props) => {
           {TableFollowUP(item)}
         </Th>
         <Th as="td" td>
-          <Action id={item._id} />
+          <Action 
+            id={item._id}
+            orders={orders}
+            followup={followup}
+            buttonLabel='Edit'
+          />
         </Th>
       </TableRow>
     );
