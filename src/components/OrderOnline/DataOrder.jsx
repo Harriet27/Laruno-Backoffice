@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import TablePagination from '@material-ui/core/TablePagination';
-import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, UncontrolledDropdown, DropdownItem } from 'reactstrap';
 import { Table } from 'reactstrap';
 import Card from '../../elements/Card/Card';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +16,7 @@ import {
   fetchGetOrders,
   fetchGetFollowUp,
   fetchMultipleDeleteOrderss,
+  deleteOrder,
 } from '../../store/actions';
 import InputOrder from './InputOrder';
 import FollowUp from './FollowUp';
@@ -25,6 +26,7 @@ import TotalData from './TotalData';
 import Order from '../../pages/Order/Order';
 import Actions from './Actions';
 import Action from './Action';
+import Swal from 'sweetalert2';
 
 // --- Styled Components --- //
 
@@ -115,8 +117,7 @@ const DataOrders = (props) => {
           <Th>Total Price</Th>
           <Th style={{ width: '5%' }}>Payment Status</Th>
           <Th style={{ width: '10%' }}>Follow Up</Th>
-          <Th></Th>
-          {/* <Th style={{ width: '10%' }}>Actions</Th> */}
+          <Th>Actions</Th>
         </tr>
       </thead>
     );
@@ -163,6 +164,35 @@ const DataOrders = (props) => {
       </div>
     );
   };
+
+  const onActionDelete = (id, status) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        if (status === 'delete') {
+          dispatch(deleteOrder(id));
+        }
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        );
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  };
+
+  const onActionEdit = () => {};
 
   const TableBody = (item, index) => {
     return (
@@ -252,12 +282,50 @@ const DataOrders = (props) => {
           {TableFollowUP(item)}
         </Th>
         <Th as="td" td>
-          <Action 
+          {/* <Action 
             id={item._id}
             orders={orders}
             followup={followup}
             buttonLabel='Edit'
-          />
+          /> */}
+          <UncontrolledDropdown>
+            <DropdownToggle
+              caret
+              size="sm"
+              color="none"
+              style={{
+                border: '1px solid #d9dee2',
+                background: 'white'
+              }}
+            >
+              Actions
+            </DropdownToggle>
+            <DropdownMenu>
+              <div
+                style={{
+                  margin:' 5px 20px',
+                  cursor:'pointer',
+                }}
+              >
+                <DetailPopUp
+                  id={item._id}
+                  orders={orders}
+                  followup={followup}
+                  buttonLabel="Edit"
+                />
+              </div>
+              <div 
+                onClick={() => onActionDelete(item._id, 'delete')}
+                style={{
+                  color: 'red',
+                  margin:' 5px 20px',
+                  cursor:'pointer',
+                }} 
+              >
+                Delete
+              </div>
+            </DropdownMenu>
+          </UncontrolledDropdown>
         </Th>
       </TableRow>
     );
