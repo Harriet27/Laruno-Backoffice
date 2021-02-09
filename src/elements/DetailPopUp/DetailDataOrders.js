@@ -127,7 +127,7 @@ export default function DetailDataOrders(props) {
                   {/* - */}
                 </>
                 <br/>
-                <Actions id={orderId} />
+                <Actions id={orderId} payment={payment} />
                 <hr/>
                 <h6>Follow Up</h6>
                 <div style={Styles.FlexRow}>
@@ -241,6 +241,18 @@ export default function DetailDataOrders(props) {
                     <th>
                       Rp. {FormatNumber(total_price)}
                     </th>
+                    {/* {orders.items.map((val,index) => {
+                      return (
+                        <th>
+                          Rp 
+                          {
+                            orders.coupon === null
+                            ? FormatNumber(val.sub_price * val.quantity)
+                            : FormatNumber((val.sub_price * val.quantity) - orders.coupon.max_discount)
+                          }
+                        </th>
+                      );
+                    })} */}
                   </tr>
                 </tfoot>
               </Table>
@@ -259,7 +271,7 @@ export default function DetailDataOrders(props) {
                     <tbody>
                       <tr>
                         <td>{payment && payment.data.info}</td>
-                        <td>{payment && payment.data.name} <img src={payment && payment.data.icon} width="40px" height="20px" /></td>
+                        <td>{payment && payment.data.name} <img src={payment && payment.data.icon} width="40px" height="20px" alt='hmm' /></td>
                         <td>{payment && payment.data.vendor}</td>
                       </tr>
                     </tbody>

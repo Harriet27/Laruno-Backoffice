@@ -107,7 +107,7 @@ const getListProduct = (data) => {
 const fetchGetProduct = () => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products?sortby=create_date&sortval=desc`;
     const options = {
       method: 'GET',
       headers: {

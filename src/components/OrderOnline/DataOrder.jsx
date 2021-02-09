@@ -242,8 +242,7 @@ const DataOrders = (props) => {
                           : data.product_info.name}
                       </div>
                       <div style={Styles.marginDetail}>
-                        Price: Rp.
-                        {FormatNumber(data.sub_price)}
+                        Price: Rp. {FormatNumber(data.sub_price * data.quantity)}
                       </div>
                     </div>
                   </div>
