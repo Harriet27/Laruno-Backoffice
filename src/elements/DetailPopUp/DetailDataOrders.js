@@ -177,37 +177,21 @@ export default function DetailDataOrders(props) {
                   <tr>
                     <th>Items</th>
                     <th>Quantity</th>
+                    <th>Bump</th>
+                    <th>Bump Price</th>
                     <th>Coupon</th>
                     <th>Price</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {/* {orders.items.map((item, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>
-                          {item.product_info === null
-                            ? 'no product'
-                            : item.product_info.name}
-                        </td>
-                        <td>{item.quantity} items</td>
-                        <td>
-                          Rp.
-                          {FormatNumber(item.sub_price * item.quantity)}
-                        </td>
-                      </tr>
-                    );
-                  })} */}
                   {orders.items.map((val, index) => {
                     return (
                       <tr key={index}>
                         <td>
-                          {
+                          { 
                             val.product_info === null
-                            ?
-                            'no product'
-                            :
-                            val.product_info.name
+                            ? 'no product'
+                            : val.product_info.name
                           }
                         </td>
                         <td>
@@ -215,11 +199,23 @@ export default function DetailDataOrders(props) {
                         </td>
                         <td>
                           {
+                            val.is_bump
+                            ? 'Bump'
+                            : '-'
+                          }
+                        </td>
+                        <td>
+                          {
+                            val.is_bump
+                            ? val.bump_price
+                            : '-'
+                          }
+                        </td>
+                        <td>
+                          {
                             orders.coupon === null
-                            ?
-                            "-"
-                            :
-                            orders.coupon.code
+                            ? "-"
+                            : orders.coupon.code
                           }
                         </td>
                         <td>
@@ -233,13 +229,13 @@ export default function DetailDataOrders(props) {
                   <tr>
                     <th>Total</th>
                     <th>{total_qty} items</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
                     <th>
                       {
                         orders.coupon === null
-                        ?
-                        "-"
-                        :
-                        orders.coupon.max_discount
+                        ? "-"
+                        : orders.coupon.max_discount
                       }
                     </th>
                     <th>
