@@ -70,9 +70,7 @@ const DataProduct = (props) => {
   };
   const productFilter =
     product !== null &&
-    product.data.filter((item) => {
-      return item.product.name.toLowerCase().includes(input.toLowerCase());
-    });
+    product.data;
 
   useEffect(() => {
     dispatch(fetchGetListProduct());
