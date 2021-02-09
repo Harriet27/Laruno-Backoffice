@@ -102,6 +102,12 @@ export default function DataTemplateFollowUp(props) {
           'Your file has been deleted.',
           'success'
         );
+      } else if (result.dismiss === Swal.DismissReason.cancel ) {
+        Swal.fire(
+          'Cancelled',
+          `Template ID ${id} is kept :)`,
+          'error',
+        );
       }
     })
   };
@@ -170,10 +176,10 @@ export default function DataTemplateFollowUp(props) {
               Actions
             </DropdownToggle>
             <DropdownMenu>
-              {/* <DropdownItem onClick={e => toggleEditModal(e,item._id)}>
+              <DropdownItem onClick={e => toggleEditModal(e,item._id)}>
                 Edit
-              </DropdownItem> */}
-              <DropdownItem onClick={() => handleDeleteTemplate(item._id)}>
+              </DropdownItem>
+              <DropdownItem onClick={() => handleDeleteTemplate(item._id)} style={{color:'red'}}>
                 Delete
               </DropdownItem>
             </DropdownMenu>
