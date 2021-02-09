@@ -185,14 +185,18 @@ const DataOrders = (props) => {
           'Your file has been deleted.',
           'success'
         );
+      } else if (result.dismiss === Swal.DismissReason.cancel ) {
+        Swal.fire(
+          'Cancelled',
+          `Order ID ${id} is kept :)`,
+          'error',
+        );
       }
     })
     .catch((err) => {
       console.log(err);
     })
   };
-
-  const onActionEdit = () => {};
 
   const TableBody = (item, index) => {
     return (
@@ -232,7 +236,7 @@ const DataOrders = (props) => {
                 return (
                   <div key={index}>
                     <div style={Styles.isColumnBottom}>
-                      <div style={Styles.Name}>
+                      <div style={Styles.productName}>
                         {data.product_info === null
                           ? 'no product'
                           : data.product_info.name}
@@ -249,7 +253,7 @@ const DataOrders = (props) => {
           ) : (
             <>
               <div style={Styles.isColumnBottom}>
-                <div style={Styles.Name}>{item.items[0].product_info.name}</div>
+                <div style={Styles.productName}>{item.items[0].product_info.name}</div>
                 <div style={Styles.marginDetail}>
                   Price: Rp.
                   {FormatNumber(item.items[0].sub_price)}
@@ -397,13 +401,9 @@ const DataOrders = (props) => {
                 <tbody>
                   {orders.data
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    // .map((item, index) => {
-                    //   return TableBody(item, index);
-                    // })}
                     .map((item, index) => {
                       return TableBody(item, index);
                     })
-                    // .sort((a,b) => a.date - b.date)
                   }
                 </tbody>
                 <tfoot>
@@ -456,7 +456,14 @@ const Styles = {
     display: 'flex',
     flexDirection: 'row',
   },
-  Name: { color: '#0098da', fontWeight: '700', cursor: 'pointer' },
+  Name: { 
+    color: '#0098da',
+    fontWeight: '700',
+    cursor: 'pointer',
+  },
+  productName: { 
+    fontWeight: '700',
+  },
   marginDetail: {
     fontSize: '12px',
   },
