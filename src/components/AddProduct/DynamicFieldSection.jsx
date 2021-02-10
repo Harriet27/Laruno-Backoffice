@@ -8,6 +8,7 @@ import SingleImage from './SingleImage';
 // import Card from '../../elements/Card/Card';
 import Card from '@material-ui/core/Card';
 import MediaUrl from './MediaUrl';
+import { Spinner } from 'reactstrap';
 const Input = Styled.input`
     width: 100%;
     padding: .375rem;
@@ -62,6 +63,19 @@ const SectionOne = Styled.div`
     }
 `;
 
+const LabelImage = Styled.label`
+border: 1px solid #ccc;
+display: inline-block;
+padding: 6px 12px;
+cursor: pointer;
+background: rgb(0,152,218,0.9);
+color: white;
+border-radius: 3px;
+&:hover{
+  background: rgb(0,152,218);
+}
+`;
+
 export default function DynamicFieldSection(props) {
   const dispatch = useDispatch();
   const {
@@ -82,6 +96,7 @@ export default function DynamicFieldSection(props) {
   const handleChangeImage = (e, id, index) => {
     let image = formulir.image;
     let field = e.target.id;
+    console.log('DynamicFieldSection field', field)
 
     image[field] = e.target.files[0];
     setFormulir({ image });
@@ -131,18 +146,45 @@ export default function DynamicFieldSection(props) {
                         as="textarea"
                         name={`number-${idx}`}
                         rows="5"
-                        value={field.content}
                         placeholder="Content.."
+                        value={field.content}
                         onChange={(e) => handleChangeContents(idx, e)}
                       />
 
-                      <MediaUrl
+                      {/* <MediaUrl
                         id={`image_section_${idx}`}
                         onChange={(e) =>
                           handleChangeImage(e, `image_section_${idx}`, idx)
                         }
                         isLoading={state.isLoading}
-                      />
+                      /> */}
+
+                      <LabelImage>
+                        <input
+                          type="file"
+                          name="file"
+                          style={{ display: 'none' }}
+                          id={`image_section_${idx}`}
+                          onChange={(e) => handleChangeImage(e, `image_section_${idx}`, idx)}
+                          disabled={state.isLoading}
+                          accept=".jpg,.jpeg,.png,.gif"
+                        />
+                        {state.isLoading ? (
+                          <div
+                            disabled
+                            style={{
+                              width: '100px',
+                              textAlign: 'center',
+                              cursor: 'not-allowed',
+                            }}
+                          >
+                            <Spinner size="sm" />
+                          </div>
+                        ) : (
+                          <div style={{ width: '100px', textAlign: 'center' }}>Upload</div>
+                        )}
+                      </LabelImage>
+
                       <div style={{ width: '125px' }}>
                         <img
                           width="100%"
