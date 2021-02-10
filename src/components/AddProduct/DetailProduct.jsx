@@ -33,6 +33,11 @@ const WrapsField = Styled.div`
     width: 100%;
 `;
 
+const Tooltip = Styled.div`
+    color: red;
+    font-size: 14.5px;
+`;
+
 const LabelImage = Styled.label`
 border: 1px solid #ccc;
 display: inline-block;
@@ -491,8 +496,11 @@ export default function DetailProduct(props) {
               </div>
             </>
             <WrapsField>
-              <Label>
-                <Span>Header Media</Span>
+              <Label style={{display:'flex', flexDirection:'column'}}>
+                <Span>Header Media<span style={{color:'red'}}>*</span></Span>
+                <Tooltip>
+                  <span style={{color:'red'}}>*</span>size limit: 10MB
+                </Tooltip>
               </Label>
               <div>
                 {/* <MediaUrl
