@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
+import { Spinner } from 'reactstrap';
 import MediaUrl from './MediaUrl';
 // --- Elements, Pages, Components --- //
 import {
@@ -30,6 +31,19 @@ import {
 const WrapsField = Styled.div`
     margin-bottom: 10px;
     width: 100%;
+`;
+
+const LabelImage = Styled.label`
+border: 1px solid #ccc;
+display: inline-block;
+padding: 6px 12px;
+cursor: pointer;
+background: rgb(0,152,218,0.9);
+color: white;
+border-radius: 3px;
+&:hover{
+  background: rgb(0,152,218);
+}
 `;
 
 export default function DetailProduct(props) {
@@ -412,7 +426,8 @@ export default function DetailProduct(props) {
                     as="select"
                     name="visibility"
                     id="visibility"
-                    defaultValue={visibility}
+                    // defaultValue={visibility}
+                    defaultValue='publish'
                     onChange={onChange}
                   >
                     <option value="" disabled hidden>
@@ -432,7 +447,8 @@ export default function DetailProduct(props) {
                     as="select"
                     name="sale_method"
                     id="sale_method"
-                    defaultValue={sale_method}
+                    // defaultValue={sale_method}
+                    defaultValue='normal'
                     onChange={onChange}
                     // ref={register}
                   >
@@ -479,20 +495,54 @@ export default function DetailProduct(props) {
                 <Span>Header Media</Span>
               </Label>
               <div>
-                <MediaUrl
+                {/* <MediaUrl
                   id="media_url"
                   onChange={(e) => handleChangeMedia(e, 'media_url')}
                   isLoading={media.isLoading}
-                />
+                /> */}
+                <LabelImage>
+                  <input
+                    style={{ display: 'none' }}
+                    type="file"
+                    name="file"
+                    id="media_url"
+                    // onChange={onChange}
+                    onChange={(e) => handleChangeMedia(e, 'media_url')}
+                    disabled={media.isLoading}
+                    // accept="video/mp4,video/x-m4v,video/*,image/x-png,image/gif,image/jpeg"
+                    accept="video/*,image/*"
+                  />
+                  {media.isLoading ? (
+                    <div
+                      disabled
+                      style={{
+                        width: '100px',
+                        textAlign: 'center',
+                        cursor: 'not-allowed',
+                      }}
+                    >
+                      <Spinner size="sm" />
+                    </div>
+                  ) : (
+                    <div style={{ width: '100px', textAlign: 'center' }}>Upload</div>
+                  )}
+                </LabelImage>
               </div>
-              {typeof formulir.image.media_url === 'object' ||
-              formulir.image.media_url === '' ? null : (
+              {
+                typeof formulir.image.media_url === 'object' || formulir.image.media_url === '' 
+                ?
+                null
+                :
+                formulir.image.media_url.match(/.(jpg|jpeg|png|gif)$/i)
+                ?
+                <img src={formulir.image.media_url} alt='media' width="320" height="240" />
+                :
                 <video width="320" height="240" controls>
                   <source src={formulir.image.media_url} type="video/mp4" />
                   <source src={formulir.image.media_url} type="video/ogg" />
                   Your browser does not support the video tag.
                 </video>
-              )}
+              }
             </WrapsField>
           </div>
         </Card>

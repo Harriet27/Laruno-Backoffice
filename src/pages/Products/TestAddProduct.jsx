@@ -78,7 +78,7 @@ export default function TestAddProduct() {
     section: '',
     feature: '',
   });
-  console.log('FORM ADD PRODUCT', form);
+  // console.log('FORM ADD PRODUCT', form);
   const [state, setState] = useState({
     isLoading: false,
   });
@@ -144,7 +144,7 @@ export default function TestAddProduct() {
       setObjEcommerce({ ...objEcommerce, shipping_charges: false });
     }
   };
-  console.log(form.bump, 'form_bump');
+  // console.log(form.bump, 'form_bump');
   form.bump = [{ ...objBump }];
   // form.webinar = { ...objBoe };
   form.boe = { ...objBoe };
@@ -176,7 +176,7 @@ export default function TestAddProduct() {
     agent: '',
     topic: '',
   });
-  console.log(selecting, 'selecting');
+  // console.log(selecting, 'selecting');
   const handleSelectAgent = (agent) => {
     const isAgent =
       agent !== null &&
