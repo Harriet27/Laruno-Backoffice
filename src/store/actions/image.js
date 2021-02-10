@@ -39,11 +39,11 @@ const fetchPostSingleImage = ({
     redirect: 'follow',
   };
   const response = await fetch(url, requestOptions);
-  console.log(response, 'response isinya apa sih');
+  // console.log(response, 'response isinya apa sih');
   const result = await response.json();
   image[id] = result.result.url;
   setFormulir({ image });
-  console.log(result, 'isi result apa');
+  // console.log(result, 'isi result apa');
   setState({
     isLoading: false,
   });
@@ -72,11 +72,11 @@ const fetchPostMediaImage = ({
     redirect: 'follow',
   };
   const response = await fetch(url, requestOptions);
-  console.log(response, 'response isinya apa sih');
+  // console.log(response, 'response isinya apa sih');
   const result = await response.json();
   image[id] = result.result.url;
   setFormulir({ image });
-  console.log(result, 'isi result apa');
+  // console.log(result, 'isi result apa');
   setMedia({
     isLoading: false,
   });
@@ -116,7 +116,7 @@ const fetchPostDynamicImage = ({
 
   const values = [...sectionAdd];
 
-  console.log({ values, result, image, index }, 'values result');
+  // console.log({ values, result, image, index }, 'values result');
   values[index].image = image[`image_section_${index}`];
   setSectionAdd(values);
   setState({
@@ -188,11 +188,11 @@ const fetchPostDynamicPodcast = ({
     redirect: 'follow',
   };
   const response = await fetch(url, requestOptions);
-  console.log(response, 'response isinya apa sih');
+  // console.log(response, 'response isinya apa sih');
   const result = await response.json();
   image[id] = result.result.url;
   setFormulir({ image });
-  console.log(result, 'isi result apa');
+  // console.log(result, 'isi result apa');
   const values = [...sectionAdd];
   values[index].url = formulir.image[`podcast_section_${index}`];
   setSectionAdd(values);
@@ -227,11 +227,11 @@ const fetchPostMultipleImage = ({
     redirect: 'follow',
   };
   const response = await fetch(url, requestOptions);
-  console.log(response, 'response isinya apa sih');
+  // console.log(response, 'response isinya apa sih');
   const result = await response.json();
   image[id] = result.result.url;
   setFormulir({ image });
-  console.log(result, 'isi result apa');
+  // console.log(result, 'isi result apa');
   const values = { ...arr };
   values[id].push(formulir.image[id]);
   setArr(values);

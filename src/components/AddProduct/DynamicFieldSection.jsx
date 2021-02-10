@@ -132,7 +132,7 @@ export default function DynamicFieldSection(props) {
               <div name="test">
                 {fields.map((field, idx) => {
                   return (
-                    <WrapsField key={`${field}-${idx}`}>
+                    <WrapsField key={`${field}-${idx + 1}`}>
                       <Input
                         style={{ marginBottom: '5px' }}
                         type="text"
@@ -153,10 +153,13 @@ export default function DynamicFieldSection(props) {
 
                       {/* <MediaUrl
                         id={`image_section_${idx}`}
-                        onChange={(e) =>
-                          handleChangeImage(e, `image_section_${idx}`, idx)
+                        onChange={(e) => handleChangeImage(e, `image_section_${idx}`, idx)}
+                        value={field.image}
+                        isLoading={
+                          idx - 1
+                          ? state.isLoading
+                          : null
                         }
-                        isLoading={state.isLoading}
                       /> */}
 
                       <LabelImage>
@@ -169,9 +172,10 @@ export default function DynamicFieldSection(props) {
                           disabled={state.isLoading}
                           accept=".jpg,.jpeg,.png,.gif"
                         />
-                        {state.isLoading ? (
+                        {
+                          state.isLoading && idx
+                          ?
                           <div
-                            disabled
                             style={{
                               width: '100px',
                               textAlign: 'center',
@@ -180,9 +184,9 @@ export default function DynamicFieldSection(props) {
                           >
                             <Spinner size="sm" />
                           </div>
-                        ) : (
+                          :
                           <div style={{ width: '100px', textAlign: 'center' }}>Upload</div>
-                        )}
+                        }
                       </LabelImage>
 
                       <div style={{ width: '125px' }}>
