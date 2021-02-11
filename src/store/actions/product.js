@@ -107,7 +107,7 @@ const getListProduct = (data) => {
 const fetchGetProduct = () => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products?sortby=create_date&sortval=desc`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products?sortby=created_at&sortval=desc`;
     const options = {
       method: 'GET',
       headers: {
@@ -125,7 +125,7 @@ const fetchGetProduct = () => async (dispatch) => {
 const fetchGetListProduct = () => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem('user')).result.accessToken;
   try {
-    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/list/count`;
+    const url = `${process.env.REACT_APP_API_LIVE}/api/v1/products/list/count?sortby=created_at&sortval=desc`;
     const options = {
       method: 'GET',
       headers: {

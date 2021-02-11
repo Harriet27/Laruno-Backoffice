@@ -151,13 +151,16 @@ const DataCoupons = (props) => {
         </Th>
 
         <Th as="td" td>
-          {item.type === 'Payment'
+          {
+            item.type === 'Payment'
             ? item.payment_method_info.name
             : item.type === 'Product'
-            ? item.product_info.name
+            // ? item.product_info.name
+            ? 'Product'
             : item.type === 'User'
             ? 'User'
-            : 'Event'}
+            : 'Event'
+          }
         </Th>
         <Th as="td" td>
           <div style={Styles.FlexRow}>

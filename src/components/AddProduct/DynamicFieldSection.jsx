@@ -132,7 +132,7 @@ export default function DynamicFieldSection(props) {
               <div name="test">
                 {fields.map((field, idx) => {
                   return (
-                    <WrapsField key={`${field}-${idx + 1}`}>
+                    <WrapsField key={`${field}-${idx}`}>
                       <Input
                         style={{ marginBottom: '5px' }}
                         type="text"

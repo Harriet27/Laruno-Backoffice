@@ -47,6 +47,7 @@ const ButtonLink = Styled.button`
 const DataProduct = (props) => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.getListProduct);
+  // const product = useSelector((state) => state.product.getProduct);
   console.log({ product });
   // --- PAGINATION --- //
   const [page, setPage] = React.useState(0);
@@ -74,6 +75,7 @@ const DataProduct = (props) => {
 
   useEffect(() => {
     dispatch(fetchGetListProduct());
+    // dispatch(fetchGetProduct());
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -108,6 +110,7 @@ const DataProduct = (props) => {
             <Input isCheckbox type="checkbox" />
           </Th>
           <Th>Name</Th>
+          {/* <Th>Created At</Th> */}
           <Th>Visibility</Th>
           <Th style={{ width: '10%' }}>Product Code</Th>
           <Th>Inventory</Th>
@@ -136,6 +139,11 @@ const DataProduct = (props) => {
         <Th as="td" td>
           <div style={Styles.Name}>{item.product.name}</div>
         </Th>
+        {/* <Th as="td" td>
+          Date: {item.product.created_at.substring(0,10)}
+          <br/>
+          Time: {item.product.created_at.substring(11,19)}
+        </Th> */}
         <Th as="td" td>
           {item.product.visibility}
         </Th>
@@ -190,6 +198,76 @@ const DataProduct = (props) => {
       </tr>
     );
   };
+
+  // const TableBody = (item, index) => {
+  //   return (
+  //     <tr key={item._id}>
+  //       <Th>
+  //         <Input
+  //           isCheckbox
+  //           type="checkbox"
+  //           id={item._id}
+  //           value={item._id}
+  //           onChange={handleCheckboxChange}
+  //         />
+  //       </Th>
+  //       <Th as="td" td>
+  //         <div style={Styles.Name}>{item.name}</div>
+  //       </Th>
+  //       <Th as="td" td>
+  //         {item.visibility}
+  //       </Th>
+  //       <Th as="td" td>
+  //         <div>{item.code}</div>
+  //       </Th>
+  //       <Th as="td" td>
+  //         <div style={Styles.Inventory}>
+  //           {item.type !== 'ecommerce' ? (
+  //             <div style={{ textAlign: 'center' }}>-</div>
+  //           ) : item.ecommerce === undefined ? (
+  //             '0 in stock'
+  //           ) : (
+  //             `${item.ecommerce.stock} in Stock`
+  //           )}
+  //         </div>
+  //       </Th>
+  //       {/* <Th as="td" td>
+  //         <div style={Styles.isOrders}>Orders: {item.count.order}</div>
+  //         <div style={Styles.isContents}>Coupon: {item.count.coupon}</div>
+  //       </Th> */}
+  //       <Th as="td" td>
+  //         {item.type}
+  //       </Th>
+
+  //       <Th as="td" td>
+  //         {item.time_period} Months
+  //       </Th>
+  //       <Th as="td" td>
+  //         Rp. {FormatNumber(item.price)}
+  //       </Th>
+  //       <Th as="td" td>
+  //         <div
+  //           style={{
+  //             display: 'flex',
+  //             flexDirection: 'row',
+  //           }}
+  //         >
+  //           <Link to={`/product/show/${item._id}`}>
+  //             <ButtonLink detail>
+  //               <DescriptionIcon fontSize="small" />
+  //             </ButtonLink>
+  //           </Link>
+  //           <Link to={`/product/update/${item._id}`}>
+  //             <ButtonLink>
+  //               <CreateIcon fontSize="small" />
+  //             </ButtonLink>
+  //           </Link>
+  //           <DeleteProduct id={item._id} />
+  //         </div>
+  //       </Th>
+  //     </tr>
+  //   );
+  // };
 
   const TableFooter = (length) => {
     return (
